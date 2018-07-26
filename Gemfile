@@ -1,38 +1,28 @@
-source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+ruby File.read(".ruby-version").strip
 
-ruby '2.5.1'
+source "https://rubygems.org"
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-# Use Puma as the app server
-gem 'puma', '~> 3.11'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem "rails", "~> 5.2"
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
+gem "bootsnap", "~> 1"
+gem "gds-api-adapters", "~> 52"
+gem "gds-sso", "~> 13"
+gem "govuk_app_config", "~> 1"
+gem "govuk_publishing_components", "~> 9.5"
+gem "pg", "~> 1"
+gem "plek", "~> 2"
+gem "uglifier", "~> 4"
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem "listen", "~> 3"
 end
 
+group :test do
+  gem "simplecov", "~> 0.16"
+end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+group :development, :test do
+  gem "byebug", "~> 10"
+  gem "govuk-lint", "~> 3"
+  gem "rspec-rails", "~> 3"
+end
