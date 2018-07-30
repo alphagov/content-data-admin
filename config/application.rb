@@ -29,5 +29,20 @@ module ContentDataAdmin
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # The "Slimmer" gem is loaded by the publishing components and will automatically
+    # attempt to intercept requests and provide a layout. We don't use that
+    # functionality here, so we have to tell slimmer to not do it.
+    config.middleware.delete Slimmer::App
+
+    # The "acceptance environment" we're in - not the same as Rails env.
+    # Can be production, staging, integration, or development
+    govuk_environments = {
+      "production" => "production",
+      "staging" => "staging",
+      "integration-blue-aws" => "integration",
+    }
+
+    config.govuk_environment = govuk_environments.fetch(ENV["ERRBIT_ENVIRONMENT_NAME"], "development")
   end
 end
