@@ -16,3 +16,8 @@
  */
 // scss-lint:enable Comment
 
+// gem components
+@import 'govuk_publishing_components/all_components';
+
+// local components
+@import "components/chart";

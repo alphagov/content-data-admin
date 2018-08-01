@@ -1,0 +1,14 @@
+// Include our GOV.UK components
+@import "../../../node_modules/govuk-frontend/helpers/visually-hidden";
+
+.app-c-chart__table {
+  overflow: auto;
+}
+
+.app-c-chart__accessibility-message {
+  @include govuk-visually-hidden;
+}
+
+.govuk-table__header--numeric[scope=row] {
+  max-width: 20%;
+}

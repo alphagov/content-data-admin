@@ -1,9 +1,13 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application" %>
+<% end %>
+
 <%= render 'govuk_publishing_components/components/layout_for_admin',
   environment: Rails.application.config.govuk_environment,
   browser_title: yield(:title) + " - GOV.UK" do %>
-
   <%= render "govuk_publishing_components/components/skip_link" %>
-
   <%= render "govuk_publishing_components/components/layout_header", {
     environment: Rails.application.config.govuk_environment,
     navigation_items: [
@@ -11,7 +15,6 @@
       { text: "Log out", href: gds_sign_out_path }
     ]
   }%>
-
   <div class="govuk-width-container">
     <% if yield(:back_link).present? %>
       <%= render "govuk_publishing_components/components/back_link", href: yield(:back_link) %>
@@ -34,6 +37,5 @@
       <%= yield %>
     </main>
   </div>
-
   <%= render "govuk_publishing_components/components/layout_footer" %>
 <% end %>
