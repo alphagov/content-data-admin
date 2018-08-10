@@ -12,6 +12,8 @@ gem "govuk_publishing_components", "~> 9.5"
 gem "pg", "~> 1"
 gem "plek", "~> 2"
 gem "uglifier", "~> 4"
+gem 'logstasher'
+
 
 group :development do
   gem "listen", "~> 3"
