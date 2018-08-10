@@ -331,6 +331,7 @@ DEPENDENCIES
   govuk_app_config (~> 1)
   govuk_publishing_components (~> 9.5)
   listen (~> 3)
+  logstasher
   pg (~> 1)
   plek (~> 2)
   rails (~> 5.2)
