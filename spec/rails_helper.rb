@@ -1,12 +1,16 @@
 require "byebug"
-require "simplecov"
+require 'capybara/rspec'
+require 'webmock/rspec'
 
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
-SimpleCov.start
+if ENV["TEST_COVERAGE"] == "true"
+  require "simplecov"
+  SimpleCov.start
+end
 
 RSpec.configure do |config|
   config.expose_dsl_globally = false

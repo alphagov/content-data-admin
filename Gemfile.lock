@@ -51,9 +51,18 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
+    capybara (3.6.0)
+      addressable
+      mini_mime (>= 0.1.3)
+      nokogiri (~> 1.8)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      xpath (~> 3.1)
     commander (4.4.5)
       highline (~> 1.7.2)
     concurrent-ruby (1.0.5)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     crass (1.0.4)
     diff-lcs (1.3)
     docile (1.3.1)
@@ -113,6 +122,7 @@ GEM
       rouge
       sass-rails (>= 5.0.4)
       slimmer (>= 11.1.0)
+    hashdiff (0.3.7)
     hashie (3.5.7)
     highline (1.7.10)
     htmlentities (4.3.4)
@@ -256,6 +266,7 @@ GEM
       rubocop (>= 0.51.0)
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
+    safe_yaml (1.0.4)
     sanitize (4.6.6)
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
@@ -315,9 +326,15 @@ GEM
       rack (>= 1.0)
     warden-oauth2 (0.0.1)
       warden
+    webmock (3.4.2)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
+    xpath (3.1.0)
+      nokogiri (~> 1.8)
 
 PLATFORMS
   ruby
@@ -325,6 +342,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (~> 1)
   byebug (~> 10)
+  capybara
   gds-api-adapters (~> 52)
   gds-sso (~> 13)
   govuk-lint (~> 3)
@@ -338,6 +356,7 @@ DEPENDENCIES
   rspec-rails (~> 3)
   simplecov (~> 0.16)
   uglifier (~> 4)
+  webmock
 
 RUBY VERSION
    ruby 2.5.1p57
