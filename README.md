@@ -1,24 +1,46 @@
-# README
+# Content Data Admin
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A front end for the [data warehouse](https://github.com/alphagov/content-performance-manager).
 
-Things you may want to cover:
+This application is currently in development for a private beta.
 
-* Ruby version
+## Ruby version
 
-* System dependencies
+2.5.1
 
-* Configuration
+## Dependencies
 
-* Database creation
+* The [data warehouse](https://github.com/alphagov/content-performance-manager)
 
-* Database initialization
+## Setting up the application
 
-* How to run the test suite
+### Using the GDS development VM
 
-* Services (job queues, cache servers, search engines, etc.)
+See the [getting started guide](https://docs.publishing.service.gov.uk/getting-started.html) for instructions about setting up and running your development VM.
 
-* Deployment instructions
+In the development VM, go to:
 
-* ...
+```bash
+cd /var/govuk/govuk-puppet/development-vm
+```
+
+Then run:
+
+ ```bash
+ bowl content-data-admin
+ ```
+
+The application can be accessed from:
+
+http://content-data-admin.dev.gov.uk
+
+## Running the test suite
+To run the test suite:
+ ```bash
+ $ bundle exec rake
+ ```
+
+## Licence
+
+[MIT License](LICENCE)
+
