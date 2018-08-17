@@ -49,8 +49,58 @@
   data3 = {}
 %>
 
+<h2>Glance metric examples</h2>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    <%= render "components/glance-metric", {
+      name: "Unique pageviews",
+      figure: "167",
+      measurement_display_label: "m",
+      measurement_explicit_label: "million",
+      context: "This is in your top 10 content items",
+      trend_percentage: +0.5,
+      period: "Apr 2018 to Mar 2018"
+    } %>
+  </div>
+    <div class="govuk-grid-column-one-quarter">
+    <%= render "components/glance-metric", {
+      name: "User satisfaction score",
+      figure: "83",
+      measurement_display_label: "%",
+      context: "Positive feedback, out of 498 user responses",
+      trend_percentage: 3.2,
+      period: "Apr 2018 to Mar 2018"
+    } %>
+  </div>
+    <div class="govuk-grid-column-one-quarter">
+    <%= render "components/glance-metric", {
+      name: "On page searches",
+      figure: "392",
+      context: "0.18% of users searched from this page",
+      trend_percentage: -5,
+      period: "Apr 2018 to Mar 2018",
+      link_text: "See in Google Analytics",
+      link_url: "http://www.google.com/analytics"
+    } %>
+  </div>
+    <div class="govuk-grid-column-one-quarter">
+    <%= render "components/glance-metric", {
+      name: "Feedback comments",
+      figure: "2",
+      trend_percentage: 0,
+      period: "Apr 2018 to Mar 2018"
+    } %>
+  </div>
+</div>
+
+<h2>Chart examples</h2>
+
+
 <%= render "components/chart", data1 %>
 <%= render "components/chart", data2 %>
 <%= render "components/chart", data3 %>
+
+
 
 
