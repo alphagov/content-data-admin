@@ -18,6 +18,8 @@ private
   end
 
   def client
-    @client ||= GdsApi::Base.new(content_data_api_endpoint).client
+    @client ||= GdsApi::Base.new(content_data_api_endpoint,
+                                 disable_cache: true,
+                                 bearer_token: ENV['CONTENT_PERFORMANCE_MANAGER_BEARER_TOKEN'] || 'example').client
   end
 end
