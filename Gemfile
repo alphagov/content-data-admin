@@ -5,15 +5,15 @@ source "https://rubygems.org"
 gem "rails", "~> 5.2"
 
 gem "bootsnap", "~> 1"
+gem "chartkick"
 gem "gds-api-adapters", "~> 52"
 gem "gds-sso", "~> 13"
 gem "govuk_app_config", "~> 1"
-gem "govuk_publishing_components", "~> 9.5"
+gem "govuk_publishing_components", "~> 9.15"
 gem "pg", "~> 1"
 gem "plek", "~> 2"
 gem "uglifier", "~> 4"
 gem 'logstasher'
-
 
 group :development do
   gem "listen", "~> 3"

@@ -1,1 +1,56 @@
-My page
+<%= content_for :title, "Dev page" %>
+
+<span class="govuk-caption-xl">Data analytics for</span>
+<h1 class="govuk-heading-xl">The page being analysed</h1>
+
+<%= render "govuk_publishing_components/components/govspeak" do %>
+  <p>
+    Metrics were last updated yesterday at 00:00.
+  </p>
+<% end %>
+
+<%
+  # This data will come from models/controllers/the api eventually, hard coded for now to produce working views.
+  data1 = {
+    caption: "Unique page views in January",
+    h_axis_title: "Day",
+    v_axis_title: "Views",
+    chart_label: "January chart",
+    table_label: "January table",
+    chart_id: 'pageviews_jan_chart',
+    table_id: 'pageviews_jan_table',
+    keys: [*1..31],
+    rows: [
+      {
+        label: "January 2015",
+        values: [5, 119, 74, 117, 50, 119,61, 110, 12, 21, 121, 37, 35, 197, 82, 56, 23, 7, 5, 19, 112, 25, 19, 8, 37, 135, 197, 235, 178, 4, 9]
+      }
+    ]
+  }
+
+  data2 = {
+  h_axis_title: "Day",
+  v_axis_title: "Views",
+  chart_id: 'pageviews_feb_chart',
+  table_id: 'pageviews_feb_table',
+  table_direction: 'horizontal',
+  keys: [*1..31],
+  rows: [
+    {
+      label: "February 2015",
+      values: [5, 119, 74, 55, 50, 119,61, 820, 12, 21, 121, 37, 35, 197, 82, 56, 23, 7, 50, 19, 212, 25, 19, 8, 37, 135, 197, 235, 178, 14, 99]
+    },
+    {
+      label: "February 2016",
+      values: [3, 8, 37, 435, 78, 4, 9, 61, 110, 12, 21, 221, 37, 35, 197, 82, 56, 23,61, 110, 12, 21, 121, 137, 35, 197, 182, 56, 23]
+    }
+  ]
+  }
+  data3 = {}
+%>
+
+<%= render "components/chart", data1 %>
+<%= render "components/chart", data2 %>
+<%= render "components/chart", data3 %>
+
+

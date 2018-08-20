@@ -1,0 +1,97 @@
+<%
+  caption ||= ""
+  h_axis_title ||= ""
+  v_axis_title ||= ""
+  chart_id ||= false
+  chart_label ||= "Chart"
+  table_id ||= false
+  table_label ||= "Table"
+  table_direction ||= "vertical"
+  rows ||= []
+  keys ||= []
+  Chartkick.options[:html] = '<div id="%{id}"><noscript><p>Our charts are built using javascript but all the data is also available in the table.</p></noscript></div>'
+  # config options are here: https://developers.google.com/chart/interactive/docs/gallery/linechart
+  chart_library_options = {
+    title: caption,
+    legend: { position: 'top' },
+    curveType: 'none',
+    tooltip: {textStyle: {color: '#000'}, showColorCode: true},
+    hAxis: {showTextEvery: 3, title: h_axis_title, titleTextStyle: {color: '#000'}},
+    vAxis: {title: v_axis_title, format:'#,###', titleTextStyle: {color: '#000'}},
+    pointSize: 0
+  }
+  chart_format_data = rows.each_with_object([]) do |row, acc|
+    acc << {
+    name: row[:label],
+    data: keys.zip(row[:values])
+    }
+  end
+%>
+<% if rows.length > 0 && keys.length > 0 && chart_id && table_id %>
+  <div class="app-c-chart__chart">
+    <% chart_content = capture do %>
+      <%= render "govuk_publishing_components/components/govspeak" do %>
+        <div class="app-c-chart__accessibility-message">
+          The chart is a visual representation of the data available in the <a href="#<%= table_id %>">table</a>.
+        </div>
+      <% end %>
+      <%= line_chart(chart_format_data, library: chart_library_options) %>
+    <% end %>
+  </div>
+  <% table_content = capture do %>
+    <div class="app-c-chart__table">
+      <table class="govuk-table">
+        <caption class="govuk-table__caption"><%= caption %></caption>
+          <% if table_direction == "horizontal" %>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="col">Date</th>
+                <% keys.each do |d| %>
+                  <th class="govuk-table__header govuk-table__header--numeric" scope="col"><%= d %></th>
+                <% end %>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <% rows.each do |r| %>
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__header" scope="row"><%= r[:label]  %></th>
+                  <% r[:values].each do |v| %>
+                    <td class="govuk-table__cell govuk-table__cell--numeric"><%= v %></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          <% else %>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header govuk-table__header--numeric">Date</th>
+                <% rows.each do |r| %>
+                    <th class="govuk-table__header govuk-table__header--numeric" scope="col"><%= r[:label] %></th>
+                <% end %>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <% keys.each_with_index do |k,i| %>
+                <tr>
+                  <th class="govuk-table__header govuk-table__header--numeric" scope="row"><%= k %></th>
+                  <% rows.each do |r| %>
+                    <td class="govuk-table__cell govuk-table__cell--numeric"><%= r[:values][i] %></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          <% end %>
+      </table>
+    </div>
+  <% end %>
+<% end %>
+<% if chart_content && table_content %>
+  <div data-module="chart" class="app-c-chart">
+    <%= render "govuk_publishing_components/components/tabs", {
+      tabs: [
+        {id: chart_id, label: chart_label, content: chart_content},
+        {id: table_id, label: table_label, content: table_content}
+      ]
+    } %>
+  </div>
+<% end %>
