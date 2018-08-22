@@ -10,6 +10,15 @@ module GdsApi
         )
       end
 
+      def content_api_has_timeseries(base_path, metric, from, to, payload)
+        url = "#{content_data_api_endpoint}/metrics/#{metric}/#{base_path}/time-series?from=#{from}&to=#{to}"
+        body = payload.to_json
+        stub_request(:get, url).to_return(
+          status: 200,
+          body: body
+        )
+      end
+
       def content_data_api_endpoint
         "#{Plek.current.find('content-performance-manager')}/api/v1"
       end
