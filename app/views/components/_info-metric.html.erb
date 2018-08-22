@@ -1,0 +1,49 @@
+<%
+  name ||= false
+  figure ||= false
+  period ||= false
+  about ||= false
+  trend_percentage ||= false
+  context ||= false
+
+%>
+<% if name && figure && context %>
+  <div class="app-c-info-metric govuk-body">
+    <h3 class="app-c-info-metric__heading"><%= name %></h3>
+    <p class="app-c-info-metric__context govuk-body-s"><%= context %></p>
+    <span class="app-c-info-metric__figure govuk-!-font-weight-bold govuk-!-font-size-36 "><%= figure %></span>
+    <% if trend_percentage %>
+      <span class="app-c-info-metric__trend">
+        <% if trend_percentage > 0 %>+<% end %><%= trend_percentage %>%
+      </span>
+      <% if trend_percentage.to_f > 0 %>
+        <span class="app-c-info-metric__trend--up">
+          <span aria-hidden="true" class="app-c-info-metric__trend-icon">&#9650;</span>
+          <span class="app-c-info-metric__trend-text">Upward trend</span>
+        <span>
+      <% elsif trend_percentage.to_f < 0 %>
+        <span class="app-c-info-metric__trend--down">
+          <span aria-hidden="true" class="app-c-info-metric__trend-icon">&#9660;</span>
+          <span class="app-c-info-metric__trend-text">Downward trend</span>
+        <span>
+      <% else %>
+        <span class="app-c-info-metric__trend--no-change">
+          <span aria-hidden="true" class="app-c-info-metric__trend-icon">&#9679;</span>
+          <span class="app-c-info-metric__trend-text">No change</span>
+        <span>
+      <% end %>
+    <% end %>
+    <% if period %>
+      <span class="app-c-info-metric__period"><%= period %></span>
+    <% end %>
+    <% if about %>
+      <div class="app-c-info-metric__about govuk-body-s">
+        <%= render "govuk_publishing_components/components/details", {
+          title: "About this data"
+        } do %>
+          <%= about %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

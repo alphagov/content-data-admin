@@ -94,6 +94,55 @@
   </div>
 </div>
 
+
+<h2>Info metric examples</h2>
+
+<% about_text = capture do %>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vestibulum quam vitae felis venenatis, at hendrerit ante accumsan. Cras commodo, leo ac auctor vehicula, elit dolor pulvinar sapien, ut congue arcu sapien sit amet nibh. Donec eu est nec nisi gravida gravida ut eget libero. In hac habitasse platea dictumst.</p>
+  <p>Aliquam sed arcu et purus porttitor consequat sed malesuada arcu. Phasellus tellus justo, finibus ac porttitor sed, pulvinar et sapiensi.</p>
+  <p>Data source: Google Analytics</p>
+<% end %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= render "components/info-metric", {
+      name: "Unique pageviews",
+      figure: number_with_delimiter(4354343, :delimiter => ','),
+      context: "Number of sessions during which the page was viewed at least once",
+      trend_percentage: 0,
+      period: "From previous 30 days",
+      about: about_text
+    } %>
+  </div>
+</div>
+
+<% words_about = capture do %>
+  <p>Content may be hard to read if it has a lot of words, consider whether it should be broken down or simplified.</p>
+<% end %>
+<% pdf_about = capture do %>
+  <p>Many PDF files are not accessible. Could the content be presented on a web page instead of in a downloadable format?</p>
+
+<% end %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <%= render "components/info-metric", {
+      name: "Number of PDFs",
+      figure: "2",
+      context: "How many PDFs are attached to the page",
+      about: pdf_about
+    } %>
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <%= render "components/info-metric", {
+      name: "Word count",
+      figure: "2,214",
+      context: "Number of words on the page",
+      about: words_about
+    } %>
+  </div>
+</div>
+
 <h2>Chart examples</h2>
 
 
