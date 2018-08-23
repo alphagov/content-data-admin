@@ -1,0 +1,36 @@
+name: "Glance metric"
+description: "The glance metric component is an at-a-glance view of data for a content item. The minimum requirements for it to display are a name, figure, and time period. "
+part_of_admin_layout: true
+body: |
+
+accessibility_criteria: |
+  - Where an abbreviated label for a metric is used it MUST be accompanied with the explicit label
+  - Icons used in the component must have text equivalents
+
+shared_accessibility_criteria:
+  - link
+
+examples:
+  default:
+    data:
+      name: "Unique pageviews"
+      figure: "167"
+      measurement_display_label: "m"
+      measurement_explicit_label: "million"
+      context: "This is in your top 10 items"
+      trend_percentage: 0.5
+      period: "Apr 2018 to Mar 2018"
+  no measurement labels:
+    data:
+      name: "Feedback comments"
+      figure: "35"
+      trend_percentage: 0.5
+      period: "Apr 2018 to Mar 2018"
+  with a link:
+    data:
+      name: "Feedback comments"
+      figure: "35"
+      trend_percentage: 0.5
+      period: "Apr 2018 to Mar 2018"
+      link_text: "See comments in Feedex"
+      link_url: "http://www.feedex.com"
