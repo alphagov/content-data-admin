@@ -114,7 +114,7 @@ GEM
     govuk_frontend_toolkit (7.6.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
-    govuk_publishing_components (9.15.0)
+    govuk_publishing_components (9.16.0)
       govspeak (>= 5.0.3)
       govuk_app_config
       govuk_frontend_toolkit
@@ -159,7 +159,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
     mimemagic (0.3.2)
-    mini_mime (1.0.0)
+    mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     money (6.12.0)
@@ -349,7 +349,7 @@ DEPENDENCIES
   gds-sso (~> 13)
   govuk-lint (~> 3)
   govuk_app_config (~> 1)
-  govuk_publishing_components (~> 9.15)
+  govuk_publishing_components (~> 9.16)
   listen (~> 3)
   logstasher
   pg (~> 1)
