@@ -5,12 +5,12 @@ RSpec.describe '/metrics/base/path', type: :feature do
   end
 
   before do
-    content_api_has_metric('base/path',
+    content_data_api_has_metric('base/path',
                            'unique_pageviews',
                            '2000-01-01',
                            '2050-01-01',
                            unique_pageviews: { total: 145_000 })
-    content_api_has_timeseries('base/path',
+    content_data_api_has_timeseries('base/path',
                                'unique_pageviews',
                                '2000-01-01',
                                '2050-01-01',
