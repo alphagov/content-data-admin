@@ -1,4 +1,9 @@
 <% content_for :title, "Metrics for #{@base_path}" %>
+
 Metrics for <%= @base_path %>
+
 Unique Pageviews: <%= @metrics['unique_pageviews']['total'] %>
-<%= render "components/chart", series_chart.chart_data %>
+<%= render "components/chart", series_chart('unique_pageviews').chart_data %>
+
+Pageviews: <%= @metrics['pageviews']['total'] %>
+<%= render "components/chart", series_chart('pageviews').chart_data %>
