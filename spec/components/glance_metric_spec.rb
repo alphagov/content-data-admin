@@ -60,25 +60,6 @@ RSpec.describe "Glance Metric", type: :view do
     assert_select ".app-c-glance-metric__trend--no-change .app-c-glance-metric__trend-text", text: "No change"
   end
 
-  it "renders a link only if both url and text are supplied" do
-    render_component(data)
-    assert_select ".app-c-glance-metric__link", 0
-
-    data[:link_text] = "My link"
-    render_component(data)
-    assert_select ".app-c-glance-metric__link", 0
-
-    data[:link_text] = false
-    data[:link_url] = "http://www.google.com"
-    render_component(data)
-    assert_select ".app-c-glance-metric__link", 0
-
-    data[:link_text] = "Reinstated link text"
-    data[:link_url] = "http://www.google.com"
-    render_component(data)
-    assert_select ".app-c-glance-metric__link", text: "Reinstated link text"
-  end
-
   def render_component(locals)
     render partial: "components/glance-metric", locals: locals
   end

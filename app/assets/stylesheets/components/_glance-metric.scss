@@ -33,18 +33,7 @@
 
   @include media(mobile) {
     min-height: 0;
-  }
-}
-
-.app-c-glance-metric__link-wrapper {
-  min-height: 1.4em;
-
-  @include media-down(tablet) {
-    min-height: 2.8em;
-  }
-
-  @include media(mobile) {
-    min-height: 0;
+    border-bottom: 0;
   }
 }
 
