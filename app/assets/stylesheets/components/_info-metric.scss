@@ -1,0 +1,38 @@
+@import "../../../node_modules/govuk-frontend/helpers/colour";
+@import "../../../node_modules/govuk-frontend/helpers/visually-hidden";
+
+.app-c-info-metric__heading {
+  @include govuk-responsive-margin(1, "bottom");
+}
+
+.app-c-info-metric__trend {
+  @include govuk-responsive-margin(2, "left");
+}
+
+.app-c-info-metric__trend-text {
+  @include govuk-visually-hidden;
+}
+
+.app-c-info-metric__trend-icon {
+  color: $grey-1;
+}
+
+.app-c-info-metric__period {
+  @include govuk-responsive-margin(2, "left");
+}
+
+.app-c-info-metric__about {
+  @include govuk-responsive-margin(2, "top");
+}
+
+.app-c-info-metric__about {
+
+  .govuk-details__summary-text {
+    @include govuk-font(16);
+  }
+
+  .govuk-details__text {
+    @include govuk-font(16);
+  }
+
+}
