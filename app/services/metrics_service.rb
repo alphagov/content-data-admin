@@ -2,8 +2,8 @@ require 'gds_api/base'
 class MetricsService
   attr_reader :base_path, :from, :to, :metric
 
-  def fetch(base_path:, from:, to:, metric:)
-    url = request_url(base_path, from, to, metric)
+  def fetch(base_path:, from:, to:, metrics:)
+    url = request_url(base_path, from, to, metrics)
     client.get_json(url)
   end
 
@@ -14,8 +14,9 @@ class MetricsService
 
 private
 
-  def request_url(base_path, from, to, metric)
-    "#{content_data_api_endpoint}/metrics/#{metric}/#{base_path}?from=#{from}&to=#{to}"
+  def request_url(base_path, from, to, metrics)
+    metrics_query_string = metrics.map { |metric| "metrics[]=#{metric}" }.join('&')
+    "#{content_data_api_endpoint}/metrics/#{base_path}?from=#{from}&to=#{to}&#{metrics_query_string}"
   end
 
   def time_series_request_url(base_path, from, to, metric)
