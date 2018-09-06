@@ -2,8 +2,6 @@
   name ||= false
   figure ||= false
   period ||= false
-  link_text ||= false
-  link_url ||= false
   measurement_display_label ||= ""
   measurement_explicit_label ||= ""
   context ||= ""
@@ -29,15 +27,10 @@
       <span>
     <% else %>
       <span class="app-c-glance-metric__trend--no-change">
-        <span aria-hidden="true" class="app-c-glance-metric__trend-icon">&#8210;</span>
+        <span aria-hidden="true" class="app-c-glance-metric__trend-icon">&#9679;</span>
         <span class="app-c-glance-metric__trend-text">No change</span>
       <span>
     <% end %>
     <p class="app-c-glance-metric__period govuk-body-xs"><%= period %></p>
-    <div class="app-c-glance-metric__link-wrapper govuk-body-xs">
-      <% if link_text && link_url %>
-        <a class="app-c-glance-metric__link" href="<%= link_url %>"><%= link_text %></a>
-      <% end %>
-    </div>
   </div>
 <% end %>
