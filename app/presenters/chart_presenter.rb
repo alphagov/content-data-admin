@@ -1,12 +1,9 @@
 class ChartPresenter
-  attr_reader :json
+  attr_reader :json, :metric
 
-  def initialize(json)
-    @json = json.with_indifferent_access
-  end
-
-  def metric
-    json.keys.first
+  def initialize(json:, metric:)
+    @metric = metric
+    @json = json.to_h.with_indifferent_access
   end
 
   def from

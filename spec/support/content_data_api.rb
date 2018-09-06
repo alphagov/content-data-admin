@@ -1,22 +1,20 @@
+require 'gds_api/content_data_api'
+
 module GdsApi
   module TestHelpers
     module ContentDataApi
-      def content_data_api_has_metric(base_path, metric, from, to, payload)
-        url = "#{content_data_api_endpoint}/metrics/#{metric}/#{base_path}?from=#{from}&to=#{to}"
+      def content_data_api_has_metric(base_path:, from:, to:, metrics:, payload:)
+        query = GdsApi::ContentDataApi.new.query(from: from, to: to, metrics: metrics)
+        url = "#{content_data_api_endpoint}/metrics/#{base_path}#{query}"
         body = payload.to_json
-        stub_request(:get, url).to_return(
-          status: 200,
-          body: body
-        )
+        stub_request(:get, url).to_return(status: 200, body: body)
       end
 
-      def content_data_api_has_timeseries(base_path, metric, from, to, payload)
-        url = "#{content_data_api_endpoint}/metrics/#{metric}/#{base_path}/time-series?from=#{from}&to=#{to}"
+      def content_data_api_has_timeseries(base_path:, from:, to:, metrics:, payload:)
+        query = GdsApi::ContentDataApi.new.query(from: from, to: to, metrics: metrics)
+        url = "#{content_data_api_endpoint}/metrics/#{base_path}/time-series#{query}"
         body = payload.to_json
-        stub_request(:get, url).to_return(
-          status: 200,
-          body: body
-        )
+        stub_request(:get, url).to_return(status: 200, body: body)
       end
 
       def content_data_api_endpoint

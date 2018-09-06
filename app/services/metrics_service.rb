@@ -1,34 +1,19 @@
-require 'gds_api/base'
-class MetricsService
-  attr_reader :base_path, :from, :to, :metric
+require 'gds_api/content_data_api'
 
-  def fetch(base_path:, from:, to:, metric:)
-    url = request_url(base_path, from, to, metric)
-    client.get_json(url)
+class MetricsService
+  def fetch(base_path:, from:, to:, metrics:)
+    url = api.request_url(base_path: base_path, from: from, to: to, metrics: metrics)
+    api.client.get_json(url).to_hash
   end
 
-  def fetch_timeseries(base_path:, from:, to:, metric:)
-    url = time_series_request_url(base_path, from, to, metric)
-    client.get_json(url).to_hash
+  def fetch_timeseries(base_path:, from:, to:, metrics:)
+    url = api.time_series_request_url(base_path: base_path, from: from, to: to, metrics: metrics)
+    api.client.get_json(url).to_hash
   end
 
 private
 
-  def request_url(base_path, from, to, metric)
-    "#{content_data_api_endpoint}/metrics/#{metric}/#{base_path}?from=#{from}&to=#{to}"
-  end
-
-  def time_series_request_url(base_path, from, to, metric)
-    "#{content_data_api_endpoint}/metrics/#{metric}/#{base_path}/time-series?from=#{from}&to=#{to}"
-  end
-
-  def content_data_api_endpoint
-    "#{Plek.current.find('content-performance-manager')}/api/v1"
-  end
-
-  def client
-    @client ||= GdsApi::Base.new(content_data_api_endpoint,
-                                 disable_cache: true,
-                                 bearer_token: ENV['CONTENT_PERFORMANCE_MANAGER_BEARER_TOKEN'] || 'example').client
+  def api
+    @api ||= GdsApi::ContentDataApi.new
   end
 end
