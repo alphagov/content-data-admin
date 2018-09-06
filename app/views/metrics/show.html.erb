@@ -2,8 +2,9 @@
 
 Metrics for <%= @base_path %>
 
-Unique Pageviews: <%= @metrics['unique_pageviews']['total'] %>
+Unique Pageviews: <%= @metrics['unique_pageviews'] %>
 <%= render "components/chart", series_chart('unique_pageviews').chart_data %>
 
-Pageviews: <%= @metrics['pageviews']['total'] %>
+Pageviews: <%= @metrics['pageviews'] %>
 <%= render "components/chart", series_chart('pageviews').chart_data %>
+

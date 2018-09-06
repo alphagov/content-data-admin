@@ -6,30 +6,30 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
   before do
     content_data_api_has_metric(base_path: 'base/path',
-                           from: '2000-01-01',
-                           to: '2050-01-01',
-                           metrics: %w[unique_pageviews page_views],
-                           payload: {
-                               unique_pageviews: { total: 145_000 },
-                               pageviews: { total: 200_000 }
-                           })
+      from: '2000-01-01',
+      to: '2050-01-01',
+      metrics: %w[unique_pageviews page_views],
+      payload: {
+        unique_pageviews: 145_000,
+        pageviews: 200_000
+      })
 
     content_data_api_has_timeseries(base_path: 'base/path',
-                               from: '2000-01-01',
-                               to: '2050-01-01',
-                               metrics: %w[unique_pageviews page_views],
-                               payload: {
-                                 unique_pageviews: [
-                                   { "date" => "2018-01-13", "value" => 101 },
-                                   { "date" => "2018-01-14", "value" => 202 },
-                                   { "date" => "2018-01-15", "value" => 303 }
-                                 ],
-                                 pageviews: [
-                                     { "date" => "2018-01-13", "value" => 10 },
-                                     { "date" => "2018-01-14", "value" => 20 },
-                                     { "date" => "2018-01-15", "value" => 30 }
-                                 ]
-                               })
+      from: '2000-01-01',
+      to: '2050-01-01',
+      metrics: %w[unique_pageviews page_views],
+      payload: {
+        unique_pageviews: [
+          { "date" => "2018-01-13", "value" => 101 },
+          { "date" => "2018-01-14", "value" => 202 },
+          { "date" => "2018-01-15", "value" => 303 }
+        ],
+        pageviews: [
+          { "date" => "2018-01-13", "value" => 10 },
+          { "date" => "2018-01-14", "value" => 20 },
+          { "date" => "2018-01-15", "value" => 30 }
+        ]
+      })
 
     visit '/metrics/base/path?from=2000-01-01&to=2050-01-01&metrics[]=unique_pageviews&metrics[]=page_views'
   end
