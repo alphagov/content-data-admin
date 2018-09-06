@@ -5,8 +5,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
   end
 
   before do
-    content_data_api_has_metric('base/path',
-                           'unique_pageviews',
+    content_data_api_has_metrics('base/path',
+                           %w[unique_pageviews],
                            '2000-01-01',
                            '2050-01-01',
                            unique_pageviews: 145_000)

@@ -7,7 +7,7 @@ class MetricsController < ApplicationController
       base_path: params[:base_path],
       from: params[:from],
       to: params[:to],
-      metric: params[:metric]
+      metrics: [params[:metric]]
     ).to_hash
     @timeseries = service.fetch_timeseries(
       base_path: params[:base_path],
