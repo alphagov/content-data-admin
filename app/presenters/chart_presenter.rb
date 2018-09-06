@@ -15,7 +15,7 @@ class ChartPresenter
   end
 
   def has_values?
-    !json.values.empty?
+    !json.values.flatten.empty?
   end
 
   def human_friendly_metric
