@@ -14,6 +14,10 @@ class ChartPresenter
     json.values.flatten.last[:date]
   end
 
+  def has_values?
+    !json.values.empty?
+  end
+
   def human_friendly_metric
     metric.tr('_', ' ').capitalize
   end

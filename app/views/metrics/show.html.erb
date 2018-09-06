@@ -3,8 +3,7 @@
 Metrics for <%= @base_path %>
 
 Unique Pageviews: <%= @metrics['unique_pageviews'] %>
-<%= render "components/chart", series_chart('unique_pageviews').chart_data %>
+<%= render "components/chart", series_chart('unique_pageviews').chart_data if series_chart('unique_pageviews').has_values? %>
 
 Pageviews: <%= @metrics['pageviews'] %>
-<%= render "components/chart", series_chart('pageviews').chart_data %>
-
+<%= render "components/chart", series_chart('pageviews').chart_data if series_chart('pageviews').has_values? %>
