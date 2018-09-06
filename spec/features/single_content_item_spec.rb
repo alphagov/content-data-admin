@@ -9,7 +9,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
                            'unique_pageviews',
                            '2000-01-01',
                            '2050-01-01',
-                           unique_pageviews: { total: 145_000 })
+                           unique_pageviews: 145_000)
     content_data_api_has_timeseries('base/path',
                                'unique_pageviews',
                                '2000-01-01',
