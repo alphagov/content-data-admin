@@ -1,6 +1,13 @@
-<% content_for :title, "Metrics for #{@summary.base_path}" %>
-
-Metrics for <%= @summary.base_path %>
+<% content_for :title, "Page Data: #{@summary.title}" %>
+<h2>Page Data</h2>
+<h1><%= @summary.title %></h1>
+<div class="page-metadata">
+  <%= render :partial => 'metadata_row', locals: { label: 'Published', value: @summary.published_at } %>
+  <%= render :partial => 'metadata_row', locals: { label: 'Last updated', value: @summary.last_updated } %>
+  <%= render :partial => 'metadata_row', locals: {label: 'From', value:  @summary.publishing_organisation } %>
+  <%= render :partial => 'metadata_row', locals: {label: 'Type', value:  @summary.document_type } %>
+  <%= render :partial => 'metadata_row', locals: {label: 'URL', value:  @summary.base_path } %>
+</div>
 
 Unique Pageviews: <%= @summary.unique_pageviews %>
 <%= render_chart @summary.unique_pageviews_series %>

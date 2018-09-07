@@ -10,8 +10,14 @@ RSpec.describe '/metrics/base/path', type: :feature do
       to: '2050-01-01',
       metrics: %w[unique_pageviews page_views],
       payload: {
+        base_path: '/base/path',
         unique_pageviews: 145_000,
-        pageviews: 200_000
+        pageviews: 200_000,
+        title: "Content Title",
+        first_published_at: '2018-02-01T00:00:00.000Z',
+        public_updated_at: '2018-04-25T00:00:00.000Z',
+        primary_organisation_title: 'The ministry',
+        document_type: "news_story"
       })
 
     content_data_api_has_timeseries(base_path: 'base/path',
@@ -35,8 +41,28 @@ RSpec.describe '/metrics/base/path', type: :feature do
   end
 
   it 'renders the metric for unique_pageviews' do
-    expect(page).to have_content('Metrics')
     expect(page).to have_content('145000')
+  end
+
+  it 'renders the metric for pageviews' do
+    expect(page).to have_content('200000')
+  end
+
+  it 'renders the page title' do
+    expect(page).to have_content('Content Title')
+  end
+
+  it 'renders the metadata' do
+    metadata = find('.page-metadata').all('.metadata-row').map do |el|
+      el.all('.metadata-label,.metadata-value').map(&:text)
+    end
+    expect(metadata).to eq([
+      ['Published', '1 February 2018'],
+      ['Last updated', '25 April 2018'],
+      ['From', 'The ministry'],
+      ['Type', 'News story'],
+      ['URL', '/base/path']
+    ])
   end
 
   it 'renders the metric timeseries for unique_pageviews' do
