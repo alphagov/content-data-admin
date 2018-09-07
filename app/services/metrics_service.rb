@@ -6,7 +6,7 @@ class MetricsService
     api.client.get_json(url).to_hash
   end
 
-  def fetch_timeseries(base_path:, from:, to:, metrics:)
+  def fetch_time_series(base_path:, from:, to:, metrics:)
     url = api.time_series_request_url(base_path: base_path, from: from, to: to, metrics: metrics)
     api.client.get_json(url).to_hash
   end
