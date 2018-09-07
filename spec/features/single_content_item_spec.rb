@@ -15,7 +15,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
           first_published_at: '2018-02-01T00:00:00.000Z',
           public_updated_at: '2018-04-25T00:00:00.000Z',
           primary_organisation_title: 'The ministry',
-          document_type: "news_story"
+          document_type: "news_story",
+          number_of_internal_searches: 250
         })
 
       content_data_api_has_timeseries(base_path: 'base/path',
@@ -32,9 +33,13 @@ RSpec.describe '/metrics/base/path', type: :feature do
             { "date" => "2018-01-13", "value" => 10 },
             { "date" => "2018-01-14", "value" => 20 },
             { "date" => "2018-01-15", "value" => 30 }
+          ],
+          number_of_internal_searches: [
+            { "date" => "2018-01-13", "value" => 5 },
+            { "date" => "2018-01-14", "value" => 12 },
+            { "date" => "2018-01-15", "value" => 10 }
           ]
         })
-
       visit '/metrics/base/path?from=2000-01-01&to=2050-01-01'
     end
 
@@ -44,6 +49,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders the metric for pageviews' do
       expect(page).to have_content('200000')
+    end
+
+    it 'renders a metric for on page searches' do
+      expect(page).to have_content('250')
     end
 
     it 'renders the page title' do
@@ -84,6 +93,16 @@ RSpec.describe '/metrics/base/path', type: :feature do
       expect(pageviews_rows[2].text).to eq '01-14 20'
       expect(pageviews_rows[3].text).to eq '01-15 30'
     end
+
+    it 'renders the metric timeseries for on-page searches' do
+      click_on 'Number of internal searches table'
+      internal_searches_rows = find("#number_of_internal_searches_2018-01-13-2018-01-15_table").all('tr')
+      expect(internal_searches_rows.count).to eq 4
+      expect(internal_searches_rows[0].text).to eq ''
+      expect(internal_searches_rows[1].text).to eq '01-13 5'
+      expect(internal_searches_rows[2].text).to eq '01-14 12'
+      expect(internal_searches_rows[3].text).to eq '01-15 10'
+    end
   end
 
   context 'when the data-api has an error' do
@@ -92,7 +111,6 @@ RSpec.describe '/metrics/base/path', type: :feature do
         from: '2000-01-01',
         to: '2050-01-01',
         metrics: %w[number_of_internal_searches pageviews unique_pageviews])
-
       visit '/metrics/base/path?from=2000-01-01&to=2050-01-01'
       expect(page.status_code).to eq(404)
       expect(page).to have_content "The page you were looking for doesn't exist."

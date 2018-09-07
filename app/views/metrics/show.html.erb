@@ -14,3 +14,5 @@
 <%= render_chart @summary.unique_pageviews_series %>
 <%= render partial: 'metric_header', locals: { title: 'Pageviews', value: @summary.pageviews } %>
 <%= render_chart @summary.pageviews_series %>
+<%= render partial: 'metric_header', locals: { title: 'Searches from the page', value: @summary.number_of_internal_searches } %>
+<%= render_chart @summary.number_of_internal_searches_series %>
