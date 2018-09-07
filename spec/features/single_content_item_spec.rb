@@ -66,13 +66,17 @@ RSpec.describe '/metrics/base/path', type: :feature do
     it 'renders the metric timeseries for unique_pageviews' do
       click_on 'Unique pageviews table'
       unique_pageviews_rows = find("#unique_pageviews_2018-01-13-2018-01-15_table").all('tr')
-      pageviews_rows = find("#pageviews_2018-01-13-2018-01-15_table").all('tr')
 
       expect(unique_pageviews_rows.count).to eq 4
       expect(unique_pageviews_rows[0].text).to eq ''
       expect(unique_pageviews_rows[1].text).to eq '01-13 101'
       expect(unique_pageviews_rows[2].text).to eq '01-14 202'
       expect(unique_pageviews_rows[3].text).to eq '01-15 303'
+    end
+
+    it 'renders the metric timeseries for pageviews' do
+      click_on 'Pageviews table'
+      pageviews_rows = find("#pageviews_2018-01-13-2018-01-15_table").all('tr')
 
       expect(pageviews_rows.count).to eq 4
       expect(pageviews_rows[0].text).to eq ''
@@ -88,6 +92,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         from: '2000-01-01',
         to: '2050-01-01',
         metrics: %w[number_of_internal_searches pageviews unique_pageviews])
+
       visit '/metrics/base/path?from=2000-01-01&to=2050-01-01'
       expect(page.status_code).to eq(404)
       expect(page).to have_content "The page you were looking for doesn't exist."
