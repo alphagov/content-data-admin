@@ -5,10 +5,53 @@
   overflow: auto;
 }
 
+.app-c-chart__table {
+  max-height: 350px;
+
+  @include media(mobile) {
+    max-height: 250px;
+  }
+}
+
 .app-c-chart__accessibility-message {
   @include govuk-visually-hidden;
+}
+
+.govuk-table {
+  width: auto;
+}
+
+.govuk-table__header--stacked {
+  max-width: 15%;
 }
 
 .govuk-table__header--numeric[scope=row] {
   max-width: 20%;
 }
+
+// This breaks our BEM markup but is injected by the charting library and can't be avoided
+// scss-lint:disable IdSelector
+.app-c-chart {
+  #chart-1,
+  #chart-2,
+  #chart-3,
+  #chart-4,
+  #chart-5,
+  #chart-6,
+  #chart-7 {
+    height: 350px;
+  }
+
+  @include media(mobile) {
+    #chart-1,
+    #chart-2,
+    #chart-3,
+    #chart-4,
+    #chart-5,
+    #chart-6,
+    #chart-7 {
+      height: 250px;
+    }
+  }
+}
+// scss-lint:enable IdSelector

@@ -1,28 +1,30 @@
 <%
-  caption ||= ""
-  h_axis_title ||= ""
-  v_axis_title ||= ""
   chart_id ||= false
   chart_label ||= "Chart"
   table_id ||= false
   table_label ||= "Table"
-  table_direction ||= "vertical"
+  table_direction ||= "horizontal"
   rows ||= []
   keys ||= []
   Chartkick.options[:html] = '<div id="%{id}"><noscript><p>Our charts are built using javascript but all the data is also available in the table.</p></noscript></div>'
   # config options are here: https://developers.google.com/chart/interactive/docs/gallery/linechart
   chart_library_options = {
-    title: caption,
-    legend: { position: 'top' },
+    legend: { position: 'top', textStyle: {color: '#000', fontName: 'nta', fontSize: '18'}},
+    chartArea:{width:'90%',height:'80%'},
     curveType: 'none',
     tooltip: {textStyle: {color: '#000'}, showColorCode: true},
-    hAxis: {showTextEvery: 3, title: h_axis_title, titleTextStyle: {color: '#000'}},
-    vAxis: {title: v_axis_title, format:'#,###', titleTextStyle: {color: '#000'}},
-    pointSize: 0
+    hAxis: {showTextEvery: 3, textStyle: {color: '#000', fontName: 'nta', fontSize: '12'}},
+    vAxis: {format:'#,###', textStyle: {color: '#000', fontName: 'nta', fontSize: '12'}},
+    pointSize: 0,
+    series: {
+        0 => {lineWidth: 2, color: '#912B88'},
+        1 => {lineWidth: 2, lineDashStyle: [10, 2], color: '#454a4c'}
+    }
   }
   chart_format_data = rows.each_with_object([]) do |row, acc|
     acc << {
     name: row[:label],
+    linewidth: 10,
     data: keys.zip(row[:values])
     }
   end
@@ -39,13 +41,12 @@
     <% end %>
   </div>
   <% table_content = capture do %>
-    <div class="app-c-chart__table">
+    <div class="app-c-chart__table" tabindex="0">
       <table class="govuk-table">
-        <caption class="govuk-table__caption"><%= caption %></caption>
-          <% if table_direction == "horizontal" %>
+          <% if table_direction == "vertical" %>
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="col">Date</th>
+                <td class="govuk-table__cell"></td>
                 <% keys.each do |d| %>
                   <th class="govuk-table__header govuk-table__header--numeric" scope="col"><%= d %></th>
                 <% end %>
@@ -64,9 +65,9 @@
           <% else %>
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th class="govuk-table__header govuk-table__header--numeric">Date</th>
+                <td class="govuk-table__cell"></td>
                 <% rows.each do |r| %>
-                    <th class="govuk-table__header govuk-table__header--numeric" scope="col"><%= r[:label] %></th>
+                    <th class="govuk-table__header govuk-table__header--stacked govuk-table__header--numeric" scope="row"><%= r[:label] %></th>
                 <% end %>
               </tr>
             </thead>

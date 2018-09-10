@@ -12,14 +12,12 @@
 <%
   # This data will come from models/controllers/the api eventually, hard coded for now to produce working views.
   data1 = {
-    caption: "Unique page views in January",
-    h_axis_title: "Day",
-    v_axis_title: "Views",
-    chart_label: "January chart",
-    table_label: "January table",
+    caption: "Unique page views",
+    chart_label: "Unique page views chart",
+    table_label: "Unique page views table",
     chart_id: 'pageviews_jan_chart',
     table_id: 'pageviews_jan_table',
-    keys: [*1..31],
+    keys: [*(1..30)],
     rows: [
       {
         label: "January 2015",
@@ -29,12 +27,12 @@
   }
 
   data2 = {
-  h_axis_title: "Day",
-  v_axis_title: "Views",
+  chart_label: "Time spend on page chart",
+  table_label: "Time spent on page table",
   chart_id: 'pageviews_feb_chart',
   table_id: 'pageviews_feb_table',
   table_direction: 'horizontal',
-  keys: [*1..31],
+  keys: ["1st September 2018", "2nd September 2018", "3rd September 2018", "4th September 2018", "5th September 2018", "6th September 2018", "7th September 2018", "8th September 2018", "9th September 2018", "10th September 2018", "11th September 2018", "13th September 2018", "14th September 2018", "15th September 2018", "16th September 2018", "17th September 2018", "18th September 2018", "19th September 2018", "20th September 2018", "21st September 2018", "22nd September 2018", "23rd September 2018", "24th September 2018", "25th September 2018", "26th September 2018", "27th September 2018", "28th September 2018", "29th September 2018", "30th September 2018"],
   rows: [
     {
       label: "February 2015",
