@@ -71,13 +71,13 @@ RSpec.describe '/metrics/base/path', type: :feature do
     pageviews_rows = find("#pageviews_2018-01-13-2018-01-15_table").all('tr')
 
     expect(unique_pageviews_rows.count).to eq 4
-    expect(unique_pageviews_rows[0].text).to eq 'Date'
+    expect(unique_pageviews_rows[0].text).to eq ''
     expect(unique_pageviews_rows[1].text).to eq '01-13 101'
     expect(unique_pageviews_rows[2].text).to eq '01-14 202'
     expect(unique_pageviews_rows[3].text).to eq '01-15 303'
 
     expect(pageviews_rows.count).to eq 4
-    expect(pageviews_rows[0].text).to eq 'Date'
+    expect(pageviews_rows[0].text).to eq ''
     expect(pageviews_rows[1].text).to eq '01-13 10'
     expect(pageviews_rows[2].text).to eq '01-14 20'
     expect(pageviews_rows[3].text).to eq '01-15 30'
