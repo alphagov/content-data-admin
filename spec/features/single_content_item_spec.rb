@@ -1,6 +1,5 @@
 RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
-
   context 'successful request' do
     before do
       content_data_api_has_metric(base_path: 'base/path',
@@ -16,7 +15,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
           public_updated_at: '2018-04-25T00:00:00.000Z',
           primary_organisation_title: 'The ministry',
           document_type: "news_story",
-          number_of_internal_searches: 250
+          number_of_internal_searches: 250,
+          satisfaction_score: 25.5
         })
 
       content_data_api_has_timeseries(base_path: 'base/path',
@@ -38,6 +38,11 @@ RSpec.describe '/metrics/base/path', type: :feature do
             { "date" => "2018-01-13", "value" => 5 },
             { "date" => "2018-01-14", "value" => 12 },
             { "date" => "2018-01-15", "value" => 10 }
+          ],
+          satisfaction_score: [
+            { "date" => "2018-01-13", "value" => 30.3 },
+            { "date" => "2018-01-14", "value" => 20.3 },
+            { "date" => "2018-01-15", "value" => 40.1 }
           ]
         })
       visit '/metrics/base/path?from=2000-01-01&to=2050-01-01'
@@ -49,6 +54,14 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders the metric for pageviews' do
       expect(page).to have_content('200000')
+    end
+
+    it 'renders a metric for satisfaction_score' do
+      expect(page).to have_content('25.5')
+    end
+
+    it 'renders the page title' do
+      expect(page).to have_content('Content Title')
     end
 
     it 'renders a metric for on page searches' do
@@ -97,11 +110,23 @@ RSpec.describe '/metrics/base/path', type: :feature do
     it 'renders the metric timeseries for on-page searches' do
       click_on 'Number of internal searches table'
       internal_searches_rows = find("#number_of_internal_searches_2018-01-13-2018-01-15_table").all('tr')
+
       expect(internal_searches_rows.count).to eq 4
       expect(internal_searches_rows[0].text).to eq ''
       expect(internal_searches_rows[1].text).to eq '01-13 5'
       expect(internal_searches_rows[2].text).to eq '01-14 12'
       expect(internal_searches_rows[3].text).to eq '01-15 10'
+    end
+
+    it 'renders the metric timeseries for satisfaction_score' do
+      click_on 'Number of internal searches table'
+      satisfaction_score_rows = find("#satisfaction_score_2018-01-13-2018-01-15_table").all('tr')
+
+      expect(satisfaction_score_rows.count).to eq 4
+      expect(satisfaction_score_rows[0].text).to eq ''
+      expect(satisfaction_score_rows[1].text).to eq '01-13 30.3'
+      expect(satisfaction_score_rows[2].text).to eq '01-14 20.3'
+      expect(satisfaction_score_rows[3].text).to eq '01-15 40.1'
     end
   end
 

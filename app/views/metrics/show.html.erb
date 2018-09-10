@@ -16,3 +16,7 @@
 <%= render_chart @summary.pageviews_series %>
 <%= render partial: 'metric_header', locals: { title: 'Searches from the page', value: @summary.number_of_internal_searches } %>
 <%= render_chart @summary.number_of_internal_searches_series %>
+
+<h2>Feedback</h2>
+<%= render partial: 'metric_header', locals: { title: 'User satisfaction score', value: @summary.satisfaction_score } %>
+<%= render_chart @summary.satisfaction_score_series %>
