@@ -1,20 +1,16 @@
 class MetricsController < ApplicationController
   def show
-    @base_path = params[:base_path]
     service = MetricsService.new
 
-    @metrics = service.fetch(
+    service_params = {
       base_path: params[:base_path],
       from: params[:from],
       to: params[:to],
       metrics: params[:metrics]
-    )
+    }
 
-    @timeseries = service.fetch_timeseries(
-      base_path: params[:base_path],
-      from: params[:from],
-      to: params[:to],
-      metrics: params[:metrics]
-    )
+    @summary = SingleContentItemPresenter
+      .parse_metrics(service.fetch(service_params))
+      .parse_time_series(service.fetch_time_series(service_params))
   end
 end

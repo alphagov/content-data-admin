@@ -19,7 +19,7 @@ class ChartPresenter
   end
 
   def human_friendly_metric
-    metric.tr('_', ' ').capitalize
+    metric.to_s.tr('_', ' ').capitalize
   end
 
   def chart_data
