@@ -10,6 +10,12 @@ module GdsApi
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
+      def content_data_api_does_not_have_base_path(base_path:, from:, to:, metrics:)
+        query = GdsApi::ContentDataApi.new.query(from: from, to: to, metrics: metrics)
+        url = "#{content_data_api_endpoint}/metrics/#{base_path}#{query}"
+        stub_request(:get, url).to_return(status: 404, body: { some: 'error' }.to_json)
+      end
+
       def content_data_api_has_timeseries(base_path:, from:, to:, metrics:, payload:)
         query = GdsApi::ContentDataApi.new.query(from: from, to: to, metrics: metrics)
         url = "#{content_data_api_endpoint}/metrics/#{base_path}/time-series#{query}"
