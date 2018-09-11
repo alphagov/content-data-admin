@@ -1,11 +1,12 @@
 RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
+  let(:metrics) { MetricsService::DEFAULT_METRICS }
   context 'successful request' do
     before do
       content_data_api_has_metric(base_path: 'base/path',
         from: '2000-01-01',
         to: '2050-01-01',
-        metrics: %w[number_of_internal_searches pageviews unique_pageviews],
+        metrics: metrics,
         payload: {
           base_path: '/base/path',
           unique_pageviews: 145_000,
@@ -22,7 +23,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       content_data_api_has_timeseries(base_path: 'base/path',
         from: '2000-01-01',
         to: '2050-01-01',
-        metrics: %w[number_of_internal_searches pageviews unique_pageviews],
+        metrics: metrics,
         payload: {
           unique_pageviews: [
             { "date" => "2018-01-13", "value" => 101 },
@@ -135,7 +136,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       content_data_api_does_not_have_base_path(base_path: 'base/path',
         from: '2000-01-01',
         to: '2050-01-01',
-        metrics: %w[number_of_internal_searches pageviews unique_pageviews])
+        metrics: metrics)
       visit '/metrics/base/path?from=2000-01-01&to=2050-01-01'
       expect(page.status_code).to eq(404)
       expect(page).to have_content "The page you were looking for doesn't exist."
