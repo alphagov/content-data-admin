@@ -1,0 +1,31 @@
+<%
+    published_at ||= ""
+    last_updated ||= ""
+    publishing_organisation ||= ""
+    document_type ||= ""
+    base_path ||= ""
+    status ||= ""
+%>
+
+<div class="app-c-metadata govuk-body govuk-body-xs">
+  <% if status != "" %>
+    <dl class="app-c-metadata__list">
+      <dt class="app-c-metadata__title">Status</dt>
+      <dd class="app-c-metadata__description govuk-!-font-weight-bold"><%= status %></dd>
+    </dl>
+  <% end %>
+  <dl class="app-c-metadata__list">
+    <dt class="app-c-metadata__title">Published</dt>
+    <dd class="app-c-metadata__description"><%= published_at %></dd>
+    <dt class="app-c-metadata__title">Last updated</dt>
+    <dd class="app-c-metadata__description"><%= last_updated %></dd>
+  </dl>
+  <dl class="app-c-metadata__list">
+    <dt class="app-c-metadata__title">From</dt>
+    <dd class="app-c-metadata__description"><%= publishing_organisation %></dd>
+    <dt class="app-c-metadata__title">Type</dt>
+    <dd class="app-c-metadata__description"><%= document_type %></dd>
+    <dt class="app-c-metadata__title">URL</dt>
+    <dd class="app-c-metadata__description"><% if base_path != "" %>/.../<%= base_path.split("/")[-1] %><% end %></dd>
+  </dl>
+</div>
