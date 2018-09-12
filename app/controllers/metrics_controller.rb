@@ -9,7 +9,7 @@ class MetricsController < ApplicationController
     }
 
     @summary = SingleContentItemPresenter
-      .parse_metrics(service.fetch(service_params))
+      .parse_metrics(service.fetch_aggregated_data(service_params))
       .parse_time_series(service.fetch_time_series(service_params))
   end
 
