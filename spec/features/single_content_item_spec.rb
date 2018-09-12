@@ -88,46 +88,57 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders the metric timeseries for unique_pageviews' do
       click_on 'Unique pageviews table'
-      unique_pageviews_rows = find("#unique_pageviews_2018-01-13-2018-01-15_table").all('tr')
-
-      expect(unique_pageviews_rows.count).to eq 4
-      expect(unique_pageviews_rows[0].text).to eq ''
-      expect(unique_pageviews_rows[1].text).to eq '01-13 101'
-      expect(unique_pageviews_rows[2].text).to eq '01-14 202'
-      expect(unique_pageviews_rows[3].text).to eq '01-15 303'
+      unique_pageviews_rows = find("#unique_pageviews_2018-01-13-2018-01-15_table").all('tr').map do |el|
+        el.all('th,td').map(&:text)
+      end
+      expect(unique_pageviews_rows).to match_array([
+        ['', ''],
+        ['01-13', '101'],
+        ['01-14', '202'],
+        ['01-15', '303']
+      ])
     end
 
     it 'renders the metric timeseries for pageviews' do
       click_on 'Pageviews table'
-      pageviews_rows = find("#pageviews_2018-01-13-2018-01-15_table").all('tr')
+      pageviews_rows = find("#pageviews_2018-01-13-2018-01-15_table").all('tr').map do |el|
+        el.all('th,td').map(&:text)
+      end
 
-      expect(pageviews_rows.count).to eq 4
-      expect(pageviews_rows[0].text).to eq ''
-      expect(pageviews_rows[1].text).to eq '01-13 10'
-      expect(pageviews_rows[2].text).to eq '01-14 20'
-      expect(pageviews_rows[3].text).to eq '01-15 30'
+      expect(pageviews_rows).to match_array([
+        ['', ''],
+        ['01-13', '10'],
+        ['01-14', '20'],
+        ['01-15', '30']
+      ])
     end
 
     it 'renders the metric timeseries for on-page searches' do
       click_on 'Number of internal searches table'
-      internal_searches_rows = find("#number_of_internal_searches_2018-01-13-2018-01-15_table").all('tr')
+      internal_searches_rows = find("#number_of_internal_searches_2018-01-13-2018-01-15_table").all('tr').map do |el|
+        el.all('th,td').map(&:text)
+      end
 
-      expect(internal_searches_rows.count).to eq 4
-      expect(internal_searches_rows[0].text).to eq ''
-      expect(internal_searches_rows[1].text).to eq '01-13 5'
-      expect(internal_searches_rows[2].text).to eq '01-14 12'
-      expect(internal_searches_rows[3].text).to eq '01-15 10'
+      expect(internal_searches_rows).to match_array([
+        ['', ''],
+        ['01-13', '5'],
+        ['01-14', '12'],
+        ['01-15', '10']
+      ])
     end
 
     it 'renders the metric timeseries for satisfaction_score' do
       click_on 'Number of internal searches table'
-      satisfaction_score_rows = find("#satisfaction_score_2018-01-13-2018-01-15_table").all('tr')
+      satisfaction_score_rows = find("#satisfaction_score_2018-01-13-2018-01-15_table").all('tr').map do |el|
+        el.all('th,td').map(&:text)
+      end
 
-      expect(satisfaction_score_rows.count).to eq 4
-      expect(satisfaction_score_rows[0].text).to eq ''
-      expect(satisfaction_score_rows[1].text).to eq '01-13 30.3'
-      expect(satisfaction_score_rows[2].text).to eq '01-14 20.3'
-      expect(satisfaction_score_rows[3].text).to eq '01-15 40.1'
+      expect(satisfaction_score_rows).to match_array([
+        ['', ''],
+        ['01-13', '30.3'],
+        ['01-14', '20.3'],
+        ['01-15', '40.1']
+      ])
     end
   end
 
