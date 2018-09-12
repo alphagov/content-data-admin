@@ -149,4 +149,44 @@ RSpec.describe '/metrics/base/path', type: :feature do
       expect(page).to have_content "The page you were looking for doesn't exist."
     end
   end
+
+  context 'no time series from the data-api' do
+    before do
+      content_data_api_has_metric(base_path: 'base/path',
+        from: '2000-01-01',
+        to: '2050-01-01',
+        metrics: metrics,
+        payload: {
+          base_path: '/base/path',
+          title: "Content Title",
+          first_published_at: '2018-02-01T00:00:00.000Z',
+          public_updated_at: '2018-04-25T00:00:00.000Z',
+          primary_organisation_title: 'The ministry',
+          document_type: "news_story",
+          number_of_internal_searches: 250,
+          satisfaction_score: 25.5
+        })
+
+      content_data_api_has_timeseries(base_path: 'base/path',
+        from: '2000-01-01',
+        to: '2050-01-01',
+        metrics: metrics,
+        payload: {
+          unique_pageviews: [],
+        })
+      visit '/metrics/base/path?from=2000-01-01&to=2050-01-01'
+    end
+
+    it 'renders a div to indicate no data when empty' do
+      expect(page).not_to have_content('Unique pageviews table')
+      expect(page).to have_selector 'div',
+        text: 'No Unique pageviews data for the selected time period'
+    end
+
+    it 'renders a div to indicate no data when missing' do
+      expect(page).not_to have_content('Pageviews table')
+      expect(page).to have_selector 'div',
+        text: 'No Pageviews data for the selected time period'
+    end
+  end
 end

@@ -28,6 +28,10 @@ RSpec.describe ChartPresenter do
     expect(subject.human_friendly_metric).to eq 'Unique pageviews'
   end
 
+  it 'returns the correct message for no data' do
+    expect(subject.no_data_message).to eq 'No Unique pageviews data for the selected time period'
+  end
+
   it 'returns formatted hash of chart data' do
     expect(subject.chart_data).to eq unique_pageviews_chart_data
   end

@@ -16,6 +16,10 @@ class ChartPresenter
     metric.to_s.tr('_', ' ').capitalize
   end
 
+  def no_data_message
+    "No #{human_friendly_metric} data for the selected time period"
+  end
+
   def chart_data
     {
       caption: "#{human_friendly_metric} from #{from.to_date} to #{to.to_date}",
