@@ -1,18 +1,19 @@
 class MetricsController < ApplicationController
-  DEFAULT_METRICS = %w[pageviews unique_pageviews number_of_internal_searches].freeze
-
   def show
     service = MetricsService.new
 
     service_params = {
       base_path: params[:base_path],
       from: params[:from],
-      to: params[:to],
-      metrics: DEFAULT_METRICS
+      to: params[:to]
     }
 
     @summary = SingleContentItemPresenter
-      .parse_metrics(service.fetch(service_params))
+      .parse_metrics(
+        metrics: service.fetch_aggregated_data(service_params),
+        from: params[:from],
+        to: params[:to]
+      )
       .parse_time_series(service.fetch_time_series(service_params))
   end
 

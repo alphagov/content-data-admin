@@ -1,17 +1,11 @@
 class ChartPresenter
-  attr_reader :json, :metric
+  attr_reader :json, :metric, :from, :to
 
-  def initialize(json:, metric:)
+  def initialize(json:, metric:, from:, to:)
     @metric = metric
     @json = json.to_h.with_indifferent_access
-  end
-
-  def from
-    json.values.flatten.first[:date]
-  end
-
-  def to
-    json.values.flatten.last[:date]
+    @from = from
+    @to = to
   end
 
   def has_values?
@@ -20,6 +14,10 @@ class ChartPresenter
 
   def human_friendly_metric
     metric.to_s.tr('_', ' ').capitalize
+  end
+
+  def no_data_message
+    "No #{human_friendly_metric} data for the selected time period"
   end
 
   def chart_data

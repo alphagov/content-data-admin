@@ -1,0 +1,7 @@
+<% if series.has_values? %>
+  <div class="chart <%= series.metric %>">
+    <%= render "components/chart", series.chart_data %>
+  </div>
+<% else %>
+  <div><%= series.no_data_message %></div>
+<% end %>

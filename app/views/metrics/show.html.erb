@@ -1,16 +1,30 @@
 <% content_for :title, "Page Data: #{@summary.title}" %>
 <h2>Page Data</h2>
-<h1><%= @summary.title %></h1>
+<h1 class="content-title"><%= @summary.title %></h1>
 <div class="page-metadata">
-  <%= render :partial => 'metadata_row', locals: { label: 'Published', value: @summary.published_at } %>
-  <%= render :partial => 'metadata_row', locals: { label: 'Last updated', value: @summary.last_updated } %>
-  <%= render :partial => 'metadata_row', locals: {label: 'From', value:  @summary.publishing_organisation } %>
-  <%= render :partial => 'metadata_row', locals: {label: 'Type', value:  @summary.document_type } %>
-  <%= render :partial => 'metadata_row', locals: {label: 'URL', value:  @summary.base_path } %>
+  <%= render 'metadata_row', label: 'Published', value: @summary.published_at %>
+  <%= render 'metadata_row', label: 'Last updated', value: @summary.last_updated %>
+  <%= render 'metadata_row', label: 'From', value: @summary.publishing_organisation %>
+  <%= render 'metadata_row', label: 'Type', value: @summary.document_type %>
+  <%= render 'metadata_row', label: 'URL', value: @summary.base_path %>
 </div>
 
-Unique Pageviews: <%= @summary.unique_pageviews %>
-<%= render_chart @summary.unique_pageviews_series %>
+<h2>Performance</h2>
+<div class="metric_summary unique_pageviews">
+  <%= render 'metric_header', title: 'Unique Pageviews', value: @summary.unique_pageviews %>
+</div>
+<%= render 'chart', series: @summary.unique_pageviews_series %>
+<div class="metric_summary pageviews">
+  <%= render 'metric_header', title: 'Pageviews', value: @summary.pageviews %>
+</div>
+<%= render 'chart', series: @summary.pageviews_series %>
+<div class="metric_summary number_of_internal_searches">
+  <%= render 'metric_header', title: 'Searches from the page', value: @summary.number_of_internal_searches %>
+</div>
+<%= render 'chart', series: @summary.number_of_internal_searches_series %>
 
-Pageviews: <%= @summary.pageviews %>
-<%= render_chart @summary.pageviews_series %>
+<h2>Feedback</h2>
+<div class="metric_summary satisfaction_score">
+  <%= render 'metric_header', title: 'User satisfaction score', value: @summary.satisfaction_score %>
+</div>
+<%= render 'chart', series: @summary.satisfaction_score_series %>
