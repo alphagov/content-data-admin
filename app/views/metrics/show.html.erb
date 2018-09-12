@@ -2,11 +2,11 @@
 <h2>Page Data</h2>
 <h1 class="content-title"><%= @summary.title %></h1>
 <div class="page-metadata">
-  <%= render partial: 'metadata_row', locals: { label: 'Published', value: @summary.published_at } %>
-  <%= render partial: 'metadata_row', locals: { label: 'Last updated', value: @summary.last_updated } %>
-  <%= render partial: 'metadata_row', locals: { label: 'From', value: @summary.publishing_organisation } %>
-  <%= render partial: 'metadata_row', locals: { label: 'Type', value: @summary.document_type } %>
-  <%= render partial: 'metadata_row', locals: { label: 'URL', value: @summary.base_path } %>
+  <%= render 'metadata_row', label: 'Published', value: @summary.published_at %>
+  <%= render 'metadata_row', label: 'Last updated', value: @summary.last_updated %>
+  <%= render 'metadata_row', label: 'From', value: @summary.publishing_organisation %>
+  <%= render 'metadata_row', label: 'Type', value: @summary.document_type %>
+  <%= render 'metadata_row', label: 'URL', value: @summary.base_path %>
 </div>
 
 <h2>Performance</h2>
