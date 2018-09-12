@@ -1,6 +1,6 @@
 <% content_for :title, "Page Data: #{@summary.title}" %>
 <h2>Page Data</h2>
-<h1><%= @summary.title %></h1>
+<h1 class="content-title"><%= @summary.title %></h1>
 <div class="page-metadata">
   <%= render partial: 'metadata_row', locals: { label: 'Published', value: @summary.published_at } %>
   <%= render partial: 'metadata_row', locals: { label: 'Last updated', value: @summary.last_updated } %>

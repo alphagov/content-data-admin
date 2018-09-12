@@ -62,15 +62,11 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders the page title' do
-      expect(page).to have_content('Content Title')
+      expect(page).to have_selector '.content-title', text: 'Content Title'
     end
 
     it 'renders a metric for on page searches' do
       expect(page).to have_selector '.metric_summary.number_of_internal_searches', text: '250'
-    end
-
-    it 'renders the page title' do
-      expect(page).to have_content('Content Title')
     end
 
     it 'renders the metadata' do
