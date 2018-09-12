@@ -4,8 +4,13 @@ class SingleContentItemPresenter
     :publishing_organisation, :document_type, :number_of_internal_searches,
     :number_of_internal_searches_series, :satisfaction_score, :satisfaction_score_series
 
-  def self.parse_metrics(metrics)
-    new.parse_metrics(metrics.deep_symbolize_keys)
+  def initialize(from, to)
+    @from = from
+    @to = to
+  end
+
+  def self.parse_metrics(metrics:, from:, to:)
+    new(from, to).parse_metrics(metrics.deep_symbolize_keys)
   end
 
   def parse_metrics(metrics)
@@ -23,14 +28,20 @@ class SingleContentItemPresenter
   end
 
   def parse_time_series(time_series)
-    @unique_pageviews_series = ChartPresenter.new(json: time_series, metric: :unique_pageviews)
-    @pageviews_series = ChartPresenter.new(json: time_series, metric: :pageviews)
-    @number_of_internal_searches_series = ChartPresenter.new(json: time_series, metric: :number_of_internal_searches)
-    @satisfaction_score_series = ChartPresenter.new(json: time_series, metric: :satisfaction_score)
+    @unique_pageviews_series = get_chart_presenter(time_series, :unique_pageviews)
+    @pageviews_series = get_chart_presenter(time_series, :pageviews)
+    @number_of_internal_searches_series = get_chart_presenter(time_series, :number_of_internal_searches)
+    @satisfaction_score_series = get_chart_presenter(time_series, :satisfaction_score)
     self
   end
 
 private
+
+  attr_reader :from, :to
+
+  def get_chart_presenter(time_series, metric)
+    ChartPresenter.new(json: time_series, metric: metric, from: from, to: to)
+  end
 
   def format_date(date_str)
     Date.parse(date_str).strftime('%-d %B %Y')

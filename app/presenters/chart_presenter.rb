@@ -1,17 +1,11 @@
 class ChartPresenter
-  attr_reader :json, :metric
+  attr_reader :json, :metric, :from, :to
 
-  def initialize(json:, metric:)
+  def initialize(json:, metric:, from:, to:)
     @metric = metric
     @json = json.to_h.with_indifferent_access
-  end
-
-  def from
-    json.values.flatten.first[:date]
-  end
-
-  def to
-    json.values.flatten.last[:date]
+    @from = from
+    @to = to
   end
 
   def has_values?

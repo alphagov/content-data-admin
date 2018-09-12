@@ -1,4 +1,6 @@
 RSpec.describe ChartPresenter do
+  let(:from) { '2018-01-13' }
+  let(:to) { '2018-01-15' }
   subject do
     ChartPresenter.new(
       json:
@@ -9,7 +11,9 @@ RSpec.describe ChartPresenter do
             { date: '2018-01-15', value: 303 }
           ]
         },
-      metric: 'unique_pageviews'
+      metric: 'unique_pageviews',
+      from: from,
+      to: to
     )
   end
 

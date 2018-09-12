@@ -9,7 +9,11 @@ class MetricsController < ApplicationController
     }
 
     @summary = SingleContentItemPresenter
-      .parse_metrics(service.fetch_aggregated_data(service_params))
+      .parse_metrics(
+        metrics: service.fetch_aggregated_data(service_params),
+        from: params[:from],
+        to: params[:to]
+      )
       .parse_time_series(service.fetch_time_series(service_params))
   end
 

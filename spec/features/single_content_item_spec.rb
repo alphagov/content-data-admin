@@ -84,7 +84,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders the metric timeseries for unique_pageviews' do
       click_on 'Unique pageviews table'
-      unique_pageviews_rows = find("#unique_pageviews_2018-01-13-2018-01-15_table").all('tr').map do |el|
+      unique_pageviews_rows = find("#unique_pageviews_2000-01-01-2050-01-01_table").all('tr').map do |el|
         el.all('th,td').map(&:text)
       end
       expect(unique_pageviews_rows).to match_array([
@@ -97,7 +97,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders the metric timeseries for pageviews' do
       click_on 'Pageviews table'
-      pageviews_rows = find("#pageviews_2018-01-13-2018-01-15_table").all('tr').map do |el|
+      pageviews_rows = find("#pageviews_2000-01-01-2050-01-01_table").all('tr').map do |el|
         el.all('th,td').map(&:text)
       end
 
@@ -111,7 +111,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders the metric timeseries for on-page searches' do
       click_on 'Number of internal searches table'
-      internal_searches_rows = find("#number_of_internal_searches_2018-01-13-2018-01-15_table").all('tr').map do |el|
+      internal_searches_rows = find("#number_of_internal_searches_2000-01-01-2050-01-01_table").all('tr').map do |el|
         el.all('th,td').map(&:text)
       end
 
@@ -125,7 +125,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders the metric timeseries for satisfaction_score' do
       click_on 'Number of internal searches table'
-      satisfaction_score_rows = find("#satisfaction_score_2018-01-13-2018-01-15_table").all('tr').map do |el|
+      satisfaction_score_rows = find("#satisfaction_score_2000-01-01-2050-01-01_table").all('tr').map do |el|
         el.all('th,td').map(&:text)
       end
 
