@@ -51,11 +51,11 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders the metric for unique_pageviews' do
-      expect(page).to have_selector '.metric_summary.unique_pageviews', text: '145000'
+      expect(page).to have_selector '.metric_summary.unique_pageviews', text: '145,000'
     end
 
     it 'renders the metric for pageviews' do
-      expect(page).to have_selector '.metric_summary.pageviews', text: '200000'
+      expect(page).to have_selector '.metric_summary.pageviews', text: '200,000'
     end
 
     it 'renders a metric for satisfaction_score' do
