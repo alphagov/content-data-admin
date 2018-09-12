@@ -1,6 +1,6 @@
 RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
-  let(:metrics) { MetricsService::DEFAULT_METRICS }
+  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches satisfaction_score] }
   context 'successful request' do
     before do
       content_data_api_has_metric(base_path: 'base/path',
