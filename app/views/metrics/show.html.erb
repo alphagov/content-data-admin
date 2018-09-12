@@ -10,13 +10,21 @@
 </div>
 
 <h2>Performance</h2>
-<%= render 'metric_header', title: 'Unique Pageviews', value: @summary.unique_pageviews  %>
+<div class="metric_summary unique_pageviews">
+  <%= render 'metric_header', title: 'Unique Pageviews', value: @summary.unique_pageviews %>
+</div>
 <%= render_chart @summary.unique_pageviews_series %>
-<%= render 'metric_header',  title: 'Pageviews', value: @summary.pageviews  %>
+<div class="metric_summary pageviews">
+  <%= render 'metric_header', title: 'Pageviews', value: @summary.pageviews %>
+</div>
 <%= render_chart @summary.pageviews_series %>
-<%= render 'metric_header',  title: 'Searches from the page', value: @summary.number_of_internal_searches  %>
+<div class="metric_summary number_of_internal_searches">
+  <%= render 'metric_header', title: 'Searches from the page', value: @summary.number_of_internal_searches %>
+</div>
 <%= render_chart @summary.number_of_internal_searches_series %>
 
 <h2>Feedback</h2>
-<%= render 'metric_header', title: 'User satisfaction score', value: @summary.satisfaction_score  %>
+<div class="metric_summary satisfaction_score">
+  <%= render 'metric_header', title: 'User satisfaction score', value: @summary.satisfaction_score %>
+</div>
 <%= render_chart @summary.satisfaction_score_series %>

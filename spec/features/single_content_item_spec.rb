@@ -50,15 +50,15 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders the metric for unique_pageviews' do
-      expect(page).to have_content('145000')
+      expect(page).to have_selector '.metric_summary.unique_pageviews', text: '145000'
     end
 
     it 'renders the metric for pageviews' do
-      expect(page).to have_content('200000')
+      expect(page).to have_selector '.metric_summary.pageviews', text: '200000'
     end
 
     it 'renders a metric for satisfaction_score' do
-      expect(page).to have_content('25.5')
+      expect(page).to have_selector '.metric_summary.satisfaction_score', text: '25.5'
     end
 
     it 'renders the page title' do
@@ -66,7 +66,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders a metric for on page searches' do
-      expect(page).to have_content('250')
+      expect(page).to have_selector '.metric_summary.number_of_internal_searches', text: '250'
     end
 
     it 'renders the page title' do
