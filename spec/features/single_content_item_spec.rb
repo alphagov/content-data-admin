@@ -85,7 +85,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders the metric timeseries for unique_pageviews' do
       click_on 'Unique pageviews table'
-      unique_pageviews_rows = extract_table_content("#unique_pageviews_2000-01-01-2050-01-01_table")
+      unique_pageviews_rows = extract_table_content(".chart.unique_pageviews table")
       expect(unique_pageviews_rows).to match_array([
         ['', ''],
         ['01-13', '101'],
@@ -96,7 +96,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders the metric timeseries for pageviews' do
       click_on 'Pageviews table'
-      pageviews_rows = extract_table_content("#pageviews_2000-01-01-2050-01-01_table")
+      pageviews_rows = extract_table_content(".chart.pageviews table")
 
       expect(pageviews_rows).to match_array([
         ['', ''],
@@ -108,7 +108,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders the metric timeseries for on-page searches' do
       click_on 'Number of internal searches table'
-      internal_searches_rows = extract_table_content("#number_of_internal_searches_2000-01-01-2050-01-01_table")
+      internal_searches_rows = extract_table_content(".chart.number_of_internal_searches table")
 
       expect(internal_searches_rows).to match_array([
         ['', ''],
@@ -120,7 +120,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders the metric timeseries for satisfaction_score' do
       click_on 'Number of internal searches table'
-      satisfaction_score_rows = extract_table_content("#satisfaction_score_2000-01-01-2050-01-01_table")
+      satisfaction_score_rows = extract_table_content(".chart.satisfaction_score table")
 
       expect(satisfaction_score_rows).to match_array([
         ['', ''],
