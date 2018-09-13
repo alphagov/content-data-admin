@@ -1,13 +1,37 @@
 <%= content_for :title, "Dev page" %>
 
-<span class="govuk-caption-xl">Data analytics for</span>
-<h1 class="govuk-heading-xl">The page being analysed</h1>
+<div class="govuk-grid-row">
+  <span class="govuk-caption-xl">Page data</span>
+  <div class="govuk-grid-column-two-thirds">
 
-<%= render "govuk_publishing_components/components/govspeak" do %>
-  <p>
-    Metrics were last updated yesterday at 00:00.
-  </p>
-<% end %>
+    <h1 class="govuk-heading-xl">The name of the page being analysed</h1>
+
+    <%= render "govuk_publishing_components/components/govspeak" do %>
+      <p>
+        Metrics were last updated yesterday at 00:00.
+      </p>
+    <% end %>
+
+    <%
+      metadata = {
+        status: "withdrawn",
+        published_at: "1 September 2016",
+        last_updated: "1 October 2017",
+        publishing_organisation: "UK Visas and Immigration",
+        document_type: "Guidance",
+        base_path: "/government/publications/visitor-visa-guide-to-supporting-documents",
+      }
+    %>
+    <%= render "components/metadata", metadata %>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    View the page on GOV.UK:
+    <a href="http://www.gov.uk/random">http://www.gov.uk/random</a>
+
+    Make changes to the page:
+    <a href="http://www.gov.uk/random">http://www.gov.uk/random</a>
+  </div>
+</div>
 
 <%
   # This data will come from models/controllers/the api eventually, hard coded for now to produce working views.
@@ -17,6 +41,7 @@
     table_label: "Unique page views table",
     chart_id: 'pageviews_jan_chart',
     table_id: 'pageviews_jan_table',
+    table_direction: 'vertical',
     keys: [*(1..30)],
     rows: [
       {
