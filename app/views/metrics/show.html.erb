@@ -24,3 +24,14 @@
   <%= render 'metric_header', title: 'User satisfaction score', value: @summary.satisfaction_score %>
 </div>
 <%= render 'chart', series: @summary.satisfaction_score_series %>
+<%= form_for('date', :url => "/metrics#{@summary.metadata[:base_path]}", :method => :get) do |f| %>
+  <div class="field">
+    <%= radio_button_tag(:date_range, 'last-30-days', checked = (@summary.date_range == 'last-30-days' || ''), label: 'Last 30 Days') %> Last 30 Days <br>
+    <%= radio_button_tag(:date_range, 'last-month', checked = (@summary.date_range == 'last-month'), label: 'Last Month') %> Last Month <br>
+    <%= radio_button_tag(:date_range, 'last-3-months', checked = (@summary.date_range == 'last-3-months'), label: 'Last 3 Months') %> Last 3 Months <br>
+    <%= radio_button_tag(:date_range, 'last-6-months', checked = (@summary.date_range == 'last-6-months'), label: 'Last 6 Month') %> Last 6 Months <br>
+    <%= radio_button_tag(:date_range, 'last-1-year', checked = (@summary.date_range == 'last-year'), label: 'Last Year') %> Last 1 Year <br>
+    <%= radio_button_tag(:date_range, 'last-2-years', checked = (@summary.date_range == 'last-2-years'), label: 'Last 2 Years') %> Last 2 Years <br>
+    <%= submit_tag 'OK' %>
+  </div>
+<% end %>

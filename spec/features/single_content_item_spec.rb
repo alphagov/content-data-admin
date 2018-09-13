@@ -2,52 +2,24 @@ RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include MetricsChartSpecHelpers
   let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches satisfaction_score] }
+  let(:from) { Time.zone.today - 30.days }
+  let(:to) { Time.zone.today }
+  let(:month_and_date_string_for_date1) { (from - 1.day).to_s.last(5) }
+  let(:month_and_date_string_for_date2) { (from - 2.days).to_s.last(5) }
+  let(:month_and_date_string_for_date3) { (to + 1.day).to_s.last(5) }
+
   context 'successful request' do
     before do
-      content_data_api_has_metric(base_path: 'base/path/with-slug',
-        from: '2000-01-01',
-        to: '2050-01-01',
-        metrics: metrics,
-        payload: {
-          base_path: '/base/path/with-slug',
-          unique_pageviews: 145_000,
-          pageviews: 200_000,
-          title: "Content Title",
-          first_published_at: '2018-02-01T00:00:00.000Z',
-          public_updated_at: '2018-04-25T00:00:00.000Z',
-          primary_organisation_title: 'The ministry',
-          document_type: "news_story",
-          number_of_internal_searches: 250,
-          satisfaction_score: 25.5
-        })
+      content_data_api_has_metric(base_path: 'base/path',
+        from: from.to_s,
+        to: to.to_s,
+        metrics: metrics)
 
-      content_data_api_has_timeseries(base_path: 'base/path/with-slug',
-        from: '2000-01-01',
-        to: '2050-01-01',
-        metrics: metrics,
-        payload: {
-          unique_pageviews: [
-            { "date" => "2018-01-13", "value" => 101 },
-            { "date" => "2018-01-14", "value" => 202 },
-            { "date" => "2018-01-15", "value" => 303 }
-          ],
-          pageviews: [
-            { "date" => "2018-01-13", "value" => 10 },
-            { "date" => "2018-01-14", "value" => 20 },
-            { "date" => "2018-01-15", "value" => 30 }
-          ],
-          number_of_internal_searches: [
-            { "date" => "2018-01-13", "value" => 5 },
-            { "date" => "2018-01-14", "value" => 12 },
-            { "date" => "2018-01-15", "value" => 10 }
-          ],
-          satisfaction_score: [
-            { "date" => "2018-01-13", "value" => 30.3 },
-            { "date" => "2018-01-14", "value" => 20.3 },
-            { "date" => "2018-01-15", "value" => 40.1 }
-          ]
-        })
-      visit '/metrics/base/path/with-slug?from=2000-01-01&to=2050-01-01'
+      content_data_api_has_timeseries(base_path: 'base/path',
+        from: from.to_s,
+        to: to.to_s,
+        metrics: metrics)
+      visit '/metrics/base/path'
     end
 
     it 'renders the metric for unique_pageviews' do
@@ -76,7 +48,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
       expect(metadata).to eq([
         ['Published', '1 February 2018', 'Last updated', '25 April 2018'],
-        ['From', 'The ministry', 'Type', 'News story', 'URL', '/.../with-slug']
+        ['From', 'The ministry', 'Type', 'News story', 'URL', '/.../path']
       ])
     end
 
@@ -85,9 +57,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
       unique_pageviews_rows = extract_table_content(".chart.unique_pageviews table")
       expect(unique_pageviews_rows).to match_array([
         ['', ''],
-        ['01-13', '101'],
-        ['01-14', '202'],
-        ['01-15', '303']
+        [month_and_date_string_for_date1.to_s, "1"],
+        [month_and_date_string_for_date2.to_s, "2"],
+        [month_and_date_string_for_date3.to_s, "30"],
       ])
     end
 
@@ -97,9 +69,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
       expect(pageviews_rows).to match_array([
         ['', ''],
-        ['01-13', '10'],
-        ['01-14', '20'],
-        ['01-15', '30']
+        [month_and_date_string_for_date1.to_s, "10"],
+        [month_and_date_string_for_date2.to_s, "20"],
+        [month_and_date_string_for_date3.to_s, "30"],
       ])
     end
 
@@ -109,9 +81,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
       expect(internal_searches_rows).to match_array([
         ['', ''],
-        ['01-13', '5'],
-        ['01-14', '12'],
-        ['01-15', '10']
+        [month_and_date_string_for_date1.to_s, "8"],
+        [month_and_date_string_for_date2.to_s, "8"],
+        [month_and_date_string_for_date3.to_s, "8"],
       ])
     end
 
@@ -121,9 +93,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
       expect(satisfaction_score_rows).to match_array([
         ['', ''],
-        ['01-13', '30.3'],
-        ['01-14', '20.3'],
-        ['01-15', '40.1']
+        [month_and_date_string_for_date1.to_s, "100"],
+        [month_and_date_string_for_date2.to_s, "90"],
+        [month_and_date_string_for_date3.to_s, "80"],
       ])
     end
   end
@@ -131,10 +103,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
   context 'when the data-api has an error' do
     it 'returns a 404 for a Gds::NotFound' do
       content_data_api_does_not_have_base_path(base_path: 'base/path',
-        from: '2000-01-01',
-        to: '2050-01-01',
+        from: from.to_s,
+        to: to.to_s,
         metrics: metrics)
-      visit '/metrics/base/path?from=2000-01-01&to=2050-01-01'
+      visit '/metrics/base/path'
       expect(page.status_code).to eq(404)
       expect(page).to have_content "The page you were looking for doesn't exist."
     end
@@ -143,28 +115,18 @@ RSpec.describe '/metrics/base/path', type: :feature do
   context 'no time series from the data-api' do
     before do
       content_data_api_has_metric(base_path: 'base/path',
-        from: '2000-01-01',
-        to: '2050-01-01',
-        metrics: metrics,
-        payload: {
-          base_path: '/base/path',
-          title: "Content Title",
-          first_published_at: '2018-02-01T00:00:00.000Z',
-          public_updated_at: '2018-04-25T00:00:00.000Z',
-          primary_organisation_title: 'The ministry',
-          document_type: "news_story",
-          number_of_internal_searches: 250,
-          satisfaction_score: 25.5
-        })
+        from: from.to_s,
+        to: to.to_s,
+        metrics: metrics)
 
       content_data_api_has_timeseries(base_path: 'base/path',
-        from: '2000-01-01',
-        to: '2050-01-01',
+        from: from.to_s,
+        to: to.to_s,
         metrics: metrics,
         payload: {
           unique_pageviews: [],
         })
-      visit '/metrics/base/path?from=2000-01-01&to=2050-01-01'
+      visit '/metrics/base/path'
     end
 
     it 'renders a div to indicate no data when empty' do
