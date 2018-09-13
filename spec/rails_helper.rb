@@ -15,4 +15,5 @@ end
 RSpec.configure do |config|
   config.expose_dsl_globally = false
   config.infer_spec_type_from_file_location!
+  config.include FactoryBot::Syntax::Methods
 end
