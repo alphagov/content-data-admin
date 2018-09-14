@@ -4,12 +4,12 @@ RSpec.describe '/metrics/base/path', type: :feature do
   let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches satisfaction_score] }
   context 'successful request' do
     before do
-      content_data_api_has_metric(base_path: 'base/path',
+      content_data_api_has_metric(base_path: 'base/path/with-slug',
         from: '2000-01-01',
         to: '2050-01-01',
         metrics: metrics,
         payload: {
-          base_path: '/base/path',
+          base_path: '/base/path/with-slug',
           unique_pageviews: 145_000,
           pageviews: 200_000,
           title: "Content Title",
@@ -21,7 +21,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
           satisfaction_score: 25.5
         })
 
-      content_data_api_has_timeseries(base_path: 'base/path',
+      content_data_api_has_timeseries(base_path: 'base/path/with-slug',
         from: '2000-01-01',
         to: '2050-01-01',
         metrics: metrics,
@@ -47,15 +47,15 @@ RSpec.describe '/metrics/base/path', type: :feature do
             { "date" => "2018-01-15", "value" => 40.1 }
           ]
         })
-      visit '/metrics/base/path?from=2000-01-01&to=2050-01-01'
+      visit '/metrics/base/path/with-slug?from=2000-01-01&to=2050-01-01'
     end
 
     it 'renders the metric for unique_pageviews' do
-      expect(page).to have_selector '.metric_summary.unique_pageviews', text: '145000'
+      expect(page).to have_selector '.metric_summary.unique_pageviews', text: '145,000'
     end
 
     it 'renders the metric for pageviews' do
-      expect(page).to have_selector '.metric_summary.pageviews', text: '200000'
+      expect(page).to have_selector '.metric_summary.pageviews', text: '200,000'
     end
 
     it 'renders a metric for satisfaction_score' do
@@ -71,15 +71,12 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders the metadata' do
-      metadata = find('.page-metadata').all('.metadata-row').map do |el|
-        el.all('.metadata-label,.metadata-value').map(&:text)
+      metadata = find('.page-metadata').all('dl').map do |el|
+        el.all('dt,dd').map(&:text)
       end
       expect(metadata).to eq([
-        ['Published', '1 February 2018'],
-        ['Last updated', '25 April 2018'],
-        ['From', 'The ministry'],
-        ['Type', 'News story'],
-        ['URL', '/base/path']
+        ['Published', '1 February 2018', 'Last updated', '25 April 2018'],
+        ['From', 'The ministry', 'Type', 'News story', 'URL', '/.../with-slug']
       ])
     end
 

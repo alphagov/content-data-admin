@@ -1,4 +1,12 @@
-<h3><%= title %></h3>
-<div class="aggregated-value">
-  <%= value %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= render "components/info-metric", {
+        name: title,
+        figure: number_with_delimiter(value, delimiter: ','),
+        context: "Number of sessions during which the page was viewed at least once",
+        trend_percentage: 0,
+        period: "From previous 30 days",
+        about: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vestibulum quam vitae felis.</p><p>Data source: Google Analytics</p>".html_safe
+    } %>
+  </div>
 </div>
