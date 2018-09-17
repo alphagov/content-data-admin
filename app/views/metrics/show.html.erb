@@ -5,6 +5,45 @@
   <%= render "components/metadata", @summary.metadata %>
 </div>
 
+<% current_selection = @summary.date_range.time_period || 'last-30-days' %>
+<%= render "components/time-select", {
+  base_path: "/metrics#{@summary.metadata[:base_path]}",
+  current_selection: current_selection,
+  dates: [
+    {
+      value: "last-30-days",
+      text: "Past 30 Days",
+      hint_text:  "#{30.days.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+    },
+    {
+      value: "last-month",
+      text: "Last month",
+      hint_text: "#{Date.today.last_month.beginning_of_month.strftime("%-d %B %Y")} to #{Date.today.last_month.end_of_month.strftime("%-d %B %Y")}"
+    },
+    {
+      value: "last-3-months",
+      text: "Past 3 months",
+      hint_text: "#{3.months.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+    },
+    {
+      value: "last-6-months",
+      text: "Past 6 months",
+      hint_text: "#{6.months.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+    },
+    {
+      value: "last-1-year",
+      text: "Past year",
+      hint_text: "#{1.year.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+    },
+    {
+      value: "last-2-years",
+      text: "Past 2 years",
+      hint_text: "#{2.years.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+    }
+  ]
+} %>
+
+
 <h2>Performance</h2>
 <div class="metric_summary unique_pageviews">
   <%= render 'metric_header', title: 'Unique Pageviews', value: @summary.unique_pageviews %>
@@ -25,13 +64,5 @@
 </div>
 <%= render 'chart', series: @summary.satisfaction_score_series %>
 <%= form_for('date', :url => "/metrics#{@summary.metadata[:base_path]}", :method => :get) do |f| %>
-  <div class="field">
-    <%= radio_button_tag(:date_range, 'last-30-days', checked = (@summary.date_range == 'last-30-days' || ''), label: 'Last 30 Days') %> Last 30 Days <br>
-    <%= radio_button_tag(:date_range, 'last-month', checked = (@summary.date_range == 'last-month'), label: 'Last Month') %> Last Month <br>
-    <%= radio_button_tag(:date_range, 'last-3-months', checked = (@summary.date_range == 'last-3-months'), label: 'Last 3 Months') %> Last 3 Months <br>
-    <%= radio_button_tag(:date_range, 'last-6-months', checked = (@summary.date_range == 'last-6-months'), label: 'Last 6 Month') %> Last 6 Months <br>
-    <%= radio_button_tag(:date_range, 'last-1-year', checked = (@summary.date_range == 'last-year'), label: 'Last Year') %> Last 1 Year <br>
-    <%= radio_button_tag(:date_range, 'last-2-years', checked = (@summary.date_range == 'last-2-years'), label: 'Last 2 Years') %> Last 2 Years <br>
-    <%= submit_tag 'OK' %>
-  </div>
+
 <% end %>

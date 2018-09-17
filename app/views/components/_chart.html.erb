@@ -21,12 +21,14 @@
         1 => {lineWidth: 2, lineDashStyle: [10, 2], color: '#454a4c'}
     }
   }
-  chart_format_data = rows.each_with_object([]) do |row, acc|
-    acc << {
-    name: row[:label],
-    linewidth: 10,
-    data: keys.zip(row[:values])
-    }
+  if rows.length > 0 && keys.length > 0
+    chart_format_data = rows.each_with_object([]) do |row, acc|
+      acc << {
+      name: row[:label],
+      linewidth: 10,
+      data: keys.zip(row[:values])
+      }
+    end
   end
 %>
 <% if rows.length > 0 && keys.length > 0 && chart_id && table_id %>
