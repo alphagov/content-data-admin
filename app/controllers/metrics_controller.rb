@@ -1,20 +1,16 @@
 class MetricsController < ApplicationController
   def show
     service = MetricsService.new
+    date_range = DateRange.new(params[:date_range])
 
     service_params = {
       base_path: params[:base_path],
-      from: params[:from],
-      to: params[:to]
+      date_range: date_range,
     }
 
-    @summary = SingleContentItemPresenter
-      .parse_metrics(
-        metrics: service.fetch_aggregated_data(service_params),
-        from: params[:from],
-        to: params[:to]
-      )
-      .parse_time_series(service.fetch_time_series(service_params))
+    metrics = service.fetch_aggregated_data(service_params)
+    time_series = service.fetch_time_series(service_params)
+    @summary = SingleContentItemPresenter.new(metrics, time_series, date_range)
   end
 
   rescue_from GdsApi::HTTPNotFound do

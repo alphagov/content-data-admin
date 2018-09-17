@@ -25,8 +25,8 @@ class ChartPresenter
       caption: "#{human_friendly_metric} from #{from.to_date} to #{to.to_date}",
       chart_label: "#{human_friendly_metric} chart",
       table_label: "#{human_friendly_metric} table",
-      chart_id: "#{metric}_#{from}-#{to}_chart",
-      table_id: "#{metric}_#{from}-#{to}_table",
+      chart_id: "#{metric}_chart",
+      table_id: "#{metric}_table",
       keys: keys,
       rows: [
         {

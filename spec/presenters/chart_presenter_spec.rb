@@ -39,7 +39,7 @@ RSpec.describe ChartPresenter do
   def unique_pageviews_chart_data
     {
       caption: "Unique pageviews from 2018-01-13 to 2018-01-15",
-      chart_id: "unique_pageviews_2018-01-13-2018-01-15_chart",
+      chart_id: "unique_pageviews_chart",
       chart_label: "Unique pageviews chart",
       keys: [
         "01-13",
@@ -55,7 +55,7 @@ RSpec.describe ChartPresenter do
           ]
         }
       ],
-      table_id: "unique_pageviews_2018-01-13-2018-01-15_table",
+      table_id: "unique_pageviews_table",
       table_label: "Unique pageviews table"
     }
   end

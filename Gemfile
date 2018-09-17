@@ -9,11 +9,11 @@ gem "chartkick"
 gem "gds-api-adapters", "~> 53"
 gem "gds-sso", "~> 13"
 gem "govuk_app_config", "~> 1"
-gem "govuk_publishing_components", "~> 9.21"
+gem "govuk_publishing_components", "~> 9.20"
+gem 'logstasher'
 gem "pg", "~> 1"
 gem "plek", "~> 2"
 gem "uglifier", "~> 4"
-gem 'logstasher'
 
 group :development do
   gem "listen", "~> 3"
@@ -26,6 +26,7 @@ end
 group :development, :test do
   gem "byebug", "~> 10"
   gem "capybara"
+  gem "factory_bot_rails"
   gem "govuk-lint", "~> 3"
   gem "rspec-rails", "~> 3"
   gem "webmock"

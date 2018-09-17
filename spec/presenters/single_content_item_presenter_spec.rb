@@ -1,4 +1,5 @@
 RSpec.describe SingleContentItemPresenter do
+  include GdsApi::TestHelpers::ContentDataApi
   let(:from) { '2018-01-01' }
   let(:to) { '2018-06-01' }
   let(:metrics) do
@@ -15,11 +16,13 @@ RSpec.describe SingleContentItemPresenter do
       'number_of_internal_searches' => 120,
     }
   end
+  let(:time_series) { default_timeseries_payload(from.to_date, to.to_date) }
+  let(:date_range) { build(:date_range, :last_30_days) }
 
   subject do
-    SingleContentItemPresenter.parse_metrics(metrics: metrics,
-      from: from,
-      to: to)
+    SingleContentItemPresenter.new(metrics,
+      time_series,
+      date_range)
   end
 
   describe '#metadata' do
