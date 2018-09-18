@@ -31,7 +31,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders a metric for satisfaction_score' do
-      expect(page).to have_selector '.metric_summary.satisfaction_score', text: '25.5'
+      expect(page).to have_selector '.metric_summary.satisfaction_score', text: '26'
     end
 
     it 'renders the page title' do

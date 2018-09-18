@@ -44,6 +44,8 @@ class ChartPresenter
 
   def values
     return [] unless json[metric]
-    json[metric].map { |hash| hash['value'] }
+    json[metric].map do |hash|
+      metric == :satisfaction_score ? (hash['value'] * 100).round : hash['value']
+    end
   end
 end

@@ -12,7 +12,7 @@ RSpec.describe SingleContentItemPresenter do
       'document_type' => 'news_story',
       'unique_pageviews' => 2030,
       'pageviews' => 3000,
-      'satisfaction_score' => 33.5,
+      'satisfaction_score' => 0.335,
       'number_of_internal_searches' => 120,
     }
   end
@@ -42,7 +42,7 @@ RSpec.describe SingleContentItemPresenter do
       unique_pageviews: 2030,
       pageviews: 3000,
       number_of_internal_searches: 120,
-      satisfaction_score: 33.5,
+      satisfaction_score: 34,
     )
   end
 

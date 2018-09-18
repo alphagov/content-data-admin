@@ -19,7 +19,7 @@ private
     @unique_pageviews = metrics[:unique_pageviews]
     @pageviews = metrics[:pageviews]
     @number_of_internal_searches = metrics[:number_of_internal_searches]
-    @satisfaction_score = metrics[:satisfaction_score]
+    @satisfaction_score = (metrics[:satisfaction_score] * 100).round
     @title = metrics[:title]
     @metadata = {
       base_path: metrics[:base_path],
