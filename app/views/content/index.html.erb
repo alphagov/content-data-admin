@@ -1,0 +1,14 @@
+<% content_for :title, @content.title %>
+<h3>Content data</h3>
+<div class="content-table">
+  <table>
+    <tr>
+      <th>Page title</th>
+      <th>Content type</th>
+      <th>Unique pageviews</th>
+      <th>User satisfaction score</th>
+      <th>Searches from page</th>
+    </tr>
+    <%= render partial: 'content_row', collection: @content.items, as: :item %>
+  </table>
+</div>

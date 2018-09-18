@@ -13,9 +13,19 @@ class MetricsService
     api.client.get_json(url).to_hash
   end
 
+  def content_summary(date_range:, organisation:)
+    api_with_long_timeout.content_summary(from: date_range.from, to: date_range.to, organisation: organisation)
+  end
+
 private
 
   def api
     @api ||= GdsApi::ContentDataApi.new
+  end
+
+  def api_with_long_timeout
+    api.tap do |client|
+      client.options[:timeout] = 30
+    end
   end
 end
