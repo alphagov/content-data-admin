@@ -23,6 +23,13 @@ module GdsApi
         stub_request(:get, url).to_return(status: 200, body: body.to_json)
       end
 
+      def content_data_api_has_content_items(from:, to:, organisation:, items:)
+        query = GdsApi::ContentDataApi.new.query(from: from, to: to, organisation: organisation)
+        url = "#{content_data_api_endpoint}/content#{query}"
+        body = { results: items }.to_json
+        stub_request(:get, url).to_return(status: 200, body: body)
+      end
+
       def content_data_api_endpoint
         "#{Plek.current.find('content-performance-manager')}/api/v1"
       end

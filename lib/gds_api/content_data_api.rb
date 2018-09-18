@@ -19,12 +19,18 @@ class GdsApi::ContentDataApi < GdsApi::Base
     "#{Plek.current.find('content-performance-manager')}/api/v1"
   end
 
-  def query(from:, to:, metrics:)
-    query_params = {}
-    query_params[:from] = from
-    query_params[:to] = to
-    query_params[:metrics] = metrics
+  def content_summary(from:, to:, organisation:)
+    url = content_items_url(from, to, organisation)
+    get_json(url).to_hash
+  end
 
+  def query(query_params)
     query_string(query_params)
+  end
+
+private
+
+  def content_items_url(from, to, organisation)
+    "#{content_data_api_endpoint}/content#{query(from: from, to: to, organisation: organisation)}"
   end
 end
