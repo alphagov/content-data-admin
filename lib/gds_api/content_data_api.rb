@@ -19,7 +19,7 @@ class GdsApi::ContentDataApi < GdsApi::Base
     "#{Plek.current.find('content-performance-manager')}/api/v1"
   end
 
-  def content_summary(from:, to:, organisation:)
+  def content(from:, to:, organisation:)
     url = content_items_url(from, to, organisation)
     get_json(url).to_hash
   end

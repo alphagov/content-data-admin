@@ -14,7 +14,7 @@ class MetricsService
   end
 
   def content_summary(date_range:, organisation:)
-    api.content_summary(from: date_range.from, to: date_range.to, organisation: organisation)
+    api.content(from: date_range.from, to: date_range.to, organisation: organisation)
   end
 
 private
