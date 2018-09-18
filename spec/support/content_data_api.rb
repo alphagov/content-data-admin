@@ -4,27 +4,27 @@ module GdsApi
   module TestHelpers
     module ContentDataApi
       def content_data_api_has_metric(base_path:, from:, to:, metrics:)
-        query = GdsApi::ContentDataApi.new.query(from: from, to: to, metrics: metrics)
+        query = query(from: from, to: to, metrics: metrics)
         url = "#{content_data_api_endpoint}/metrics/#{base_path}#{query}"
         body = default_metric_payload(base_path)
         stub_request(:get, url).to_return(status: 200, body: body.to_json)
       end
 
       def content_data_api_does_not_have_base_path(base_path:, from:, to:, metrics:)
-        query = GdsApi::ContentDataApi.new.query(from: from, to: to, metrics: metrics)
+        query = query(from: from, to: to, metrics: metrics)
         url = "#{content_data_api_endpoint}/metrics/#{base_path}#{query}"
         stub_request(:get, url).to_return(status: 404, body: { some: 'error' }.to_json)
       end
 
       def content_data_api_has_timeseries(base_path:, from:, to:, metrics:, payload: nil)
-        query = GdsApi::ContentDataApi.new.query(from: from, to: to, metrics: metrics)
+        query = query(from: from, to: to, metrics: metrics)
         url = "#{content_data_api_endpoint}/metrics/#{base_path}/time-series#{query}"
         body = payload.nil? ? default_timeseries_payload(from.to_date, to.to_date) : payload
         stub_request(:get, url).to_return(status: 200, body: body.to_json)
       end
 
       def content_data_api_has_content_items(from:, to:, organisation:, items:)
-        query = GdsApi::ContentDataApi.new.query(from: from, to: to, organisation: organisation)
+        query = query(from: from, to: to, organisation: organisation)
         url = "#{content_data_api_endpoint}/content#{query}"
         body = { results: items }.to_json
         stub_request(:get, url).to_return(status: 200, body: body)
@@ -32,6 +32,21 @@ module GdsApi
 
       def content_data_api_endpoint
         "#{Plek.current.find('content-performance-manager')}/api/v1"
+      end
+
+      def query(params)
+        param_pairs = params.sort.map { |key, value|
+          case value
+          when Array
+            value.map { |v|
+              "#{CGI.escape(key.to_s + '[]')}=#{CGI.escape(v.to_s)}"
+            }
+          else
+            "#{CGI.escape(key.to_s)}=#{CGI.escape(value.to_s)}"
+          end
+        }.flatten
+
+        "?#{param_pairs.join('&')}"
       end
 
       def default_metric_payload(base_path)
