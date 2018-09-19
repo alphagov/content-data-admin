@@ -1,7 +1,7 @@
 RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
-  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches satisfaction_score] }
+  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches] }
   let(:from) { Time.zone.today - 30.days }
   let(:to) { Time.zone.today }
   let(:month_and_date_string_for_date1) { (from - 1.day).to_s.last(5) }

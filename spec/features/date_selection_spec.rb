@@ -1,7 +1,7 @@
 RSpec.describe 'date selection', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
-  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches satisfaction_score] }
+  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches] }
 
   before do
     initial_page_stub
