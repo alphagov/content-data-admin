@@ -1,4 +1,5 @@
 class FindContent
+  include MetricsCommon
   def self.call(args)
     new(*args).call
   end
@@ -12,11 +13,5 @@ class FindContent
 
   def call
     api.content(from: @from, to: @to, organisation: @organisation)
-  end
-
-private
-
-  def api
-    @api ||= GdsApi::ContentDataApi.new
   end
 end
