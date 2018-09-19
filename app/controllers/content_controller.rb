@@ -6,8 +6,7 @@ class ContentController < ApplicationController
 private
 
   def get_content
-    response = metrics_service.content_summary(date_range: date_range,
-      organisation: params[:organisation])
+    response = FindContent.call(params)
     @content = ContentItemsPresenter.new(response.deep_symbolize_keys[:results])
   end
 

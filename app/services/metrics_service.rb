@@ -11,10 +11,6 @@ class MetricsService
     api.time_series(base_path: base_path, from: date_range.from, to: date_range.to, metrics: DEFAULT_METRICS)
   end
 
-  def content_summary(date_range:, organisation:)
-    api.content(from: date_range.from, to: date_range.to, organisation: organisation)
-  end
-
 private
 
   def api
