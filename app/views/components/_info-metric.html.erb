@@ -7,12 +7,11 @@
   context ||= false
 
 %>
-<% percentage_metrics = ['User satisfaction score'] %>
 <% if name && figure && context %>
   <div class="app-c-info-metric govuk-body">
     <h3 class="app-c-info-metric__heading"><%= name %></h3>
     <p class="app-c-info-metric__context govuk-body-s"><%= context %></p>
-    <span class="app-c-info-metric__figure govuk-!-font-weight-bold govuk-!-font-size-36 "><%= figure %><%= '%' if percentage_metrics.include? name %></span>
+    <span class="app-c-info-metric__figure govuk-!-font-weight-bold govuk-!-font-size-36 "><%= figure %></span>
     <% if trend_percentage %>
       <span class="app-c-info-metric__trend">
         <% if trend_percentage > 0 %>+<% end %><%= trend_percentage %>%

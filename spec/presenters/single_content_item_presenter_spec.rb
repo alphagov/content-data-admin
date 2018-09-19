@@ -42,7 +42,7 @@ RSpec.describe SingleContentItemPresenter do
       unique_pageviews: 2030,
       pageviews: 3000,
       number_of_internal_searches: 120,
-      satisfaction_score: 34,
+      satisfaction_score: '34%',
     )
   end
 

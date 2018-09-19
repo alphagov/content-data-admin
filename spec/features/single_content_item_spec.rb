@@ -93,9 +93,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
       expect(satisfaction_score_rows).to match_array([
         ['', ''],
-        [month_and_date_string_for_date1.to_s, "100"],
-        [month_and_date_string_for_date2.to_s, "90"],
-        [month_and_date_string_for_date3.to_s, "80"],
+        [month_and_date_string_for_date1.to_s, "100%"],
+        [month_and_date_string_for_date2.to_s, "90%"],
+        [month_and_date_string_for_date3.to_s, "80%"],
       ])
     end
   end
