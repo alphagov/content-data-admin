@@ -1,7 +1,7 @@
 class FindContent
   include MetricsCommon
-  def self.call(args)
-    new(*args).call
+  def self.call(params)
+    new(params).call
   end
 
   def initialize(params)

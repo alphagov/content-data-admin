@@ -1,7 +1,7 @@
-class FetchAggregatedMetrics
+class FetchTimeSeries
   include MetricsCommon
-  def self.call(args)
-    new(args).call
+  def self.call(params)
+    new(params).call
   end
 
   def initialize(params)
@@ -12,6 +12,6 @@ class FetchAggregatedMetrics
   end
 
   def call
-    api.aggregated_metrics(base_path: @base_path, from: @from, to: @to, metrics: default_metrics)
+    api.time_series(base_path: @base_path, from: @from, to: @to, metrics: default_metrics)
   end
 end
