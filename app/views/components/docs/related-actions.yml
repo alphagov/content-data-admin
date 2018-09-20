@@ -1,0 +1,21 @@
+name: "Related actions"
+description: "A list of actions that can be taken on the page"
+part_of_admin_layout: true
+body: |
+  This is a simple component that displays headers and links related to the page for users who want to take further actions
+
+accessibility_criteria: |
+
+shared_accessibility_criteria:
+  - link
+
+examples:
+  default:
+    data:
+      links:
+      - header: "View the page on GOV.UK"
+        link_url:   "http://www.gov.uk/government/publications/self-assessment-tax-return-sa100"
+        link_text: "Visit Tax return for Self Assessment"
+      - header: "Make changes to the page"
+        link_text: "Edit in Whitehall Publisher"
+        link_url: "http://whitehall.gov"

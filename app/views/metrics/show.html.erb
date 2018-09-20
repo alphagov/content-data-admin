@@ -1,11 +1,38 @@
 <% content_for :title, "Page Data: #{@summary.title}" %>
-<h2>Page Data</h2>
-<h1 class="content-title"><%= @summary.title %></h1>
-<div class="page-metadata">
-  <%= render "components/metadata", @summary.metadata %>
-</div>
-
+<% content_for :back_link, "/" %>
 <% current_selection = @summary.date_range.time_period || 'last-30-days' %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-xl">Page data</span>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl"><%= @summary.title %></h1>
+    <div class="page-metadata">
+      <%= render "components/metadata", @summary.metadata %>
+    </div>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <%= render "components/related-actions",
+      {
+        links: [
+                  {
+                    header: "View the page on GOV.UK",
+                    link_url: "//www.gov.uk#{@summary.metadata[:base_path]}",
+                    link_text: "Visit #{@summary.title}"
+                  },
+                  {
+                    header: "Make changes to the page",
+                    link_url: "//www.gov.uk/???",
+                    link_text: "Visit ???"
+                  }
+                ]
+      } %>
+  </div>
+</div>
+<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 <%= render "components/time-select", {
   base_path: "/metrics#{@summary.metadata[:base_path]}",
   current_selection: current_selection,
@@ -43,32 +70,96 @@
   ]
 } %>
 
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    <%= render "components/glance-metric", {
+      name: "Unique pageviews",
+      figure: @summary.unique_pageviews,
+      context: "Lorem ipsum blah blah blah",
+      trend_percentage: 0,
+      period: "from previous 30 days"
+    } %>
+  </div>
 
-<h2>Performance</h2>
-<div class="metric_summary unique_pageviews">
-  <%= render 'metric_header', title: 'Unique Pageviews', value: @summary.unique_pageviews %>
-</div>
-<%= render 'chart', series: @summary.unique_pageviews_series %>
-<div class="metric_summary pageviews">
-  <%= render 'metric_header', title: 'Pageviews', value: @summary.pageviews %>
-</div>
-<%= render 'chart', series: @summary.pageviews_series %>
-<div class="metric_summary number_of_internal_searches">
-  <%= render 'metric_header', title: 'Searches from the page', value: @summary.number_of_internal_searches %>
-</div>
-<%= render 'chart', series: @summary.number_of_internal_searches_series %>
+  <div class="govuk-grid-column-one-quarter">
+    <%= render "components/glance-metric", {
+      name: "User satisfaction score",
+      figure: @summary.satisfaction_score,
+      context: "Lorem ipsum blah blah blah",
+      trend_percentage: 0,
+      period: "from previous 30 days"
+    } %>
+  </div>
 
-<h2>Feedback</h2>
-<div class="metric_summary satisfaction_score">
-  <%= render 'metric_header', title: 'User satisfaction score', value: @summary.satisfaction_score %>
+  <div class="govuk-grid-column-one-quarter">
+    <%= render "components/glance-metric", {
+      name: "Searches from the page",
+      figure: @summary.number_of_internal_searches,
+      context: "Lorem ipsum blah blah blah",
+      trend_percentage: 0,
+      period: "from previous 30 days"
+    } %>
+  </div>
+
+  <div class="govuk-grid-column-one-quarter">
+    <%= render "components/glance-metric", {
+      name: "Feedback comments",
+      figure: @summary.number_of_feedback_comments,
+      context: "Lorem ipsum blah blah blah",
+      trend_percentage: 0,
+      period: "from previous 30 days"
+    } %>
+  </div>
 </div>
-<%= render 'chart', series: @summary.satisfaction_score_series %>
 
-<div class="metric_summary number_of_feedback_comments">
-  <%= render 'metric_header', title: 'Number of feedback comments', value: @summary.number_of_feedback_comments %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h2 class="govuk-heading-l">Performance</h2>
+    <div class="metric_summary unique_pageviews">
+      <%= render 'metric_header', title: 'Unique Pageviews', value: @summary.unique_pageviews %>
+    </div>
+    <%= render 'chart', series: @summary.unique_pageviews_series %>
+    <span class="govuk-body govuk-body-s govuk-!-font-weight-bold">Download the data</span><br>
+    <a href="" class="govuk-link">Unique pageviews CSV</a>
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <div class="metric_summary pageviews">
+      <%= render 'metric_header', title: 'Pageviews', value: @summary.pageviews %>
+    </div>
+    <%= render 'chart', series: @summary.pageviews_series %>
+    <span class="govuk-body govuk-body-s govuk-!-font-weight-bold">Download the data</span><br>
+    <a href="" class="govuk-link">Pageviews CSV</a>
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <div class="metric_summary number_of_internal_searches">
+      <%= render 'metric_header', title: 'Searches from the page', value: @summary.number_of_internal_searches %>
+    </div>
+    <%= render 'chart', series: @summary.number_of_internal_searches_series %>
+    <span class="govuk-body govuk-body-s govuk-!-font-weight-bold">Download the data</span><br>
+    <a href="" class="govuk-link">Searches from the page CSV</a>
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Feedback</h2>
+    <div class="metric_summary satisfaction_score">
+      <%= render 'metric_header', title: 'User satisfaction score', value: @summary.satisfaction_score %>
+    </div>
+    <%= render 'chart', series: @summary.satisfaction_score_series %>
+    <span class="govuk-body govuk-body-s govuk-!-font-weight-bold">Download the data</span><br>
+    <a href="" class="govuk-link">Satisfaction score CSV</a>
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <div class="metric_summary number_of_feedback_comments">
+    <%= render 'metric_header', title: 'Number of feedback comments', value: @summary.number_of_feedback_comments %>
+    </div>
+    <%= render 'chart', series: @summary.number_of_feedback_comments_series %>
+    <span class="govuk-body govuk-body-s govuk-!-font-weight-bold">Download the data</span><br>
+    <a href="" class="govuk-link">Feedback CSV</a>
+
+  </div>
 </div>
-<%= render 'chart', series: @summary.number_of_feedback_comments_series %>
 
-<%= form_for('date', :url => "/metrics#{@summary.metadata[:base_path]}", :method => :get) do |f| %>
 
-<% end %>
+
+
+
+

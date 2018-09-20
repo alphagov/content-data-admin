@@ -39,7 +39,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders the page title' do
-      expect(page).to have_selector '.content-title', text: 'Content Title'
+      expect(page).to have_selector 'h1.govuk-heading-xl', text: 'Content Title'
     end
 
     it 'renders a metric for on page searches' do
