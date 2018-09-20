@@ -56,6 +56,7 @@ module GdsApi
           pageviews: 200_000,
           satisfaction_score: 0.255,
           number_of_internal_searches: 250,
+          feedex_comments: 20,
           title: "Content Title",
           first_published_at: '2018-02-01T00:00:00.000Z',
           public_updated_at: '2018-04-25T00:00:00.000Z',
@@ -80,6 +81,11 @@ module GdsApi
             { "date" => (from - 1.day).to_s, "value" => 8 },
             { "date" => (from - 2.days).to_s, "value" => 8 },
             { "date" => (to + 1.day).to_s, "value" => 8 }
+          ],
+          feedex_comments: [
+            { "date" => (from - 1.day).to_s, "value" => 20 },
+            { "date" => (from - 2.days).to_s, "value" => 21 },
+            { "date" => (to + 1.day).to_s, "value" => 22 }
           ],
           satisfaction_score: [
             { "date" => (from - 1.day).to_s, "value" => 1 },

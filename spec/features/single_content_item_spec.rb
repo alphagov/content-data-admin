@@ -1,7 +1,7 @@
 RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
-  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches] }
+  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches feedex_comments] }
   let(:from) { Time.zone.today - 30.days }
   let(:to) { Time.zone.today }
   let(:month_and_date_string_for_date1) { (from - 1.day).to_s.last(5) }
@@ -32,6 +32,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders a metric for satisfaction_score' do
       expect(page).to have_selector '.metric_summary.satisfaction_score', text: '26'
+    end
+
+    it 'renders a metric for number_of_feedback_comments' do
+      expect(page).to have_selector '.metric_summary.number_of_feedback_comments', text: '20'
     end
 
     it 'renders the page title' do
@@ -96,6 +100,18 @@ RSpec.describe '/metrics/base/path', type: :feature do
         [month_and_date_string_for_date1.to_s, "100%"],
         [month_and_date_string_for_date2.to_s, "90%"],
         [month_and_date_string_for_date3.to_s, "80%"],
+      ])
+    end
+
+    it 'renders the metric timeseries for ' do
+      click_on 'Number of internal searches table'
+      feedback_comment_rows = extract_table_content(".chart.feedex_comments table")
+
+      expect(feedback_comment_rows).to match_array([
+        ['', ''],
+        [month_and_date_string_for_date1.to_s, "20"],
+        [month_and_date_string_for_date2.to_s, "21"],
+        [month_and_date_string_for_date3.to_s, "22"],
       ])
     end
   end

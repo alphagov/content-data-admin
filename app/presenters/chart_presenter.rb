@@ -39,12 +39,14 @@ class ChartPresenter
 
   def keys
     return [] unless json[metric]
+
     dates = json[metric].map { |hash| hash['date'] }
     dates.map { |date| date.last(5) }
   end
 
   def values
     return [] unless json[metric]
+
     json[metric].map { |hash| format_metric_value(metric, hash['value']) }
   end
 end

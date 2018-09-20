@@ -14,6 +14,7 @@ private
 
   def format_satisfaction_score(score, responses)
     return 'No responses' unless score
+
     "#{(score * 100).round(1)}% (#{responses} responses)"
   end
 end

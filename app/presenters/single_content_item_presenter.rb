@@ -4,7 +4,7 @@ class SingleContentItemPresenter
     :pageviews_series, :base_path, :title, :published_at, :last_updated,
     :publishing_organisation, :document_type, :number_of_internal_searches,
     :number_of_internal_searches_series, :satisfaction_score, :satisfaction_score_series,
-    :date_range, :metadata
+    :number_of_feedback_comments, :number_of_feedback_comments_series, :date_range, :metadata
 
   def initialize(metrics, time_series, date_range)
     @date_range = date_range
@@ -19,6 +19,7 @@ private
   def parse_metrics(metrics)
     @unique_pageviews = format_metric_value('unique_pageviews', metrics[:unique_pageviews])
     @pageviews = format_metric_value('pageviews', metrics[:pageviews])
+    @number_of_feedback_comments = format_metric_value('feedex_comments', metrics[:feedex_comments])
     @number_of_internal_searches = format_metric_value('number_of_internal_searches', metrics[:number_of_internal_searches])
     @satisfaction_score = format_metric_value('satisfaction_score', metrics[:satisfaction_score])
     @title = metrics[:title]
@@ -35,6 +36,7 @@ private
     @unique_pageviews_series = get_chart_presenter(time_series, :unique_pageviews)
     @pageviews_series = get_chart_presenter(time_series, :pageviews)
     @number_of_internal_searches_series = get_chart_presenter(time_series, :number_of_internal_searches)
+    @number_of_feedback_comments_series = get_chart_presenter(time_series, :feedex_comments)
     @satisfaction_score_series = get_chart_presenter(time_series, :satisfaction_score)
   end
 
