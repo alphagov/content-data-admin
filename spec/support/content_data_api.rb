@@ -54,7 +54,7 @@ module GdsApi
           base_path: "/#{base_path}",
           unique_pageviews: 145_000,
           pageviews: 200_000,
-          satisfaction_score: 25.5,
+          satisfaction_score: 0.255,
           number_of_internal_searches: 250,
           title: "Content Title",
           first_published_at: '2018-02-01T00:00:00.000Z',
@@ -82,9 +82,9 @@ module GdsApi
             { "date" => (to + 1.day).to_s, "value" => 8 }
           ],
           satisfaction_score: [
-            { "date" => (from - 1.day).to_s, "value" => 100 },
-            { "date" => (from - 2.days).to_s, "value" => 90 },
-            { "date" => (to + 1.day).to_s, "value" => 80 }
+            { "date" => (from - 1.day).to_s, "value" => 1 },
+            { "date" => (from - 2.days).to_s, "value" => 0.9 },
+            { "date" => (to + 1.day).to_s, "value" => 0.8 }
           ]
         }
       end

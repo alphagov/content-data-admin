@@ -1,4 +1,5 @@
 class ChartPresenter
+  include MetricsFormatterHelper
   attr_reader :json, :metric, :from, :to
 
   def initialize(json:, metric:, from:, to:)
@@ -44,6 +45,6 @@ class ChartPresenter
 
   def values
     return [] unless json[metric]
-    json[metric].map { |hash| hash['value'] }
+    json[metric].map { |hash| format_metric_value(metric, hash['value']) }
   end
 end

@@ -1,4 +1,5 @@
 class SingleContentItemPresenter
+  include MetricsFormatterHelper
   attr_reader :unique_pageviews, :pageviews, :unique_pageviews_series,
     :pageviews_series, :base_path, :title, :published_at, :last_updated,
     :publishing_organisation, :document_type, :number_of_internal_searches,
@@ -16,10 +17,10 @@ private
   attr_reader :from, :to
 
   def parse_metrics(metrics)
-    @unique_pageviews = metrics[:unique_pageviews]
-    @pageviews = metrics[:pageviews]
-    @number_of_internal_searches = metrics[:number_of_internal_searches]
-    @satisfaction_score = metrics[:satisfaction_score]
+    @unique_pageviews = format_metric_value('unique_pageviews', metrics[:unique_pageviews])
+    @pageviews = format_metric_value('pageviews', metrics[:pageviews])
+    @number_of_internal_searches = format_metric_value('number_of_internal_searches', metrics[:number_of_internal_searches])
+    @satisfaction_score = format_metric_value('satisfaction_score', metrics[:satisfaction_score])
     @title = metrics[:title]
     @metadata = {
       base_path: metrics[:base_path],
