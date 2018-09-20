@@ -23,8 +23,8 @@ module GdsApi
         stub_request(:get, url).to_return(status: 200, body: body.to_json)
       end
 
-      def content_data_api_has_content_items(from:, to:, organisation:, items:)
-        query = query(from: from, to: to, organisation: organisation)
+      def content_data_api_has_content_items(from:, to:, organisation_id:, items:)
+        query = query(from: from, to: to, organisation_id: organisation_id)
         url = "#{content_data_api_endpoint}/content#{query}"
         body = { results: items }.to_json
         stub_request(:get, url).to_return(status: 200, body: body)
