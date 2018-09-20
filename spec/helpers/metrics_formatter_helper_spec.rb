@@ -12,4 +12,10 @@ RSpec.describe MetricsFormatterHelper do
       expect(value).to eq 90
     end
   end
+
+  context 'if figure for percentage metric is not supplied' do
+    it 'does not raise an error' do
+      expect { format_metric_value('satisfaction_score', nil) }.to_not raise_error
+    end
+  end
 end
