@@ -1,0 +1,17 @@
+<%
+  links ||= []
+%>
+<% if links.any? %>
+  <div class="app-c-related-actions">
+    <div class="govuk-body govuk-body-s">
+      <dl>
+        <% links.each do |l| %>
+          <% if l[:header] && l[:link_text] && l[:link_url] %>
+            <dt class="app-c-related-actions__header govuk-!-font-weight-bold"><%= l[:header] %></dt>
+            <dd class="app-c-related-actions__link"><a href="<%= l[:link_url] %>" class="govuk-link"><%= l[:link_text] %></a></dd>
+          <% end %>
+        <% end %>
+      </dl>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,9 @@
+.app-c-related-actions {
+  border-top: 1px solid $govuk-border-colour;
+}
+
+.app-c-related-actions__link {
+  margin-left: 0;
+  @include govuk-responsive-margin(3, "bottom");
+}
+
