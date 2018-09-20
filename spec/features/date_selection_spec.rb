@@ -13,42 +13,42 @@ RSpec.describe 'date selection', type: :feature do
     expect_default_date_period_metrics_to_be_displayed(date_range.from.to_date, date_range.to.to_date)
   end
 
-  it 'renders data for the last 30 days when `last 30 days` is selected' do
+  it 'renders data for the last 30 days when `Past 30 days` is selected' do
     date_range = build(:date_range, :last_30_days)
     stub_response_for_date_range(date_range.from.to_date, date_range.to.to_date)
     visit_page_and_filter_by_date_range('last-30-days')
     expect_metrics_for_each_date_to_be_correct(date_range.from.to_date, date_range.to.to_date)
   end
 
-  it 'renders data for the previous month when `last month` is selected' do
+  it 'renders data for the previous month when `Past month` is selected' do
     date_range = build(:date_range, :last_month)
     stub_response_for_date_range(date_range.from.to_date, date_range.to.to_date)
     visit_page_and_filter_by_date_range('last-month')
     expect_metrics_for_each_date_to_be_correct(date_range.from.to_date, date_range.to.to_date)
   end
 
-  it 'renders data for the last 3 months when `last 3 months` is selected' do
+  it 'renders data for the last 3 months when `Past 3 months` is selected' do
     date_range = build(:date_range, :last_3_months)
     stub_response_for_date_range(date_range.from.to_date, date_range.to.to_date)
     visit_page_and_filter_by_date_range('last-3-months')
     expect_metrics_for_each_date_to_be_correct(date_range.from.to_date, date_range.to.to_date)
   end
 
-  it 'renders data for the last 6 months when `last6 months` is selected' do
+  it 'renders data for the last 6 months when `Past 6 months` is selected' do
     date_range = build(:date_range, :last_6_months)
     stub_response_for_date_range(date_range.from.to_date, date_range.to.to_date)
     visit_page_and_filter_by_date_range('last-6-months')
     expect_metrics_for_each_date_to_be_correct(date_range.from.to_date, date_range.to.to_date)
   end
 
-  it 'renders data for the last year when `last year` is selected' do
+  it 'renders data for the last year when `Past year` is selected' do
     date_range = build(:date_range, :last_1_year)
     stub_response_for_date_range(date_range.from.to_date, date_range.to.to_date)
     visit_page_and_filter_by_date_range('last-1-year')
     expect_metrics_for_each_date_to_be_correct(date_range.from.to_date, date_range.to.to_date)
   end
 
-  it 'renders data for the last 2 years when `last 2 years` is selected' do
+  it 'renders data for the last 2 years when `Past 2 years` is selected' do
     date_range = build(:date_range, :last_2_years)
     stub_response_for_date_range(date_range.from.to_date, date_range.to.to_date)
     visit_page_and_filter_by_date_range('last-2-years')
@@ -129,8 +129,8 @@ RSpec.describe 'date selection', type: :feature do
 
   def visit_page_and_filter_by_date_range(date_range)
     visit '/metrics/base/path'
-    find("#date_range_#{date_range}").click
-    click_button 'OK'
+    find("input[type=radio][name=date_range][value=#{date_range}]").click
+    click_button 'Change dates'
     click_on 'Unique pageviews table'
   end
 end

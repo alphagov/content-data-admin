@@ -1,0 +1,29 @@
+<%
+  base_path ||= false
+  current_selection ||= false
+
+  if dates.length > 1
+    dates.each {|d| d[:bold] = "true"}
+  end
+
+  selectable = dates.find {|d| d[:value] == current_selection}
+  if selectable
+    selectable[:checked] = true
+  end
+%>
+<% if base_path && dates.length > 1 && current_selection %>
+  <div class="app-c-time-select">
+    <h2 class="govuk-heading-l">Page data: <%= dates.find {|d| d[:value] == current_selection }[:text] %></h2>
+    <%= render "govuk_publishing_components/components/details", {
+      title: "Change time period"
+    } do %>
+      <%= form_for('date', :url => "#{base_path}", :method => :get) do %>
+        <%= render "govuk_publishing_components/components/radio", {
+          name: "date_range",
+          items: dates
+        } %>
+        <%= render "govuk_publishing_components/components/button", {text: "Change dates"} %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

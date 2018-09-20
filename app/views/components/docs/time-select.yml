@@ -1,0 +1,32 @@
+name: "Time select"
+description: "The time select component allows users to select from pre-defined time windows"
+part_of_admin_layout: true
+body: "The time select component is a header stating the current selection and a form containing radio buttons. It allows users to select from pre-defined time windows. It will not render without enough valid inputs to build a usable form and details of the currently selected dates."
+
+accessibility_criteria: |
+  - All text must have a contrast ratio higher than 4.5:1 against the background colour to meet [WCAG AA](https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast)
+
+examples:
+  default:
+    data:
+      current_selection: "past-6-months"
+      base_path: "/"
+      dates:
+        - value: "past-30-days"
+          text: "Past 30 Days"
+          hint_text: "21 July 2018 to 19 August 2018"
+        - value: "last-month"
+          text: "Last month"
+          hint_text: "1 July 2018 - 31 July 2018"
+        - value: "past-3-months"
+          text: "Past 3 months"
+          hint_text: "20 May 2018 - 19 August 2018"
+        - value: "past-6-months"
+          text: "Past 6 months"
+          hint_text: "20 February 2018 - 31 July 2018"
+        - value: "past-year"
+          text: "Past year"
+          hint_text: "20 August 2017 - 19 August 2018"
+        - value: "past-2-years"
+          text: "Past 2 years"
+          hint_text: "20 August 2016 - 19 August 2018"
