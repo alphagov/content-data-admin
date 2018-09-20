@@ -4,7 +4,9 @@ module MetricsCommon
 private
 
   def api
-    @api ||= GdsApi::ContentDataApi.new
+    @api ||= GdsApi::ContentDataApi.new.tap do |client|
+      client.options[:timeout] = 15
+    end
   end
 
   def default_metrics
