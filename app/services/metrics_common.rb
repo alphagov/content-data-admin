@@ -10,6 +10,6 @@ private
   end
 
   def default_metrics
-    @default_metrics ||= %w[pageviews unique_pageviews number_of_internal_searches].freeze
+    @default_metrics ||= %w[pageviews unique_pageviews number_of_internal_searches feedex_comments].freeze
   end
 end
