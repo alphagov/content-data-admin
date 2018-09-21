@@ -4,12 +4,13 @@ en:
       chart_tab: '%{metric_name} chart'
       table_tab: '%{metric_name} tab'
     metadata:
-      status: 'Status'
-      published_at: 'Published'
-      last_updated: 'Last Updated'
-      publishing_organisation: 'From'
-      document_type: 'Type'
-      base_path: 'URL'
+      labels:
+        status: 'Status'
+        published_at: 'Published'
+        last_updated: 'Last Updated'
+        publishing_organisation: 'From'
+        document_type: 'Type'
+        base_path: 'URL'
     time_select:
       title: 'Page data: %{time_period}'
       summary: 'Change time period'

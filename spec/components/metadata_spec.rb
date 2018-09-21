@@ -16,17 +16,17 @@ RSpec.describe "Metadata", type: :view do
     render_component(data)
     assert_select ".app-c-metadata"
     assert_select ".app-c-metadata__title", 6
-    assert_select ".app-c-metadata__title", text: "Status"
+    assert_select ".app-c-metadata__title", text: t("components.metadata.labels.status")
     assert_select ".app-c-metadata__description", text: "withdrawn"
-    assert_select ".app-c-metadata__title", text: "Published"
+    assert_select ".app-c-metadata__title", text: t("components.metadata.labels.published_at")
     assert_select ".app-c-metadata__description", text: "1 September 2016"
-    assert_select ".app-c-metadata__title", text: "Last updated"
+    assert_select ".app-c-metadata__title", text: t("components.metadata.labels.last_updated")
     assert_select ".app-c-metadata__description", text: "1 October 2017"
-    assert_select ".app-c-metadata__title", text: "From"
+    assert_select ".app-c-metadata__title", text: t("components.metadata.labels.publishing_organisation")
     assert_select ".app-c-metadata__description", text: "UK Visas and Immigration"
-    assert_select ".app-c-metadata__title", text: "Type"
+    assert_select ".app-c-metadata__title", text: t("components.metadata.labels.document_type")
     assert_select ".app-c-metadata__description", text: "Guidance"
-    assert_select ".app-c-metadata__title", text: "URL"
+    assert_select ".app-c-metadata__title", text: t("components.metadata.labels.base_path")
     assert_select ".app-c-metadata__description", text: "/.../visitor-visa-guide-to-supporting-documents"
   end
 
