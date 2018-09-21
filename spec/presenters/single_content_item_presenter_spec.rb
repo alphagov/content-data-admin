@@ -1,7 +1,9 @@
 RSpec.describe SingleContentItemPresenter do
   include GdsApi::TestHelpers::ContentDataApi
+
   let(:from) { '2018-01-01' }
   let(:to) { '2018-06-01' }
+
   let(:metrics) do
     {
       'title' => 'The title',
