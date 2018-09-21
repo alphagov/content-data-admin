@@ -1,6 +1,7 @@
 RSpec.describe '/content' do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
+  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches feedex_comments] }
   let(:from) { Time.zone.today.last_month.beginning_of_month.to_s('%F') }
   let(:to) { Time.zone.today.last_month.end_of_month.to_s('%F') }
   let(:items) do
@@ -45,5 +46,12 @@ RSpec.describe '/content' do
         ['Another title /path/2', 'Guide', '100,018', '68.0% (42 responses)', '12'],
       ]
     )
+  end
+
+  it 'takes you to single content item if you click on title of item' do
+    content_data_api_has_metric(base_path: 'path/1', from: (Time.zone.today - 30.days), to: Time.zone.today, metrics: metrics)
+    content_data_api_has_timeseries(base_path: 'path/1', from: (Time.zone.today - 30.days), to: Time.zone.today, metrics: metrics)
+    click_link 'The title'
+    expect(current_path).to eq '/metrics/path/1'
   end
 end

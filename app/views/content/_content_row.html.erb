@@ -1,5 +1,5 @@
 <tr>
-  <td><%= item.title %>
+  <td><%= link_to item.title, "/metrics#{item.base_path}" %>
     <span class="base-path"><%= item.base_path %></span>
   </td>
   <td><%= item.document_type %></td>
