@@ -17,8 +17,8 @@ class GdsApi::ContentDataApi < GdsApi::Base
     get_json(url).to_hash
   end
 
-  def content(from:, to:, organisation:)
-    url = content_items_url(from, to, organisation)
+  def content(from:, to:, organisation_id:)
+    url = content_items_url(from, to, organisation_id)
     get_json(url).to_hash
   end
 
@@ -36,7 +36,7 @@ private
     "#{content_data_api_endpoint}/metrics/#{base_path}/time-series#{query_string(from: from, to: to, metrics: metrics)}"
   end
 
-  def content_items_url(from, to, organisation)
-    "#{content_data_api_endpoint}/content#{query_string(from: from, to: to, organisation: organisation)}"
+  def content_items_url(from, to, organisation_id)
+    "#{content_data_api_endpoint}/content#{query_string(from: from, to: to, organisation_id: organisation_id)}"
   end
 end

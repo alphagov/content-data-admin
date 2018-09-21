@@ -27,8 +27,8 @@ RSpec.describe '/content' do
   end
 
   before do
-    content_data_api_has_content_items(from: from, to: to, organisation: 'org-id', items: items)
-    visit "/content?date_range=last-month&organisation=org-id"
+    content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
+    visit "/content?date_range=last-month&organisation_id=org-id"
   end
 
   it 'renders the page without error' do
