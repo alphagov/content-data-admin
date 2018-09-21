@@ -23,7 +23,6 @@ class SingleContentItemPresenter
 
 private
 
-  attr_reader :from, :to
 
   def parse_metrics(metrics)
     @unique_pageviews = format_metric_value('unique_pageviews', metrics[:unique_pageviews])
