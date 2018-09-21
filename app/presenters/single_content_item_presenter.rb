@@ -1,10 +1,19 @@
 class SingleContentItemPresenter
   include MetricsFormatterHelper
-  attr_reader :unique_pageviews, :pageviews, :unique_pageviews_series,
-    :pageviews_series, :base_path, :title, :published_at, :last_updated,
-    :publishing_organisation, :document_type, :number_of_internal_searches,
-    :number_of_internal_searches_series, :satisfaction_score, :satisfaction_score_series,
-    :number_of_feedback_comments, :number_of_feedback_comments_series, :date_range, :metadata
+
+  attr_reader :date_range,
+              :metadata,
+              :number_of_feedback_comments,
+              :number_of_feedback_comments_series,
+              :number_of_internal_searches,
+              :number_of_internal_searches_series,
+              :pageviews,
+              :pageviews_series,
+              :satisfaction_score,
+              :satisfaction_score_series,
+              :title,
+              :unique_pageviews,
+              :unique_pageviews_series
 
   def initialize(metrics, time_series, date_range)
     @date_range = date_range
