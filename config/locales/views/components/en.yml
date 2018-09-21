@@ -11,13 +11,13 @@ en:
         publishing_organisation: 'From'
         document_type: 'Type'
         base_path: 'URL'
-    time_select:
+    time-select:
       title: 'Page data: %{time_period}'
-      summary: 'Change time period'
+      dropdown_link: 'Change time period'
       submit_button: 'Change dates'
-    glance_metric:
+    glance-metric:
       period: 'from previous %{time_period}'
-    info_metric:
+    info-metric:
       period: 'from previous %{time_period}'
       data_details: 'About this data'
       data_source: 'Source: %{data_source}'

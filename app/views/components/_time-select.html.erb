@@ -1,6 +1,7 @@
 <%
   base_path ||= false
   current_selection ||= false
+  submit_button_text = t ".submit_button"
 
   if dates.length > 1
     dates.each {|d| d[:bold] = "true"}
@@ -13,16 +14,16 @@
 %>
 <% if base_path && dates.length > 1 && current_selection %>
   <div class="app-c-time-select">
-    <h2 class="govuk-heading-l">Page data: <%= dates.find {|d| d[:value] == current_selection }[:text] %></h2>
+    <h2 class="govuk-heading-l"><%= t '.title', time_period: dates.find {|d| d[:value] == current_selection }[:text] %></h2>
     <%= render "govuk_publishing_components/components/details", {
-      title: "Change time period"
+      title: t('.dropdown_link')
     } do %>
       <%= form_for('date', :url => "#{base_path}", :method => :get) do %>
         <%= render "govuk_publishing_components/components/radio", {
           name: "date_range",
           items: dates
         } %>
-        <%= render "govuk_publishing_components/components/button", {text: "Change dates"} %>
+        <%= render "govuk_publishing_components/components/button", {text: submit_button_text} %>
       <% end %>
     <% end %>
   </div>
