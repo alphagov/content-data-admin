@@ -28,6 +28,21 @@ RSpec.describe SingleContentItemPresenter do
       date_range)
   end
 
+
+  describe '#publishing_app' do
+    it 'does not fail if no publishing app' do
+      metrics['publishing_app'] = nil
+
+      expect(subject.publishing_app).to eq('Unknown')
+    end
+
+    it 'capitalizes the publishing_app if present' do
+      metrics['publishing_app'] = 'whitehall'
+
+      expect(subject.publishing_app).to eq('Whitehall')
+    end
+  end
+
   describe '#metadata' do
     it 'returns a hash with the metadata' do
       expect(subject.metadata).to eq(
