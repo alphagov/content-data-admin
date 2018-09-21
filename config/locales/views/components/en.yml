@@ -14,13 +14,6 @@ en:
       title: 'Page data: %{time_period}'
       summary: 'Change time period'
       submit_button: 'Change dates'
-      periods:
-        last_30_days: 'Past 30 days'
-        last_month: 'Last month'
-        last_3_months: 'Past 3 months'
-        last_6_months: 'Past 6 months'
-        last_year: 'Past year'
-        last_2_years: 'Past 2 years'
     glance_metric:
       period: 'from previous %{time_period}'
     info_metric:
