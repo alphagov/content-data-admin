@@ -1,13 +1,14 @@
 en:
-  views:
-    metrics:
-      show:
-        page_kicker: 'Page data'
-        navigation:
-          back_link: 'View all pages'
-          visit_page: 'View the page on GOV.UK'
-          edit_page: 'Make changes to the page'
-        section_headings:
-          performance: 'Performance'
-          feedback: 'Feedback'
-          content: 'Page Content'
+  metrics:
+    show:
+      page_kicker: 'Page data'
+      navigation:
+        back_link: 'View all pages'
+        visit_page: 'View the page on GOV.UK'
+        edit_page: 'Make changes to the page'
+      section_headings:
+        performance: 'Performance'
+        feedback: 'Feedback'
+        content: 'Page Content'
+      download:
+        download_data: 'Download the data'

@@ -1,36 +1,33 @@
 en:
-  views:
-    components:
-      charts:
-        chart_tab: '%{metric_name} chart'
-        table_tab: '%{metric_name} tab'
-      download:
-        download_data: 'Download the data'
-      metadata:
-        status: 'Status'
-        published_at: 'Published'
-        last_updated: 'Last Updated'
-        publishing_organisation: 'From'
-        document_type: 'Type'
-        base_path: 'URL'
-      time_select:
-        title: 'Page data: %{time_period}'
-        summary: 'Change time period'
-        submit_button: 'Change dates'
-        periods:
-          last_30_days: 'Past 30 days'
-          last_month: 'Last month'
-          last_3_months: 'Past 3 months'
-          last_6_months: 'Past 6 months'
-          last_year: 'Past year'
-          last_2_years: 'Past 2 years'
-      glance_metric:
-        period: 'from previous %{time_period}'
-      info_metric:
-        period: 'from previous %{time_period}'
-        data_details: 'About this data'
-        data_source: 'Source: %{data_source}'
-        download_summary: 'Download the data'
-        download_link: '%{metric_name} CSV'
-        external_summary: 'View the %{metric_unit}'
-        external_link: 'See %{metric_unit} in %{data_source}'
+  components:
+    chart:
+      chart_tab: '%{metric_name} chart'
+      table_tab: '%{metric_name} tab'
+    metadata:
+      status: 'Status'
+      published_at: 'Published'
+      last_updated: 'Last Updated'
+      publishing_organisation: 'From'
+      document_type: 'Type'
+      base_path: 'URL'
+    time_select:
+      title: 'Page data: %{time_period}'
+      summary: 'Change time period'
+      submit_button: 'Change dates'
+      periods:
+        last_30_days: 'Past 30 days'
+        last_month: 'Last month'
+        last_3_months: 'Past 3 months'
+        last_6_months: 'Past 6 months'
+        last_year: 'Past year'
+        last_2_years: 'Past 2 years'
+    glance_metric:
+      period: 'from previous %{time_period}'
+    info_metric:
+      period: 'from previous %{time_period}'
+      data_details: 'About this data'
+      data_source: 'Source: %{data_source}'
+      download_summary: 'Download the data'
+      download_link: '%{metric_name} CSV'
+      external_summary: 'View the %{metric_unit}'
+      external_link: 'See %{metric_unit} in %{data_source}'

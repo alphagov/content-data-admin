@@ -32,7 +32,7 @@ en:
         shows on average how many times a page was viewed during users' session. If a page has a 
         high ratio (above 1.4), this indicates that users have to come back to that page within 
         their session - investigate the navigation from that page further to identify any issues.
-    searches:
+    internal_searches:
       title: 'Searches from the page'
       summary: 'Number of on-page searches'
       context: '%{percentage} of users searched from the page'
@@ -40,7 +40,7 @@ en:
       about: >
         This is the number of internal site search that were started from the page. When people
         use internal search, it's an indication that they haven't found what they're looking for.
-    user_satisfaction:
+    satisfaction_score:
       title: 'User satisfaction score'
       summary: 'Percentage of users who answered ''yes'' to the ''Is this page useful?'' survey'
       context: 'Users who found this page useful, out of %{total_responses} responses'
