@@ -9,7 +9,7 @@ class MetricsController < ApplicationController
 
     metrics = FetchAggregatedMetrics.call(service_params)
     time_series = FetchTimeSeries.call(service_params)
-    @summary = SingleContentItemPresenter.new(metrics, time_series, date_range)
+    @performance_data = SingleContentItemPresenter.new(metrics, time_series, date_range)
   end
 
   rescue_from GdsApi::HTTPNotFound do
