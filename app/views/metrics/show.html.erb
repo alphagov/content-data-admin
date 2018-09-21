@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <% content_for :title, t('.browser_title', content_title: @performance_data.title) %>
-=======
-<% content_for :title, "Page Data: #{@performance_data.title}" %>
->>>>>>> 8442c49... Rename instance variable @performance_data
 <% content_for :back_link, "/" %>
 <% current_selection = @performance_data.date_range.time_period || 'last-30-days' %>
 
@@ -18,7 +14,7 @@
       <%= render "components/metadata", @performance_data.metadata %>
     </div>
   </div>
-  <div class="govuk-grid-column-one-third">
+  <div class="govuk-grid-column-one-third related-actions">
     <%= render "components/related-actions",
       {
         links: [
@@ -28,9 +24,9 @@
                     link_text: t('.navigation.visit_link', content_title: @performance_data.title)
                   },
                   {
-                    header: t(".navigation.edit_page"),
-                    link_url: "//www.gov.uk/???",
-                    link_text: t('.navigation.edit_link', publisher_app: "<Publisher>")
+                    header: "Make changes to the page",
+                    link_url: "#",
+                    link_text: @performance_data.publishing_app
                   }
                 ]
       } %>

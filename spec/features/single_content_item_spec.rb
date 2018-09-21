@@ -46,6 +46,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
       expect(page).to have_selector '.metric_summary.number_of_internal_searches', text: '250'
     end
 
+    it 'renders the publishing application' do
+      expect(page).to have_selector '.related-actions', text: 'Whitehall'
+    end
+
     it 'renders the metadata' do
       metadata = find('.page-metadata').all('dl').map do |el|
         el.all('dt,dd').map(&:text)
