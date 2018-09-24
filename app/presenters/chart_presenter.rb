@@ -24,13 +24,14 @@ class ChartPresenter
   def chart_data
     {
       caption: "#{human_friendly_metric} from #{from.to_date} to #{to.to_date}",
-      chart_label: "#{human_friendly_metric} chart",
-      table_label: "#{human_friendly_metric} table",
+      chart_label: human_friendly_metric.to_s,
       chart_id: "#{metric}_chart",
       table_id: "#{metric}_table",
+      table_direction: "vertical",
       keys: keys,
       rows: [
         {
+          label: "#{human_friendly_metric} ",
           values: values
         }
       ]

@@ -1,8 +1,7 @@
 <%
   chart_id ||= false
-  chart_label ||= "Chart"
+  chart_label ||= "data"
   table_id ||= false
-  table_label ||= "Table"
   table_direction ||= "horizontal"
   rows ||= []
   keys ||= []
@@ -32,69 +31,63 @@
   end
 %>
 <% if rows.length > 0 && keys.length > 0 && chart_id && table_id %>
-  <div class="app-c-chart__chart">
-    <% chart_content = capture do %>
-      <%= render "govuk_publishing_components/components/govspeak" do %>
-        <div class="app-c-chart__accessibility-message">
-          The chart is a visual representation of the data available in the <a href="#<%= table_id %>">table</a>.
-        </div>
-      <% end %>
-      <%= line_chart(chart_format_data, library: chart_library_options) %>
-    <% end %>
-  </div>
-  <% table_content = capture do %>
-    <div class="app-c-chart__table" tabindex="0">
-      <table class="govuk-table">
-          <% if table_direction == "vertical" %>
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell"></td>
-                <% keys.each do |d| %>
-                  <th class="govuk-table__header govuk-table__header--numeric" scope="col"><%= d %></th>
+  <div class="app-c-chart">
+    <div class="app-c-chart__chart" id="<%= chart_id %>">
+        <%= render "govuk_publishing_components/components/govspeak" do %>
+          <div class="app-c-chart__accessibility-message">
+            The chart is a visual representation of the data available in the <a href="#<%= table_id %>">table</a>.
+          </div>
+        <% end %>
+        <%= line_chart(chart_format_data, library: chart_library_options) %>
+    </div>
+    <div class="app-c-chart__table" id="<%= table_id %>">
+      <%= render "govuk_publishing_components/components/details", {
+              title: "View #{chart_label} table"
+            } do %>
+          <div tabindex="0">
+             <table class="govuk-table">
+                <% if table_direction == "vertical" %>
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell"></td>
+                      <% keys.each do |d| %>
+                        <th class="govuk-table__header govuk-table__header--numeric" scope="col"><%= d %></th>
+                      <% end %>
+                    </tr>
+                  </thead>
+                  <tbody class="govuk-table__body">
+                    <% rows.each do |r| %>
+                      <tr class="govuk-table__row">
+                        <th class="govuk-table__header" scope="row"><%= r[:label]  %></th>
+                        <% r[:values].each do |v| %>
+                          <td class="govuk-table__cell govuk-table__cell--numeric"><%= v %></td>
+                        <% end %>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                <% else %>
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell"></td>
+                      <% rows.each do |r| %>
+                          <th class="govuk-table__header govuk-table__header--stacked govuk-table__header--numeric" scope="row"><%= r[:label] %></th>
+                      <% end %>
+                    </tr>
+                  </thead>
+                  <tbody class="govuk-table__body">
+                    <% keys.each_with_index do |k,i| %>
+                      <tr>
+                        <th class="govuk-table__header govuk-table__header--numeric" scope="row"><%= k %></th>
+                        <% rows.each do |r| %>
+                          <td class="govuk-table__cell govuk-table__cell--numeric"><%= r[:values][i] %></td>
+                        <% end %>
+                      </tr>
+                    <% end %>
+                  </tbody>
                 <% end %>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <% rows.each do |r| %>
-                <tr class="govuk-table__row">
-                  <th class="govuk-table__header" scope="row"><%= r[:label]  %></th>
-                  <% r[:values].each do |v| %>
-                    <td class="govuk-table__cell govuk-table__cell--numeric"><%= v %></td>
-                  <% end %>
-                </tr>
-              <% end %>
-            </tbody>
-          <% else %>
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell"></td>
-                <% rows.each do |r| %>
-                    <th class="govuk-table__header govuk-table__header--stacked govuk-table__header--numeric" scope="row"><%= r[:label] %></th>
-                <% end %>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <% keys.each_with_index do |k,i| %>
-                <tr>
-                  <th class="govuk-table__header govuk-table__header--numeric" scope="row"><%= k %></th>
-                  <% rows.each do |r| %>
-                    <td class="govuk-table__cell govuk-table__cell--numeric"><%= r[:values][i] %></td>
-                  <% end %>
-                </tr>
-              <% end %>
-            </tbody>
-          <% end %>
-      </table>
+              </table>
+            </div>
+        <% end %>
+      </div>
     </div>
   <% end %>
-<% end %>
-<% if chart_content && table_content %>
-  <div data-module="chart" class="app-c-chart">
-    <%= render "govuk_publishing_components/components/tabs", {
-      tabs: [
-        {id: chart_id, label: chart_label, content: chart_content},
-        {id: table_id, label: table_label, content: table_content}
-      ]
-    } %>
-  </div>
-<% end %>

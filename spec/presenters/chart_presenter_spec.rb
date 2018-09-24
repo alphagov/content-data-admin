@@ -40,14 +40,16 @@ RSpec.describe ChartPresenter do
     {
       caption: "Unique pageviews from 2018-01-13 to 2018-01-15",
       chart_id: "unique_pageviews_chart",
-      chart_label: "Unique pageviews chart",
+      chart_label: "Unique pageviews",
       keys: [
         "01-13",
         "01-14",
         "01-15"
       ],
+
       rows: [
         {
+          label: "Unique pageviews ",
           values: [
             101,
             202,
@@ -56,7 +58,7 @@ RSpec.describe ChartPresenter do
         }
       ],
       table_id: "unique_pageviews_table",
-      table_label: "Unique pageviews table"
+      table_direction: "vertical"
     }
   end
 end
