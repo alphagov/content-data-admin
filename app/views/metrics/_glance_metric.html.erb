@@ -1,0 +1,11 @@
+<% if metric %>
+  <div class="govuk-grid-column-one-quarter">
+    <%= render "components/glance-metric", {
+        name: metric.name,
+        figure: metric.value,
+        context: metric.context,
+        trend_percentage: metric.trend_percentage,
+        period: metric.period
+      } %>
+  </div>
+<% end %>

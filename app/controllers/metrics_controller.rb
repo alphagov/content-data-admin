@@ -1,15 +1,21 @@
 class MetricsController < ApplicationController
   def show
-    date_range = DateRange.new(params[:date_range])
+    time_period = params[:date_range] || 'last-30-days'
+    date_range = DateRange.new(time_period)
 
     service_params = {
       base_path: params[:base_path],
       date_range: date_range,
     }
 
-    metrics = FetchAggregatedMetrics.call(service_params)
+    glance_metrics_names = %w[unique_pageviews satisfaction_score number_of_internal_searches feedex_comments]
+
+    aggregated_metrics = FetchAggregatedMetrics.call(service_params)
     time_series = FetchTimeSeries.call(service_params)
-    @performance_data = SingleContentItemPresenter.new(metrics, time_series, date_range)
+    @performance_data = SingleContentItemPresenter.new(aggregated_metrics, time_series, date_range)
+    @glance_metrics = Hash[
+      glance_metrics_names.collect { |name| [name, GlanceMetricPresenter.new(name, aggregated_metrics[name], time_period)] }
+    ]
   end
 
   rescue_from GdsApi::HTTPNotFound do
