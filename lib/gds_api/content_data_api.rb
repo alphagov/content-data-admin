@@ -25,15 +25,15 @@ class GdsApi::ContentDataApi < GdsApi::Base
 private
 
   def content_data_api_endpoint
-    "#{Plek.current.find('content-performance-manager')}/api/v1"
+    Plek.current.find('content-performance-manager').to_s
   end
 
   def aggregated_metrics_url(base_path, from, to, metrics)
-    "#{content_data_api_endpoint}/metrics/#{base_path}#{query_string(from: from, to: to, metrics: metrics)}"
+    "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}#{query_string(from: from, to: to, metrics: metrics)}"
   end
 
   def time_series_request_url(base_path, from, to, metrics)
-    "#{content_data_api_endpoint}/metrics/#{base_path}/time-series#{query_string(from: from, to: to, metrics: metrics)}"
+    "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}/time-series#{query_string(from: from, to: to, metrics: metrics)}"
   end
 
   def content_items_url(from, to, organisation_id)
