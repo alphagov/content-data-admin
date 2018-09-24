@@ -61,7 +61,8 @@ module GdsApi
           first_published_at: '2018-02-01T00:00:00.000Z',
           public_updated_at: '2018-04-25T00:00:00.000Z',
           primary_organisation_title: 'The ministry',
-          document_type: "news_story"
+          document_type: "news_story",
+          publishing_app: 'whitehall',
         }
       end
 

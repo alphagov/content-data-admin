@@ -1,6 +1,7 @@
 RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
+
   let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches feedex_comments] }
   let(:from) { Time.zone.today - 30.days }
   let(:to) { Time.zone.today }
@@ -44,6 +45,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders a metric for on page searches' do
       expect(page).to have_selector '.metric_summary.number_of_internal_searches', text: '250'
+    end
+
+    it 'renders the publishing application' do
+      expect(page).to have_selector '.related-actions', text: 'Whitehall'
     end
 
     it 'renders the metadata' do
