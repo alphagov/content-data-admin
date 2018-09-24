@@ -80,6 +80,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
+    <%= @glance_metrics["number_of_feedback_comments"].value %>
     <h2 class="govuk-heading-l"><%= t ".section_headings.performance" %></h2>
 
     <%= render 'metric_section', metric_name: 'unique_pageviews' %>

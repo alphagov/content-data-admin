@@ -5,7 +5,6 @@
   about ||= false
   trend_percentage ||= false
   context ||= false
-
 %>
 <% if name && figure && context %>
   <div class="app-c-info-metric govuk-body">
@@ -41,7 +40,10 @@
         <%= render "govuk_publishing_components/components/details", {
           title: "About this data"
         } do %>
-          <%= about %>
+          <p><%= about %></p>
+          <% if data_source %>
+            <p>Data source: <%= data_source %></p>
+          <% end %>
         <% end %>
       </div>
     <% end %>

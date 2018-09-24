@@ -1,12 +1,16 @@
+<%
+  data_source = t("metrics.#{metric_name}.data_source")
+%>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <%= render "components/info-metric", {
-        name: title,
+        name: t("metrics.#{metric_name}.title"),
         figure: number_with_delimiter(value, delimiter: ','),
-        context: "Number of sessions during which the page was viewed at least once",
+        context: t("metrics.#{metric_name}.summary"),
         trend_percentage: 0,
-        period: "From previous 30 days",
-        about: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vestibulum quam vitae felis.</p><p>Data source: Google Analytics</p>".html_safe
+        period: t("metrics.show.time_periods.#{@time_period}.reference"),
+        about: t("metrics.#{metric_name}.about"),
+        data_source: t("data_sources.#{data_source}")
     } %>
   </div>
 </div>
