@@ -107,7 +107,7 @@
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
     <h2 class="govuk-heading-l"><%= t ".section_headings.feedback" %></h2>
-    
+
     <div class="metric_summary satisfaction_score">
       <%= render 'metric_header', title: 'User satisfaction score', value: @performance_data.satisfaction_score %>
     </div>
@@ -119,15 +119,10 @@
     <div class="metric_summary number_of_feedback_comments">
       <%= render 'metric_header', title: t("metrics.feedex_comments.title"), value: @performance_data.number_of_feedback_comments %>
     </div>
-    <%= render 'chart', series: @summary.number_of_feedback_comments_series %>
+    <%= render 'chart', series: @performance_data.number_of_feedback_comments_series %>
     <span class="govuk-body govuk-body-s govuk-!-font-weight-bold"><%= t ".download.download_data" %></span><br>
     <a href="" class="govuk-link"><%= t ".download.csv_link", metric_name: t("metrics.feedex_comments.title") %></a>
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-  </div>
-</div>
-
-
 
     <h2 class="govuk-heading-l">Page Content</h2>
     <div class="govuk-grid-column-one-half">
