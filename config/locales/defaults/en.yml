@@ -55,7 +55,7 @@ en:
         The more users who responded, the more reliable the score is. For a more reliable score
         on a page that doens't have many responses, choose a longer time period. This survey was
         introduced in February 2018 so there are no responses before this date.
-    feedex_comments:
+    number_of_feedback_comments:
       title: 'Number of feedback comments'
       short_title: 'Feedback comments'
       summary: 'Number of anonymous user responses to ''Is there anything wrong with this page?'''
