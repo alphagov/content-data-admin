@@ -1,13 +1,25 @@
 en:
-  views:
-    metrics:
-      show:
-        page_kicker: 'Page data'
-        navigation:
-          back_link: 'View all pages'
-          visit_page: 'View the page on GOV.UK'
-          edit_page: 'Make changes to the page'
-        section_headings:
-          performance: 'Performance'
-          feedback: 'Feedback'
-          content: 'Page Content'
+  metrics:
+    show:
+      browser_title: 'Page data: %{content_title}'
+      page_kicker: 'Page data'
+      navigation:
+        back_link: 'View all pages'
+        visit_page: 'View the page on GOV.UK'
+        visit_link: 'Visit %{content_title}'
+        edit_page: 'Make changes to the page'
+        edit_link: 'Edit on %{publisher_app}'
+      section_headings:
+        performance: 'Performance'
+        feedback: 'Feedback'
+        content: 'Page Content'
+      download:
+        download_data: 'Download the data'
+        csv_link: '%{metric_name} CSV'
+      time_periods:
+        last_30_days: 'Past 30 days'
+        last_month: 'Last month'
+        last_3_months: 'Past 3 months'
+        last_6_months: 'Past 6 months'
+        last_year: 'Past year'
+        last_2_years: 'Past 2 years'

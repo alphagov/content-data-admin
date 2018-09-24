@@ -44,5 +44,9 @@ module ContentDataAdmin
     }
 
     config.govuk_environment = govuk_environments.fetch(ENV["ERRBIT_ENVIRONMENT_NAME"], "development")
+
+    # Load all the locale files and raise execptions if locale missing.
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.yml")]
+    config.action_view.raise_on_missing_translations = true
   end
 end
