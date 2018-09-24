@@ -1,7 +1,7 @@
 RSpec.describe '/content' do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
-  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches feedex_comments] }
+  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches feedex_comments word_count number_of_pdfs] }
   let(:from) { Time.zone.today.last_month.beginning_of_month.to_s('%F') }
   let(:to) { Time.zone.today.last_month.end_of_month.to_s('%F') }
   let(:items) do
@@ -48,10 +48,25 @@ RSpec.describe '/content' do
     )
   end
 
-  it 'takes you to single content item if you click on title of item' do
-    content_data_api_has_metric(base_path: 'path/1', from: (Time.zone.today - 30.days), to: Time.zone.today, metrics: metrics)
-    content_data_api_has_timeseries(base_path: 'path/1', from: (Time.zone.today - 30.days), to: Time.zone.today, metrics: metrics)
-    click_link 'The title'
-    expect(current_path).to eq '/metrics/path/1'
+  context 'click title of an item' do
+    it 'takes you to single content item page' do
+      content_data_api_has_metric(base_path: 'path/1', from: from, to: to, metrics: metrics)
+      content_data_api_has_timeseries(base_path: 'path/1', from: from, to: to, metrics: metrics)
+      click_link 'The title'
+      expect(current_path).to eq '/metrics/path/1'
+    end
+
+    it 'respects the date filter' do
+      from = (Time.zone.today - 1.year).to_s('%F')
+      to = Time.zone.today.to_s('%F')
+      content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
+      content_data_api_has_metric(base_path: 'path/1', from: from, to: to, metrics: metrics)
+      content_data_api_has_timeseries(base_path: 'path/1', from: from, to: to, metrics: metrics)
+
+      visit "/content?date_range=last-1-year&organisation_id=org-id"
+      click_link 'The title'
+      expect(current_path).to eq '/metrics/path/1'
+      expect(page).to have_content('Page data: Past year')
+    end
   end
 end

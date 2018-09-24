@@ -3,7 +3,7 @@ class ContentRowPresenter
               :user_satisfaction_score, :number_of_internal_searches
   def initialize(data)
     @title = data[:title]
-    @base_path = data[:base_path]
+    @base_path = format_base_path(data[:base_path])
     @document_type = data[:document_type].try(:tr, '_', ' ').try(:capitalize)
     @unique_pageviews = data[:unique_pageviews]
     @user_satisfaction_score = format_satisfaction_score(data[:satisfaction_score], data[:satisfaction_score_responses])
@@ -16,5 +16,10 @@ private
     return 'No responses' unless score
 
     "#{(score * 100).round(1)}% (#{responses} responses)"
+  end
+
+  def format_base_path(base_path)
+    #  remove '/' to make base_path usable in links
+    base_path.delete_prefix('/')
   end
 end

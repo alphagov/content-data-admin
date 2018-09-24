@@ -9,6 +9,6 @@
       <th>User satisfaction score</th>
       <th>Searches from page</th>
     </tr>
-    <%= render partial: 'content_row', collection: @content.items, as: :item %>
+    <%= render partial: 'content_row', collection: @content.items, as: :item, locals: { date_range: @content.date_range.time_period } %>
   </table>
 </div>
