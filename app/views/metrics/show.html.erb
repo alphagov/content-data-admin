@@ -156,11 +156,21 @@
     <%= render 'chart', series: @performance_data.number_of_feedback_comments_series %>
     <span class="govuk-body govuk-body-s govuk-!-font-weight-bold">Download the data</span><br>
     <a href="" class="govuk-link">Feedback CSV</a>
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Page Content</h2>
+    <div class="govuk-grid-column-one-half">
+      <div class="metric_summary word_count">
+      <%= render 'metric_header', title: 'Word Count', value: @performance_data.word_count %>
+      </div>
+    </div>
+
+    <div class="govuk-grid-column-one-half">
+      <div class="metric_summary number_of_pdfs">
+      <%= render 'metric_header', title: 'Number of PDFs', value: @performance_data.number_of_pdfs %>
+      </div>
+    </div>
+
+
   </div>
 </div>
-
-
-
-
-
-

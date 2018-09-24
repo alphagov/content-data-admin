@@ -57,6 +57,8 @@ module GdsApi
           satisfaction_score: 0.255,
           number_of_internal_searches: 250,
           feedex_comments: 20,
+          number_of_pdfs: 3,
+          word_count: 200,
           title: "Content Title",
           first_published_at: '2018-02-01T00:00:00.000Z',
           public_updated_at: '2018-04-25T00:00:00.000Z',
@@ -92,6 +94,16 @@ module GdsApi
             { "date" => (from - 1.day).to_s, "value" => 1 },
             { "date" => (from - 2.days).to_s, "value" => 0.9 },
             { "date" => (to + 1.day).to_s, "value" => 0.8 }
+          ],
+          word_count: [
+            { "date" => (from - 1.day).to_s, "value" => 200 },
+            { "date" => (from - 2.days).to_s, "value" => 200 },
+            { "date" => (to + 1.day).to_s, "value" => 200 }
+          ],
+          number_of_pdfs: [
+            { "date" => (from - 1.day).to_s, "value" => 3 },
+            { "date" => (from - 2.days).to_s, "value" => 3 },
+            { "date" => (to + 1.day).to_s, "value" => 3 }
           ]
         }
       end
