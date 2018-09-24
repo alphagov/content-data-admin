@@ -31,7 +31,7 @@ private
         from: (Time.zone.today - 6.months).to_s,
         to: Time.zone.today.to_s
       }
-    when 'last-1-year'
+    when 'last-year'
       {
         from: (Time.zone.today - 1.year).to_s,
         to: Time.zone.today.to_s

@@ -16,8 +16,8 @@ FactoryBot.define do
       initialize_with { new('last-6-months') }
     end
 
-    trait :last_1_year do
-      initialize_with { new('last-1-year') }
+    trait :last_year do
+      initialize_with { new('last-year') }
     end
 
     trait :last_2_years do
