@@ -1,5 +1,9 @@
 en:
   metrics:
+    metric_section:
+      download:
+        download_data: 'Download the data'
+        csv_link: '%{metric_name} CSV'
     show:
       browser_title: 'Page data: %{content_title}'
       page_kicker: 'Page data'
