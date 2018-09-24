@@ -5,20 +5,20 @@ module GdsApi
     module ContentDataApi
       def content_data_api_has_metric(base_path:, from:, to:, metrics:)
         query = query(from: from, to: to, metrics: metrics)
-        url = "#{content_data_api_endpoint}/metrics/#{base_path}#{query}"
+        url = "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}#{query}"
         body = default_metric_payload(base_path)
         stub_request(:get, url).to_return(status: 200, body: body.to_json)
       end
 
       def content_data_api_does_not_have_base_path(base_path:, from:, to:, metrics:)
         query = query(from: from, to: to, metrics: metrics)
-        url = "#{content_data_api_endpoint}/metrics/#{base_path}#{query}"
+        url = "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}#{query}"
         stub_request(:get, url).to_return(status: 404, body: { some: 'error' }.to_json)
       end
 
       def content_data_api_has_timeseries(base_path:, from:, to:, metrics:, payload: nil)
         query = query(from: from, to: to, metrics: metrics)
-        url = "#{content_data_api_endpoint}/metrics/#{base_path}/time-series#{query}"
+        url = "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}/time-series#{query}"
         body = payload.nil? ? default_timeseries_payload(from.to_date, to.to_date) : payload
         stub_request(:get, url).to_return(status: 200, body: body.to_json)
       end
@@ -31,7 +31,7 @@ module GdsApi
       end
 
       def content_data_api_endpoint
-        "#{Plek.current.find('content-performance-manager')}/api/v1"
+        Plek.current.find('content-performance-manager').to_s
       end
 
       def query(params)
