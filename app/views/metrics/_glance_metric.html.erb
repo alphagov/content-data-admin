@@ -1,3 +1,6 @@
+<%
+  metric = @glance_metrics[metric_name]
+%>
 <% if metric %>
   <div class="govuk-grid-column-one-quarter">
     <%= render "components/glance-metric", {

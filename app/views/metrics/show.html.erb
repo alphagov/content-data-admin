@@ -71,10 +71,10 @@
 } %>
 
 <div class="govuk-grid-row">
-  <%= render "glance_metric", metric: @glance_metrics["unique_pageviews"] %>
-  <%= render "glance_metric", metric: @glance_metrics["satisfaction_score"] %> 
-  <%= render "glance_metric", metric: @glance_metrics["number_of_internal_searches"] %> 
-  <%= render "glance_metric", metric: @glance_metrics["feedex_comments"] %> 
+  <%= render "glance_metric", metric_name: "unique_pageviews" %>
+  <%= render "glance_metric", metric_name: "satisfaction_score" %> 
+  <%= render "glance_metric", metric_name: "number_of_internal_searches" %> 
+  <%= render "glance_metric", metric_name: "feedex_comments" %> 
 </div>
 
 <div class="govuk-grid-row">
