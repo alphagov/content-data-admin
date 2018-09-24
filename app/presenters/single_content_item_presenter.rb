@@ -13,7 +13,9 @@ class SingleContentItemPresenter
               :satisfaction_score_series,
               :title,
               :unique_pageviews,
-              :unique_pageviews_series
+              :unique_pageviews_series,
+              :number_of_pdfs,
+              :word_count
 
   def initialize(metrics, time_series, date_range)
     @date_range = date_range
@@ -35,6 +37,8 @@ private
     @pageviews = format_metric_value('pageviews', metrics[:pageviews])
     @number_of_feedback_comments = format_metric_value('feedex_comments', metrics[:feedex_comments])
     @number_of_internal_searches = format_metric_value('number_of_internal_searches', metrics[:number_of_internal_searches])
+    @number_of_pdfs = format_metric_value('number_of_pdfs', metrics[:number_of_pdfs])
+    @word_count = format_metric_value('word_count', metrics[:word_count])
     @satisfaction_score = format_metric_value('satisfaction_score', metrics[:satisfaction_score])
     @title = metrics[:title]
     @metadata = {

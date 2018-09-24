@@ -1,8 +1,7 @@
 RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
-
-  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches feedex_comments] }
+  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches feedex_comments word_count number_of_pdfs] }
   let(:from) { Time.zone.today - 30.days }
   let(:to) { Time.zone.today }
   let(:month_and_date_string_for_date1) { (from - 1.day).to_s.last(5) }
@@ -37,6 +36,14 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     it 'renders a metric for number_of_feedback_comments' do
       expect(page).to have_selector '.metric_summary.number_of_feedback_comments', text: '20'
+    end
+
+    it 'renders a metric for number_of_pdfs' do
+      expect(page).to have_selector '.metric_summary.number_of_pdfs', text: '3'
+    end
+
+    it 'renders a metric for word_count' do
+      expect(page).to have_selector '.metric_summary.word_count', text: '200'
     end
 
     it 'renders the page title' do
