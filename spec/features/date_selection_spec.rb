@@ -42,9 +42,9 @@ RSpec.describe 'date selection', type: :feature do
   end
 
   it 'renders data for the last year when `Past year` is selected' do
-    date_range = build(:date_range, :last_1_year)
+    date_range = build(:date_range, :last_year)
     stub_response_for_date_range(date_range.from.to_date, date_range.to.to_date)
-    visit_page_and_filter_by_date_range('last-1-year')
+    visit_page_and_filter_by_date_range('last-year')
     expect_metrics_for_each_date_to_be_correct(date_range.from.to_date, date_range.to.to_date)
   end
 

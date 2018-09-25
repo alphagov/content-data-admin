@@ -9,8 +9,8 @@ RSpec.describe DateRange do
     it 'returns today`s date if selected time period is `last-6-months`' do
       expect(DateRange.new('last-6-months').to).to eq(Time.zone.today.to_s)
     end
-    it 'returns today`s date if selected time period is `last-1-year`' do
-      expect(DateRange.new('last-1-year').to).to eq(Time.zone.today.to_s)
+    it 'returns today`s date if selected time period is `last-year`' do
+      expect(DateRange.new('last-year').to).to eq(Time.zone.today.to_s)
     end
     it 'returns today`s date if selected time period is `last-2-years`' do
       expect(DateRange.new('last-2-years').to).to eq(Time.zone.today.to_s)
@@ -29,8 +29,8 @@ RSpec.describe DateRange do
     it 'returns date of 6 months ago if selected time period is `last-6-months`' do
       expect(DateRange.new('last-6-months').from).to eq((Time.zone.today - 6.months).to_s)
     end
-    it 'returns date of 1 year ago if selected time period is `last-1-year`' do
-      expect(DateRange.new('last-1-year').from).to eq((Time.zone.today - 1.year).to_s)
+    it 'returns date of 1 year ago if selected time period is `last-year`' do
+      expect(DateRange.new('last-year').from).to eq((Time.zone.today - 1.year).to_s)
     end
     it 'returns date of 2 years ago if selected time period is `last-2-years`' do
       expect(DateRange.new('last-2-years').from).to eq((Time.zone.today - 2.years).to_s)

@@ -6,8 +6,9 @@ en:
   metrics:
     unique_pageviews:
       title: 'Unique pageviews'
+      short_title: ''
       summary: 'Number of visits during which the page was viewed at least once'
-      context: 'Ranked %{position} of %{total_items} content items'
+      context: 'This page makes up %{percent_org_views}% of all views.'
       unit: ''
       about: >
         This represents the number of visits in which the page was viewed at least once. 
@@ -15,6 +16,7 @@ en:
         it will show up as 1 unique pageview.
     pageviews:
       title: 'Pageviews'
+      short_title: ''
       summary: 'Number of times the page was viewed'
       context: ''
       unit: ''
@@ -24,6 +26,7 @@ en:
         1 unique pageview).
     pageviews_per_visit:
       title: 'Pageviews per visit'
+      short_title: ''
       summary: 'Number of times per visit the page was viewed'
       context: ''
       unit: ''
@@ -32,16 +35,18 @@ en:
         shows on average how many times a page was viewed during users' session. If a page has a 
         high ratio (above 1.4), this indicates that users have to come back to that page within 
         their session - investigate the navigation from that page further to identify any issues.
-    internal_searches:
+    number_of_internal_searches:
       title: 'Searches from the page'
+      short_title: ''
       summary: 'Number of on-page searches'
-      context: '%{percentage} of users searched from the page'
+      context: '%{percent_users_searched}% of users searched from the page'
       unit: 'search terms'
       about: >
         This is the number of internal site search that were started from the page. When people
         use internal search, it's an indication that they haven't found what they're looking for.
     satisfaction_score:
       title: 'User satisfaction score'
+      short_title: ''
       summary: 'Percentage of users who answered ''yes'' to the ''Is this page useful?'' survey'
       context: 'Users who found this page useful, out of %{total_responses} responses'
       unit: ''
@@ -50,8 +55,9 @@ en:
         The more users who responded, the more reliable the score is. For a more reliable score
         on a page that doens't have many responses, choose a longer time period. This survey was
         introduced in February 2018 so there are no responses before this date.
-    feedback_comments:
+    number_of_feedback_comments:
       title: 'Number of feedback comments'
+      short_title: 'Feedback comments'
       summary: 'Number of anonymous user responses to ''Is there anything wrong with this page?'''
       context: ''
       unit: 'comments'
@@ -64,6 +70,7 @@ en:
         You'll need a Signon account with Feedback Explorer permissions to see the comments.
     word_count:
       title: 'Word count'
+      short_title: ''
       summary: 'Number of words on the page'
       context: ''
       unit: ''
@@ -73,6 +80,7 @@ en:
         be shorter. Otherwise, does it have headings and bulletpoint to help users scan?
     pdf_count:
       title: 'Number of PDFs'
+      short_title: ''
       summary: 'Number of .pdf attachements on the page'
       context: ''
       unit: ''

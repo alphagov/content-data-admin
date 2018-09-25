@@ -22,6 +22,7 @@ class SingleContentItemPresenter
     @metrics = metrics
     parse_metrics(metrics.with_indifferent_access)
     parse_time_series(time_series.with_indifferent_access)
+    add_glance_metric_presenters
   end
 
   def publishing_app
@@ -56,6 +57,14 @@ private
     @number_of_internal_searches_series = get_chart_presenter(time_series, :number_of_internal_searches)
     @number_of_feedback_comments_series = get_chart_presenter(time_series, :feedex_comments)
     @satisfaction_score_series = get_chart_presenter(time_series, :satisfaction_score)
+  end
+
+  def add_glance_metric_presenters
+    time_period = @date_range.time_period
+    @unique_pageviews_glance_metric = GlanceMetricPresenter.new('unique_pageviews', @unique_pageviews, time_period)
+    @satisfaction_score_glance_metric = GlanceMetricPresenter.new('satisfaction_score', @satisfaction_score, time_period)
+    @number_of_internal_searches_glance_metric = GlanceMetricPresenter.new('number_of_internal_searches', @number_of_internal_searches, time_period)
+    @number_of_feedback_comments_glance_metric = GlanceMetricPresenter.new('number_of_feedback_comments', @number_of_feedback_comments, time_period)
   end
 
   def get_chart_presenter(time_series, metric)

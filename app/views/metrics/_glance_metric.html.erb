@@ -1,0 +1,14 @@
+<%
+  metric = @performance_data.instance_variable_get("@#{metric_name}_glance_metric")
+%>
+<% if metric %>
+  <div class="govuk-grid-column-one-quarter">
+    <%= render "components/glance-metric", {
+        name: metric.name,
+        figure: metric.value,
+        context: metric.context,
+        trend_percentage: metric.trend_percentage,
+        period: metric.period
+      } %>
+  </div>
+<% end %>

@@ -39,77 +39,42 @@
   dates: [
     {
       value: "last-30-days",
-      text: t(".time_periods.last_30_days"),
+      text: t(".time_periods.last-30-days.leading"),
       hint_text:  "#{30.days.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
     },
     {
       value: "last-month",
-      text: t(".time_periods.last_month"),
+      text: t(".time_periods.last-month.leading"),
       hint_text: "#{Date.today.last_month.beginning_of_month.strftime("%-d %B %Y")} to #{Date.today.last_month.end_of_month.strftime("%-d %B %Y")}"
     },
     {
       value: "last-3-months",
-      text: t(".time_periods.last_3_months"),
+      text: t(".time_periods.last-3-months.leading"),
       hint_text: "#{3.months.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
     },
     {
       value: "last-6-months",
-      text: t(".time_periods.last_6_months"),
+      text: t(".time_periods.last-6-months.leading"),
       hint_text: "#{6.months.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
     },
     {
-      value: "last-1-year",
-      text: t(".time_periods.last_year"),
+      value: "last-year",
+      text: t(".time_periods.last-year.leading"),
       hint_text: "#{1.year.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
     },
     {
       value: "last-2-years",
-      text: t(".time_periods.last_2_years"),
+      text: t(".time_periods.last-2-years.leading"),
       hint_text: "#{2.years.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
     }
   ]
 } %>
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-quarter">
-    <%= render "components/glance-metric", {
-      name: t("metrics.unique_pageviews.title"),
-      figure: @performance_data.unique_pageviews,
-      context: t("metrics.unique_pageviews.context"),
-      trend_percentage: 0,
-      period: "from previous 30 days"
-    } %>
-  </div>
-
-  <div class="govuk-grid-column-one-quarter">
-    <%= render "components/glance-metric", {
-      name: t("metrics.satisfaction_score.title"),
-      figure: @performance_data.satisfaction_score,
-      context: t("metrics.satisfaction_score.context"),
-      trend_percentage: 0,
-      period: "from previous 30 days"
-    } %>
-  </div>
-
-  <div class="govuk-grid-column-one-quarter">
-    <%= render "components/glance-metric", {
-      name: t("metrics.internal_searches.title"),
-      figure: @performance_data.number_of_internal_searches,
-      context: t("metrics.internal_searches.context"),
-      trend_percentage: 0,
-      period: "from previous 30 days"
-    } %>
-  </div>
-
-  <div class="govuk-grid-column-one-quarter">
-    <%= render "components/glance-metric", {
-      name: t("metrics.feedback_comments.title"),
-      figure: @performance_data.number_of_feedback_comments,
-      context: t("metrics.feedback_comments.context"),
-      trend_percentage: 0,
-      period: "from previous 30 days"
-    } %>
-  </div>
+  <%= render "glance_metric", metric_name: "unique_pageviews" %>
+  <%= render "glance_metric", metric_name: "satisfaction_score" %> 
+  <%= render "glance_metric", metric_name: "number_of_internal_searches" %> 
+  <%= render "glance_metric", metric_name: "number_of_feedback_comments" %> 
 </div>
 
 <div class="govuk-grid-row">
@@ -134,14 +99,15 @@
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
     <div class="metric_summary number_of_internal_searches">
-      <%= render 'metric_header', title: t("metrics.internal_searches.title"), value: @performance_data.number_of_internal_searches %>
+      <%= render 'metric_header', title: t("metrics.number_of_internal_searches.title"), value: @performance_data.number_of_internal_searches %>
     </div>
     <%= render 'chart', series: @performance_data.number_of_internal_searches_series %>
     <span class="govuk-body govuk-body-s govuk-!-font-weight-bold"><%= t ".download.download_data" %></span><br>
-    <a href="" class="govuk-link"><%= t ".download.csv_link", metric_name: t("metrics.internal_searches.title") %></a>
+    <a href="" class="govuk-link"><%= t ".download.csv_link", metric_name: t("metrics.number_of_internal_searches.title") %></a>
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
     <h2 class="govuk-heading-l"><%= t ".section_headings.feedback" %></h2>
+
     <div class="metric_summary satisfaction_score">
       <%= render 'metric_header', title: 'User satisfaction score', value: @performance_data.satisfaction_score %>
     </div>
@@ -151,11 +117,11 @@
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
     <div class="metric_summary number_of_feedback_comments">
-    <%= render 'metric_header', title: 'Number of feedback comments', value: @performance_data.number_of_feedback_comments %>
+      <%= render 'metric_header', title: t("metrics.number_of_feedback_comments.title"), value: @performance_data.number_of_feedback_comments %>
     </div>
     <%= render 'chart', series: @performance_data.number_of_feedback_comments_series %>
-    <span class="govuk-body govuk-body-s govuk-!-font-weight-bold">Download the data</span><br>
-    <a href="" class="govuk-link">Feedback CSV</a>
+    <span class="govuk-body govuk-body-s govuk-!-font-weight-bold"><%= t ".download.download_data" %></span><br>
+    <a href="" class="govuk-link"><%= t ".download.csv_link", metric_name: t("metrics.number_of_feedback_comments.title") %></a>
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
     <h2 class="govuk-heading-l">Page Content</h2>
@@ -170,7 +136,6 @@
       <%= render 'metric_header', title: 'Number of PDFs', value: @performance_data.number_of_pdfs %>
       </div>
     </div>
-
 
   </div>
 </div>

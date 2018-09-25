@@ -1,6 +1,7 @@
 class MetricsController < ApplicationController
   def show
-    date_range = DateRange.new(params[:date_range])
+    time_period = params[:date_range] || 'last-30-days'
+    date_range = DateRange.new(time_period)
 
     service_params = {
       base_path: params[:base_path],
