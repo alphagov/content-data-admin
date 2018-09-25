@@ -72,61 +72,43 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders the metric timeseries for unique_pageviews' do
-      click_on 'Unique pageviews table'
       unique_pageviews_rows = extract_table_content(".chart.unique_pageviews table")
       expect(unique_pageviews_rows).to match_array([
-        ['', ''],
-        [month_and_date_string_for_date1.to_s, "1"],
-        [month_and_date_string_for_date2.to_s, "2"],
-        [month_and_date_string_for_date3.to_s, "30"],
+        ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+        ["Unique pageviews", "1", "2", "30"]
       ])
     end
 
     it 'renders the metric timeseries for pageviews' do
-      click_on 'Pageviews table'
       pageviews_rows = extract_table_content(".chart.pageviews table")
-
       expect(pageviews_rows).to match_array([
-        ['', ''],
-        [month_and_date_string_for_date1.to_s, "10"],
-        [month_and_date_string_for_date2.to_s, "20"],
-        [month_and_date_string_for_date3.to_s, "30"],
+        ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+        %w[Pageviews 10 20 30]
       ])
     end
 
     it 'renders the metric timeseries for on-page searches' do
-      click_on 'Number of internal searches table'
       internal_searches_rows = extract_table_content(".chart.number_of_internal_searches table")
-
       expect(internal_searches_rows).to match_array([
-        ['', ''],
-        [month_and_date_string_for_date1.to_s, "8"],
-        [month_and_date_string_for_date2.to_s, "8"],
-        [month_and_date_string_for_date3.to_s, "8"],
+        ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+        ["Number of internal searches", "8", "8", "8"]
       ])
     end
 
     it 'renders the metric timeseries for satisfaction_score' do
-      click_on 'Number of internal searches table'
       satisfaction_score_rows = extract_table_content(".chart.satisfaction_score table")
-
       expect(satisfaction_score_rows).to match_array([
-        ['', ''],
-        [month_and_date_string_for_date1.to_s, "100%"],
-        [month_and_date_string_for_date2.to_s, "90%"],
-        [month_and_date_string_for_date3.to_s, "80%"],
+        ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+        ["Satisfaction score", "100%", "90%", "80%"]
       ])
     end
 
     it 'renders the metric timeseries for ' do
-      click_on 'Number of internal searches table'
       feedback_comment_rows = extract_table_content(".chart.feedex_comments table")
 
       expect(feedback_comment_rows).to match_array([
-        ['', ''],
-        [month_and_date_string_for_date1.to_s, "20"],
-        [month_and_date_string_for_date2.to_s, "21"],
-        [month_and_date_string_for_date3.to_s, "22"],
+        ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+        ["Feedex comments", "20", "21", "22"]
       ])
     end
   end

@@ -107,10 +107,8 @@ RSpec.describe 'date selection', type: :feature do
     month_and_date_string_for_date3 = (to + 1.day).to_s.last(5)
     unique_pageviews_rows = extract_table_content("#unique_pageviews_table")
     expect(unique_pageviews_rows).to match_array([
-      ['', ''],
-      [month_and_date_string_for_date1.to_s, "1"],
-      [month_and_date_string_for_date2.to_s, "2"],
-      [month_and_date_string_for_date3.to_s, "30"],
+      ['', month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+      ['Unique pageviews', "1", "2", "30"]
     ])
   end
 
@@ -120,10 +118,8 @@ RSpec.describe 'date selection', type: :feature do
     month_and_date_string_for_date3 = (to + 1.day).to_s.last(5)
     unique_pageviews_rows = extract_table_content("#unique_pageviews_table")
     expect(unique_pageviews_rows).to match_array([
-      ['', ''],
-      [month_and_date_string_for_date1.to_s, "0"],
-      [month_and_date_string_for_date2.to_s, "9"],
-      [month_and_date_string_for_date3.to_s, "9"],
+      ['', month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+      ['Unique pageviews', "0", "9", "9"]
     ])
   end
 
@@ -131,6 +127,5 @@ RSpec.describe 'date selection', type: :feature do
     visit '/metrics/base/path'
     find("input[type=radio][name=date_range][value=#{date_range}]").click
     click_button 'Change dates'
-    click_on 'Unique pageviews table'
   end
 end

@@ -48,20 +48,6 @@ RSpec.describe "Chart", type: :view do
     assert_select '.app-c-chart', 1
   end
 
-  it "uses supplie tab titles" do
-    render_component(data)
-    assert_select ".govuk-tabs__tab", text: "Page views chart"
-    assert_select ".govuk-tabs__tab", text: "Page views table"
-  end
-
-  it "provides tab titles if none are supplied" do
-    data[:chart_label] = false
-    data[:table_label] = false
-    render_component(data)
-    assert_select ".govuk-tabs__tab", text: "Chart"
-    assert_select ".govuk-tabs__tab", text: "Table"
-  end
-
   it "renders the correct table data vertically" do
     data[:table_direction] = 'vertical'
     render_component(data)

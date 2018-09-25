@@ -3,6 +3,10 @@
 
 .app-c-chart__table {
   overflow: auto;
+
+  .govuk-details__summary-text {
+    @include govuk-font(16);
+  }
 }
 
 .app-c-chart__table {
