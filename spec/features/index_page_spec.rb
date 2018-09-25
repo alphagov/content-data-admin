@@ -63,7 +63,7 @@ RSpec.describe '/content' do
       content_data_api_has_metric(base_path: 'path/1', from: from, to: to, metrics: metrics)
       content_data_api_has_timeseries(base_path: 'path/1', from: from, to: to, metrics: metrics)
 
-      visit "/content?date_range=last-1-year&organisation_id=org-id"
+      visit "/content?date_range=last-year&organisation_id=org-id"
       click_link 'The title'
       expect(current_path).to eq '/metrics/path/1'
       expect(page).to have_content('Page data: Past year')
