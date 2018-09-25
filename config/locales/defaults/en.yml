@@ -86,7 +86,7 @@ en:
         Lots of words on a page can make content difficult for users to read online. The longer the
         page is, the less usable it is likely to be. You could investigate whether this content could
         be shorter. Otherwise, does it have headings and bulletpoint to help users scan?
-    pdf_count:
+    number_of_pdfs:
       title: 'Number of PDFs'
       short_title: ''
       summary: 'Number of .pdf attachements on the page'

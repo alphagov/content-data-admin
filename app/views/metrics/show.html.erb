@@ -80,38 +80,38 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <%= @glance_metrics["number_of_feedback_comments"].value %>
-    <h2 class="govuk-heading-l"><%= t ".section_headings.performance" %></h2>
+      <h2 class="govuk-heading-l"><%= t ".section_headings.performance" %></h2>
 
-    <%= render 'metric_section', metric_name: 'unique_pageviews' %>
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+      <%= render 'metric_section', metric_name: 'unique_pageviews', over_time: true  %>
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-    <%= render 'metric_section', metric_name: 'pageviews' %>
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+      <%= render 'metric_section', metric_name: 'pageviews', over_time: true %>
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-    <%= render 'metric_section', metric_name: 'number_of_internal_searches' %>
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+      <%= render 'metric_section', metric_name: 'number_of_internal_searches', over_time: true %>
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-    <h2 class="govuk-heading-l"><%= t ".section_headings.feedback" %></h2>
+      <h2 class="govuk-heading-l"><%= t ".section_headings.feedback" %></h2>
 
-    <%= render 'metric_section', metric_name: 'satisfaction_score' %>
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+      <%= render 'metric_section', metric_name: 'satisfaction_score', over_time: true %>
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-    <%= render 'metric_section', metric_name: 'number_of_feedback_comments' %>
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+      <%= render 'metric_section', metric_name: 'number_of_feedback_comments', over_time: true %>
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-    <h2 class="govuk-heading-l">Page Content</h2>
+      <h2 class="govuk-heading-l"><%= t ".section_headings.content" %></h2>
+
+    </div>
+
     <div class="govuk-grid-column-one-half">
       <div class="metric_summary word_count">
-      <%= render 'metric_header', title: 'Word Count', value: @performance_data.word_count %>
+        <%= render 'metric_header', metric_name: 'word_count', value: @performance_data.word_count, over_time: false %>
       </div>
     </div>
 
     <div class="govuk-grid-column-one-half">
       <div class="metric_summary number_of_pdfs">
-      <%= render 'metric_header', title: 'Number of PDFs', value: @performance_data.number_of_pdfs %>
+        <%= render 'metric_header', metric_name: 'number_of_pdfs', value: @performance_data.number_of_pdfs, over_time: false %>
       </div>
     </div>
-
-  </div>
 </div>

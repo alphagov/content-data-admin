@@ -1,16 +1,24 @@
 <%
+  over_time ||= false
   data_source = t("metrics.#{metric_name}.data_source")
+  time_period = @performance_data.date_range.time_period
+  options = {
+      name: t("metrics.#{metric_name}.title"),
+      figure: number_with_delimiter(value, delimiter: ','),
+      context: t("metrics.#{metric_name}.summary"),
+      data_source: t("data_sources.#{data_source}"),
+      about: t("metrics.#{metric_name}.about")
+  }
+
+  if over_time
+    options.update({
+      trend_percentage: 0,
+      period: t("metrics.show.time_periods.#{time_period}.reference") 
+    })
+  end
 %>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <%= render "components/info-metric", {
-        name: t("metrics.#{metric_name}.title"),
-        figure: number_with_delimiter(value, delimiter: ','),
-        context: t("metrics.#{metric_name}.summary"),
-        trend_percentage: 0,
-        period: t("metrics.show.time_periods.#{@time_period}.reference"),
-        about: t("metrics.#{metric_name}.about"),
-        data_source: t("data_sources.#{data_source}")
-    } %>
+    <%= render "components/info-metric", options %>
   </div>
 </div>
