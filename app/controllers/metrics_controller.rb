@@ -8,14 +8,9 @@ class MetricsController < ApplicationController
       date_range: date_range,
     }
 
-    glance_metrics_names = %w[unique_pageviews satisfaction_score number_of_internal_searches number_of_feedback_comments]
-
-    aggregated_metrics = FetchAggregatedMetrics.call(service_params)
+    metrics = FetchAggregatedMetrics.call(service_params)
     time_series = FetchTimeSeries.call(service_params)
-    @performance_data = SingleContentItemPresenter.new(aggregated_metrics, time_series, date_range)
-    @glance_metrics = Hash[
-      glance_metrics_names.collect { |name| [name, GlanceMetricPresenter.new(name, @performance_data.instance_variable_get("@#{name}"), time_period)] }
-    ]
+    @performance_data = SingleContentItemPresenter.new(metrics, time_series, date_range)
   end
 
   rescue_from GdsApi::HTTPNotFound do
