@@ -6,9 +6,18 @@
     <div class="govuk-body govuk-body-s">
       <dl>
         <% links.each do |l| %>
-          <% if l[:header] && l[:link_text] && l[:link_url] %>
+          <% if l[:header] && l[:label] && l[:link_url] %>
             <dt class="app-c-related-actions__header govuk-!-font-weight-bold"><%= l[:header] %></dt>
-            <dd class="app-c-related-actions__link"><a href="<%= l[:link_url] %>" class="govuk-link"><%= l[:link_text] %></a></dd>
+            <dd class="app-c-related-actions__link">
+              <a href="<%= l[:link_url] %>" class="govuk-link">
+                <% if l[:accessibility_message] %>
+                  <% p l[:accessibility_message] %> 
+                  <span class="app-c-related-actions__accessibility-message"><%=l[:accessibility_message]%></span> <%= l[:label] %>
+                <% else %>
+                  <%= l[:label] %>
+                <% end %>
+              </a>
+            </dd>
           <% end %>
         <% end %>
       </dl>

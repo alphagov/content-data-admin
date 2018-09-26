@@ -21,12 +21,13 @@
                   {
                     header: t(".navigation.visit_page"),
                     link_url: "//www.gov.uk#{@performance_data.metadata[:base_path]}",
-                    link_text: t('.navigation.visit_link', content_title: @performance_data.title)
+                    accessibility_message: t('.navigation.accessibility_message'),
+                    label: @performance_data.title
                   },
                   {
                     header: "Make changes to the page",
                     link_url: "#",
-                    link_text: @performance_data.publishing_app
+                    label: t('.navigation.edit_link', publisher_app: @performance_data.publishing_app)
                   }
                 ]
       } %>
@@ -72,9 +73,9 @@
 
 <div class="govuk-grid-row">
   <%= render "glance_metric", metric_name: "unique_pageviews" %>
-  <%= render "glance_metric", metric_name: "satisfaction_score" %> 
-  <%= render "glance_metric", metric_name: "number_of_internal_searches" %> 
-  <%= render "glance_metric", metric_name: "number_of_feedback_comments" %> 
+  <%= render "glance_metric", metric_name: "satisfaction_score" %>
+  <%= render "glance_metric", metric_name: "number_of_internal_searches" %>
+  <%= render "glance_metric", metric_name: "number_of_feedback_comments" %>
 </div>
 
 <div class="govuk-grid-row">

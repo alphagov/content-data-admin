@@ -1,3 +1,5 @@
+@import "../../../node_modules/govuk-frontend/helpers/visually-hidden";
+
 .app-c-related-actions {
   border-top: 1px solid $govuk-border-colour;
 }
@@ -7,3 +9,6 @@
   @include govuk-responsive-margin(3, "bottom");
 }
 
+.app-c-related-actions__accessibility-message {
+  @include govuk-visually-hidden;
+}
