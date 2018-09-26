@@ -16,7 +16,7 @@
   <div class="app-c-time-select">
     <h2 class="govuk-heading-l"><%= t '.title', time_period: dates.find {|d| d[:value] == current_selection }[:text] %></h2>
     <%= render "govuk_publishing_components/components/details", {
-      title: t('.dropdown_link')
+      title: t('.change_dropdown')
     } do %>
       <%= form_for('date', :url => "#{base_path}", :method => :get) do %>
         <%= render "govuk_publishing_components/components/radio", {

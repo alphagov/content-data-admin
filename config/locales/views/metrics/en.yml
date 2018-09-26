@@ -1,9 +1,8 @@
 en:
   metrics:
     metric_section:
-      download:
-        download_data: 'Download the data'
-        csv_link: '%{metric_name} CSV'
+      download_link: 'Download %{metric_name} CSV'
+      external_link: 'See %{metric_unit} in %{data_source}'
     show:
       browser_title: 'Page data: %{content_title}'
       page_kicker: 'Page data'
@@ -17,9 +16,6 @@ en:
         performance: 'Performance'
         feedback: 'Feedback'
         content: 'Page Content'
-      download:
-        download_data: 'Download the data'
-        csv_link: '%{metric_name} CSV'
       time_periods:
         last-30-days: 
           leading: 'Past 30 days'

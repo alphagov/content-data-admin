@@ -12,14 +12,9 @@ en:
         base_path: 'URL'
     time-select:
       title: 'Page data: %{time_period}'
-      dropdown_link: 'Change time period'
+      change_dropdown: 'Change time period'
       submit_button: 'Change dates'
-    glance-metric:
-      period: 'from previous %{time_period}'
     info-metric:
       about_dropdown: 'About this data'
       data_source: 'Source: %{source}'
-      download_summary: 'Download the data'
-      download_link: '%{metric_name} CSV'
-      external_summary: 'View the %{metric_unit}'
-      external_link: 'See %{metric_unit} in %{data_source}'
+
