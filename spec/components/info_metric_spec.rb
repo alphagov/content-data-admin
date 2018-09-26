@@ -38,7 +38,7 @@ RSpec.describe "Info Metric", type: :view do
     assert_select ".app-c-info-metric__period", text: "Apr 2018 to Mar 2018"
     assert_select ".gem-c-details", 1
     assert_select ".app-c-info-metric__about .govuk-details__text>p", text: "About this data."
-    assert_select ".app-c-info-metric__about .govuk-details__text>p", text: "Data source: source"
+    assert_select ".app-c-info-metric__about .govuk-details__text>p", text: t("components.info-metric.data_source", source: "source")
   end
 
   it "displays the correct trend direction when trend is supplied" do
