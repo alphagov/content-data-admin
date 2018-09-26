@@ -38,11 +38,11 @@
     <% if about %>
       <div class="app-c-info-metric__about govuk-body-s">
         <%= render "govuk_publishing_components/components/details", {
-          title: "About this data"
+          title: t(".about_dropdown")
         } do %>
           <p><%= about %></p>
           <% if data_source %>
-            <p>Data source: <%= data_source %></p>
+            <p><%=t("components.info-metric.data_source", source: data_source)%></p>
           <% end %>
         <% end %>
       </div>
