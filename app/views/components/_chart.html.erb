@@ -42,7 +42,7 @@
     </div>
     <div class="app-c-chart__table" id="<%= table_id %>">
       <%= render "govuk_publishing_components/components/details", {
-              title: "View #{chart_label} table"
+              title: t(".table_dropdown", metric_name: chart_label)
             } do %>
           <div tabindex="0">
              <table class="govuk-table">
