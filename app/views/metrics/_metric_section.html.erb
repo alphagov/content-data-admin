@@ -1,0 +1,13 @@
+<div class="metric_summary <%= metric_name %>">
+  <%= render 'metric_header', {
+    metric_name: metric_name, 
+    value: @performance_data.instance_variable_get("@#{metric_name}"), 
+    show_trend: show_trend 
+  }%>
+</div>
+
+<%= render 'chart', series: @performance_data.instance_variable_get("@#{metric_name}_series") %>
+
+<span class="govuk-body govuk-body-s govuk-!-font-weight-bold"><%= t ".download.download_data" %></span>
+<br>
+<a href="" class="govuk-link"><%= t ".download.csv_link", metric_name: t("metrics.#{metric_name}.title") %></a>

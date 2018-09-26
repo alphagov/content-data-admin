@@ -8,7 +8,8 @@ RSpec.describe "Info Metric", type: :view do
       context: "This is in your top 10 items",
       trend_percentage: 0.5,
       period: "Apr 2018 to Mar 2018",
-      about: "<p>This metric was extrapolated from measurement data.</p>"
+      about: "About this data.",
+      data_source: "source"
     }
   }
 
@@ -36,7 +37,8 @@ RSpec.describe "Info Metric", type: :view do
     assert_select ".app-c-info-metric__trend", text: "+0.5%"
     assert_select ".app-c-info-metric__period", text: "Apr 2018 to Mar 2018"
     assert_select ".gem-c-details", 1
-    assert_select ".app-c-info-metric__about .govuk-details__text", text: "<p>This metric was extrapolated from measurement data.</p>"
+    assert_select ".app-c-info-metric__about .govuk-details__text>p", text: "About this data."
+    assert_select ".app-c-info-metric__about .govuk-details__text>p", text: "Data source: source"
   end
 
   it "displays the correct trend direction when trend is supplied" do
@@ -54,6 +56,13 @@ RSpec.describe "Info Metric", type: :view do
     data[:about] = false
     render_component(data)
     assert_select ".gem-c-details", 0
+  end
+
+  it "does not render the data source when data source not supplied" do
+    data[:data_source] = nil
+    render_component(data)
+    assert_select ".app-c-info-metric__about .govuk-details__text>p", 1
+    assert_select ".app-c-info-metric__about .govuk-details__text>p", text: "About this data."
   end
 
   def render_component(locals)
