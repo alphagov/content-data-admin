@@ -4,7 +4,7 @@ module MetricsFormatterHelper
 
   def format_metric_value(metric_name, figure)
     if METRICS_MEASURED_AS_PERCENTAGES.include?(metric_name.to_s) && figure
-      number_to_percentage(figure * 100, precision: 0)
+      number_to_percentage(figure, precision: 0)
     else
       figure
     end
