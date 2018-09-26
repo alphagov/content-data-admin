@@ -1,5 +1,9 @@
 <div class="metric_summary <%= metric_name %>">
-  <%= render 'metric_header', metric_name: metric_name, value: @performance_data.instance_variable_get("@#{metric_name}"), over_time: over_time %>
+  <%= render 'metric_header', {
+    metric_name: metric_name, 
+    value: @performance_data.instance_variable_get("@#{metric_name}"), 
+    show_trend: show_trend 
+  }%>
 </div>
 
 <%= render 'chart', series: @performance_data.instance_variable_get("@#{metric_name}_series") %>

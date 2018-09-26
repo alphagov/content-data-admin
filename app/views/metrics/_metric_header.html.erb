@@ -1,5 +1,5 @@
 <%
-  over_time ||= false
+  show_trend ||= false
   data_source = t("metrics.#{metric_name}.data_source")
   time_period = @performance_data.date_range.time_period
   options = {
@@ -10,7 +10,7 @@
       about: t("metrics.#{metric_name}.about")
   }
 
-  if over_time
+  if show_trend
     options.update({
       trend_percentage: 0,
       period: t("metrics.show.time_periods.#{time_period}.reference") 
