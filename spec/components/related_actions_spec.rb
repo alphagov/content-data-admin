@@ -7,12 +7,13 @@ RSpec.describe "Related actions", type: :view do
                 {
                   header: "View the page on GOV.UK",
                   link_url: "//www.gov.uk/govpage",
-                  link_text: "Visit Govpage"
+                  label: "Govpage",
+                  accessibility_message: "Visit on GOV.UK:"
                 },
                 {
                   header: "Make changes to the page",
                   link_url: "//www.gov.uk/moregov",
-                  link_text: "Visit More gov"
+                  label: "More gov"
                 }
               ]
       }
@@ -34,9 +35,21 @@ RSpec.describe "Related actions", type: :view do
     assert_select "dd", 2
     assert_select ".app-c-related-actions__header", text: "View the page on GOV.UK"
     assert_select ".app-c-related-actions__header", text: "Make changes to the page"
-    assert_select "a", href: "//www.gov.uk/govpage", text: "Visit Govpage"
-    assert_select "a", href: "//www.gov.uk/moregov", text: "Visit More gov"
+    assert_select "a", href: "//www.gov.uk/govpage", text: "Visit on GOV.UK: Govpage"
+    assert_select "a", href: "//www.gov.uk/moregov", text: "More gov"
   end
+
+  context "recieves an accessibility_message" do
+    it "renders accessibility message which is visually hidden" do
+      render_component(data)
+      assert_select ".app-c-related-actions", 1
+      assert_select "dl", 1
+      assert_select "dt", 2
+      assert_select "dd", 2
+      assert_select ".app-c-related-actions__accessibility-message", 1
+    end
+  end
+
 
   def render_component(locals)
     render partial: "components/related-actions", locals: locals

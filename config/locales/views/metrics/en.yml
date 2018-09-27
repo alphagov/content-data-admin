@@ -9,7 +9,7 @@ en:
       navigation:
         back_link: 'View all pages'
         visit_page: 'View the page on GOV.UK'
-        visit_link: 'Visit %{content_title}'
+        accessibility_message: 'Visit on GOV.UK:'
         edit_page: 'Make changes to the page'
         edit_link: 'Edit on %{publisher_app}'
       section_headings:
@@ -17,19 +17,19 @@ en:
         feedback: 'Feedback'
         content: 'Page Content'
       time_periods:
-        last-30-days: 
+        last-30-days:
           leading: 'Past 30 days'
           reference: 'from previous 30 days'
-        last-month: 
+        last-month:
           leading: 'Last month'
           reference: 'from previous month'
-        last-3-months: 
+        last-3-months:
           leading: 'Past 3 months'
           reference: 'from previous 3 months'
-        last-6-months: 
+        last-6-months:
           leading: 'Past 6 months'
           reference: 'from previous 6 months'
-        last-year: 
+        last-year:
           leading: 'Past year'
           reference: 'from previous year'
         last-2-years:
