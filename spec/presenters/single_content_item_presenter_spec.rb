@@ -37,9 +37,9 @@ RSpec.describe SingleContentItemPresenter do
     end
 
     it 'capitalizes the publishing_app if present' do
-      metrics['publishing_app'] = 'whitehall'
+      metrics['publishing_app'] = 'travel-advice'
 
-      expect(subject.publishing_app).to eq('Whitehall')
+      expect(subject.publishing_app).to eq('Travel advice')
     end
   end
 

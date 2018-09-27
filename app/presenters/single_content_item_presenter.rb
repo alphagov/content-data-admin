@@ -28,7 +28,7 @@ class SingleContentItemPresenter
   def publishing_app
     publishing_app = @metrics['publishing_app']
 
-    publishing_app.present? ? publishing_app.capitalize : 'Unknown'
+    publishing_app.present? ? publishing_app.capitalize.tr('-', ' ') : 'Unknown'
   end
 
 private
