@@ -54,7 +54,7 @@ module GdsApi
           base_path: "/#{base_path}",
           unique_pageviews: 145_000,
           pageviews: 200_000,
-          satisfaction_score: 0.255,
+          satisfaction_score: 25.55,
           number_of_internal_searches: 250,
           feedex_comments: 20,
           number_of_pdfs: 3,
@@ -91,9 +91,9 @@ module GdsApi
             { "date" => (to + 1.day).to_s, "value" => 22 }
           ],
           satisfaction_score: [
-            { "date" => (from - 1.day).to_s, "value" => 1 },
-            { "date" => (from - 2.days).to_s, "value" => 0.9 },
-            { "date" => (to + 1.day).to_s, "value" => 0.8 }
+            { "date" => (from - 1.day).to_s, "value" => 100.0000 },
+            { "date" => (from - 2.days).to_s, "value" => 90.0000 },
+            { "date" => (to + 1.day).to_s, "value" => 80.0000 }
           ],
           word_count: [
             { "date" => (from - 1.day).to_s, "value" => 200 },

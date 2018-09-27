@@ -1,7 +1,7 @@
 RSpec.describe '/content' do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
-  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches feedex_comments word_count number_of_pdfs] }
+  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches feedex_comments word_count number_of_pdfs satisfaction_score] }
   let(:from) { Time.zone.today.last_month.beginning_of_month.to_s('%F') }
   let(:to) { Time.zone.today.last_month.end_of_month.to_s('%F') }
   let(:items) do

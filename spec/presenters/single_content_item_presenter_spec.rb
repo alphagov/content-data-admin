@@ -14,7 +14,7 @@ RSpec.describe SingleContentItemPresenter do
       'document_type' => 'news_story',
       'unique_pageviews' => 2030,
       'pageviews' => 3000,
-      'satisfaction_score' => 0.335,
+      'satisfaction_score' => 33.5,
       'number_of_internal_searches' => 120,
       'feedex_comments' => 20,
     }
