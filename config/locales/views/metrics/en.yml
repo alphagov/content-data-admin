@@ -11,7 +11,7 @@ en:
         visit_page: 'View the page on GOV.UK'
         accessibility_message: 'Visit on GOV.UK:'
         edit_page: 'Make changes to the page'
-        edit_link: 'Edit on %{publisher_app}'
+        edit_link: 'Edit in %{publisher_app}'
       section_headings:
         performance: 'Performance'
         feedback: 'Feedback'
