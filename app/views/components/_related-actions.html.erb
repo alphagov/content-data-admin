@@ -11,7 +11,6 @@
             <dd class="app-c-related-actions__link">
               <a href="<%= l[:link_url] %>" class="govuk-link">
                 <% if l[:accessibility_message] %>
-                  <% p l[:accessibility_message] %> 
                   <span class="app-c-related-actions__accessibility-message"><%=l[:accessibility_message]%></span> <%= l[:label] %>
                 <% else %>
                   <%= l[:label] %>
