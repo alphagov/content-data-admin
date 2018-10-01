@@ -40,7 +40,7 @@ private
     @number_of_internal_searches = format_metric_value('number_of_internal_searches', metrics[:number_of_internal_searches])
     @number_of_pdfs = format_metric_value('number_of_pdfs', metrics[:number_of_pdfs])
     @word_count = format_metric_value('word_count', metrics[:word_count])
-    @satisfaction_score = format_metric_value('satisfaction_score', metrics[:satisfaction_score])
+    @satisfaction_score = format_metric_headline_figure('satisfaction_score', metrics[:satisfaction_score])
     @title = metrics[:title]
     @metadata = {
       base_path: metrics[:base_path],

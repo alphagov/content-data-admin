@@ -91,9 +91,9 @@ module GdsApi
             { "date" => (to + 1.day).to_s, "value" => 22 }
           ],
           satisfaction_score: [
-            { "date" => (from - 1.day).to_s, "value" => 100.0000 },
-            { "date" => (from - 2.days).to_s, "value" => 90.0000 },
-            { "date" => (to + 1.day).to_s, "value" => 80.0000 }
+            { "date" => (from - 1.day).to_s, "value" => 1.0000 },
+            { "date" => (from - 2.days).to_s, "value" => 0.9000 },
+            { "date" => (to + 1.day).to_s, "value" => 0.80000 }
           ],
           word_count: [
             { "date" => (from - 1.day).to_s, "value" => 200 },
