@@ -4,8 +4,8 @@ RSpec.describe ContentRowPresenter do
       base_path: '/some/base_path',
       document_type: 'news_story',
       title: 'a title',
-      unique_pageviews: 200_001,
-      satisfaction_score: 0.801001,
+      upviews: 200_001,
+      satisfaction: 0.801001,
       satisfaction_score_responses: 301,
     }
   end
