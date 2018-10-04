@@ -5,9 +5,9 @@ class ContentRowPresenter
     @title = data[:title]
     @base_path = format_base_path(data[:base_path])
     @document_type = data[:document_type].try(:tr, '_', ' ').try(:capitalize)
-    @unique_pageviews = data[:unique_pageviews]
-    @user_satisfaction_score = format_satisfaction_score(data[:satisfaction_score], data[:satisfaction_score_responses])
-    @number_of_internal_searches = data[:number_of_internal_searches]
+    @unique_pageviews = data[:upviews]
+    @user_satisfaction_score = format_satisfaction_score(data[:satisfaction], data[:satisfaction_score_responses])
+    @number_of_internal_searches = data[:searches]
   end
 
 private

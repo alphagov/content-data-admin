@@ -1,7 +1,7 @@
 RSpec.describe '/content' do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
-  let(:metrics) { %w[pageviews unique_pageviews number_of_internal_searches feedex_comments word_count number_of_pdfs satisfaction_score] }
+  let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction] }
   let(:from) { Time.zone.today.last_month.beginning_of_month.to_s('%F') }
   let(:to) { Time.zone.today.last_month.end_of_month.to_s('%F') }
   let(:items) do
@@ -9,20 +9,20 @@ RSpec.describe '/content' do
       {
         base_path: '/path/1',
         title: 'The title',
-        unique_pageviews: 233_018,
+        upviews: 233_018,
         document_type: 'news_story',
-        satisfaction_score: 0.81301,
+        satisfaction: 0.81301,
         satisfaction_score_responses: 250,
-        number_of_internal_searches: 220
+        searches: 220
       },
       {
         base_path: '/path/2',
         title: 'Another title',
-        unique_pageviews: 100_018,
+        upviews: 100_018,
         document_type: 'guide',
-        satisfaction_score: 0.68,
+        satisfaction: 0.68,
         satisfaction_score_responses: 42,
-        number_of_internal_searches: 12
+        searches: 12
       }
     ]
   end
