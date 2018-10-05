@@ -118,10 +118,10 @@ GEM
       sentry-raven (~> 2.7.1)
       statsd-ruby (~> 1.4.0)
       unicorn (~> 5.4.0)
-    govuk_frontend_toolkit (8.0.0)
+    govuk_frontend_toolkit (8.1.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
-    govuk_publishing_components (11.1.0)
+    govuk_publishing_components (11.2.0)
       govspeak (>= 5.0.3)
       govuk_app_config
       govuk_frontend_toolkit
@@ -176,7 +176,7 @@ GEM
     multipart-post (2.0.0)
     netrc (0.11.0)
     nio4r (2.3.1)
-    nokogiri (1.8.4)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     nokogumbo (1.5.0)
       nokogiri
@@ -361,7 +361,7 @@ DEPENDENCIES
   gds-sso (~> 13)
   govuk-lint (~> 3)
   govuk_app_config (~> 1)
-  govuk_publishing_components (~> 11.1)
+  govuk_publishing_components (~> 11.2)
   listen (~> 3)
   logstasher
   pg (~> 1)
