@@ -5,7 +5,7 @@ en:
     feedback_explorer: 'Feedback Explorer'
     none: false
   metrics:
-    unique_pageviews:
+    upviews:
       title: 'Unique pageviews'
       short_title: ''
       summary: 'Number of visits during which the page was viewed at least once'

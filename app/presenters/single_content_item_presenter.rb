@@ -12,8 +12,8 @@ class SingleContentItemPresenter
               :satisfaction_score,
               :satisfaction_score_series,
               :title,
-              :unique_pageviews,
-              :unique_pageviews_series,
+              :upviews,
+              :upviews_series,
               :number_of_pdfs,
               :word_count
 
@@ -34,7 +34,7 @@ class SingleContentItemPresenter
 private
 
   def parse_metrics(metrics)
-    @unique_pageviews = format_metric_value('unique_pageviews', metrics[:unique_pageviews])
+    @upviews = format_metric_value('upviews', metrics[:upviews])
     @pageviews = format_metric_value('pageviews', metrics[:pageviews])
     @number_of_feedback_comments = format_metric_value('feedex_comments', metrics[:feedex_comments])
     @number_of_internal_searches = format_metric_value('number_of_internal_searches', metrics[:number_of_internal_searches])
@@ -52,7 +52,7 @@ private
   end
 
   def parse_time_series(time_series)
-    @unique_pageviews_series = get_chart_presenter(time_series, :unique_pageviews)
+    @upviews_series = get_chart_presenter(time_series, :upviews)
     @pageviews_series = get_chart_presenter(time_series, :pageviews)
     @number_of_internal_searches_series = get_chart_presenter(time_series, :number_of_internal_searches)
     @number_of_feedback_comments_series = get_chart_presenter(time_series, :feedex_comments)
@@ -61,7 +61,7 @@ private
 
   def add_glance_metric_presenters
     time_period = @date_range.time_period
-    @unique_pageviews_glance_metric = GlanceMetricPresenter.new('unique_pageviews', @unique_pageviews, time_period)
+    @upviews_glance_metric = GlanceMetricPresenter.new('upviews', @upviews, time_period)
     @satisfaction_score_glance_metric = GlanceMetricPresenter.new('satisfaction_score', @satisfaction_score, time_period)
     @number_of_internal_searches_glance_metric = GlanceMetricPresenter.new('number_of_internal_searches', @number_of_internal_searches, time_period)
     @number_of_feedback_comments_glance_metric = GlanceMetricPresenter.new('number_of_feedback_comments', @number_of_feedback_comments, time_period)

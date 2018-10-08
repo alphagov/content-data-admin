@@ -22,8 +22,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
       visit '/metrics/base/path'
     end
 
-    it 'renders the metric for unique_pageviews' do
-      expect(page).to have_selector '.metric_summary.unique_pageviews', text: '145,000'
+    it 'renders the metric for upviews' do
+      expect(page).to have_selector '.metric_summary.upviews', text: '145,000'
     end
 
     it 'renders the metric for pageviews' do
@@ -71,9 +71,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
       ])
     end
 
-    it 'renders the metric timeseries for unique_pageviews' do
-      unique_pageviews_rows = extract_table_content(".chart.unique_pageviews table")
-      expect(unique_pageviews_rows).to match_array([
+    it 'renders the metric timeseries for upviews' do
+      upviews_rows = extract_table_content(".chart.upviews table")
+      expect(upviews_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
         ["Unique pageviews", "1", "2", "30"]
       ])
@@ -137,7 +137,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         to: to.to_s,
         metrics: metrics,
         payload: {
-          unique_pageviews: [],
+          upviews: [],
         })
       visit '/metrics/base/path'
     end

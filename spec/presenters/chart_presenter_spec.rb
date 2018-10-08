@@ -5,13 +5,13 @@ RSpec.describe ChartPresenter do
     ChartPresenter.new(
       json:
         {
-          unique_pageviews: [
+          upviews: [
             { date: '2018-01-13', value: 101 },
             { date: '2018-01-14', value: 202 },
             { date: '2018-01-15', value: 303 }
           ]
         },
-      metric: 'unique_pageviews',
+      metric: :upviews,
       from: from,
       to: to
     )
@@ -33,13 +33,13 @@ RSpec.describe ChartPresenter do
   end
 
   it 'returns formatted hash of chart data' do
-    expect(subject.chart_data).to eq unique_pageviews_chart_data
+    expect(subject.chart_data).to eq upviews_chart_data
   end
 
-  def unique_pageviews_chart_data
+  def upviews_chart_data
     {
       caption: "Unique pageviews from 2018-01-13 to 2018-01-15",
-      chart_id: "unique_pageviews_chart",
+      chart_id: "upviews_chart",
       chart_label: "Unique pageviews",
       keys: [
         "01-13",
@@ -57,7 +57,7 @@ RSpec.describe ChartPresenter do
           ]
         }
       ],
-      table_id: "unique_pageviews_table",
+      table_id: "upviews_table",
       table_direction: "vertical"
     }
   end

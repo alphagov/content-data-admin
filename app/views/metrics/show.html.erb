@@ -72,7 +72,7 @@
 } %>
 
 <div class="govuk-grid-row">
-  <%= render "glance_metric", metric_name: "unique_pageviews" %>
+  <%= render "glance_metric", metric_name: "upviews" %>
   <%= render "glance_metric", metric_name: "satisfaction_score" %>
   <%= render "glance_metric", metric_name: "number_of_internal_searches" %>
   <%= render "glance_metric", metric_name: "number_of_feedback_comments" %>
@@ -83,7 +83,7 @@
 
       <h2 class="govuk-heading-l"><%= t ".section_headings.performance" %></h2>
 
-      <%= render 'metric_section', metric_name: 'unique_pageviews', show_trend: true  %>
+      <%= render 'metric_section', metric_name: 'upviews', show_trend: true  %>
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
       <%= render 'metric_section', metric_name: 'pageviews', show_trend: true %>

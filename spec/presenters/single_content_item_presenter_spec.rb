@@ -12,7 +12,7 @@ RSpec.describe SingleContentItemPresenter do
       'first_published_at' => '2016-09-01T00:00:00.000Z',
       'public_updated_at' => '2017-10-01T00:00:00.000Z',
       'document_type' => 'news_story',
-      'unique_pageviews' => 2030,
+      'upviews' => 2030,
       'pageviews' => 3000,
       'satisfaction_score' => 33.5,
       'number_of_internal_searches' => 120,
@@ -57,7 +57,7 @@ RSpec.describe SingleContentItemPresenter do
 
   it 'returns the aggregated metrics' do
     expect(subject).to have_attributes(
-      unique_pageviews: 2030,
+      upviews: 2030,
       pageviews: 3000,
       number_of_internal_searches: 120,
       number_of_feedback_comments: 20,

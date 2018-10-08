@@ -52,7 +52,7 @@ module GdsApi
       def default_metric_payload(base_path)
         {
           base_path: "/#{base_path}",
-          unique_pageviews: 145_000,
+          upviews: 145_000,
           pageviews: 200_000,
           satisfaction_score: 25.55,
           number_of_internal_searches: 250,
@@ -70,7 +70,7 @@ module GdsApi
 
       def default_timeseries_payload(from, to)
         {
-          unique_pageviews: [
+          upviews: [
             { "date" => (from - 1.day).to_s, "value" => 1 },
             { "date" => (from - 2.days).to_s, "value" => 2 },
             { "date" => (to + 1.day).to_s, "value" => 30 }
