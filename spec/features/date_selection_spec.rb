@@ -72,7 +72,7 @@ RSpec.describe 'date selection', type: :feature do
          { "date" => (from - 2.days).to_s, "value" => 9 },
          { "date" => (to + 1.day).to_s, "value" => 9 }
        ],
-       pageviews: [
+       pviews: [
          { "date" => (from - 1.day).to_s, "value" => 8 },
          { "date" => (from - 2.days).to_s, "value" => 8 },
          { "date" => (to + 1.day).to_s, "value" => 8 }

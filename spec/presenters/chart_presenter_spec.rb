@@ -24,7 +24,7 @@ RSpec.describe ChartPresenter do
     end
 
     it 'returns `Pageviews` for pviews' do
-      presenter = described_class.new(json: {}, metric: :pageviews, from: from, to: to)
+      presenter = described_class.new(json: {}, metric: :pviews, from: from, to: to)
       expect(presenter.human_friendly_metric).to eq('Pageviews')
     end
   end

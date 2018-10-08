@@ -16,7 +16,7 @@ en:
         This represents the number of visits in which the page was viewed at least once. 
         For example, if a user visits the same page 5 times during their browsing session,
         it will show up as 1 unique pageview.
-    pageviews:
+    pviews:
       title: 'Pageviews'
       short_title: ''
       summary: 'Number of times the page was viewed'

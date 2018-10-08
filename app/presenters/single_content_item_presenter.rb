@@ -7,8 +7,8 @@ class SingleContentItemPresenter
               :feedex_comments_series,
               :number_of_internal_searches,
               :number_of_internal_searches_series,
-              :pageviews,
-              :pageviews_series,
+              :pviews,
+              :pviews_series,
               :satisfaction_score,
               :satisfaction_score_series,
               :title,
@@ -35,7 +35,7 @@ private
 
   def parse_metrics(metrics)
     @upviews = format_metric_value('upviews', metrics[:upviews])
-    @pageviews = format_metric_value('pageviews', metrics[:pageviews])
+    @pviews = format_metric_value('pviews', metrics[:pviews])
     @feedex_comments = format_metric_value('feedex_comments', metrics[:feedex_comments])
     @number_of_internal_searches = format_metric_value('number_of_internal_searches', metrics[:number_of_internal_searches])
     @number_of_pdfs = format_metric_value('number_of_pdfs', metrics[:number_of_pdfs])
@@ -53,7 +53,7 @@ private
 
   def parse_time_series(time_series)
     @upviews_series = get_chart_presenter(time_series, :upviews)
-    @pageviews_series = get_chart_presenter(time_series, :pageviews)
+    @pviews_series = get_chart_presenter(time_series, :pviews)
     @number_of_internal_searches_series = get_chart_presenter(time_series, :number_of_internal_searches)
     @feedex_comments_series = get_chart_presenter(time_series, :feedex_comments)
     @satisfaction_score_series = get_chart_presenter(time_series, :satisfaction_score)

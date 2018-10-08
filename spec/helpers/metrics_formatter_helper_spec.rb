@@ -14,7 +14,7 @@ RSpec.describe MetricsFormatterHelper do
 
   context 'metric does not need to be rendered as a percentage' do
     it 'displays value as an integer' do
-      value = format_metric_value('pageviews', 90)
+      value = format_metric_value('pviews', 90)
       expect(value).to eq 90
     end
   end

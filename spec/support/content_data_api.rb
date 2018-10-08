@@ -53,7 +53,7 @@ module GdsApi
         {
           base_path: "/#{base_path}",
           upviews: 145_000,
-          pageviews: 200_000,
+          pviews: 200_000,
           satisfaction_score: 25.55,
           number_of_internal_searches: 250,
           feedex_comments: 20,
@@ -75,7 +75,7 @@ module GdsApi
             { "date" => (from - 2.days).to_s, "value" => 2 },
             { "date" => (to + 1.day).to_s, "value" => 30 }
           ],
-          pageviews: [
+          pviews: [
             { "date" => (from - 1.day).to_s, "value" => 10 },
             { "date" => (from - 2.days).to_s, "value" => 20 },
             { "date" => (to + 1.day).to_s, "value" => 30 }

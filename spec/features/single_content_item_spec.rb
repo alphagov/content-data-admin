@@ -26,8 +26,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
       expect(page).to have_selector '.metric_summary.upviews', text: '145,000'
     end
 
-    it 'renders the metric for pageviews' do
-      expect(page).to have_selector '.metric_summary.pageviews', text: '200,000'
+    it 'renders the metric for pviews' do
+      expect(page).to have_selector '.metric_summary.pviews', text: '200,000'
     end
 
     it 'renders a metric for satisfaction_score' do
@@ -79,8 +79,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
       ])
     end
 
-    it 'renders the metric timeseries for pageviews' do
-      pageviews_rows = extract_table_content(".chart.pageviews table")
+    it 'renders the metric timeseries for pviews' do
+      pageviews_rows = extract_table_content(".chart.pviews table")
       expect(pageviews_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
         %w[Pageviews 10 20 30]
