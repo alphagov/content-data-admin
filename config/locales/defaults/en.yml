@@ -39,7 +39,7 @@ en:
         shows on average how many times a page was viewed during users' session. If a page has a 
         high ratio (above 1.4), this indicates that users have to come back to that page within 
         their session - investigate the navigation from that page further to identify any issues.
-    number_of_internal_searches:
+    searches:
       title: 'Searches from the page'
       short_title: ''
       summary: 'Number of on-page searches'

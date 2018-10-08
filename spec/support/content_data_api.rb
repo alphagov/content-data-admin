@@ -55,7 +55,7 @@ module GdsApi
           upviews: 145_000,
           pviews: 200_000,
           satisfaction_score: 25.55,
-          number_of_internal_searches: 250,
+          searches: 250,
           feedex_comments: 20,
           number_of_pdfs: 3,
           word_count: 200,
@@ -80,7 +80,7 @@ module GdsApi
             { "date" => (from - 2.days).to_s, "value" => 20 },
             { "date" => (to + 1.day).to_s, "value" => 30 }
           ],
-          number_of_internal_searches: [
+          searches: [
             { "date" => (from - 1.day).to_s, "value" => 8 },
             { "date" => (from - 2.days).to_s, "value" => 8 },
             { "date" => (to + 1.day).to_s, "value" => 8 }

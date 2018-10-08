@@ -51,7 +51,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders a metric for on page searches' do
-      expect(page).to have_selector '.metric_summary.number_of_internal_searches', text: '250'
+      expect(page).to have_selector '.metric_summary.searches', text: '250'
     end
 
     it 'renders the publishing application' do
@@ -80,15 +80,15 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders the metric timeseries for pviews' do
-      pageviews_rows = extract_table_content(".chart.pviews table")
-      expect(pageviews_rows).to match_array([
+      pviews_rows = extract_table_content(".chart.pviews table")
+      expect(pviews_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
         %w[Pageviews 10 20 30]
       ])
     end
 
     it 'renders the metric timeseries for on-page searches' do
-      internal_searches_rows = extract_table_content(".chart.number_of_internal_searches table")
+      internal_searches_rows = extract_table_content(".chart.searches table")
       expect(internal_searches_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
         ["Searches from the page", "8", "8", "8"]

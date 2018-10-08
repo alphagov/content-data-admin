@@ -6,8 +6,8 @@ RSpec.describe "Chart", type: :view do
       caption: "Unique page views",
       chart_label: "Page views chart",
       table_label: "Page views table",
-      chart_id: 'pageviews_jan_chart',
-      table_id: 'pageviews_jan_table',
+      chart_id: 'pviews_jan_chart',
+      table_id: 'pviews_jan_table',
       keys: %w(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec),
       rows: [
         {

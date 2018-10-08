@@ -25,8 +25,8 @@ examples:
       caption: 'Unique page views in February'
       h_axis_title: "Day"
       v_axis_title: "Views"
-      chart_id: 'pageviews_chart'
-      table_id: 'pageviews_table'
+      chart_id: 'pviews_chart'
+      table_id: 'pviews_table'
       chart_title: 'Page views chart'
       table_title: 'Page views table'
       keys:
@@ -47,8 +47,8 @@ examples:
       caption: 'Unique page views in February'
       h_axis_title: "Day"
       v_axis_title: "Views"
-      chart_id: 'second_pageviews_chart'
-      table_id: 'second_pageviews_table'
+      chart_id: 'second_pviews_chart'
+      table_id: 'second_pviews_table'
       chart_title: 'Page views chart'
       table_title: 'Page views table'
       keys:
@@ -76,8 +76,8 @@ examples:
       table_direction: "horizontal"
       h_axis_title: "Day"
       v_axis_title: "Views"
-      chart_id: 'third_pageviews_chart'
-      table_id: 'third_pageviews_table'
+      chart_id: 'third_pviews_chart'
+      table_id: 'third_pviews_table'
       chart_title: 'Page views chart'
       table_title: 'Page views table'
       keys:

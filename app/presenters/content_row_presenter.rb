@@ -1,13 +1,13 @@
 class ContentRowPresenter
   attr_reader :title, :base_path, :document_type, :upviews,
-              :user_satisfaction_score, :number_of_internal_searches
+              :user_satisfaction_score, :searches
   def initialize(data)
     @title = data[:title]
     @base_path = format_base_path(data[:base_path])
     @document_type = data[:document_type].try(:tr, '_', ' ').try(:capitalize)
     @upviews = data[:upviews]
     @user_satisfaction_score = format_satisfaction_score(data[:satisfaction], data[:satisfaction_score_responses])
-    @number_of_internal_searches = data[:searches]
+    @searches = data[:searches]
   end
 
 private

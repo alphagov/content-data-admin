@@ -5,8 +5,8 @@ class SingleContentItemPresenter
               :metadata,
               :feedex_comments,
               :feedex_comments_series,
-              :number_of_internal_searches,
-              :number_of_internal_searches_series,
+              :searches,
+              :searches_series,
               :pviews,
               :pviews_series,
               :satisfaction_score,
@@ -37,7 +37,7 @@ private
     @upviews = format_metric_value('upviews', metrics[:upviews])
     @pviews = format_metric_value('pviews', metrics[:pviews])
     @feedex_comments = format_metric_value('feedex_comments', metrics[:feedex_comments])
-    @number_of_internal_searches = format_metric_value('number_of_internal_searches', metrics[:number_of_internal_searches])
+    @searches = format_metric_value('searches', metrics[:searches])
     @number_of_pdfs = format_metric_value('number_of_pdfs', metrics[:number_of_pdfs])
     @word_count = format_metric_value('word_count', metrics[:word_count])
     @satisfaction_score = format_metric_headline_figure('satisfaction_score', metrics[:satisfaction_score])
@@ -54,7 +54,7 @@ private
   def parse_time_series(time_series)
     @upviews_series = get_chart_presenter(time_series, :upviews)
     @pviews_series = get_chart_presenter(time_series, :pviews)
-    @number_of_internal_searches_series = get_chart_presenter(time_series, :number_of_internal_searches)
+    @searches_series = get_chart_presenter(time_series, :searches)
     @feedex_comments_series = get_chart_presenter(time_series, :feedex_comments)
     @satisfaction_score_series = get_chart_presenter(time_series, :satisfaction_score)
   end
@@ -63,7 +63,7 @@ private
     time_period = @date_range.time_period
     @upviews_glance_metric = GlanceMetricPresenter.new('upviews', @upviews, time_period)
     @satisfaction_score_glance_metric = GlanceMetricPresenter.new('satisfaction_score', @satisfaction_score, time_period)
-    @number_of_internal_searches_glance_metric = GlanceMetricPresenter.new('number_of_internal_searches', @number_of_internal_searches, time_period)
+    @searches_glance_metric = GlanceMetricPresenter.new('searches', @searches, time_period)
     @feedex_comments_glance_metric = GlanceMetricPresenter.new('feedex_comments', @feedex_comments, time_period)
   end
 

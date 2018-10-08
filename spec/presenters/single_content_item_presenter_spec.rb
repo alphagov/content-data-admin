@@ -15,7 +15,7 @@ RSpec.describe SingleContentItemPresenter do
       'upviews' => 2030,
       'pviews' => 3000,
       'satisfaction_score' => 33.5,
-      'number_of_internal_searches' => 120,
+      'searches' => 120,
       'feedex_comments' => 20,
     }
   end
@@ -59,7 +59,7 @@ RSpec.describe SingleContentItemPresenter do
     expect(subject).to have_attributes(
       upviews: 2030,
       pviews: 3000,
-      number_of_internal_searches: 120,
+      searches: 120,
       feedex_comments: 20,
       satisfaction_score: '34%'
     )
