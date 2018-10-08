@@ -56,7 +56,7 @@ module GdsApi
           pviews: 200_000,
           satisfaction_score: 25.55,
           searches: 250,
-          feedex_comments: 20,
+          feedex: 20,
           number_of_pdfs: 3,
           word_count: 200,
           title: "Content Title",
@@ -85,7 +85,7 @@ module GdsApi
             { "date" => (from - 2.days).to_s, "value" => 8 },
             { "date" => (to + 1.day).to_s, "value" => 8 }
           ],
-          feedex_comments: [
+          feedex: [
             { "date" => (from - 1.day).to_s, "value" => 20 },
             { "date" => (from - 2.days).to_s, "value" => 21 },
             { "date" => (to + 1.day).to_s, "value" => 22 }

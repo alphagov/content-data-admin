@@ -34,8 +34,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
       expect(page).to have_selector '.metric_summary.satisfaction_score', text: '26'
     end
 
-    it 'renders a metric for feedex_comments' do
-      expect(page).to have_selector '.metric_summary.feedex_comments', text: '20'
+    it 'renders a metric for feedex' do
+      expect(page).to have_selector '.metric_summary.feedex', text: '20'
     end
 
     it 'renders a metric for number_of_pdfs' do
@@ -104,7 +104,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders the metric timeseries for ' do
-      feedback_comment_rows = extract_table_content(".chart.feedex_comments table")
+      feedback_comment_rows = extract_table_content(".chart.feedex table")
 
       expect(feedback_comment_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],

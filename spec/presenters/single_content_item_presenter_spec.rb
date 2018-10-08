@@ -16,7 +16,7 @@ RSpec.describe SingleContentItemPresenter do
       'pviews' => 3000,
       'satisfaction_score' => 33.5,
       'searches' => 120,
-      'feedex_comments' => 20,
+      'feedex' => 20,
     }
   end
   let(:time_series) { default_timeseries_payload(from.to_date, to.to_date) }
@@ -60,7 +60,7 @@ RSpec.describe SingleContentItemPresenter do
       upviews: 2030,
       pviews: 3000,
       searches: 120,
-      feedex_comments: 20,
+      feedex: 20,
       satisfaction_score: '34%'
     )
   end
