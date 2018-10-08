@@ -20,13 +20,13 @@ class SingleContentItemPresenter
   def initialize(metrics, time_series, date_range)
     @date_range = date_range
     @metrics = metrics
-    parse_metrics(metrics.with_indifferent_access)
-    parse_time_series(time_series.with_indifferent_access)
+    parse_metrics(metrics)
+    parse_time_series(time_series)
     add_glance_metric_presenters
   end
 
   def publishing_app
-    publishing_app = @metrics['publishing_app']
+    publishing_app = @metrics[:publishing_app]
 
     publishing_app.present? ? publishing_app.capitalize.tr('-', ' ') : 'Unknown'
   end
@@ -34,13 +34,13 @@ class SingleContentItemPresenter
 private
 
   def parse_metrics(metrics)
-    @upviews = format_metric_value('upviews', metrics[:upviews])
-    @pviews = format_metric_value('pviews', metrics[:pviews])
-    @feedex = format_metric_value('feedex', metrics[:feedex])
-    @searches = format_metric_value('searches', metrics[:searches])
-    @pdf_count = format_metric_value('pdf_count', metrics[:pdf_count])
-    @words = format_metric_value('words', metrics[:words])
-    @satisfaction = format_metric_headline_figure('satisfaction', metrics[:satisfaction])
+    @upviews = format_metric_value(:upviews, metrics[:upviews])
+    @pviews = format_metric_value(:pviews, metrics[:pviews])
+    @feedex = format_metric_value(:feedex, metrics[:feedex])
+    @searches = format_metric_value(:searches, metrics[:searches])
+    @pdf_count = format_metric_value(:pdf_count, metrics[:pdf_count])
+    @words = format_metric_value(:words, metrics[:words])
+    @satisfaction = format_metric_headline_figure(:satisfaction, metrics[:satisfaction])
     @title = metrics[:title]
     @metadata = {
       base_path: metrics[:base_path],
@@ -61,10 +61,10 @@ private
 
   def add_glance_metric_presenters
     time_period = @date_range.time_period
-    @upviews_glance_metric = GlanceMetricPresenter.new('upviews', @upviews, time_period)
-    @satisfaction_glance_metric = GlanceMetricPresenter.new('satisfaction', @satisfaction, time_period)
-    @searches_glance_metric = GlanceMetricPresenter.new('searches', @searches, time_period)
-    @feedex_glance_metric = GlanceMetricPresenter.new('feedex', @feedex, time_period)
+    @upviews_glance_metric = GlanceMetricPresenter.new(:upviews, @upviews, time_period)
+    @satisfaction_glance_metric = GlanceMetricPresenter.new(:satisfaction, @satisfaction, time_period)
+    @searches_glance_metric = GlanceMetricPresenter.new(:searches, @searches, time_period)
+    @feedex_glance_metric = GlanceMetricPresenter.new(:feedex, @feedex, time_period)
   end
 
   def get_chart_presenter(time_series, metric)

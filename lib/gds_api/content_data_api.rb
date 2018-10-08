@@ -9,17 +9,17 @@ class GdsApi::ContentDataApi < GdsApi::Base
 
   def aggregated_metrics(base_path:, from:, to:, metrics:)
     url = aggregated_metrics_url(base_path, from, to, metrics)
-    get_json(url).to_hash
+    get_json(url).to_hash.deep_symbolize_keys
   end
 
   def time_series(base_path:, from:, to:, metrics:)
     url = time_series_request_url(base_path, from, to, metrics)
-    get_json(url).to_hash
+    get_json(url).to_hash.deep_symbolize_keys
   end
 
   def content(from:, to:, organisation_id:)
     url = content_items_url(from, to, organisation_id)
-    get_json(url).to_hash
+    get_json(url).to_hash.deep_symbolize_keys
   end
 
 private
