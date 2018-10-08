@@ -54,6 +54,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
       expect(page).to have_selector '.metric_summary.searches', text: '250'
     end
 
+    it 'renders a page searches metric as a percentage of views' do
+      expect(page).to have_selector '.govuk-grid-column-one-quarter.searches', text: '250'
+    end
+
     it 'renders the publishing application' do
       expect(page).to have_selector '.related-actions', text: 'Whitehall'
     end
