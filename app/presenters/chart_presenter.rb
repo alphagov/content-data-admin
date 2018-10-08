@@ -14,7 +14,7 @@ class ChartPresenter
   end
 
   def human_friendly_metric
-    metric.to_s.tr('_', ' ').capitalize
+    I18n.t "metrics.#{metric}.title"
   end
 
   def no_data_message

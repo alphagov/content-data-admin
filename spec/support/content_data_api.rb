@@ -52,13 +52,13 @@ module GdsApi
       def default_metric_payload(base_path)
         {
           base_path: "/#{base_path}",
-          unique_pageviews: 145_000,
-          pageviews: 200_000,
-          satisfaction_score: 25.55,
-          number_of_internal_searches: 250,
-          feedex_comments: 20,
-          number_of_pdfs: 3,
-          word_count: 200,
+          upviews: 145_000,
+          pviews: 200_000,
+          satisfaction: 25.55,
+          searches: 250,
+          feedex: 20,
+          pdf_count: 3,
+          words: 200,
           title: "Content Title",
           first_published_at: '2018-02-01T00:00:00.000Z',
           public_updated_at: '2018-04-25T00:00:00.000Z',
@@ -70,37 +70,37 @@ module GdsApi
 
       def default_timeseries_payload(from, to)
         {
-          unique_pageviews: [
+          upviews: [
             { "date" => (from - 1.day).to_s, "value" => 1 },
             { "date" => (from - 2.days).to_s, "value" => 2 },
             { "date" => (to + 1.day).to_s, "value" => 30 }
           ],
-          pageviews: [
+          pviews: [
             { "date" => (from - 1.day).to_s, "value" => 10 },
             { "date" => (from - 2.days).to_s, "value" => 20 },
             { "date" => (to + 1.day).to_s, "value" => 30 }
           ],
-          number_of_internal_searches: [
+          searches: [
             { "date" => (from - 1.day).to_s, "value" => 8 },
             { "date" => (from - 2.days).to_s, "value" => 8 },
             { "date" => (to + 1.day).to_s, "value" => 8 }
           ],
-          feedex_comments: [
+          feedex: [
             { "date" => (from - 1.day).to_s, "value" => 20 },
             { "date" => (from - 2.days).to_s, "value" => 21 },
             { "date" => (to + 1.day).to_s, "value" => 22 }
           ],
-          satisfaction_score: [
+          satisfaction: [
             { "date" => (from - 1.day).to_s, "value" => 1.0000 },
             { "date" => (from - 2.days).to_s, "value" => 0.9000 },
             { "date" => (to + 1.day).to_s, "value" => 0.80000 }
           ],
-          word_count: [
+          words: [
             { "date" => (from - 1.day).to_s, "value" => 200 },
             { "date" => (from - 2.days).to_s, "value" => 200 },
             { "date" => (to + 1.day).to_s, "value" => 200 }
           ],
-          number_of_pdfs: [
+          pdf_count: [
             { "date" => (from - 1.day).to_s, "value" => 3 },
             { "date" => (from - 2.days).to_s, "value" => 3 },
             { "date" => (to + 1.day).to_s, "value" => 3 }

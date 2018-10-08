@@ -67,22 +67,22 @@ RSpec.describe 'date selection', type: :feature do
                                     to: to,
                                     metrics: metrics,
                                     payload: {
-       unique_pageviews: [
+       upviews: [
          { "date" => (from - 1.day).to_s, "value" => 0 },
          { "date" => (from - 2.days).to_s, "value" => 9 },
          { "date" => (to + 1.day).to_s, "value" => 9 }
        ],
-       pageviews: [
+       pviews: [
          { "date" => (from - 1.day).to_s, "value" => 8 },
          { "date" => (from - 2.days).to_s, "value" => 8 },
          { "date" => (to + 1.day).to_s, "value" => 8 }
        ],
-       number_of_internal_searches: [
+       searches: [
          { "date" => (from - 1.day).to_s, "value" => 8 },
          { "date" => (from - 2.days).to_s, "value" => 8 },
          { "date" => (to + 1.day).to_s, "value" => 8 }
        ],
-       satisfaction_score: [
+       satisfaction: [
          { "date" => (from - 1.day).to_s, "value" => 100 },
          { "date" => (from - 2.days).to_s, "value" => 90 },
          { "date" => (to + 1.day).to_s, "value" => 80 }
@@ -105,8 +105,8 @@ RSpec.describe 'date selection', type: :feature do
     month_and_date_string_for_date1 = (from - 1.day).to_s.last(5)
     month_and_date_string_for_date2 = (from - 2.days).to_s.last(5)
     month_and_date_string_for_date3 = (to + 1.day).to_s.last(5)
-    unique_pageviews_rows = extract_table_content("#unique_pageviews_table")
-    expect(unique_pageviews_rows).to match_array([
+    upviews_rows = extract_table_content("#upviews_table")
+    expect(upviews_rows).to match_array([
       ['', month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
       ['Unique pageviews', "1", "2", "30"]
     ])
@@ -116,8 +116,8 @@ RSpec.describe 'date selection', type: :feature do
     month_and_date_string_for_date1 = (from - 1.day).to_s.last(5)
     month_and_date_string_for_date2 = (from - 2.days).to_s.last(5)
     month_and_date_string_for_date3 = (to + 1.day).to_s.last(5)
-    unique_pageviews_rows = extract_table_content("#unique_pageviews_table")
-    expect(unique_pageviews_rows).to match_array([
+    upviews_rows = extract_table_content("#upviews_table")
+    expect(upviews_rows).to match_array([
       ['', month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
       ['Unique pageviews', "0", "9", "9"]
     ])

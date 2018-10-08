@@ -12,7 +12,7 @@ RSpec.describe '/content' do
         upviews: 233_018,
         document_type: 'news_story',
         satisfaction: 0.81301,
-        satisfaction_score_responses: 250,
+        satisfaction_responses: 250,
         searches: 220
       },
       {
@@ -21,7 +21,7 @@ RSpec.describe '/content' do
         upviews: 100_018,
         document_type: 'guide',
         satisfaction: 0.68,
-        satisfaction_score_responses: 42,
+        satisfaction_responses: 42,
         searches: 12
       }
     ]

@@ -22,28 +22,28 @@ RSpec.describe '/metrics/base/path', type: :feature do
       visit '/metrics/base/path'
     end
 
-    it 'renders the metric for unique_pageviews' do
-      expect(page).to have_selector '.metric_summary.unique_pageviews', text: '145,000'
+    it 'renders the metric for upviews' do
+      expect(page).to have_selector '.metric_summary.upviews', text: '145,000'
     end
 
-    it 'renders the metric for pageviews' do
-      expect(page).to have_selector '.metric_summary.pageviews', text: '200,000'
+    it 'renders the metric for pviews' do
+      expect(page).to have_selector '.metric_summary.pviews', text: '200,000'
     end
 
-    it 'renders a metric for satisfaction_score' do
-      expect(page).to have_selector '.metric_summary.satisfaction_score', text: '26'
+    it 'renders a metric for satisfaction' do
+      expect(page).to have_selector '.metric_summary.satisfaction', text: '26'
     end
 
-    it 'renders a metric for number_of_feedback_comments' do
-      expect(page).to have_selector '.metric_summary.number_of_feedback_comments', text: '20'
+    it 'renders a metric for feedex' do
+      expect(page).to have_selector '.metric_summary.feedex', text: '20'
     end
 
-    it 'renders a metric for number_of_pdfs' do
-      expect(page).to have_selector '.metric_summary.number_of_pdfs', text: '3'
+    it 'renders a metric for pdf_count' do
+      expect(page).to have_selector '.metric_summary.pdf_count', text: '3'
     end
 
-    it 'renders a metric for word_count' do
-      expect(page).to have_selector '.metric_summary.word_count', text: '200'
+    it 'renders a metric for words' do
+      expect(page).to have_selector '.metric_summary.words', text: '200'
     end
 
     it 'renders the page title' do
@@ -51,7 +51,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders a metric for on page searches' do
-      expect(page).to have_selector '.metric_summary.number_of_internal_searches', text: '250'
+      expect(page).to have_selector '.metric_summary.searches', text: '250'
     end
 
     it 'renders the publishing application' do
@@ -71,44 +71,44 @@ RSpec.describe '/metrics/base/path', type: :feature do
       ])
     end
 
-    it 'renders the metric timeseries for unique_pageviews' do
-      unique_pageviews_rows = extract_table_content(".chart.unique_pageviews table")
-      expect(unique_pageviews_rows).to match_array([
+    it 'renders the metric timeseries for upviews' do
+      upviews_rows = extract_table_content(".chart.upviews table")
+      expect(upviews_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
         ["Unique pageviews", "1", "2", "30"]
       ])
     end
 
-    it 'renders the metric timeseries for pageviews' do
-      pageviews_rows = extract_table_content(".chart.pageviews table")
-      expect(pageviews_rows).to match_array([
+    it 'renders the metric timeseries for pviews' do
+      pviews_rows = extract_table_content(".chart.pviews table")
+      expect(pviews_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
         %w[Pageviews 10 20 30]
       ])
     end
 
     it 'renders the metric timeseries for on-page searches' do
-      internal_searches_rows = extract_table_content(".chart.number_of_internal_searches table")
+      internal_searches_rows = extract_table_content(".chart.searches table")
       expect(internal_searches_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
-        ["Number of internal searches", "8", "8", "8"]
+        ["Searches from the page", "8", "8", "8"]
       ])
     end
 
-    it 'renders the metric timeseries for satisfaction_score' do
-      satisfaction_score_rows = extract_table_content(".chart.satisfaction_score table")
-      expect(satisfaction_score_rows).to match_array([
+    it 'renders the metric timeseries for satisfaction' do
+      satisfaction_rows = extract_table_content(".chart.satisfaction table")
+      expect(satisfaction_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
-        ["Satisfaction score", "100.000%", "90.000%", "80.000%"]
+        ["User satisfaction score", "100.000%", "90.000%", "80.000%"]
       ])
     end
 
     it 'renders the metric timeseries for ' do
-      feedback_comment_rows = extract_table_content(".chart.feedex_comments table")
+      feedback_comment_rows = extract_table_content(".chart.feedex table")
 
       expect(feedback_comment_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
-        ["Feedex comments", "20", "21", "22"]
+        ["Number of feedback comments", "20", "21", "22"]
       ])
     end
   end
@@ -137,7 +137,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         to: to.to_s,
         metrics: metrics,
         payload: {
-          unique_pageviews: [],
+          upviews: [],
         })
       visit '/metrics/base/path'
     end

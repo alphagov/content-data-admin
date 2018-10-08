@@ -6,7 +6,7 @@ RSpec.describe ContentRowPresenter do
       title: 'a title',
       upviews: 200_001,
       satisfaction: 0.801001,
-      satisfaction_score_responses: 301,
+      satisfaction_responses: 301,
     }
   end
 
@@ -16,7 +16,7 @@ RSpec.describe ContentRowPresenter do
     expect(subject).to have_attributes(
       base_path: 'some/base_path',
       title: 'a title',
-      unique_pageviews: 200_001
+      upviews: 200_001
     )
   end
 
@@ -25,6 +25,6 @@ RSpec.describe ContentRowPresenter do
   end
 
   it 'formats user_satifaction_score correctly' do
-    expect(subject.user_satisfaction_score).to eq('80.1% (301 responses)')
+    expect(subject.user_satisfaction).to eq('80.1% (301 responses)')
   end
 end
