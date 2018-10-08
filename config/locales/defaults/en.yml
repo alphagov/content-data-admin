@@ -61,7 +61,7 @@ en:
         The more users who responded, the more reliable the score is. For a more reliable score
         on a page that doens't have many responses, choose a longer time period. This survey was
         introduced in February 2018 so there are no responses before this date.
-    number_of_feedback_comments:
+    feedex_comments:
       title: 'Number of feedback comments'
       short_title: 'Feedback comments'
       summary: 'Number of anonymous user responses to ''Is there anything wrong with this page?'''
@@ -98,3 +98,4 @@ en:
         maintain. PDFs can often be bad for accessibility and rarely comply with open standards.
         Serveral PDFs on one page may indicate that too many users needs are being met by them.
         Read more about why to avoid PDFs.
+

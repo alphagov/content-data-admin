@@ -34,8 +34,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
       expect(page).to have_selector '.metric_summary.satisfaction_score', text: '26'
     end
 
-    it 'renders a metric for number_of_feedback_comments' do
-      expect(page).to have_selector '.metric_summary.number_of_feedback_comments', text: '20'
+    it 'renders a metric for feedex_comments' do
+      expect(page).to have_selector '.metric_summary.feedex_comments', text: '20'
     end
 
     it 'renders a metric for number_of_pdfs' do
@@ -91,7 +91,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       internal_searches_rows = extract_table_content(".chart.number_of_internal_searches table")
       expect(internal_searches_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
-        ["Number of internal searches", "8", "8", "8"]
+        ["Searches from the page", "8", "8", "8"]
       ])
     end
 
@@ -99,7 +99,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       satisfaction_score_rows = extract_table_content(".chart.satisfaction_score table")
       expect(satisfaction_score_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
-        ["Satisfaction score", "100.000%", "90.000%", "80.000%"]
+        ["User satisfaction score", "100.000%", "90.000%", "80.000%"]
       ])
     end
 
@@ -108,7 +108,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
       expect(feedback_comment_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
-        ["Feedex comments", "20", "21", "22"]
+        ["Number of feedback comments", "20", "21", "22"]
       ])
     end
   end

@@ -60,7 +60,7 @@ RSpec.describe SingleContentItemPresenter do
       upviews: 2030,
       pageviews: 3000,
       number_of_internal_searches: 120,
-      number_of_feedback_comments: 20,
+      feedex_comments: 20,
       satisfaction_score: '34%'
     )
   end

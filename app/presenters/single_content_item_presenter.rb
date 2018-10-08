@@ -3,8 +3,8 @@ class SingleContentItemPresenter
 
   attr_reader :date_range,
               :metadata,
-              :number_of_feedback_comments,
-              :number_of_feedback_comments_series,
+              :feedex_comments,
+              :feedex_comments_series,
               :number_of_internal_searches,
               :number_of_internal_searches_series,
               :pageviews,
@@ -36,7 +36,7 @@ private
   def parse_metrics(metrics)
     @upviews = format_metric_value('upviews', metrics[:upviews])
     @pageviews = format_metric_value('pageviews', metrics[:pageviews])
-    @number_of_feedback_comments = format_metric_value('feedex_comments', metrics[:feedex_comments])
+    @feedex_comments = format_metric_value('feedex_comments', metrics[:feedex_comments])
     @number_of_internal_searches = format_metric_value('number_of_internal_searches', metrics[:number_of_internal_searches])
     @number_of_pdfs = format_metric_value('number_of_pdfs', metrics[:number_of_pdfs])
     @word_count = format_metric_value('word_count', metrics[:word_count])
@@ -55,7 +55,7 @@ private
     @upviews_series = get_chart_presenter(time_series, :upviews)
     @pageviews_series = get_chart_presenter(time_series, :pageviews)
     @number_of_internal_searches_series = get_chart_presenter(time_series, :number_of_internal_searches)
-    @number_of_feedback_comments_series = get_chart_presenter(time_series, :feedex_comments)
+    @feedex_comments_series = get_chart_presenter(time_series, :feedex_comments)
     @satisfaction_score_series = get_chart_presenter(time_series, :satisfaction_score)
   end
 
@@ -64,7 +64,7 @@ private
     @upviews_glance_metric = GlanceMetricPresenter.new('upviews', @upviews, time_period)
     @satisfaction_score_glance_metric = GlanceMetricPresenter.new('satisfaction_score', @satisfaction_score, time_period)
     @number_of_internal_searches_glance_metric = GlanceMetricPresenter.new('number_of_internal_searches', @number_of_internal_searches, time_period)
-    @number_of_feedback_comments_glance_metric = GlanceMetricPresenter.new('number_of_feedback_comments', @number_of_feedback_comments, time_period)
+    @feedex_comments_glance_metric = GlanceMetricPresenter.new('feedex_comments', @feedex_comments, time_period)
   end
 
   def get_chart_presenter(time_series, metric)

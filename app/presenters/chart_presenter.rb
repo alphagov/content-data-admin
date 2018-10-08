@@ -14,11 +14,7 @@ class ChartPresenter
   end
 
   def human_friendly_metric
-    if metric == :upviews
-      'Unique pageviews'
-    else
-      metric.to_s.tr('_', ' ').capitalize
-    end
+    I18n.t "metrics.#{metric}.title"
   end
 
   def no_data_message
