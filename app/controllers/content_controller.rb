@@ -7,7 +7,7 @@ private
 
   def get_content
     response = FindContent.call(params)
-    @content = ContentItemsPresenter.new(response.deep_symbolize_keys[:results], date_range)
+    @content = ContentItemsPresenter.new(response[:results], date_range)
   end
 
   def date_range
