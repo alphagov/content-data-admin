@@ -4,7 +4,7 @@ class ChartPresenter
 
   def initialize(json:, metric:, from:, to:)
     @metric = metric
-    @json = json.to_h.with_indifferent_access
+    @json = json.to_h
     @from = from
     @to = to
   end
@@ -41,13 +41,13 @@ class ChartPresenter
   def keys
     return [] unless json[metric]
 
-    dates = json[metric].map { |hash| hash['date'] }
+    dates = json[metric].map { |hash| hash[:date] }
     dates.map { |date| date.last(5) }
   end
 
   def values
     return [] unless json[metric]
 
-    json[metric].map { |hash| format_metric_value(metric, hash['value']) }
+    json[metric].map { |hash| format_metric_value(metric, hash[:value]) }
   end
 end

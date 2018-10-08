@@ -6,17 +6,17 @@ RSpec.describe SingleContentItemPresenter do
 
   let(:metrics) do
     {
-      'title' => 'The title',
-      'base_path' => '/the/base/path',
-      'primary_organisation_title' => 'UK Visas and Immigration',
-      'first_published_at' => '2016-09-01T00:00:00.000Z',
-      'public_updated_at' => '2017-10-01T00:00:00.000Z',
-      'document_type' => 'news_story',
-      'upviews' => 2030,
-      'pviews' => 3000,
-      'satisfaction' => 33.5,
-      'searches' => 120,
-      'feedex' => 20,
+        title: 'The title',
+        base_path: '/the/base/path',
+        primary_organisation_title: 'UK Visas and Immigration',
+        first_published_at: '2016-09-01T00:00:00.000Z',
+        public_updated_at: '2017-10-01T00:00:00.000Z',
+        document_type: 'news_story',
+        upviews: 2030,
+        pviews: 3000,
+        satisfaction: 33.5,
+        searches: 120,
+        feedex: 20,
     }
   end
   let(:time_series) { default_timeseries_payload(from.to_date, to.to_date) }
@@ -31,13 +31,13 @@ RSpec.describe SingleContentItemPresenter do
 
   describe '#publishing_app' do
     it 'does not fail if no publishing app' do
-      metrics['publishing_app'] = nil
+      metrics[:publishing_app] = nil
 
       expect(subject.publishing_app).to eq('Unknown')
     end
 
     it 'capitalizes the publishing_app if present' do
-      metrics['publishing_app'] = 'travel-advice'
+      metrics[:publishing_app] = 'travel-advice'
 
       expect(subject.publishing_app).to eq('Travel advice')
     end

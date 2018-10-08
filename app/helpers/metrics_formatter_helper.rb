@@ -1,9 +1,9 @@
 module MetricsFormatterHelper
   include ActionView::Helpers::NumberHelper
-  METRICS_MEASURED_AS_PERCENTAGES = %w(satisfaction).freeze
+  METRICS_MEASURED_AS_PERCENTAGES = %i(satisfaction).freeze
 
   def format_metric_value(metric_name, figure)
-    if METRICS_MEASURED_AS_PERCENTAGES.include?(metric_name.to_s) && figure
+    if METRICS_MEASURED_AS_PERCENTAGES.include?(metric_name) && figure
       number_to_percentage(figure * 100, precision: 3)
     else
       figure
@@ -11,7 +11,7 @@ module MetricsFormatterHelper
   end
 
   def format_metric_headline_figure(metric_name, figure)
-    if METRICS_MEASURED_AS_PERCENTAGES.include?(metric_name.to_s) && figure
+    if METRICS_MEASURED_AS_PERCENTAGES.include?(metric_name) && figure
       number_to_percentage(figure, precision: 0)
     else
       figure
