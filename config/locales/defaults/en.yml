@@ -49,7 +49,7 @@ en:
       about: >
         This is the number of internal site search that were started from the page. When people
         use internal search, it's an indication that they haven't found what they're looking for.
-    satisfaction_score:
+    satisfaction:
       title: 'User satisfaction score'
       short_title: ''
       summary: 'Percentage of users who answered ''yes'' to the ''Is this page useful?'' survey'

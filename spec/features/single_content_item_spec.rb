@@ -30,8 +30,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
       expect(page).to have_selector '.metric_summary.pviews', text: '200,000'
     end
 
-    it 'renders a metric for satisfaction_score' do
-      expect(page).to have_selector '.metric_summary.satisfaction_score', text: '26'
+    it 'renders a metric for satisfaction' do
+      expect(page).to have_selector '.metric_summary.satisfaction', text: '26'
     end
 
     it 'renders a metric for feedex' do
@@ -95,9 +95,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
       ])
     end
 
-    it 'renders the metric timeseries for satisfaction_score' do
-      satisfaction_score_rows = extract_table_content(".chart.satisfaction_score table")
-      expect(satisfaction_score_rows).to match_array([
+    it 'renders the metric timeseries for satisfaction' do
+      satisfaction_rows = extract_table_content(".chart.satisfaction table")
+      expect(satisfaction_rows).to match_array([
         ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
         ["User satisfaction score", "100.000%", "90.000%", "80.000%"]
       ])

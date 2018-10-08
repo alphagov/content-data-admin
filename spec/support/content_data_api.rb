@@ -54,7 +54,7 @@ module GdsApi
           base_path: "/#{base_path}",
           upviews: 145_000,
           pviews: 200_000,
-          satisfaction_score: 25.55,
+          satisfaction: 25.55,
           searches: 250,
           feedex: 20,
           number_of_pdfs: 3,
@@ -90,7 +90,7 @@ module GdsApi
             { "date" => (from - 2.days).to_s, "value" => 21 },
             { "date" => (to + 1.day).to_s, "value" => 22 }
           ],
-          satisfaction_score: [
+          satisfaction: [
             { "date" => (from - 1.day).to_s, "value" => 1.0000 },
             { "date" => (from - 2.days).to_s, "value" => 0.9000 },
             { "date" => (to + 1.day).to_s, "value" => 0.80000 }

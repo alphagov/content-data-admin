@@ -82,7 +82,7 @@ RSpec.describe 'date selection', type: :feature do
          { "date" => (from - 2.days).to_s, "value" => 8 },
          { "date" => (to + 1.day).to_s, "value" => 8 }
        ],
-       satisfaction_score: [
+       satisfaction: [
          { "date" => (from - 1.day).to_s, "value" => 100 },
          { "date" => (from - 2.days).to_s, "value" => 90 },
          { "date" => (to + 1.day).to_s, "value" => 80 }

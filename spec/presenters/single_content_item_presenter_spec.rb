@@ -14,7 +14,7 @@ RSpec.describe SingleContentItemPresenter do
       'document_type' => 'news_story',
       'upviews' => 2030,
       'pviews' => 3000,
-      'satisfaction_score' => 33.5,
+      'satisfaction' => 33.5,
       'searches' => 120,
       'feedex' => 20,
     }
@@ -61,7 +61,7 @@ RSpec.describe SingleContentItemPresenter do
       pviews: 3000,
       searches: 120,
       feedex: 20,
-      satisfaction_score: '34%'
+      satisfaction: '34%'
     )
   end
 
