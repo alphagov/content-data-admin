@@ -38,8 +38,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
       expect(page).to have_selector '.metric_summary.feedex', text: '20'
     end
 
-    it 'renders a metric for number_of_pdfs' do
-      expect(page).to have_selector '.metric_summary.number_of_pdfs', text: '3'
+    it 'renders a metric for pdf_count' do
+      expect(page).to have_selector '.metric_summary.pdf_count', text: '3'
     end
 
     it 'renders a metric for words' do

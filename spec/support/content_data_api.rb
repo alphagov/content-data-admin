@@ -57,7 +57,7 @@ module GdsApi
           satisfaction: 25.55,
           searches: 250,
           feedex: 20,
-          number_of_pdfs: 3,
+          pdf_count: 3,
           words: 200,
           title: "Content Title",
           first_published_at: '2018-02-01T00:00:00.000Z',
@@ -100,7 +100,7 @@ module GdsApi
             { "date" => (from - 2.days).to_s, "value" => 200 },
             { "date" => (to + 1.day).to_s, "value" => 200 }
           ],
-          number_of_pdfs: [
+          pdf_count: [
             { "date" => (from - 1.day).to_s, "value" => 3 },
             { "date" => (from - 2.days).to_s, "value" => 3 },
             { "date" => (to + 1.day).to_s, "value" => 3 }
