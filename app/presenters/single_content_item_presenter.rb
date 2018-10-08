@@ -15,7 +15,7 @@ class SingleContentItemPresenter
               :upviews,
               :upviews_series,
               :number_of_pdfs,
-              :word_count
+              :words
 
   def initialize(metrics, time_series, date_range)
     @date_range = date_range
@@ -39,7 +39,7 @@ private
     @feedex = format_metric_value('feedex', metrics[:feedex])
     @searches = format_metric_value('searches', metrics[:searches])
     @number_of_pdfs = format_metric_value('number_of_pdfs', metrics[:number_of_pdfs])
-    @word_count = format_metric_value('word_count', metrics[:word_count])
+    @words = format_metric_value('words', metrics[:words])
     @satisfaction = format_metric_headline_figure('satisfaction', metrics[:satisfaction])
     @title = metrics[:title]
     @metadata = {

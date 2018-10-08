@@ -58,7 +58,7 @@ module GdsApi
           searches: 250,
           feedex: 20,
           number_of_pdfs: 3,
-          word_count: 200,
+          words: 200,
           title: "Content Title",
           first_published_at: '2018-02-01T00:00:00.000Z',
           public_updated_at: '2018-04-25T00:00:00.000Z',
@@ -95,7 +95,7 @@ module GdsApi
             { "date" => (from - 2.days).to_s, "value" => 0.9000 },
             { "date" => (to + 1.day).to_s, "value" => 0.80000 }
           ],
-          word_count: [
+          words: [
             { "date" => (from - 1.day).to_s, "value" => 200 },
             { "date" => (from - 2.days).to_s, "value" => 200 },
             { "date" => (to + 1.day).to_s, "value" => 200 }

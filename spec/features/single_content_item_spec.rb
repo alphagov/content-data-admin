@@ -42,8 +42,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
       expect(page).to have_selector '.metric_summary.number_of_pdfs', text: '3'
     end
 
-    it 'renders a metric for word_count' do
-      expect(page).to have_selector '.metric_summary.word_count', text: '200'
+    it 'renders a metric for words' do
+      expect(page).to have_selector '.metric_summary.words', text: '200'
     end
 
     it 'renders the page title' do
