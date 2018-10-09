@@ -1,15 +1,16 @@
 class GlanceMetricPresenter
-  def initialize(metric_name, metric_value, time_period)
+  def initialize(metric_name, metric_value, time_period, secondary_metric_value = nil)
     @metric_name = metric_name
     @metric_value = metric_value
     @time_period = time_period
+    @secondary_metric_value = secondary_metric_value
 
     # Context metrics are variables that can be used in the locales.
     # Dummy values are being used until they are available from API
     @context_metrics = {
       percent_org_views: 2.74,
       total_responses: 505,
-      percent_users_searched: 0.18
+      percent_users_searched: on_page_search_rate
     }
   end
 
@@ -21,6 +22,12 @@ class GlanceMetricPresenter
 
   def value
     @metric_value
+  end
+
+  def on_page_search_rate
+    return unless @metric_name == :searches
+    return 0 if @metric_value.to_i.zero? || @secondary_metric_value.to_i.zero?
+    (@metric_value.to_f / @secondary_metric_value.to_f) * 100
   end
 
   def trend_percentage

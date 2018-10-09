@@ -56,6 +56,18 @@ RSpec.describe GlanceMetricPresenter do
     expect(subject.period).to eq I18n.t('metrics.show.time_periods.last_30_days.reference')
   end
 
+  context "when metric is searches" do
+    subject do
+      GlanceMetricPresenter.new(
+        :searches, 10, 'last-30-days', 100
+      )
+    end
+
+    it "displays number of internal searches divided by unique pageviews as `on_page_search_rate`" do
+      expect(subject.on_page_search_rate).to eq 10
+    end
+  end
+
   def change_metric_translation(attribute, value)
     en = { metrics: { example_metric: { attribute => value } } }
     I18n.backend.store_translations(:en, en)

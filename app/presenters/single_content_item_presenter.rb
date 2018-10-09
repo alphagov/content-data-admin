@@ -15,7 +15,13 @@ class SingleContentItemPresenter
               :upviews,
               :upviews_series,
               :pdf_count,
-              :words
+              :words,
+              :searches_glance_metric,
+              :upviews_glance_metric,
+              :satisfaction_glance_metric,
+              :feedex_glance_metric
+
+
 
   def initialize(metrics, time_series, date_range)
     @date_range = date_range
@@ -63,7 +69,7 @@ private
     time_period = @date_range.time_period
     @upviews_glance_metric = GlanceMetricPresenter.new(:upviews, @upviews, time_period)
     @satisfaction_glance_metric = GlanceMetricPresenter.new(:satisfaction, @satisfaction, time_period)
-    @searches_glance_metric = GlanceMetricPresenter.new(:searches, @searches, time_period)
+    @searches_glance_metric = GlanceMetricPresenter.new(:searches, @searches, time_period, @upviews)
     @feedex_glance_metric = GlanceMetricPresenter.new(:feedex, @feedex, time_period)
   end
 
