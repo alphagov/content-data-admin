@@ -30,6 +30,13 @@ module GdsApi
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
+      def content_data_api_has_single_page(base_path:, from:, to:)
+        query = query(from: from, to: to)
+        url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
+        body = default_single_page_payload(base_path, from, to).to_json
+        stub_request(:get, url).to_return(status: 200, body: body)
+      end
+
       def content_data_api_endpoint
         Plek.current.find('content-performance-manager').to_s
       end
@@ -104,6 +111,81 @@ module GdsApi
             { "date" => (from - 1.day).to_s, "value" => 3 },
             { "date" => (from - 2.days).to_s, "value" => 3 },
             { "date" => (to + 1.day).to_s, "value" => 3 }
+          ]
+        }
+      end
+
+      def default_single_page_payload(base_path, from, to)
+        {
+          metadata: {
+            title:  "Content Title",
+            base_path:  "/#{base_path}",
+            first_published_at:  "2018-07-17T10:35:59.000Z",
+            public_updated_at:  "2018-07-17T10:35:57.000Z",
+            publishing_app:  "publisher",
+            document_type:  "news_story",
+            primary_organisation_title:  "The Ministry"
+          },
+          time_period: {
+            to: to.to_s,
+            from: from.to_s
+          },
+          time_series_metrics: [
+            {
+              name: "upviews",
+              total: 33,
+              time_series: [
+                { "date" => (from - 1.day).to_s, "value" => 1 },
+                { "date" => (from - 2.days).to_s, "value" => 2 },
+                { "date" => (to + 1.day).to_s, "value" => 30 }
+              ]
+            },
+            {
+              name: "pviews",
+              total: 60,
+              time_series: [
+                { "date" => (from - 1.day).to_s, "value" => 10 },
+                { "date" => (from - 2.days).to_s, "value" => 20 },
+                { "date" => (to + 1.day).to_s, "value" => 30 }
+              ]
+            },
+            {
+              name: "searches",
+              total: 24,
+              time_series: [
+                { "date" => (from - 1.day).to_s, "value" => 8 },
+                { "date" => (from - 2.days).to_s, "value" => 8 },
+                { "date" => (to + 1.day).to_s, "value" => 8 }
+              ]
+            },
+            {
+              name: "feedex",
+              total: 63,
+              time_series: [
+                { "date" => (from - 1.day).to_s, "value" => 20 },
+                { "date" => (from - 2.days).to_s, "value" => 21 },
+                { "date" => (to + 1.day).to_s, "value" => 22 }
+              ]
+            },
+            {
+              name: "satisfaction",
+              total: 0.9000,
+              time_series: [
+                { "date" => (from - 1.day).to_s, "value" => 1.0000 },
+                { "date" => (from - 2.days).to_s, "value" => 0.9000 },
+                { "date" => (to + 1.day).to_s, "value" => 0.80000 }
+              ]
+            }
+          ],
+          edition_metrics: [
+            {
+              name: "words",
+              value: 200
+            },
+            {
+              name: "pdf_count",
+              value: 3
+            }
           ]
         }
       end
