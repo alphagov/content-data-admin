@@ -125,7 +125,7 @@ RSpec.describe 'date selection', type: :feature do
     upviews_rows = extract_table_content("#upviews_table")
     expect(upviews_rows).to match_array([
       ['', month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
-      ['Unique pageviews', "0", "9", "9"]
+      ['Unique pageviews', "1", "2", "30"]
     ])
   end
 

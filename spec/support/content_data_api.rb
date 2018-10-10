@@ -10,9 +10,9 @@ module GdsApi
         stub_request(:get, url).to_return(status: 200, body: body.to_json)
       end
 
-      def content_data_api_does_not_have_base_path(base_path:, from:, to:, metrics:)
-        query = query(from: from, to: to, metrics: metrics)
-        url = "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}#{query}"
+      def content_data_api_does_not_have_base_path(base_path:, from:, to:)
+        query = query(from: from, to: to)
+        url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
         stub_request(:get, url).to_return(status: 404, body: { some: 'error' }.to_json)
       end
 
@@ -34,6 +34,13 @@ module GdsApi
         query = query(from: from, to: to)
         url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
         body = default_single_page_payload(base_path, from, to).to_json
+        stub_request(:get, url).to_return(status: 200, body: body)
+      end
+
+      def content_data_api_has_single_page_missing_data(base_path:, from:, to:)
+        query = query(from: from, to: to)
+        url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
+        body = no_data_single_page_payload(base_path, from, to).to_json
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
@@ -116,8 +123,11 @@ module GdsApi
       end
 
       def default_single_page_payload(base_path, from, to)
-        from_date = Time.zone.parse(from)
-        to_date = Time.zone.parse(to)
+        from_date = Date.parse(from)
+        to_date = Date.parse(to)
+        day1 = (from_date - 1.day).to_s
+        day2 = (from_date - 2.days).to_s
+        day3 = (to_date + 1.day).to_s
         {
           metadata: {
             title:  "Content Title",
@@ -137,45 +147,45 @@ module GdsApi
               name: "upviews",
               total: 33,
               time_series: [
-                { "date" => (from_date - 1.day).to_s, "value" => 1 },
-                { "date" => (from_date - 2.days).to_s, "value" => 2 },
-                { "date" => (to_date + 1.day).to_s, "value" => 30 }
+                { "date" => day1, "value" => 1 },
+                { "date" => day2, "value" => 2 },
+                { "date" => day3, "value" => 30 }
               ]
             },
             {
               name: "pviews",
               total: 60,
               time_series: [
-                { "date" => (from_date - 1.day).to_s, "value" => 10 },
-                { "date" => (from_date - 2.days).to_s, "value" => 20 },
-                { "date" => (to_date + 1.day).to_s, "value" => 30 }
+                { "date" => day1, "value" => 10 },
+                { "date" => day2, "value" => 20 },
+                { "date" => day3, "value" => 30 }
               ]
             },
             {
               name: "searches",
               total: 24,
               time_series: [
-                { "date" => (from_date - 1.day).to_s, "value" => 8 },
-                { "date" => (from_date - 2.days).to_s, "value" => 8 },
-                { "date" => (to_date + 1.day).to_s, "value" => 8 }
+                { "date" => day1, "value" => 8 },
+                { "date" => day2, "value" => 8 },
+                { "date" => day3, "value" => 8 }
               ]
             },
             {
               name: "feedex",
               total: 63,
               time_series: [
-                { "date" => (from_date - 1.day).to_s, "value" => 20 },
-                { "date" => (from_date - 2.days).to_s, "value" => 21 },
-                { "date" => (to_date + 1.day).to_s, "value" => 22 }
+                { "date" => day1, "value" => 20 },
+                { "date" => day2, "value" => 21 },
+                { "date" => day3, "value" => 22 }
               ]
             },
             {
               name: "satisfaction",
-              total: 0.9000,
+              total: 0.9,
               time_series: [
-                { "date" => (from_date - 1.day).to_s, "value" => 1.0000 },
-                { "date" => (from_date - 2.days).to_s, "value" => 0.9000 },
-                { "date" => (to_date + 1.day).to_s, "value" => 0.80000 }
+                { "date" => day1, "value" => 1.0000 },
+                { "date" => day2, "value" => 0.9000 },
+                { "date" => day3, "value" => 0.80000 }
               ]
             }
           ],
@@ -188,6 +198,32 @@ module GdsApi
               name: "pdf_count",
               value: 3
             }
+          ]
+        }
+      end
+
+      def no_data_single_page_payload(base_path, from, to)
+        {
+          metadata: {
+            title:  "Content Title",
+            base_path:  "/#{base_path}",
+            first_published_at:  "2018-07-17T10:35:59.000Z",
+            public_updated_at:  "2018-07-17T10:35:57.000Z",
+            publishing_app:  "publisher",
+            document_type:  "news_story",
+            primary_organisation_title:  "The Ministry"
+          },
+          time_period: { to: to, from: from },
+          time_series_metrics: [
+            { name: "upviews", total: 0, time_series: [] },
+            { name: "pviews", total: 0, time_series: [] },
+            { name: "searches", total: 0, time_series: [] },
+            { name: "feedex", total: 0, time_series: [] },
+            { name: "satisfaction", total: 0.0, time_series: [] }
+          ],
+          edition_metrics: [
+            { name: "words", value: 0 },
+            { name: "pdf_count", value: 0 }
           ]
         }
       end
