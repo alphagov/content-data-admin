@@ -1,6 +1,8 @@
 class ContentController < ApplicationController
   def index
     @content = get_content
+    organisations = FetchOrganisations.call
+    @organisations = organisations[:organisations]
   end
 
 private

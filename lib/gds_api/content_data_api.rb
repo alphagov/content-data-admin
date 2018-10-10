@@ -27,6 +27,10 @@ class GdsApi::ContentDataApi < GdsApi::Base
     get_json(url).to_hash.deep_symbolize_keys
   end
 
+  def organisations
+    get_json(organisations_url).to_hash.deep_symbolize_keys
+  end
+
 private
 
   def content_data_api_endpoint
@@ -47,5 +51,9 @@ private
 
   def single_page_url(base_path, from, to)
     "#{content_data_api_endpoint}/single_page/#{base_path}#{query_string(from: from, to: to)}"
+  end
+
+  def organisations_url
+    "#{content_data_api_endpoint}/organisations"
   end
 end

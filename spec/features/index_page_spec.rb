@@ -30,6 +30,7 @@ RSpec.describe '/content' do
   before do
     content_data_api_has_single_page(base_path: 'path/1', from: from, to: to)
     content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
+    content_data_has_orgs
     visit "/content?date_range=last-month&organisation_id=org-id"
   end
 
@@ -65,6 +66,19 @@ RSpec.describe '/content' do
       click_link 'The title'
       expect(current_path).to eq '/metrics/path/1'
       expect(page).to have_content('Page data: Past year')
+    end
+  end
+
+  context 'filter by organisation' do
+    before do
+      content_data_api_has_content_items(from: from, to: to, organisation_id: 'another-org-id', items: items)
+    end
+
+    it 'makes request to api with correct organisation_id' do
+      organisation_dropdown = find('.org-picker')
+      organisation_dropdown.select('another org')
+      click_on 'Filter'
+      expect(page).to have_content('Content data')
     end
   end
 end
