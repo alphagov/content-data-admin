@@ -10,6 +10,11 @@ class MetricsController < ApplicationController
 
     metrics = FetchAggregatedMetrics.call(service_params)
     time_series = FetchTimeSeries.call(service_params)
+    FetchSinglePage.call(
+      base_path: params[:base_path],
+      from: date_range.from,
+      to: date_range.to
+    )
     @performance_data = SingleContentItemPresenter.new(metrics, time_series, date_range)
   end
 

@@ -19,6 +19,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
         from: from.to_s,
         to: to.to_s,
         metrics: metrics)
+
+      content_data_api_has_single_page(base_path: 'base/path', from: from.to_s, to: to.to_s)
+
       visit '/metrics/base/path'
     end
 
@@ -143,6 +146,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
         payload: {
           upviews: [],
         })
+
+      content_data_api_has_single_page(base_path: 'base/path', from: from.to_s, to: to.to_s)
+
       visit '/metrics/base/path'
     end
 

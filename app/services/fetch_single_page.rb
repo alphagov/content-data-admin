@@ -4,7 +4,7 @@ class FetchSinglePage
     new(args).call
   end
 
-  def initialize(base_path, to, from)
+  def initialize(base_path:, to:, from:)
     @base_path = base_path
     @from = from
     @to = to

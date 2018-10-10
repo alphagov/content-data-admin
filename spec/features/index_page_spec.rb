@@ -28,6 +28,7 @@ RSpec.describe '/content' do
   end
 
   before do
+    content_data_api_has_single_page(base_path: 'path/1', from: from, to: to)
     content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
     visit "/content?date_range=last-month&organisation_id=org-id"
   end
@@ -59,6 +60,7 @@ RSpec.describe '/content' do
     it 'respects the date filter' do
       from = (Time.zone.today - 1.year).to_s('%F')
       to = Time.zone.today.to_s('%F')
+      content_data_api_has_single_page(base_path: 'path/1', from: from, to: to)
       content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
       content_data_api_has_metric(base_path: 'path/1', from: from, to: to, metrics: metrics)
       content_data_api_has_timeseries(base_path: 'path/1', from: from, to: to, metrics: metrics)

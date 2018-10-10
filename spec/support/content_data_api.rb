@@ -116,6 +116,8 @@ module GdsApi
       end
 
       def default_single_page_payload(base_path, from, to)
+        from_date = Time.zone.parse(from)
+        to_date = Time.zone.parse(to)
         {
           metadata: {
             title:  "Content Title",
@@ -127,53 +129,53 @@ module GdsApi
             primary_organisation_title:  "The Ministry"
           },
           time_period: {
-            to: to.to_s,
-            from: from.to_s
+            to: to,
+            from: from
           },
           time_series_metrics: [
             {
               name: "upviews",
               total: 33,
               time_series: [
-                { "date" => (from - 1.day).to_s, "value" => 1 },
-                { "date" => (from - 2.days).to_s, "value" => 2 },
-                { "date" => (to + 1.day).to_s, "value" => 30 }
+                { "date" => (from_date - 1.day).to_s, "value" => 1 },
+                { "date" => (from_date - 2.days).to_s, "value" => 2 },
+                { "date" => (to_date + 1.day).to_s, "value" => 30 }
               ]
             },
             {
               name: "pviews",
               total: 60,
               time_series: [
-                { "date" => (from - 1.day).to_s, "value" => 10 },
-                { "date" => (from - 2.days).to_s, "value" => 20 },
-                { "date" => (to + 1.day).to_s, "value" => 30 }
+                { "date" => (from_date - 1.day).to_s, "value" => 10 },
+                { "date" => (from_date - 2.days).to_s, "value" => 20 },
+                { "date" => (to_date + 1.day).to_s, "value" => 30 }
               ]
             },
             {
               name: "searches",
               total: 24,
               time_series: [
-                { "date" => (from - 1.day).to_s, "value" => 8 },
-                { "date" => (from - 2.days).to_s, "value" => 8 },
-                { "date" => (to + 1.day).to_s, "value" => 8 }
+                { "date" => (from_date - 1.day).to_s, "value" => 8 },
+                { "date" => (from_date - 2.days).to_s, "value" => 8 },
+                { "date" => (to_date + 1.day).to_s, "value" => 8 }
               ]
             },
             {
               name: "feedex",
               total: 63,
               time_series: [
-                { "date" => (from - 1.day).to_s, "value" => 20 },
-                { "date" => (from - 2.days).to_s, "value" => 21 },
-                { "date" => (to + 1.day).to_s, "value" => 22 }
+                { "date" => (from_date - 1.day).to_s, "value" => 20 },
+                { "date" => (from_date - 2.days).to_s, "value" => 21 },
+                { "date" => (to_date + 1.day).to_s, "value" => 22 }
               ]
             },
             {
               name: "satisfaction",
               total: 0.9000,
               time_series: [
-                { "date" => (from - 1.day).to_s, "value" => 1.0000 },
-                { "date" => (from - 2.days).to_s, "value" => 0.9000 },
-                { "date" => (to + 1.day).to_s, "value" => 0.80000 }
+                { "date" => (from_date - 1.day).to_s, "value" => 1.0000 },
+                { "date" => (from_date - 2.days).to_s, "value" => 0.9000 },
+                { "date" => (to_date + 1.day).to_s, "value" => 0.80000 }
               ]
             }
           ],

@@ -55,15 +55,16 @@ RSpec.describe SingleContentItemPresenter do
     end
   end
 
-  it 'returns the aggregated metrics' do
-    expect(subject).to have_attributes(
-      upviews: 2030,
-      pviews: 3000,
-      searches: 120,
-      feedex: 20,
-      satisfaction: '34%'
-    )
-  end
+
+  # it 'returns the aggregated metrics' do
+  #   expect(subject).to have_attributes(
+  #     upviews: 2030,
+  #     pviews: 3000,
+  #     searches: 120,
+  #     feedex: 20,
+  #     satisfaction: '34%'
+  #   )
+  # end
 
   it 'returns the title' do
     expect(subject.title).to eq('The title')

@@ -58,6 +58,9 @@ RSpec.describe 'date selection', type: :feature do
   def initial_page_stub
     from = Time.zone.today - 30.days
     to = Time.zone.today
+    content_data_api_has_single_page(base_path: 'base/path',
+                                     from: from.to_s,
+                                     to: to.to_s)
     content_data_api_has_metric(base_path: 'base/path',
                                 from: from,
                                 to: to,
@@ -99,6 +102,9 @@ RSpec.describe 'date selection', type: :feature do
       from: from,
       to: to,
       metrics: metrics)
+    content_data_api_has_single_page(base_path: 'base/path',
+      from: from.to_s,
+      to: to.to_s)
   end
 
   def expect_metrics_for_each_date_to_be_correct(from, to)
