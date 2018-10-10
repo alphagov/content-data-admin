@@ -10,16 +10,6 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
   context 'successful request' do
     before do
-      content_data_api_has_metric(base_path: 'base/path',
-        from: from.to_s,
-        to: to.to_s,
-        metrics: metrics)
-
-      content_data_api_has_timeseries(base_path: 'base/path',
-        from: from.to_s,
-        to: to.to_s,
-        metrics: metrics)
-
       content_data_api_has_single_page(base_path: 'base/path', from: from.to_s, to: to.to_s)
 
       visit '/metrics/base/path'
@@ -58,7 +48,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders a page searches metric as a percentage of views' do
-      expect(page).to have_selector '.govuk-grid-column-one-quarter.searches', text: '250'
+      expect(page).to have_selector '.govuk-grid-column-one-quarter.searches', text: '24'
     end
 
     it 'renders the publishing application' do
@@ -133,19 +123,6 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
   context 'no time series from the data-api' do
     before do
-      content_data_api_has_metric(base_path: 'base/path',
-        from: from.to_s,
-        to: to.to_s,
-        metrics: metrics)
-
-      content_data_api_has_timeseries(base_path: 'base/path',
-        from: from.to_s,
-        to: to.to_s,
-        metrics: metrics,
-        payload: {
-          upviews: [],
-        })
-
       content_data_api_has_single_page_missing_data(base_path: 'base/path', from: from.to_s, to: to.to_s)
 
       visit '/metrics/base/path'

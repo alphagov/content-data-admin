@@ -51,8 +51,6 @@ RSpec.describe '/content' do
 
   context 'click title of an item' do
     it 'takes you to single content item page' do
-      content_data_api_has_metric(base_path: 'path/1', from: from, to: to, metrics: metrics)
-      content_data_api_has_timeseries(base_path: 'path/1', from: from, to: to, metrics: metrics)
       click_link 'The title'
       expect(current_path).to eq '/metrics/path/1'
     end
@@ -62,8 +60,6 @@ RSpec.describe '/content' do
       to = Time.zone.today.to_s('%F')
       content_data_api_has_single_page(base_path: 'path/1', from: from, to: to)
       content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
-      content_data_api_has_metric(base_path: 'path/1', from: from, to: to, metrics: metrics)
-      content_data_api_has_timeseries(base_path: 'path/1', from: from, to: to, metrics: metrics)
 
       visit "/content?date_range=last-year&organisation_id=org-id"
       click_link 'The title'

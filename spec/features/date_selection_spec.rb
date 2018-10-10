@@ -61,47 +61,9 @@ RSpec.describe 'date selection', type: :feature do
     content_data_api_has_single_page(base_path: 'base/path',
                                      from: from.to_s,
                                      to: to.to_s)
-    content_data_api_has_metric(base_path: 'base/path',
-                                from: from,
-                                to: to,
-                                metrics: metrics)
-    content_data_api_has_timeseries(base_path: 'base/path',
-                                    from: from,
-                                    to: to,
-                                    metrics: metrics,
-                                    payload: {
-       upviews: [
-         { "date" => (from - 1.day).to_s, "value" => 0 },
-         { "date" => (from - 2.days).to_s, "value" => 9 },
-         { "date" => (to + 1.day).to_s, "value" => 9 }
-       ],
-       pviews: [
-         { "date" => (from - 1.day).to_s, "value" => 8 },
-         { "date" => (from - 2.days).to_s, "value" => 8 },
-         { "date" => (to + 1.day).to_s, "value" => 8 }
-       ],
-       searches: [
-         { "date" => (from - 1.day).to_s, "value" => 8 },
-         { "date" => (from - 2.days).to_s, "value" => 8 },
-         { "date" => (to + 1.day).to_s, "value" => 8 }
-       ],
-       satisfaction: [
-         { "date" => (from - 1.day).to_s, "value" => 100 },
-         { "date" => (from - 2.days).to_s, "value" => 90 },
-         { "date" => (to + 1.day).to_s, "value" => 80 }
-       ]
-     })
   end
 
   def stub_response_for_date_range(from, to)
-    content_data_api_has_metric(base_path: 'base/path',
-      from: from,
-      to: to,
-      metrics: metrics)
-    content_data_api_has_timeseries(base_path: 'base/path',
-      from: from,
-      to: to,
-      metrics: metrics)
     content_data_api_has_single_page(base_path: 'base/path',
       from: from.to_s,
       to: to.to_s)
