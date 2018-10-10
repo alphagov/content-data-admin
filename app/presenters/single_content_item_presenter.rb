@@ -1,16 +1,15 @@
 class SingleContentItemPresenter
   include MetricsFormatterHelper
 
-  attr_reader :date_range,
+  attr_reader :title,
+              :date_range,
               :metadata,
+              :metrics,
               :feedex_series,
               :searches_series,
               :pviews_series,
               :satisfaction_series,
-              :title,
               :upviews_series,
-              :pdf_count,
-              :words,
               :searches_glance_metric,
               :upviews_glance_metric,
               :satisfaction_glance_metric,
@@ -20,11 +19,14 @@ class SingleContentItemPresenter
 
   def initialize(single_page_data, date_range)
     @single_page_data = single_page_data
+
     @date_range = date_range
-    @metrics = {}
+    @metrics = parse_metrics(
+      single_page_data[:time_series_metrics],
+      single_page_data[:edition_metrics]
+    )
 
     get_metadata
-    parse_metrics
     parse_time_series
     add_glance_metric_presenters
   end
@@ -49,28 +51,22 @@ private
     }
   end
 
-  def parse_metrics
-    @single_page_data[:time_series_metrics].each do |metric|
-      @metrics[metric[:name]] = {
+  def parse_metrics(time_series_metrics, edition_metrics)
+    metrics = {}
+    time_series_metrics.each do |metric|
+      metrics[metric[:name]] = {
         'value': format_metric_value(metric[:name], metric[:total]),
         'time_series': metric[:time_series]
       }
     end
 
-    @single_page_data[:edition_metrics].each do |metric|
-      @metrics[metric[:name]] = {
+    edition_metrics.each do |metric|
+      metrics[metric[:name]] = {
         'value': format_metric_value(metric[:name], metric[:value]),
         'time_series': nil
       }
     end
-
-    @pdf_count = @metrics['pdf_count'][:value]
-    @words = @metrics['words'][:value]
-    @upviews = format_metric_value('upviews', @metrics['upviews'][:value])
-    @pviews = format_metric_value('pviews', @metrics['pviews'][:value])
-    @feedex = format_metric_value('feedex', @metrics['feedex'][:value])
-    @searches = format_metric_value('searches', @metrics['searches'][:value])
-    @satisfaction = format_metric_value('satisfaction', @metrics['satisfaction'][:value])
+    metrics
   end
 
   def parse_time_series

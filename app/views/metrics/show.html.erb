@@ -106,13 +106,13 @@
 
     <div class="govuk-grid-column-one-half">
       <div class="metric_summary words">
-        <%= render 'metric_header', metric_name: 'words', value: @performance_data.words, show_trend: false %>
+        <%= render 'metric_header', metric_name: 'words', value: @performance_data.metrics['words'][:value], show_trend: false %>
       </div>
     </div>
 
     <div class="govuk-grid-column-one-half">
       <div class="metric_summary pdf_count">
-        <%= render 'metric_header', metric_name: 'pdf_count', value: @performance_data.pdf_count, show_trend: false %>
+        <%= render 'metric_header', metric_name: 'pdf_count', value: @performance_data.metrics['pdf_count'][:value], show_trend: false %>
       </div>
     </div>
 </div>

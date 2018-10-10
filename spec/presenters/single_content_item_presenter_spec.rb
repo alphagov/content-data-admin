@@ -10,7 +10,6 @@ RSpec.describe SingleContentItemPresenter do
     SingleContentItemPresenter.new(single_page_data, date_range)
   end
 
-
   describe '#publishing_app' do
     it 'does not fail if no publishing app' do
       single_page_data[:metadata][:publishing_app] = nil
@@ -37,5 +36,28 @@ RSpec.describe SingleContentItemPresenter do
 
   it 'returns the title' do
     expect(subject.title).to eq('Content Title')
+  end
+
+  describe '#metrics' do
+    glance_metrics = %w[upviews satisfaction searches feedex]
+    chart_metrics = %w[upviews pviews satisfaction searches feedex]
+    page_content_metrics = %w[words pdf_count]
+
+    it 'contains all required metrics' do
+      all_metrics = glance_metrics | chart_metrics | page_content_metrics
+      expect(subject.metrics.keys).to contain_exactly(*all_metrics)
+    end
+
+    it 'contains values for all metrics' do
+      expect(subject.metrics.values).to all(a_hash_including(value: anything))
+    end
+
+    chart_metrics.each do |chart_metric|
+      it "contains time series for #{chart_metric}" do
+        expect(subject.metrics[chart_metric][:time_series]).to all(
+          include('date' => anything, 'value' => anything)
+        )
+      end
+    end
   end
 end
