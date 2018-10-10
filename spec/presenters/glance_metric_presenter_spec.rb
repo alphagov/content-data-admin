@@ -59,12 +59,12 @@ RSpec.describe GlanceMetricPresenter do
   context "when metric is searches" do
     subject do
       GlanceMetricPresenter.new(
-        :searches, 10, 'last-30-days', 100
+        :searches, 107, 'last-30-days', 9794
       )
     end
 
-    it "displays number of internal searches divided by unique pageviews as `on_page_search_rate`" do
-      expect(subject.on_page_search_rate).to eq 10
+    it "displays searches divided by unique pageviews as `on_page_search_rate` to 2 decimal places" do
+      expect(subject.on_page_search_rate).to eq 1.09
     end
   end
 

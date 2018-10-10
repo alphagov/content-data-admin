@@ -27,7 +27,8 @@ class GlanceMetricPresenter
   def on_page_search_rate
     return unless @metric_name == :searches
     return 0 if @metric_value.to_i.zero? || @secondary_metric_value.to_i.zero?
-    (@metric_value.to_f / @secondary_metric_value.to_f) * 100
+    search_rate = (@metric_value.to_f / @secondary_metric_value.to_f) * 100
+    search_rate.round(2)
   end
 
   def trend_percentage
