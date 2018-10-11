@@ -1,16 +1,16 @@
 class ChartPresenter
   include MetricsFormatterHelper
-  attr_reader :json, :metric, :from, :to
+  attr_reader :time_series, :metric, :from, :to
 
   def initialize(json:, metric:, from:, to:)
     @metric = metric
-    @json = json.to_h
+    @time_series = json
     @from = from
     @to = to
   end
 
   def has_values?
-    !json.values.flatten.empty?
+    !time_series.empty?
   end
 
   def human_friendly_metric
@@ -39,15 +39,16 @@ class ChartPresenter
   end
 
   def keys
-    return [] unless json[metric]
+    return [] unless time_series
 
-    dates = json[metric].map { |hash| hash[:date] }
-    dates.map { |date| date.last(5) }
+    time_series.map do |point|
+      point[:date].to_date.strftime("%m-%d")
+    end
   end
 
   def values
-    return [] unless json[metric]
+    return [] unless time_series
 
-    json[metric].map { |hash| format_metric_value(metric, hash[:value]) }
+    time_series.map { |point| format_metric_value(metric, point[:value]) }
   end
 end

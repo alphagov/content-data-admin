@@ -58,47 +58,15 @@ RSpec.describe 'date selection', type: :feature do
   def initial_page_stub
     from = Time.zone.today - 30.days
     to = Time.zone.today
-    content_data_api_has_metric(base_path: 'base/path',
-                                from: from,
-                                to: to,
-                                metrics: metrics)
-    content_data_api_has_timeseries(base_path: 'base/path',
-                                    from: from,
-                                    to: to,
-                                    metrics: metrics,
-                                    payload: {
-       upviews: [
-         { "date" => (from - 1.day).to_s, "value" => 0 },
-         { "date" => (from - 2.days).to_s, "value" => 9 },
-         { "date" => (to + 1.day).to_s, "value" => 9 }
-       ],
-       pviews: [
-         { "date" => (from - 1.day).to_s, "value" => 8 },
-         { "date" => (from - 2.days).to_s, "value" => 8 },
-         { "date" => (to + 1.day).to_s, "value" => 8 }
-       ],
-       searches: [
-         { "date" => (from - 1.day).to_s, "value" => 8 },
-         { "date" => (from - 2.days).to_s, "value" => 8 },
-         { "date" => (to + 1.day).to_s, "value" => 8 }
-       ],
-       satisfaction: [
-         { "date" => (from - 1.day).to_s, "value" => 100 },
-         { "date" => (from - 2.days).to_s, "value" => 90 },
-         { "date" => (to + 1.day).to_s, "value" => 80 }
-       ]
-     })
+    content_data_api_has_single_page(base_path: 'base/path',
+                                     from: from.to_s,
+                                     to: to.to_s)
   end
 
   def stub_response_for_date_range(from, to)
-    content_data_api_has_metric(base_path: 'base/path',
-      from: from,
-      to: to,
-      metrics: metrics)
-    content_data_api_has_timeseries(base_path: 'base/path',
-      from: from,
-      to: to,
-      metrics: metrics)
+    content_data_api_has_single_page(base_path: 'base/path',
+      from: from.to_s,
+      to: to.to_s)
   end
 
   def expect_metrics_for_each_date_to_be_correct(from, to)
@@ -119,7 +87,7 @@ RSpec.describe 'date selection', type: :feature do
     upviews_rows = extract_table_content("#upviews_table")
     expect(upviews_rows).to match_array([
       ['', month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
-      ['Unique pageviews', "0", "9", "9"]
+      ['Unique pageviews', "1", "2", "30"]
     ])
   end
 

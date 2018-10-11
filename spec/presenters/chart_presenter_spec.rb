@@ -4,13 +4,11 @@ RSpec.describe ChartPresenter do
   subject do
     ChartPresenter.new(
       json:
-        {
-          upviews: [
-            { date: '2018-01-13', value: 101 },
-            { date: '2018-01-14', value: 202 },
-            { date: '2018-01-15', value: 303 }
-          ]
-        },
+        [
+          { date: '2018-01-13', value: 101 },
+          { date: '2018-01-14', value: 202 },
+          { date: '2018-01-15', value: 303 }
+        ],
       metric: :upviews,
       from: from,
       to: to

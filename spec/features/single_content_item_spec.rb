@@ -10,32 +10,25 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
   context 'successful request' do
     before do
-      content_data_api_has_metric(base_path: 'base/path',
-        from: from.to_s,
-        to: to.to_s,
-        metrics: metrics)
+      content_data_api_has_single_page(base_path: 'base/path', from: from.to_s, to: to.to_s)
 
-      content_data_api_has_timeseries(base_path: 'base/path',
-        from: from.to_s,
-        to: to.to_s,
-        metrics: metrics)
       visit '/metrics/base/path'
     end
 
     it 'renders the metric for upviews' do
-      expect(page).to have_selector '.metric_summary.upviews', text: '145,000'
+      expect(page).to have_selector '.metric_summary.upviews', text: '33'
     end
 
     it 'renders the metric for pviews' do
-      expect(page).to have_selector '.metric_summary.pviews', text: '200,000'
+      expect(page).to have_selector '.metric_summary.pviews', text: '60'
     end
 
     it 'renders a metric for satisfaction' do
-      expect(page).to have_selector '.metric_summary.satisfaction', text: '26'
+      expect(page).to have_selector '.metric_summary.satisfaction', text: '90'
     end
 
     it 'renders a metric for feedex' do
-      expect(page).to have_selector '.metric_summary.feedex', text: '20'
+      expect(page).to have_selector '.metric_summary.feedex', text: '63'
     end
 
     it 'renders a metric for pdf_count' do
@@ -51,15 +44,15 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders a metric for on page searches' do
-      expect(page).to have_selector '.metric_summary.searches', text: '250'
+      expect(page).to have_selector '.metric_summary.searches', text: '24'
     end
 
     it 'renders a page searches metric as a percentage of views' do
-      expect(page).to have_selector '.govuk-grid-column-one-quarter.searches', text: '250'
+      expect(page).to have_selector '.govuk-grid-column-one-quarter.searches', text: '24'
     end
 
     it 'renders the publishing application' do
-      expect(page).to have_selector '.related-actions', text: 'Whitehall'
+      expect(page).to have_selector '.related-actions', text: 'Publisher'
     end
 
     it 'renders the metadata' do
@@ -67,9 +60,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
         el.all('dt,dd').map(&:text)
       end
       expect(metadata).to eq([
-        [I18n.t("components.metadata.labels.published_at"), '1 February 2018',
-         I18n.t("components.metadata.labels.last_updated"), '25 April 2018'],
-        [I18n.t("components.metadata.labels.publishing_organisation"), 'The ministry',
+        [I18n.t("components.metadata.labels.published_at"), '17 July 2018',
+         I18n.t("components.metadata.labels.last_updated"), '17 July 2018'],
+        [I18n.t("components.metadata.labels.publishing_organisation"), 'The Ministry',
          I18n.t("components.metadata.labels.document_type"), 'News story',
          I18n.t("components.metadata.labels.base_path"), '/.../path']
       ])
@@ -121,8 +114,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     it 'returns a 404 for a Gds::NotFound' do
       content_data_api_does_not_have_base_path(base_path: 'base/path',
         from: from.to_s,
-        to: to.to_s,
-        metrics: metrics)
+        to: to.to_s)
       visit '/metrics/base/path'
       expect(page.status_code).to eq(404)
       expect(page).to have_content "The page you were looking for doesn't exist."
@@ -131,18 +123,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
   context 'no time series from the data-api' do
     before do
-      content_data_api_has_metric(base_path: 'base/path',
-        from: from.to_s,
-        to: to.to_s,
-        metrics: metrics)
+      content_data_api_has_single_page_missing_data(base_path: 'base/path', from: from.to_s, to: to.to_s)
 
-      content_data_api_has_timeseries(base_path: 'base/path',
-        from: from.to_s,
-        to: to.to_s,
-        metrics: metrics,
-        payload: {
-          upviews: [],
-        })
       visit '/metrics/base/path'
     end
 
