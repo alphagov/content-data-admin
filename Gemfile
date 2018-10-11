@@ -13,7 +13,7 @@ gem "govuk_publishing_components", "~> 12.1"
 gem 'logstasher'
 gem "pg", "~> 1"
 gem "plek", "~> 2"
-gem "timecop"
+gem "timecop", "~> 0.9.1"
 gem "uglifier", "~> 4"
 
 group :development do
@@ -22,6 +22,7 @@ end
 
 group :test do
   gem "simplecov", "~> 0.16"
+  gem "timecop", "~> 0.9.1"
 end
 
 group :development, :test do
