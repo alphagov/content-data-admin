@@ -1,5 +1,5 @@
 class GlanceMetricPresenter
-  def initialize(metric_name, metric_value, time_period, secondary_metric_value = nil)
+  def initialize(metric_name, metric_value, time_period, secondary_metric_value = nil, context: {})
     @metric_name = metric_name
     @metric_value = metric_value
     @time_period = time_period
@@ -7,11 +7,10 @@ class GlanceMetricPresenter
 
     # Context metrics are variables that can be used in the locales.
     # Dummy values are being used until they are available from API
-    @context_metrics = {
+    @context_metrics = context.merge(
       percent_org_views: 2.74,
-      total_responses: 505,
       percent_users_searched: on_page_search_rate
-    }
+    )
   end
 
   def name

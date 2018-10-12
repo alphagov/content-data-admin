@@ -1,20 +1,25 @@
 <%
   show_trend ||= false
+  show_total ||= false
   data_source = t("metrics.#{metric_name}.data_source")
   time_period = @performance_data.date_range.time_period
   options = {
-      name: t("metrics.#{metric_name}.title"),
-      figure: number_with_delimiter(value, delimiter: ','),
-      context: t("metrics.#{metric_name}.summary"),
-      data_source: t("data_sources.#{data_source}"),
-      about: t("metrics.#{metric_name}.about")
+    name: t("metrics.#{metric_name}.title"),
+    figure: number_with_delimiter(value, delimiter: ','),
+    context: t("metrics.#{metric_name}.summary"),
+    data_source: t("data_sources.#{data_source}"),
+    about: t("metrics.#{metric_name}.about")
   }
 
   if show_trend
     options.update({
       trend_percentage: 0,
-      period: t("metrics.show.time_periods.#{time_period}.reference") 
+      period: t("metrics.show.time_periods.#{time_period}.reference")
     })
+  end
+
+  if show_total
+    options.update({ total: t("metrics.#{metric_name}.total") })
   end
 %>
 <div class="govuk-grid-row">

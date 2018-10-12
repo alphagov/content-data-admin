@@ -2,7 +2,8 @@
   <%= render 'metric_header', {
     metric_name: metric_name,
     value: @performance_data.metrics[metric_name][:value], 
-    show_trend: show_trend 
+    show_trend: show_trend,
+    show_total: show_total,
   }%>
 </div>
 

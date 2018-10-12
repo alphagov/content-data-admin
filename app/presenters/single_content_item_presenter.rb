@@ -80,7 +80,14 @@ private
   def add_glance_metric_presenters
     time_period = @date_range.time_period
     @upviews_glance_metric = GlanceMetricPresenter.new('upviews', @metrics['upviews'][:value], time_period)
-    @satisfaction_glance_metric = GlanceMetricPresenter.new('satisfaction', @metrics['satisfaction'][:value], time_period)
+    @satisfaction_glance_metric = GlanceMetricPresenter.new(
+      'satisfaction',
+      @metrics['satisfaction'][:value],
+      time_period,
+      context: {
+        total_responses: @metrics['useful_yes'][:value] + @metrics['useful_no'][:value]
+      }
+    )
     @searches_glance_metric = GlanceMetricPresenter.new('searches', @metrics['searches'][:value], time_period)
     @feedex_glance_metric = GlanceMetricPresenter.new('feedex', @metrics['feedex'][:value], time_period)
   end

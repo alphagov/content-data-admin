@@ -5,12 +5,14 @@
   about ||= false
   trend_percentage ||= false
   context ||= false
+  total ||= false
 %>
 <% if name && figure && context %>
   <div class="app-c-info-metric govuk-body">
     <h3 class="app-c-info-metric__heading"><%= name %></h3>
     <p class="app-c-info-metric__context govuk-body-s"><%= context %></p>
     <span class="app-c-info-metric__figure govuk-!-font-weight-bold govuk-!-font-size-36 "><%= figure %></span>
+    <% if total %><%= total %><% end %>
     <% if trend_percentage %>
       <span class="app-c-info-metric__trend">
         <% if trend_percentage > 0 %>+<% end %><%= trend_percentage %>%

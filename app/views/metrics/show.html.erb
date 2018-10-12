@@ -83,21 +83,21 @@
 
       <h2 class="govuk-heading-l"><%= t ".section_headings.performance" %></h2>
 
-      <%= render 'metric_section', metric_name: 'upviews', show_trend: true  %>
+      <%= render 'metric_section', metric_name: 'upviews', show_trend: true, show_total: false %>
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-      <%= render 'metric_section', metric_name: 'pviews', show_trend: true %>
+      <%= render 'metric_section', metric_name: 'pviews', show_trend: true, show_total: false %>
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-      <%= render 'metric_section', metric_name: 'searches', show_trend: true %>
+      <%= render 'metric_section', metric_name: 'searches', show_trend: true, show_total: false %>
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
       <h2 class="govuk-heading-l"><%= t ".section_headings.feedback" %></h2>
 
-      <%= render 'metric_section', metric_name: 'satisfaction', show_trend: true %>
+      <%= render 'metric_section', metric_name: 'satisfaction', show_trend: true, show_total: true %>
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-      <%= render 'metric_section', metric_name: 'feedex', show_trend: true %>
+      <%= render 'metric_section', metric_name: 'feedex', show_trend: true, show_total: false %>
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
       <h2 class="govuk-heading-l"><%= t ".section_headings.content" %></h2>

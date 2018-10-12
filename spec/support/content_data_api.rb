@@ -120,6 +120,16 @@ module GdsApi
                 { "date" => day2, "value" => 0.9000 },
                 { "date" => day3, "value" => 0.80000 }
               ]
+            },
+            {
+              "name": "useful_yes",
+              "total": 200,
+              "time_series": []
+            },
+            {
+              "name": "useful_no",
+              "total": 500,
+              "time_series": []
             }
           ],
           edition_metrics: [
@@ -152,7 +162,9 @@ module GdsApi
             { name: "pviews", total: 0, time_series: [] },
             { name: "searches", total: 0, time_series: [] },
             { name: "feedex", total: 0, time_series: [] },
-            { name: "satisfaction", total: 0.0, time_series: [] }
+            { name: "satisfaction", total: 0.0, time_series: [] },
+            { name: "useful_yes", total: 0, time_series: [] },
+            { name: "useful_no", total: 0, time_series: [] }
           ],
           edition_metrics: [
             { name: "words", value: 0 },

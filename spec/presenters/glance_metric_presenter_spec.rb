@@ -7,7 +7,9 @@ RSpec.describe GlanceMetricPresenter do
             example_metric: {
               title: 'Example metric full title',
               short_title: 'Example metric short title',
-              context: 'Metric context'
+              context: {
+                total_responses: 'Users who found this page useful, out of some responses'
+              }
             },
             show: {
               time_periods: {
@@ -22,7 +24,7 @@ RSpec.describe GlanceMetricPresenter do
 
   subject do
     GlanceMetricPresenter.new(
-      "example_metric", 10, 'last-30-days'
+      "example_metric", 10, 'last-30-days', context: { total_responses: 505 }
     )
   end
 

@@ -39,7 +39,7 @@ RSpec.describe SingleContentItemPresenter do
   end
 
   describe '#metrics' do
-    glance_metrics = %w[upviews satisfaction searches feedex]
+    glance_metrics = %w[upviews satisfaction searches feedex useful_yes useful_no]
     chart_metrics = %w[upviews pviews satisfaction searches feedex]
     page_content_metrics = %w[words pdf_count]
 
