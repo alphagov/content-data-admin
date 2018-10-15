@@ -35,6 +35,22 @@ class SingleContentItemPresenter
     @metrics['feedex'][:value]
   end
 
+  def upviews_context
+    I18n.t("metrics.upviews.context", percent_org_views: 2.74)
+  end
+
+  def satisfaction_context
+    I18n.t("metrics.satisfaction.context", total_responses: 700)
+  end
+
+  def searches_context
+    I18n.t("metrics.searches.context", percent_users_searched: on_page_search_rate)
+  end
+
+  def feedex_context
+    I18n.t("metrics.feedex.context")
+  end
+
   def initialize(single_page_data, date_range)
     @single_page_data = single_page_data
 
@@ -56,6 +72,15 @@ class SingleContentItemPresenter
   end
 
 private
+
+  def on_page_search_rate
+    metric_value = self.total_searches
+    secondary_metric_value =  self.total_pviews
+
+    return 0 if metric_value.to_i.zero? || secondary_metric_value.to_i.zero?
+    search_rate = (metric_value.to_f / secondary_metric_value.to_f) * 100
+    search_rate.round(2)
+  end
 
   def get_metadata
     metadata = @single_page_data[:metadata]
