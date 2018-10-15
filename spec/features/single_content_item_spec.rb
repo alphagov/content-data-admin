@@ -25,7 +25,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
                                   I18n.t("components.metadata.labels.last_updated"), '17 July 2018'],
                                  [I18n.t("components.metadata.labels.publishing_organisation"), 'The Ministry',
                                   I18n.t("components.metadata.labels.document_type"), 'News story',
-                                  I18n.t("components.metadata.labels.base_path"), '/.../path']
+                                  I18n.t("components.metadata.labels.base_path"), 'gov.uk/base/path']
                                ])
       end
     end
@@ -62,31 +62,31 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     describe 'page metric section' do
       it 'renders the metric for upviews' do
-        expect(page).to have_selector '.metric_summary.upviews', text: '33'
+        expect(page).to have_selector '.metric-summary__upviews', text: '33'
       end
 
       it 'renders the metric for pviews' do
-        expect(page).to have_selector '.metric_summary.pviews', text: '60'
+        expect(page).to have_selector '.metric-summary__pviews', text: '60'
       end
 
       it 'renders a metric for satisfaction' do
-        expect(page).to have_selector '.metric_summary.satisfaction', text: '90.000%'
+        expect(page).to have_selector '.metric-summary__satisfaction', text: '90.000%'
       end
 
       xit 'renders the total number of responses as context for satisfaction score' do
-        expect(page).to have_selector '.metric_summary.satisfaction', text: '200 responses'
+        expect(page).to have_selector '.metric-summary__satisfaction', text: '200 responses'
       end
 
       it 'renders a metric for feedex' do
-        expect(page).to have_selector '.metric_summary.feedex', text: '63'
+        expect(page).to have_selector '.metric-summary__feedex', text: '63'
       end
 
       it 'renders a metric for pdf_count' do
-        expect(page).to have_selector '.metric_summary.pdf_count', text: '3'
+        expect(page).to have_selector '.metric-summary__pdf-count', text: '3'
       end
 
       it 'renders a metric for words' do
-        expect(page).to have_selector '.metric_summary.words', text: '200'
+        expect(page).to have_selector '.metric-summary__words', text: '200'
       end
 
       it 'renders the page title' do
@@ -94,7 +94,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders a metric for on page searches' do
-        expect(page).to have_selector '.metric_summary.searches', text: '24'
+        expect(page).to have_selector '.metric-summary__searches', text: '24'
       end
 
       it 'renders a page searches metric as a percentage of views' do

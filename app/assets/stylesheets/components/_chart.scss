@@ -1,6 +1,10 @@
 // Include our GOV.UK components
 @import "../../../node_modules/govuk-frontend/helpers/visually-hidden";
 
+.gem-c-details {
+  margin-bottom: 0;
+}
+
 .app-c-chart__table {
   overflow: auto;
 
@@ -11,9 +15,11 @@
 
 .app-c-chart__table {
   max-height: 350px;
+  margin-top: govuk-spacing(3);
 
   @include media(mobile) {
     max-height: 250px;
+
   }
 }
 

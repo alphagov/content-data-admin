@@ -1,20 +1,36 @@
+.app-c-metadata__list {
+
+  @include media-down(mobile) {
+    @include govuk-clearfix;
+    margin-bottom: govuk-spacing(3);
+  }
+}
+
 .app-c-metadata__title {
   @include grid-column( 1 / 5);
   padding: 0;
   margin: 0;
 
   @include media-down(mobile) {
-    @include grid-column( 1 / 4, mobile );
+    @include grid-column( 1 / 3, mobile );
+    @include govuk-font(16);
     padding: 0;
     margin: 0;
+    margin-bottom: govuk-spacing(1);
   }
+}
+
+.app-c-metadata__title--wrappable {
+  height: 2.5em;
 }
 
 .app-c-metadata__description {
 
   @include media-down(mobile) {
-    @include grid-column( 3 / 4, mobile );
+    @include grid-column( 2 / 3, mobile );
+    @include govuk-font(16);
     padding: 0;
     margin: 0;
+    margin-bottom: govuk-spacing(1);
   }
 }

@@ -27,7 +27,7 @@ RSpec.describe "Metadata", type: :view do
     assert_select ".app-c-metadata__title", text: t("components.metadata.labels.document_type")
     assert_select ".app-c-metadata__description", text: "Guidance"
     assert_select ".app-c-metadata__title", text: t("components.metadata.labels.base_path")
-    assert_select ".app-c-metadata__description", text: "/.../visitor-visa-guide-to-supporting-documents"
+    assert_select ".app-c-metadata__description", text: "gov.uk/government/publications/visitor-visa-guide-to-supporting-documents"
   end
 
   it "renders blank values for expected fields when data items aren't provided" do

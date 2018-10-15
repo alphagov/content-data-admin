@@ -10,3 +10,21 @@ $govuk-global-styles: true;
 @import "components/metadata";
 @import "components/time-select";
 @import "components/related-actions";
+
+.section--performance {
+
+  @include media-down(mobile) {
+    border-top: 2px solid $govuk-border-colour;
+    padding-top: govuk-spacing(4);
+  }
+}
+
+.govuk-section-break--visible {
+  border-width: 2px;
+}
+
+.metric-summary__words {
+  @include media-down(mobile) {
+    border-bottom: 2px solid $govuk-border-colour;
+  }
+}
