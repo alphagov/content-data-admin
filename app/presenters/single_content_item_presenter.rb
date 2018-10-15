@@ -143,7 +143,7 @@ private
   end
 
   def get_chart_presenter(time_series, metric)
-    ChartPresenter.new(json: time_series, metric: metric, from: date_range.from, to: date_range.to)
+    ChartPresenter.new(json: time_series, metric: metric, date_range: @date_range)
   end
 
   def format_date(date_str)

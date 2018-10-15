@@ -2,11 +2,11 @@ class ChartPresenter
   include MetricsFormatterHelper
   attr_reader :time_series, :metric, :from, :to
 
-  def initialize(json:, metric:, from:, to:)
+  def initialize(json:, metric:, date_range:)
     @metric = metric
     @time_series = json
-    @from = from
-    @to = to
+    @from = date_range.from
+    @to = date_range.to
   end
 
   def has_values?
