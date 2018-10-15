@@ -31,12 +31,32 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     describe 'glance metrics section' do
+      it 'renders glance metrics unique page views' do
+        expect(page).to have_selector '.glance-metric.upviews', text: '33'
+      end
+
+      it 'renders glance metric context for unique page views' do
+        expect(page).to have_selector '.glance-metric.upviews', text: '2.74%'
+      end
+
       it 'renders glance metric for satisfaction score' do
         expect(page).to have_selector '.glance-metric.satisfaction', text: '90.000%'
       end
 
       it 'renders glance metric context for satisfaction score' do
         expect(page).to have_selector '.glance-metric.satisfaction', text: '700'
+      end
+
+      it 'renders glance metric for on page searches' do
+        expect(page).to have_selector '.glance-metric.searches', text: '24'
+      end
+
+      xit 'renders glance metric context for on page searches' do
+        expect(page).to have_selector '.glance-metric.searches', text: '50%'
+      end
+
+      it 'renders glance metric for feedex comments' do
+        expect(page).to have_selector '.glance-metric.feedex', text: '63'
       end
     end
 
@@ -50,7 +70,11 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders a metric for satisfaction' do
-        expect(page).to have_selector '.metric_summary.satisfaction', text: '90'
+        expect(page).to have_selector '.metric_summary.satisfaction', text: '90.000%'
+      end
+
+      xit 'renders the total number of responses as context for satisfaction score' do
+        expect(page).to have_selector '.metric_summary.satisfaction', text: '200 responses'
       end
 
       it 'renders a metric for feedex' do
