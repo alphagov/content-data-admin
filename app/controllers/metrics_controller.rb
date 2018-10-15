@@ -1,14 +1,23 @@
 class MetricsController < ApplicationController
   def show
     time_period = params[:date_range] || 'last-30-days'
-    date_range = DateRange.new(time_period)
+    base_path = params[:base_path]
 
-    single_page_data = FetchSinglePage.call(
-      base_path: params[:base_path],
-      from: date_range.from,
-      to: date_range.to
+    curr_period = DateRange.new(time_period)
+    prev_period = DateRange.new(time_period, Date.parse(curr_period.from))
+
+    curr_period_data = FetchSinglePage.call(
+      base_path: base_path,
+      from: curr_period.from,
+      to: curr_period.to
     )
-    @performance_data = SingleContentItemPresenter.new(single_page_data, date_range)
+    prev_period_data = FetchSinglePage.call(
+      base_path: base_path,
+      from: prev_period.from,
+      to: prev_period.to
+    )
+
+    @performance_data = SingleContentItemPresenter.new(curr_period_data, curr_period)
   end
 
   rescue_from GdsApi::HTTPNotFound do

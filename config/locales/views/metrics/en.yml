@@ -33,5 +33,5 @@ en:
           leading: 'Past year'
           reference: 'from previous year'
         last-2-years:
-          leading: 'Past 2 years '
+          leading: 'Past 2 years'
           reference: 'from previous 2 years'

@@ -2,16 +2,25 @@ RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
   let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no] }
+  let(:prev_from) { Time.zone.today - 60.days }
   let(:from) { Time.zone.today - 30.days }
   let(:to) { Time.zone.today }
   let(:month_and_date_string_for_date1) { (from - 1.day).to_s.last(5) }
   let(:month_and_date_string_for_date2) { (from - 2.days).to_s.last(5) }
   let(:month_and_date_string_for_date3) { (to + 1.day).to_s.last(5) }
 
+  before do
+    Timecop.freeze(Time.zone.parse('2018-12-25'))
+  end
+
+  after do
+    Timecop.return
+  end
+
   context 'successful request' do
     before do
       content_data_api_has_single_page(base_path: 'base/path', from: from.to_s, to: to.to_s)
-
+      content_data_api_has_single_page(base_path: 'base/path', from: prev_from.to_s, to: from.to_s)
       visit '/metrics/base/path'
     end
 
@@ -157,7 +166,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     context 'no time series from the data-api' do
       before do
         content_data_api_has_single_page_missing_data(base_path: 'base/path', from: from.to_s, to: to.to_s)
-
+        content_data_api_has_single_page_missing_data(base_path: 'base/path', from: prev_from.to_s, to: from.to_s)
         visit '/metrics/base/path'
       end
 
@@ -165,12 +174,6 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).not_to have_content('Unique pageviews table')
         expect(page).to have_selector 'div',
                                       text: 'No Unique pageviews data for the selected time period'
-      end
-
-      it 'renders a div to indicate no data when missing' do
-        expect(page).not_to have_content('Pageviews table')
-        expect(page).to have_selector 'div',
-                                      text: 'No Pageviews data for the selected time period'
       end
     end
 
