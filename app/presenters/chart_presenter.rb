@@ -48,7 +48,7 @@ class ChartPresenter
     time_series.map { |point| format_metric_value(metric, point[:value]) }
   end
 
-  private
+private
 
   def human_friendly_metric
     I18n.t "metrics.#{metric}.title"

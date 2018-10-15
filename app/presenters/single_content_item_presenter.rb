@@ -1,13 +1,7 @@
 class SingleContentItemPresenter
   include MetricsFormatterHelper
 
-  attr_reader :date_range,
-    :metrics,
-    :feedex_series,
-    :searches_series,
-    :pviews_series,
-    :satisfaction_series,
-    :upviews_series
+  attr_reader :date_range, :metrics
 
   def total_upviews
     @metrics['upviews'][:value]
@@ -65,8 +59,6 @@ class SingleContentItemPresenter
       single_page_data[:time_series_metrics],
       single_page_data[:edition_metrics]
     )
-
-    parse_time_series
   end
 
   def publishing_app
@@ -101,6 +93,11 @@ class SingleContentItemPresenter
 
   def status; end
 
+  def get_chart(metric_name)
+    time_series = @metrics[metric_name][:time_series]
+    ChartPresenter.new(json: time_series, metric: metric_name, date_range: date_range)
+  end
+
 private
 
   def on_page_search_rate
@@ -132,18 +129,6 @@ private
       }
     end
     metrics
-  end
-
-  def parse_time_series
-    @upviews_series = get_chart_presenter(@metrics['upviews'][:time_series], 'upviews')
-    @pviews_series = get_chart_presenter(@metrics['pviews'][:time_series], 'pviews')
-    @searches_series = get_chart_presenter(@metrics['searches'][:time_series], 'searches')
-    @feedex_series = get_chart_presenter(@metrics['feedex'][:time_series], 'feedex')
-    @satisfaction_series = get_chart_presenter(@metrics['satisfaction'][:time_series], 'satisfaction')
-  end
-
-  def get_chart_presenter(time_series, metric)
-    ChartPresenter.new(json: time_series, metric: metric, date_range: @date_range)
   end
 
   def format_date(date_str)

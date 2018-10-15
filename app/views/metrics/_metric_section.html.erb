@@ -7,5 +7,5 @@
   }%>
 </div>
 
-<%= render 'chart', series: @performance_data.instance_variable_get("@#{metric_name}_series") %>
+<%= render 'chart', series: @performance_data.get_chart(metric_name) %>
 <a href="" class="govuk-link"><%= t ".download_link", metric_name: t("metrics.#{metric_name}.title") %></a>

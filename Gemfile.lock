@@ -314,6 +314,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    timecop (0.9.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.19)
@@ -361,6 +362,7 @@ DEPENDENCIES
   rails (~> 5.2)
   rspec-rails (~> 3)
   simplecov (~> 0.16)
+  timecop
   uglifier (~> 4)
   webmock
 

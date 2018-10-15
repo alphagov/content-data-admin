@@ -1,6 +1,14 @@
 RSpec.describe ChartPresenter do
-  let(:from) { '2018-01-13' }
-  let(:to) { '2018-01-15' }
+  include ActiveSupport::Testing::TimeHelpers
+
+  let(:date_range) { build :date_range, :last_30_days }
+
+  around do |example|
+    Timecop.freeze Date.new(2018, 1, 31) do
+      example.run
+    end
+  end
+
   subject do
     ChartPresenter.new(
       json:
@@ -10,16 +18,15 @@ RSpec.describe ChartPresenter do
           { date: '2018-01-15', value: 303 }
         ],
       metric: :upviews,
-      from: from,
-      to: to
+      date_range: date_range,
     )
   end
 
   it 'returns start date' do
-    expect(subject.from).to eq '2018-01-13'
+    expect(subject.from).to eq '2018-01-01'
   end
   it 'returns end date' do
-    expect(subject.to).to eq '2018-01-15'
+    expect(subject.to).to eq '2018-01-31'
   end
 
   it 'returns the correct message for no data' do
@@ -32,7 +39,7 @@ RSpec.describe ChartPresenter do
 
   def upviews_chart_data
     {
-      caption: "Unique pageviews from 2018-01-13 to 2018-01-15",
+      caption: "Unique pageviews from 2018-01-01 to 2018-01-31",
       chart_id: "upviews_chart",
       chart_label: "Unique pageviews",
       keys: [
