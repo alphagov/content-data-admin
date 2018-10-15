@@ -9,11 +9,7 @@ class SingleContentItemPresenter
               :searches_series,
               :pviews_series,
               :satisfaction_series,
-              :upviews_series,
-              :searches_glance_metric,
-              :upviews_glance_metric,
-              :satisfaction_glance_metric,
-              :feedex_glance_metric
+              :upviews_series
 
   def total_upviews
     @metrics['upviews'][:value]
