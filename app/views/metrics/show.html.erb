@@ -11,7 +11,14 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl"><%= @performance_data.title %></h1>
     <div class="page-metadata">
-      <%= render "components/metadata", @performance_data.metadata %>
+      <%= render "components/metadata",
+          published_at: @performance_data.published_at,
+          last_updated: @performance_data.last_updated,
+          publishing_organisation: @performance_data.publishing_organisation,
+          document_type: @performance_data.document_type,
+          base_path: @performance_data.base_path,
+          status: @performance_data.status
+      %>
     </div>
   </div>
   <div class="govuk-grid-column-one-third related-actions">
@@ -20,7 +27,7 @@
         links: [
                   {
                     header: t(".navigation.visit_page"),
-                    link_url: "//www.gov.uk#{@performance_data.metadata[:base_path]}",
+                    link_url: "//www.gov.uk#{@performance_data.base_path}",
                     accessibility_message: t('.navigation.accessibility_message'),
                     label: @performance_data.title
                   },
@@ -35,7 +42,7 @@
 </div>
 <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 <%= render "components/time-select", {
-  base_path: "/metrics#{@performance_data.metadata[:base_path]}",
+  base_path: "/metrics#{@performance_data.base_path}",
   current_selection: current_selection,
   dates: [
     {

@@ -1,15 +1,13 @@
 class SingleContentItemPresenter
   include MetricsFormatterHelper
 
-  attr_reader :title,
-              :date_range,
-              :metadata,
-              :metrics,
-              :feedex_series,
-              :searches_series,
-              :pviews_series,
-              :satisfaction_series,
-              :upviews_series
+  attr_reader :date_range,
+    :metrics,
+    :feedex_series,
+    :searches_series,
+    :pviews_series,
+    :satisfaction_series,
+    :upviews_series
 
   def total_upviews
     @metrics['upviews'][:value]
@@ -68,7 +66,6 @@ class SingleContentItemPresenter
       single_page_data[:edition_metrics]
     )
 
-    get_metadata
     parse_time_series
   end
 
@@ -78,27 +75,45 @@ class SingleContentItemPresenter
     publishing_app.present? ? publishing_app.capitalize.tr('-', ' ') : 'Unknown'
   end
 
+  def title
+    metadata[:title]
+  end
+
+  def base_path
+    metadata[:base_path]
+  end
+
+  def document_type
+    metadata[:document_type].tr('_', ' ').capitalize
+  end
+
+  def published_at
+    format_date(metadata[:first_published_at])
+  end
+
+  def last_updated
+    format_date(metadata[:public_updated_at])
+  end
+
+  def publishing_organisation
+    metadata[:primary_organisation_title]
+  end
+
+  def status; end
+
 private
 
   def on_page_search_rate
     metric_value = self.total_searches
-    secondary_metric_value =  self.total_pviews
+    secondary_metric_value = self.total_pviews
 
     return 0 if metric_value.to_i.zero? || secondary_metric_value.to_i.zero?
     search_rate = (metric_value.to_f / secondary_metric_value.to_f) * 100
     search_rate.round(2)
   end
 
-  def get_metadata
-    metadata = @single_page_data[:metadata]
-    @title = metadata[:title]
-    @metadata = {
-      base_path: metadata[:base_path],
-      document_type: metadata[:document_type].tr('_', ' ').capitalize,
-      published_at: format_date(metadata[:first_published_at]),
-      last_updated: format_date(metadata[:public_updated_at]),
-      publishing_organisation: metadata[:primary_organisation_title],
-    }
+  def metadata
+    @metadata ||= @single_page_data[:metadata]
   end
 
   def parse_metrics(time_series_metrics, edition_metrics)
