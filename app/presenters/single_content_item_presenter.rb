@@ -31,6 +31,10 @@ class SingleContentItemPresenter
     @metrics['satisfaction'][:value]
   end
 
+  def total_feedex
+    @metrics['feedex'][:value]
+  end
+
   def initialize(single_page_data, date_range)
     @single_page_data = single_page_data
 
