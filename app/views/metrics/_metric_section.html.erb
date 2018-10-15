@@ -1,9 +1,9 @@
 <div class="metric_summary <%= metric_name %>">
   <%= render 'metric_header', {
     metric_name: metric_name,
-    value: total || @performance_data.metrics[metric_name][:value],
-    show_trend: show_trend,
-    show_total: show_total,
+    value: total,
+    show_trend: true,
+    show_total: true
   }%>
 </div>
 
