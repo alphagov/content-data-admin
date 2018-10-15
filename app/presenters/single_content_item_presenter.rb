@@ -15,7 +15,9 @@ class SingleContentItemPresenter
               :satisfaction_glance_metric,
               :feedex_glance_metric
 
-
+  def total_upviews
+    @metrics['upviews'][:value]
+  end
 
   def initialize(single_page_data, date_range)
     @single_page_data = single_page_data
