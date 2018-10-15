@@ -13,6 +13,10 @@
   @include govuk-visually-hidden;
 }
 
+.app-c-info-metric__context {
+  margin-bottom: 0;
+}
+
 .app-c-info-metric__trend-icon {
   color: $grey-1;
 }
@@ -22,10 +26,10 @@
 }
 
 .app-c-info-metric__about {
-  @include govuk-responsive-margin(2, "top");
+  @include govuk-responsive-margin(1, "top");
 }
 
-.app-c-info-metric__about {
+.app-c-info-metric {
 
   .govuk-details__summary-text {
     @include govuk-font(16);
