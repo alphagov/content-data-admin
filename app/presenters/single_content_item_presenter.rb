@@ -55,6 +55,14 @@ class SingleContentItemPresenter
     I18n.t("metrics.show.time_periods.#{@date_range.time_period}.reference")
   end
 
+  def metric_title(metric_name)
+    I18n.t("metrics.#{metric_name}.title")
+  end
+
+  def metric_short_title(metric_name)
+    I18n.t("metrics.#{metric_name}.short_title")
+  end
+
   def initialize(single_page_data, date_range)
     @single_page_data = single_page_data
 

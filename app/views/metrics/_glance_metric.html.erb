@@ -4,7 +4,7 @@
 <% if metric %>
   <div class="govuk-grid-column-one-quarter glance-metric <%=metric_name%>">
     <%= render "components/glance-metric", {
-        name: metric.name,
+        name: @performance_data.metric_short_title(metric_name),
         figure: total,
         context: context,
         trend_percentage: 0,

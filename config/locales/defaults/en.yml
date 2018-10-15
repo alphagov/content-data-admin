@@ -7,7 +7,7 @@ en:
   metrics:
     upviews:
       title: 'Unique pageviews'
-      short_title: ''
+      short_title: 'Unique pageviews'
       summary: 'Number of visits during which the page was viewed at least once'
       context: 'This page makes up %{percent_org_views}% of all views.'
       unit: ''
@@ -19,7 +19,7 @@ en:
         it will show up as 1 unique pageview.
     pviews:
       title: 'Pageviews'
-      short_title: ''
+      short_title: 'Pageviews'
       summary: 'Number of times the page was viewed'
       context: ''
       unit: ''
@@ -31,7 +31,7 @@ en:
         1 unique pageview).
     pageviews_per_visit:
       title: 'Pageviews per visit'
-      short_title: ''
+      short_title: 'Pageviews per visit'
       summary: 'Number of times per visit the page was viewed'
       context: ''
       unit: ''
@@ -44,7 +44,7 @@ en:
         their session - investigate the navigation from that page further to identify any issues.
     searches:
       title: 'Searches from the page'
-      short_title: ''
+      short_title: 'Searches from the page'
       summary: 'Number of on-page searches'
       context: '%{percent_users_searched}% of users searched from the page'
       unit: 'search terms'
@@ -55,7 +55,7 @@ en:
         use internal search, it's an indication that they haven't found what they're looking for.
     satisfaction:
       title: 'User satisfaction score'
-      short_title: ''
+      short_title: 'User satisfaction score'
       summary: 'Percentage of users who answered ''yes'' to the ''Is this page useful?'' survey'
       context: 'Users who found this page useful, out of %{total_responses} responses'
       unit: ''
@@ -83,7 +83,7 @@ en:
         You'll need a Signon account with Feedback Explorer permissions to see the comments.
     words:
       title: 'Word count'
-      short_title: ''
+      short_title: 'Word count'
       summary: 'Number of words on the page'
       context: ''
       unit: ''
@@ -95,7 +95,7 @@ en:
         be shorter. Otherwise, does it have headings and bulletpoint to help users scan?
     pdf_count:
       title: 'Number of PDFs'
-      short_title: ''
+      short_title: 'Number of PDFs'
       summary: 'Number of .pdf attachements on the page'
       context: ''
       unit: ''
