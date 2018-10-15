@@ -1,7 +1,7 @@
 class SingleContentItemPresenter
   include MetricsFormatterHelper
 
-  attr_reader :date_range, :metrics
+  attr_reader :date_range
 
   def total_upviews
     @metrics['upviews'][:value]
@@ -21,6 +21,14 @@ class SingleContentItemPresenter
 
   def total_feedex
     @metrics['feedex'][:value]
+  end
+
+  def total_words
+    @metrics['words'][:value]
+  end
+
+  def total_pdf_count
+    @metrics['pdf_count'][:value]
   end
 
   def upviews_context
