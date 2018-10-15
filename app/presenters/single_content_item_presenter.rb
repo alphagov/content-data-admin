@@ -19,6 +19,10 @@ class SingleContentItemPresenter
     @metrics['upviews'][:value]
   end
 
+  def total_pviews
+    @metrics['pviews'][:value]
+  end
+
   def initialize(single_page_data, date_range)
     @single_page_data = single_page_data
 
