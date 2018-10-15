@@ -27,6 +27,10 @@ class SingleContentItemPresenter
     @metrics['searches'][:value]
   end
 
+  def total_satisfaction
+    @metrics['satisfaction'][:value]
+  end
+
   def initialize(single_page_data, date_range)
     @single_page_data = single_page_data
 
