@@ -30,6 +30,12 @@ module GdsApi
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
+      def content_data_has_orgs
+        url = "#{content_data_api_endpoint}/organisations"
+        body = { organisations: default_organisations }.to_json
+        stub_request(:get, url).to_return(status: 200, body: body)
+      end
+
       def content_data_api_endpoint
         Plek.current.find('content-performance-manager').to_s
       end
@@ -153,6 +159,19 @@ module GdsApi
             { name: "pdf_count", value: 0 }
           ]
         }
+      end
+
+      def default_organisations
+        [
+          {
+            title: 'org',
+            organisation_id: 'org-id'
+          },
+          {
+            title: 'another org',
+            organisation_id: 'another-org-id'
+          }
+        ]
       end
     end
   end
