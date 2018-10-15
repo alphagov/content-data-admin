@@ -1,14 +1,9 @@
-<%
-  metric = @performance_data.instance_variable_get("@#{metric_name}_glance_metric")
-%>
-<% if metric %>
-  <div class="govuk-grid-column-one-quarter glance-metric <%=metric_name%>">
-    <%= render "components/glance-metric", {
-        name: @performance_data.metric_short_title(metric_name),
-        figure: total,
-        context: context,
-        trend_percentage: 0,
-        period: @performance_data.period
-      } %>
-  </div>
-<% end %>
+<div class="govuk-grid-column-one-quarter glance-metric <%=metric_name%>">
+  <%= render "components/glance-metric", {
+      name: @performance_data.metric_short_title(metric_name),
+      figure: total,
+      context: context,
+      trend_percentage: 0,
+      period: @performance_data.period
+    } %>
+</div>
