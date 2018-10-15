@@ -72,10 +72,10 @@
 } %>
 
 <div class="govuk-grid-row">
-  <%= render "glance_metric", metric_name: "upviews" %>
-  <%= render "glance_metric", metric_name: "satisfaction" %>
-  <%= render "glance_metric", metric_name: "searches" %>
-  <%= render "glance_metric", metric_name: "feedex" %>
+  <%= render "glance_metric", metric_name: "upviews", total: @performance_data.total_upviews %>
+  <%= render "glance_metric", metric_name: "satisfaction", total: @performance_data.total_satisfaction %>
+  <%= render "glance_metric", metric_name: "searches", total: @performance_data.total_searches %>
+  <%= render "glance_metric", metric_name: "feedex", total: @performance_data.total_feedex %>
 </div>
 
 <div class="govuk-grid-row">

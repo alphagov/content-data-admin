@@ -5,7 +5,7 @@
   <div class="govuk-grid-column-one-quarter glance-metric <%=metric_name%>">
     <%= render "components/glance-metric", {
         name: metric.name,
-        figure: metric.value,
+        figure: total,
         context: metric.context,
         trend_percentage: metric.trend_percentage,
         period: metric.period
