@@ -51,6 +51,10 @@ class SingleContentItemPresenter
     I18n.t("metrics.feedex.context")
   end
 
+  def period
+    I18n.t("metrics.show.time_periods.#{@date_range.time_period}.reference")
+  end
+
   def initialize(single_page_data, date_range)
     @single_page_data = single_page_data
 
