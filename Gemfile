@@ -13,6 +13,7 @@ gem "govuk_publishing_components", "~> 12.0"
 gem 'logstasher'
 gem "pg", "~> 1"
 gem "plek", "~> 2"
+gem "timecop"
 gem "uglifier", "~> 4"
 
 group :development do

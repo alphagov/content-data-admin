@@ -11,7 +11,14 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl"><%= @performance_data.title %></h1>
     <div class="page-metadata">
-      <%= render "components/metadata", @performance_data.metadata %>
+      <%= render "components/metadata",
+          published_at: @performance_data.published_at,
+          last_updated: @performance_data.last_updated,
+          publishing_organisation: @performance_data.publishing_organisation,
+          document_type: @performance_data.document_type,
+          base_path: @performance_data.base_path,
+          status: @performance_data.status
+      %>
     </div>
   </div>
   <div class="govuk-grid-column-one-third related-actions">
@@ -20,7 +27,7 @@
         links: [
                   {
                     header: t(".navigation.visit_page"),
-                    link_url: "//www.gov.uk#{@performance_data.metadata[:base_path]}",
+                    link_url: "//www.gov.uk#{@performance_data.base_path}",
                     accessibility_message: t('.navigation.accessibility_message'),
                     label: @performance_data.title
                   },
@@ -35,7 +42,7 @@
 </div>
 <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 <%= render "components/time-select", {
-  base_path: "/metrics#{@performance_data.metadata[:base_path]}",
+  base_path: "/metrics#{@performance_data.base_path}",
   current_selection: current_selection,
   dates: [
     {
@@ -72,10 +79,25 @@
 } %>
 
 <div class="govuk-grid-row">
-  <%= render "glance_metric", metric_name: "upviews" %>
-  <%= render "glance_metric", metric_name: "satisfaction" %>
-  <%= render "glance_metric", metric_name: "searches" %>
-  <%= render "glance_metric", metric_name: "feedex" %>
+  <%= render "glance_metric",
+      metric_name: "upviews",
+      total: @performance_data.total_upviews,
+      context: @performance_data.upviews_context %>
+
+  <%= render "glance_metric",
+      metric_name: "satisfaction",
+      total: @performance_data.total_satisfaction,
+      context: @performance_data.satisfaction_context %>
+
+  <%= render "glance_metric",
+      metric_name: "searches",
+      total: @performance_data.total_searches,
+      context: @performance_data.searches_context %>
+
+  <%= render "glance_metric",
+      metric_name: "feedex",
+      total: @performance_data.total_feedex,
+      context: @performance_data.feedex_context %>
 </div>
 
 <div class="govuk-grid-row">
@@ -83,21 +105,21 @@
 
       <h2 class="govuk-heading-l"><%= t ".section_headings.performance" %></h2>
 
-      <%= render 'metric_section', metric_name: 'upviews', show_trend: true  %>
+      <%= render 'metric_section', metric_name: 'upviews', total: @performance_data.total_upviews %>
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-      <%= render 'metric_section', metric_name: 'pviews', show_trend: true %>
+      <%= render 'metric_section', metric_name: 'pviews', total: @performance_data.total_pviews %>
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-      <%= render 'metric_section', metric_name: 'searches', show_trend: true %>
+      <%= render 'metric_section', metric_name: 'searches', total: @performance_data.total_searches %>
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
       <h2 class="govuk-heading-l"><%= t ".section_headings.feedback" %></h2>
 
-      <%= render 'metric_section', metric_name: 'satisfaction', show_trend: true %>
+      <%= render 'metric_section', metric_name: 'satisfaction', total: @performance_data.total_satisfaction %>
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-      <%= render 'metric_section', metric_name: 'feedex', show_trend: true %>
+      <%= render 'metric_section', metric_name: 'feedex', total: @performance_data.total_feedex %>
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
       <h2 class="govuk-heading-l"><%= t ".section_headings.content" %></h2>
@@ -106,13 +128,13 @@
 
     <div class="govuk-grid-column-one-half">
       <div class="metric_summary words">
-        <%= render 'metric_header', metric_name: 'words', value: @performance_data.metrics['words'][:value], show_trend: false %>
+        <%= render 'metric_header', metric_name: 'words', value: @performance_data.total_words, show_trend: false %>
       </div>
     </div>
 
     <div class="govuk-grid-column-one-half">
       <div class="metric_summary pdf_count">
-        <%= render 'metric_header', metric_name: 'pdf_count', value: @performance_data.metrics['pdf_count'][:value], show_trend: false %>
+        <%= render 'metric_header', metric_name: 'pdf_count', value: @performance_data.total_pdf_count, show_trend: false %>
       </div>
     </div>
 </div>

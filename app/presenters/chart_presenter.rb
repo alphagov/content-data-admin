@@ -2,19 +2,15 @@ class ChartPresenter
   include MetricsFormatterHelper
   attr_reader :time_series, :metric, :from, :to
 
-  def initialize(json:, metric:, from:, to:)
+  def initialize(json:, metric:, date_range:)
     @metric = metric
     @time_series = json
-    @from = from
-    @to = to
+    @from = date_range.from
+    @to = date_range.to
   end
 
   def has_values?
     !time_series.empty?
-  end
-
-  def human_friendly_metric
-    I18n.t "metrics.#{metric}.title"
   end
 
   def no_data_message
@@ -50,5 +46,11 @@ class ChartPresenter
     return [] unless time_series
 
     time_series.map { |point| format_metric_value(metric, point[:value]) }
+  end
+
+private
+
+  def human_friendly_metric
+    I18n.t "metrics.#{metric}.title"
   end
 end

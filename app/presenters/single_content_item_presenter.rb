@@ -1,21 +1,63 @@
 class SingleContentItemPresenter
   include MetricsFormatterHelper
 
-  attr_reader :title,
-              :date_range,
-              :metadata,
-              :metrics,
-              :feedex_series,
-              :searches_series,
-              :pviews_series,
-              :satisfaction_series,
-              :upviews_series,
-              :searches_glance_metric,
-              :upviews_glance_metric,
-              :satisfaction_glance_metric,
-              :feedex_glance_metric
+  attr_reader :date_range
 
+  def total_upviews
+    @metrics['upviews'][:value]
+  end
 
+  def total_pviews
+    @metrics['pviews'][:value]
+  end
+
+  def total_searches
+    @metrics['searches'][:value]
+  end
+
+  def total_satisfaction
+    @metrics['satisfaction'][:value]
+  end
+
+  def total_feedex
+    @metrics['feedex'][:value]
+  end
+
+  def total_words
+    @metrics['words'][:value]
+  end
+
+  def total_pdf_count
+    @metrics['pdf_count'][:value]
+  end
+
+  def upviews_context
+    I18n.t("metrics.upviews.context", percent_org_views: 2.74)
+  end
+
+  def satisfaction_context
+    I18n.t("metrics.satisfaction.context", total_responses: 700)
+  end
+
+  def searches_context
+    I18n.t("metrics.searches.context", percent_users_searched: on_page_search_rate)
+  end
+
+  def feedex_context
+    I18n.t("metrics.feedex.context")
+  end
+
+  def period
+    I18n.t("metrics.show.time_periods.#{@date_range.time_period}.reference")
+  end
+
+  def metric_title(metric_name)
+    I18n.t("metrics.#{metric_name}.title")
+  end
+
+  def metric_short_title(metric_name)
+    I18n.t("metrics.#{metric_name}.short_title")
+  end
 
   def initialize(single_page_data, date_range)
     @single_page_data = single_page_data
@@ -25,10 +67,6 @@ class SingleContentItemPresenter
       single_page_data[:time_series_metrics],
       single_page_data[:edition_metrics]
     )
-
-    get_metadata
-    parse_time_series
-    add_glance_metric_presenters
   end
 
   def publishing_app
@@ -37,18 +75,50 @@ class SingleContentItemPresenter
     publishing_app.present? ? publishing_app.capitalize.tr('-', ' ') : 'Unknown'
   end
 
+  def title
+    metadata[:title]
+  end
+
+  def base_path
+    metadata[:base_path]
+  end
+
+  def document_type
+    metadata[:document_type].tr('_', ' ').capitalize
+  end
+
+  def published_at
+    format_date(metadata[:first_published_at])
+  end
+
+  def last_updated
+    format_date(metadata[:public_updated_at])
+  end
+
+  def publishing_organisation
+    metadata[:primary_organisation_title]
+  end
+
+  def status; end
+
+  def get_chart(metric_name)
+    time_series = @metrics[metric_name][:time_series]
+    ChartPresenter.new(json: time_series, metric: metric_name, date_range: date_range)
+  end
+
 private
 
-  def get_metadata
-    metadata = @single_page_data[:metadata]
-    @title = metadata[:title]
-    @metadata = {
-      base_path: metadata[:base_path],
-      document_type: metadata[:document_type].tr('_', ' ').capitalize,
-      published_at: format_date(metadata[:first_published_at]),
-      last_updated: format_date(metadata[:public_updated_at]),
-      publishing_organisation: metadata[:primary_organisation_title],
-    }
+  def on_page_search_rate
+    metric_value = self.total_searches
+    secondary_metric_value = self.total_pviews
+
+    return 0 if metric_value.to_i.zero? || secondary_metric_value.to_i.zero?
+    search_rate = (metric_value.to_f / secondary_metric_value.to_f) * 100
+    search_rate.round(2)
+  end
+
+  def metadata
+    @metadata ||= @single_page_data[:metadata]
   end
 
   def parse_metrics(time_series_metrics, edition_metrics)
@@ -67,26 +137,6 @@ private
       }
     end
     metrics
-  end
-
-  def parse_time_series
-    @upviews_series = get_chart_presenter(@metrics['upviews'][:time_series], 'upviews')
-    @pviews_series = get_chart_presenter(@metrics['pviews'][:time_series], 'pviews')
-    @searches_series = get_chart_presenter(@metrics['searches'][:time_series], 'searches')
-    @feedex_series = get_chart_presenter(@metrics['feedex'][:time_series], 'feedex')
-    @satisfaction_series = get_chart_presenter(@metrics['satisfaction'][:time_series], 'satisfaction')
-  end
-
-  def add_glance_metric_presenters
-    time_period = @date_range.time_period
-    @upviews_glance_metric = GlanceMetricPresenter.new('upviews', @metrics['upviews'][:value], time_period)
-    @satisfaction_glance_metric = GlanceMetricPresenter.new('satisfaction', @metrics['satisfaction'][:value], time_period)
-    @searches_glance_metric = GlanceMetricPresenter.new('searches', @metrics['searches'][:value], time_period)
-    @feedex_glance_metric = GlanceMetricPresenter.new('feedex', @metrics['feedex'][:value], time_period)
-  end
-
-  def get_chart_presenter(time_series, metric)
-    ChartPresenter.new(json: time_series, metric: metric, from: date_range.from, to: date_range.to)
   end
 
   def format_date(date_str)
