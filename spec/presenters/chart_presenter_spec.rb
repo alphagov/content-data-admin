@@ -15,27 +15,11 @@ RSpec.describe ChartPresenter do
     )
   end
 
-  describe '#human_friendly_metric' do
-    it 'returns `Unique pageviews` for upviews' do
-      presenter = described_class.new(json: {}, metric: :upviews, from: from, to: to)
-      expect(presenter.human_friendly_metric).to eq('Unique pageviews')
-    end
-
-    it 'returns `Pageviews` for pviews' do
-      presenter = described_class.new(json: {}, metric: :pviews, from: from, to: to)
-      expect(presenter.human_friendly_metric).to eq('Pageviews')
-    end
-  end
-
   it 'returns start date' do
     expect(subject.from).to eq '2018-01-13'
   end
   it 'returns end date' do
     expect(subject.to).to eq '2018-01-15'
-  end
-
-  it 'returns the metric name in a human readable manner' do
-    expect(subject.human_friendly_metric).to eq 'Unique pageviews'
   end
 
   it 'returns the correct message for no data' do

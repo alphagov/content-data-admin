@@ -13,10 +13,6 @@ class ChartPresenter
     !time_series.empty?
   end
 
-  def human_friendly_metric
-    I18n.t "metrics.#{metric}.title"
-  end
-
   def no_data_message
     "No #{human_friendly_metric} data for the selected time period"
   end
@@ -50,5 +46,11 @@ class ChartPresenter
     return [] unless time_series
 
     time_series.map { |point| format_metric_value(metric, point[:value]) }
+  end
+
+  private
+
+  def human_friendly_metric
+    I18n.t "metrics.#{metric}.title"
   end
 end
