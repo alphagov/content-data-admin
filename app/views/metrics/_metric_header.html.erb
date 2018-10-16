@@ -1,6 +1,6 @@
 <%
   show_trend ||= false
-  show_total ||= false
+  short_context ||= false
   data_source = t("metrics.#{metric_name}.data_source")
   time_period = @performance_data.date_range.time_period
   options = {
@@ -18,8 +18,8 @@
     })
   end
 
-  if show_total
-    options.update({ total: t("metrics.#{metric_name}.total") })
+  if short_context
+    options.update({ short_context: short_context })
   end
 %>
 <div class="govuk-grid-row">

@@ -73,8 +73,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.metric_summary.satisfaction', text: '90.000%'
       end
 
-      xit 'renders the total number of responses as context for satisfaction score' do
-        expect(page).to have_selector '.metric_summary.satisfaction', text: '200 responses'
+      it 'renders the total number of responses as context for satisfaction score' do
+        expect(page).to have_selector '.metric_summary.satisfaction', text: '700 responses'
       end
 
       it 'renders a metric for feedex' do
