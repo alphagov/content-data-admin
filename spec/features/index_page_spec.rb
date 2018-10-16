@@ -95,9 +95,11 @@ RSpec.describe '/content' do
     end
 
     it 'respects date range' do
+      prev_from = (Time.zone.today - 2.years).to_s('%F')
       from = (Time.zone.today - 1.year).to_s('%F')
       to = Time.zone.today.to_s('%F')
       content_data_api_has_single_page(base_path: 'path/1', from: from, to: to)
+      content_data_api_has_single_page(base_path: 'path/1', from: prev_from, to: from)
       content_data_api_has_content_items(from: from, to: to, organisation_id: 'another-org-id', items: items)
 
       visit "/content?date_range=last-year&organisation_id=another-org-id"

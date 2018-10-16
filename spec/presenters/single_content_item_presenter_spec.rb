@@ -22,6 +22,29 @@ RSpec.describe SingleContentItemPresenter do
     end
   end
 
+  describe '#trend_percentage' do
+    it 'calculates an increase percentage change' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }]
+      previous_period_data[:time_series_metrics] = [{ name: 'upviews', total: 50 }]
+
+      expect(subject.trend_percentage('upviews')).to eq(100.0)
+    end
+
+    it 'calculates an decrease percentage change' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 50 }]
+      previous_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }]
+
+      expect(subject.trend_percentage('upviews')).to eq(-50.0)
+    end
+
+    it 'calculates an no percentage change' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }]
+      previous_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }]
+
+      expect(subject.trend_percentage('upviews')).to eq(0.0)
+    end
+  end
+
   describe '#metadata' do
     it 'returns a hash with the metadata' do
       expect(subject.base_path).to eq('/the/base/path')
