@@ -19,8 +19,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
   context 'successful request' do
     before do
+      previous = default_previous_single_page_payload('base/path', prev_from.to_s, from.to_s)
       content_data_api_has_single_page(base_path: 'base/path', from: from.to_s, to: to.to_s)
-      content_data_api_has_single_page(base_path: 'base/path', from: prev_from.to_s, to: from.to_s)
+      content_data_api_has_single_page(base_path: 'base/path', from: prev_from.to_s, to: from.to_s, payload: previous)
       visit '/metrics/base/path'
     end
 
@@ -44,8 +45,12 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.glance-metric.upviews', text: '33'
       end
 
-      it 'renders glance metric context for unique page views' do
+      it 'renders glance metric context for unique pageviews' do
         expect(page).to have_selector '.glance-metric.upviews', text: '2.74%'
+      end
+
+      it 'renders trend percentage for unique pageviews' do
+        expect(page).to have_selector '.upviews .app-c-glance-metric__trend', text: '+230.00%'
       end
 
       it 'renders glance metric for satisfaction score' do
@@ -56,6 +61,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.glance-metric.satisfaction', text: '700'
       end
 
+      it 'renders trend percentage for satisfaction score' do
+        expect(page).to have_selector '.satisfaction .app-c-glance-metric__trend', text: '+50.00%'
+      end
+
       it 'renders glance metric for on page searches' do
         expect(page).to have_selector '.glance-metric.searches', text: '24'
       end
@@ -64,8 +73,16 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.glance-metric.searches', text: '50%'
       end
 
+      it 'renders trend percentage for page searches' do
+        expect(page).to have_selector '.searches .app-c-glance-metric__trend', text: '-50.00%'
+      end
+
       it 'renders glance metric for feedex comments' do
         expect(page).to have_selector '.glance-metric.feedex', text: '63'
+      end
+
+      it 'renders trend percentage for feedex comments' do
+        expect(page).to have_selector '.feedex .app-c-glance-metric__trend', text: '+5.00%'
       end
     end
 
