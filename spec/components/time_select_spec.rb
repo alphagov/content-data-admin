@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Time Select", type: :view do
   let(:data) {
     {
-    base_path: "/metrics",
+    render_button: true,
     current_selection: 'last-30-days',
       dates: [
         {
@@ -37,11 +37,6 @@ RSpec.describe "Time Select", type: :view do
     assert_empty render_component(data)
   end
 
-  it "does not render when base_path is not supplied" do
-    data[:base_path] = false
-    assert_empty render_component(data)
-  end
-
   it "renders correctly when given valid data" do
     render_component(data)
     assert_select ".app-c-time-select", 1
@@ -52,10 +47,22 @@ RSpec.describe "Time Select", type: :view do
     assert_select "input[type=radio][value=last-30-days][checked=checked]"
   end
 
-  it "preselects the radio button based on the current_selection parameter" do
+  it "preselects the radio input based on the current_selection parameter" do
     data[:current_selection] = "last-3-months"
     render_component(data)
     assert_select "input[type=radio][value=last-3-months][checked=checked]"
+  end
+
+  it "ommits the submit button when render_button is false" do
+    data[:render_button] = false
+    render_component(data)
+    assert_select ".gem-c-button.govuk-button", 0
+  end
+
+  it "renders the submit button when render_button is true" do
+    data[:render_button] = true
+    render_component(data)
+    assert_select ".gem-c-button.govuk-button"
   end
 
   def render_component(locals)
