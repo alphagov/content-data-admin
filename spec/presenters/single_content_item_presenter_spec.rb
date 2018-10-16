@@ -1,18 +1,18 @@
 RSpec.describe SingleContentItemPresenter do
   include GdsApi::TestHelpers::ContentDataApi
 
-  let(:from) { '2018-01-01' }
-  let(:to) { '2018-06-01' }
-  let(:single_page_data) { default_single_page_payload('the/base/path', from, to) }
   let(:date_range) { build(:date_range, :last_30_days) }
+  let(:current_period_data) { default_single_page_payload('the/base/path', '2018-11-25', '2018-12-25') }
+  let(:previous_period_data) { default_single_page_payload('the/base/path', '2018-10-26', '2018-11-25') }
+
 
   subject do
-    SingleContentItemPresenter.new(single_page_data, date_range)
+    SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
   end
 
   describe '#publishing_app' do
     it 'does not fail if no publishing app' do
-      single_page_data[:metadata][:publishing_app] = nil
+      current_period_data[:metadata][:publishing_app] = nil
 
       expect(subject.publishing_app).to eq('Unknown')
     end

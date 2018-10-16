@@ -3,13 +3,13 @@ class SingleContentItemPresenter
 
   attr_reader :date_range
 
-  def initialize(single_page_data, date_range)
-    @single_page_data = single_page_data
+  def initialize(current_period_data, _previous_period_data, date_range)
+    @single_page_data = current_period_data
 
     @date_range = date_range
     @metrics = parse_metrics(
-      single_page_data[:time_series_metrics],
-      single_page_data[:edition_metrics]
+      current_period_data[:time_series_metrics],
+      current_period_data[:edition_metrics]
     )
   end
 

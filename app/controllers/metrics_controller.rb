@@ -9,7 +9,11 @@ class MetricsController < ApplicationController
     curr_period_data = FetchSinglePage.call(base_path: base_path, date_range: curr_period)
     prev_period_data = FetchSinglePage.call(base_path: base_path, date_range: prev_period)
 
-    @performance_data = SingleContentItemPresenter.new(curr_period_data, curr_period)
+    @performance_data = SingleContentItemPresenter.new(
+      curr_period_data,
+      prev_period_data,
+      curr_period,
+    )
   end
 
   rescue_from GdsApi::HTTPNotFound do
