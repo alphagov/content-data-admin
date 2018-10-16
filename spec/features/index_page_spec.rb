@@ -72,8 +72,7 @@ RSpec.describe '/content' do
   context 'filter by organisation' do
     before do
       content_data_api_has_content_items(from: from, to: to, organisation_id: 'another-org-id', items: items)
-      organisation_dropdown = find('.org-picker')
-      organisation_dropdown.select('another org')
+      select 'another org', from: 'organisation_id'
       click_on 'Filter'
     end
 
@@ -86,6 +85,10 @@ RSpec.describe '/content' do
       expect(page).to have_content('Page data: Last month')
     end
 
+    it 'selected organisation is shown in dropdown menu' do
+      expect(page).to have_select('organisation_id', text: 'another org')
+    end
+
     it 'respects date range' do
       from = (Time.zone.today - 1.year).to_s('%F')
       to = Time.zone.today.to_s('%F')
@@ -94,8 +97,7 @@ RSpec.describe '/content' do
 
       visit "/content?date_range=last-year&organisation_id=another-org-id"
 
-      organisation_dropdown = find('.org-picker')
-      organisation_dropdown.select('another org')
+      select 'another org', from: 'organisation_id'
       click_on 'Filter'
       click_on 'The title'
       expect(page).to have_content('Page data: Past year')
