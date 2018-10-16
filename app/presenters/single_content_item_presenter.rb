@@ -158,7 +158,7 @@ private
   end
 
   def calculate_trend_percentage(current_value, previous_value)
-    ((current_value.to_f / previous_value.to_f) - 1) * 100
+    previous_value.to_f <= 0 ? 0 : ((current_value.to_f / previous_value.to_f) - 1) * 100
   end
 
   def format_date(date_str)
