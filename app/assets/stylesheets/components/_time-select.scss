@@ -1,1 +1,4 @@
-// All required styles are inherited
+.app-c-time-select {
+  @include govuk-responsive-padding(3, "top");
+  border-top: 2px solid $govuk-border-colour;
+}

@@ -25,7 +25,7 @@
     <dd class="app-c-metadata__description"><%= publishing_organisation %></dd>
     <dt class="app-c-metadata__title"><%= t ".labels.document_type" %></dt>
     <dd class="app-c-metadata__description"><%= document_type %></dd>
-    <dt class="app-c-metadata__title"><%= t ".labels.base_path" %></dt>
-    <dd class="app-c-metadata__description"><% if base_path != "" %>/.../<%= base_path.split("/")[-1] %><% end %></dd>
+    <dt class="app-c-metadata__title app-c-metadata__title--wrappable"><%= t ".labels.base_path" %></dt>
+    <dd class="app-c-metadata__description"><% if base_path != "" %>gov.uk<%= base_path %><% end %></dd>
   </dl>
 </div>
