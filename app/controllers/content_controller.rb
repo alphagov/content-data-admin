@@ -13,6 +13,7 @@ private
   end
 
   def date_range
-    DateRange.new(params[:date_range])
+    time_period = params[:date_range].presence || 'last-30-days'
+    DateRange.new(time_period)
   end
 end
