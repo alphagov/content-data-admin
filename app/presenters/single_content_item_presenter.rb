@@ -36,7 +36,11 @@ class SingleContentItemPresenter
   end
 
   def satisfaction_context
-    I18n.t("metrics.satisfaction.context", total_responses: 700)
+    I18n.t("metrics.satisfaction.context", total_responses: useful_yes_no_total)
+  end
+
+  def satisfaction_short_context
+    I18n.t("metrics.satisfaction.short_context", total_responses: useful_yes_no_total)
   end
 
   def searches_context
@@ -107,6 +111,10 @@ class SingleContentItemPresenter
   end
 
 private
+
+  def useful_yes_no_total
+    @metrics['useful_yes'][:value] + @metrics['useful_no'][:value]
+  end
 
   def on_page_search_rate
     metric_value = self.total_searches

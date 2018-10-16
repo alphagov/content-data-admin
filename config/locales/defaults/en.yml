@@ -11,10 +11,9 @@ en:
       summary: 'Number of visits during which the page was viewed at least once'
       context: 'This page makes up %{percent_org_views}% of all views.'
       unit: ''
-      total: ''
       data_source: google_analytics
       about: >
-        This represents the number of visits in which the page was viewed at least once. 
+        This represents the number of visits in which the page was viewed at least once.
         For example, if a user visits the same page 5 times during their browsing session,
         it will show up as 1 unique pageview.
     pviews:
@@ -23,7 +22,6 @@ en:
       summary: 'Number of times the page was viewed'
       context: ''
       unit: ''
-      total: ''
       data_source: google_analytics
       about: >
         This is a count of every time the page was viewed. For example, if someone visits page X,
@@ -35,12 +33,11 @@ en:
       summary: 'Number of times per visit the page was viewed'
       context: ''
       unit: ''
-      total: ''
       data_source: calculated_google_analytics
       about: >
-        This figure is calculated by dividing Google Analytic pageviews by unique pageviews. It 
-        shows on average how many times a page was viewed during users' session. If a page has a 
-        high ratio (above 1.4), this indicates that users have to come back to that page within 
+        This figure is calculated by dividing Google Analytic pageviews by unique pageviews. It
+        shows on average how many times a page was viewed during users' session. If a page has a
+        high ratio (above 1.4), this indicates that users have to come back to that page within
         their session - investigate the navigation from that page further to identify any issues.
     searches:
       title: 'Searches from the page'
@@ -48,7 +45,6 @@ en:
       summary: 'Number of on-page searches'
       context: '%{percent_users_searched}% of users searched from the page'
       unit: 'search terms'
-      total: ''
       data_source: none
       about: >
         This is the number of internal site search that were started from the page. When people
@@ -59,7 +55,7 @@ en:
       summary: 'Percentage of users who answered ''yes'' to the ''Is this page useful?'' survey'
       context: 'Users who found this page useful, out of %{total_responses} responses'
       unit: ''
-      total: '%{total_responses} responses'
+      short_context: '%{total_responses} responses'
       data_source: none
       about: >
         Percentage of users who answered 'Yes' rather than 'No' to the 'Is this page useful?' survey.
@@ -72,12 +68,11 @@ en:
       summary: 'Number of anonymous user responses to ''Is there anything wrong with this page?'''
       context: ''
       unit: 'comments'
-      total: ''
       data_source: feedback_explorer
       about: >
         You can use Feedback Explorer ('Feedex') to find out what users are saying about your
         content. A high rate of feedback could indicate a problem with the content. The data comes
-        from the 'Is there anything wrong with this page?' form and the satisfaction survey at the 
+        from the 'Is there anything wrong with this page?' form and the satisfaction survey at the
         end of a transaction that started on GOV.UK.
 
         You'll need a Signon account with Feedback Explorer permissions to see the comments.
@@ -87,7 +82,6 @@ en:
       summary: 'Number of words on the page'
       context: ''
       unit: ''
-      total: ''
       data_source: none
       about: >
         Lots of words on a page can make content difficult for users to read online. The longer the
@@ -99,7 +93,6 @@ en:
       summary: 'Number of .pdf attachements on the page'
       context: ''
       unit: ''
-      total: ''
       data_source: none
       about: >
         Compared with HTML content, information published in a PDF is harder to find, use and 
