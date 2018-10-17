@@ -4,7 +4,7 @@ class MetricsController < ApplicationController
     base_path = params[:base_path]
 
     curr_period = DateRange.new(time_period)
-    prev_period = DateRange.new(time_period, Date.parse(curr_period.from))
+    prev_period = curr_period.previous
 
     curr_period_data = FetchSinglePage.call(base_path: base_path, date_range: curr_period)
     prev_period_data = FetchSinglePage.call(base_path: base_path, date_range: prev_period)

@@ -9,6 +9,11 @@ class DateRange
     @from = date_to_range(relative_date, time_period)[:from]
   end
 
+  def previous
+    relative_date = Date.parse(@from)
+    DateRange.new(time_period, relative_date)
+  end
+
 private
 
   def date_to_range(relative_date, time_period)
