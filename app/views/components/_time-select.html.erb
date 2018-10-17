@@ -1,6 +1,7 @@
 <%
   base_path ||= false
   current_selection ||= false
+  render_button ||= false
   submit_button_text = t ".submit_button"
 
   if dates.length > 1
@@ -12,19 +13,20 @@
     selectable[:checked] = true
   end
 %>
-<% if base_path && dates.length > 1 && current_selection %>
+<% if dates.length > 1 && current_selection %>
   <div class="app-c-time-select">
     <h2 class="govuk-heading-l"><%= t '.title', time_period: dates.find {|d| d[:value] == current_selection }[:text] %></h2>
     <%= render "govuk_publishing_components/components/details", {
       title: t('.change_dropdown')
     } do %>
-      <%= form_for('date', :url => "#{base_path}", :method => :get) do %>
+
         <%= render "govuk_publishing_components/components/radio", {
           name: "date_range",
           items: dates
         } %>
-        <%= render "govuk_publishing_components/components/button", {text: submit_button_text} %>
-      <% end %>
+        <% if render_button != false %>
+          <%= render "govuk_publishing_components/components/button", {text: submit_button_text} %>
+        <% end %>
     <% end %>
   </div>
 <% end %>

@@ -41,42 +41,45 @@
   </div>
 </div>
 <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-<%= render "components/time-select", {
-  base_path: "/metrics#{@performance_data.base_path}",
-  current_selection: current_selection,
-  dates: [
-    {
-      value: "last-30-days",
-      text: t(".time_periods.last-30-days.leading"),
-      hint_text:  "#{30.days.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
-    },
-    {
-      value: "last-month",
-      text: t(".time_periods.last-month.leading"),
-      hint_text: "#{Date.today.last_month.beginning_of_month.strftime("%-d %B %Y")} to #{Date.today.last_month.end_of_month.strftime("%-d %B %Y")}"
-    },
-    {
-      value: "last-3-months",
-      text: t(".time_periods.last-3-months.leading"),
-      hint_text: "#{3.months.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
-    },
-    {
-      value: "last-6-months",
-      text: t(".time_periods.last-6-months.leading"),
-      hint_text: "#{6.months.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
-    },
-    {
-      value: "last-year",
-      text: t(".time_periods.last-year.leading"),
-      hint_text: "#{1.year.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
-    },
-    {
-      value: "last-2-years",
-      text: t(".time_periods.last-2-years.leading"),
-      hint_text: "#{2.years.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
-    }
-  ]
-} %>
+
+<%= form_for('date', :url => "/metrics#{@performance_data.base_path}", :method => :get) do %>
+  <%= render "components/time-select", {
+    render_button: true,
+    current_selection: current_selection,
+    dates: [
+      {
+        value: "last-30-days",
+        text: t(".time_periods.last-30-days.leading"),
+        hint_text:  "#{30.days.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+      },
+      {
+        value: "last-month",
+        text: t(".time_periods.last-month.leading"),
+        hint_text: "#{Date.today.last_month.beginning_of_month.strftime("%-d %B %Y")} to #{Date.today.last_month.end_of_month.strftime("%-d %B %Y")}"
+      },
+      {
+        value: "last-3-months",
+        text: t(".time_periods.last-3-months.leading"),
+        hint_text: "#{3.months.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+      },
+      {
+        value: "last-6-months",
+        text: t(".time_periods.last-6-months.leading"),
+        hint_text: "#{6.months.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+      },
+      {
+        value: "last-year",
+        text: t(".time_periods.last-year.leading"),
+        hint_text: "#{1.year.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+      },
+      {
+        value: "last-2-years",
+        text: t(".time_periods.last-2-years.leading"),
+        hint_text: "#{2.years.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+      }
+    ]
+  } %>
+<% end %>
 
 <div class="govuk-grid-row">
   <%= render "glance_metric",
