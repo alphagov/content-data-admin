@@ -1,5 +1,7 @@
 <%= form_tag content_path, method: 'get', name: 'organisation-picker' do %>
-  <%= select_tag 'organisation_id', options_for_select(@organisations.map{ |org| [org[:title], org[:organisation_id]] }), class: 'org-picker' %>
+  <%= select_tag 'organisation_id', options_for_select(@organisations.map{ |org| [org[:title], org[:organisation_id]] },
+                                                       selected: @organisation_id),
+                                                       class: 'org-picker' %>
   <%= hidden_field_tag 'date_range', @content.date_range.time_period %>
   <%= submit_tag "Filter" %>
 <% end %>
