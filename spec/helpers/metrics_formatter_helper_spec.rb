@@ -4,11 +4,6 @@ RSpec.describe MetricsFormatterHelper do
       value = format_metric_value('satisfaction', 0.9000)
       expect(value).to eq '90.000%'
     end
-
-    it 'displays value as a percentage whole number for headline figures' do
-      value = format_metric_headline_figure('satisfaction', 24.13413)
-      expect(value).to eq '24%'
-    end
   end
 
 
