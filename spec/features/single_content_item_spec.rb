@@ -40,7 +40,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders glance metric for satisfaction score' do
-        expect(page).to have_selector '.glance-metric.satisfaction', text: '90.000%'
+        expect(page).to have_selector '.glance-metric.satisfaction', text: '90%'
       end
 
       it 'renders glance metric context for satisfaction score' do
@@ -70,7 +70,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders a metric for satisfaction' do
-        expect(page).to have_selector '.metric-summary__satisfaction', text: '90.000%'
+        expect(page).to have_selector '.metric-summary__satisfaction', text: '90%'
       end
 
       it 'renders the total number of responses as context for satisfaction score' do
