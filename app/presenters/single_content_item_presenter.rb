@@ -26,7 +26,7 @@ class SingleContentItemPresenter
   end
 
   def total_satisfaction
-    number_to_percentage(@metrics['satisfaction'][:value].to_f, precision: 0)
+    number_to_percentage(@metrics['satisfaction'][:value] * 100, precision: 0)
   end
 
   def total_feedex
@@ -133,7 +133,7 @@ private
     metrics = {}
     time_series_metrics.each do |metric|
       metrics[metric[:name]] = {
-        'value': format_metric_value(metric[:name], metric[:total]),
+        'value': metric[:total],
         'time_series': metric[:time_series]
       }
     end
