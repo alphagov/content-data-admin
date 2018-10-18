@@ -88,6 +88,7 @@ module GdsApi
           metadata: {
             title:  "Content Title",
             base_path:  "/#{base_path}",
+            content_id: 'content-id',
             first_published_at:  "2018-07-17T10:35:59.000Z",
             public_updated_at:  "2018-07-17T10:35:57.000Z",
             publishing_app:  "publisher",
