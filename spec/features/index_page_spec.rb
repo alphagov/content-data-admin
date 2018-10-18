@@ -2,8 +2,6 @@ RSpec.describe '/content' do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
   let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no] }
-  let(:prev_from) { (Time.zone.today - 2.months).beginning_of_month.to_s('%F') }
-  let(:prev_to) { (Time.zone.today - 2.months).end_of_month.to_s('%F') }
   let(:from) { Time.zone.today.last_month.beginning_of_month.to_s('%F') }
   let(:to) { Time.zone.today.last_month.end_of_month.to_s('%F') }
   let(:items) do
@@ -30,8 +28,7 @@ RSpec.describe '/content' do
   end
 
   before do
-    content_data_api_has_single_page(base_path: 'path/1', from: from, to: to)
-    content_data_api_has_single_page(base_path: 'path/1', from: prev_from, to: prev_to)
+    stub_metrics_page(base_path: 'path/1', time_period: :last_month)
     content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
     content_data_has_orgs
     visit "/content?date_range=last-month&organisation_id=org-id"
@@ -60,11 +57,9 @@ RSpec.describe '/content' do
     end
 
     it 'respects the date filter' do
-      prev_from = (Time.zone.today - 2.years).to_s('%F')
       from = (Time.zone.today - 1.year).to_s('%F')
       to = Time.zone.today.to_s('%F')
-      content_data_api_has_single_page(base_path: 'path/1', from: from, to: to)
-      content_data_api_has_single_page(base_path: 'path/1', from: prev_from, to: from)
+      stub_metrics_page(base_path: 'path/1', time_period: :last_year)
       content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
 
       visit "/content?date_range=last-year&organisation_id=org-id"
@@ -95,11 +90,9 @@ RSpec.describe '/content' do
     end
 
     it 'respects date range' do
-      prev_from = (Time.zone.today - 2.years).to_s('%F')
       from = (Time.zone.today - 1.year).to_s('%F')
       to = Time.zone.today.to_s('%F')
-      content_data_api_has_single_page(base_path: 'path/1', from: from, to: to)
-      content_data_api_has_single_page(base_path: 'path/1', from: prev_from, to: from)
+      stub_metrics_page(base_path: 'path/1', time_period: :last_year)
       content_data_api_has_content_items(from: from, to: to, organisation_id: 'another-org-id', items: items)
 
       visit "/content?date_range=last-year&organisation_id=another-org-id"

@@ -6,11 +6,25 @@ module GdsApi
       def stub_metrics_page(base_path:, time_period:)
         dates = build(:date_range, time_period)
         prev_dates = dates.previous
+
+        current_period_data = default_single_page_payload(
+          base_path, dates.from, dates.to
+        )
+        previous_period_data = default_previous_single_page_payload(
+          base_path, prev_dates.from, prev_dates.to
+        )
+
         content_data_api_has_single_page(
-          base_path: base_path, from: dates.from, to: dates.to
+          base_path: base_path,
+          from: dates.from,
+          to: dates.to,
+          payload: current_period_data
         )
         content_data_api_has_single_page(
-          base_path: base_path, from: prev_dates.from, to: prev_dates.to
+          base_path: base_path,
+          from: prev_dates.from,
+          to: prev_dates.to,
+          payload: previous_period_data
         )
       end
 
@@ -67,11 +81,9 @@ module GdsApi
       end
 
       def default_single_page_payload(base_path, from, to)
-        from_date = Date.parse(from)
-        to_date = Date.parse(to)
-        day1 = (from_date - 1.day).to_s
-        day2 = (from_date - 2.days).to_s
-        day3 = (to_date + 1.day).to_s
+        day1 = from
+        day2 = (Date.parse(from) + 1.day).to_s
+        day3 = to
         {
           metadata: {
             title:  "Content Title",
@@ -157,11 +169,9 @@ module GdsApi
       end
 
       def default_previous_single_page_payload(base_path, from, to)
-        from_date = Date.parse(from)
-        to_date = Date.parse(to)
-        day1 = (from_date - 1.day).to_s
-        day2 = (from_date - 2.days).to_s
-        day3 = (to_date + 1.day).to_s
+        day1 = from
+        day2 = (Date.parse(from) + 1.day).to_s
+        day3 = to
         {
           metadata: {
             title:  "Content Title",

@@ -5,23 +5,16 @@ RSpec.describe '/metrics/base/path', type: :feature do
   let(:prev_from) { Time.zone.today - 60.days }
   let(:from) { Time.zone.today - 30.days }
   let(:to) { Time.zone.today }
-  let(:month_and_date_string_for_date1) { (from - 1.day).to_s.last(5) }
-  let(:month_and_date_string_for_date2) { (from - 2.days).to_s.last(5) }
-  let(:month_and_date_string_for_date3) { (to + 1.day).to_s.last(5) }
 
-  before do
-    Timecop.freeze(Time.zone.parse('2018-12-25'))
-  end
-
-  after do
-    Timecop.return
+  around do |example|
+    Timecop.freeze Date.new(2018, 12, 25) do
+      example.run
+    end
   end
 
   context 'successful request' do
     before do
-      previous = default_previous_single_page_payload('base/path', prev_from.to_s, from.to_s)
-      content_data_api_has_single_page(base_path: 'base/path', from: from.to_s, to: to.to_s)
-      content_data_api_has_single_page(base_path: 'base/path', from: prev_from.to_s, to: from.to_s, payload: previous)
+      stub_metrics_page(base_path: 'base/path', time_period: :last_30_days)
       visit '/metrics/base/path'
     end
 
@@ -87,6 +80,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     describe 'page metric section' do
+      let(:expected_table_dates) { ['', '11-25', '11-26', '12-25'] }
+
       it 'renders the metric for upviews' do
         expect(page).to have_selector '.metric-summary__upviews', text: '33'
       end
@@ -130,7 +125,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the metric timeseries for upviews' do
         upviews_rows = extract_table_content(".chart.upviews table")
         expect(upviews_rows).to match_array([
-          ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+          expected_table_dates,
           ["Unique pageviews", "1", "2", "30"]
         ])
       end
@@ -138,7 +133,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the metric timeseries for pviews' do
         pviews_rows = extract_table_content(".chart.pviews table")
         expect(pviews_rows).to match_array([
-          ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+          expected_table_dates,
           %w[Pageviews 10 20 30]
         ])
       end
@@ -146,7 +141,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the metric timeseries for on-page searches' do
         internal_searches_rows = extract_table_content(".chart.searches table")
         expect(internal_searches_rows).to match_array([
-          ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+          expected_table_dates,
           ["Searches from the page", "8", "8", "8"]
         ])
       end
@@ -154,7 +149,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the metric timeseries for satisfaction' do
         satisfaction_rows = extract_table_content(".chart.satisfaction table")
         expect(satisfaction_rows).to match_array([
-          ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+          expected_table_dates,
           ["User satisfaction score", "100.000%", "90.000%", "80.000%"]
         ])
       end
@@ -163,7 +158,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         feedback_comment_rows = extract_table_content(".chart.feedex table")
 
         expect(feedback_comment_rows).to match_array([
-          ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+          expected_table_dates,
           ["Number of feedback comments", "20", "21", "22"]
         ])
       end
