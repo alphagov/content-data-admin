@@ -12,6 +12,12 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
   end
 
+  around do |example|
+    Timecop.freeze Date.new(2018, 12, 25) do
+      example.run
+    end
+  end
+
   context 'successful request' do
     before do
       stub_metrics_page(base_path: 'base/path', time_period: :last_30_days)
@@ -100,6 +106,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
       it 'renders a metric for feedex' do
         expect(page).to have_selector '.metric-summary__feedex', text: '63'
+      end
+
+      it 'renders link to feedback explorer' do
+        expect(page).to have_selector('.govuk-link', text: I18n.t("metrics.feedex.external_link"))
       end
 
       it 'renders a metric for pdf_count' do

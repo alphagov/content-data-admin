@@ -65,6 +65,19 @@ class SingleContentItemPresenter
     I18n.t("metrics.feedex.context")
   end
 
+  def feedback_explorer_href
+    host = Plek.new.external_url_for('support')
+    template = Addressable::Template.new(
+      "#{host}/anonymous_feedback{?from,to,paths}"
+    )
+    query = {
+      paths: base_path,
+      from: @date_range.from,
+      to: @date_range.to
+    }
+    template.expand(query).to_s
+  end
+
   def period
     I18n.t("metrics.show.time_periods.#{@date_range.time_period}.reference")
   end

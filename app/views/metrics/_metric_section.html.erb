@@ -9,3 +9,6 @@
 
 <%= render 'chart', series: @performance_data.get_chart(metric_name) %>
 <a href="" class="govuk-link govuk-body-s"><%= t ".download_link", metric_name: t("metrics.#{metric_name}.title") %></a>
+<% if external_link %>
+  <a href="<%= external_link %>" class="govuk-link govuk-body-s"><%= t "metrics.#{metric_name}.external_link" %></a>
+<% end %>

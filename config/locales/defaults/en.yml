@@ -12,6 +12,7 @@ en:
       context: 'This page makes up %{percent_org_views}% of all views.'
       unit: ''
       data_source: google_analytics
+      external_link: ''
       about: >
         This represents the number of visits in which the page was viewed at least once.
         For example, if a user visits the same page 5 times during their browsing session,
@@ -23,6 +24,7 @@ en:
       context: ''
       unit: ''
       data_source: google_analytics
+      external_link: ''
       about: >
         This is a count of every time the page was viewed. For example, if someone visits page X,
         then goes to page Y and then page X again, the page X will show having 2 pageviews (and
@@ -34,6 +36,7 @@ en:
       context: ''
       unit: ''
       data_source: calculated_google_analytics
+      external_link: ''
       about: >
         This figure is calculated by dividing Google Analytic pageviews by unique pageviews. It
         shows on average how many times a page was viewed during users' session. If a page has a
@@ -46,6 +49,7 @@ en:
       context: '%{percent_users_searched}% of users searched from the page'
       unit: 'search terms'
       data_source: none
+      external_link: ''
       about: >
         This is the number of internal site search that were started from the page. When people
         use internal search, it's an indication that they haven't found what they're looking for.
@@ -57,6 +61,7 @@ en:
       unit: ''
       short_context: '%{total_responses} responses'
       data_source: none
+      external_link: ''
       about: >
         Percentage of users who answered 'Yes' rather than 'No' to the 'Is this page useful?' survey.
         The more users who responded, the more reliable the score is. For a more reliable score
@@ -69,6 +74,7 @@ en:
       context: ''
       unit: 'comments'
       data_source: feedback_explorer
+      external_link: 'See comments in Feedback Explorer'
       about: >
         You can use Feedback Explorer ('Feedex') to find out what users are saying about your
         content. A high rate of feedback could indicate a problem with the content. The data comes
@@ -83,6 +89,7 @@ en:
       context: ''
       unit: ''
       data_source: none
+      external_link: ''
       about: >
         Lots of words on a page can make content difficult for users to read online. The longer the
         page is, the less usable it is likely to be. You could investigate whether this content could
@@ -94,6 +101,7 @@ en:
       context: ''
       unit: ''
       data_source: none
+      external_link: ''
       about: >
         Compared with HTML content, information published in a PDF is harder to find, use and 
         maintain. PDFs can often be bad for accessibility and rarely comply with open standards.
