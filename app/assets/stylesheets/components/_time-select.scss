@@ -3,3 +3,7 @@
   @include govuk-responsive-padding(3, "bottom");
   border-top: 2px solid $govuk-border-colour;
 }
+
+.app-c-time-select--compact {
+  border-top: 0;
+}

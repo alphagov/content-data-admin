@@ -14,6 +14,20 @@ $govuk-global-styles: true;
 
 // local views
 @import "metrics/show";
+@import "content/index";
+
+.gem-c-environment-tag {
+  @media (max-width: 360px) {
+    @include govuk-font($size: 14);
+  }
+}
+
+.govuk-header__link--homepage {
+  @media (max-width: 360px) {
+    @include govuk-font($size: 24);
+  }
+
+}
 
 //overrides must be imported last
 @import "govuk-frontend/overrides/all";

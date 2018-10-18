@@ -12,6 +12,7 @@ en:
         base_path: 'URL'
     time-select:
       title: 'Page data: %{time_period}'
+      title_compact: 'Showing data from %{time_period}'
       change_dropdown: 'Change time period'
       submit_button: 'Change dates'
     info-metric:

@@ -1,6 +1,5 @@
 <% content_for :head do %>
   <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-  <%= javascript_include_tag "application" %>
   <%= stylesheet_link_tag "application" %>
 
   <% if ENV["GOOGLE_TAG_MANAGER_ID"] %>
@@ -24,15 +23,16 @@
       { text: "Log out", href: gds_sign_out_path }
     ]
   }%>
-  <div class="govuk-width-container">
+
+  <% unless @fullwidth %>
+    <div class="govuk-width-container">
+  <% end %>
 
     <% banner_message = capture do %>
       This is a new service - your <a href="">feedback</a> will help us to improve it.
     <% end %>
-    <%= render "govuk_publishing_components/components/phase_banner", {
-      phase: "beta",
-      message: banner_message
-    } %>
+
+    <%= render "govuk_publishing_components/components/phase_banner", {phase: "beta", message: banner_message} %>
 
     <% if yield(:back_link).present? %>
       <%= render "govuk_publishing_components/components/back_link", href: yield(:back_link) %>
@@ -52,6 +52,10 @@
     <main class="govuk-main-wrapper " id="main-content" role="main">
       <%= yield %>
     </main>
-  </div>
+
+    <% unless @fullwidth %>
+      </div>
+    <% end %>
+
   <%= render "govuk_publishing_components/components/layout_footer" %>
 <% end %>
