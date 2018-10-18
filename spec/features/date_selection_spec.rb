@@ -1,7 +1,6 @@
 RSpec.describe 'date selection', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
-  let(:metrics) { %w[pviews upviews searches feedex pdf_count words satisfaction useful_yes useful_no] }
   let(:base_path) { 'base/path' }
   let(:page_uri) { "/metrics/#{base_path}" }
 
@@ -33,12 +32,11 @@ RSpec.describe 'date selection', type: :feature do
 
     it 'renders data for the last 30 days' do
       visit page_uri
-      expect_default_date_period_metrics_to_be_displayed(from: '2018-11-25', to: '2018-12-25')
+      expect_metrics_for_each_date_to_be_correct(from: '2018-11-25', to: '2018-12-25')
     end
   end
 
   it 'renders data for the last 30 days when `Past 30 days` is selected' do
-    stub_metrics_page(base_path: base_path, time_period: :last_30_days)
     visit_page_and_filter_by_date_range('last-30-days')
     expect_metrics_for_each_date_to_be_correct(from: '2018-11-25', to: '2018-12-25')
   end
@@ -80,18 +78,6 @@ RSpec.describe 'date selection', type: :feature do
   end
 
   def expect_metrics_for_each_date_to_be_correct(from:, to:)
-    from = from.to_date
-    to = to.to_date
-    month_and_date_string_for_date1 = (from - 1.day).to_s.last(5)
-    month_and_date_string_for_date2 = (from - 2.days).to_s.last(5)
-    month_and_date_string_for_date3 = (to + 1.day).to_s.last(5)
-    upviews_rows = extract_table_content("#upviews_table")
-    expect(upviews_rows).to include(
-      ['', month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
-    )
-  end
-
-  def expect_default_date_period_metrics_to_be_displayed(from:, to:)
     from = from.to_date
     to = to.to_date
     month_and_date_string_for_date1 = (from - 1.day).to_s.last(5)
