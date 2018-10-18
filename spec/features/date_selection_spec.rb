@@ -1,16 +1,14 @@
 RSpec.describe 'date selection', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
-  include DateRangeHelpers
   let(:metrics) { %w[pviews upviews searches feedex pdf_count words satisfaction useful_yes useful_no] }
   let(:base_path) { 'base/path' }
   let(:page_uri) { "/metrics/#{base_path}" }
-  let(:today) { Date.parse('2018-12-25') }
 
   before do
-    Timecop.freeze(today)
+    Timecop.freeze(Date.new(2018, 12, 25))
     # Stub backend API for initial page visit
-    stub_response_for_time_period(:last_30_days, today)
+    stub_metrics_page(base_path: base_path, time_period: :last_30_days)
   end
 
   after do
@@ -40,37 +38,37 @@ RSpec.describe 'date selection', type: :feature do
   end
 
   it 'renders data for the last 30 days when `Past 30 days` is selected' do
-    stub_response_for_time_period(:last_30_days, today)
+    stub_metrics_page(base_path: base_path, time_period: :last_30_days)
     visit_page_and_filter_by_date_range('last-30-days')
     expect_metrics_for_each_date_to_be_correct(from: '2018-11-25', to: '2018-12-25')
   end
 
   it 'renders data for the previous month when `Past month` is selected' do
-    stub_response_for_time_period(:last_month, today)
+    stub_metrics_page(base_path: base_path, time_period: :last_month)
     visit_page_and_filter_by_date_range('last-month')
     expect_metrics_for_each_date_to_be_correct(from: '2018-11-01', to: '2018-11-30')
   end
 
   it 'renders data for the last 3 months when `Past 3 months` is selected' do
-    stub_response_for_time_period(:last_3_months, today)
+    stub_metrics_page(base_path: base_path, time_period: :last_3_months)
     visit_page_and_filter_by_date_range('last-3-months')
     expect_metrics_for_each_date_to_be_correct(from: '2018-09-25', to: '2018-12-25')
   end
 
   it 'renders data for the last 6 months when `Past 6 months` is selected' do
-    stub_response_for_time_period(:last_6_months, today)
+    stub_metrics_page(base_path: base_path, time_period: :last_6_months)
     visit_page_and_filter_by_date_range('last-6-months')
     expect_metrics_for_each_date_to_be_correct(from: '2018-06-25', to: '2018-12-25')
   end
 
   it 'renders data for the last year when `Past year` is selected' do
-    stub_response_for_time_period(:last_year, today)
+    stub_metrics_page(base_path: base_path, time_period: :last_year)
     visit_page_and_filter_by_date_range('last-year')
     expect_metrics_for_each_date_to_be_correct(from: '2017-12-25', to: '2018-12-25')
   end
 
   it 'renders data for the last 2 years when `Past 2 years` is selected' do
-    stub_response_for_time_period(:last_2_years, today)
+    stub_metrics_page(base_path: base_path, time_period: :last_2_years)
     visit_page_and_filter_by_date_range('last-2-years')
     expect_metrics_for_each_date_to_be_correct(from: '2016-12-25', to: '2018-12-25')
   end
@@ -79,18 +77,6 @@ RSpec.describe 'date selection', type: :feature do
     visit page_uri
     find("input[type=radio][name=date_range][value=#{date_range}]").click
     click_button 'Change dates'
-  end
-
-  def stub_response_for_time_period(time_period, relative_date)
-    date_ranges = get_date_ranges(relative_date: relative_date)
-    dates = date_ranges[time_period][:current]
-    prev_dates = date_ranges[time_period][:previous]
-    content_data_api_has_single_page(
-      base_path: base_path, from: dates[:from].to_s(:param), to: dates[:to].to_s(:param)
-    )
-    content_data_api_has_single_page(
-      base_path: base_path, from: prev_dates[:from].to_s(:param), to: prev_dates[:to].to_s(:param)
-    )
   end
 
   def expect_metrics_for_each_date_to_be_correct(from:, to:)

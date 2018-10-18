@@ -3,6 +3,17 @@ require 'gds_api/content_data_api'
 module GdsApi
   module TestHelpers
     module ContentDataApi
+      def stub_metrics_page(base_path:, time_period:)
+        dates = build(:date_range, time_period)
+        prev_dates = dates.previous
+        content_data_api_has_single_page(
+          base_path: base_path, from: dates.from, to: dates.to
+        )
+        content_data_api_has_single_page(
+          base_path: base_path, from: prev_dates.from, to: prev_dates.to
+        )
+      end
+
       def content_data_api_does_not_have_base_path(base_path:, from:, to:)
         query = query(from: from, to: to)
         url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
