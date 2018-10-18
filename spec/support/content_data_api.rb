@@ -91,7 +91,7 @@ module GdsApi
             content_id: 'content-id',
             first_published_at:  "2018-07-17T10:35:59.000Z",
             public_updated_at:  "2018-07-17T10:35:57.000Z",
-            publishing_app:  "publisher",
+            publishing_app:  "whitehall",
             document_type:  "news_story",
             primary_organisation_title:  "The Ministry"
           },
