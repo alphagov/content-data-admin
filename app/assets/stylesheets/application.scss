@@ -3,6 +3,7 @@ $govuk-global-styles: true;
 // gem components
 @import 'govuk_publishing_components/all_components';
 
+
 // local components
 @import "components/chart";
 @import "components/glance-metric";
@@ -10,3 +11,9 @@ $govuk-global-styles: true;
 @import "components/metadata";
 @import "components/time-select";
 @import "components/related-actions";
+
+// local views
+@import "metrics/show";
+
+//overrides must be imported last
+@import "govuk-frontend/overrides/all";

@@ -1,12 +1,34 @@
 @import "../../../node_modules/govuk-frontend/helpers/visually-hidden";
 
 .app-c-related-actions {
-  border-top: 1px solid $govuk-border-colour;
+  border-top: 2px solid $govuk-border-colour;
+  @include govuk-responsive-margin(3, "bottom");
+
+  @include media-down(mobile-down) {
+    border-bottom: 2px solid $govuk-border-colour;
+  }
+}
+
+.app-c-related-actions__header {
+
+  @include media-down(mobile) {
+    @include govuk-font(19);
+    @include govuk-clearfix;
+    @include govuk-responsive-margin(5, "top");
+  }
+
 }
 
 .app-c-related-actions__link {
-  margin-left: 0;
+  @include govuk-responsive-margin(0, "left");
   @include govuk-responsive-margin(3, "bottom");
+
+  @include media-down(mobile) {
+    @include govuk-font(19);
+    @include govuk-responsive-margin(1, "top");
+
+  }
+
 }
 
 .app-c-related-actions__accessibility-message {

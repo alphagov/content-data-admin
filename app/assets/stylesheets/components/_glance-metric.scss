@@ -13,6 +13,8 @@
 .app-c-glance-metric__heading {
   @include govuk-responsive-margin(3, "top");
   @include govuk-responsive-margin(2, "bottom");
+  min-height: 2.6em;
+
 
   @include media-down(tablet) {
     min-height: 4em;
@@ -25,15 +27,27 @@
 
 .app-c-glance-metric__figure {
   @include govuk-font($size: 36, $weight: bold);
+
+  @include media-down(mobile) {
+    @include govuk-font($size: 48, $weight: bold);
+  }
 }
 
 .app-c-glance-metric__context {
   min-height: 5em;
   border-bottom: 1px solid $govuk-border-colour;
 
-  @include media(mobile) {
+  @include media-down(mobile) {
+    @include govuk-font(16);
     min-height: 0;
     border-bottom: 0;
+  }
+}
+
+.app-c-glance-metric__trend {
+
+  @include media-down(mobile) {
+    @include govuk-font(24);
   }
 }
 
@@ -43,4 +57,15 @@
 
 .app-c-glance-metric__trend-icon {
   color: $grey-1;
+
+  @include media-down(mobile) {
+    @include govuk-font(19);
+  }
+}
+
+.app-c-glance-metric__period {
+
+  @include media-down(mobile) {
+    @include govuk-font(16);
+  }
 }

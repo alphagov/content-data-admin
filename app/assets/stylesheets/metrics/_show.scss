@@ -1,0 +1,40 @@
+.section-performance {
+
+  @include media-down(mobile) {
+    border-top: 2px solid $govuk-border-colour;
+  }
+}
+
+.section-performance__header {
+  @include govuk-font($size: 36, $weight: bold);
+  margin: 0;
+
+  @include media-down(mobile) {
+    @include govuk-responsive-margin(3, "top");
+  }
+}
+
+.section-content {
+  padding: 0;
+}
+
+.section-content__header {
+  @include govuk-font($size: 36, $weight: bold);
+  margin: 0;
+}
+
+.govuk-section-break--visible {
+  border-width: 2px;
+}
+
+.metric-summary__words {
+  padding: 0 !important;
+
+  @include media-down(mobile) {
+    border-bottom: 2px solid $govuk-border-colour;
+  }
+}
+
+.metric-summary__pdf-count {
+  padding: 0 !important;
+}

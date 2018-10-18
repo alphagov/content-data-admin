@@ -11,6 +11,18 @@
   <div class="app-c-info-metric govuk-body">
     <h3 class="app-c-info-metric__heading"><%= name %></h3>
     <p class="app-c-info-metric__context govuk-body-s"><%= context %></p>
+    <% if about %>
+      <div class="app-c-info-metric__about govuk-body-s">
+        <%= render "govuk_publishing_components/components/details", {
+          title: t(".about_dropdown")
+        } do %>
+          <p class="govuk-body govuk-body-s"><%= about %></p>
+          <% if data_source %>
+            <p><%=t("components.info-metric.data_source", source: data_source)%></p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
     <span class="app-c-info-metric__figure govuk-!-font-weight-bold govuk-!-font-size-36 "><%= figure %></span>
     <% if short_context %>
       <span class="app-c-info-metric__short-context">
@@ -40,18 +52,6 @@
     <% end %>
     <% if period %>
       <span class="app-c-info-metric__period"><%= period %></span>
-    <% end %>
-    <% if about %>
-      <div class="app-c-info-metric__about govuk-body-s">
-        <%= render "govuk_publishing_components/components/details", {
-          title: t(".about_dropdown")
-        } do %>
-          <p><%= about %></p>
-          <% if data_source %>
-            <p><%=t("components.info-metric.data_source", source: data_source)%></p>
-          <% end %>
-        <% end %>
-      </div>
     <% end %>
   </div>
 <% end %>
