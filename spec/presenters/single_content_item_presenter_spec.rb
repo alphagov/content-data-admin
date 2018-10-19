@@ -44,7 +44,7 @@ RSpec.describe SingleContentItemPresenter do
       expect(subject.trend_percentage('upviews')).to eq(0.0)
     end
 
-    it 'calculates an infinite percent increase' do
+    it 'calculates an infinite percent increase (0 to non-zero)' do
       current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }]
       previous_period_data[:time_series_metrics] = [{ name: 'upviews', total: 0 }]
 
