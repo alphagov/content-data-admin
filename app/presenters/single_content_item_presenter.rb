@@ -3,13 +3,17 @@ class SingleContentItemPresenter
 
   attr_reader :date_range
 
-  def initialize(single_page_data, date_range)
-    @single_page_data = single_page_data
+  def initialize(current_period_data, previous_period_data, date_range)
+    @single_page_data = current_period_data
 
     @date_range = date_range
     @metrics = parse_metrics(
-      single_page_data[:time_series_metrics],
-      single_page_data[:edition_metrics]
+      current_period_data[:time_series_metrics],
+      current_period_data[:edition_metrics]
+    )
+    @previous_metrics = parse_metrics(
+      previous_period_data[:time_series_metrics],
+      previous_period_data[:edition_metrics]
     )
   end
 
@@ -71,6 +75,12 @@ class SingleContentItemPresenter
 
   def metric_short_title(metric_name)
     I18n.t("metrics.#{metric_name}.short_title")
+  end
+
+  def trend_percentage(metric_name)
+    current_value = @metrics[metric_name][:value]
+    previous_value = @previous_metrics[metric_name][:value]
+    calculate_trend_percentage(current_value, previous_value)
   end
 
   def publishing_app
@@ -145,6 +155,10 @@ private
       }
     end
     metrics
+  end
+
+  def calculate_trend_percentage(current_value, previous_value)
+    previous_value.to_f <= 0 ? 0 : ((current_value.to_f / previous_value.to_f) - 1) * 100
   end
 
   def format_date(date_str)

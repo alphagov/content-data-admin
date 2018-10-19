@@ -1,42 +1,187 @@
 RSpec.describe DateRange do
-  describe '#to' do
-    it 'returns today`s date if selected time period is `last-30-days`' do
-      expect(DateRange.new('last-30-days').to).to eq(Time.zone.today.to_s)
-    end
-    it 'returns today`s date if selected time period is `last-3-months`' do
-      expect(DateRange.new('last-3-months').to).to eq(Time.zone.today.to_s)
-    end
-    it 'returns today`s date if selected time period is `last-6-months`' do
-      expect(DateRange.new('last-6-months').to).to eq(Time.zone.today.to_s)
-    end
-    it 'returns today`s date if selected time period is `last-year`' do
-      expect(DateRange.new('last-year').to).to eq(Time.zone.today.to_s)
-    end
-    it 'returns today`s date if selected time period is `last-2-years`' do
-      expect(DateRange.new('last-2-years').to).to eq(Time.zone.today.to_s)
-    end
-    it 'returns date of last day of previous month if selected time period is `last-month`' do
-      expect(DateRange.new('last-month').to).to eq(Time.zone.today.last_month.end_of_month.to_s)
+  around do |example|
+    Timecop.freeze Date.new(2018, 12, 25) do
+      example.run
     end
   end
-  describe '#from' do
-    it 'returns date of 30 days ago if selected time period is `last-30-days`' do
-      expect(DateRange.new('last-30-days').from).to eq((Time.zone.today - 30.days).to_s)
+
+  describe 'for last 30 days' do
+    let(:time_period) { 'last-30-days' }
+
+    describe 'relative to today' do
+      subject { DateRange.new(time_period) }
+
+      it { is_expected.to have_attributes(to: '2018-12-25') }
+      it { is_expected.to have_attributes(from: '2018-11-25') }
+      it { is_expected.to have_attributes(time_period: 'last-30-days') }
     end
-    it 'returns date of 3 months ago if selected time period is `last-3-months`' do
-      expect(DateRange.new('last-3-months').from).to eq((Time.zone.today - 3.months).to_s)
+
+    describe 'relative to specified date' do
+      subject { DateRange.new(time_period, specified_date) }
+      let(:specified_date) { Date.new(2018, 6, 25) }
+
+      it { is_expected.to have_attributes(to: '2018-06-25') }
+      it { is_expected.to have_attributes(from: '2018-05-26') }
+      it { is_expected.to have_attributes(time_period: 'last-30-days') }
     end
-    it 'returns date of 6 months ago if selected time period is `last-6-months`' do
-      expect(DateRange.new('last-6-months').from).to eq((Time.zone.today - 6.months).to_s)
+
+    describe '#previous' do
+      subject { DateRange.new(time_period).previous }
+
+      it { is_expected.to be_an_instance_of(DateRange) }
+      it { is_expected.to have_attributes(to: '2018-11-25') }
+      it { is_expected.to have_attributes(from: '2018-10-26') }
+      it { is_expected.to have_attributes(time_period: 'last-30-days') }
     end
-    it 'returns date of 1 year ago if selected time period is `last-year`' do
-      expect(DateRange.new('last-year').from).to eq((Time.zone.today - 1.year).to_s)
+  end
+
+  describe 'for last month' do
+    let(:time_period) { 'last-month' }
+
+    describe 'relative to today' do
+      subject { DateRange.new(time_period) }
+
+      it { is_expected.to have_attributes(to: '2018-11-30') }
+      it { is_expected.to have_attributes(from: '2018-11-01') }
+      it { is_expected.to have_attributes(time_period: 'last-month') }
     end
-    it 'returns date of 2 years ago if selected time period is `last-2-years`' do
-      expect(DateRange.new('last-2-years').from).to eq((Time.zone.today - 2.years).to_s)
+
+    describe 'relative to specified date' do
+      subject { DateRange.new(time_period, specified_date) }
+      let(:specified_date) { Date.new(2018, 6, 25) }
+
+      it { is_expected.to have_attributes(to: '2018-05-31') }
+      it { is_expected.to have_attributes(from: '2018-05-01') }
+      it { is_expected.to have_attributes(time_period: 'last-month') }
     end
-    it 'returns date of first day of previous month if selected time period is `last-month`' do
-      expect(DateRange.new('last-month').from).to eq(Time.zone.today.last_month.beginning_of_month.to_s)
+
+    describe '#previous' do
+      subject { DateRange.new(time_period).previous }
+
+      it { is_expected.to be_an_instance_of(DateRange) }
+      it { is_expected.to have_attributes(to: '2018-10-31') }
+      it { is_expected.to have_attributes(from: '2018-10-01') }
+      it { is_expected.to have_attributes(time_period: 'last-month') }
+    end
+  end
+
+  describe 'for last 3 months' do
+    let(:time_period) { 'last-3-months' }
+
+    describe 'relative to today' do
+      subject { DateRange.new(time_period) }
+
+      it { is_expected.to have_attributes(to: '2018-12-25') }
+      it { is_expected.to have_attributes(from: '2018-09-25') }
+      it { is_expected.to have_attributes(time_period: 'last-3-months') }
+    end
+
+    describe 'relative to specified date' do
+      subject { DateRange.new(time_period, specified_date) }
+      let(:specified_date) { Date.new(2018, 6, 25) }
+
+      it { is_expected.to have_attributes(to: '2018-06-25') }
+      it { is_expected.to have_attributes(from: '2018-03-25') }
+      it { is_expected.to have_attributes(time_period: 'last-3-months') }
+    end
+
+    describe '#previous' do
+      subject { DateRange.new(time_period).previous }
+
+      it { is_expected.to be_an_instance_of(DateRange) }
+      it { is_expected.to have_attributes(to: '2018-09-25') }
+      it { is_expected.to have_attributes(from: '2018-06-25') }
+      it { is_expected.to have_attributes(time_period: 'last-3-months') }
+    end
+  end
+
+  describe 'for last 6 months' do
+    let(:time_period) { 'last-6-months' }
+
+    describe 'relative to today' do
+      subject { DateRange.new(time_period) }
+
+      it { is_expected.to have_attributes(to: '2018-12-25') }
+      it { is_expected.to have_attributes(from: '2018-06-25') }
+      it { is_expected.to have_attributes(time_period: 'last-6-months') }
+    end
+
+    describe 'relative to specified date' do
+      subject { DateRange.new(time_period, specified_date) }
+      let(:specified_date) { Date.new(2018, 6, 25) }
+
+      it { is_expected.to have_attributes(to: '2018-06-25') }
+      it { is_expected.to have_attributes(from: '2017-12-25') }
+      it { is_expected.to have_attributes(time_period: 'last-6-months') }
+    end
+
+    describe '#previous' do
+      subject { DateRange.new(time_period).previous }
+
+      it { is_expected.to be_an_instance_of(DateRange) }
+      it { is_expected.to have_attributes(to: '2018-06-25') }
+      it { is_expected.to have_attributes(from: '2017-12-25') }
+      it { is_expected.to have_attributes(time_period: 'last-6-months') }
+    end
+  end
+
+  describe 'for last year' do
+    let(:time_period) { 'last-year' }
+
+    describe 'relative to today' do
+      subject { DateRange.new(time_period) }
+
+      it { is_expected.to have_attributes(to: '2018-12-25') }
+      it { is_expected.to have_attributes(from: '2017-12-25') }
+      it { is_expected.to have_attributes(time_period: 'last-year') }
+    end
+
+    describe 'relative to specified date' do
+      subject { DateRange.new(time_period, specified_date) }
+      let(:specified_date) { Date.new(2018, 6, 25) }
+
+      it { is_expected.to have_attributes(to: '2018-06-25') }
+      it { is_expected.to have_attributes(from: '2017-06-25') }
+      it { is_expected.to have_attributes(time_period: 'last-year') }
+    end
+
+    describe '#previous' do
+      subject { DateRange.new(time_period).previous }
+
+      it { is_expected.to be_an_instance_of(DateRange) }
+      it { is_expected.to have_attributes(to: '2017-12-25') }
+      it { is_expected.to have_attributes(from: '2016-12-25') }
+      it { is_expected.to have_attributes(time_period: 'last-year') }
+    end
+  end
+
+  describe 'for last 2 year' do
+    let(:time_period) { 'last-2-years' }
+
+    describe 'relative to today' do
+      subject { DateRange.new(time_period) }
+
+      it { is_expected.to have_attributes(to: '2018-12-25') }
+      it { is_expected.to have_attributes(from: '2016-12-25') }
+      it { is_expected.to have_attributes(time_period: 'last-2-years') }
+    end
+
+    describe 'relative to specified date' do
+      subject { DateRange.new(time_period, specified_date) }
+      let(:specified_date) { Date.new(2018, 6, 25) }
+
+      it { is_expected.to have_attributes(to: '2018-06-25') }
+      it { is_expected.to have_attributes(from: '2016-06-25') }
+      it { is_expected.to have_attributes(time_period: 'last-2-years') }
+    end
+
+    describe '#previous' do
+      subject { DateRange.new(time_period).previous }
+
+      it { is_expected.to be_an_instance_of(DateRange) }
+      it { is_expected.to have_attributes(to: '2016-12-25') }
+      it { is_expected.to have_attributes(from: '2014-12-25') }
+      it { is_expected.to have_attributes(time_period: 'last-2-years') }
     end
   end
 end

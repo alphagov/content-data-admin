@@ -3,7 +3,7 @@
       name: @performance_data.metric_short_title(metric_name),
       figure: total,
       context: context,
-      trend_percentage: 0,
+      trend_percentage: @performance_data.trend_percentage(metric_name),
       period: @performance_data.period
     } %>
 </div>

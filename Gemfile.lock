@@ -362,7 +362,7 @@ DEPENDENCIES
   rails (~> 5.2)
   rspec-rails (~> 3)
   simplecov (~> 0.16)
-  timecop
+  timecop (~> 0.9.1)
   uglifier (~> 4)
   webmock
 
@@ -370,4 +370,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.2
+   1.16.4

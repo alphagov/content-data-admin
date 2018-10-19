@@ -3,6 +3,31 @@ require 'gds_api/content_data_api'
 module GdsApi
   module TestHelpers
     module ContentDataApi
+      def stub_metrics_page(base_path:, time_period:)
+        dates = build(:date_range, time_period)
+        prev_dates = dates.previous
+
+        current_period_data = default_single_page_payload(
+          base_path, dates.from, dates.to
+        )
+        previous_period_data = default_previous_single_page_payload(
+          base_path, prev_dates.from, prev_dates.to
+        )
+
+        content_data_api_has_single_page(
+          base_path: base_path,
+          from: dates.from,
+          to: dates.to,
+          payload: current_period_data
+        )
+        content_data_api_has_single_page(
+          base_path: base_path,
+          from: prev_dates.from,
+          to: prev_dates.to,
+          payload: previous_period_data
+        )
+      end
+
       def content_data_api_does_not_have_base_path(base_path:, from:, to:)
         query = query(from: from, to: to)
         url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
@@ -16,11 +41,11 @@ module GdsApi
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
-      def content_data_api_has_single_page(base_path:, from:, to:)
+      def content_data_api_has_single_page(base_path:, from:, to:, payload: nil)
         query = query(from: from, to: to)
         url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
-        body = default_single_page_payload(base_path, from, to).to_json
-        stub_request(:get, url).to_return(status: 200, body: body)
+        body = payload || default_single_page_payload(base_path, from, to)
+        stub_request(:get, url).to_return(status: 200, body: body.to_json)
       end
 
       def content_data_api_has_single_page_missing_data(base_path:, from:, to:)
@@ -56,11 +81,9 @@ module GdsApi
       end
 
       def default_single_page_payload(base_path, from, to)
-        from_date = Date.parse(from)
-        to_date = Date.parse(to)
-        day1 = (from_date - 1.day).to_s
-        day2 = (from_date - 2.days).to_s
-        day3 = (to_date + 1.day).to_s
+        day1 = from
+        day2 = (Date.parse(from) + 1.day).to_s
+        day3 = to
         {
           metadata: {
             title:  "Content Title",
@@ -140,6 +163,94 @@ module GdsApi
             {
               name: "pdf_count",
               value: 3
+            }
+          ]
+        }
+      end
+
+      def default_previous_single_page_payload(base_path, from, to)
+        day1 = from
+        day2 = (Date.parse(from) + 1.day).to_s
+        day3 = to
+        {
+          metadata: {
+            title:  "Content Title",
+            base_path:  "/#{base_path}",
+            first_published_at:  "2018-07-17T10:35:59.000Z",
+            public_updated_at:  "2018-07-17T10:35:57.000Z",
+            publishing_app:  "publisher",
+            document_type:  "news_story",
+            primary_organisation_title:  "The Ministry"
+          },
+          time_period: {
+            to: to,
+            from: from
+          },
+          time_series_metrics: [
+            {
+              name: "upviews",
+              total: 10,
+              time_series: [
+                { "date" => day1, "value" => 1 },
+                { "date" => day2, "value" => 2 },
+                { "date" => day3, "value" => 7 }
+              ]
+            },
+            {
+              name: "pviews",
+              total: 30,
+              time_series: [
+                { "date" => day1, "value" => 5 },
+                { "date" => day2, "value" => 5 },
+                { "date" => day3, "value" => 20 }
+              ]
+            },
+            {
+              name: "searches",
+              total: 48,
+              time_series: [
+                { "date" => day1, "value" => 16 },
+                { "date" => day2, "value" => 16 },
+                { "date" => day3, "value" => 16 }
+              ]
+            },
+            {
+              name: "feedex",
+              total: 60,
+              time_series: [
+                { "date" => day1, "value" => 20 },
+                { "date" => day2, "value" => 20 },
+                { "date" => day3, "value" => 20 }
+              ]
+            },
+            {
+              name: "satisfaction",
+              total: 0.6,
+              time_series: [
+                { "date" => day1, "value" => 0.6000 },
+                { "date" => day2, "value" => 0.6000 },
+                { "date" => day3, "value" => 0.6000 }
+              ]
+            },
+            {
+              "name": "useful_yes",
+              "total": 600,
+              "time_series": []
+            },
+            {
+              "name": "useful_no",
+              "total": 400,
+              "time_series": []
+            }
+          ],
+          edition_metrics: [
+            {
+              name: "words",
+              value: 300
+            },
+            {
+              name: "pdf_count",
+              value: 5
             }
           ]
         }

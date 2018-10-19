@@ -2,16 +2,19 @@ RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
   let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no] }
+  let(:prev_from) { Time.zone.today - 60.days }
   let(:from) { Time.zone.today - 30.days }
   let(:to) { Time.zone.today }
-  let(:month_and_date_string_for_date1) { (from - 1.day).to_s.last(5) }
-  let(:month_and_date_string_for_date2) { (from - 2.days).to_s.last(5) }
-  let(:month_and_date_string_for_date3) { (to + 1.day).to_s.last(5) }
+
+  around do |example|
+    Timecop.freeze Date.new(2018, 12, 25) do
+      example.run
+    end
+  end
 
   context 'successful request' do
     before do
-      content_data_api_has_single_page(base_path: 'base/path', from: from.to_s, to: to.to_s)
-
+      stub_metrics_page(base_path: 'base/path', time_period: :last_30_days)
       visit '/metrics/base/path'
     end
 
@@ -35,8 +38,12 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.glance-metric.upviews', text: '33'
       end
 
-      it 'renders glance metric context for unique page views' do
+      it 'renders glance metric context for unique pageviews' do
         expect(page).to have_selector '.glance-metric.upviews', text: '2.74%'
+      end
+
+      it 'renders trend percentage for unique pageviews' do
+        expect(page).to have_selector '.upviews .app-c-glance-metric__trend', text: '+230.00%'
       end
 
       it 'renders glance metric for satisfaction score' do
@@ -47,6 +54,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.glance-metric.satisfaction', text: '700'
       end
 
+      it 'renders trend percentage for satisfaction score' do
+        expect(page).to have_selector '.satisfaction .app-c-glance-metric__trend', text: '+50.00%'
+      end
+
       it 'renders glance metric for on page searches' do
         expect(page).to have_selector '.glance-metric.searches', text: '24'
       end
@@ -55,12 +66,22 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.glance-metric.searches', text: '50%'
       end
 
+      it 'renders trend percentage for page searches' do
+        expect(page).to have_selector '.searches .app-c-glance-metric__trend', text: '-50.00%'
+      end
+
       it 'renders glance metric for feedex comments' do
         expect(page).to have_selector '.glance-metric.feedex', text: '63'
+      end
+
+      it 'renders trend percentage for feedex comments' do
+        expect(page).to have_selector '.feedex .app-c-glance-metric__trend', text: '+5.00%'
       end
     end
 
     describe 'page metric section' do
+      let(:expected_table_dates) { ['', '11-25', '11-26', '12-25'] }
+
       it 'renders the metric for upviews' do
         expect(page).to have_selector '.metric-summary__upviews', text: '33'
       end
@@ -104,7 +125,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the metric timeseries for upviews' do
         upviews_rows = extract_table_content(".chart.upviews table")
         expect(upviews_rows).to match_array([
-          ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+          expected_table_dates,
           ["Unique pageviews", "1", "2", "30"]
         ])
       end
@@ -112,7 +133,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the metric timeseries for pviews' do
         pviews_rows = extract_table_content(".chart.pviews table")
         expect(pviews_rows).to match_array([
-          ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+          expected_table_dates,
           %w[Pageviews 10 20 30]
         ])
       end
@@ -120,7 +141,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the metric timeseries for on-page searches' do
         internal_searches_rows = extract_table_content(".chart.searches table")
         expect(internal_searches_rows).to match_array([
-          ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+          expected_table_dates,
           ["Searches from the page", "8", "8", "8"]
         ])
       end
@@ -128,7 +149,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the metric timeseries for satisfaction' do
         satisfaction_rows = extract_table_content(".chart.satisfaction table")
         expect(satisfaction_rows).to match_array([
-          ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+          expected_table_dates,
           ["User satisfaction score", "100.000%", "90.000%", "80.000%"]
         ])
       end
@@ -137,7 +158,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         feedback_comment_rows = extract_table_content(".chart.feedex table")
 
         expect(feedback_comment_rows).to match_array([
-          ["", month_and_date_string_for_date1.to_s, month_and_date_string_for_date2.to_s, month_and_date_string_for_date3.to_s],
+          expected_table_dates,
           ["Number of feedback comments", "20", "21", "22"]
         ])
       end
@@ -157,7 +178,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     context 'no time series from the data-api' do
       before do
         content_data_api_has_single_page_missing_data(base_path: 'base/path', from: from.to_s, to: to.to_s)
-
+        content_data_api_has_single_page_missing_data(base_path: 'base/path', from: prev_from.to_s, to: from.to_s)
         visit '/metrics/base/path'
       end
 
@@ -165,12 +186,6 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).not_to have_content('Unique pageviews table')
         expect(page).to have_selector 'div',
                                       text: 'No Unique pageviews data for the selected time period'
-      end
-
-      it 'renders a div to indicate no data when missing' do
-        expect(page).not_to have_content('Pageviews table')
-        expect(page).to have_selector 'div',
-                                      text: 'No Pageviews data for the selected time period'
       end
     end
 

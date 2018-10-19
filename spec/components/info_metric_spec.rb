@@ -34,7 +34,7 @@ RSpec.describe "Info Metric", type: :view do
     assert_select ".app-c-info-metric__heading", text: "Unique pageviews"
     assert_select ".app-c-info-metric__figure", text: "167,345"
     assert_select ".app-c-info-metric__context", text: "This is in your top 10 items"
-    assert_select ".app-c-info-metric__trend", text: "+0.5%"
+    assert_select ".app-c-info-metric__trend", text: "+0.50%"
     assert_select ".app-c-info-metric__period", text: "Apr 2018 to Mar 2018"
     assert_select ".gem-c-details", 1
     assert_select ".app-c-info-metric__about .govuk-details__text>p", text: "About this data."
