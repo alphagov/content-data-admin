@@ -9,12 +9,4 @@ module MetricsFormatterHelper
       figure
     end
   end
-
-  def format_metric_headline_figure(metric_name, figure)
-    if METRICS_MEASURED_AS_PERCENTAGES.include?(metric_name) && figure
-      number_to_percentage(figure, precision: 0)
-    else
-      figure
-    end
-  end
 end

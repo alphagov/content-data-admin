@@ -3,32 +3,42 @@ class SingleContentItemPresenter
 
   attr_reader :date_range
 
+  def initialize(single_page_data, date_range)
+    @single_page_data = single_page_data
+
+    @date_range = date_range
+    @metrics = parse_metrics(
+      single_page_data[:time_series_metrics],
+      single_page_data[:edition_metrics]
+    )
+  end
+
   def total_upviews
-    @metrics['upviews'][:value]
+    number_with_delimiter @metrics['upviews'][:value]
   end
 
   def total_pviews
-    @metrics['pviews'][:value]
+    number_with_delimiter @metrics['pviews'][:value]
   end
 
   def total_searches
-    @metrics['searches'][:value]
+    number_with_delimiter @metrics['searches'][:value]
   end
 
   def total_satisfaction
-    @metrics['satisfaction'][:value]
+    number_to_percentage(@metrics['satisfaction'][:value] * 100, precision: 0)
   end
 
   def total_feedex
-    @metrics['feedex'][:value]
+    number_with_delimiter @metrics['feedex'][:value]
   end
 
   def total_words
-    @metrics['words'][:value]
+    number_with_delimiter @metrics['words'][:value]
   end
 
   def total_pdf_count
-    @metrics['pdf_count'][:value]
+    number_with_delimiter @metrics['pdf_count'][:value]
   end
 
   def upviews_context
@@ -61,16 +71,6 @@ class SingleContentItemPresenter
 
   def metric_short_title(metric_name)
     I18n.t("metrics.#{metric_name}.short_title")
-  end
-
-  def initialize(single_page_data, date_range)
-    @single_page_data = single_page_data
-
-    @date_range = date_range
-    @metrics = parse_metrics(
-      single_page_data[:time_series_metrics],
-      single_page_data[:edition_metrics]
-    )
   end
 
   def publishing_app
@@ -133,7 +133,7 @@ private
     metrics = {}
     time_series_metrics.each do |metric|
       metrics[metric[:name]] = {
-        'value': format_metric_value(metric[:name], metric[:total]),
+        'value': metric[:total],
         'time_series': metric[:time_series]
       }
     end
