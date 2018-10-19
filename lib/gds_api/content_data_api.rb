@@ -17,8 +17,8 @@ class GdsApi::ContentDataApi < GdsApi::Base
     get_json(url).to_hash.deep_symbolize_keys
   end
 
-  def content(from:, to:, organisation_id:)
-    url = content_items_url(from, to, organisation_id)
+  def content(from:, to:, organisation_id:, document_type: nil)
+    url = content_items_url(from, to, organisation_id, document_type)
     get_json(url).to_hash.deep_symbolize_keys
   end
 
@@ -29,6 +29,10 @@ class GdsApi::ContentDataApi < GdsApi::Base
 
   def organisations
     get_json(organisations_url).to_hash.deep_symbolize_keys
+  end
+
+  def document_types
+    get_json(document_types_url).to_hash.deep_symbolize_keys
   end
 
 private
@@ -45,8 +49,14 @@ private
     "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}/time-series#{query_string(from: from, to: to, metrics: metrics)}"
   end
 
-  def content_items_url(from, to, organisation_id)
-    "#{content_data_api_endpoint}/content#{query_string(from: from, to: to, organisation_id: organisation_id)}"
+  def content_items_url(from, to, organisation_id, document_type)
+    params = {
+      from: from,
+      to: to,
+      organisation_id: organisation_id,
+      document_type: document_type
+ }.reject { |_, v| v.blank? }
+    "#{content_data_api_endpoint}/content#{query_string(params)}"
   end
 
   def single_page_url(base_path, from, to)
@@ -55,5 +65,9 @@ private
 
   def organisations_url
     "#{content_data_api_endpoint}/organisations"
+  end
+
+  def document_types_url
+    "#{content_data_api_endpoint}/document_types"
   end
 end
