@@ -8,7 +8,14 @@
 </div>
 
 <%= render 'chart', series: @performance_data.get_chart(metric_name) %>
-<a href="" class="govuk-link govuk-body-s"><%= t ".download_link", metric_name: t("metrics.#{metric_name}.title") %></a>
-<% if external_link %>
-  <a href="<%= external_link %>" class="govuk-link govuk-body-s"><%= t "metrics.#{metric_name}.external_link" %></a>
-<% end %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <a href="" class="govuk-link govuk-body-s"><%= t ".download_link", metric_name: t("metrics.#{metric_name}.title") %></a>
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <% if external_link %>
+      <a href="<%= external_link %>" class="govuk-link govuk-body-s"><%= t "metrics.#{metric_name}.external_link" %></a>
+    <% end %>
+  </div>
+</div>
