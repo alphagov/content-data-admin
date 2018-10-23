@@ -1,7 +1,7 @@
 en:
   components:
     chart:
-      table_dropdown: 'View %{metric_name} table'
+      table_dropdown: '%{metric_name} table'
     metadata:
       labels:
         status: 'Status'
