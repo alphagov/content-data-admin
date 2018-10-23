@@ -31,6 +31,7 @@ RSpec.describe '/content' do
     stub_metrics_page(base_path: 'path/1', time_period: :last_month)
     content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
     content_data_has_orgs
+    GDS::SSO.test_user = build(:user)
     visit "/content?date_range=last-month&organisation_id=org-id"
   end
 

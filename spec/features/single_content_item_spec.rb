@@ -14,6 +14,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
   context 'successful request' do
     before do
+      GDS::SSO.test_user = build(:user)
       stub_metrics_page(base_path: 'base/path', time_period: :last_30_days)
       visit '/metrics/base/path'
     end

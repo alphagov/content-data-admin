@@ -6,6 +6,7 @@ RSpec.describe 'date selection', type: :feature do
 
   before do
     Timecop.freeze(Date.new(2018, 12, 25))
+    GDS::SSO.test_user = build(:user)
     # Stub backend API for initial page visit
     stub_metrics_page(base_path: base_path, time_period: :last_30_days)
   end
