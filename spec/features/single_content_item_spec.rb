@@ -202,7 +202,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     describe 'related actions' do
       it 'renders the publishing application' do
-        expect(page).to have_selector '.related-actions', text: 'Publisher'
+        expect(page).to have_selector '.related-actions', text: 'Whitehall'
       end
     end
   end

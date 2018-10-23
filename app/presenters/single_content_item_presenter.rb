@@ -1,5 +1,6 @@
 class SingleContentItemPresenter
   include MetricsFormatterHelper
+  include ExternalLinksHelper
 
   attr_reader :date_range
 
@@ -96,10 +97,15 @@ class SingleContentItemPresenter
     calculate_trend_percentage(current_value, previous_value)
   end
 
-  def publishing_app
-    publishing_app = @single_page_data[:metadata][:publishing_app]
+  def edit_url
+    edit_url_for(
+      content_id: metadata[:content_id],
+      publishing_app: metadata[:publishing_app]
+    )
+  end
 
-    publishing_app.present? ? publishing_app.capitalize.tr('-', ' ') : 'Unknown'
+  def edit_label
+    edit_label_for(publishing_app: metadata[:publishing_app])
   end
 
   def title

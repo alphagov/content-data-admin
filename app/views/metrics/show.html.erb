@@ -25,18 +25,18 @@
     <%= render "components/related-actions",
       {
         links: [
-                  {
-                    header: t(".navigation.visit_page"),
-                    link_url: "//www.gov.uk#{@performance_data.base_path}",
-                    accessibility_message: t('.navigation.accessibility_message'),
-                    label: @performance_data.title
-                  },
-                  {
-                    header: "Make changes to the page",
-                    link_url: "#",
-                    label: t('.navigation.edit_link', publisher_app: @performance_data.publishing_app)
-                  }
-                ]
+          {
+            header: t(".navigation.visit_page"),
+            link_url: "//www.gov.uk#{@performance_data.base_path}",
+            accessibility_message: t('.navigation.accessibility_message'),
+            label: @performance_data.title
+          },
+          {
+            header: t(".navigation.edit_page"),
+            link_url: @performance_data.edit_url,
+            label: @performance_data.edit_label
+          }
+        ]
       } %>
   </div>
 </div>

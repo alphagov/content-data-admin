@@ -16,18 +16,6 @@ RSpec.describe SingleContentItemPresenter do
     SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
   end
 
-  describe '#publishing_app' do
-    it 'does not fail if no publishing app' do
-      current_period_data[:metadata][:publishing_app] = nil
-
-      expect(subject.publishing_app).to eq('Unknown')
-    end
-
-    it 'capitalizes the publishing_app if present' do
-      expect(subject.publishing_app).to eq('Publisher')
-    end
-  end
-
   describe '#trend_percentage' do
     it 'calculates an increase percentage change' do
       current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }]
@@ -77,6 +65,35 @@ RSpec.describe SingleContentItemPresenter do
       host = Plek.new.external_url_for('support')
       expected_link = "#{host}/anonymous_feedback?from=2018-05-02&to=2018-06-01&paths=%2Fthe%2Fbase%2Fpath"
       expect(subject.feedback_explorer_href).to eq(expected_link)
+    end
+  end
+
+  describe '#edit_url' do
+    it 'uses the ExternalLinksHelper' do
+      allow_any_instance_of(ExternalLinksHelper).to receive(
+        :edit_url_for
+      ).with(
+        content_id: 'content-id',
+        publishing_app: 'whitehall'
+      ).and_return(
+        'https://expected-link'
+      )
+
+      expect(subject.edit_url).to eq('https://expected-link')
+    end
+  end
+
+  describe '#edit_label' do
+    it 'uses the ExternalLinksHelper' do
+      allow_any_instance_of(ExternalLinksHelper).to receive(
+        :edit_label_for
+      ).with(
+        publishing_app: 'whitehall'
+      ).and_return(
+        'expected-label'
+      )
+
+      expect(subject.edit_label).to eq('expected-label')
     end
   end
 end
