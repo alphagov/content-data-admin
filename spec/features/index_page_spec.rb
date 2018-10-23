@@ -65,7 +65,7 @@ RSpec.describe '/content' do
       visit "/content?date_range=last-year&organisation_id=org-id"
       click_link 'The title'
       expect(current_path).to eq '/metrics/path/1'
-      expect(page).to have_content('Page data: Past year')
+      expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.last-year.leading')}")
     end
   end
 
@@ -82,7 +82,7 @@ RSpec.describe '/content' do
 
     it 'links to the page data page after filtering' do
       click_on 'The title'
-      expect(page).to have_content('Page data: Last month')
+      expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.last-month.leading')}")
     end
 
     it 'selected organisation is shown in dropdown menu' do
@@ -100,7 +100,7 @@ RSpec.describe '/content' do
       select 'another org', from: 'organisation_id'
       click_on 'Filter'
       click_on 'The title'
-      expect(page).to have_content('Page data: Past year')
+      expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.last-year.leading')}")
     end
   end
 end
