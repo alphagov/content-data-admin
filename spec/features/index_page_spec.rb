@@ -114,10 +114,6 @@ RSpec.describe '/content' do
       click_on 'Filter'
     end
 
-    it 'makes request to api with correct document_type' do
-      expect(page).to have_content('Content data')
-    end
-
     it 'selects the document_type in the dropdown menu' do
       expect(page).to have_select('document_type', selected: 'News story')
     end
