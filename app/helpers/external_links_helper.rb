@@ -5,6 +5,10 @@ module ExternalLinksHelper
       "#{external_url_for('whitehall-admin')}/government/admin/by-content-id/#{content_id}"
     when 'publisher'
       "#{external_url_for('support')}/content_change_request/new"
+    when 'manuals-publisher'
+      "#{external_url_for('manuals-publisher')}/manuals/#{content_id}"
+    when 'maslow', 'need-api'
+      "#{external_url_for('maslow')}/needs/#{content_id}"
     end
   end
 
