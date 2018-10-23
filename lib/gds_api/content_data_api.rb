@@ -54,8 +54,10 @@ private
       from: from,
       to: to,
       organisation_id: organisation_id,
-      document_type: document_type
- }.reject { |_, v| v.blank? }
+      document_type: document_type,
+    }
+    params.reject! { |_, v| v.blank? }
+
     "#{content_data_api_endpoint}/content#{query_string(params)}"
   end
 
