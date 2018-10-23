@@ -16,7 +16,7 @@
         <%= render "govuk_publishing_components/components/details", {
           title: t(".about_dropdown")
         } do %>
-          <p class="govuk-body govuk-body-s"><%= about %></p>
+          <p class="govuk-body govuk-body-s"><%= raw about %></p>
           <% if data_source %>
             <p><%=t("components.info-metric.data_source", source: data_source)%></p>
           <% end %>
