@@ -6,6 +6,12 @@ RSpec.describe SingleContentItemPresenter do
   let(:previous_period_data) { default_single_page_payload('the/base/path', '2018-10-26', '2018-11-25') }
 
 
+  around do |example|
+    Timecop.freeze Date.new(2018, 6, 1) do
+      example.run
+    end
+  end
+
   subject do
     SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
   end
@@ -63,6 +69,14 @@ RSpec.describe SingleContentItemPresenter do
 
     it 'returns the title' do
       expect(subject.title).to eq('Content Title')
+    end
+  end
+
+  describe '#feedback_explorer_href' do
+    it 'returns a URI for the feedback explorer' do
+      host = Plek.new.external_url_for('support')
+      expected_link = "#{host}/anonymous_feedback?from=2018-05-02&to=2018-06-01&paths=%2Fthe%2Fbase%2Fpath"
+      expect(subject.feedback_explorer_href).to eq(expected_link)
     end
   end
 end
