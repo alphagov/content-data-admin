@@ -96,4 +96,10 @@ RSpec.describe SingleContentItemPresenter do
       expect(subject.edit_label).to eq('expected-label')
     end
   end
+
+  describe '#link_text' do
+    it 'returns the downcased translation of the metric name' do
+      expect(subject.link_text('upviews')).to eq('unique pageviews')
+    end
+  end
 end
