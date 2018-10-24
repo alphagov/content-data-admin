@@ -146,11 +146,11 @@ private
   end
 
   def on_page_search_rate
-    metric_value = self.total_searches
-    secondary_metric_value = self.total_pviews
+    metric_value_as_float = self.total_searches.delete(',').to_f
+    secondary_metric_value_as_float = self.total_pviews.delete(',').to_f
 
-    return 0 if metric_value.to_i.zero? || secondary_metric_value.to_i.zero?
-    search_rate = (metric_value.to_f / secondary_metric_value.to_f) * 100
+    return 0 if metric_value_as_float.zero? || secondary_metric_value_as_float.zero?
+    search_rate = (metric_value_as_float / secondary_metric_value_as_float) * 100
     search_rate.round(2)
   end
 

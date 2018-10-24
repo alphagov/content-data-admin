@@ -74,7 +74,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders trend percentage for page searches' do
-        expect(page).to have_selector '.searches .app-c-glance-metric__trend', text: '-50.00%'
+        expect(page).to have_selector '.searches .app-c-glance-metric__trend', text: '400.00%'
       end
 
       it 'renders glance metric for feedex comments' do
@@ -83,6 +83,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
       it 'renders trend percentage for feedex comments' do
         expect(page).to have_selector '.feedex .app-c-glance-metric__trend', text: '+5.00%'
+      end
+
+      it 'renders context for page searches' do
+        expect(page).to have_selector '.searches .app-c-glance-metric__context', text: '0.4%'
       end
     end
 
@@ -145,7 +149,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         pviews_rows = extract_table_content(".chart.pviews table")
         expect(pviews_rows).to match_array([
           expected_table_dates,
-          %w[Pageviews 10 20 30]
+          %w[Pageviews 10000 20000 30000]
         ])
       end
 
@@ -153,7 +157,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         internal_searches_rows = extract_table_content(".chart.searches table")
         expect(internal_searches_rows).to match_array([
           expected_table_dates,
-          ["Searches from the page", "8", "8", "8"]
+          ["Searches from the page", "80", "80", "80"]
         ])
       end
 
