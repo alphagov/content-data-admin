@@ -111,6 +111,10 @@ class SingleContentItemPresenter
     metadata[:base_path]
   end
 
+  def link_text(metric_name)
+    I18n.t("metrics.#{metric_name}.title").try(:downcase)
+  end
+
   def document_type
     metadata[:document_type].tr('_', ' ').capitalize
   end
