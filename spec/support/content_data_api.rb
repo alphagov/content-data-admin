@@ -111,20 +111,20 @@ module GdsApi
             },
             {
               name: "pviews",
-              total: 60,
+              total: 60000,
               time_series: [
-                { "date" => day1, "value" => 10 },
-                { "date" => day2, "value" => 20 },
-                { "date" => day3, "value" => 30 }
+                { "date" => day1, "value" => 10000 },
+                { "date" => day2, "value" => 20000 },
+                { "date" => day3, "value" => 30000 }
               ]
             },
             {
               name: "searches",
-              total: 24,
+              total: 240,
               time_series: [
-                { "date" => day1, "value" => 8 },
-                { "date" => day2, "value" => 8 },
-                { "date" => day3, "value" => 8 }
+                { "date" => day1, "value" => 80 },
+                { "date" => day2, "value" => 80 },
+                { "date" => day3, "value" => 80 }
               ]
             },
             {
