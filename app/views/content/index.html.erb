@@ -2,6 +2,11 @@
   <%= select_tag 'organisation_id', options_for_select(@organisations.map{ |org| [org[:title], org[:organisation_id]] },
                                                        selected: @organisation_id),
                                                        class: 'org-picker' %>
+    <%= select_tag 'document_type', options_for_select(@document_types.map{ |dt| [dt.try(:tr, '_', ' ').try(:capitalize), dt] },
+                                                       selected: @document_type || '',
+                                                      ),
+                                                      include_blank: 'All document types',
+                                                      class: 'doc-type-picker' %>
   <%= hidden_field_tag 'date_range', @content.date_range.time_period %>
   <%= submit_tag "Filter" %>
 <% end %>

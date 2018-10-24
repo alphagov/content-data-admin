@@ -30,8 +30,10 @@ RSpec.describe '/content' do
   before do
     stub_metrics_page(base_path: 'path/1', time_period: :last_month)
     content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
-    content_data_has_orgs
     GDS::SSO.test_user = build(:user)
+    content_data_api_has_orgs
+    content_data_api_has_document_types
+
     visit "/content?date_range=last-month&organisation_id=org-id"
   end
 
@@ -87,7 +89,7 @@ RSpec.describe '/content' do
     end
 
     it 'selected organisation is shown in dropdown menu' do
-      expect(page).to have_select('organisation_id', text: 'another org')
+      expect(page).to have_select('organisation_id', selected: 'another org')
     end
 
     it 'respects date range' do
@@ -102,6 +104,33 @@ RSpec.describe '/content' do
       click_on 'Filter'
       click_on 'The title'
       expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.last-year.leading')}")
+    end
+  end
+
+  context 'filter by document_type' do
+    before do
+      content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', document_type: 'news_story', items: [items.first])
+      select 'News story', from: 'document_type'
+      click_on 'Filter'
+    end
+
+    it 'selects the document_type in the dropdown menu' do
+      expect(page).to have_select('document_type', selected: 'News story')
+    end
+
+    it 'renders the filtered results' do
+      table_rows = extract_table_content('.content-table table')
+
+      _header = table_rows.shift
+      expect(table_rows).to all(include('News story'))
+    end
+
+    it 'Allows the filter to be cleared' do
+      select 'All document types', from: 'document_type'
+      click_on 'Filter'
+      expect(page).to have_select('document_type', selected: nil)
+      table_rows = extract_table_content('.content-table table')
+      expect(table_rows.count).to eq(3)
     end
   end
 end
