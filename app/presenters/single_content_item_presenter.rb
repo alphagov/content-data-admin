@@ -68,15 +68,10 @@ class SingleContentItemPresenter
 
   def feedback_explorer_href
     host = Plek.new.external_url_for('support')
-    template = Addressable::Template.new(
-      "#{host}/anonymous_feedback{?from,to,paths}"
-    )
-    query = {
-      paths: base_path,
-      from: @date_range.from,
-      to: @date_range.to
-    }
-    template.expand(query).to_s
+    from = @date_range.from
+    to = @date_range.to
+    path = CGI.escape(base_path)
+    "#{host}/anonymous_feedback?from=#{from}&to=#{to}&paths=#{path}"
   end
 
   def period
