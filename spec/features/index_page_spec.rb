@@ -121,11 +121,8 @@ RSpec.describe '/content' do
     it 'renders the filtered results' do
       table_rows = extract_table_content('.content-table table')
 
-      _header = table_rows.first
-      row = table_rows.second
-
-      expect(table_rows.count).to eq(2)
-      expect(row[1]).to eq('News story')
+      _header = table_rows.shift
+      expect(table_rows).to all(include('News story'))
     end
 
     it 'Allows the filter to be cleared' do
