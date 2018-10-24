@@ -4,6 +4,11 @@ What are the proposed changes?
 #### Why
 What are the reason for these changes?
 
+#### Screenshots
+*If applicable add screenshots otherwise remove this section.*
+##### Before
+##### After
+
 ---
 #### Review Checklist
 * [ ] Changes in scope.
