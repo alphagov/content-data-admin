@@ -3,6 +3,7 @@
   current_selection ||= false
   render_button ||= false
   submit_button_text = t ".submit_button"
+  compact ||= false
 
   if dates.length > 1
     dates.each {|d| d[:bold] = "true"}
@@ -14,8 +15,12 @@
   end
 %>
 <% if dates.length > 1 && current_selection %>
-  <div class="app-c-time-select">
-    <h2 class="govuk-heading-l"><%= t '.title', time_period: dates.find {|d| d[:value] == current_selection }[:text] %></h2>
+  <div class="app-c-time-select <% if compact %> app-c-time-select--compact<% end %>">
+    <%if compact %>
+      <h2 class="govuk-heading-s"><%= t '.title_compact', time_period: dates.find {|d| d[:value] == current_selection }[:text] %></h2>
+    <% else %>
+      <h2 class="govuk-heading-l"><%= t '.title', time_period: dates.find {|d| d[:value] == current_selection }[:text] %></h2>
+    <% end %>
     <%= render "govuk_publishing_components/components/details", {
       title: t('.change_dropdown')
     } do %>

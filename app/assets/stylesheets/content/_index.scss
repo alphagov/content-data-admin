@@ -1,0 +1,37 @@
+.table-header {
+  @include govuk-font(19);
+
+}
+
+.table-header__param {
+  @include govuk-font($size: 19, $weight: bold);
+
+}
+
+.filter-form {
+  @include govuk-responsive-padding(3, "left");
+  .govuk-label--s {
+    @include govuk-font(16);
+  }
+
+  .govuk-radios__hint {
+    @include govuk-font(16);
+  }
+}
+
+.filters-control__wrapper {
+  border-bottom: 1px solid $govuk-border-colour;
+}
+
+.filter-form__filters {
+  @include govuk-responsive-padding(3, "top");
+}
+
+.filters-control {
+  display: block;
+  @include govuk-responsive-padding(3, "bottom");
+}
+
+.gem-c-phase-banner {
+  @include govuk-responsive-padding(3, "left");
+}

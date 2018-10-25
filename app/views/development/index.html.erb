@@ -1,178 +1,128 @@
+<%# see the controller for the settings to implement full-width mode %>
 <%= content_for :title, "Dev page" %>
 
 <div class="govuk-grid-row">
-  <span class="govuk-caption-xl">Page data</span>
-  <div class="govuk-grid-column-two-thirds">
-
-    <h1 class="govuk-heading-xl">The name of the page being analysed</h1>
-
-    <%= render "govuk_publishing_components/components/govspeak" do %>
-      <p>
-        Metrics were last updated yesterday at 00:00.
-      </p>
-    <% end %>
-
-    <%
-      metadata = {
-        status: "withdrawn",
-        published_at: "1 September 2016",
-        last_updated: "1 October 2017",
-        publishing_organisation: "UK Visas and Immigration",
-        document_type: "Guidance",
-        base_path: "/government/publications/visitor-visa-guide-to-supporting-documents",
-      }
-    %>
-    <%= render "components/metadata", metadata %>
-  </div>
-  <div class="govuk-grid-column-one-third">
-    View the page on GOV.UK:
-    <a href="http://www.gov.uk/random">http://www.gov.uk/random</a>
-
-    Make changes to the page:
-    <a href="http://www.gov.uk/random">http://www.gov.uk/random</a>
-  </div>
-</div>
-
-<%
-  # This data will come from models/controllers/the api eventually, hard coded for now to produce working views.
-  data1 = {
-    caption: "Unique page views",
-    chart_label: "Unique page views chart",
-    table_label: "Unique page views table",
-    chart_id: 'pviews_jan_chart',
-    table_id: 'pviews_jan_table',
-    table_direction: 'vertical',
-    keys: [*(1..30)],
-    rows: [
-      {
-        label: "January 2015",
-        values: [5, 119, 74, 117, 50, 119,61, 110, 12, 21, 121, 37, 35, 197, 82, 56, 23, 7, 5, 19, 112, 25, 19, 8, 37, 135, 197, 235, 178, 4, 9]
-      }
-    ]
-  }
-
-  data2 = {
-  chart_label: "Time spend on page chart",
-  table_label: "Time spent on page table",
-  chart_id: 'pviews_feb_chart',
-  table_id: 'pviews_feb_table',
-  table_direction: 'horizontal',
-  keys: ["1st September 2018", "2nd September 2018", "3rd September 2018", "4th September 2018", "5th September 2018", "6th September 2018", "7th September 2018", "8th September 2018", "9th September 2018", "10th September 2018", "11th September 2018", "13th September 2018", "14th September 2018", "15th September 2018", "16th September 2018", "17th September 2018", "18th September 2018", "19th September 2018", "20th September 2018", "21st September 2018", "22nd September 2018", "23rd September 2018", "24th September 2018", "25th September 2018", "26th September 2018", "27th September 2018", "28th September 2018", "29th September 2018", "30th September 2018"],
-  rows: [
-    {
-      label: "February 2015",
-      values: [5, 119, 74, 55, 50, 119,61, 820, 12, 21, 121, 37, 35, 197, 82, 56, 23, 7, 50, 19, 212, 25, 19, 8, 37, 135, 197, 235, 178, 14, 99]
-    },
-    {
-      label: "February 2016",
-      values: [3, 8, 37, 435, 78, 4, 9, 61, 110, 12, 21, 221, 37, 35, 197, 82, 56, 23,61, 110, 12, 21, 121, 137, 35, 197, 182, 56, 23]
-    }
-  ]
-  }
-  data3 = {}
-%>
-
-<h2>Glance metric examples</h2>
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-quarter">
-    <%= render "components/glance-metric", {
-      name: "Unique pageviews",
-      figure: "167",
-      measurement_display_label: "m",
-      measurement_explicit_label: "million",
-      context: "This is in your top 10 content items",
-      trend_percentage: +0.5,
-      period: "Apr 2018 to Mar 2018"
-    } %>
-  </div>
     <div class="govuk-grid-column-one-quarter">
-    <%= render "components/glance-metric", {
-      name: "User satisfaction score",
-      figure: "83",
-      measurement_display_label: "%",
-      context: "Positive feedback, out of 498 user responses",
-      trend_percentage: 3.2,
-      period: "Apr 2018 to Mar 2018"
-    } %>
-  </div>
-    <div class="govuk-grid-column-one-quarter">
-    <%= render "components/glance-metric", {
-      name: "On page searches",
-      figure: "392",
-      context: "0.18% of users searched from this page",
-      trend_percentage: -5,
-      period: "Apr 2018 to Mar 2018",
-      link_text: "See in Google Analytics",
-      link_url: "http://www.google.com/analytics"
-    } %>
-  </div>
-    <div class="govuk-grid-column-one-quarter">
-    <%= render "components/glance-metric", {
-      name: "Feedback comments",
-      figure: "2",
-      trend_percentage: 0,
-      period: "Apr 2018 to Mar 2018"
-    } %>
-  </div>
+      <div class="filters-control__wrapper govuk-visually-hidden">
+        <span class="filters-control filters-control--hide govuk-visually-hidden">
+          <a href="" class="govuk-link filters-control__link filters-control__link--hide">Hide filters</a>&nbsp;&#x25B2;
+        </span>
+        <span class="filters-control filters-control--show govuk-visually-hidden">
+          <a href="" class="govuk-link filters-control__link filters-control__link--show">Show filters</a>&nbsp;&#x25BC;</span>
+      </div>
+        <div class="filter-form">
+          <%= render "components/time-select", {
+            current_selection: "past-6-months",
+            compact: true,
+            base_path: "/",
+            dates: [
+              {
+                value: "past-30-days",
+                text: "Past 30 Days",
+                hint_text: "21 July 2018 to 19 August 2018"
+              },
+              {
+                value: "last-month",
+                text: "Last month",
+                hint_text: "1 July 2018 - 31 July 2018"
+              },
+              {
+                value: "past-3-months",
+                text: "Past 3 months",
+                hint_text: "20 May 2018 - 19 August 2018"
+              },
+              {
+                value: "past-6-months",
+                text: "Past 6 months",
+                hint_text: "20 February 2018 - 31 July 2018"
+              },
+              {
+                value: "past-year",
+                text: "Past year",
+                hint_text: "20 August 2017 - 19 August 2018"
+              },
+              {
+                value: "past-2-years",
+                text: "Past 2 years",
+                hint_text: "20 August 2016 - 19 August 2018"
+              }
+            ]
+          } %>
+          <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+          <%# selects will be switched out for the accessible autocomplete component eventually, but use this in the meantime %>
+          <div class="filter-form__filters">
+            <%= render "govuk_publishing_components/components/select", {
+              id: "org",
+              label: "Organisation",
+              options: [
+                {
+                  text: "Organisation one",
+                  value: "o1"
+                },
+                {
+                  text: "Organisation two",
+                  value: "o2"
+                },
+                {
+                  text: "Organisation three has a really long name",
+                  value: "o3"
+                }
+              ]
+            } %>
+            <%= render "govuk_publishing_components/components/input", {
+                label: {
+                  text: "Title or URL"
+                },
+                name: "title_url",
+                autofocus: true,
+                tabindex: 0
+              } %>
+              <%= render "govuk_publishing_components/components/select", {
+              id: "doctype",
+              label: "Document type",
+              options: [
+                {
+                  text: "Guidance",
+                  value: "g"
+                },
+                {
+                  text: "News",
+                  value: "n"
+                },
+                {
+                  text: "Publication",
+                  value: "p"
+                }
+              ]
+            } %>
+
+              <%= render "govuk_publishing_components/components/button", {text: "Filter"} %>
+            </div>
+
+            <p><a href="/dev" class="govuk-link govuk-body-s">Clear filters</a></p>
+
+            <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+            <p><a href="/dev" class="govuk-link govuk-body-s">Download all data in CSV format</a></p>
+
+        </div>
+    </div>
+    <div class="govuk-grid-column-three-quarters">
+      <h1 class="table-header">Showing <span class="table-header__param">21</span> to <span class="table-header__param">40</span> of <span class="table-header__param">587</span> results from <span class="table-header__param">UK Visas and Immigration</span> in <span class="table-header__param">guidance</span>.</h2>
+      <div style="width:1000px; height: 500px; border:1px solid red;">Table placeholder: table will be built using a helper.</div>
+        <%# documented at /component-guide/previous_and_next_navigation within this app - on first/last page we would need to only render the single relevant link %>
+        <%= render "govuk_publishing_components/components/previous_and_next_navigation", {
+          previous_page: {
+            url: "previous-page",
+            title: "Previous",
+            label: "1 of 30"
+          },
+          next_page: {
+            url: "next-page",
+            title: "Next",
+            label: "3 of 30"
+          }
+        } %>
+    </div>
 </div>
-
-
-<h2>Info metric examples</h2>
-
-<% about_text = capture do %>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vestibulum quam vitae felis venenatis, at hendrerit ante accumsan. Cras commodo, leo ac auctor vehicula, elit dolor pulvinar sapien, ut congue arcu sapien sit amet nibh. Donec eu est nec nisi gravida gravida ut eget libero. In hac habitasse platea dictumst.</p>
-  <p>Aliquam sed arcu et purus porttitor consequat sed malesuada arcu. Phasellus tellus justo, finibus ac porttitor sed, pulvinar et sapiensi.</p>
-  <p>Data source: Google Analytics</p>
-<% end %>
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <%= render "components/info-metric", {
-      name: "Unique pageviews",
-      figure: number_with_delimiter(4354343, :delimiter => ','),
-      context: "Number of sessions during which the page was viewed at least once",
-      trend_percentage: 0,
-      period: "From previous 30 days",
-      about: about_text
-    } %>
-  </div>
-</div>
-
-<% words_about = capture do %>
-  <p>Content may be hard to read if it has a lot of words, consider whether it should be broken down or simplified.</p>
-<% end %>
-<% pdf_about = capture do %>
-  <p>Many PDF files are not accessible. Could the content be presented on a web page instead of in a downloadable format?</p>
-
-<% end %>
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-half">
-    <%= render "components/info-metric", {
-      name: "Number of PDFs",
-      figure: "2",
-      context: "How many PDFs are attached to the page",
-      about: pdf_about
-    } %>
-  </div>
-  <div class="govuk-grid-column-one-half">
-    <%= render "components/info-metric", {
-      name: "Word count",
-      figure: "2,214",
-      context: "Number of words on the page",
-      about: words_about
-    } %>
-  </div>
-</div>
-
-<h2>Chart examples</h2>
-
-
-<%= render "components/chart", data1 %>
-<%= render "components/chart", data2 %>
-<%= render "components/chart", data3 %>
-
-
-
-
