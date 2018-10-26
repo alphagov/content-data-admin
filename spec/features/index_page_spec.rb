@@ -43,7 +43,7 @@ RSpec.describe '/content' do
   end
 
   it 'renders the data in a table' do
-    table_rows = extract_table_content('.content-table table')
+    table_rows = extract_table_content('.govuk-table')
     expect(table_rows).to eq(
       [
         ['Page title', 'Content type', 'Unique pageviews', 'User satisfaction score', 'Searches from page'],
@@ -119,7 +119,7 @@ RSpec.describe '/content' do
     end
 
     it 'renders the filtered results' do
-      table_rows = extract_table_content('.content-table table')
+      table_rows = extract_table_content('.govuk-table')
 
       _header = table_rows.shift
       expect(table_rows).to all(include('News story'))
@@ -129,7 +129,7 @@ RSpec.describe '/content' do
       select 'All document types', from: 'document_type'
       click_on 'Filter'
       expect(page).to have_select('document_type', selected: nil)
-      table_rows = extract_table_content('.content-table table')
+      table_rows = extract_table_content('.govuk-table')
       expect(table_rows.count).to eq(3)
     end
   end

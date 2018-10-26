@@ -22,20 +22,58 @@
 
 <% content_for :title, @content.title %>
 <h3>Content data</h3>
-<div class="content-table">
-  <table>
-    <tr>
-      <th>Page title</th>
-      <th>Content type</th>
-      <th>Unique pageviews</th>
-      <th>User satisfaction score</th>
-      <th>Searches from page</th>
-    </tr>
-    <%= render(
-      partial: 'content_row',
-      collection: @content.items,
-      as: :item,
-      locals: { date_range: @content.date_range.time_period }
+
+<%= GovukPublishingComponents::AppHelpers::TableHelper.helper(
+  self,
+  "Showing ... TODO",
+  sortable: true
+) do |t| %>
+  <%= t.head do %>
+    <!-- TODO: Once sorting is supported, fill in the href and sort_direction header arguments with proper values -->
+    <%= t.header(
+      "Page title",
+      href: '#',
+      sort_direction: nil
     ) %>
-  </table>
-</div>
+    <%= t.header(
+      "Content type",
+      href: '#',
+      sort_direction: nil
+    ) %>
+    <%= t.header(
+      "Unique pageviews",
+      href: '#',
+      sort_direction: 'descending'
+    ) %>
+    <%= t.header(
+      "User satisfaction score",
+      href: '#',
+      sort_direction: nil
+    ) %>
+    <%= t.header(
+      "Searches from page",
+      href: '#',
+      sort_direction: nil
+    ) %>
+  <% end %>
+
+  <%= t.body do %>
+    <% @content.items.each do |item| %>
+      <%= t.row do %>
+        <%= t.cell(
+          render(
+            partial: 'page_title',
+            locals: {
+              item: item,
+              date_range: @content.date_range.time_period
+            }
+          )
+        ) %>
+        <%= t.cell item.document_type %>
+        <%= t.cell number_with_delimiter(item.upviews, delimiter: ',') %>
+        <%= t.cell item.user_satisfaction %>
+        <%= t.cell item.searches %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
