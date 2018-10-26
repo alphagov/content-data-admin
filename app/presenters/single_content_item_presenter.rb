@@ -151,10 +151,11 @@ private
 
   def on_page_search_rate
     searches = @metrics['searches'][:value].to_f
-    pviews = @metrics['pviews'][:value].to_f
+    upviews = @metrics['upviews'][:value].to_f
 
-    return 0 if searches.zero? || pviews.zero?
-    search_rate = (searches / pviews) * 100
+    return 0 if searches.zero? || upviews.zero?
+    search_rate = (searches / upviews) * 100
+    search_rate = 100 if search_rate > 100
     search_rate.round(2)
   end
 

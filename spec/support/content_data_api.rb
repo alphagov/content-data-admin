@@ -114,11 +114,11 @@ module GdsApi
           time_series_metrics: [
             {
               name: "upviews",
-              total: 33,
+              total: 6000,
               time_series: [
-                { "date" => day1, "value" => 1 },
-                { "date" => day2, "value" => 2 },
-                { "date" => day3, "value" => 30 }
+                { "date" => day1, "value" => 1000 },
+                { "date" => day2, "value" => 2000 },
+                { "date" => day3, "value" => 3000 }
               ]
             },
             {
@@ -132,11 +132,11 @@ module GdsApi
             },
             {
               name: "searches",
-              total: 240,
+              total: 243,
               time_series: [
                 { "date" => day1, "value" => 80 },
                 { "date" => day2, "value" => 80 },
-                { "date" => day3, "value" => 80 }
+                { "date" => day3, "value" => 83 }
               ]
             },
             {
@@ -202,11 +202,11 @@ module GdsApi
           time_series_metrics: [
             {
               name: "upviews",
-              total: 10,
+              total: 10000,
               time_series: [
-                { "date" => day1, "value" => 1 },
-                { "date" => day2, "value" => 2 },
-                { "date" => day3, "value" => 7 }
+                { "date" => day1, "value" => 1000 },
+                { "date" => day2, "value" => 2000 },
+                { "date" => day3, "value" => 7000 }
               ]
             },
             {
