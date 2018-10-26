@@ -8,7 +8,8 @@
     figure: number_with_delimiter(value, delimiter: ','),
     context: t("metrics.#{metric_name}.summary"),
     data_source: t("data_sources.#{data_source}"),
-    about: t("metrics.#{metric_name}.about")
+    about: t("metrics.#{metric_name}.about"),
+    about_label: @performance_data.metric_about_label(metric_name)
   }
 
   if show_trend

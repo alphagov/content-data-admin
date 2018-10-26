@@ -16,6 +16,6 @@ en:
       change_dropdown: 'Change time period'
       submit_button: 'Change dates'
     info-metric:
-      about_dropdown: 'About this data'
+      about_dropdown: "About %{metric_short_title}"
       data_source: 'Source: %{source}'
 

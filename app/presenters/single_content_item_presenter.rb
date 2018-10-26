@@ -86,6 +86,11 @@ class SingleContentItemPresenter
     I18n.t("metrics.#{metric_name}.short_title")
   end
 
+  def metric_about_label(metric_name)
+    short_title = metric_short_title(metric_name).downcase
+    I18n.t("components.info-metric.about_dropdown", metric_short_title: short_title)
+  end
+
   def trend_percentage(metric_name)
     current_value = @metrics[metric_name][:value]
     previous_value = @previous_metrics[metric_name][:value]

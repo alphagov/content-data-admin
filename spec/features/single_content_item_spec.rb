@@ -97,12 +97,27 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.metric-summary__upviews', text: '33'
       end
 
+      it 'renders about label for upviews' do
+        label = expected_metric_label('upviews')
+        expect(page).to have_selector(".metric-summary__upviews .govuk-details__summary-text", text: label)
+      end
+
       it 'renders the metric for pviews' do
         expect(page).to have_selector '.metric-summary__pviews', text: '60'
       end
 
+      it 'renders about label for pviews' do
+        label = expected_metric_label('pviews')
+        expect(page).to have_selector(".metric-summary__pviews .govuk-details__summary-text", text: label)
+      end
+
       it 'renders a metric for satisfaction' do
         expect(page).to have_selector '.metric-summary__satisfaction', text: '90%'
+      end
+
+      it 'renders about label for satisfaction' do
+        label = expected_metric_label('satisfaction')
+        expect(page).to have_selector(".metric-summary__satisfaction .govuk-details__summary-text", text: label)
       end
 
       it 'renders the total number of responses as context for satisfaction score' do
@@ -113,6 +128,11 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.metric-summary__feedex', text: '63'
       end
 
+      it 'renders about label for feedex' do
+        label = expected_metric_label('feedex')
+        expect(page).to have_selector(".metric-summary__feedex .govuk-details__summary-text", text: label)
+      end
+
       it 'renders link to feedback explorer' do
         expect(page).to have_selector('.govuk-link', text: I18n.t("metrics.feedex.external_link"))
       end
@@ -121,8 +141,18 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.metric-summary__pdf-count', text: '3'
       end
 
-      it 'renders a metric for words' do
+      it 'renders about label for pdf count' do
+        label = expected_metric_label('pdf_count')
+        expect(page).to have_selector(".metric-summary__pdf-count .govuk-details__summary-text", text: label)
+      end
+
+      it 'renders a metric for words count' do
         expect(page).to have_selector '.metric-summary__words', text: '200'
+      end
+
+      it 'renders about label for  words count' do
+        label = expected_metric_label('words')
+        expect(page).to have_selector(".metric-summary__words .govuk-details__summary-text", text: label)
       end
 
       it 'renders the page title' do
@@ -210,4 +240,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
     end
   end
+end
+
+def expected_metric_label(metric_name)
+  short_title = I18n.t("metrics.#{metric_name}.short_title").downcase
+  I18n.t("components.info-metric.about_dropdown", metric_short_title: short_title)
 end
