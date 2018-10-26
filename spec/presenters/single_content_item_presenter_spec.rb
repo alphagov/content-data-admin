@@ -46,6 +46,33 @@ RSpec.describe SingleContentItemPresenter do
     end
   end
 
+  describe '#searches_context' do
+    it 'shows the percentage of users who searched the page' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }, { name: 'searches', total: 10 }]
+      expect(subject.searches_context).to eq "10.0% of users searched from the page"
+    end
+
+    it 'return 0 if there are no unique pageviews' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 0 }, { name: 'searches', total: 10 }]
+      expect(subject.searches_context).to eq "0% of users searched from the page"
+    end
+
+    it 'returns 0 if there have been no searches' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 10 }, { name: 'searches', total: 0 }]
+      expect(subject.searches_context).to eq "0% of users searched from the page"
+    end
+
+    it 'rounds to 2 decimal places' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 8777 }, { name: 'searches', total: 1753 }]
+      expect(subject.searches_context).to eq "19.97% of users searched from the page"
+    end
+
+    it 'caps to a maximum of 100%' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }, { name: 'searches', total: 900 }]
+      expect(subject.searches_context).to eq "100% of users searched from the page"
+    end
+  end
+
   describe '#metadata' do
     it 'returns a hash with the metadata' do
       expect(subject.base_path).to eq('/the/base/path')

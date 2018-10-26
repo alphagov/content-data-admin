@@ -42,7 +42,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     describe 'glance metrics section' do
       it 'renders glance metrics unique page views' do
-        expect(page).to have_selector '.glance-metric.upviews', text: '33'
+        expect(page).to have_selector '.glance-metric.upviews', text: '6,000'
       end
 
       it 'renders glance metric context for unique pageviews' do
@@ -50,7 +50,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders trend percentage for unique pageviews' do
-        expect(page).to have_selector '.upviews .app-c-glance-metric__trend', text: '+230.00%'
+        expect(page).to have_selector '.upviews .app-c-glance-metric__trend', text: '-40.00%'
       end
 
       it 'renders glance metric for satisfaction score' do
@@ -74,7 +74,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders trend percentage for page searches' do
-        expect(page).to have_selector '.searches .app-c-glance-metric__trend', text: '400.00%'
+        expect(page).to have_selector '.searches .app-c-glance-metric__trend', text: '406.25%'
       end
 
       it 'renders glance metric for feedex comments' do
@@ -86,7 +86,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders context for page searches' do
-        expect(page).to have_selector '.searches .app-c-glance-metric__context', text: '0.4%'
+        expect(page).to have_selector '.searches .app-c-glance-metric__context', text: '4.05%'
       end
     end
 
@@ -94,7 +94,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       let(:expected_table_dates) { ['', '11-25', '11-26', '12-25'] }
 
       it 'renders the metric for upviews' do
-        expect(page).to have_selector '.metric-summary__upviews', text: '33'
+        expect(page).to have_selector '.metric-summary__upviews', text: '6,000'
       end
 
       it 'renders about label for upviews' do
@@ -171,7 +171,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         upviews_rows = extract_table_content(".chart.upviews table")
         expect(upviews_rows).to match_array([
           expected_table_dates,
-          ["Unique pageviews", "1", "2", "30"]
+          ["Unique pageviews", "1000", "2000", "3000"]
         ])
       end
 
@@ -187,7 +187,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         internal_searches_rows = extract_table_content(".chart.searches table")
         expect(internal_searches_rows).to match_array([
           expected_table_dates,
-          ["Searches from the page", "80", "80", "80"]
+          ["Searches from the page", "80", "80", "83"]
         ])
       end
 
