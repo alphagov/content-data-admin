@@ -107,6 +107,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.metric-summary__pviews', text: '60,000'
       end
 
+      it 'renders the metric for pagviews per visit' do
+        expect(page).to have_selector '.metric-summary__pageviews_per_visit', text: '10.0'
+      end
+
       it 'renders about label for pviews' do
         label = expected_metric_label('pviews')
         expect(page).to have_selector(".metric-summary__pviews .govuk-details__summary-text", text: label)

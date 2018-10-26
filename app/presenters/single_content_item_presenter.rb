@@ -16,6 +16,7 @@ class SingleContentItemPresenter
       previous_period_data[:time_series_metrics],
       previous_period_data[:edition_metrics]
     )
+    calculate_secondary_metrics
   end
 
   def total_upviews
@@ -44,6 +45,10 @@ class SingleContentItemPresenter
 
   def total_pdf_count
     number_with_delimiter @metrics['pdf_count'][:value]
+  end
+
+  def pageviews_per_visit
+    number_with_delimiter @metrics['pageviews_per_visit'][:value]
   end
 
   def upviews_context
@@ -179,6 +184,33 @@ private
       }
     end
     metrics
+  end
+
+  def calculate_secondary_metrics
+    calculate_pageviews_per_visit
+  end
+
+  def calculate_pageviews_per_visit
+    calculate_current_pageviews_per_visit
+    calculate_previous_pageviews_per_visit
+  end
+
+  def calculate_current_pageviews_per_visit
+    current = if @metrics['pviews'][:value].zero? || @metrics['upviews'][:value].zero?
+                0
+              else
+                @metrics['pviews'][:value].to_f / @metrics['upviews'][:value].to_f
+              end
+    @metrics['pageviews_per_visit'] = { value: current.round(2) }
+  end
+
+  def calculate_previous_pageviews_per_visit
+    previous = if @previous_metrics['pviews'][:value].zero? || @previous_metrics['upviews'][:value].zero?
+                 0
+               else
+                 @previous_metrics['pviews'][:value].to_f / @previous_metrics['upviews'][:value].to_f
+               end
+    @previous_metrics['pageviews_per_visit'] = { value: previous.round(2) }
   end
 
   def calculate_trend_percentage(current_value, previous_value)

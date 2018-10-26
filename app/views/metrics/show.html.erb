@@ -124,6 +124,17 @@
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
+    <div class="metric-summary__pageviews_per_visit">
+      <%= render 'metric_header', {
+        metric_name: 'pageviews_per_visit',
+        value: @performance_data.pageviews_per_visit,
+        show_trend: true,
+        short_context: nil
+      }%>
+    </div>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
     <%= render 'metric_section',
         metric_name: 'searches',
         total: @performance_data.total_searches,
