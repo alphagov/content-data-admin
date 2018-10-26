@@ -22,7 +22,6 @@
 
 <% content_for :title, @content.title %>
 <h3>Content data</h3>
-
 <%= GovukPublishingComponents::AppHelpers::TableHelper.helper(
   self,
   "Showing ... TODO",
@@ -77,3 +76,4 @@
     <% end %>
   <% end %>
 <% end %>
+<%= paginate @content.items %>

@@ -14,7 +14,9 @@ private
     response = FindContent.call(content_params)
     ContentItemsPresenter.new(
       response[:results],
-      DateRange.new(content_params[:date_range])
+        DateRange.new(content_params[:date_range]),
+        response[:total_results],
+        params[:page]
     )
   end
 
@@ -29,7 +31,8 @@ private
         params.permit(
           :date_range,
           :organisation_id,
-          :document_type
+          :document_type,
+          :page
         ).to_h.symbolize_keys
       )
     end
