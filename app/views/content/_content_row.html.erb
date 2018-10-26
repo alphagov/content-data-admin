@@ -1,9 +1,0 @@
-<tr>
-  <td><%= link_to item.title, metrics_path(item.base_path, date_range: date_range) %>
-    <span class="base-path">/<%= item.base_path %></span>
-  </td>
-  <td><%= item.document_type %></td>
-  <td><%= number_with_delimiter(item.upviews, delimiter: ',') %></td>
-  <td><%= item.user_satisfaction %></td>
-  <td><%= item.searches %></td>
-</tr>

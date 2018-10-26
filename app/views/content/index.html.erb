@@ -1,27 +1,79 @@
 <%= form_tag content_path, method: 'get', name: 'organisation-picker' do %>
-  <%= select_tag 'organisation_id', options_for_select(@organisations.map{ |org| [org[:title], org[:organisation_id]] },
-                                                       selected: @organisation_id),
-                                                       class: 'org-picker' %>
-    <%= select_tag 'document_type', options_for_select(@document_types.map{ |dt| [dt.try(:tr, '_', ' ').try(:capitalize), dt] },
-                                                       selected: @document_type || '',
-                                                      ),
-                                                      include_blank: 'All document types',
-                                                      class: 'doc-type-picker' %>
+  <%= select_tag(
+    'organisation_id',
+    options_for_select(
+      @organisations.map{ |org| [org[:title], org[:organisation_id]] },
+      selected: @organisation_id
+    ),
+    class: 'org-picker'
+  ) %>
+  <%= select_tag(
+    'document_type',
+    options_for_select(
+      @document_types.map{ |dt| [dt.try(:tr, '_', ' ').try(:capitalize), dt] },
+      selected: @document_type || '',
+    ),
+    include_blank: 'All document types',
+    class: 'doc-type-picker'
+  ) %>
   <%= hidden_field_tag 'date_range', @content.date_range.time_period %>
   <%= submit_tag "Filter" %>
 <% end %>
 
 <% content_for :title, @content.title %>
 <h3>Content data</h3>
-<div class="content-table">
-  <table>
-    <tr>
-      <th>Page title</th>
-      <th>Content type</th>
-      <th>Unique pageviews</th>
-      <th>User satisfaction score</th>
-      <th>Searches from page</th>
-    </tr>
-    <%= render partial: 'content_row', collection: @content.items, as: :item, locals: { date_range: @content.date_range.time_period } %>
-  </table>
-</div>
+
+<%= GovukPublishingComponents::AppHelpers::TableHelper.helper(
+  self,
+  "Showing ... TODO",
+  sortable: true
+) do |t| %>
+  <%= t.head do %>
+    <!-- TODO: Once sorting is supported, fill in the href and sort_direction header arguments with proper values -->
+    <%= t.header(
+      "Page title",
+      href: '#',
+      sort_direction: nil
+    ) %>
+    <%= t.header(
+      "Content type",
+      href: '#',
+      sort_direction: nil
+    ) %>
+    <%= t.header(
+      "Unique pageviews",
+      href: '#',
+      sort_direction: 'descending'
+    ) %>
+    <%= t.header(
+      "User satisfaction score",
+      href: '#',
+      sort_direction: nil
+    ) %>
+    <%= t.header(
+      "Searches from page",
+      href: '#',
+      sort_direction: nil
+    ) %>
+  <% end %>
+
+  <%= t.body do %>
+    <% @content.items.each do |item| %>
+      <%= t.row do %>
+        <%= t.cell(
+          render(
+            partial: 'page_title',
+            locals: {
+              item: item,
+              date_range: @content.date_range.time_period
+            }
+          )
+        ) %>
+        <%= t.cell item.document_type %>
+        <%= t.cell number_with_delimiter(item.upviews, delimiter: ',') %>
+        <%= t.cell item.user_satisfaction %>
+        <%= t.cell item.searches %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
