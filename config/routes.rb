@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: redirect('/content')
+
   get "/healthcheck", to: proc { [200, {}, %w[OK]] }
   get "/healthcheck-f", to: proc {
     GovukError.notify('Sentry works')
