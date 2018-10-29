@@ -44,7 +44,7 @@
       <%= render "govuk_publishing_components/components/details", {
               title: t(".table_dropdown", metric_name: chart_label)
             } do %>
-          <div tabindex="0">
+          <div tabindex="0" class="app-c-chart__table-wrapper">
              <table class="govuk-table">
                 <% if table_direction == "vertical" %>
                   <thead class="govuk-table__head">

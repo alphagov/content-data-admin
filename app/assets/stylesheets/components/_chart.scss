@@ -5,8 +5,11 @@
   margin-bottom: 0;
 }
 
-.app-c-chart__table {
+.app-c-chart__table-wrapper {
   overflow: auto;
+}
+
+.app-c-chart__table {
 
   .govuk-details__summary-text {
     @include govuk-font(16);
