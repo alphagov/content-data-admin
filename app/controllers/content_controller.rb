@@ -1,6 +1,8 @@
 class ContentController < ApplicationController
   def index
-    get_content
+    @content = get_content
+    @organisation_id = content_params[:organisation_id]
+    @document_type = content_params[:document_type]
     organisations = FetchOrganisations.call
     @organisations = organisations[:organisations]
     @document_types = FetchDocumentTypes.call[:document_types]
@@ -9,14 +11,27 @@ class ContentController < ApplicationController
 private
 
   def get_content
-    response = FindContent.call(params)
-    @content = ContentItemsPresenter.new(response[:results], date_range)
-    @organisation_id = params[:organisation_id]
-    @document_type = params[:document_type]
+    response = FindContent.call(content_params)
+    ContentItemsPresenter.new(
+      response[:results],
+      DateRange.new(content_params[:date_range])
+    )
   end
 
-  def date_range
-    time_period = params[:date_range].presence || 'last-30-days'
-    DateRange.new(time_period)
+  def content_params
+    @content_params ||= begin
+      defaults = {
+        date_range: 'last-30-days',
+        organisation_id: current_user.organisation_content_id,
+      }
+
+      defaults.merge(
+        params.permit(
+          :date_range,
+          :organisation_id,
+          :document_type
+        ).to_h.symbolize_keys
+      )
+    end
   end
 end
