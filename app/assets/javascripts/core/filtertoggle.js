@@ -29,4 +29,5 @@ function FilterToggle () {
 }
 
 // Initialise
-new FilterToggle();
+var $filter = document.querySelector('[data-module="filter-toggle"]')
+if ($filter) new FilterToggle()

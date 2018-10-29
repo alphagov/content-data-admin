@@ -1,6 +1,15 @@
+.gem-c-pagination {
+
+  @include media(mobile) {
+    @include govuk-responsive-padding(3, "left");
+  }
+}
+
 .table-header {
   @include govuk-font(19);
-
+  @include media(mobile) {
+    @include govuk-responsive-padding(3, "left");
+  }
 }
 
 .table-header__param {
@@ -21,6 +30,7 @@
 
 .filters-control__wrapper {
   border-bottom: 1px solid $govuk-border-colour;
+  @include govuk-responsive-padding(3, "left");
 }
 
 .filter-form__filters {
