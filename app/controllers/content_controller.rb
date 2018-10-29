@@ -21,7 +21,8 @@ private
   def content_params
     @content_params ||= begin
       defaults = {
-        date_range: 'last-30-days'
+        date_range: 'last-30-days',
+        organisation_id: current_user.organisation_content_id,
       }
 
       defaults.merge(

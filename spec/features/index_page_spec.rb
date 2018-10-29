@@ -30,7 +30,7 @@ RSpec.describe '/content' do
   before do
     stub_metrics_page(base_path: 'path/1', time_period: :last_month)
     content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
-    GDS::SSO.test_user = build(:user)
+    GDS::SSO.test_user = build(:user, organisation_content_id: 'users-org-id')
     content_data_api_has_orgs
     content_data_api_has_document_types
 
@@ -104,6 +104,26 @@ RSpec.describe '/content' do
       click_on 'Filter'
       click_on 'The title'
       expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.last-year.leading')}")
+    end
+
+    context 'with users organisation' do
+      before do
+        content_data_api_has_content_items(
+          from: from,
+          to: to,
+          organisation_id: 'users-org-id',
+          items: [
+            items[0].merge(title: 'Content from users-org-id')
+          ]
+        )
+
+        visit "/content?date_range=last-month"
+      end
+
+      it 'uses the users organisation by default' do
+        expect(page.status_code).to eq(200)
+        expect(page).to have_content('Content from users-org-id')
+      end
     end
   end
 
