@@ -1,6 +1,8 @@
 class ContentController < ApplicationController
   def index
-    get_content
+    @content = get_content
+    @organisation_id = content_params[:organisation_id]
+    @document_type = content_params[:document_type]
     organisations = FetchOrganisations.call
     @organisations = organisations[:organisations]
     @document_types = FetchDocumentTypes.call[:document_types]
@@ -10,12 +12,10 @@ private
 
   def get_content
     response = FindContent.call(content_params)
-    @content = ContentItemsPresenter.new(
+    ContentItemsPresenter.new(
       response[:results],
       DateRange.new(content_params[:date_range])
     )
-    @organisation_id = content_params[:organisation_id]
-    @document_type = content_params[:document_type]
   end
 
   def content_params
