@@ -50,7 +50,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders trend percentage for unique pageviews' do
-        expect(page).to have_selector '.upviews .app-c-glance-metric__trend', text: '-40.00%'
+        expect(page).to have_selector '.upviews .app-c-glance-metric__trend', text: '+500.00%'
       end
 
       it 'renders glance metric for satisfaction score' do
@@ -100,10 +100,11 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders about label for upviews' do
         label = expected_metric_label('upviews')
         expect(page).to have_selector(".metric-summary__upviews .govuk-details__summary-text", text: label)
+        expect(page).to have_selector '.metric-summary__upviews', text: '6,000'
       end
 
       it 'renders the metric for pviews' do
-        expect(page).to have_selector '.metric-summary__pviews', text: '60'
+        expect(page).to have_selector '.metric-summary__pviews', text: '60,000'
       end
 
       it 'renders about label for pviews' do

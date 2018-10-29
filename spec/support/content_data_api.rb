@@ -202,7 +202,7 @@ module GdsApi
           time_series_metrics: [
             {
               name: "upviews",
-              total: 10000,
+              total: 1000,
               time_series: [
                 { "date" => day1, "value" => 1000 },
                 { "date" => day2, "value" => 2000 },
@@ -211,7 +211,7 @@ module GdsApi
             },
             {
               name: "pviews",
-              total: 30,
+              total: 30000,
               time_series: [
                 { "date" => day1, "value" => 5 },
                 { "date" => day2, "value" => 5 },
