@@ -105,7 +105,9 @@ module GdsApi
             public_updated_at:  "2018-07-17T10:35:57.000Z",
             publishing_app:  "whitehall",
             document_type:  "news_story",
-            primary_organisation_title:  "The Ministry"
+            primary_organisation_title:  "The Ministry",
+            historical: false,
+            withdrawn: false
           },
           time_period: {
             to: to,
@@ -193,7 +195,9 @@ module GdsApi
             public_updated_at:  "2018-07-17T10:35:57.000Z",
             publishing_app:  "publisher",
             document_type:  "news_story",
-            primary_organisation_title:  "The Ministry"
+            primary_organisation_title:  "The Ministry",
+            historical: false,
+            withdrawn: false
           },
           time_period: {
             to: to,
@@ -278,7 +282,9 @@ module GdsApi
             public_updated_at:  "2018-07-17T10:35:57.000Z",
             publishing_app:  "publisher",
             document_type:  "news_story",
-            primary_organisation_title:  "The Ministry"
+            primary_organisation_title:  "The Ministry",
+            historical: false,
+            withdrawn: false
           },
           time_period: { to: to, from: from },
           time_series_metrics: [

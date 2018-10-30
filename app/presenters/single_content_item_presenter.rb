@@ -141,7 +141,15 @@ class SingleContentItemPresenter
     metadata[:primary_organisation_title]
   end
 
-  def status; end
+  def status
+    if metadata[:withdrawn] && metadata[:historical]
+      I18n.t('components.metadata.statuses.withdrawn_and_historical')
+    elsif metadata[:withdrawn]
+      I18n.t('components.metadata.statuses.withdrawn')
+    elsif metadata[:historical]
+      I18n.t('components.metadata.statuses.historical')
+    end
+  end
 
   def get_chart(metric_name)
     time_series = @metrics[metric_name][:time_series]
