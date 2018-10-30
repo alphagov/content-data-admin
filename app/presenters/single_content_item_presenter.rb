@@ -196,7 +196,7 @@ private
   end
 
   def calculate_current_pageviews_per_visit
-    current = if @metrics['pviews'][:value].zero? || @metrics['upviews'][:value].zero?
+    current = if @metrics['pviews'][:value].to_f.zero? || @metrics['upviews'][:value].to_f.zero?
                 0
               else
                 @metrics['pviews'][:value].to_f / @metrics['upviews'][:value].to_f
@@ -205,7 +205,7 @@ private
   end
 
   def calculate_previous_pageviews_per_visit
-    previous = if @previous_metrics['pviews'][:value].zero? || @previous_metrics['upviews'][:value].zero?
+    previous = if @previous_metrics['pviews'][:value].to_f.zero? || @previous_metrics['upviews'][:value].to_f.zero?
                  0
                else
                  @previous_metrics['pviews'][:value].to_f / @previous_metrics['upviews'][:value].to_f
