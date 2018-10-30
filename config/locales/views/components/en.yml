@@ -10,6 +10,10 @@ en:
         publishing_organisation: 'From'
         document_type: 'Type'
         base_path: 'URL'
+      statuses:
+        withdrawn: 'Withdrawn'
+        historical: 'History mode'
+        withdrawn_and_historical: 'History mode and Withdrawn'
     time-select:
       title: 'Page data: %{time_period}'
       title_compact: 'Showing data from %{time_period}'

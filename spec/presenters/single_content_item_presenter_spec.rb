@@ -16,6 +16,35 @@ RSpec.describe SingleContentItemPresenter do
     SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
   end
 
+  describe '#status' do
+    context 'when content is published' do
+      it 'displays nothing' do
+        expect(subject.status).to be_nil
+      end
+    end
+    context 'when content is historical' do
+      before { current_period_data[:metadata][:historical] = true }
+      it 'displays history mode' do
+        expect(subject.status).to eq(I18n.t('components.metadata.statuses.historical'))
+      end
+    end
+    context 'when content is withdrawn' do
+      before { current_period_data[:metadata][:withdrawn] = true }
+      it 'displays withdrawn' do
+        expect(subject.status).to eq(I18n.t('components.metadata.statuses.withdrawn'))
+      end
+    end
+    context 'when content is withdrawn and historical' do
+      before {
+        current_period_data[:metadata][:historical] = true
+        current_period_data[:metadata][:withdrawn] = true
+      }
+      it 'displays withdrawn and history mode' do
+        expect(subject.status).to eq(I18n.t('components.metadata.statuses.withdrawn_and_historical'))
+      end
+    end
+  end
+
   describe '#trend_percentage' do
     it 'calculates an increase percentage change' do
       current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }, { name: 'pviews', total: 100 }]
