@@ -89,6 +89,16 @@ RSpec.describe SingleContentItemPresenter do
       expect(subject.pageviews_per_visit).to eq('0')
     end
 
+    it 'return 0 if unique pageviews are nil' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: nil }, { name: 'pviews', total: 0 }]
+      expect(subject.pageviews_per_visit).to eq('0')
+    end
+
+    it 'return 0 if pageviews are nil' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 0 }, { name: 'pviews', total: nil }]
+      expect(subject.pageviews_per_visit).to eq('0')
+    end
+
     it 'rounds to 2 decimal places' do
       current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 4 }, { name: 'pviews', total: 13 }]
       expect(subject.pageviews_per_visit).to eq('3.25')
