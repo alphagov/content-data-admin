@@ -2,9 +2,9 @@ class ContentItemsPresenter
   include Kaminari::Helpers::HelperMethods
   attr_reader :items, :title, :date_range, :page, :total_pages
 
-  def initialize(response, date_range)
+  def initialize(response, search_parameters)
     @title = 'Content Items'
-    @date_range = date_range
+    @date_range = DateRange.new(search_parameters[:date_range])
     @total_results = response[:total_results]
     @total_pages = response[:total_pages]
     @page = response[:page] || 1

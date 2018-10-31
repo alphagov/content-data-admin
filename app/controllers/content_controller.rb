@@ -2,20 +2,18 @@ class ContentController < ApplicationController
   include PaginationHelper
 
   def index
-    @content = get_content
+    @document_types = FetchDocumentTypes.call[:document_types]
+    organisations = FetchOrganisations.call
+    response = FindContent.call(content_params)
+
     @organisation_id = content_params[:organisation_id]
     @document_type = content_params[:document_type]
-    organisations = FetchOrganisations.call
     @organisations = organisations[:organisations]
-    @document_types = FetchDocumentTypes.call[:document_types]
+
+    @content = ContentItemsPresenter.new(response, content_params)
   end
 
 private
-
-  def get_content
-    response = FindContent.call(content_params)
-    ContentItemsPresenter.new(response, DateRange.new(content_params[:date_range]))
-  end
 
   def content_params
     @content_params ||= begin
