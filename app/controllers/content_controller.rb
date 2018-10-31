@@ -10,7 +10,7 @@ class ContentController < ApplicationController
     @document_type = content_params[:document_type]
     @organisations = organisations[:organisations]
 
-    @content = ContentItemsPresenter.new(response, content_params)
+    @content = ContentItemsPresenter.new(response, content_params, @document_types)
   end
 
 private
@@ -20,6 +20,7 @@ private
       defaults = {
         date_range: 'last-30-days',
         organisation_id: current_user.organisation_content_id,
+        document_type: ''
       }
 
       defaults.merge(
