@@ -2,15 +2,16 @@ class ContentItemsPresenter
   include Kaminari::Helpers::HelperMethods
   attr_reader :items, :title, :date_range, :page, :total_pages
 
-  def initialize(response, search_parameters, document_types)
+  def initialize(content_items, search_parameters, document_types, organisations)
     @title = 'Content Items'
     @search_parameters = search_parameters
     @document_types = document_types
+    @organisations = organisations
     @date_range = DateRange.new(search_parameters[:date_range])
-    @total_results = response[:total_results]
-    @total_pages = response[:total_pages]
-    @page = response[:page] || 1
-    @items = paginate(response[:results].map { |ci| ContentRowPresenter.new(ci) })
+    @total_results = content_items[:total_results]
+    @total_pages = content_items[:total_pages]
+    @page = content_items[:page] || 1
+    @items = paginate(content_items[:results].map { |ci| ContentRowPresenter.new(ci) })
   end
 
   def prev_link?
@@ -34,6 +35,16 @@ class ContentItemsPresenter
       value: '',
       selected: @search_parameters[:document_type] == ''
     )
+  end
+
+  def organisation_options
+    @organisations.map do |org|
+      {
+        text: org[:title],
+        value: org[:organisation_id],
+        selected: org[:organisation_id] == @search_parameters[:organisation_id]
+      }
+    end
   end
 
 private

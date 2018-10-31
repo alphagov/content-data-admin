@@ -2,6 +2,7 @@ RSpec.describe ContentItemsPresenter do
   include GdsApi::TestHelpers::ContentDataApi
 
   let(:document_types) { default_document_types }
+  let(:organisations) { default_organisations }
   let(:search_parameters) do
     {
       date_range: 'last-30-days',
@@ -25,12 +26,12 @@ RSpec.describe ContentItemsPresenter do
   end
 
   subject do
-    ContentItemsPresenter.new(content_items, search_parameters, document_types)
+    ContentItemsPresenter.new(content_items, search_parameters, document_types, organisations)
   end
 
   describe '#document_type_options' do
     context 'when valid document type in parameter' do
-      it 'formats the document types suitable the options component' do
+      it 'formats the document types for the options component' do
         expect(subject.document_type_options).to eq([
           { text: 'Case study', value: 'case_study', selected: false },
           { text: 'Guide', value: 'guide', selected: false },
@@ -41,7 +42,7 @@ RSpec.describe ContentItemsPresenter do
     end
     context 'when no document type in parameter' do
       before { search_parameters[:document_type] = '' }
-      it 'formats the document types suitable the options component' do
+      it 'formats the document types for the options component' do
         expect(subject.document_type_options).to eq([
           { text: 'Case study', value: 'case_study', selected: false },
           { text: 'Guide', value: 'guide', selected: false },
@@ -51,6 +52,18 @@ RSpec.describe ContentItemsPresenter do
       end
     end
   end
+
+  describe '#organisation_options' do
+    context 'when valid organisation id in parameter' do
+      it 'formats the organisations for the options component' do
+        expect(subject.organisation_options).to eq([
+          { text: 'org', value: 'org-id', selected: true },
+          { text: 'another org', value: 'another-org-id', selected: false }
+        ])
+      end
+    end
+  end
+
   describe '#prev_link?' do
     it 'returns false if on first page' do
       expect(subject.prev_link?).to eq(false)

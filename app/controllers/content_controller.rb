@@ -10,7 +10,9 @@ class ContentController < ApplicationController
     @document_type = content_params[:document_type]
     @organisations = organisations[:organisations]
 
-    @content = ContentItemsPresenter.new(response, content_params, @document_types)
+    @content = ContentItemsPresenter.new(
+      response, content_params, @document_types, @organisations
+    )
   end
 
 private
