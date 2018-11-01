@@ -4,22 +4,22 @@ module PaginationHelper
 
   def navigation_links
     result = {}
-    if content.prev_link?
+    if @presenter.prev_link?
       result = result.merge(
         previous_page:  {
-          url: path_to_prev_page(content.items),
+          url: path_to_prev_page(@presenter.content_items),
           title: 'Previous',
-          label: "#{content.page - 1} of #{content.total_pages}"
+          label: "#{@presenter.page - 1} of #{@presenter.total_pages}"
         }
       )
     end
 
-    if content.next_link?
+    if @presenter.next_link?
       result = result.merge(
         next_page: {
-          url: path_to_next_page(content.items),
+          url: path_to_next_page(@presenter.content_items),
           title: 'Next',
-          label: "#{content.page + 1} of #{content.total_pages}"
+          label: "#{@presenter.page + 1} of #{@presenter.total_pages}"
         }
       )
     end

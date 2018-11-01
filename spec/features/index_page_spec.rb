@@ -145,10 +145,10 @@ RSpec.describe '/content' do
       expect(table_rows).to all(include('News story'))
     end
 
-    it 'Allows the filter to be cleared' do
+    it 'allows the filter to be cleared' do
       select 'All document types', from: 'document_type'
       click_on 'Filter'
-      expect(page).to have_select('document_type', selected: nil)
+      expect(page).to have_select('document_type', selected: 'All document types')
       table_rows = extract_table_content('.govuk-table')
       expect(table_rows.count).to eq(3)
     end

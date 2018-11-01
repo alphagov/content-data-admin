@@ -1,6 +1,16 @@
 RSpec.describe ContentItemsPresenter do
-  let(:date_range) { DateRange.new('last-30-days') }
-  let(:response) do
+  include GdsApi::TestHelpers::ContentDataApi
+
+  let(:document_types) { default_document_types }
+  let(:organisations) { default_organisations }
+  let(:search_parameters) do
+    {
+      date_range: 'last-30-days',
+      organisation_id: 'org-id',
+      document_type: 'news_story'
+    }
+  end
+  let(:content_items) do
     {
       results: [],
       total_results: 300,
@@ -8,27 +18,71 @@ RSpec.describe ContentItemsPresenter do
       page: 1
     }
   end
+
+  around do |example|
+    Timecop.freeze Date.new(2018, 6, 1) do
+      example.run
+    end
+  end
+
+  subject do
+    ContentItemsPresenter.new(content_items, search_parameters, document_types, organisations)
+  end
+
+  describe '#document_type_options' do
+    context 'when valid document type in parameter' do
+      it 'formats the document types for the options component' do
+        expect(subject.document_type_options).to eq([
+          { text: 'Case study', value: 'case_study', selected: false },
+          { text: 'Guide', value: 'guide', selected: false },
+          { text: 'News story', value: 'news_story', selected: true },
+          { text: 'All document types', value: '', selected: false }
+        ])
+      end
+    end
+    context 'when no document type in parameter' do
+      before { search_parameters[:document_type] = '' }
+      it 'formats the document types for the options component' do
+        expect(subject.document_type_options).to eq([
+          { text: 'Case study', value: 'case_study', selected: false },
+          { text: 'Guide', value: 'guide', selected: false },
+          { text: 'News story', value: 'news_story', selected: false },
+          { text: 'All document types', value: '', selected: true }
+        ])
+      end
+    end
+  end
+
+  describe '#organisation_options' do
+    context 'when valid organisation id in parameter' do
+      it 'formats the organisations for the options component' do
+        expect(subject.organisation_options).to eq([
+          { text: 'org', value: 'org-id', selected: true },
+          { text: 'another org', value: 'another-org-id', selected: false }
+        ])
+      end
+    end
+  end
+
   describe '#prev_link?' do
     it 'returns false if on first page' do
-      presenter = described_class.new(response, date_range)
-      expect(presenter.prev_link?).to eq(false)
+      expect(subject.prev_link?).to eq(false)
     end
 
     it 'returns true if on another page' do
-      presenter = described_class.new(response.merge(page: 2), date_range)
-      expect(presenter.prev_link?).to eq(true)
+      content_items[:page] = 2
+      expect(subject.prev_link?).to eq(true)
     end
   end
 
   describe '#next_link?' do
     it 'returns false when on the last page' do
-      presenter = described_class.new(response.merge(page: 3), date_range)
-      expect(presenter.next_link?).to eq(false)
+      content_items[:page] = 3
+      expect(subject.next_link?).to eq(false)
     end
 
     it 'returns true when on the another page' do
-      presenter = described_class.new(response, date_range)
-      expect(presenter.next_link?).to eq(true)
+      expect(subject.next_link?).to eq(true)
     end
   end
 end
