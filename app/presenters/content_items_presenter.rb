@@ -1,17 +1,16 @@
 class ContentItemsPresenter
   include Kaminari::Helpers::HelperMethods
-  attr_reader :items, :title, :date_range, :page, :total_pages
+  attr_reader :title, :page, :total_pages, :content_items
 
-  def initialize(content_items, search_parameters, document_types, organisations)
+  def initialize(search_results, search_parameters, document_types, organisations)
     @title = 'Content Items'
     @search_parameters = search_parameters
     @document_types = document_types
     @organisations = organisations
-    @date_range = DateRange.new(search_parameters[:date_range])
-    @total_results = content_items[:total_results]
-    @total_pages = content_items[:total_pages]
-    @page = content_items[:page] || 1
-    @items = paginate(content_items[:results].map { |ci| ContentRowPresenter.new(ci) })
+    @total_results = search_results[:total_results]
+    @total_pages = search_results[:total_pages]
+    @page = search_results[:page] || 1
+    @content_items = paginate(search_results[:results].map { |item| ContentRowPresenter.new(item) })
   end
 
   def prev_link?

@@ -1,4 +1,4 @@
-<% content_for :title, @content.title %>
+<% content_for :title, @presenter.title %>
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-quarter">
@@ -11,7 +11,7 @@
       </div>
         <%= form_tag content_path, method: 'get', name: 'organisation-picker' do %>
           <%= render "components/time-select", {
-            current_selection: @content.time_period,
+            current_selection: @presenter.time_period,
             compact: true,
             base_path: "/",
             dates: [
@@ -54,7 +54,7 @@
             <%= render "govuk_publishing_components/components/select", {
               id: "organisation_id",
               label: "Organisation",
-              options: @content.organisation_options
+              options: @presenter.organisation_options
             } %>
             <%= render "govuk_publishing_components/components/input", {
                 label: {
@@ -67,7 +67,7 @@
               <%= render "govuk_publishing_components/components/select", {
               id: "document_type",
               label: "Document type",
-              options: @content.document_type_options
+              options: @presenter.document_type_options
             } %>
 
             <%= render "govuk_publishing_components/components/button", {text: "Filter"} %>
@@ -97,14 +97,14 @@
           <% end %>
 
           <%= t.body do %>
-            <% @content.items.each do |item| %>
+            <% @presenter.content_items.each do |item| %>
               <%= t.row do %>
                 <%= t.cell(
                   render(
                     partial: 'page_title',
                     locals: {
                       item: item,
-                      date_range: @content.date_range.time_period
+                      date_range: @presenter.time_period
                     }
                   )
                 ) %>

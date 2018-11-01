@@ -2,23 +2,19 @@ class ContentController < ApplicationController
   include PaginationHelper
 
   def index
-    @document_types = FetchDocumentTypes.call[:document_types]
-    organisations = FetchOrganisations.call
-    response = FindContent.call(content_params)
+    document_types = FetchDocumentTypes.call[:document_types]
+    organisations = FetchOrganisations.call[:organisations]
+    search_results = FindContent.call(search_params)
 
-    @organisation_id = content_params[:organisation_id]
-    @document_type = content_params[:document_type]
-    @organisations = organisations[:organisations]
-
-    @content = ContentItemsPresenter.new(
-      response, content_params, @document_types, @organisations
+    @presenter = ContentItemsPresenter.new(
+      search_results, search_params, document_types, organisations,
     )
   end
 
 private
 
-  def content_params
-    @content_params ||= begin
+  def search_params
+    @search_params ||= begin
       defaults = {
         date_range: 'last-30-days',
         organisation_id: current_user.organisation_content_id,
