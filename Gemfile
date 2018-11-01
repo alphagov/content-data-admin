@@ -10,6 +10,7 @@ gem "gds-api-adapters", "~> 54"
 gem "gds-sso", "~> 13"
 gem "govuk_app_config", "~> 1"
 gem "govuk_publishing_components", "~> 12.3"
+gem 'kaminari'
 gem 'logstasher'
 gem "pg", "~> 1"
 gem "plek", "~> 2"

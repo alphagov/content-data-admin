@@ -153,4 +153,45 @@ RSpec.describe '/content' do
       expect(table_rows.count).to eq(3)
     end
   end
+
+  context 'pagination' do
+    let(:other_page_items) do
+      [
+        {
+          base_path: '/path/3',
+          title: 'third title',
+          upviews: 233_018,
+          document_type: 'press_release',
+          satisfaction: 0.81301,
+          satisfaction_responses: 250,
+          searches: 220
+        },
+        {
+          base_path: '/path/4',
+          title: 'forth title',
+          upviews: 100_018,
+          document_type: 'news_story',
+          satisfaction: 0.68,
+          satisfaction_responses: 42,
+          searches: 12
+        }
+      ]
+    end
+
+    before do
+      content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', page: 2, items: other_page_items)
+    end
+
+    it 'shows the second page of data' do
+      click_on 'Next'
+      table_rows = extract_table_content('.govuk-table')
+      expect(table_rows).to eq(
+        [
+          ['Page title', 'Content type', 'Unique pageviews', 'User satisfaction score', 'Searches from page'],
+          ['third title /path/3', 'Press release', '233,018', '81.3% (250 responses)', '220'],
+          ['forth title /path/4', 'News story', '100,018', '68.0% (42 responses)', '12'],
+        ]
+      )
+    end
+  end
 end
