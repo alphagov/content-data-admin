@@ -44,7 +44,7 @@ module GdsApi
         }.reject { |_, v| v.blank? }
         query = query(params)
         url = "#{content_data_api_endpoint}/content#{query}"
-        body = { results: items, total_results: 200 }.to_json
+        body = { results: items, total_results: 200, total_pages: 2 }.to_json
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 

@@ -183,7 +183,7 @@ RSpec.describe '/content' do
     end
 
     it 'shows the second page of data' do
-      click_on '2'
+      click_on 'Next'
       table_rows = extract_table_content('.govuk-table')
       expect(table_rows).to eq(
         [
@@ -191,7 +191,7 @@ RSpec.describe '/content' do
           ['third title /path/3', 'Press release', '233,018', '81.3% (250 responses)', '220'],
           ['forth title /path/4', 'News story', '100,018', '68.0% (42 responses)', '12'],
         ]
-                            )
+      )
     end
   end
 end

@@ -1,4 +1,6 @@
 class ContentController < ApplicationController
+  include PaginationHelper
+
   def index
     @content = get_content
     @organisation_id = content_params[:organisation_id]
@@ -16,7 +18,8 @@ private
       response[:results],
         DateRange.new(content_params[:date_range]),
         response[:total_results],
-        params[:page]
+        response[:total_pages],
+        response[:page]
     )
   end
 
