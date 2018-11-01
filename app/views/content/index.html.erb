@@ -1,79 +1,122 @@
-<%= form_tag content_path, method: 'get', name: 'organisation-picker' do %>
-  <%= select_tag(
-    'organisation_id',
-    options_for_select(
-      @organisations.map { |org| [org[:title], org[:organisation_id]] },
-      selected: @organisation_id
-    ),
-    class: 'org-picker'
-  ) %>
-  <%= select_tag(
-    'document_type',
-    options_for_select(
-      @document_types.map { |dt| [dt.try(:tr, '_', ' ').try(:capitalize), dt] },
-      selected: @document_type || '',
-    ),
-    include_blank: 'All document types',
-    class: 'doc-type-picker'
-  ) %>
-  <%= hidden_field_tag 'date_range', @content.date_range.time_period %>
-  <%= submit_tag "Filter" %>
-<% end %>
-
 <% content_for :title, @content.title %>
-<h3>Content data</h3>
-<%= GovukPublishingComponents::AppHelpers::TableHelper.helper(
-  self,
-  "Showing ... TODO",
-  sortable: true
-) do |t| %>
-  <%= t.head do %>
-    <!-- TODO: Once sorting is supported, fill in the href and sort_direction header arguments with proper values -->
-    <%= t.header(
-      "Page title",
-      href: '#',
-      sort_direction: nil
-    ) %>
-    <%= t.header(
-      "Content type",
-      href: '#',
-      sort_direction: nil
-    ) %>
-    <%= t.header(
-      "Unique pageviews",
-      href: '#',
-      sort_direction: 'descending'
-    ) %>
-    <%= t.header(
-      "User satisfaction score",
-      href: '#',
-      sort_direction: nil
-    ) %>
-    <%= t.header(
-      "Searches from page",
-      href: '#',
-      sort_direction: nil
-    ) %>
-  <% end %>
 
-  <%= t.body do %>
-    <% @content.items.each do |item| %>
-      <%= t.row do %>
-        <%= t.cell(
-          render(
-            partial: 'page_title',
-            locals: {
-              item: item,
-              date_range: @content.date_range.time_period
-            }
-          )
-        ) %>
-        <%= t.cell item.document_type %>
-        <%= t.cell number_with_delimiter(item.upviews, delimiter: ',') %>
-        <%= t.cell item.user_satisfaction %>
-        <%= t.cell item.searches %>
-      <% end %>
-    <% end %>
-  <% end %>
-<% end %>
-<%= render "govuk_publishing_components/components/previous_and_next_navigation", navigation_links %>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+      <div class="filters-control__wrapper govuk-visually-hidden" data-module="filter-toggle">
+        <span class="filters-control filters-control--hide govuk-visually-hidden">
+          <a href="" class="govuk-link filters-control__link filters-control__link--hide">Hide filters</a>&nbsp;&#x25B2;
+        </span>
+        <span class="filters-control filters-control--show govuk-visually-hidden">
+          <a href="" class="govuk-link filters-control__link filters-control__link--show">Show filters</a>&nbsp;&#x25BC;</span>
+      </div>
+        <%= form_tag content_path, method: 'get', name: 'organisation-picker' do %>
+          <%= render "components/time-select", {
+            current_selection: @content.time_period,
+            compact: true,
+            base_path: "/",
+            dates: [
+              {
+                value: "last-30-days",
+                text: t("metrics.show.time_periods.last-30-days.leading"),
+                hint_text:  "#{30.days.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+              },
+              {
+                value: "last-month",
+                text: t("metrics.show.time_periods.last-month.leading"),
+                hint_text: "#{Date.today.last_month.beginning_of_month.strftime("%-d %B %Y")} to #{Date.today.last_month.end_of_month.strftime("%-d %B %Y")}"
+              },
+              {
+                value: "last-3-months",
+                text: t("metrics.show.time_periods.last-3-months.leading"),
+                hint_text: "#{3.months.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+              },
+              {
+                value: "last-6-months",
+                text: t("metrics.show.time_periods.last-6-months.leading"),
+                hint_text: "#{6.months.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+              },
+              {
+                value: "last-year",
+                text: t("metrics.show.time_periods.last-year.leading"),
+                hint_text: "#{1.year.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+              },
+              {
+                value: "last-2-years",
+                text: t("metrics.show.time_periods.last-2-years.leading"),
+                hint_text: "#{2.years.ago.strftime("%-d %B %Y")} to #{Date.today.strftime("%-d %B %Y")}"
+              }
+            ]
+          } %>
+          <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+          <%# selects will be switched out for the accessible autocomplete component eventually, but use this in the meantime %>
+          <div class="filter-form__filters">
+            <%= render "govuk_publishing_components/components/select", {
+              id: "organisation_id",
+              label: "Organisation",
+              options: @content.organisation_options
+            } %>
+            <%= render "govuk_publishing_components/components/input", {
+                label: {
+                  text: "Title or URL"
+                },
+                name: "title_url",
+                autofocus: true,
+                tabindex: 0
+              } %>
+              <%= render "govuk_publishing_components/components/select", {
+              id: "document_type",
+              label: "Document type",
+              options: @content.document_type_options
+            } %>
+
+            <%= render "govuk_publishing_components/components/button", {text: "Filter"} %>
+          <% end %>
+
+            <p><a href="/content" class="govuk-link govuk-body-s">Clear filters</a></p>
+
+            <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+            <p><a href="" class="govuk-link govuk-body-s">Download all data in CSV format</a></p>
+
+        </div>
+    </div>
+    <div class="govuk-grid-column-three-quarters">
+      <%= GovukPublishingComponents::AppHelpers::TableHelper.helper(
+          self,
+          '<h2 class="table-header">Showing <span class="table-header__param">21</span> to <span class="table-header__param">40</span> of <span class="table-header__param">587</span> results from <span class="table-header__param">UK Visas and Immigration</span> in <span class="table-header__param">guidance</span>.</h2>'.html_safe,
+          sortable: true
+        ) do |t| %>
+          <%= t.head do %>
+            <!-- TODO: Once sorting is supported, fill in the href and sort_direction header arguments with proper values -->
+            <%= t.header("Page title", href: '#', sort_direction: nil) %>
+            <%= t.header("Content type", href: '#', sort_direction: nil) %>
+            <%= t.header("Unique pageviews", href: '#', sort_direction: 'descending') %>
+            <%= t.header("User satisfaction score", href: '#', sort_direction: nil) %>
+            <%= t.header("Searches from page", href: '#', sort_direction: nil) %>
+          <% end %>
+
+          <%= t.body do %>
+            <% @content.items.each do |item| %>
+              <%= t.row do %>
+                <%= t.cell(
+                  render(
+                    partial: 'page_title',
+                    locals: {
+                      item: item,
+                      date_range: @content.date_range.time_period
+                    }
+                  )
+                ) %>
+                <%= t.cell item.document_type %>
+                <%= t.cell number_with_delimiter(item.upviews, delimiter: ',') %>
+                <%= t.cell item.user_satisfaction %>
+                <%= t.cell item.searches %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%# documented at /component-guide/previous_and_next_navigation within this app - on first/last page we would need to only render the single relevant link %>
+        <%= render "govuk_publishing_components/components/previous_and_next_navigation", navigation_links %>
+    </div>
+</div>

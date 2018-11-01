@@ -22,6 +22,10 @@ class ContentItemsPresenter
     @page < @total_pages
   end
 
+  def time_period
+    @search_parameters[:date_range]
+  end
+
   def document_type_options
     types = @document_types.map do |document_type|
       {
