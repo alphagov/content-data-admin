@@ -14,13 +14,7 @@ private
 
   def get_content
     response = FindContent.call(content_params)
-    ContentItemsPresenter.new(
-      response[:results],
-        DateRange.new(content_params[:date_range]),
-        response[:total_results],
-        response[:total_pages],
-        response[:page]
-    )
+    ContentItemsPresenter.new(response, DateRange.new(content_params[:date_range]))
   end
 
   def content_params
