@@ -213,16 +213,19 @@ private
   end
 
   def calculate_previous_pageviews_per_visit
-    previous = if @previous_metrics['pviews'][:value].to_f.zero? || @previous_metrics['upviews'][:value].to_f.zero?
+    previous = if @previous_metrics['pviews'][:value].blank? || @previous_metrics['upviews'][:value].blank?
+                 nil
+               elsif @previous_metrics['pviews'][:value].to_f.zero? || @previous_metrics['upviews'][:value].to_f.zero?
                  0
                else
-                 @previous_metrics['pviews'][:value].to_f / @previous_metrics['upviews'][:value].to_f
+                 (@previous_metrics['pviews'][:value].to_f / @previous_metrics['upviews'][:value].to_f).round(2)
                end
-    @previous_metrics['pageviews_per_visit'] = { value: previous.round(2) }
+    @previous_metrics['pageviews_per_visit'] = { value: previous }
   end
 
   def calculate_trend_percentage(current_value, previous_value)
-    previous_value.to_f <= 0 ? 0 : ((current_value.to_f / previous_value.to_f) - 1) * 100
+    return 'no comparison data' if previous_value.nil?
+    previous_value <= 0 ? 0 : ((current_value.to_f / previous_value.to_f) - 1) * 100
   end
 
   def format_date(date_str)

@@ -73,6 +73,13 @@ RSpec.describe SingleContentItemPresenter do
 
       expect(subject.trend_percentage('upviews')).to eq(0.0)
     end
+
+    it 'returns `no comparison data` if there is no comparison data' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: nil }, { name: 'pviews', total: nil }]
+      previous_period_data[:time_series_metrics] = [{ name: 'upviews', total: nil }, { name: 'pviews', total: nil }]
+
+      expect(subject.trend_percentage('upviews')).to eq("no comparison data")
+    end
   end
 
   describe '#searches_context' do
