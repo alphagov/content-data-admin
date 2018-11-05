@@ -69,8 +69,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.glance-metric.searches', text: '24'
       end
 
-      xit 'renders glance metric context for on page searches' do
-        expect(page).to have_selector '.glance-metric.searches', text: '50%'
+      it 'renders glance metric context for on page searches' do
+        expect(page).to have_selector '.glance-metric.searches', text: '4.05%'
       end
 
       it 'renders trend percentage for page searches' do
