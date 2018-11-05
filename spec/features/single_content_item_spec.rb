@@ -45,10 +45,6 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.glance-metric.upviews', text: '6,000'
       end
 
-      it 'renders glance metric context for unique pageviews' do
-        expect(page).to have_selector '.glance-metric.upviews', text: '2.74%'
-      end
-
       it 'renders trend percentage for unique pageviews' do
         expect(page).to have_selector '.upviews .app-c-glance-metric__trend', text: '+500.00%'
       end
