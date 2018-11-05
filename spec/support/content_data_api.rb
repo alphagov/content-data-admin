@@ -62,6 +62,13 @@ module GdsApi
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
+      def content_data_api_has_single_page_with_nil_values(base_path:, from:, to:)
+        query = query(from: from, to: to)
+        url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
+        body = nil_values_in_single_page_payload(base_path, from, to).to_json
+        stub_request(:get, url).to_return(status: 200, body: body)
+      end
+
       def content_data_api_has_orgs
         url = "#{content_data_api_endpoint}/organisations"
         body = { organisations: default_organisations }.to_json
@@ -300,6 +307,36 @@ module GdsApi
           edition_metrics: [
             { name: "words", value: 0 },
             { name: "pdf_count", value: 0 }
+          ]
+        }
+      end
+
+      def nil_values_in_single_page_payload(base_path, from, to)
+        {
+          metadata: {
+            title:  "Content Title",
+            base_path:  "/#{base_path}",
+            first_published_at:  "2018-07-17T10:35:59.000Z",
+            public_updated_at:  "2018-07-17T10:35:57.000Z",
+            publishing_app:  "publisher",
+            document_type:  "news_story",
+            primary_organisation_title:  "The Ministry",
+            historical: false,
+            withdrawn: false
+          },
+          time_period: { to: to, from: from },
+          time_series_metrics: [
+            { name: "upviews", total: nil, time_series: [] },
+            { name: "pviews", total: nil, time_series: [] },
+            { name: "searches", total: nil, time_series: [] },
+            { name: "feedex", total: nil, time_series: [] },
+            { name: "satisfaction", total: nil, time_series: [] },
+            { name: "useful_yes", total: nil, time_series: [] },
+            { name: "useful_no", total: nil, time_series: [] }
+          ],
+          edition_metrics: [
+            { name: "words", value: nil },
+            { name: "pdf_count", value: nil }
           ]
         }
       end

@@ -210,6 +210,20 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
     end
 
+    context 'when the data-api has no comparison data' do
+      it 'returns trend as `no comparison data`' do
+        content_data_api_has_single_page(base_path: 'base/path',
+                                         from: from.to_s,
+                                         to: to.to_s)
+        content_data_api_has_single_page_with_nil_values(base_path: 'base/path',
+                                                         from: prev_from.to_s,
+                                                         to: from.to_s)
+        visit '/metrics/base/path'
+        expect(page.status_code).to eq(200)
+        expect(page).to have_selector '.upviews .app-c-glance-metric__trend', text: 'no comparison data'
+      end
+    end
+
     context 'when the data-api has an error' do
       it 'returns a 404 for a Gds::NotFound' do
         content_data_api_does_not_have_base_path(base_path: 'base/path',

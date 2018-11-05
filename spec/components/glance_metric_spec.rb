@@ -60,6 +60,13 @@ RSpec.describe "Glance Metric", type: :view do
     assert_select ".app-c-glance-metric__trend--no-change .app-c-glance-metric__trend-text", text: "No change"
   end
 
+  it 'displays no trend direction if no comparison data available' do
+    data[:trend_percentage] = 'no comparison data'
+    render_component(data)
+    assert_select ".app-c-glance-metric__trend-text", count: 0
+    assert_select ".app-c-glance-metric__trend-icon", count: 0
+  end
+
   def render_component(locals)
     render partial: "components/glance-metric", locals: locals
   end
