@@ -176,7 +176,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         upviews_rows = extract_table_content(".chart.upviews table")
         expect(upviews_rows).to match_array([
           expected_table_dates,
-          ["Unique pageviews", "1000", "2000", "3000"]
+          ["Unique pageviews", "1,000", "2,000", "3,000"]
         ])
       end
 
@@ -184,7 +184,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         pviews_rows = extract_table_content(".chart.pviews table")
         expect(pviews_rows).to match_array([
           expected_table_dates,
-          %w[Pageviews 10000 20000 30000]
+          %w[Pageviews 10,000 20,000 30,000]
         ])
       end
 
