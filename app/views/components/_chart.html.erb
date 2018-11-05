@@ -61,7 +61,7 @@
                       <tr class="govuk-table__row">
                         <th class="govuk-table__header" scope="row"><%= r[:label]  %></th>
                         <% r[:values].each do |v| %>
-                          <td class="govuk-table__cell govuk-table__cell--numeric"><%= v %></td>
+                          <td class="govuk-table__cell govuk-table__cell--numeric"><%= number_with_delimiter v %></td>
                         <% end %>
                       </tr>
                     <% end %>
@@ -80,7 +80,7 @@
                       <tr>
                         <th class="govuk-table__header govuk-table__header--numeric" scope="row"><%= k %></th>
                         <% rows.each do |r| %>
-                          <td class="govuk-table__cell govuk-table__cell--numeric"><%= r[:values][i] %></td>
+                          <td class="govuk-table__cell govuk-table__cell--numeric"><%= number_with_delimiter r[:values][i] %></td>
                         <% end %>
                       </tr>
                     <% end %>
