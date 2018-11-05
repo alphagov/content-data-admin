@@ -11,9 +11,6 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-half">
-    <a href="" class="govuk-link govuk-body-s"><%= t ".download_link", metric_name: @performance_data.link_text(metric_name) %></a>
-  </div>
-  <div class="govuk-grid-column-one-half">
     <% if external_link %>
       <a href="<%= external_link %>" class="govuk-link govuk-body-s"><%= t "metrics.#{metric_name}.external_link" %></a>
     <% end %>
