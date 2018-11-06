@@ -38,7 +38,7 @@ en:
       data_source: calculated_google_analytics
       external_link: ''
       about: >
-        This figure is calculated by dividing Google Analytic pageviews by unique pageviews. It
+        This figure is calculated by dividing Google Analytics pageviews by unique pageviews. It
         shows on average how many times a page was viewed during users' session. If a page has a
         high ratio (above 1.4), this indicates that users have to come back to that page within
         their session - investigate the navigation from that page further to identify any issues.
