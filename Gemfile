@@ -32,5 +32,6 @@ group :development, :test do
   gem "govuk-lint", "~> 3"
   gem 'pry'
   gem "rspec-rails", "~> 3"
+  gem "spring-commands-rspec"
   gem "webmock"
 end
