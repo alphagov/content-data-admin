@@ -47,29 +47,197 @@ RSpec.describe SingleContentItemPresenter do
 
   describe '#trend_percentage' do
     it 'calculates an increase percentage change' do
-      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }, { name: 'pviews', total: 100 }]
-      previous_period_data[:time_series_metrics] = [{ name: 'upviews', total: 50 }, { name: 'pviews', total: 100 }]
+      current_period_data[:time_series_metrics] = [
+        {
+          name: 'upviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-11-25',
+              value: 100
+            }
+          ]
+        },
+        {
+          name: 'pviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-11-25',
+              value: 100
+            }
+          ]
+        }
+      ]
+      previous_period_data[:time_series_metrics] = [
+        {
+          name: 'upviews',
+          total: 50,
+          time_series: [
+            {
+              date: '2018-10-25',
+              value: 100
+            }
+          ]
+        },
+        {
+          name: 'pviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-10-25',
+              value: 100
+            }
+          ]
+        }
+      ]
 
       expect(subject.trend_percentage('upviews')).to eq(100.0)
     end
 
     it 'calculates an decrease percentage change' do
-      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 50 }, { name: 'pviews', total: 100 }]
-      previous_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }, { name: 'pviews', total: 100 }]
+      current_period_data[:time_series_metrics] = [
+        {
+          name: 'upviews',
+          total: 50,
+          time_series: [
+            {
+              date: '2018-11-25',
+              value: 100
+            }
+          ]
+        },
+        {
+          name: 'pviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-11-25',
+              value: 100
+            }
+          ]
+        }
+      ]
+      previous_period_data[:time_series_metrics] = [
+        {
+          name: 'upviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-10-25',
+              value: 100
+            }
+          ]
+        },
+        {
+          name: 'pviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-10-25',
+              value: 100
+            }
+          ]
+        }
+      ]
 
       expect(subject.trend_percentage('upviews')).to eq(-50.0)
     end
 
     it 'calculates an no percentage change' do
-      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }, { name: 'pviews', total: 100 }]
-      previous_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }, { name: 'pviews', total: 100 }]
+      current_period_data[:time_series_metrics] = [
+        {
+          name: 'upviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-11-25',
+              value: 100
+            }
+          ]
+        },
+        {
+          name: 'pviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-11-25',
+              value: 100
+            }
+          ]
+        }
+      ]
+      previous_period_data[:time_series_metrics] = [
+        {
+          name: 'upviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-10-25',
+              value: 100
+            }
+          ]
+        },
+        {
+          name: 'pviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-10-25',
+              value: 100
+            }
+          ]
+        }
+      ]
 
       expect(subject.trend_percentage('upviews')).to eq(0.0)
     end
 
     it 'calculates an infinite percent increase (0 to non-zero)' do
-      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }, { name: 'pviews', total: 100 }]
-      previous_period_data[:time_series_metrics] = [{ name: 'upviews', total: 0 }, { name: 'pviews', total: 100 }]
+      current_period_data[:time_series_metrics] = current_period_data[:time_series_metrics] = [
+        {
+          name: 'upviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-11-25',
+              value: 100
+            }
+          ]
+        },
+        {
+          name: 'pviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-11-25',
+              value: 100
+            }
+          ]
+        }
+      ]
+      previous_period_data[:time_series_metrics] = [
+        {
+          name: 'upviews',
+          total: 0,
+          time_series: [
+            {
+              date: '2018-10-25',
+              value: 100
+            }
+          ]
+        },
+        {
+          name: 'pviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-10-25',
+              value: 100
+            }
+          ]
+        }
+      ]
 
       expect(subject.trend_percentage('upviews')).to eq(0.0)
     end
@@ -79,6 +247,58 @@ RSpec.describe SingleContentItemPresenter do
       previous_period_data[:time_series_metrics] = [{ name: 'upviews', total: nil }, { name: 'pviews', total: nil }]
 
       expect(subject.trend_percentage('upviews')).to eq("no comparison data")
+    end
+
+    it 'returns `no comparison data` if there is incomplete comparison data' do
+      current_period_data[:time_series_metrics] = [
+        {
+          name: 'upviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-11-25',
+              value: 100
+            },
+            {
+              date: '2018-11-26',
+              value: 100
+            }
+          ]
+        },
+        {
+          name: 'pviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-11-25',
+              value: 100
+            }
+          ]
+        }
+      ]
+      previous_period_data[:time_series_metrics] = [
+        {
+          name: 'upviews',
+          total: 50,
+          time_series: [
+            {
+              date: '2018-10-25',
+              value: 100
+            }
+          ]
+        },
+        {
+          name: 'pviews',
+          total: 100,
+          time_series: [
+            {
+              date: '2018-10-25',
+              value: 100
+            }
+          ]
+        }
+      ]
+      expect(subject.trend_percentage('upviews')).to eq('no comparison data')
     end
   end
 
