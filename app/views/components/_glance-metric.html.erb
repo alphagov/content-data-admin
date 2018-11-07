@@ -13,13 +13,13 @@
     <span class="app-c-glance-metric__figure"><%= figure %><span class="app-c-glance-metric__measurement" <% if measurement_explicit_label %>aria-label="<%= measurement_explicit_label %>"<% end %>><%= measurement_display_label %></span></span>
     <p class="app-c-glance-metric__context govuk-body-xs"><%= context %></p>
     <span class="app-c-glance-metric__trend">
-      <% if trend_percentage == "no comparison data" %>
+      <% if trend_percentage.blank? %>
         no comparison data
       <% else %>
         <% if trend_percentage > 0 %>+<% end %><%= '%.2f' % trend_percentage %>%
       <% end %>
     </span>
-    <% unless trend_percentage == "no comparison data" %>
+    <% unless trend_percentage.blank? %>
       <% if trend_percentage > 0 %>
         <span class="app-c-glance-metric__trend--up">
           <span aria-hidden="true" class="app-c-glance-metric__trend-icon">&#9650;</span>

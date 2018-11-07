@@ -224,8 +224,8 @@ private
   end
 
   def calculate_trend_percentage(current_value, previous_value, metric_name)
-    return 'no comparison data' if incomplete_previous_data?(current_value, previous_value, metric_name)
-    
+    return if incomplete_previous_data?(current_value, previous_value, metric_name)
+
     previous_value[:value] <= 0 ? 0 : ((current_value[:value].to_f / previous_value[:value].to_f) - 1) * 100
   end
 

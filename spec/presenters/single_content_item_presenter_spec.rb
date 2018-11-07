@@ -102,7 +102,7 @@ RSpec.describe SingleContentItemPresenter do
       current_period_data[:time_series_metrics] = time_series_metrics(100)
       previous_period_data[:time_series_metrics] = time_series_metrics(nil, nil)
 
-      expect(subject.trend_percentage('upviews')).to eq("no comparison data")
+      expect(subject.trend_percentage('upviews')).to eq(nil)
     end
 
     it 'returns `no comparison data` if there is incomplete comparison data' do
@@ -112,7 +112,7 @@ RSpec.describe SingleContentItemPresenter do
       current_period_data[:time_series_metrics] = time_series_metrics(100, current_time_series)
       previous_period_data[:time_series_metrics] = time_series_metrics(100, previous_time_series)
 
-      expect(subject.trend_percentage('upviews')).to eq('no comparison data')
+      expect(subject.trend_percentage('upviews')).to eq(nil)
     end
   end
 

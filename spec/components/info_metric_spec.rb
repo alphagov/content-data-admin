@@ -53,7 +53,7 @@ RSpec.describe "Info Metric", type: :view do
   end
 
   it 'does not display a trend direction if there is no comparison data' do
-    data[:trend_percentage] = 'no comparison data'
+    data[:trend_percentage] = nil
     render_component(data)
     assert_select ".app-c-info-metric__trend", count: 0
     assert_select ".app-c-info-metric__trend-text", count: 0

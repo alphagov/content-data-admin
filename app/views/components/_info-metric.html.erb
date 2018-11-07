@@ -30,7 +30,7 @@
         (<%= short_context %>)
       </span>
     <% end %>
-    <% if trend_percentage && trend_percentage != 'no comparison data' %>
+    <% if trend_percentage %>
       <span class="app-c-info-metric__trend">
         <% if trend_percentage > 0 %>+<% end %><%= '%.2f' % trend_percentage %>%
       </span>
@@ -51,7 +51,7 @@
         <span>
       <% end %>
     <% end %>
-    <% if period && trend_percentage != 'no comparison data' %>
+    <% if period && trend_percentage %>
       <span class="app-c-info-metric__period"><%= period %></span>
     <% end %>
   </div>
