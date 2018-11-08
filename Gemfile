@@ -9,7 +9,7 @@ gem "chartkick"
 gem "gds-api-adapters", "~> 54"
 gem "gds-sso", "~> 13"
 gem "govuk_app_config", "~> 1"
-gem "govuk_publishing_components", "~> 12.4"
+gem "govuk_publishing_components", "~> 12.6"
 gem 'kaminari'
 gem 'logstasher'
 gem "pg", "~> 1"
