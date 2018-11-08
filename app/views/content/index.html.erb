@@ -9,6 +9,7 @@
         <span class="filters-control filters-control--show govuk-visually-hidden">
           <a href="" class="govuk-link filters-control__link filters-control__link--show">Show filters</a>&nbsp;&#x25BC;</span>
       </div>
+      <div class="filter-form">
         <%= form_tag content_path, method: 'get', name: 'organisation-picker' do %>
           <%= render "components/time-select", {
             current_selection: @presenter.time_period,
@@ -49,7 +50,6 @@
           } %>
           <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
 
-          <%# selects will be switched out for the accessible autocomplete component eventually, but use this in the meantime %>
           <div class="filter-form__filters">
             <%= render "govuk_publishing_components/components/select", {
               id: "organisation_id",
@@ -72,51 +72,53 @@
 
             <%= render "govuk_publishing_components/components/button", {text: "Filter"} %>
           <% end %>
+        </div>
 
             <p><a href="/content" class="govuk-link govuk-body-s">Clear filters</a></p>
 
             <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
 
-            <p><a href="" class="govuk-link govuk-body-s">Download all data in CSV format</a></p>
+            <%# implement later: <p><a href="" class="govuk-link govuk-body-s">Download all data in CSV format</a></p> %>
 
         </div>
     </div>
     <div class="govuk-grid-column-three-quarters">
-      <%= GovukPublishingComponents::AppHelpers::TableHelper.helper(
-          self,
-          '<h2 class="table-header">Showing <span class="table-header__param">21</span> to <span class="table-header__param">40</span> of <span class="table-header__param">587</span> results from <span class="table-header__param">UK Visas and Immigration</span> in <span class="table-header__param">guidance</span>.</h2>'.html_safe,
-          sortable: true
-        ) do |t| %>
-          <%= t.head do %>
-            <!-- TODO: Once sorting is supported, fill in the href and sort_direction header arguments with proper values -->
-            <%= t.header("Page title", href: '#', sort_direction: nil) %>
-            <%= t.header("Content type", href: '#', sort_direction: nil) %>
-            <%= t.header("Unique pageviews", href: '#', sort_direction: 'descending') %>
-            <%= t.header("User satisfaction score", href: '#', sort_direction: nil) %>
-            <%= t.header("Searches from page", href: '#', sort_direction: nil) %>
-          <% end %>
+      <div class="table-wrapper">
+        <%= GovukPublishingComponents::AppHelpers::TableHelper.helper(
+            self,
+            '<h1 class="table-header">Showing <span class="table-header__param">21</span> to <span class="table-header__param">40</span> of <span class="table-header__param">587</span> results from <span class="table-header__param">UK Visas and Immigration</span> in <span class="table-header__param">guidance</span>.</h1>'.html_safe,
+            sortable: true
+          ) do |t| %>
+            <%= t.head do %>
+              <!-- TODO: Once sorting is supported, fill in the href and sort_direction header arguments with proper values -->
+              <%= t.header("Page title", href: '#', sort_direction: nil) %>
+              <%= t.header("Content type", href: '#', sort_direction: nil) %>
+              <%= t.header("Unique pageviews", href: '#', sort_direction: 'descending') %>
+              <%= t.header("User satisfaction score", href: '#', sort_direction: nil) %>
+              <%= t.header("Searches from page", href: '#', sort_direction: nil) %>
+            <% end %>
 
-          <%= t.body do %>
-            <% @presenter.content_items.each do |item| %>
-              <%= t.row do %>
-                <%= t.cell(
-                  render(
-                    partial: 'page_title',
-                    locals: {
-                      item: item,
-                      date_range: @presenter.time_period
-                    }
-                  )
-                ) %>
-                <%= t.cell item.document_type %>
-                <%= t.cell number_with_delimiter(item.upviews, delimiter: ',') %>
-                <%= t.cell item.user_satisfaction %>
-                <%= t.cell item.searches %>
+            <%= t.body do %>
+              <% @presenter.content_items.each do |item| %>
+                <%= t.row do %>
+                  <%= t.cell(
+                    render(
+                      partial: 'page_title',
+                      locals: {
+                        item: item,
+                        date_range: @presenter.time_period
+                      }
+                    )
+                  ) %>
+                  <%= t.cell item.document_type %>
+                  <%= t.cell number_with_delimiter(item.upviews, delimiter: ','), format: 'numeric' %>
+                  <%= t.cell item.user_satisfaction %>
+                  <%= t.cell item.searches, format: 'numeric' %>
+                <% end %>
               <% end %>
             <% end %>
           <% end %>
-        <% end %>
-        <%# documented at /component-guide/previous_and_next_navigation within this app - on first/last page we would need to only render the single relevant link %>
+        </div>
         <%= render "govuk_publishing_components/components/previous_and_next_navigation", navigation_links %>
     </div>
 </div>

@@ -1,6 +1,13 @@
 class ContentController < ApplicationController
   include PaginationHelper
 
+  layout 'application'
+  before_action :set_constants
+
+  def set_constants
+    @fullwidth = true
+  end
+
   def index
     document_types = FetchDocumentTypes.call[:document_types]
     organisations = FetchOrganisations.call[:organisations]

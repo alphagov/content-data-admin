@@ -6,4 +6,9 @@
 
 .app-c-time-select--compact {
   border-top: 0;
+  @include govuk-font(16);
+}
+
+.govuk-details__summary {
+  @include govuk-font(16);
 }
