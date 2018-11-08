@@ -52,6 +52,13 @@ RSpec.describe "Info Metric", type: :view do
     assert_select ".app-c-info-metric__trend--no-change .app-c-info-metric__trend-text", text: "No change"
   end
 
+  it 'does not display a trend direction if there is no comparison data' do
+    data[:trend_percentage] = nil
+    render_component(data)
+    assert_select ".app-c-info-metric__trend", count: 0
+    assert_select ".app-c-info-metric__trend-text", count: 0
+  end
+
   it "does not render the detail link when no about data is supplied" do
     data[:about] = false
     render_component(data)

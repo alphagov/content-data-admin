@@ -16,7 +16,7 @@ class SingleContentItemPresenter
       previous_period_data[:time_series_metrics],
       previous_period_data[:edition_metrics]
     )
-    calculate_secondary_metrics
+    assign_pageviews_per_visit
   end
 
   def total_upviews
@@ -97,9 +97,9 @@ class SingleContentItemPresenter
   end
 
   def trend_percentage(metric_name)
-    current_value = @metrics[metric_name][:value]
-    previous_value = @previous_metrics[metric_name][:value]
-    calculate_trend_percentage(current_value, previous_value)
+    current_value = @metrics[metric_name]
+    previous_value = @previous_metrics[metric_name]
+    calculate_trend_percentage(current_value, previous_value, metric_name)
   end
 
   def edit_url
@@ -194,35 +194,47 @@ private
     metrics
   end
 
-  def calculate_secondary_metrics
-    calculate_pageviews_per_visit
+  def assign_pageviews_per_visit
+    assign_current_pageviews_per_visit
+    assign_previous_pageviews_per_visit
   end
 
-  def calculate_pageviews_per_visit
-    calculate_current_pageviews_per_visit
-    calculate_previous_pageviews_per_visit
+  def assign_current_pageviews_per_visit
+    current = Calculator::PageviewsPerVisit.new(@metrics).current_period
+    @metrics['pageviews_per_visit'] = { value: current }
   end
 
-  def calculate_current_pageviews_per_visit
-    current = if @metrics['pviews'][:value].to_f.zero? || @metrics['upviews'][:value].to_f.zero?
-                0
-              else
-                @metrics['pviews'][:value].to_f / @metrics['upviews'][:value].to_f
-              end
-    @metrics['pageviews_per_visit'] = { value: current.round(2) }
+  def assign_previous_pageviews_per_visit
+    previous = Calculator::PageviewsPerVisit.new(@previous_metrics).previous_period
+    @previous_metrics['pageviews_per_visit'] = { value: previous }
   end
 
-  def calculate_previous_pageviews_per_visit
-    previous = if @previous_metrics['pviews'][:value].to_f.zero? || @previous_metrics['upviews'][:value].to_f.zero?
-                 0
-               else
-                 @previous_metrics['pviews'][:value].to_f / @previous_metrics['upviews'][:value].to_f
-               end
-    @previous_metrics['pageviews_per_visit'] = { value: previous.round(2) }
+  def calculate_trend_percentage(current_value, previous_value, metric_name)
+    return if incomplete_previous_data?(current_value, previous_value, metric_name)
+
+    Calculator::TrendPercentage.new(current_value[:value], previous_value[:value]).run
   end
 
-  def calculate_trend_percentage(current_value, previous_value)
-    previous_value.to_f <= 0 ? 0 : ((current_value.to_f / previous_value.to_f) - 1) * 100
+  def incomplete_previous_data?(current_value, previous_value, metric_name)
+    return incomplete_previous_pageviews_per_visit_data? if metric_name == 'pageviews_per_visit'
+    return true if no_previous_timeseries?(previous_value)
+
+    current_timeseries_length = length_of_timeseries(current_value[:time_series])
+    previous_time_series_length = length_of_timeseries(previous_value[:time_series])
+
+    current_timeseries_length != previous_time_series_length
+  end
+
+  def no_previous_timeseries?(previous_value)
+    previous_value[:time_series].blank?
+  end
+
+  def incomplete_previous_pageviews_per_visit_data?
+    incomplete_previous_data?(@metrics['pviews'], @previous_metrics['pviews'], 'pviews') && incomplete_previous_data?(@metrics['upviews'], @previous_metrics['upviews'], 'upviews')
+  end
+
+  def length_of_timeseries(time_series)
+    (time_series.last[:date].to_date - time_series.first[:date].to_date).to_i
   end
 
   def format_date(date_str)
