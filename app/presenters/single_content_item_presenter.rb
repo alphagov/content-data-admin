@@ -16,7 +16,7 @@ class SingleContentItemPresenter
       previous_period_data[:time_series_metrics],
       previous_period_data[:edition_metrics]
     )
-    calculate_secondary_metrics
+    assign_pageviews_per_visit
   end
 
   def total_upviews
@@ -194,32 +194,18 @@ private
     metrics
   end
 
-  def calculate_secondary_metrics
-    calculate_pageviews_per_visit
+  def assign_pageviews_per_visit
+    assign_current_pageviews_per_visit
+    assign_previous_pageviews_per_visit
   end
 
-  def calculate_pageviews_per_visit
-    calculate_current_pageviews_per_visit
-    calculate_previous_pageviews_per_visit
+  def assign_current_pageviews_per_visit
+    current = Calculator::PageviewsPerVisit.new(@metrics).current_period
+    @metrics['pageviews_per_visit'] = { value: current }
   end
 
-  def calculate_current_pageviews_per_visit
-    current = if @metrics['pviews'][:value].to_f.zero? || @metrics['upviews'][:value].to_f.zero?
-                0
-              else
-                @metrics['pviews'][:value].to_f / @metrics['upviews'][:value].to_f
-              end
-    @metrics['pageviews_per_visit'] = { value: current.round(2) }
-  end
-
-  def calculate_previous_pageviews_per_visit
-    previous = if @previous_metrics['pviews'][:value].blank? || @previous_metrics['upviews'][:value].blank?
-                 nil
-               elsif @previous_metrics['pviews'][:value].to_f.zero? || @previous_metrics['upviews'][:value].to_f.zero?
-                 0
-               else
-                 (@previous_metrics['pviews'][:value].to_f / @previous_metrics['upviews'][:value].to_f).round(2)
-               end
+  def assign_previous_pageviews_per_visit
+    previous = Calculator::PageviewsPerVisit.new(@previous_metrics).previous_period
     @previous_metrics['pageviews_per_visit'] = { value: previous }
   end
 
@@ -233,8 +219,8 @@ private
     return incomplete_previous_pageviews_per_visit_data? if metric_name == 'pageviews_per_visit'
     return true if no_previous_timeseries?(previous_value)
 
-    current_timeseries_length = calculate_length_of_timeseries(current_value[:time_series])
-    previous_time_series_length = calculate_length_of_timeseries(previous_value[:time_series])
+    current_timeseries_length = length_of_timeseries(current_value[:time_series])
+    previous_time_series_length = length_of_timeseries(previous_value[:time_series])
 
     current_timeseries_length != previous_time_series_length
   end
@@ -247,7 +233,7 @@ private
     incomplete_previous_data?(@metrics['pviews'], @previous_metrics['pviews'], 'pviews') && incomplete_previous_data?(@metrics['upviews'], @previous_metrics['upviews'], 'upviews')
   end
 
-  def calculate_length_of_timeseries(time_series)
+  def length_of_timeseries(time_series)
     (time_series.last[:date].to_date - time_series.first[:date].to_date).to_i
   end
 
