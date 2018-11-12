@@ -2,9 +2,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
   let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no] }
-  let(:prev_from) { Time.zone.today - 60.days }
-  let(:from) { Time.zone.today - 30.days }
-  let(:to) { Time.zone.today }
+  let(:prev_from) { Time.zone.yesterday - 60.days }
+  let(:from) { Time.zone.yesterday - 30.days }
+  let(:to) { Time.zone.yesterday }
 
   around do |example|
     Timecop.freeze Date.new(2018, 12, 25) do
@@ -87,7 +87,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     describe 'page metric section' do
-      let(:expected_table_dates) { ['', '11-25', '11-26', '12-25'] }
+      let(:expected_table_dates) { ['', '11-24', '11-25', '12-24'] }
 
       it 'renders the metric for upviews' do
         expect(page).to have_selector '.metric-summary__upviews', text: '6,000'

@@ -192,7 +192,7 @@ RSpec.describe SingleContentItemPresenter do
   describe '#feedback_explorer_href' do
     it 'returns a URI for the feedback explorer' do
       host = Plek.new.external_url_for('support')
-      expected_link = "#{host}/anonymous_feedback?from=2018-05-02&to=2018-06-01&paths=%2Fthe%2Fbase%2Fpath"
+      expected_link = "#{host}/anonymous_feedback?from=2018-05-01&to=2018-05-31&paths=%2Fthe%2Fbase%2Fpath"
       expect(subject.feedback_explorer_href).to eq(expected_link)
     end
   end

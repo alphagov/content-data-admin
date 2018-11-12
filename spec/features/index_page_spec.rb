@@ -60,8 +60,8 @@ RSpec.describe '/content' do
     end
 
     it 'respects the date filter' do
-      from = (Time.zone.today - 1.year).to_s('%F')
-      to = Time.zone.today.to_s('%F')
+      from = (Time.zone.yesterday - 1.year).to_s('%F')
+      to = Time.zone.yesterday.to_s('%F')
       stub_metrics_page(base_path: 'path/1', time_period: :last_year)
       content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
 
@@ -93,8 +93,8 @@ RSpec.describe '/content' do
     end
 
     it 'respects date range' do
-      from = (Time.zone.today - 1.year).to_s('%F')
-      to = Time.zone.today.to_s('%F')
+      from = (Time.zone.yesterday - 1.year).to_s('%F')
+      to = Time.zone.yesterday.to_s('%F')
       stub_metrics_page(base_path: 'path/1', time_period: :last_year)
       content_data_api_has_content_items(from: from, to: to, organisation_id: 'another-org-id', items: items)
 
