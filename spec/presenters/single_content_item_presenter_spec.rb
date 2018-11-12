@@ -31,7 +31,7 @@ RSpec.describe SingleContentItemPresenter do
 
 
   around do |example|
-    Timecop.freeze Date.new(2018, 6, 1) do
+    Timecop.freeze Date.new(2018, 12, 25) do
       example.run
     end
   end
@@ -114,6 +114,34 @@ RSpec.describe SingleContentItemPresenter do
 
       expect(subject.trend_percentage('upviews')).to eq(nil)
     end
+
+    context 'selected date range is `last-month`' do
+      it 'calculates percentage change if previous month has data for every day in it' do
+        date_range = build(:date_range, :last_month)
+        current_time_series = complete_current_data
+        previous_month_time_series = complete_previous_data
+
+        current_period_data[:time_series_metrics] = time_series_metrics(200, current_time_series)
+        previous_period_data[:time_series_metrics] = time_series_metrics(100, previous_month_time_series)
+
+        subject = SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
+
+        expect(subject.trend_percentage('upviews')).to eq(100.0)
+      end
+
+      it 'returns nil if previous month does not have data for every day in it' do
+        build(:date_range, :last_month)
+        current_time_series = complete_current_data
+        previous_month_time_series = incomplete_previous_data
+
+        current_period_data[:time_series_metrics] = time_series_metrics(200, current_time_series)
+        previous_period_data[:time_series_metrics] = time_series_metrics(100, previous_month_time_series)
+
+        subject = SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
+
+        expect(subject.trend_percentage('upviews')).to eq(nil)
+      end
+    end
   end
 
   describe '#searches_context' do
@@ -192,7 +220,7 @@ RSpec.describe SingleContentItemPresenter do
   describe '#feedback_explorer_href' do
     it 'returns a URI for the feedback explorer' do
       host = Plek.new.external_url_for('support')
-      expected_link = "#{host}/anonymous_feedback?from=2018-05-01&to=2018-05-31&paths=%2Fthe%2Fbase%2Fpath"
+      expected_link = "#{host}/anonymous_feedback?from=2018-11-24&to=2018-12-24&paths=%2Fthe%2Fbase%2Fpath"
       expect(subject.feedback_explorer_href).to eq(expected_link)
     end
   end
@@ -250,5 +278,29 @@ RSpec.describe SingleContentItemPresenter do
         ]
       }
     ]
+  end
+
+  def complete_previous_data
+    previous_month_time_series = []
+    (2.months.ago.to_date.beginning_of_month..2.months.ago.to_date.end_of_month).each do |date|
+      previous_month_time_series << { date: date.strftime, value: 100 }
+    end
+    previous_month_time_series
+  end
+
+  def complete_current_data
+    previous_month_time_series = []
+    (1.month.ago.to_date.beginning_of_month..1.month.ago.to_date.end_of_month).each do |date|
+      previous_month_time_series << { date: date.strftime, value: 100 }
+    end
+    previous_month_time_series
+  end
+
+  def incomplete_previous_data
+    previous_month_time_series = []
+    (2.months.ago.to_date.beginning_of_month + 10.days..2.months.ago.to_date.end_of_month).each do |date|
+      previous_month_time_series << { date: date.strftime, value: 100 }
+    end
+    previous_month_time_series
   end
 end
