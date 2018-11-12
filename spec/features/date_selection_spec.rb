@@ -22,12 +22,12 @@ RSpec.describe 'date selection', type: :feature do
         { el.find('label').text => el.find('span').text }
       end
       expect(time_labels).to match([
-        { I18n.t('metrics.show.time_periods.last-30-days.leading') => "25 November 2018 to 25 December 2018" },
+        { I18n.t('metrics.show.time_periods.last-30-days.leading') => "24 November 2018 to 24 December 2018" },
         { I18n.t('metrics.show.time_periods.last-month.leading') => "1 November 2018 to 30 November 2018" },
-        { I18n.t('metrics.show.time_periods.last-3-months.leading') => "25 September 2018 to 25 December 2018" },
-        { I18n.t('metrics.show.time_periods.last-6-months.leading') => "25 June 2018 to 25 December 2018" },
-        { I18n.t('metrics.show.time_periods.last-year.leading') => "25 December 2017 to 25 December 2018" },
-        { I18n.t('metrics.show.time_periods.last-2-years.leading') => "25 December 2016 to 25 December 2018" },
+        { I18n.t('metrics.show.time_periods.last-3-months.leading') => "24 September 2018 to 24 December 2018" },
+        { I18n.t('metrics.show.time_periods.last-6-months.leading') => "24 June 2018 to 24 December 2018" },
+        { I18n.t('metrics.show.time_periods.last-year.leading') => "24 December 2017 to 24 December 2018" },
+        { I18n.t('metrics.show.time_periods.last-2-years.leading') => "24 December 2016 to 24 December 2018" },
       ])
     end
 
