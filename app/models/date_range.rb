@@ -2,7 +2,7 @@ class DateRange
   attr_reader :time_period, :to, :from
 
   def initialize(time_period, relative_date = nil)
-    relative_date = relative_date || Time.zone.today
+    relative_date = relative_date || Time.zone.yesterday
 
     @time_period = time_period
     @to = date_to_range(relative_date, time_period)[:to]
