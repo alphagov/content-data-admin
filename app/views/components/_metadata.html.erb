@@ -1,31 +1,37 @@
 <%
-    published_at ||= ""
-    last_updated ||= ""
-    publishing_organisation ||= ""
-    document_type ||= ""
-    base_path ||= ""
-    status ||= ""
+    published_at ||= nil
+    last_updated ||= nil
+    publishing_organisation ||= nil
+    document_type ||= nil
+    base_path ||= nil
+    status ||= nil
 %>
 
 <div class="app-c-metadata govuk-body govuk-body-xs">
-  <% if status != "" %>
+  <% if status %>
     <dl class="app-c-metadata__list">
       <dt class="app-c-metadata__title"><%= t ".labels.status" %></dt>
       <dd class="app-c-metadata__description govuk-!-font-weight-bold"><%= status %></dd>
     </dl>
   <% end %>
   <dl class="app-c-metadata__list">
-    <dt class="app-c-metadata__title"><%= t ".labels.published_at" %></dt>
-    <dd class="app-c-metadata__description"><%= published_at %></dd>
-    <dt class="app-c-metadata__title"><%= t ".labels.last_updated" %></dt>
-    <dd class="app-c-metadata__description"><%= last_updated %></dd>
+    <% if published_at %>
+      <dt class="app-c-metadata__title"><%= t ".labels.published_at" %></dt>
+      <dd class="app-c-metadata__description"><%= published_at %></dd>
+    <% end %>
+    <% if last_updated %>
+      <dt class="app-c-metadata__title"><%= t ".labels.last_updated" %></dt>
+      <dd class="app-c-metadata__description"><%= last_updated %></dd>
+    <% end %>
   </dl>
   <dl class="app-c-metadata__list">
-    <dt class="app-c-metadata__title"><%= t ".labels.publishing_organisation" %></dt>
-    <dd class="app-c-metadata__description"><%= publishing_organisation %></dd>
+    <% if publishing_organisation %>
+      <dt class="app-c-metadata__title"><%= t ".labels.publishing_organisation" %></dt>
+      <dd class="app-c-metadata__description"><%= publishing_organisation %></dd>
+    <% end %>
     <dt class="app-c-metadata__title"><%= t ".labels.document_type" %></dt>
     <dd class="app-c-metadata__description"><%= document_type %></dd>
     <dt class="app-c-metadata__title app-c-metadata__title--wrappable"><%= t ".labels.base_path" %></dt>
-    <dd class="app-c-metadata__description"><% if base_path != "" %>gov.uk<%= base_path %><% end %></dd>
+    <dd class="app-c-metadata__description">gov.uk<%= base_path %></dd>
   </dl>
 </div>

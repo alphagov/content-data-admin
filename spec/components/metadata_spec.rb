@@ -30,16 +30,28 @@ RSpec.describe "Metadata", type: :view do
     assert_select ".app-c-metadata__description", text: "gov.uk/government/publications/visitor-visa-guide-to-supporting-documents"
   end
 
-  it "renders blank values for expected fields when data items aren't provided" do
-    data = false
-    render_component(data)
-    assert_select ".app-c-metadata__description", text: "", count: 5
-  end
-
-  it "does not render status info when a status is not supplied" do
+  it "does not render the 'status' fields when data is not supplied" do
     data[:status] = false
     render_component(data)
-    assert_select ".app-c-metadata__title", text: "Status", count: 0
+    assert_select ".app-c-metadata__title", text: t("components.metadata.labels.status"), count: 0
+  end
+
+  it "does not render the 'updated' fields when data is not supplied" do
+    data[:last_updated] = false
+    render_component(data)
+    assert_select ".app-c-metadata__title", text: t("components.metadata.labels.last_updated"), count: 0
+  end
+
+  it "does not render the 'published' fields when data is not supplied" do
+    data[:published_at] = false
+    render_component(data)
+    assert_select ".app-c-metadata__title", text: t("components.metadata.labels.published_at"), count: 0
+  end
+
+  it "does not render the 'organisation' fields when data is not supplied" do
+    data[:publishing_organisation] = false
+    render_component(data)
+    assert_select ".app-c-metadata__title", text: t("components.metadata.labels.publishing_organisation"), count: 0
   end
 
   def render_component(locals)
