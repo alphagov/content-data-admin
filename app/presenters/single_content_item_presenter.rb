@@ -220,10 +220,7 @@ private
     return true if no_previous_timeseries?(previous_value)
     return incomplete_last_month_data?(previous_value) if @date_range.time_period == 'last-month'
 
-    current_timeseries_length = length_of_timeseries(current_value[:time_series])
-    previous_time_series_length = length_of_timeseries(previous_value[:time_series])
-
-    current_timeseries_length != previous_time_series_length
+    current_value[:time_series].length != previous_value[:time_series].length
   end
 
   def no_previous_timeseries?(previous_value)
@@ -238,10 +235,6 @@ private
     previous_date = @previous_metrics['upviews'][:time_series].first[:date].to_date
     days_in_month = Time.days_in_month(previous_date.month, previous_date.year)
     days_in_month != previous_value[:time_series].length
-  end
-
-  def length_of_timeseries(time_series)
-    (time_series.last[:date].to_date - time_series.first[:date].to_date).to_i
   end
 
   def format_date(date_str)
