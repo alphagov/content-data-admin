@@ -26,18 +26,19 @@ class ContentItemsPresenter
   end
 
   def document_type_options
-    types = @document_types.map do |document_type|
-      {
-        text: document_type.try(:tr, '_', ' ').try(:capitalize),
-        value: document_type,
-        selected: document_type == @search_parameters[:document_type]
-      }
-    end
-    types.push(
+    types = [{
       text: 'All document types',
       value: '',
       selected: @search_parameters[:document_type] == ''
-    )
+    }]
+    @document_types.each do |document_type|
+      types.push(
+        text: document_type.try(:tr, '_', ' ').try(:capitalize),
+        value: document_type,
+        selected: document_type == @search_parameters[:document_type]
+      )
+    end
+    types
   end
 
   def organisation_options
