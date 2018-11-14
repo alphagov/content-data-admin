@@ -6,7 +6,7 @@ RSpec.describe ContentRowPresenter do
       title: 'a title',
       upviews: 200_001,
       satisfaction: 0.801001,
-      satisfaction_responses: 301,
+      satisfaction_score_responses: 301,
     }
   end
 
