@@ -47,8 +47,8 @@ RSpec.describe '/content' do
     expect(table_rows).to eq(
       [
         ['Page title', 'Content type', 'Unique pageviews', 'User satisfaction score', 'Searches from page'],
-        ['The title /path/1', 'News story', '233,018', '81.3% (250 responses)', '220'],
-        ['Another title /path/2', 'Guide', '100,018', '68.0% (42 responses)', '12'],
+        ['The title /path/1', 'News story', '233,018', '81% (250 responses)', '220'],
+        ['Another title /path/2', 'Guide', '100,018', '68% (42 responses)', '12'],
       ]
     )
   end
@@ -188,8 +188,8 @@ RSpec.describe '/content' do
       expect(table_rows).to eq(
         [
           ['Page title', 'Content type', 'Unique pageviews', 'User satisfaction score', 'Searches from page'],
-          ['third title /path/3', 'Press release', '233,018', '81.3% (250 responses)', '220'],
-          ['forth title /path/4', 'News story', '100,018', '68.0% (42 responses)', '12'],
+          ['third title /path/3', 'Press release', '233,018', '81% (250 responses)', '220'],
+          ['forth title /path/4', 'News story', '100,018', '68% (42 responses)', '12'],
         ]
       )
     end

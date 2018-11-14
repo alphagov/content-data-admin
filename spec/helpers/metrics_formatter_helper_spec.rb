@@ -2,7 +2,7 @@ RSpec.describe MetricsFormatterHelper do
   context 'metric needs to be rendered as a percentage' do
     it 'displays value as a percentage' do
       value = format_metric_value('satisfaction', 0.9000)
-      expect(value).to eq '90.000%'
+      expect(value).to eq '90%'
     end
   end
 
