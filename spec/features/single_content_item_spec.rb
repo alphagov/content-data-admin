@@ -196,7 +196,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         satisfaction_rows = extract_table_content(".chart.satisfaction table")
         expect(satisfaction_rows).to match_array([
           expected_table_dates,
-          ["User satisfaction score", "100.000%", "90.000%", "80.000%"]
+          ["User satisfaction score", "100%", "90%", "80%"]
         ])
       end
 

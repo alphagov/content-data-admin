@@ -15,7 +15,7 @@ private
   def format_satisfaction(score, responses)
     return 'No responses' unless score
 
-    "#{(score * 100).round(1)}% (#{responses} responses)"
+    "#{(score * 100).round(0)}% (#{responses} responses)"
   end
 
   def format_base_path(base_path)

@@ -25,6 +25,6 @@ RSpec.describe ContentRowPresenter do
   end
 
   it 'formats user_satifaction_score correctly' do
-    expect(subject.user_satisfaction).to eq('80.1% (301 responses)')
+    expect(subject.user_satisfaction).to eq('80% (301 responses)')
   end
 end
