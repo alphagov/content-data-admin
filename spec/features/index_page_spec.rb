@@ -2,8 +2,6 @@ RSpec.describe '/content' do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
   let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no] }
-  let(:from) { Time.zone.today.last_month.beginning_of_month.to_s('%F') }
-  let(:to) { Time.zone.today.last_month.end_of_month.to_s('%F') }
   let(:items) do
     [
       {
@@ -29,7 +27,7 @@ RSpec.describe '/content' do
 
   before do
     stub_metrics_page(base_path: 'path/1', time_period: :last_month)
-    content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
+    content_data_api_has_content_items(date_range: 'last-month', organisation_id: 'org-id', items: items)
     GDS::SSO.test_user = build(:user, organisation_content_id: 'users-org-id')
     content_data_api_has_orgs
     content_data_api_has_document_types
@@ -60,10 +58,8 @@ RSpec.describe '/content' do
     end
 
     it 'respects the date filter' do
-      from = (Time.zone.yesterday - 1.year).to_s('%F')
-      to = Time.zone.yesterday.to_s('%F')
       stub_metrics_page(base_path: 'path/1', time_period: :last_year)
-      content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
+      content_data_api_has_content_items(date_range: 'last-year', organisation_id: 'org-id', items: items)
 
       visit "/content?date_range=last-year&organisation_id=org-id"
       click_link 'The title'
@@ -74,7 +70,7 @@ RSpec.describe '/content' do
 
   context 'filter by organisation' do
     before do
-      content_data_api_has_content_items(from: from, to: to, organisation_id: 'another-org-id', items: items)
+      content_data_api_has_content_items(date_range: 'last-month', organisation_id: 'another-org-id', items: items)
       select 'another org', from: 'organisation_id'
       click_on 'Filter'
     end
@@ -93,10 +89,8 @@ RSpec.describe '/content' do
     end
 
     it 'respects date range' do
-      from = (Time.zone.yesterday - 1.year).to_s('%F')
-      to = Time.zone.yesterday.to_s('%F')
       stub_metrics_page(base_path: 'path/1', time_period: :last_year)
-      content_data_api_has_content_items(from: from, to: to, organisation_id: 'another-org-id', items: items)
+      content_data_api_has_content_items(date_range: 'last-year', organisation_id: 'another-org-id', items: items)
 
       visit "/content?date_range=last-year&organisation_id=another-org-id"
 
@@ -109,8 +103,7 @@ RSpec.describe '/content' do
     context 'with users organisation' do
       before do
         content_data_api_has_content_items(
-          from: from,
-          to: to,
+          date_range: 'last-month',
           organisation_id: 'users-org-id',
           items: [
             items[0].merge(title: 'Content from users-org-id')
@@ -129,7 +122,7 @@ RSpec.describe '/content' do
 
   context 'filter by document_type' do
     before do
-      content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', document_type: 'news_story', items: [items.first])
+      content_data_api_has_content_items(date_range: 'last-month', organisation_id: 'org-id', document_type: 'news_story', items: [items.first])
       select 'News story', from: 'document_type'
       click_on 'Filter'
     end
@@ -180,8 +173,7 @@ RSpec.describe '/content' do
 
     before do
       content_data_api_has_content_items(
-        from: from,
-        to: to,
+        date_range: 'last-month',
         organisation_id: 'org-id',
         items: (items * 50) + other_page_items
       )
@@ -209,8 +201,7 @@ RSpec.describe '/content' do
 
     it 'it provides a CSV file' do
       content_data_api_has_content_items(
-        from: from,
-        to: to,
+        date_range: 'last-month',
         organisation_id: 'org-id',
         items: csv_items,
         page_size: 5000
