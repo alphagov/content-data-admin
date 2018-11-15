@@ -6,7 +6,7 @@ class ContentRowPresenter
     @base_path = format_base_path(data[:base_path])
     @document_type = data[:document_type].try(:tr, '_', ' ').try(:capitalize)
     @upviews = data[:upviews]
-    @user_satisfaction = format_satisfaction(data[:satisfaction], data[:satisfaction_responses])
+    @user_satisfaction = format_satisfaction(data[:satisfaction], data[:satisfaction_score_responses])
     @searches = data[:searches]
   end
 
