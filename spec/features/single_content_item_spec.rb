@@ -87,8 +87,6 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     describe 'page metric section' do
-      let(:expected_table_dates) { ['', '11-24', '11-25', '12-24'] }
-
       it 'renders the metric for upviews' do
         expect(page).to have_selector '.metric-summary__upviews', text: '6,000'
       end
@@ -171,41 +169,41 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the metric timeseries for upviews' do
         upviews_rows = extract_table_content(".chart.upviews table")
         expect(upviews_rows).to match_array([
-          expected_table_dates,
-          ["Unique pageviews", "1,000", "2,000", "3,000"]
+          expected_table_dates(from, to),
+          pad_values(["Unique pageviews", "1,000", "2,000"], 28, ['3,000'])
         ])
       end
 
       it 'renders the metric timeseries for pviews' do
         pviews_rows = extract_table_content(".chart.pviews table")
         expect(pviews_rows).to match_array([
-          expected_table_dates,
-          %w[Pageviews 10,000 20,000 30,000]
+          expected_table_dates(from, to),
+          pad_values(%w[Pageviews 10,000 20,000], 28, ['30,000'])
         ])
       end
 
       it 'renders the metric timeseries for on-page searches' do
         internal_searches_rows = extract_table_content(".chart.searches table")
         expect(internal_searches_rows).to match_array([
-          expected_table_dates,
-          ["Searches from the page", "80", "80", "83"]
+          expected_table_dates(from, to),
+          pad_values(["Searches from the page", "80", "80"], 28, %w[83])
         ])
       end
 
       it 'renders the metric timeseries for satisfaction' do
         satisfaction_rows = extract_table_content(".chart.satisfaction table")
         expect(satisfaction_rows).to match_array([
-          expected_table_dates,
-          ["User satisfaction score", "100%", "90%", "80%"]
+          expected_table_dates(from, to),
+          pad_values(["User satisfaction score", "100%", "90%"], 28, ['80%'])
         ])
       end
 
-      it 'renders the metric timeseries for ' do
+      it 'renders the metric timeseries for feedback comments' do
         feedback_comment_rows = extract_table_content(".chart.feedex table")
 
         expect(feedback_comment_rows).to match_array([
-          expected_table_dates,
-          ["Number of feedback comments", "20", "21", "22"]
+          expected_table_dates(from, to),
+          pad_values(["Number of feedback comments", "20", "21"], 28, %w[22])
         ])
       end
     end
@@ -255,9 +253,18 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
     end
   end
-end
 
-def expected_metric_label(metric_name)
-  short_title = I18n.t("metrics.#{metric_name}.short_title").downcase
-  I18n.t("components.info-metric.about_dropdown", metric_short_title: short_title)
+  def pad_values(start_values, number_of_blanks, end_values)
+    start_values + Array.new(number_of_blanks, '') + end_values
+  end
+
+  def expected_table_dates(from, to)
+    date_strs = (from..to).map { |date| date.strftime("%m-%d") }
+    [""] + date_strs
+  end
+
+  def expected_metric_label(metric_name)
+    short_title = I18n.t("metrics.#{metric_name}.short_title").downcase
+    I18n.t("components.info-metric.about_dropdown", metric_short_title: short_title)
+  end
 end

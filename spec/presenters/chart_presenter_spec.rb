@@ -33,29 +33,25 @@ RSpec.describe ChartPresenter do
     expect(subject.no_data_message).to eq 'No Unique pageviews data for the selected time period'
   end
 
-  it 'returns formatted hash of chart data' do
+  it 'returns formatted hash of chart data padded with nils' do
     expect(subject.chart_data).to eq upviews_chart_data
   end
 
   def upviews_chart_data
+    expected_keys = (subject.from.to_date..subject.to.to_date).map do |date|
+      date.strftime("%m-%d")
+    end
+    expected_values = Array.new(13) + [101, 202, 303] + Array.new(15)
     {
       caption: "Unique pageviews from 2017-12-31 to 2018-01-30",
       chart_id: "upviews_chart",
       chart_label: "Unique pageviews",
-      keys: [
-        "01-13",
-        "01-14",
-        "01-15"
-      ],
+      keys: expected_keys,
 
       rows: [
         {
           label: "Unique pageviews ",
-          values: [
-            101,
-            202,
-            303
-          ]
+          values: expected_values
         }
       ],
       table_id: "upviews_table",
