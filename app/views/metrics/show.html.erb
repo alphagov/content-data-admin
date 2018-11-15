@@ -1,5 +1,9 @@
 <% content_for :title, t('.browser_title', content_title: @performance_data.title) %>
-<% content_for :back_link, "/" %>
+<% content_for :local_nav do %>
+  <div class="local-nav govuk-grid-column-one-quarter">
+    <a href="/content" class="local-nav__search-link govuk-link govuk-link--no-visited-state">Search</a>
+  </div>
+<% end %>
 <% current_selection = @performance_data.date_range.time_period || 'last-30-days' %>
 
 <div class="govuk-grid-row">
