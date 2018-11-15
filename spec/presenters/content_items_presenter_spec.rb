@@ -33,10 +33,10 @@ RSpec.describe ContentItemsPresenter do
     context 'when valid document type in parameter' do
       it 'formats the document types for the options component' do
         expect(subject.document_type_options).to eq([
+          { text: 'All document types', value: '', selected: false },
           { text: 'Case study', value: 'case_study', selected: false },
           { text: 'Guide', value: 'guide', selected: false },
-          { text: 'News story', value: 'news_story', selected: true },
-          { text: 'All document types', value: '', selected: false }
+          { text: 'News story', value: 'news_story', selected: true }
         ])
       end
     end
@@ -44,10 +44,10 @@ RSpec.describe ContentItemsPresenter do
       before { search_parameters[:document_type] = '' }
       it 'formats the document types for the options component' do
         expect(subject.document_type_options).to eq([
+          { text: 'All document types', value: '', selected: true },
           { text: 'Case study', value: 'case_study', selected: false },
           { text: 'Guide', value: 'guide', selected: false },
-          { text: 'News story', value: 'news_story', selected: false },
-          { text: 'All document types', value: '', selected: true }
+          { text: 'News story', value: 'news_story', selected: false }
         ])
       end
     end
