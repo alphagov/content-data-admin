@@ -1,4 +1,5 @@
 class ContentRowPresenter
+  include ActionView::Helpers::NumberHelper
   attr_reader :title, :base_path, :document_type, :upviews,
               :user_satisfaction, :searches
   def initialize(data)
@@ -15,7 +16,7 @@ private
   def format_satisfaction(score, responses)
     return 'No responses' unless score
 
-    "#{(score * 100).round(0)}% (#{responses} responses)"
+    "#{(score * 100).round(0)}% (#{number_with_delimiter(responses)} responses)"
   end
 
   def format_base_path(base_path)
