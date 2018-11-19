@@ -61,20 +61,20 @@
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell"></td>
-                  <% keys.each do |d| %>
+                  <% keys.each do |key| %>
                     <th class="govuk-table__header govuk-table__header--numeric" scope="col">
-                      <%= d %>
+                      <%= key %>
                     </th>
                   <% end %>
                 </tr>
               </thead>
               <tbody class="govuk-table__body">
-                <% rows.each do |r| %>
+                <% rows.each do |row| %>
                   <tr class="govuk-table__row">
-                    <th class="govuk-table__header" scope="row"><%= r[:label]  %></th>
-                    <% r[:values].each do |v| %>
+                    <th class="govuk-table__header" scope="row"><%= row[:label]  %></th>
+                    <% row[:values].each do |value| %>
                       <td class="govuk-table__cell govuk-table__cell--numeric">
-                        <%= number_with_delimiter v %>
+                        <%= number_with_delimiter value %>
                       </td>
                     <% end %>
                   </tr>
@@ -84,22 +84,22 @@
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell"></td>
-                  <% rows.each do |r| %>
+                  <% rows.each do |row| %>
                     <th class="govuk-table__header govuk-table__header--stacked govuk-table__header--numeric" scope="row">
-                      <%= r[:label] %>
+                      <%= row[:label] %>
                     </th>
                   <% end %>
                 </tr>
               </thead>
               <tbody class="govuk-table__body">
-                <% keys.each_with_index do |k, i| %>
+                <% keys.each_with_index do |key, index| %>
                   <tr>
                     <th class="govuk-table__header govuk-table__header--numeric" scope="row">
-                      <%= k %>
+                      <%= key %>
                     </th>
-                    <% rows.each do |r| %>
+                    <% rows.each do |row| %>
                       <td class="govuk-table__cell govuk-table__cell--numeric">
-                        <%= number_with_delimiter r[:values][i] %>
+                        <%= number_with_delimiter row[:values][index] %>
                       </td>
                     <% end %>
                   </tr>
