@@ -5,8 +5,8 @@ class ChartPresenter
   def initialize(json:, metric:, date_range:)
     @metric = metric
     @time_series = json
-    @from = date_range.from
-    @to = date_range.to
+    @from = date_range.from.to_date
+    @to = date_range.to.to_date
   end
 
   def has_values?
@@ -19,7 +19,7 @@ class ChartPresenter
 
   def chart_data
     {
-      caption: "#{human_friendly_metric} from #{from.to_date} to #{to.to_date}",
+      caption: "#{human_friendly_metric} from #{from} to #{to}",
       chart_label: human_friendly_metric.to_s,
       chart_id: "#{metric}_chart",
       table_id: "#{metric}_table",
