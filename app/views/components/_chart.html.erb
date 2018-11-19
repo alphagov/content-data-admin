@@ -27,8 +27,8 @@
     }
   }
   if rows.length > 0 && keys.length > 0
-    chart_format_data = rows.each_with_object([]) do |row, acc|
-      acc << {
+    chart_format_data = rows.map do |row|
+      {
         name: row[:label],
         linewidth: 10,
         data: keys.zip(row[:values])
