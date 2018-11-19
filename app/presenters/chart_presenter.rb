@@ -24,6 +24,8 @@ class ChartPresenter
       chart_id: "#{metric}_chart",
       table_id: "#{metric}_table",
       table_direction: "vertical",
+      from: google_charts_date_string(from),
+      to: google_charts_date_string(to),
       keys: keys,
       rows: [
         {
@@ -32,6 +34,11 @@ class ChartPresenter
         }
       ]
     }
+  end
+
+  # https://developers.google.com/chart/interactive/docs/datesandtimes#dates-and-times-using-the-date-string-representation
+  def google_charts_date_string(date)
+    "Date(#{date.year}, #{date.month - 1}, #{date.day})"
   end
 
   def keys

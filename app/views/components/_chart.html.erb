@@ -3,6 +3,8 @@
   chart_label ||= "data"
   table_id ||= false
   table_direction ||= "horizontal"
+  from ||= false
+  to ||= false
   rows ||= []
   keys ||= []
   Chartkick.options[:html] = '<div id="%{id}"><noscript><p>Our charts are built using javascript but all the data is also available in the table.</p></noscript></div>'
@@ -14,6 +16,7 @@
     tooltip: { textStyle: { color: '#000' }, showColorCode: true },
     crosshair: { orientation: 'vertical', trigger: 'both', color: '#ccc' },
     hAxis: {
+      viewWindow: { min: from, max: to },
       textStyle: { color: '#000', fontName: 'nta', fontSize: '12' }
     },
     vAxis: {
