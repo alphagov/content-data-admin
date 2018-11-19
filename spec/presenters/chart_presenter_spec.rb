@@ -61,7 +61,7 @@ RSpec.describe ChartPresenter do
         }
       ],
       table_id: "upviews_table",
-      table_direction: "vertical"
+      table_direction: "horizontal"
     }
   end
 end

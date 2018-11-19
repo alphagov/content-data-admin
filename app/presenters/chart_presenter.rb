@@ -23,7 +23,7 @@ class ChartPresenter
       chart_label: human_friendly_metric.to_s,
       chart_id: "#{metric}_chart",
       table_id: "#{metric}_table",
-      table_direction: "vertical",
+      table_direction: "horizontal",
       from: google_charts_date_string(from),
       to: google_charts_date_string(to),
       keys: keys,

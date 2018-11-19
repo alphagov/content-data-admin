@@ -48,8 +48,8 @@ RSpec.describe "Chart", type: :view do
     assert_select '.app-c-chart', 1
   end
 
-  it "renders the correct table data vertically" do
-    data[:table_direction] = 'vertical'
+  it "renders the correct table data horizontally" do
+    data[:table_direction] = 'horizontal'
     render_component(data)
     assert_select ".govuk-table__body .govuk-table__header:nth-child(1)", text: "2017"
     assert_select ".govuk-table__cell--numeric", 24
@@ -58,8 +58,8 @@ RSpec.describe "Chart", type: :view do
     assert_select "td:last", text: "121"
   end
 
-  it "renders the correct table data horizontally" do
-    data[:table_direction] = 'horizontal'
+  it "renders the correct table data vertically" do
+    data[:table_direction] = 'vertical'
     render_component(data)
     assert_select ".govuk-table__body .govuk-table__header:nth-child(1)", text: "Jan"
     assert_select ".govuk-table__cell--numeric", 24
