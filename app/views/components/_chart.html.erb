@@ -9,24 +9,29 @@
   # config options are here: https://developers.google.com/chart/interactive/docs/gallery/linechart
   chart_library_options = {
     legend: 'none',
-    chartArea:{width:'90%',height:'80%'},
+    chartArea: { width: '90%', height: '80%' },
     curveType: 'none',
-    tooltip: {textStyle: {color: '#000'}, showColorCode: true},
+    tooltip: { textStyle: { color: '#000' }, showColorCode: true },
     crosshair: { orientation: 'vertical', trigger: 'both', color: '#ccc' },
-    hAxis: { textStyle: {color: '#000', fontName: 'nta', fontSize: '12'}},
-    vAxis: {format:'#,###,###.###', textStyle: {color: '#000', fontName: 'nta', fontSize: '12'}},
+    hAxis: {
+      textStyle: { color: '#000', fontName: 'nta', fontSize: '12' }
+    },
+    vAxis: {
+      format: '#,###,###.###',
+      textStyle: { color: '#000', fontName: 'nta', fontSize: '12' }
+    },
     pointSize: 0,
     series: {
-        0 => {lineWidth: 2, color: '#912B88'},
-        1 => {lineWidth: 2, lineDashStyle: [10, 2], color: '#454a4c'}
+      0 => { lineWidth: 2, color: '#912B88' },
+      1 => { lineWidth: 2, lineDashStyle: [10, 2], color: '#454a4c' }
     }
   }
   if rows.length > 0 && keys.length > 0
     chart_format_data = rows.each_with_object([]) do |row, acc|
       acc << {
-      name: row[:label],
-      linewidth: 10,
-      data: keys.zip(row[:values])
+        name: row[:label],
+        linewidth: 10,
+        data: keys.zip(row[:values])
       }
     end
   end
