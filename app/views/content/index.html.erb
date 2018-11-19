@@ -113,7 +113,7 @@
                   <%= t.cell item.document_type %>
                   <%= t.cell number_with_delimiter(item.upviews, delimiter: ','), format: 'numeric' %>
                   <%= t.cell item.user_satisfaction %>
-                  <%= t.cell item.searches, format: 'numeric' %>
+                  <%= t.cell number_with_delimiter(item.searches, delimiter: ','), format: 'numeric' %>
                 <% end %>
               <% end %>
             <% end %>
