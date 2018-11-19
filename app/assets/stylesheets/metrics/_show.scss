@@ -38,3 +38,13 @@
 .metric-summary__pdf-count {
   padding: 0 !important;
 }
+
+.banner {
+  border-bottom: 1px solid $govuk-border-colour;
+  @include govuk-responsive-margin(2, "bottom");
+}
+
+.govuk-width-container .local-nav {
+  text-align: right;
+  @include govuk-responsive-margin(2, "top");
+}

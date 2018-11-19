@@ -21,7 +21,8 @@
   <%= render "govuk_publishing_components/components/skip_link" %>
   <%= render "govuk_publishing_components/components/layout_header", {
     environment: Rails.application.config.govuk_environment,
-    product_name: "Content data",
+    product_name: "Publishing",
+    full_width: @fullwidth,
     navigation_items: [
       { text: current_user.name, href: Plek.new.external_url_for('signon') },
       { text: "Log out", href: gds_sign_out_path }
@@ -33,14 +34,17 @@
   <% end %>
 
     <% banner_message = capture do %>
-      This is a new service - your <a href="">feedback</a> will help us to improve it.
+      <a href="">Send us feedback</a>
     <% end %>
 
-    <%= render "govuk_publishing_components/components/phase_banner", {phase: "beta", message: banner_message} %>
 
-    <% if yield(:back_link).present? %>
-      <%= render "govuk_publishing_components/components/back_link", href: yield(:back_link) %>
-    <% end %>
+    <div class="banner govuk-grid-row">
+      <div class="govuk-grid-column-three-quarters">
+        <%= render "govuk_publishing_components/components/phase_banner", {phase: "beta", message: banner_message, app_name: "Content data"} %>
+      </div>
+      <%= content_for :local_nav %>
+    </div>
+
 
     <% if flash[:notice] %>
       <p>

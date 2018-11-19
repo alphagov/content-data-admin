@@ -29,5 +29,9 @@ $govuk-global-styles: true;
 
 }
 
+.gem-c-phase-banner {
+  border: none;
+}
+
 //overrides must be imported last
 @import "govuk-frontend/overrides/all";
