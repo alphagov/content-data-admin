@@ -38,7 +38,7 @@ class ChartPresenter
     return [] unless time_series
 
     time_series.map do |point|
-      point[:date].to_date.strftime("%m-%d")
+      point[:date].to_date
     end
   end
 
