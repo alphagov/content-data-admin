@@ -23,10 +23,10 @@ RSpec.describe ChartPresenter do
   end
 
   it 'returns start date' do
-    expect(subject.from).to eq '2017-12-31'
+    expect(subject.from).to eq Date.new(2017, 12, 31)
   end
   it 'returns end date' do
-    expect(subject.to).to eq '2018-01-30'
+    expect(subject.to).to eq Date.new(2018, 1, 30)
   end
 
   it 'returns the correct message for no data' do
@@ -42,10 +42,12 @@ RSpec.describe ChartPresenter do
       caption: "Unique pageviews from 2017-12-31 to 2018-01-30",
       chart_id: "upviews_chart",
       chart_label: "Unique pageviews",
+      from: "Date(2017, 11, 31)",
+      to: "Date(2018, 0, 30)",
       keys: [
-        "01-13",
-        "01-14",
-        "01-15"
+        Date.new(2018, 1, 13),
+        Date.new(2018, 1, 14),
+        Date.new(2018, 1, 15)
       ],
 
       rows: [
@@ -59,7 +61,7 @@ RSpec.describe ChartPresenter do
         }
       ],
       table_id: "upviews_table",
-      table_direction: "vertical"
+      table_direction: "horizontal"
     }
   end
 end
