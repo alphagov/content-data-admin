@@ -35,24 +35,35 @@
 
 .govuk-table__cell {
   @include govuk-font(16);
-}
-
-.govuk-table__header {
-  white-space: nowrap;
-  position: sticky;
-  top: 0;
+  @include govuk-responsive-padding(2);
 }
 
 .gem-c-layout-for-admin .govuk-grid-row {
   margin: 0;
 }
 
+.govuk-table .govuk-table__header {
+  color: $govuk-text-colour;
+  position: sticky;
+  top: 0;
+}
+
+.govuk-table .govuk-table__header {
+  @include govuk-responsive-padding(2);
+  background-color: $grey-3;
+  font-weight: normal;
+}
+
 .govuk-table__cell {
-  padding-right: 15px;
+  @include govuk-responsive-padding(2);
+}
+
+.govuk-table__cell:last-child {
+  @include govuk-responsive-padding(2);
 }
 
 .table-wrapper {
-  min-width: 1000px;
+  min-width: 900px;
   background-color: $white;
 }
 

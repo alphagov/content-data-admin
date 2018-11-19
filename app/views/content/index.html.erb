@@ -9,6 +9,8 @@
         <span class="filters-control filters-control--show govuk-visually-hidden">
           <a href="" class="govuk-link filters-control__link filters-control__link--show">Show filters</a>&nbsp;&#x25BC;</span>
       </div>
+
+
       <div class="filter-form">
         <%= form_tag content_path, method: 'get', name: 'organisation-picker' do %>
           <%= render "components/time-select", {
@@ -87,15 +89,16 @@
         <%= GovukPublishingComponents::AppHelpers::TableHelper.helper(
             self,
             '<h1 class="table-header">Showing <span class="table-header__param">21</span> to <span class="table-header__param">40</span> of <span class="table-header__param">587</span> results from <span class="table-header__param">UK Visas and Immigration</span> in <span class="table-header__param">guidance</span>.</h1>'.html_safe,
-            sortable: true
+            sortable: false
           ) do |t| %>
             <%= t.head do %>
               <!-- TODO: Once sorting is supported, fill in the href and sort_direction header arguments with proper values -->
-              <%= t.header("Page title", href: '#', sort_direction: nil) %>
-              <%= t.header("Content type", href: '#', sort_direction: nil) %>
-              <%= t.header("Unique pageviews", href: '#', sort_direction: 'descending') %>
-              <%= t.header("User satisfaction score", href: '#', sort_direction: nil) %>
-              <%= t.header("Searches from page", href: '#', sort_direction: nil) %>
+              <%# t.header("Page title", href: '#', sort_direction: nil) %>
+              <%= t.header("Page title") %>
+              <%= t.header("Content type") %>
+              <%= t.header("Unique pageviews<br> #{image_tag('question_mark_default.svg', alt: 'Help', title: "#{t "metrics.upviews.summary"}")}".html_safe) %>
+              <%= t.header("User satisfaction score<br> #{image_tag('question_mark_default.svg', alt: 'Help', title: "#{t "metrics.satisfaction.summary"}")}".html_safe) %>
+              <%= t.header("Searches from page<br> #{image_tag('question_mark_default.svg', alt: 'Help', title: "#{t "metrics.searches.summary"}")}".html_safe) %>
             <% end %>
 
             <%= t.body do %>
