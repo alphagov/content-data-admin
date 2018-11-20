@@ -16,7 +16,7 @@ RSpec.describe ContentRowPresenter do
     expect(subject).to have_attributes(
       base_path: 'some/base_path',
       title: 'a title',
-      upviews: 200_001
+      upviews: '200,001'
     )
   end
 
