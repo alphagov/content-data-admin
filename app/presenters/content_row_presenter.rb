@@ -6,9 +6,9 @@ class ContentRowPresenter
     @title = data[:title]
     @base_path = format_base_path(data[:base_path])
     @document_type = data[:document_type].try(:tr, '_', ' ').try(:capitalize)
-    @upviews = data[:upviews]
+    @upviews = number_with_delimiter(data[:upviews], delimiter: ',')
     @user_satisfaction = format_satisfaction(data[:satisfaction], data[:satisfaction_score_responses])
-    @searches = data[:searches]
+    @searches = number_with_delimiter(data[:searches], delimiter: ',')
   end
 
 private
