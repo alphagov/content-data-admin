@@ -53,14 +53,9 @@
           <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
 
           <div class="filter-form__filters">
-            <%= render "govuk_publishing_components/components/select", {
-              id: "organisation_id",
-              label: "Organisation",
-              options: @presenter.organisation_options
-            } %>
             <%= render "govuk_publishing_components/components/input", {
                 label: {
-                  text: "Title or URL"
+                  text: "Search for a title or URL"
                 },
                 name: "title_url",
                 autofocus: true,
@@ -70,6 +65,11 @@
               id: "document_type",
               label: "Document type",
               options: @presenter.document_type_options
+            } %>
+            <%= render "govuk_publishing_components/components/select", {
+              id: "organisation_id",
+              label: "Organisation",
+              options: @presenter.organisation_options
             } %>
 
             <%= render "govuk_publishing_components/components/button", {text: "Filter"} %>
