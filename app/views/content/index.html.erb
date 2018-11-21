@@ -80,9 +80,13 @@
             <p><a href="/content" class="govuk-link govuk-body-s">Clear all filters</a></p>
 
             <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
-
-            <%# implement later: <p><a href="" class="govuk-link govuk-body-s">Download all data in CSV format</a></p> %>
-
+            <p>
+              <a href="<%= content_path(@presenter.search_parameters.merge(format: :csv)) %>"
+                 class="govuk-link govuk-body-s"
+              >
+                Download all data in CSV format
+              </a>
+            </p>
         </div>
     </div>
     <div class="govuk-grid-column-three-quarters">
