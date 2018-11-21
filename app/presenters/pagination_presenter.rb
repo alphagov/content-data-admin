@@ -9,11 +9,19 @@ class PaginationPresenter
   end
 
   def prev_link?
-    @page > 1
+    page > 1
+  end
+
+  def prev_label
+    "#{page - 1} of #{total_pages}"
+  end
+
+  def next_label
+    "#{page + 1} of #{total_pages}"
   end
 
   def next_link?
-    @page < @total_pages
+    page < total_pages
   end
 
   def paginate(items)

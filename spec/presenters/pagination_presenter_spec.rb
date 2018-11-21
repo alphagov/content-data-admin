@@ -18,6 +18,10 @@ RSpec.describe PaginationPresenter do
     it 'returns true from #next_link?' do
       expect(subject.next_link?).to eq(true)
     end
+
+    it 'return the correct next page label' do
+      expect(subject.next_label).to eq('2 of 11')
+    end
   end
 
   context 'when on the last page' do
@@ -30,6 +34,10 @@ RSpec.describe PaginationPresenter do
     it 'returns false from #next_link?' do
       expect(subject.next_link?).to eq(false)
     end
+
+    it 'returns the correct next page label' do
+      expect(subject.prev_label).to eq('10 of 11')
+    end
   end
 
   context 'when somewhere in the middle' do
@@ -41,6 +49,14 @@ RSpec.describe PaginationPresenter do
 
     it 'returns true from #prev_link?' do
       expect(subject.prev_link?).to eq(true)
+    end
+
+    it 'returns the correct next page label' do
+      expect(subject.prev_label).to eq('5 of 11')
+    end
+
+    it 'return the correct next page label' do
+      expect(subject.next_label).to eq('7 of 11')
     end
   end
 end

@@ -40,6 +40,7 @@ RSpec.describe ContentItemsPresenter do
         ])
       end
     end
+
     context 'when no document type in parameter' do
       before { search_parameters[:document_type] = '' }
       it 'formats the document types for the options component' do
@@ -72,6 +73,13 @@ RSpec.describe ContentItemsPresenter do
     it 'returns true if on another page' do
       content_items[:page] = 2
       expect(subject.prev_link?).to eq(true)
+    end
+  end
+
+  describe '#prev_label' do
+    it 'returns the correct page numbers' do
+      content_items[:page] = 2
+      expect(subject.prev_label).to eq('1 of 3')
     end
   end
 

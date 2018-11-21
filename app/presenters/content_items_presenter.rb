@@ -1,7 +1,7 @@
 class ContentItemsPresenter
   include Kaminari::Helpers::HelperMethods
   attr_reader :title, :content_items, :pagination
-  delegate :page, :total_pages, :prev_link?, :next_link?, to: :pagination
+  delegate :page, :total_pages, :prev_link?, :next_link?, :prev_label, :next_label, to: :pagination
 
   def initialize(search_results, search_parameters, document_types, organisations)
     @title = 'Content Items'
