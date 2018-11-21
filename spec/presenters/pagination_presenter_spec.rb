@@ -8,9 +8,13 @@ RSpec.describe PaginationPresenter do
     )
   end
 
-  context 'when on the first page' do
-    let(:page) { 1 }
+  let(:page) { 1 }
 
+  it 'returns the #total_results' do
+    expect(subject.total_results)
+  end
+
+  context 'when on the first page' do
     it 'returns false from #prev_link?' do
       expect(subject.prev_link?).to eq(false)
     end
@@ -21,6 +25,14 @@ RSpec.describe PaginationPresenter do
 
     it 'return the correct next page label' do
       expect(subject.next_label).to eq('2 of 11')
+    end
+
+    it 'returns 1 for #first_record' do
+      expect(subject.first_record).to eq(1)
+    end
+
+    it 'returns 10 for #last_record' do
+      expect(subject.last_record).to eq(10)
     end
   end
 
@@ -37,6 +49,14 @@ RSpec.describe PaginationPresenter do
 
     it 'returns the correct next page label' do
       expect(subject.prev_label).to eq('10 of 11')
+    end
+
+    it 'returns 100 for #first_record' do
+      expect(subject.first_record).to eq(101)
+    end
+
+    it 'returns 105 for #last_record' do
+      expect(subject.last_record).to eq(105)
     end
   end
 
@@ -57,6 +77,14 @@ RSpec.describe PaginationPresenter do
 
     it 'return the correct next page label' do
       expect(subject.next_label).to eq('7 of 11')
+    end
+
+    it 'returns 51 for #first_record' do
+      expect(subject.first_record).to eq(51)
+    end
+
+    it 'returns 60 for #last_record' do
+      expect(subject.last_record).to eq(60)
     end
   end
 end
