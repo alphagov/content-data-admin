@@ -88,7 +88,7 @@
       <div class="table-wrapper">
         <%= GovukPublishingComponents::AppHelpers::TableHelper.helper(
             self,
-            '<h1 class="table-header">Showing <span class="table-header__param">21</span> to <span class="table-header__param">40</span> of <span class="table-header__param">587</span> results from <span class="table-header__param">UK Visas and Immigration</span> in <span class="table-header__param">guidance</span>.</h1>'.html_safe,
+            render('table_data_description', pagination: @presenter.pagination),
             sortable: false
           ) do |t| %>
             <%= t.head do %>
