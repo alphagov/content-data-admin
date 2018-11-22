@@ -5,8 +5,28 @@
   table_direction ||= "horizontal"
   from ||= false
   to ||= false
+  percent_metric ||= false
   rows ||= []
   keys ||= []
+
+  if percent_metric
+    maximum_y = 100
+  elsif rows.any?
+    row_maximums = rows.map { |row| row[:values].max }
+    overall_maximum = row_maximums.max
+
+    if overall_maximum == 0
+      # set max value to 3 if data is all 0 avoid negative numbers on Y axis
+      maximum_y = 3
+    elsif overall_maximum < 10
+      # for low numbers let line hit top to avoid a fractional max value
+      maximum_y = overall_maximum
+    else
+      # for higher numbers give breathing space to line
+      maximum_y = overall_maximum * 1.3
+    end
+  end
+
   Chartkick.options[:html] = '<div id="%{id}"><noscript><p>Our charts are built using javascript but all the data is also available in the table.</p></noscript></div>'
   # config options are here: https://developers.google.com/chart/interactive/docs/gallery/linechart
   chart_library_options = {
@@ -20,7 +40,8 @@
       textStyle: { color: '#000', fontName: 'nta', fontSize: '12' }
     },
     vAxis: {
-      format: '#,###,###.###',
+      viewWindow: { min: 0, max: maximum_y },
+      format: '#,###,###',
       textStyle: { color: '#000', fontName: 'nta', fontSize: '12' }
     },
     pointSize: 0,
