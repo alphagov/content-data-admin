@@ -34,15 +34,17 @@ module GdsApi
         stub_request(:get, url).to_return(status: 404, body: { some: 'error' }.to_json)
       end
 
-      def content_data_api_has_content_items(from:, to:, organisation_id:, document_type: nil, page: nil, search_term: nil, items:, page_size: 10)
+      def content_data_api_has_content_items(from:, to:, organisation_id:, document_type: nil, page: nil, search_term: nil, items:, page_size: nil)
         params = {
           from: from,
           to: to,
           organisation_id: organisation_id,
           document_type: document_type,
           search_term: search_term,
+          page_size: page_size,
         }.reject { |_, v| v.blank? }
 
+        page_size ||= 100
         total_pages = (items.length.to_f / page_size).ceil
         items.each_slice(page_size).with_index(1) do |(*items_for_page), page|
           body = {
