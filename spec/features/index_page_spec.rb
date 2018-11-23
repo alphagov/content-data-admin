@@ -179,7 +179,14 @@ RSpec.describe '/content' do
     end
 
     before do
-      content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', page: 2, items: other_page_items)
+      content_data_api_has_content_items(
+        from: from,
+        to: to,
+        organisation_id: 'org-id',
+        items: (items * 50) + other_page_items
+      )
+
+      visit "/content?date_range=last-month&organisation_id=org-id"
     end
 
     it 'shows the second page of data' do
@@ -192,6 +199,26 @@ RSpec.describe '/content' do
           ['forth title /path/4', 'News story', '100,018', '68% (42 responses)', '12'],
         ]
       )
+    end
+  end
+
+  context 'CSV export' do
+    # Use lots of items to test getting a couple of full pages, plus a
+    # partial page back from the Content Performance Manager.
+    let(:csv_items) { items * 11 }
+
+    it 'it provides a CSV file' do
+      content_data_api_has_content_items(
+        from: from,
+        to: to,
+        organisation_id: 'org-id',
+        items: csv_items,
+        page_size: 5000
+      )
+
+      click_link 'Download all data in CSV format'
+
+      expect(CSV.parse(page.body).length).to be(csv_items.length + 1)
     end
   end
 end
