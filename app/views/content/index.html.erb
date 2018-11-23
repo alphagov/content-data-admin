@@ -57,9 +57,10 @@
                 label: {
                   text: "Search for a title or URL"
                 },
-                name: "title_url",
+                name: "search_term",
                 autofocus: true,
-                tabindex: 0
+                tabindex: 0,
+                value: params[:search_term],
               } %>
               <%= render "govuk_publishing_components/components/select", {
               id: "document_type",
