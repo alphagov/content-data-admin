@@ -24,6 +24,7 @@ class ContentController < ApplicationController
       format.csv do
         presenter = ContentItemsCSVPresenter.new(
           FindContent.enum(search_params),
+          DateRange.new(search_params[:date_range]),
           document_types,
           organisations
         )

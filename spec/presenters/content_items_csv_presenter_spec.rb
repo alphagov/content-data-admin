@@ -3,6 +3,7 @@ RSpec.describe ContentItemsCSVPresenter do
 
   let(:document_types) { default_document_types }
   let(:organisations) { default_organisations }
+  let(:date_range) { DateRange.new('last-30-days') }
   let(:data_enum) do
     [
       {
@@ -24,7 +25,9 @@ RSpec.describe ContentItemsCSVPresenter do
     ]
   end
 
-  subject { described_class.new(data_enum, document_types, organisations) }
+  subject do
+    described_class.new(data_enum, date_range, document_types, organisations)
+  end
 
   describe '#csv_rows' do
     it 'returns the right number of rows' do
