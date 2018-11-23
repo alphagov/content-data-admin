@@ -19,7 +19,8 @@ class ContentItemsCSVPresenter
           'Upviews',
           'Satisfaction',
           'Satisfaction Score Responses',
-          'Searches'
+          'Searches',
+          'Link to feedback comments'
         ]
       )
 
@@ -33,6 +34,7 @@ class ContentItemsCSVPresenter
             result_row[:upviews],
             result_row[:satisfaction_score_responses],
             result_row[:searches],
+            feedback_comments_link(result_row[:base_path])
           ]
         )
       end
@@ -47,5 +49,13 @@ class ContentItemsCSVPresenter
       # adds it in
       base_path[1..-1]
     )
+  end
+
+  def feedback_comments_link(base_path)
+    host = Plek.new.external_url_for('support')
+    from = @date_range.from
+    to = @date_range.to
+    path = CGI.escape(base_path)
+    "#{host}/anonymous_feedback?from=#{from}&to=#{to}&paths=#{path}"
   end
 end
