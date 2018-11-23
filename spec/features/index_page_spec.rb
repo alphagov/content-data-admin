@@ -212,7 +212,8 @@ RSpec.describe '/content' do
         from: from,
         to: to,
         organisation_id: 'org-id',
-        items: csv_items
+        items: csv_items,
+        page_size: 5000
       )
 
       click_link 'Download all data in CSV format'
