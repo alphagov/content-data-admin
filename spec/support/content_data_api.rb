@@ -34,13 +34,14 @@ module GdsApi
         stub_request(:get, url).to_return(status: 404, body: { some: 'error' }.to_json)
       end
 
-      def content_data_api_has_content_items(from:, to:, organisation_id:, document_type: nil, page: nil, items:)
+      def content_data_api_has_content_items(from:, to:, organisation_id:, document_type: nil, page: nil, search_term: nil, items:)
         params = {
           from: from,
           to: to,
           organisation_id: organisation_id,
           document_type: document_type,
           page: page,
+          search_term: search_term,
         }.reject { |_, v| v.blank? }
         query = query(params)
         url = "#{content_data_api_endpoint}/content#{query}"

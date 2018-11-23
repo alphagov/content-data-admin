@@ -17,8 +17,8 @@ class GdsApi::ContentDataApi < GdsApi::Base
     get_json(url).to_hash.deep_symbolize_keys
   end
 
-  def content(from:, to:, organisation_id:, document_type: nil, page: nil)
-    url = content_items_url(from, to, organisation_id, document_type, page)
+  def content(from:, to:, organisation_id:, document_type: nil, page: nil, search_term: nil)
+    url = content_items_url(from, to, organisation_id, document_type, page, search_term)
     get_json(url).to_hash.deep_symbolize_keys
   end
 
@@ -49,12 +49,13 @@ private
     "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}/time-series#{query_string(from: from, to: to, metrics: metrics)}"
   end
 
-  def content_items_url(from, to, organisation_id, document_type, page)
+  def content_items_url(from, to, organisation_id, document_type, page, search_term)
     params = {
       from: from,
       to: to,
       organisation_id: organisation_id,
       document_type: document_type,
+      search_term: search_term,
       page: page,
     }
     params.reject! { |_, v| v.blank? }

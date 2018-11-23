@@ -33,7 +33,8 @@ private
           :date_range,
           :organisation_id,
           :document_type,
-          :page
+          :page,
+          :search_term,
         ).to_h.symbolize_keys
       )
     end
