@@ -8,34 +8,33 @@ class ContentItemsCSVPresenter
     @organisations = organisations
   end
 
+  def raw_field(name)
+    lambda { |result_row| result_row[name] }
+  end
+
   def csv_rows
+    fields = {
+      'Title' => raw_field(:title),
+      'URL' => raw_field(:row),
+      'Content Data Link' => lambda do |result_row|
+        content_data_link(result_row[:base_path])
+      end,
+      'Document Type' => raw_field(:document_type),
+      'Upviews' => raw_field(:upviews),
+      'Satisfaction' => raw_field(:satisfaction),
+      'Satisfaction Score Responses' => raw_field(:satisfaction_score_responses),
+      'Searches' => raw_field(:searches),
+      'Link to feedback comments' => lambda do |result_row|
+        feedback_comments_link(result_row[:base_path])
+      end,
+    }
+
     Enumerator.new do |yielder|
-      yielder << CSV.generate_line(
-        [
-          'Title',
-          'URL',
-          'Content Data Link',
-          'Document Type',
-          'Upviews',
-          'Satisfaction',
-          'Satisfaction Score Responses',
-          'Searches',
-          'Link to feedback comments'
-        ]
-      )
+      yielder << CSV.generate_line(fields.keys)
 
       @data_enum.each do |result_row|
         yielder << CSV.generate_line(
-          [
-            result_row[:title],
-            result_row[:base_path],
-            content_data_link(result_row[:base_path]),
-            result_row[:document_type],
-            result_row[:upviews],
-            result_row[:satisfaction_score_responses],
-            result_row[:searches],
-            feedback_comments_link(result_row[:base_path])
-          ]
+          fields.values.map { |value_callable| value_callable.call(result_row) }
         )
       end
     end

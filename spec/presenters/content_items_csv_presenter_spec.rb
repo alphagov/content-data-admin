@@ -43,7 +43,7 @@ RSpec.describe ContentItemsCSVPresenter do
     it 'correctly generates data rows' do
       data_row = subject.csv_rows.to_a[1]
 
-      expect(CSV.parse_line(data_row).length).to be(8)
+      expect(CSV.parse_line(data_row).length).to be(9)
       expect(data_row).to include('2')
     end
   end
