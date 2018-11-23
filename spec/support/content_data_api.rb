@@ -34,19 +34,35 @@ module GdsApi
         stub_request(:get, url).to_return(status: 404, body: { some: 'error' }.to_json)
       end
 
-      def content_data_api_has_content_items(from:, to:, organisation_id:, document_type: nil, page: nil, search_term: nil, items:)
+      def content_data_api_has_content_items(from:, to:, organisation_id:, document_type: nil, page: nil, search_term: nil, items:, page_size: 10)
         params = {
           from: from,
           to: to,
           organisation_id: organisation_id,
           document_type: document_type,
-          page: page,
           search_term: search_term,
         }.reject { |_, v| v.blank? }
-        query = query(params)
-        url = "#{content_data_api_endpoint}/content#{query}"
-        body = { results: items, total_results: 200, total_pages: 2 }.to_json
-        stub_request(:get, url).to_return(status: 200, body: body)
+
+        total_pages = (items.length.to_f / page_size).ceil
+        items.each_slice(page_size).with_index(1) do |(*items_for_page), page|
+          body = {
+            results: items_for_page,
+            total_results: items.length,
+            total_pages: total_pages,
+            page: page
+          }.to_json
+
+          params_plus_page = params.merge(page: page)
+          url = "#{content_data_api_endpoint}/content#{query(params_plus_page)}"
+          stub_request(:get, url).to_return(status: 200, body: body)
+
+          if page == 1
+            # The 0'th page can be requested without specifying a page
+            # number, so stub that request as well
+            url = "#{content_data_api_endpoint}/content#{query(params)}"
+            stub_request(:get, url).to_return(status: 200, body: body)
+          end
+        end
       end
 
       def content_data_api_has_single_page(base_path:, from:, to:, payload: nil)

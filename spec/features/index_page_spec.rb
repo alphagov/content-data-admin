@@ -179,7 +179,14 @@ RSpec.describe '/content' do
     end
 
     before do
-      content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', page: 2, items: other_page_items)
+      content_data_api_has_content_items(
+        from: from,
+        to: to,
+        organisation_id: 'org-id',
+        items: (items * 50) + other_page_items
+      )
+
+      visit "/content?date_range=last-month&organisation_id=org-id"
     end
 
     it 'shows the second page of data' do
