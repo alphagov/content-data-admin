@@ -231,7 +231,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
                                                  to: to.to_s)
         visit '/metrics/base/path'
         expect(page.status_code).to eq(404)
-        expect(page).to have_content "The page you were looking for doesn't exist."
+        expect(page).to have_content "Page not found"
       end
     end
 
