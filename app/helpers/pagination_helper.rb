@@ -9,7 +9,7 @@ module PaginationHelper
         previous_page:  {
           url: path_to_prev_page(@presenter.content_items),
           title: 'Previous',
-          label: "#{@presenter.page - 1} of #{@presenter.total_pages}"
+          label: @presenter.prev_label
         }
       )
     end
@@ -19,7 +19,7 @@ module PaginationHelper
         next_page: {
           url: path_to_next_page(@presenter.content_items),
           title: 'Next',
-          label: "#{@presenter.page + 1} of #{@presenter.total_pages}"
+          label: @presenter.next_label
         }
       )
     end
