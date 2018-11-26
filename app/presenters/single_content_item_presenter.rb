@@ -105,7 +105,8 @@ class SingleContentItemPresenter
   def edit_url
     edit_url_for(
       content_id: metadata[:content_id],
-      publishing_app: metadata[:publishing_app]
+      publishing_app: metadata[:publishing_app],
+      base_path: base_path
     )
   end
 

@@ -231,7 +231,8 @@ RSpec.describe SingleContentItemPresenter do
         :edit_url_for
       ).with(
         content_id: 'content-id',
-        publishing_app: 'whitehall'
+        publishing_app: 'whitehall',
+        base_path: '/the/base/path'
       ).and_return(
         'https://expected-link'
       )

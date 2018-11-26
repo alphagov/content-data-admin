@@ -251,6 +251,12 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the publishing application' do
         expect(page).to have_selector '.related-actions', text: 'Whitehall'
       end
+
+      it 'renders the contacts application' do
+        stub_metrics_page(base_path: 'contacts/path', time_period: :last_30_days, publishing_app: 'contacts')
+        visit '/metrics/contacts/path'
+        expect(page).to have_link("Edit in Contacts", href: 'http://contacts-admin.dev.gov.uk/admin/contacts/path/edit')
+      end
     end
   end
 end
