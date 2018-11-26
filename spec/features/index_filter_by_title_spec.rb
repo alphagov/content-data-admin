@@ -2,8 +2,6 @@ RSpec.describe '/content' do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
 
-  let(:from) { Time.zone.today.last_month.beginning_of_month.to_s('%F') }
-  let(:to) { Time.zone.today.last_month.end_of_month.to_s('%F') }
   let(:items) do
     [
       { base_path: '/path/1', title: 'The title' },
@@ -14,7 +12,7 @@ RSpec.describe '/content' do
   before do
     GDS::SSO.test_user = build(:user, organisation_content_id: 'org-id')
 
-    content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', items: items)
+    content_data_api_has_content_items(date_range: 'last-month', organisation_id: 'org-id', items: items)
     content_data_api_has_orgs
     content_data_api_has_document_types
 
@@ -23,7 +21,7 @@ RSpec.describe '/content' do
 
   describe 'Filter by title / url' do
     before do
-      content_data_api_has_content_items(from: from, to: to, organisation_id: 'org-id', search_term: 'title', items: items)
+      content_data_api_has_content_items(date_range: 'last-month', organisation_id: 'org-id', search_term: 'title', items: items)
       fill_in 'Search for a title or URL', with: 'title'
       click_on 'Filter'
     end

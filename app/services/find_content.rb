@@ -10,9 +10,7 @@ class FindContent
   end
 
   def initialize(params)
-    range = DateRange.new(params[:date_range])
-    @from = range.from
-    @to = range.to
+    @date_range = params[:date_range]
     @organisation = params[:organisation_id]
     @document_type = params[:document_type]
     @page = params[:page]
@@ -20,13 +18,12 @@ class FindContent
   end
 
   def call
-    api.content(from: @from, to: @to, organisation_id: @organisation, document_type: @document_type, page: @page, search_term: @search_term)
+    api.content(date_range: @date_range, organisation_id: @organisation, document_type: @document_type, page: @page, search_term: @search_term)
   end
 
   def enum
     params = {
-      from: @from,
-      to: @to,
+      date_range: @date_range,
       organisation_id: @organisation,
       document_type: @document_type,
     }

@@ -34,10 +34,9 @@ module GdsApi
         stub_request(:get, url).to_return(status: 404, body: { some: 'error' }.to_json)
       end
 
-      def content_data_api_has_content_items(from:, to:, organisation_id:, document_type: nil, search_term: nil, items:, page_size: nil)
+      def content_data_api_has_content_items(date_range:, organisation_id:, document_type: nil, search_term: nil, items:, page_size: nil)
         params = {
-          from: from,
-          to: to,
+          date_range: date_range,
           organisation_id: organisation_id,
           document_type: document_type,
           search_term: search_term,
