@@ -17,6 +17,10 @@ class ChartPresenter
     "No #{human_friendly_metric} data for the selected time period"
   end
 
+  def percentage_metric?
+    metric == "satisfaction"
+  end
+
   def chart_data
     {
       caption: "#{human_friendly_metric} from #{from} to #{to}",
@@ -32,7 +36,8 @@ class ChartPresenter
           label: "#{human_friendly_metric} ",
           values: values
         }
-      ]
+      ],
+      percent_metric: percentage_metric?
     }
   end
 
