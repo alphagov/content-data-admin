@@ -368,6 +368,10 @@ module GdsApi
           {
             title: 'another org',
             organisation_id: 'another-org-id'
+          },
+          {
+            title: 'Users Org',
+            organisation_id: 'users-org-id'
           }
         ]
       end

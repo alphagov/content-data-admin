@@ -16,6 +16,7 @@ RSpec.describe FilterPresenter do
       organisations,
     )
   end
+
   describe '#document_type_options' do
     context 'when valid document type in parameter' do
       it 'formats the document types for the options component' do
@@ -46,7 +47,8 @@ RSpec.describe FilterPresenter do
       it 'formats the organisations for the options component' do
         expect(subject.organisation_options).to eq([
           { text: 'org', value: 'org-id', selected: true },
-          { text: 'another org', value: 'another-org-id', selected: false }
+          { text: 'another org', value: 'another-org-id', selected: false },
+          { text: 'Users Org', value: 'users-org-id', selected: false }
         ])
       end
     end
@@ -67,5 +69,15 @@ RSpec.describe FilterPresenter do
     end
   end
 
-  describe '#document_type'
+  describe '#document_type' do
+    it 'returns the formatted document type' do
+      expect(subject.document_type).to eq("News story")
+    end
+  end
+
+  describe '#organisation_name' do
+    it 'returns the selected organisation name' do
+      expect(subject.organisation_name).to eq('org')
+    end
+  end
 end

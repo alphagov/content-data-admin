@@ -93,7 +93,7 @@
       <div class="table-wrapper">
         <%= GovukPublishingComponents::AppHelpers::TableHelper.helper(
             self,
-            render('table_data_description', pagination: @presenter.pagination),
+            render('table_data_description', pagination: @presenter.pagination, filter: @presenter.filter),
             sortable: false
           ) do |t| %>
             <%= t.head do %>

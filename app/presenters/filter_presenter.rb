@@ -6,7 +6,7 @@ class FilterPresenter
   end
 
   def document_type?
-    !@search_parameters[:document_type].blank?
+    @search_parameters[:document_type].present?
   end
 
   def document_type_options
@@ -25,6 +25,14 @@ class FilterPresenter
     types
   end
 
+  def organisation_name
+    find_selected_org[:text]
+  end
+
+  def document_type
+    find_document_type[:text]
+  end
+
   def organisation_options
     @organisations.map do |org|
       {
@@ -33,5 +41,15 @@ class FilterPresenter
         selected: org[:organisation_id] == @search_parameters[:organisation_id]
       }
     end
+  end
+
+private
+
+  def find_selected_org
+    organisation_options.find { |o| o[:selected] }
+  end
+
+  def find_document_type
+    document_type_options.find { |d| d[:selected] }
   end
 end
