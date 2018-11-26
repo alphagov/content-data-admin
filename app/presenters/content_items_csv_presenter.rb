@@ -1,9 +1,9 @@
 require 'csv'
 
 class ContentItemsCSVPresenter
-  def initialize(data_enum, date_range, document_types, organisations)
+  def initialize(data_enum, search_params, document_types, organisations)
     @data_enum = data_enum
-    @date_range = date_range
+    @date_range = DateRange.new(search_params[:date_range])
     @document_types = document_types
     @organisations = organisations
   end

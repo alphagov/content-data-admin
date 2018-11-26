@@ -3,7 +3,13 @@ RSpec.describe ContentItemsCSVPresenter do
 
   let(:document_types) { default_document_types }
   let(:organisations) { default_organisations }
-  let(:date_range) { DateRange.new('past-30-days') }
+  let(:search_params) do
+    {
+      date_range: 'past-30-days',
+      organisation_id: 'org-id',
+      document_type: 'news_story'
+    }
+  end
   let(:data_enum) do
     [
       {
@@ -26,7 +32,7 @@ RSpec.describe ContentItemsCSVPresenter do
   end
 
   subject do
-    described_class.new(data_enum, date_range, document_types, organisations)
+    described_class.new(data_enum, search_params, document_types, organisations)
   end
 
   describe '#csv_rows' do
