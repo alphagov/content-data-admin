@@ -53,4 +53,12 @@ RSpec.describe ContentItemsCSVPresenter do
       expect(data_row).to include('2')
     end
   end
+
+  describe '#filename' do
+    it 'includes the organisation and document_type' do
+      expect(
+        subject.filename
+      ).to include('from-org-in-news-story.csv')
+    end
+  end
 end

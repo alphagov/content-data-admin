@@ -29,7 +29,7 @@ class ContentController < ApplicationController
           organisations
         )
 
-        export_to_csv(enum: presenter.csv_rows)
+        export_to_csv(enum: presenter.csv_rows, filename: presenter.filename)
       end
     end
   end
