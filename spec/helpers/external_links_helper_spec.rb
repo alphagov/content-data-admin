@@ -44,6 +44,18 @@ RSpec.describe ExternalLinksHelper do
       end
     end
 
+    context 'with collections' do
+      it 'generates a link to the collections publisher app' do
+        expect(
+          edit_url_for(content_id: 'coll-pub-id',
+                       publishing_app: 'collections-publisher',
+                       base_path: 'government/organisations/hm-revenue-customs/contact/tax-credits-agent-priority-line')
+        ).to eq(
+          "#{external_url_for('support')}/general_request/new"
+        )
+      end
+    end
+
     context 'with an unknown publishing app' do
       it 'returns nil' do
         expect(

@@ -13,6 +13,8 @@ module ExternalLinksHelper
       "#{external_url_for('contacts-admin')}/admin/contacts/#{slug_from_basepath(base_path)}/edit"
     when 'specialist-publisher'
       "#{external_url_for('specialist-publisher')}/service-standard-reports/#{content_id}/edit"
+    when 'collections-publisher'
+      "#{external_url_for('support')}/general_request/new"
     end
   end
 
