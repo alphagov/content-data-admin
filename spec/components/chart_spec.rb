@@ -12,7 +12,7 @@ RSpec.describe "Chart", type: :view do
       rows: [
         {
           label: "2017",
-          values: [5, 119, 74, 117, 50, 119, 61, 110, 12, 21, 121, 67]
+          values: [5, nil, nil, 119, 74, 117, 50, 119, 61, 110, 12, 21, 121, 67]
         },
         {
           label: "2018",
@@ -52,7 +52,7 @@ RSpec.describe "Chart", type: :view do
     data[:table_direction] = 'horizontal'
     render_component(data)
     assert_select ".govuk-table__body .govuk-table__header:nth-child(1)", text: "2017"
-    assert_select ".govuk-table__cell--numeric", 24
+    assert_select ".govuk-table__cell--numeric", 26
     assert_select ".govuk-table__header", 14
     assert_select "td:first", text: "5"
     assert_select "td:last", text: "121"
