@@ -9,6 +9,12 @@
   rows ||= []
   keys ||= []
 
+  # http://strftime.org/
+  Date::DATE_FORMATS[:table_format] = '%-d %b %Y'
+
+  # https://developers.google.com/chart/interactive/docs/reference#dateformatter
+  chart_date_format = 'd MMM Y'
+
   if percent_metric
     maximum_y = 100
   elsif rows.any?
@@ -37,7 +43,8 @@
     crosshair: { orientation: 'vertical', trigger: 'both', color: '#ccc' },
     hAxis: {
       viewWindow: { min: from, max: to },
-      textStyle: { color: '#000', fontName: 'nta', fontSize: '12' }
+      textStyle: { color: '#000', fontName: 'nta', fontSize: '12' },
+      format: chart_date_format
     },
     vAxis: {
       viewWindow: { min: 0, max: maximum_y },
@@ -83,8 +90,8 @@
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell"></td>
                   <% keys.each do |key| %>
-                    <th class="govuk-table__header govuk-table__header--numeric" scope="col">
-                      <%= key %>
+                    <th class="govuk-table__header scope="col">
+                      <%= key.to_formatted_s(:table_format) %>
                     </th>
                   <% end %>
                 </tr>
@@ -115,8 +122,8 @@
               <tbody class="govuk-table__body">
                 <% keys.each_with_index do |key, index| %>
                   <tr>
-                    <th class="govuk-table__header govuk-table__header--numeric" scope="row">
-                      <%= key %>
+                    <th class="govuk-table__header scope="row">
+                      <%= key.to_formatted_s(:table_format) %>
                     </th>
                     <% rows.each do |row| %>
                       <td class="govuk-table__cell govuk-table__cell--numeric">

@@ -8,7 +8,7 @@ RSpec.describe "Chart", type: :view do
       table_label: "Page views table",
       chart_id: 'pviews_jan_chart',
       table_id: 'pviews_jan_table',
-      keys: %w(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec),
+      keys: (Date.new(2017, 12, 1)..Date.new(2017, 12, 12)).to_a,
       rows: [
         {
           label: "2017",
@@ -61,7 +61,7 @@ RSpec.describe "Chart", type: :view do
   it "renders the correct table data vertically" do
     data[:table_direction] = 'vertical'
     render_component(data)
-    assert_select ".govuk-table__body .govuk-table__header:nth-child(1)", text: "Jan"
+    assert_select ".govuk-table__body .govuk-table__header:nth-child(1)", text: "1 Dec 2017"
     assert_select ".govuk-table__cell--numeric", 24
     assert_select ".govuk-table__header", 14
     assert_select "td:first", text: "5"

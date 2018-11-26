@@ -87,7 +87,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     describe 'page metric section' do
-      let(:expected_table_dates) { ['', '2018-11-24', '2018-11-25', '2018-12-24'] }
+      let(:expected_table_dates) { ['', '24 Nov 2018', '25 Nov 2018', '24 Dec 2018'] }
 
       it 'renders the metric for upviews' do
         expect(page).to have_selector '.metric-summary__upviews', text: '6,000'
