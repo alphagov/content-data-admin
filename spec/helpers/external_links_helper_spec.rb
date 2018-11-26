@@ -56,6 +56,18 @@ RSpec.describe ExternalLinksHelper do
       end
     end
 
+    context 'with travel advice' do
+      it 'generates a link to the collections publisher app' do
+        expect(
+          edit_url_for(content_id: 'ta-pub-id',
+                       publishing_app: 'travel-advice-publisher',
+                       base_path: '/foreign-travel-advice/brunei')
+        ).to eq(
+          "#{external_url_for('travel-advice-publisher')}/admin/brunei"
+        )
+      end
+    end
+
     context 'with an unknown publishing app' do
       it 'returns nil' do
         expect(
