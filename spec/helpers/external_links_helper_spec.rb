@@ -47,7 +47,7 @@ RSpec.describe ExternalLinksHelper do
         expect(
           edit_label_for(publishing_app: 'publisher')
         ).to eq(
-          'Request a change to mainstream content'
+          'Request a content change in GOV.UK Support'
         )
       end
     end
