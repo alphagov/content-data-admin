@@ -257,6 +257,12 @@ RSpec.describe '/metrics/base/path', type: :feature do
         visit '/metrics/contacts/path'
         expect(page).to have_link("Edit in Contacts", href: 'http://contacts-admin.dev.gov.uk/admin/contacts/path/edit')
       end
+
+      it 'renders the specialist publisher application' do
+        stub_metrics_page(base_path: 'specialist/path', time_period: :last_30_days, publishing_app: 'specialist-publisher')
+        visit '/metrics/specialist/path'
+        expect(page).to have_link("Edit in Specialist publisher", href: "http://specialist-publisher.dev.gov.uk/service-standard-reports/content-id/edit")
+      end
     end
   end
 end

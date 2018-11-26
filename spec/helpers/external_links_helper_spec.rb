@@ -32,6 +32,17 @@ RSpec.describe ExternalLinksHelper do
       end
     end
 
+    context 'with specialist-publisher' do
+      it 'generates a link to the specialist publisher app' do
+        expect(
+          edit_url_for(content_id: 'spec-pub-id',
+                       publishing_app: 'specialist-publisher',
+                       base_path: 'government/organisations/hm-revenue-customs/contact/tax-credits-agent-priority-line')
+        ).to eq(
+          "#{external_url_for('specialist-publisher')}/service-standard-reports/spec-pub-id/edit"
+        )
+      end
+    end
 
     context 'with an unknown publishing app' do
       it 'returns nil' do
