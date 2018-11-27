@@ -10,10 +10,6 @@ class ContentItemsCSVPresenter
     @organisations = organisations
   end
 
-  def raw_field(name)
-    lambda { |result_row| result_row[name] }
-  end
-
   def csv_rows
     fields = {
       'Title' => raw_field(:title),
@@ -42,14 +38,6 @@ class ContentItemsCSVPresenter
     end
   end
 
-  def organisation_title
-    organisation_data = @organisations.find do |org|
-      org[:organisation_id] == @organisation_id
-    end
-
-    organisation_data[:title]
-  end
-
   def filename
     "content-data-export-from-%<from>s-to-%<to>s-from-%<org>s%<document_type>s.csv" % {
       from: @date_range.from,
@@ -57,6 +45,20 @@ class ContentItemsCSVPresenter
       org: organisation_title.parameterize,
       document_type: @document_type.present? ? "-in-#{@document_type.tr('_', '-')}" : ''
     }
+  end
+
+private
+
+  def raw_field(name)
+    lambda { |result_row| result_row[name] }
+  end
+
+  def organisation_title
+    organisation_data = @organisations.find do |org|
+      org[:organisation_id] == @organisation_id
+    end
+
+    organisation_data[:title]
   end
 
   def content_data_link(base_path)
