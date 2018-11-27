@@ -12,7 +12,7 @@ en:
         accessibility_message: 'Visit on GOV.UK:'
         edit_page: 'Make changes to the page'
         edit_link: 'Edit in %{publishing_app}'
-        publisher_edit_link: 'Request a change to mainstream content'
+        publisher_edit_link: 'Request a content change in GOV.UK Support'
       section_headings:
         performance: 'Performance'
         feedback: 'Feedback'
