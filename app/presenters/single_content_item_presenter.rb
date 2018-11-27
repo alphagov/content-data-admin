@@ -106,7 +106,8 @@ class SingleContentItemPresenter
     edit_url_for(
       content_id: metadata[:content_id],
       publishing_app: metadata[:publishing_app],
-      base_path: base_path
+      base_path: base_path,
+      document_type: metadata[:document_type]
     )
   end
 
