@@ -39,7 +39,7 @@ private
   def search_params
     @search_params ||= begin
       defaults = {
-        date_range: 'last-30-days',
+        date_range: 'past-30-days',
         organisation_id: current_user.organisation_content_id,
         document_type: ''
       }

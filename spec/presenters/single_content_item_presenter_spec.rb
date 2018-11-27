@@ -1,7 +1,7 @@
 RSpec.describe SingleContentItemPresenter do
   include GdsApi::TestHelpers::ContentDataApi
 
-  let(:date_range) { build(:date_range, :last_30_days) }
+  let(:date_range) { build(:date_range, :past_30_days) }
   let(:current_period_data) { default_single_page_payload('the/base/path', '2018-11-25', '2018-12-25') }
   let(:previous_period_data) { default_single_page_payload('the/base/path', '2018-10-26', '2018-11-25') }
   let(:default_timeseries_metrics) {
@@ -115,7 +115,7 @@ RSpec.describe SingleContentItemPresenter do
       expect(subject.trend_percentage('upviews')).to eq(nil)
     end
 
-    context 'selected date range is `last-month`' do
+    context 'selected date range is `past-month`' do
       it 'calculates percentage change if previous month has data for every day in it' do
         date_range = build(:date_range, :last_month)
         current_time_series = complete_current_data

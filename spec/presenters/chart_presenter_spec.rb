@@ -1,7 +1,7 @@
 RSpec.describe ChartPresenter do
   include ActiveSupport::Testing::TimeHelpers
 
-  let(:date_range) { build :date_range, :last_30_days }
+  let(:date_range) { build :date_range, :past_30_days }
 
   around do |example|
     Timecop.freeze Date.new(2018, 1, 31) do
