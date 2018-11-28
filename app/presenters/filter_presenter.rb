@@ -56,7 +56,8 @@ private
 
   def additional_organisation_options
     [
-      { text: 'All organisations', value: 'all', selected: @search_parameters[:organisation_id] == 'all' }
+      { text: 'All organisations', value: 'all', selected: @search_parameters[:organisation_id] == 'all' },
+      { text: 'No primary organisation', value: 'none', selected: @search_parameters[:organisation_id] == 'none' }
     ]
   end
 end

@@ -149,6 +149,29 @@ RSpec.describe '/content' do
         expect(page).to have_content('Content from all orgs')
       end
     end
+
+    context 'with no organisations' do
+      before do
+        content_data_api_has_content_items(
+          date_range: 'past-30-days',
+          organisation_id: 'users-org-id',
+          items: items
+        )
+        content_data_api_has_content_items(
+          date_range: 'past-30-days',
+          organisation_id: 'none',
+          items: [items[0].merge(title: 'Content with no primary org')]
+        )
+        visit '/content?date_range=past-30-days'
+        select('No primary organisation', from: 'organisation_id')
+        click_on 'Filter'
+      end
+
+      it 'shows the data no primary organisation' do
+        expect(page.status_code).to eq(200)
+        expect(page).to have_content('Content with no primary org')
+      end
+    end
   end
 
   context 'filter by document_type' do

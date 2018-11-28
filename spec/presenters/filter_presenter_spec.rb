@@ -47,6 +47,7 @@ RSpec.describe FilterPresenter do
       it 'formats the organisations for the options component' do
         expect(subject.organisation_options).to eq([
           { text: 'All organisations', value: 'all', selected: false },
+          { text: 'No primary organisation', value: 'none', selected: false },
           { text: 'org', value: 'org-id', selected: true },
           { text: 'another org', value: 'another-org-id', selected: false },
           { text: 'Users Org', value: 'users-org-id', selected: false }
@@ -60,6 +61,21 @@ RSpec.describe FilterPresenter do
       it 'formats the organisations for the options component' do
         expect(subject.organisation_options).to eq([
           { text: 'All organisations', value: 'all', selected: true },
+          { text: 'No primary organisation', value: 'none', selected: false },
+          { text: 'org', value: 'org-id', selected: false },
+          { text: 'another org', value: 'another-org-id', selected: false },
+          { text: 'Users Org', value: 'users-org-id', selected: false }
+        ])
+      end
+    end
+
+    context 'when organisation_id is `none` in parameter' do
+      before { search_parameters[:organisation_id] = 'none' }
+
+      it 'formats the organisations for the options component' do
+        expect(subject.organisation_options).to eq([
+          { text: 'All organisations', value: 'all', selected: false },
+          { text: 'No primary organisation', value: 'none', selected: true },
           { text: 'org', value: 'org-id', selected: false },
           { text: 'another org', value: 'another-org-id', selected: false },
           { text: 'Users Org', value: 'users-org-id', selected: false }
