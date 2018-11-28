@@ -1,5 +1,5 @@
 module ExternalLinksHelper
-  def edit_url_for(content_id:, publishing_app:)
+  def edit_url_for(content_id:, publishing_app:, base_path:, document_type:)
     case publishing_app
     when 'whitehall'
       "#{external_url_for('whitehall-admin')}/government/admin/by-content-id/#{content_id}"
@@ -9,6 +9,14 @@ module ExternalLinksHelper
       "#{external_url_for('manuals-publisher')}/manuals/#{content_id}"
     when 'maslow', 'need-api'
       "#{external_url_for('maslow')}/needs/#{content_id}"
+    when 'contacts'
+      "#{external_url_for('contacts-admin')}/admin/contacts/#{slug_from_basepath(base_path)}/edit"
+    when 'specialist-publisher'
+      "#{external_url_for('specialist-publisher')}/#{specialist_publisher_path(document_type, content_id)}"
+    when 'collections-publisher'
+      "#{external_url_for('support')}/general_request/new"
+    when 'travel-advice-publisher'
+      "#{external_url_for('travel-advice-publisher')}/admin/#{slug_from_basepath(base_path)}"
     end
   end
 
@@ -28,5 +36,14 @@ module ExternalLinksHelper
 
   def external_url_for(service)
     Plek.new.external_url_for(service)
+  end
+
+  def slug_from_basepath(base_path)
+    base_path.split('/').last
+  end
+
+  def specialist_publisher_path(document_type, content_id)
+    formatted_document_type = document_type.tr("_", "-") + 's'
+    "#{formatted_document_type}/#{content_id}/edit"
   end
 end

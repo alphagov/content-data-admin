@@ -3,7 +3,7 @@ require 'gds_api/content_data_api'
 module GdsApi
   module TestHelpers
     module ContentDataApi
-      def stub_metrics_page(base_path:, time_period:)
+      def stub_metrics_page(base_path:, time_period:, publishing_app: 'whitehall')
         dates = build(:date_range, time_period)
         prev_dates = dates.previous
 
@@ -13,6 +13,9 @@ module GdsApi
         previous_period_data = default_previous_single_page_payload(
           base_path, prev_dates.from, prev_dates.to
         )
+
+        current_period_data[:metadata][:publishing_app] = publishing_app
+        previous_period_data[:metadata][:publishing_app] = publishing_app
 
         content_data_api_has_single_page(
           base_path: base_path,
@@ -66,10 +69,10 @@ module GdsApi
         end
       end
 
-      def content_data_api_has_single_page(base_path:, from:, to:, payload: nil)
+      def content_data_api_has_single_page(base_path:, from:, to:, payload: nil, publishing_app: 'whitehall')
         query = query(from: from, to: to)
         url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
-        body = payload || default_single_page_payload(base_path, from, to)
+        body = payload || default_single_page_payload(base_path, from, to, publishing_app)
         stub_request(:get, url).to_return(status: 200, body: body.to_json)
       end
 
@@ -118,7 +121,7 @@ module GdsApi
         "?#{param_pairs.join('&')}"
       end
 
-      def default_single_page_payload(base_path, from, to)
+      def default_single_page_payload(base_path, from, to, publishing_app = 'whitehall')
         day1 = from
         day2 = (Date.parse(from) + 1.day).to_s
         day3 = to
@@ -129,7 +132,7 @@ module GdsApi
             content_id: 'content-id',
             first_published_at:  "2018-07-17T10:35:59.000Z",
             public_updated_at:  "2018-07-17T10:35:57.000Z",
-            publishing_app:  "whitehall",
+            publishing_app:  publishing_app,
             document_type:  "news_story",
             primary_organisation_title:  "The Ministry",
             historical: false,
