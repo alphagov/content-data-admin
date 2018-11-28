@@ -15,13 +15,9 @@ RSpec.describe "Metadata", type: :view do
   it "renders correctly when given valid data" do
     render_component(data)
     assert_select ".app-c-metadata"
-    assert_select ".app-c-metadata__title", 6
+    assert_select ".app-c-metadata__title", 4
     assert_select ".app-c-metadata__title", text: t("components.metadata.labels.status")
     assert_select ".app-c-metadata__description", text: "withdrawn"
-    assert_select ".app-c-metadata__title", text: t("components.metadata.labels.published_at")
-    assert_select ".app-c-metadata__description", text: "1 September 2016"
-    assert_select ".app-c-metadata__title", text: t("components.metadata.labels.last_updated")
-    assert_select ".app-c-metadata__description", text: "1 October 2017"
     assert_select ".app-c-metadata__title", text: t("components.metadata.labels.publishing_organisation")
     assert_select ".app-c-metadata__description", text: "UK Visas and Immigration"
     assert_select ".app-c-metadata__title", text: t("components.metadata.labels.document_type")

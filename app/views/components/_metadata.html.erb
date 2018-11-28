@@ -15,16 +15,6 @@
     </dl>
   <% end %>
   <dl class="app-c-metadata__list">
-    <% if published_at %>
-      <dt class="app-c-metadata__title"><%= t ".labels.published_at" %></dt>
-      <dd class="app-c-metadata__description"><%= published_at %></dd>
-    <% end %>
-    <% if last_updated %>
-      <dt class="app-c-metadata__title"><%= t ".labels.last_updated" %></dt>
-      <dd class="app-c-metadata__description"><%= last_updated %></dd>
-    <% end %>
-  </dl>
-  <dl class="app-c-metadata__list">
     <% if publishing_organisation %>
       <dt class="app-c-metadata__title"><%= t ".labels.publishing_organisation" %></dt>
       <dd class="app-c-metadata__description"><%= publishing_organisation %></dd>
