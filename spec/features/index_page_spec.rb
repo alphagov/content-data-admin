@@ -88,6 +88,10 @@ RSpec.describe '/content' do
       expect(page).to have_select('organisation_id', selected: 'another org')
     end
 
+    it 'describes the filter in the table header' do
+      expect(page).to have_css('h1.table-header', text: 'Showing 1 to 2 of 2 results from another org')
+    end
+
     it 'respects date range' do
       stub_metrics_page(base_path: 'path/1', time_period: :past_year)
       content_data_api_has_content_items(date_range: 'past-year', organisation_id: 'another-org-id', items: items)
@@ -117,6 +121,10 @@ RSpec.describe '/content' do
         expect(page.status_code).to eq(200)
         expect(page).to have_content('Content from users-org-id')
       end
+
+      it 'describes the filter in the table header' do
+        expect(page).to have_css('h1.table-header', text: 'Showing 1 to 1 of 1 results from Users Org')
+      end
     end
   end
 
@@ -138,12 +146,17 @@ RSpec.describe '/content' do
       expect(table_rows).to all(include('News story'))
     end
 
+    it 'describes the filter in the table header' do
+      expect(page).to have_css('h1.table-header', text: 'Showing 1 to 1 of 1 results for News story from org')
+    end
+
     it 'allows the filter to be cleared' do
       select 'All document types', from: 'document_type'
       click_on 'Filter'
       expect(page).to have_select('document_type', selected: 'All document types')
       table_rows = extract_table_content('.govuk-table')
       expect(table_rows.count).to eq(3)
+      expect(page).to have_css('h1.table-header', text: 'Showing 1 to 2 of 2 results from org')
     end
   end
 
@@ -182,6 +195,7 @@ RSpec.describe '/content' do
     end
 
     it 'shows the second page of data' do
+      expect(page).to have_css('h1.table-header', text: 'Showing 1 to 100 of 102 results from org')
       click_on 'Next'
       table_rows = extract_table_content('.govuk-table')
       expect(table_rows).to eq(
@@ -191,6 +205,7 @@ RSpec.describe '/content' do
           ['forth title /path/4', 'News story', '100,018', '68% (42 responses)', '12'],
         ]
       )
+      expect(page).to have_css('h1.table-header', text: 'Showing 101 to 102 of 102 results from org')
     end
   end
 
