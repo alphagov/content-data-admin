@@ -19,7 +19,7 @@
           published_at: @performance_data.published_at,
           last_updated: @performance_data.last_updated,
           publishing_organisation: @performance_data.publishing_organisation,
-          document_type: @performance_data.document_type,
+          document_type: @performance_data.document_type.humanize,
           base_path: @performance_data.base_path,
           status: @performance_data.status
       %>
