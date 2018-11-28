@@ -4,8 +4,8 @@ module Concerns::ExportableToCSV
   extend ActiveSupport::Concern
 
   included do
-    def export_to_csv(enum:)
-      set_file_headers
+    def export_to_csv(enum:, filename: 'download.csv')
+      set_file_headers(filename)
       set_streaming_headers
 
       response.status = 200
@@ -14,9 +14,9 @@ module Concerns::ExportableToCSV
 
   private
 
-    def set_file_headers
+    def set_file_headers(filename)
       headers['Content-Type'] = 'text/csv'
-      headers['Content-disposition'] = "attachment; filename=\"download.csv\""
+      headers['Content-disposition'] = "attachment; filename=\"#{filename}\""
     end
 
     def set_streaming_headers

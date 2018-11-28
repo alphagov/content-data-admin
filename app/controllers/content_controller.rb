@@ -24,12 +24,12 @@ class ContentController < ApplicationController
       format.csv do
         presenter = ContentItemsCSVPresenter.new(
           FindContent.enum(search_params),
-          DateRange.new(search_params[:date_range]),
+          search_params,
           document_types,
           organisations
         )
 
-        export_to_csv(enum: presenter.csv_rows)
+        export_to_csv(enum: presenter.csv_rows, filename: presenter.filename)
       end
     end
   end
