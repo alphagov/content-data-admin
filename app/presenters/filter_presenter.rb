@@ -9,6 +9,10 @@ class FilterPresenter
     @search_parameters[:document_type].present?
   end
 
+  def document_type
+    find_document_type[:text]
+  end
+
   def document_type_options
     types = [{
                text: 'All document types',
@@ -25,14 +29,6 @@ class FilterPresenter
     types
   end
 
-  def organisation_name
-    find_selected_org[:text]
-  end
-
-  def document_type
-    find_document_type[:text]
-  end
-
   def organisation_options
     @organisations.map do |org|
       {
@@ -41,6 +37,10 @@ class FilterPresenter
         selected: org[:organisation_id] == @search_parameters[:organisation_id]
       }
     end
+  end
+
+  def organisation_name
+    find_selected_org[:text]
   end
 
 private
