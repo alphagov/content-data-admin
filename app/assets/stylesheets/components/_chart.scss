@@ -11,12 +11,6 @@
 
 .app-c-chart__table {
 
-  .govuk-details__summary-text {
-    @include govuk-font(16);
-  }
-}
-
-.app-c-chart__table {
   max-height: 350px;
   margin-top: govuk-spacing(3);
 
@@ -24,22 +18,51 @@
     max-height: 250px;
 
   }
+
+  .govuk-details__summary-text {
+    @include govuk-font(16);
+  }
+
+  .govuk-table {
+    .govuk-table__header {
+      border: none;
+      background-color: $white;
+      @include govuk-font($size: 14, $weight: bold);
+      text-align: center;
+      min-width: 4em;
+    }
+
+    .govuk-table__body {
+      .govuk-table__cell {
+        @include govuk-font(14);
+        border-top: 1px solid $black;
+      }
+    }
+
+    .govuk-table__cell {
+      @include govuk-font(14);
+      border: 0;
+      text-align: center;
+    }
+
+  }
+
+  .govuk-table {
+    width: auto;
+  }
+
+  .govuk-table__header--stacked {
+    max-width: 15%;
+  }
+
+  .govuk-table__header--stacked[scope=row] {
+    max-width: 20%;
+  }
+
 }
 
 .app-c-chart__accessibility-message {
   @include govuk-visually-hidden;
-}
-
-.govuk-table {
-  width: auto;
-}
-
-.govuk-table__header--stacked {
-  max-width: 15%;
-}
-
-.govuk-table__header--numeric[scope=row] {
-  max-width: 20%;
 }
 
 // This breaks our BEM markup but is injected by the charting library and can't be avoided
