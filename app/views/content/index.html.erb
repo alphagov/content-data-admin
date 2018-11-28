@@ -65,12 +65,12 @@
               <%= render "govuk_publishing_components/components/select", {
               id: "document_type",
               label: "Document type",
-              options: @presenter.document_type_options
+              options: @presenter.filter.document_type_options
             } %>
             <%= render "govuk_publishing_components/components/select", {
               id: "organisation_id",
               label: "Organisation",
-              options: @presenter.organisation_options
+              options: @presenter.filter.organisation_options
             } %>
 
             <%= render "govuk_publishing_components/components/button", {text: "Filter"} %>
