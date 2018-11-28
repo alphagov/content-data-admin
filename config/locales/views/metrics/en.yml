@@ -4,7 +4,7 @@ en:
       download_link: 'Download %{metric_name} CSV'
       external_link: 'See %{metric_unit} in %{data_source}'
     show:
-      browser_title: 'Page data: %{content_title}'
+      browser_title: '%{content_title}: Page data'
       page_kicker: 'Page data'
       navigation:
         back_link: 'View all pages'
