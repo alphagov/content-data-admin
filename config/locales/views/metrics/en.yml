@@ -18,21 +18,21 @@ en:
         feedback: 'Feedback'
         content: 'Page content'
       time_periods:
-        last-30-days:
+        past-30-days:
           leading: 'past 30 days'
           reference: 'from previous 30 days'
         last-month:
           leading: 'last month'
           reference: 'from previous month'
-        last-3-months:
+        past-3-months:
           leading: 'past 3 months'
           reference: 'from previous 3 months'
-        last-6-months:
+        past-6-months:
           leading: 'past 6 months'
           reference: 'from previous 6 months'
-        last-year:
+        past-year:
           leading: 'past year'
           reference: 'from previous year'
-        last-2-years:
+        past-2-years:
           leading: 'past 2 years'
           reference: 'from previous 2 years'

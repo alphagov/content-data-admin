@@ -3,7 +3,7 @@ RSpec.describe ContentItemsCSVPresenter do
 
   let(:document_types) { default_document_types }
   let(:organisations) { default_organisations }
-  let(:date_range) { DateRange.new('last-30-days') }
+  let(:date_range) { DateRange.new('past-30-days') }
   let(:data_enum) do
     [
       {

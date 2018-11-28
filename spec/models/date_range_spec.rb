@@ -5,15 +5,15 @@ RSpec.describe DateRange do
     end
   end
 
-  describe 'for last 30 days' do
-    let(:time_period) { 'last-30-days' }
+  describe 'for past 30 days' do
+    let(:time_period) { 'past-30-days' }
 
     describe 'relative to yesterday' do
       subject { DateRange.new(time_period) }
 
       it { is_expected.to have_attributes(to: '2018-12-24') }
       it { is_expected.to have_attributes(from: '2018-11-24') }
-      it { is_expected.to have_attributes(time_period: 'last-30-days') }
+      it { is_expected.to have_attributes(time_period: 'past-30-days') }
     end
 
     describe 'relative to specified date' do
@@ -22,7 +22,7 @@ RSpec.describe DateRange do
 
       it { is_expected.to have_attributes(to: '2018-06-25') }
       it { is_expected.to have_attributes(from: '2018-05-26') }
-      it { is_expected.to have_attributes(time_period: 'last-30-days') }
+      it { is_expected.to have_attributes(time_period: 'past-30-days') }
     end
 
     describe '#previous' do
@@ -31,7 +31,7 @@ RSpec.describe DateRange do
       it { is_expected.to be_an_instance_of(DateRange) }
       it { is_expected.to have_attributes(to: '2018-11-24') }
       it { is_expected.to have_attributes(from: '2018-10-25') }
-      it { is_expected.to have_attributes(time_period: 'last-30-days') }
+      it { is_expected.to have_attributes(time_period: 'past-30-days') }
     end
   end
 
@@ -65,15 +65,15 @@ RSpec.describe DateRange do
     end
   end
 
-  describe 'for last 3 months' do
-    let(:time_period) { 'last-3-months' }
+  describe 'for past 3 months' do
+    let(:time_period) { 'past-3-months' }
 
     describe 'relative to yesterday' do
       subject { DateRange.new(time_period) }
 
       it { is_expected.to have_attributes(to: '2018-12-24') }
       it { is_expected.to have_attributes(from: '2018-09-24') }
-      it { is_expected.to have_attributes(time_period: 'last-3-months') }
+      it { is_expected.to have_attributes(time_period: 'past-3-months') }
     end
 
     describe 'relative to specified date' do
@@ -82,7 +82,7 @@ RSpec.describe DateRange do
 
       it { is_expected.to have_attributes(to: '2018-06-25') }
       it { is_expected.to have_attributes(from: '2018-03-25') }
-      it { is_expected.to have_attributes(time_period: 'last-3-months') }
+      it { is_expected.to have_attributes(time_period: 'past-3-months') }
     end
 
     describe '#previous' do
@@ -91,19 +91,19 @@ RSpec.describe DateRange do
       it { is_expected.to be_an_instance_of(DateRange) }
       it { is_expected.to have_attributes(to: '2018-09-24') }
       it { is_expected.to have_attributes(from: '2018-06-24') }
-      it { is_expected.to have_attributes(time_period: 'last-3-months') }
+      it { is_expected.to have_attributes(time_period: 'past-3-months') }
     end
   end
 
-  describe 'for last 6 months' do
-    let(:time_period) { 'last-6-months' }
+  describe 'for past 6 months' do
+    let(:time_period) { 'past-6-months' }
 
     describe 'relative to yesterday' do
       subject { DateRange.new(time_period) }
 
       it { is_expected.to have_attributes(to: '2018-12-24') }
       it { is_expected.to have_attributes(from: '2018-06-24') }
-      it { is_expected.to have_attributes(time_period: 'last-6-months') }
+      it { is_expected.to have_attributes(time_period: 'past-6-months') }
     end
 
     describe 'relative to specified date' do
@@ -112,7 +112,7 @@ RSpec.describe DateRange do
 
       it { is_expected.to have_attributes(to: '2018-06-25') }
       it { is_expected.to have_attributes(from: '2017-12-25') }
-      it { is_expected.to have_attributes(time_period: 'last-6-months') }
+      it { is_expected.to have_attributes(time_period: 'past-6-months') }
     end
 
     describe '#previous' do
@@ -121,19 +121,19 @@ RSpec.describe DateRange do
       it { is_expected.to be_an_instance_of(DateRange) }
       it { is_expected.to have_attributes(to: '2018-06-24') }
       it { is_expected.to have_attributes(from: '2017-12-24') }
-      it { is_expected.to have_attributes(time_period: 'last-6-months') }
+      it { is_expected.to have_attributes(time_period: 'past-6-months') }
     end
   end
 
-  describe 'for last year' do
-    let(:time_period) { 'last-year' }
+  describe 'for past year' do
+    let(:time_period) { 'past-year' }
 
     describe 'relative to yesterday' do
       subject { DateRange.new(time_period) }
 
       it { is_expected.to have_attributes(to: '2018-12-24') }
       it { is_expected.to have_attributes(from: '2017-12-24') }
-      it { is_expected.to have_attributes(time_period: 'last-year') }
+      it { is_expected.to have_attributes(time_period: 'past-year') }
     end
 
     describe 'relative to specified date' do
@@ -142,7 +142,7 @@ RSpec.describe DateRange do
 
       it { is_expected.to have_attributes(to: '2018-06-25') }
       it { is_expected.to have_attributes(from: '2017-06-25') }
-      it { is_expected.to have_attributes(time_period: 'last-year') }
+      it { is_expected.to have_attributes(time_period: 'past-year') }
     end
 
     describe '#previous' do
@@ -151,19 +151,19 @@ RSpec.describe DateRange do
       it { is_expected.to be_an_instance_of(DateRange) }
       it { is_expected.to have_attributes(to: '2017-12-24') }
       it { is_expected.to have_attributes(from: '2016-12-24') }
-      it { is_expected.to have_attributes(time_period: 'last-year') }
+      it { is_expected.to have_attributes(time_period: 'past-year') }
     end
   end
 
-  describe 'for last 2 year' do
-    let(:time_period) { 'last-2-years' }
+  describe 'for past 2 year' do
+    let(:time_period) { 'past-2-years' }
 
     describe 'relative to yesterday' do
       subject { DateRange.new(time_period) }
 
       it { is_expected.to have_attributes(to: '2018-12-24') }
       it { is_expected.to have_attributes(from: '2016-12-24') }
-      it { is_expected.to have_attributes(time_period: 'last-2-years') }
+      it { is_expected.to have_attributes(time_period: 'past-2-years') }
     end
 
     describe 'relative to specified date' do
@@ -172,7 +172,7 @@ RSpec.describe DateRange do
 
       it { is_expected.to have_attributes(to: '2018-06-25') }
       it { is_expected.to have_attributes(from: '2016-06-25') }
-      it { is_expected.to have_attributes(time_period: 'last-2-years') }
+      it { is_expected.to have_attributes(time_period: 'past-2-years') }
     end
 
     describe '#previous' do
@@ -181,7 +181,7 @@ RSpec.describe DateRange do
       it { is_expected.to be_an_instance_of(DateRange) }
       it { is_expected.to have_attributes(to: '2016-12-24') }
       it { is_expected.to have_attributes(from: '2014-12-24') }
-      it { is_expected.to have_attributes(time_period: 'last-2-years') }
+      it { is_expected.to have_attributes(time_period: 'past-2-years') }
     end
   end
 end

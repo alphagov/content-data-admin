@@ -4,7 +4,7 @@
     <a href="/content" class="local-nav__search-link govuk-link govuk-link--no-visited-state">Search</a>
   </div>
 <% end %>
-<% current_selection = @performance_data.date_range.time_period || 'last-30-days' %>
+<% current_selection = @performance_data.date_range.time_period || 'past-30-days' %>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
@@ -53,8 +53,8 @@
     current_selection: current_selection,
     dates: [
       {
-        value: "last-30-days",
-        text: t(".time_periods.last-30-days.leading"),
+        value: "past-30-days",
+        text: t(".time_periods.past-30-days.leading"),
         hint_text:  "#{31.days.ago.strftime("%-d %B %Y")} to #{Date.yesterday.strftime("%-d %B %Y")}"
       },
       {
@@ -63,23 +63,23 @@
         hint_text: "#{Date.today.last_month.beginning_of_month.strftime("%-d %B %Y")} to #{Date.today.last_month.end_of_month.strftime("%-d %B %Y")}"
       },
       {
-        value: "last-3-months",
-        text: t(".time_periods.last-3-months.leading"),
+        value: "past-3-months",
+        text: t(".time_periods.past-3-months.leading"),
         hint_text: "#{(3.months.ago - 1.day).strftime("%-d %B %Y")} to #{Date.yesterday.strftime("%-d %B %Y")}"
       },
       {
-        value: "last-6-months",
-        text: t(".time_periods.last-6-months.leading"),
+        value: "past-6-months",
+        text: t(".time_periods.past-6-months.leading"),
         hint_text: "#{(6.months.ago - 1.day).strftime("%-d %B %Y")} to #{Date.yesterday.strftime("%-d %B %Y")}"
       },
       {
-        value: "last-year",
-        text: t(".time_periods.last-year.leading"),
+        value: "past-year",
+        text: t(".time_periods.past-year.leading"),
         hint_text: "#{(1.year.ago - 1.day).strftime("%-d %B %Y")} to #{Date.yesterday.strftime("%-d %B %Y")}"
       },
       {
-        value: "last-2-years",
-        text: t(".time_periods.last-2-years.leading"),
+        value: "past-2-years",
+        text: t(".time_periods.past-2-years.leading"),
         hint_text: "#{(2.years.ago - 1.day).strftime("%-d %B %Y")} to #{Date.yesterday.strftime("%-d %B %Y")}"
       }
     ]

@@ -23,22 +23,22 @@ private
         from: relative_date.last_month.beginning_of_month.to_s,
         to: relative_date.last_month.end_of_month.to_s
       }
-    when 'last-3-months'
+    when 'past-3-months'
       {
         from: (relative_date - 3.months).to_s,
         to: relative_date.to_s
       }
-    when 'last-6-months'
+    when 'past-6-months'
       {
         from: (relative_date - 6.months).to_s,
         to: relative_date.to_s
       }
-    when 'last-year'
+    when 'past-year'
       {
         from: (relative_date - 1.year).to_s,
         to: relative_date.to_s
       }
-    when 'last-2-years'
+    when 'past-2-years'
       {
         from: (relative_date - 2.years).to_s,
         to: relative_date.to_s

@@ -58,13 +58,13 @@ RSpec.describe '/content' do
     end
 
     it 'respects the date filter' do
-      stub_metrics_page(base_path: 'path/1', time_period: :last_year)
-      content_data_api_has_content_items(date_range: 'last-year', organisation_id: 'org-id', items: items)
+      stub_metrics_page(base_path: 'path/1', time_period: :past_year)
+      content_data_api_has_content_items(date_range: 'past-year', organisation_id: 'org-id', items: items)
 
-      visit "/content?date_range=last-year&organisation_id=org-id"
+      visit "/content?date_range=past-year&organisation_id=org-id"
       click_link 'The title'
       expect(current_path).to eq '/metrics/path/1'
-      expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.last-year.leading')}")
+      expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.past-year.leading')}")
     end
   end
 
@@ -89,15 +89,15 @@ RSpec.describe '/content' do
     end
 
     it 'respects date range' do
-      stub_metrics_page(base_path: 'path/1', time_period: :last_year)
-      content_data_api_has_content_items(date_range: 'last-year', organisation_id: 'another-org-id', items: items)
+      stub_metrics_page(base_path: 'path/1', time_period: :past_year)
+      content_data_api_has_content_items(date_range: 'past-year', organisation_id: 'another-org-id', items: items)
 
-      visit "/content?date_range=last-year&organisation_id=another-org-id"
+      visit "/content?date_range=past-year&organisation_id=another-org-id"
 
       select 'another org', from: 'organisation_id'
       click_on 'Filter'
       click_on 'The title'
-      expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.last-year.leading')}")
+      expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.past-year.leading')}")
     end
 
     context 'with users organisation' do
