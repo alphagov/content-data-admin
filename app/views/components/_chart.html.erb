@@ -18,7 +18,7 @@
   if percent_metric
     maximum_y = 100
   elsif rows.any?
-    row_maximums = rows.map { |row| row[:values].max }
+    row_maximums = rows.map { |row| row[:values].compact.max }
     overall_maximum = row_maximums.max
 
     if overall_maximum == 0
