@@ -253,25 +253,25 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders the contacts application' do
-        stub_metrics_page(base_path: 'contacts/path', time_period: :last_30_days, publishing_app: 'contacts')
+        stub_metrics_page(base_path: 'contacts/path', time_period: :past_30_days, publishing_app: 'contacts')
         visit '/metrics/contacts/path'
         expect(page).to have_link("Edit in Contacts", href: 'http://contacts-admin.dev.gov.uk/admin/contacts/path/edit')
       end
 
       it 'renders the specialist publisher application' do
-        stub_metrics_page(base_path: 'specialist/path', time_period: :last_30_days, publishing_app: 'specialist-publisher')
+        stub_metrics_page(base_path: 'specialist/path', time_period: :past_30_days, publishing_app: 'specialist-publisher')
         visit '/metrics/specialist/path'
         expect(page).to have_link("Edit in Specialist publisher", href: "http://specialist-publisher.dev.gov.uk/news-storys/content-id/edit")
       end
 
       it 'renders the collections application' do
-        stub_metrics_page(base_path: 'collections/path', time_period: :last_30_days, publishing_app: 'collections-publisher')
+        stub_metrics_page(base_path: 'collections/path', time_period: :past_30_days, publishing_app: 'collections-publisher')
         visit '/metrics/collections/path'
         expect(page).to have_link("Edit in Collections publisher", href: 'http://support.dev.gov.uk/general_request/new')
       end
 
       it 'renders the travel advice application' do
-        stub_metrics_page(base_path: 'travel/path', time_period: :last_30_days, publishing_app: 'travel-advice-publisher')
+        stub_metrics_page(base_path: 'travel/path', time_period: :past_30_days, publishing_app: 'travel-advice-publisher')
         visit '/metrics/travel/path'
         expect(page).to have_link("Edit in Travel advice publisher", href: 'http://travel-advice-publisher.dev.gov.uk/admin/path')
       end
