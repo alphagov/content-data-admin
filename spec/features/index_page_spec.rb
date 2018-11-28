@@ -147,7 +147,7 @@ RSpec.describe '/content' do
     end
 
     it 'describes the filter in the table header' do
-      expect(page).to have_css('h1.table-header', text: 'Showing 1 to 1 of 1 results from org in News story')
+      expect(page).to have_css('h1.table-header', text: 'Showing 1 to 1 of 1 results for News story from org')
     end
 
     it 'allows the filter to be cleared' do
