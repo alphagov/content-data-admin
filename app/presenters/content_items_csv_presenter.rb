@@ -13,7 +13,9 @@ class ContentItemsCSVPresenter
   def csv_rows
     fields = {
       'Title' => raw_field(:title),
-      'URL' => raw_field(:row),
+      'URL' => lambda do |result_row|
+        url(result_row[:base_path])
+      end,
       'Content Data Link' => lambda do |result_row|
         content_data_link(result_row[:base_path])
       end,
@@ -59,6 +61,10 @@ private
     end
 
     organisation_data[:title]
+  end
+
+  def url(base_path)
+    "#{Plek.new.website_root}#{base_path}"
   end
 
   def content_data_link(base_path)
