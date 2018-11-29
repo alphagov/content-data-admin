@@ -18,6 +18,18 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
   end
 
+  context 'when the page we are requesting is the homepage' do
+    before do
+      GDS::SSO.test_user = build(:user)
+      stub_metrics_page(base_path: nil, time_period: :last_month)
+      visit '/metrics?date_range=last-month'
+    end
+
+    it 'renders the page without errors' do
+      expect(page.status_code).to eq(200)
+    end
+  end
+
   context 'successful request' do
     before do
       GDS::SSO.test_user = build(:user)

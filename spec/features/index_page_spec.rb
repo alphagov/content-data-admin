@@ -5,6 +5,15 @@ RSpec.describe '/content' do
   let(:items) do
     [
       {
+        base_path: '/',
+        title: 'GOV.UK homepage',
+        upviews: 1_233_018,
+        document_type: 'homepage',
+        satisfaction: 0.85,
+        satisfaction_score_responses: 2050,
+        searches: 1220
+      },
+      {
         base_path: '/path/1',
         title: 'The title',
         upviews: 233_018,
@@ -45,6 +54,7 @@ RSpec.describe '/content' do
     expect(table_rows).to eq(
       [
         ['Page title', 'Content type', 'Unique pageviews', 'User satisfaction score', 'Searches from page'],
+        ['GOV.UK homepage /', 'Homepage', '1,233,018', '85% (2,050 responses)', '1,220'],
         ['The title /path/1', 'News story', '233,018', '81% (250 responses)', '220'],
         ['Another title /path/2', 'Guide', '100,018', '68% (42 responses)', '12'],
       ]
@@ -89,7 +99,7 @@ RSpec.describe '/content' do
     end
 
     it 'describes the filter in the table header' do
-      expect(page).to have_css('h1.table-header', text: 'Showing 1 to 2 of 2 results from another org')
+      expect(page).to have_css('h1.table-header', text: 'Showing 1 to 3 of 3 results from another org')
     end
 
     it 'respects date range' do
@@ -130,7 +140,7 @@ RSpec.describe '/content' do
 
   context 'filter by document_type' do
     before do
-      content_data_api_has_content_items(date_range: 'last-month', organisation_id: 'org-id', document_type: 'news_story', items: [items.first])
+      content_data_api_has_content_items(date_range: 'last-month', organisation_id: 'org-id', document_type: 'news_story', items: [items.second])
       select 'News story', from: 'document_type'
       click_on 'Filter'
     end
@@ -155,8 +165,8 @@ RSpec.describe '/content' do
       click_on 'Filter'
       expect(page).to have_select('document_type', selected: 'All document types')
       table_rows = extract_table_content('.govuk-table')
-      expect(table_rows.count).to eq(3)
-      expect(page).to have_css('h1.table-header', text: 'Showing 1 to 2 of 2 results from org')
+      expect(table_rows.count).to eq(4)
+      expect(page).to have_css('h1.table-header', text: 'Showing 1 to 3 of 3 results from org')
     end
   end
 
@@ -188,7 +198,7 @@ RSpec.describe '/content' do
       content_data_api_has_content_items(
         date_range: 'last-month',
         organisation_id: 'org-id',
-        items: (items * 50) + other_page_items
+        items: (items[1..-1] * 50) + other_page_items
       )
 
       visit "/content?date_range=last-month&organisation_id=org-id"
