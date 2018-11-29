@@ -27,43 +27,40 @@
       { text: current_user.name, href: Plek.new.external_url_for('signon') },
       { text: "Log out", href: gds_sign_out_path }
     ]
-  }%>
+  }
+%>
+<%
+  css_classes = yield(:page_class)
+  css_classes << " govuk-width-container" unless @fullwidth
+%>
 
-  <% unless @fullwidth %>
-    <div class="govuk-width-container">
+<div class="<%= css_classes %>">
+  <% banner_message = capture do %>
+    <a href="">Send us feedback</a>
   <% end %>
 
-    <% banner_message = capture do %>
-      <a href="">Send us feedback</a>
-    <% end %>
-
-
-    <div class="banner govuk-grid-row">
-      <div class="govuk-grid-column-three-quarters">
-        <%= render "govuk_publishing_components/components/phase_banner", {phase: "beta", message: banner_message, app_name: "Content data"} %>
-      </div>
-      <%= content_for :local_nav %>
+  <div class="banner govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+      <%= render "govuk_publishing_components/components/phase_banner", {phase: "beta", message: banner_message, app_name: "Content data"} %>
     </div>
+    <%= content_for :local_nav %>
+  </div>
 
+  <% if flash[:notice] %>
+    <p>
+      <%= flash[:notice] %>
+    </p>
+  <% end %>
 
-    <% if flash[:notice] %>
-      <p>
-        <%= flash[:notice] %>
-      </p>
-    <% end %>
-
-    <% if flash[:alert] %>
-      <p>
-        <%= flash[:alert] %>
-      </p>
-    <% end %>
-    <main class="govuk-main-wrapper " id="main-content" role="main">
-      <%= yield %>
-    </main>
-
-    <% unless @fullwidth %>
-      </div>
-    <% end %>
+  <% if flash[:alert] %>
+    <p>
+      <%= flash[:alert] %>
+    </p>
+  <% end %>
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <%= yield %>
+  </main>
+</div>
 
   <%= render "govuk_publishing_components/components/layout_footer" %>
 <% end %>
