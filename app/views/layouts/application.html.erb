@@ -36,7 +36,9 @@
 
 <div class="<%= css_classes %>">
   <% banner_message = capture do %>
-    <a href="">Send us feedback</a>
+    <a href="<%= Plek.new.external_url_for('support') + '/content_data_feedback/new' %>">
+      Send us feedback
+    </a>
   <% end %>
 
   <div class="banner govuk-grid-row">
