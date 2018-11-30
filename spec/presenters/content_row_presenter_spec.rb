@@ -15,6 +15,7 @@ RSpec.describe ContentRowPresenter do
   it 'returns the basic attributes' do
     expect(subject).to have_attributes(
       base_path: 'some/base_path',
+      raw_document_type: 'news_story',
       title: 'a title',
       upviews: '200,001'
     )
