@@ -47,6 +47,13 @@
     if(form != null) {
       form.addEventListener("submit", filterFormSubmitListner, false);
     }
+
+    window.dataLayer = window.dataLayer || [];
+    var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    dataLayer.push({
+      event: 'viewport-width',
+      value: viewportWidth
+    });
   };
 
   if (document.readyState === "loading") {
