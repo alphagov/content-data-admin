@@ -1,7 +1,12 @@
 <h1 class="table-header">Showing
-    <span class="table-header__param"><%= pagination.first_record %></span> to
-    <span class="table-header__param"><%= pagination.last_record %></span> of
-    <span class="table-header__param"><%= pagination.formatted_total_results %></span> results
+    <% if pagination.total_results > 0 %>
+        Showing
+        <span class="table-header__param"><%= pagination.first_record %></span> to
+        <span class="table-header__param"><%= pagination.last_record %></span> of
+        <span class="table-header__param"><%= pagination.total_results %></span> results
+    <% else %>
+        <span class="table-header__param">no matching results</span>
+    <% end %>
     <% if filter.search_terms? %>
         for "<span class="table-header__param"><%= filter.search_terms %></span>"
     <% end %>

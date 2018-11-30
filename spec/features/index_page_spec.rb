@@ -296,6 +296,17 @@ RSpec.describe '/content' do
     end
   end
 
+  describe 'no results returned' do
+    before do
+      content_data_api_has_no_matching_items(date_range: 'past-3-months', organisation_id: 'org-id')
+      visit "/content?date_range=past-3-months&organisation_id=org-id"
+    end
+
+    it 'shows a no data message in the table header' do
+      expect(page).to have_css('h1.table-header', text: 'no matching results from org')
+    end
+  end
+
   context 'CSV export' do
     # Use lots of items to test getting a couple of full pages, plus a
     # partial page back from the Content Performance Manager.
