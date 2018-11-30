@@ -1,10 +1,11 @@
 class ContentRowPresenter
   include ActionView::Helpers::NumberHelper
   attr_reader :title, :base_path, :document_type, :upviews,
-              :user_satisfaction, :searches
+              :user_satisfaction, :searches, :raw_document_type
   def initialize(data)
     @title = data[:title]
     @base_path = format_base_path(data[:base_path])
+    @raw_document_type = data[:document_type]
     @document_type = data[:document_type].try(:tr, '_', ' ').try(:capitalize)
     @upviews = number_with_delimiter(data[:upviews], delimiter: ',')
     @user_satisfaction = format_satisfaction(data[:satisfaction], data[:satisfaction_score_responses])
