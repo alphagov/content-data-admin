@@ -1,7 +1,6 @@
 <% content_for :head do %>
   <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
   <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "application" %>
 
   <% if ENV["GOOGLE_TAG_MANAGER_ID"] %>
     <script>
