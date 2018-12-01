@@ -12,7 +12,7 @@
 
 
       <div class="filter-form">
-        <%= form_tag content_path, method: 'get', name: 'organisation-picker' do %>
+        <%= form_tag content_path, method: 'get', name: 'organisation-picker', id: 'filter-form' do %>
           <%= render "components/time-select", {
             current_selection: @presenter.time_period,
             compact: true,
