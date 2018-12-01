@@ -3,41 +3,48 @@
   function filterFormSubmitListner(event) {
     window.dataLayer = window.dataLayer || [];
     var form = event.target;
+    var eventName = form.id;
 
-    var date_range = form.querySelector('input[name="date_range"]:checked').value;
-    if(date_range.length > 0) {
+    var dateRangeTag = form.querySelector('input[name="date_range"]:checked');
+    if(dateRangeTag && dateRangeTag.value.length > 0) {
       window.dataLayer.push({
-        event: 'filter-form',
-        field: 'date_range',
-        value: date_range
+        event: eventName,
+        field: 'dateRange',
+        value: dateRangeTag.value
       });
     }
 
-    var search_term = form.querySelector('input[name="search_term"]').value;
-    if(search_term.length > 0) {
+    var searchTermTag = form.querySelector('input[name="search_term"]');
+    if(searchTermTag && searchTermTag.value.length > 0) {
       window.dataLayer.push({
-        event: 'filter-form',
-        field: 'search_term',
-        value: search_term
+        event: eventName,
+        field: 'searchTerm',
+        value: searchTerm.value
       });
     };
 
-    var document_type = form.querySelector('select[name="document_type"]').selectedOptions[0].value;
-    if(document_type.length > 0) {
-      window.dataLayer.push({
-        event: 'filter-form',
-        field: 'document_type',
-        value: document_type
-      });
+    var documentTypeTag = form.querySelector('select[name="document_type"]');
+    if(documentTypeTag) {
+      var documentType = documentTypeTag.selectedOptions[0].value;
+      if(documentType.length > 0) {
+        window.dataLayer.push({
+          event: eventName,
+          field: 'documentType',
+          value: documentType
+        });
+      }
     }
 
-    var organisation = form.querySelector('select[name="organisation_id"]').selectedOptions[0].text;
-    if(organisation.length > 0) {
-      window.dataLayer.push({
-        event: 'filter-form',
-        field: 'organisation',
-        value: organisation
-      });
+    var organisationTag = form.querySelector('select[name="organisation_id"]')
+    if (organisationTag) {
+      var organisation = organisationTag.selectedOptions[0].text;
+      if(organisation.length > 0) {
+        window.dataLayer.push({
+          event: eventName,
+          field: 'organisation',
+          value: organisation
+        });
+      }
     }
 
   };
