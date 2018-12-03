@@ -5,12 +5,24 @@ class FilterPresenter
     @organisations = organisations
   end
 
+  def search_terms?
+    search_terms.present?
+  end
+
+  def search_terms
+    @search_parameters[:search_term]
+  end
+
   def document_type?
     @search_parameters[:document_type].present?
   end
 
   def document_type
     find_document_type[:text]
+  end
+
+  def organisation_name
+    find_selected_org[:text]
   end
 
   def document_type_options
@@ -38,10 +50,6 @@ class FilterPresenter
           selected: org[:organisation_id] == @search_parameters[:organisation_id]
         }
       end
-  end
-
-  def organisation_name
-    find_selected_org[:text]
   end
 
 private
