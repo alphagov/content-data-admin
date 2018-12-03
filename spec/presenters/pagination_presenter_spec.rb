@@ -2,9 +2,9 @@ RSpec.describe PaginationPresenter do
   subject do
     PaginationPresenter.new(
       page: page,
-      total_pages: 11,
+      total_pages: 123457,
       per_page: 10,
-      total_results: 105
+      total_results: 1234567
     )
   end
 
@@ -12,6 +12,10 @@ RSpec.describe PaginationPresenter do
 
   it 'returns the #total_results' do
     expect(subject.total_results)
+  end
+
+  it 'returns the #formatted_total_results' do
+    expect(subject.formatted_total_results).to eq('1,234,567')
   end
 
   context 'when on the first page' do
@@ -24,7 +28,7 @@ RSpec.describe PaginationPresenter do
     end
 
     it 'return the correct next page label' do
-      expect(subject.next_label).to eq('2 of 11')
+      expect(subject.next_label).to eq('2 of 123457')
     end
 
     it 'returns 1 for #first_record' do
@@ -37,7 +41,7 @@ RSpec.describe PaginationPresenter do
   end
 
   context 'when on the last page' do
-    let(:page) { 11 }
+    let(:page) { 123457 }
 
     it 'returns true from #prev_link?' do
       expect(subject.prev_link?).to eq(true)
@@ -48,15 +52,15 @@ RSpec.describe PaginationPresenter do
     end
 
     it 'returns the correct next page label' do
-      expect(subject.prev_label).to eq('10 of 11')
+      expect(subject.prev_label).to eq('123456 of 123457')
     end
 
     it 'returns 100 for #first_record' do
-      expect(subject.first_record).to eq(101)
+      expect(subject.first_record).to eq(1234561)
     end
 
     it 'returns 105 for #last_record' do
-      expect(subject.last_record).to eq(105)
+      expect(subject.last_record).to eq(1234567)
     end
   end
 
@@ -72,11 +76,11 @@ RSpec.describe PaginationPresenter do
     end
 
     it 'returns the correct next page label' do
-      expect(subject.prev_label).to eq('5 of 11')
+      expect(subject.prev_label).to eq('5 of 123457')
     end
 
     it 'return the correct next page label' do
-      expect(subject.next_label).to eq('7 of 11')
+      expect(subject.next_label).to eq('7 of 123457')
     end
 
     it 'returns 51 for #first_record' do

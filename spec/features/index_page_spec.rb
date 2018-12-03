@@ -176,6 +176,33 @@ RSpec.describe '/content' do
         expect(page).to have_content('Content with no primary org')
       end
     end
+
+    context 'filter by title or slug' do
+      before do
+        content_data_api_has_content_items(
+          date_range: 'past-30-days',
+          organisation_id: 'users-org-id',
+          items: items
+        )
+        content_data_api_has_content_items(
+          date_range: 'past-30-days',
+          organisation_id: 'users-org-id',
+          search_term: 'Relevant',
+          items: [items[0].merge(title: 'Relevant content article')]
+        )
+        visit '/content?date_range=past-30-days'
+        fill_in 'search_term', with: 'Relevant'
+        click_on 'Filter'
+      end
+
+      it 'shows relevant content in results' do
+        expect(page).to have_content('Relevant content article')
+      end
+
+      it 'describes the filter in the table header' do
+        expect(page).to have_css('h1.table-header', text: 'Showing 1 to 1 of 1 results for "Relevant" from Users Org')
+      end
+    end
   end
 
   context 'filter by document_type' do
@@ -197,7 +224,7 @@ RSpec.describe '/content' do
     end
 
     it 'describes the filter in the table header' do
-      expect(page).to have_css('h1.table-header', text: 'Showing 1 to 1 of 1 results for News story from org')
+      expect(page).to have_css('h1.table-header', text: 'Showing 1 to 1 of 1 results in News story from org')
     end
 
     it 'allows the filter to be cleared' do

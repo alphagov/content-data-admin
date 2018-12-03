@@ -1,4 +1,5 @@
 class PaginationPresenter
+  include ActionView::Helpers::NumberHelper
   attr_reader :page, :total_pages, :total_results
 
   def initialize(page: 1, total_pages:, total_results:, per_page: 100)
@@ -6,6 +7,10 @@ class PaginationPresenter
     @total_pages = total_pages
     @total_results = total_results
     @per_page = per_page
+  end
+
+  def formatted_total_results
+    number_with_delimiter @total_results
   end
 
   def prev_link?
