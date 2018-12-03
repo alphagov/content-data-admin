@@ -24,7 +24,8 @@ RSpec.describe FilterPresenter do
           { text: 'All document types', value: '', selected: false },
           { text: 'Case study', value: 'case_study', selected: false },
           { text: 'Guide', value: 'guide', selected: false },
-          { text: 'News story', value: 'news_story', selected: true }
+          { text: 'News story', value: 'news_story', selected: true },
+          { text: 'HTML publication', value: 'html_publication', selected: false }
         ])
       end
     end
@@ -36,7 +37,8 @@ RSpec.describe FilterPresenter do
           { text: 'All document types', value: '', selected: true },
           { text: 'Case study', value: 'case_study', selected: false },
           { text: 'Guide', value: 'guide', selected: false },
-          { text: 'News story', value: 'news_story', selected: false }
+          { text: 'News story', value: 'news_story', selected: false },
+          { text: 'HTML publication', value: 'html_publication', selected: false }
         ])
       end
     end

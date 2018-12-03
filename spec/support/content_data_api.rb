@@ -380,7 +380,7 @@ module GdsApi
       end
 
       def default_document_types
-        %w[case_study guide news_story]
+        %w[case_study guide news_story html_publication]
       end
     end
   end

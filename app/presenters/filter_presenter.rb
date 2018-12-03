@@ -33,7 +33,7 @@ class FilterPresenter
              }]
     @document_types.each do |document_type|
       types.push(
-        text: document_type.try(:tr, '_', ' ').try(:capitalize),
+        text: document_type.humanize,
         value: document_type,
         selected: document_type == @search_parameters[:document_type]
       )
