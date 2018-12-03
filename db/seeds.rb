@@ -1,7 +1,19 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+def seed
+  if User.where(name: "Test user").present?
+    puts "Skipping because user already exists"
+    return
+  end
+  create_test_user
+end
+
+def create_test_user
+  gds_organisation_id = "af07d5a5-df63-4ddc-9383-6a666845ebe9"
+
+  User.create!(
+    name: "Test user",
+    permissions: ["signin", "gds_editor"],
+    organisation_content_id: gds_organisation_id,
+  )
+end
+
+seed
