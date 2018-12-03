@@ -51,6 +51,10 @@ RSpec.describe '/content' do
     )
   end
 
+  it 'renders the link to the beta feedback' do
+    expect(page).to have_link("Send us feedback", href: Plek.new.external_url_for('support') + '/content_data_feedback/new')
+  end
+
   context 'click title of an item' do
     it 'takes you to single content item page' do
       click_link 'The title'
