@@ -30,13 +30,14 @@ class FilterPresenter
   end
 
   def organisation_options
-    @organisations.map do |org|
-      {
-        text: org[:title],
-        value: org[:organisation_id],
-        selected: org[:organisation_id] == @search_parameters[:organisation_id]
-      }
-    end
+    additional_organisation_options +
+      @organisations.map do |org|
+        {
+          text: org[:title],
+          value: org[:organisation_id],
+          selected: org[:organisation_id] == @search_parameters[:organisation_id]
+        }
+      end
   end
 
   def organisation_name
@@ -51,5 +52,12 @@ private
 
   def find_document_type
     document_type_options.find { |d| d[:selected] }
+  end
+
+  def additional_organisation_options
+    [
+      { text: 'All organisations', value: 'all', selected: @search_parameters[:organisation_id] == 'all' },
+      { text: 'No primary organisation', value: 'none', selected: @search_parameters[:organisation_id] == 'none' }
+    ]
   end
 end
