@@ -7,31 +7,25 @@
 
     var dateRangeTag = form.querySelector('input[name="date_range"]:checked');
     if(dateRangeTag && dateRangeTag.value.length > 0) {
-      window.dataLayer.push({
-        event: eventName,
-        field: 'dateRange',
-        value: dateRangeTag.value
-      });
+      var message = {};
+      message[eventName] = { 'date_range': dateRangeTag.value };
+      window.dataLayer.push(message);
     }
 
     var searchTermTag = form.querySelector('input[name="search_term"]');
     if(searchTermTag && searchTermTag.value.length > 0) {
-      window.dataLayer.push({
-        event: eventName,
-        field: 'searchTerm',
-        value: searchTerm.value
-      });
+      var message = {};
+      message[eventName] = { 'search_term': searchTermTag.value };
+      window.dataLayer.push(message);
     };
 
     var documentTypeTag = form.querySelector('select[name="document_type"]');
     if(documentTypeTag) {
       var documentType = documentTypeTag.selectedOptions[0].value;
       if(documentType.length > 0) {
-        window.dataLayer.push({
-          event: eventName,
-          field: 'documentType',
-          value: documentType
-        });
+        var message = {};
+        message[eventName] = { 'document_type': documentType };
+        window.dataLayer.push(message);
       }
     }
 
@@ -39,11 +33,9 @@
     if (organisationTag) {
       var organisation = organisationTag.selectedOptions[0].text;
       if(organisation.length > 0) {
-        window.dataLayer.push({
-          event: eventName,
-          field: 'organisation',
-          value: organisation
-        });
+        var message = {};
+        message[eventName] = { 'organisation': organisation };
+        window.dataLayer.push(message);
       }
     }
 
@@ -58,8 +50,7 @@
     window.dataLayer = window.dataLayer || [];
     var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     dataLayer.push({
-      event: 'viewport-width',
-      value: viewportWidth
+      'viewport-width': viewportWidth
     });
   };
 
