@@ -13,6 +13,7 @@ en:
         edit_page: 'Make changes to the page'
         edit_link: 'Edit in %{publishing_app}'
         publisher_edit_link: 'Request a content change in GOV.UK Support'
+        request_change_link: 'Request a content change in the GOV.UK Support form'
       section_headings:
         performance: 'Performance'
         feedback: 'Feedback'

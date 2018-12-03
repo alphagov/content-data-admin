@@ -14,9 +14,9 @@ module ExternalLinksHelper
     when 'specialist-publisher'
       "#{external_url_for('specialist-publisher')}/#{specialist_publisher_path(document_type, content_id)}"
     when 'collections-publisher'
-      "#{external_url_for('support')}/general_request/new"
+      "#{external_url_for('support')}/content_change_request/new"
     when 'travel-advice-publisher'
-      "#{external_url_for('travel-advice-publisher')}/admin/#{slug_from_basepath(base_path)}"
+      "#{external_url_for('travel-advice-publisher')}/admin/countries/#{slug_from_basepath(base_path)}"
     end
   end
 
@@ -26,6 +26,8 @@ module ExternalLinksHelper
     case publishing_app
     when 'publisher'
       I18n.t('metrics.show.navigation.publisher_edit_link')
+    when 'collections-publisher'
+      I18n.t('metrics.show.navigation.request_change_link')
     else
       I18n.t(
         'metrics.show.navigation.edit_link',

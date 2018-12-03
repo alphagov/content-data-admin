@@ -63,7 +63,7 @@ RSpec.describe ExternalLinksHelper do
                        base_path: 'government/organisations/hm-revenue-customs/contact/tax-credits-agent-priority-line',
                        document_type: 'news_story')
         ).to eq(
-          "#{external_url_for('support')}/general_request/new"
+          "#{external_url_for('support')}/content_change_request/new"
         )
       end
     end
@@ -76,7 +76,7 @@ RSpec.describe ExternalLinksHelper do
                        base_path: '/foreign-travel-advice/brunei',
                        document_type: 'news_story')
         ).to eq(
-          "#{external_url_for('travel-advice-publisher')}/admin/brunei"
+          "#{external_url_for('travel-advice-publisher')}/admin/countries/brunei"
         )
       end
     end
