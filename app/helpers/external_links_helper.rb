@@ -26,6 +26,8 @@ module ExternalLinksHelper
     case publishing_app
     when 'publisher'
       I18n.t('metrics.show.navigation.publisher_edit_link')
+    when 'collections-publisher'
+      I18n.t('metrics.show.navigation.request_change_link')
     else
       I18n.t(
         'metrics.show.navigation.edit_link',
