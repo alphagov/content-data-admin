@@ -267,7 +267,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the collections application' do
         stub_metrics_page(base_path: 'collections/path', time_period: :past_30_days, publishing_app: 'collections-publisher')
         visit '/metrics/collections/path'
-        expect(page).to have_link("Edit in Collections publisher", href: 'http://support.dev.gov.uk/general_request/new')
+        expect(page).to have_link("Edit in Collections publisher", href: 'http://support.dev.gov.uk/content_change_request/new')
       end
 
       it 'renders the travel advice application' do
