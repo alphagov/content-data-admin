@@ -1,7 +1,7 @@
 <% content_for :title, t('.browser_title', content_title: @performance_data.title) %>
 <% content_for :local_nav do %>
   <div class="local-nav govuk-grid-column-one-quarter">
-    <a href="/content" class="local-nav__search-link govuk-link govuk-link--no-visited-state">Search</a>
+    <a href="/content" class="local-nav__search-link govuk-link govuk-link--no-visited-state" data-gtm="back-link">Search</a>
   </div>
 <% end %>
 <% current_selection = @performance_data.date_range.time_period || 'past-30-days' %>
@@ -45,9 +45,7 @@
   </div>
 </div>
 
-
-
-<%= form_for('date', :url => "/metrics#{@performance_data.base_path}", :method => :get) do %>
+<%= form_for("date", url: "/metrics#{@performance_data.base_path}", method: :get, html: { id: 'filter-form' }) do %>
   <%= render "components/time-select", {
     render_button: true,
     current_selection: current_selection,
