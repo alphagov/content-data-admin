@@ -1,11 +1,14 @@
 class ContentRowPresenter
   include ActionView::Helpers::NumberHelper
+  include ActiveSupport::Inflector
+
   attr_reader :title, :base_path, :document_type, :upviews,
-              :user_satisfaction, :searches
+              :user_satisfaction, :searches, :raw_document_type
   def initialize(data)
     @title = data[:title]
     @base_path = format_base_path(data[:base_path])
-    @document_type = data[:document_type].try(:tr, '_', ' ').try(:capitalize)
+    @raw_document_type = data[:document_type]
+    @document_type = humanize(data[:document_type])
     @upviews = number_with_delimiter(data[:upviews], delimiter: ',')
     @user_satisfaction = format_satisfaction(data[:satisfaction], data[:satisfaction_score_responses])
     @searches = number_with_delimiter(data[:searches], delimiter: ',')
