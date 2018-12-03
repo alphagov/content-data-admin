@@ -16,7 +16,7 @@ module ExternalLinksHelper
     when 'collections-publisher'
       "#{external_url_for('support')}/general_request/new"
     when 'travel-advice-publisher'
-      "#{external_url_for('travel-advice-publisher')}/admin/#{slug_from_basepath(base_path)}"
+      "#{external_url_for('travel-advice-publisher')}/admin/countries/#{slug_from_basepath(base_path)}"
     end
   end
 

@@ -76,7 +76,7 @@ RSpec.describe ExternalLinksHelper do
                        base_path: '/foreign-travel-advice/brunei',
                        document_type: 'news_story')
         ).to eq(
-          "#{external_url_for('travel-advice-publisher')}/admin/brunei"
+          "#{external_url_for('travel-advice-publisher')}/admin/countries/brunei"
         )
       end
     end

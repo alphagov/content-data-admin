@@ -273,7 +273,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the travel advice application' do
         stub_metrics_page(base_path: 'travel/path', time_period: :past_30_days, publishing_app: 'travel-advice-publisher')
         visit '/metrics/travel/path'
-        expect(page).to have_link("Edit in Travel advice publisher", href: 'http://travel-advice-publisher.dev.gov.uk/admin/path')
+        expect(page).to have_link("Edit in Travel advice publisher", href: 'http://travel-advice-publisher.dev.gov.uk/admin/countries/path')
       end
     end
   end
