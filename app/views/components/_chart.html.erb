@@ -76,7 +76,7 @@
           in the <a href="#<%= table_id %>">table</a>.
         </div>
       <% end %>
-      <%= line_chart(chart_format_data, library: chart_library_options) %>
+      <%= line_chart(chart_format_data, library: chart_library_options, defer: true) %>
     </div>
     <div class="app-c-chart__table" id="<%= table_id %>">
       <%= render(
