@@ -303,7 +303,7 @@ RSpec.describe '/content' do
     end
 
     it 'shows a no data message in the table header' do
-      expect(page).to have_css('h1.table-header', text: 'no matching results from org')
+      expect(page).to have_css('h1.table-header', text: "#{I18n.t 'no_matching_results'} from org")
     end
   end
 
