@@ -38,11 +38,6 @@ private
         from: (relative_date - 1.year).to_s,
         to: relative_date.to_s
       }
-    when 'past-2-years'
-      {
-        from: (relative_date - 2.years).to_s,
-        to: relative_date.to_s
-      }
     else
       {
         from: (relative_date - 30.days).to_s,

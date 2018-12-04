@@ -20,10 +20,6 @@ FactoryBot.define do
       time_period { 'past-year' }
     end
 
-    trait :past_2_years do
-      time_period { 'past-2-years' }
-    end
-
     initialize_with { new(time_period) }
   end
 end
