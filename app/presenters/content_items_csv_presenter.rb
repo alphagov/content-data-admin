@@ -20,10 +20,10 @@ class ContentItemsCSVPresenter
         content_data_link(result_row[:base_path])
       end,
       'Document Type' => raw_field(:document_type),
-      'Unique Pageviews' => raw_field(:upviews),
-      'User Satisfaction score' => raw_field(:satisfaction),
-      'Satisfaction Score Responses' => raw_field(:satisfaction_score_responses),
-      'Searches from the page' => raw_field(:searches),
+      I18n.t('metrics.upviews.short_title') => raw_field(:upviews),
+      I18n.t('metrics.satisfaction.short_title') => raw_field(:satisfaction),
+      'User satisfaction score responses' => raw_field(:satisfaction_score_responses),
+      I18n.t('metrics.searches.short_title') => raw_field(:searches),
       'Link to feedback comments' => lambda do |result_row|
         feedback_comments_link(result_row[:base_path])
       end,
