@@ -13,9 +13,9 @@ RSpec.describe ContentItemsCSVPresenter do
   let(:data_enum) do
     [
       {
-        title: 'Title 1',
-        base_path: '/base-path-1',
-        doucment_type: 'guide',
+        title: 'GOV.UK homepage',
+        base_path: '/',
+        document_type: 'homepage',
         upviews: 15,
         satisfaction_score_responses: 2,
         searches: 14
@@ -23,7 +23,7 @@ RSpec.describe ContentItemsCSVPresenter do
       {
         title: 'Title 1',
         base_path: '/base-path-1',
-        doucment_type: 'guide',
+        document_type: 'guide',
         upviews: 15,
         satisfaction_score_responses: 2,
         searches: 14
