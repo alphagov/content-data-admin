@@ -2,8 +2,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
   let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no] }
-  let(:prev_from) { Time.zone.yesterday - 60.days }
-  let(:from) { Time.zone.yesterday - 30.days }
+  let(:prev_from) { Time.zone.yesterday - 59.days }
+  let(:prev_to) { Time.zone.yesterday - 30.days }
+  let(:from) { Time.zone.yesterday - 29.days }
   let(:to) { Time.zone.yesterday }
 
   around do |example|
@@ -97,7 +98,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     describe 'page metric section' do
-      let(:expected_table_dates) { ['', '24 Nov 2018', '25 Nov 2018', '24 Dec 2018'] }
+      let(:expected_table_dates) { ['', '25 Nov 2018', '26 Nov 2018', '24 Dec 2018'] }
 
       it 'renders the metric for upviews' do
         expect(page).to have_selector '.metric-summary__upviews', text: '6,000'
@@ -227,7 +228,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
                                          to: to.to_s)
         content_data_api_has_single_page_with_nil_values(base_path: 'base/path',
                                                          from: prev_from.to_s,
-                                                         to: from.to_s)
+                                                         to: prev_to.to_s)
         visit '/metrics/base/path'
         expect(page.status_code).to eq(200)
         expect(page).to have_selector '.upviews .app-c-glance-metric__trend', text: 'no comparison data'
@@ -248,7 +249,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     context 'no time series from the data-api' do
       before do
         content_data_api_has_single_page_missing_data(base_path: 'base/path', from: from.to_s, to: to.to_s)
-        content_data_api_has_single_page_missing_data(base_path: 'base/path', from: prev_from.to_s, to: from.to_s)
+        content_data_api_has_single_page_missing_data(base_path: 'base/path', from: prev_from.to_s, to: prev_to.to_s)
         visit '/metrics/base/path'
       end
 

@@ -1,9 +1,15 @@
 RSpec.describe SingleContentItemPresenter do
   include GdsApi::TestHelpers::ContentDataApi
 
+  around do |example|
+    Timecop.freeze Date.new(2018, 12, 25) do
+      example.run
+    end
+  end
+
   let(:date_range) { build(:date_range, :past_30_days) }
-  let(:current_period_data) { default_single_page_payload('the/base/path', '2018-11-25', '2018-12-25') }
-  let(:previous_period_data) { default_single_page_payload('the/base/path', '2018-10-26', '2018-11-25') }
+  let(:current_period_data) { default_single_page_payload('the/base/path', '2018-11-25', '2018-12-24') }
+  let(:previous_period_data) { default_single_page_payload('the/base/path', '2018-10-26', '2018-11-24') }
   let(:default_timeseries_metrics) {
     [
       {
@@ -28,13 +34,6 @@ RSpec.describe SingleContentItemPresenter do
       }
     ]
   }
-
-
-  around do |example|
-    Timecop.freeze Date.new(2018, 12, 25) do
-      example.run
-    end
-  end
 
   subject do
     SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
@@ -107,7 +106,7 @@ RSpec.describe SingleContentItemPresenter do
 
     it 'returns `no comparison data` if there is incomplete comparison data' do
       current_time_series = [{ date: '2018-11-25', value: 100 }, { date: '2018-11-26', value: 100 }]
-      previous_time_series = [{ date: '2018-11-25', value: 100 }]
+      previous_time_series = [{ date: '2018-11-24', value: 100 }]
 
       current_period_data[:time_series_metrics] = time_series_metrics(100, current_time_series)
       previous_period_data[:time_series_metrics] = time_series_metrics(100, previous_time_series)
@@ -220,7 +219,7 @@ RSpec.describe SingleContentItemPresenter do
   describe '#feedback_explorer_href' do
     it 'returns a URI for the feedback explorer' do
       host = Plek.new.external_url_for('support')
-      expected_link = "#{host}/anonymous_feedback?from=2018-11-24&to=2018-12-24&paths=%2Fthe%2Fbase%2Fpath"
+      expected_link = "#{host}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=%2Fthe%2Fbase%2Fpath"
       expect(subject.feedback_explorer_href).to eq(expected_link)
     end
   end
