@@ -27,7 +27,6 @@ RSpec.describe 'date selection', type: :feature do
         { I18n.t('metrics.show.time_periods.past-3-months.leading') => "24 September 2018 to 24 December 2018" },
         { I18n.t('metrics.show.time_periods.past-6-months.leading') => "24 June 2018 to 24 December 2018" },
         { I18n.t('metrics.show.time_periods.past-year.leading') => "24 December 2017 to 24 December 2018" },
-        { I18n.t('metrics.show.time_periods.past-2-years.leading') => "24 December 2016 to 24 December 2018" },
       ])
     end
 
@@ -64,12 +63,6 @@ RSpec.describe 'date selection', type: :feature do
     stub_metrics_page(base_path: base_path, time_period: :past_year)
     visit_page_and_filter_by_date_range('past-year')
     expect_upviews_table_to_contain_dates(['24 Dec 2017', '25 Dec 2017', '24 Dec 2018'])
-  end
-
-  it 'renders data for the past 2 years when `Past 2 years` is selected' do
-    stub_metrics_page(base_path: base_path, time_period: :past_2_years)
-    visit_page_and_filter_by_date_range('past-2-years')
-    expect_upviews_table_to_contain_dates(['24 Dec 2016', '25 Dec 2016', '24 Dec 2018'])
   end
 
   def visit_page_and_filter_by_date_range(date_range)
