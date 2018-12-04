@@ -35,15 +35,28 @@ RSpec.describe ContentItemsCSVPresenter do
     described_class.new(data_enum, search_params, document_types, organisations)
   end
 
+  describe 'CSV headers' do
+    expected_headers = [
+      'Title',
+      'URL',
+      'Content Data Link',
+      'Document Type',
+      I18n.t('metrics.upviews.short_title'),
+      I18n.t('metrics.satisfaction.short_title'),
+      'User satisfaction score responses',
+      I18n.t('metrics.searches.short_title'),
+      'Link to feedback comments'
+    ]
+    expected_headers.each do |header_name|
+      it "contains #{header_name}" do
+        expect(subject.csv_rows.first).to include(header_name)
+      end
+    end
+  end
+
   describe '#csv_rows' do
     it 'returns the right number of rows' do
       expect(subject.csv_rows.to_a.length).to eq(3)
-    end
-
-    it 'correctly generates the header' do
-      header = subject.csv_rows.first
-
-      expect(header).to include('Document Type')
     end
 
     it 'correctly generates data rows' do

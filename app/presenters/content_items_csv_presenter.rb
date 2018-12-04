@@ -13,15 +13,17 @@ class ContentItemsCSVPresenter
   def csv_rows
     fields = {
       'Title' => raw_field(:title),
-      'URL' => raw_field(:row),
+      'URL' => lambda do |result_row|
+        url(result_row[:base_path])
+      end,
       'Content Data Link' => lambda do |result_row|
         content_data_link(result_row[:base_path])
       end,
       'Document Type' => raw_field(:document_type),
-      'Upviews' => raw_field(:upviews),
-      'Satisfaction' => raw_field(:satisfaction),
-      'Satisfaction Score Responses' => raw_field(:satisfaction_score_responses),
-      'Searches' => raw_field(:searches),
+      I18n.t('metrics.upviews.short_title') => raw_field(:upviews),
+      I18n.t('metrics.satisfaction.short_title') => raw_field(:satisfaction),
+      'User satisfaction score responses' => raw_field(:satisfaction_score_responses),
+      I18n.t('metrics.searches.short_title') => raw_field(:searches),
       'Link to feedback comments' => lambda do |result_row|
         feedback_comments_link(result_row[:base_path])
       end,
@@ -59,6 +61,10 @@ private
     end
 
     organisation_data[:title]
+  end
+
+  def url(base_path)
+    "#{Plek.new.website_root}#{base_path}"
   end
 
   def content_data_link(base_path)
