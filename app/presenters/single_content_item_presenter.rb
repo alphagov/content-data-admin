@@ -80,7 +80,7 @@ class SingleContentItemPresenter
   end
 
   def period
-    I18n.t("metrics.show.time_periods.#{@date_range.time_period}.reference")
+    I18n.t("single_page.show.time_periods.#{@date_range.time_period}.reference")
   end
 
   def metric_title(metric_name)

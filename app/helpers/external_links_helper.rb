@@ -25,12 +25,12 @@ module ExternalLinksHelper
 
     case publishing_app
     when 'publisher'
-      I18n.t('metrics.show.navigation.publisher_edit_link')
+      I18n.t('single_page.show.navigation.publisher_edit_link')
     when 'collections-publisher'
-      I18n.t('metrics.show.navigation.request_change_link')
+      I18n.t('single_page.show.navigation.request_change_link')
     else
       I18n.t(
-        'metrics.show.navigation.edit_link',
+        'single_page.show.navigation.edit_link',
         publishing_app: publishing_app.capitalize.tr('-', ' ')
       )
     end

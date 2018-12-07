@@ -1,5 +1,5 @@
 en:
-  metrics:
+  single_page:
     metric_section:
       download_link: 'Download %{metric_name} CSV'
       external_link: 'See %{metric_unit} in %{data_source}'

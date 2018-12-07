@@ -68,7 +68,7 @@ RSpec.describe '/content' do
   context 'click title of an item' do
     it 'takes you to single content item page' do
       click_link 'The title'
-      expect(current_path).to eq '/metrics/path/1'
+      expect(current_path).to eq '/single_page/path/1'
     end
 
     it 'respects the date filter' do
@@ -77,8 +77,8 @@ RSpec.describe '/content' do
 
       visit "/content?date_range=past-year&organisation_id=org-id"
       click_link 'The title'
-      expect(current_path).to eq '/metrics/path/1'
-      expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.past-year.leading')}")
+      expect(current_path).to eq '/single_page/path/1'
+      expect(page).to have_content("Page data: #{I18n.t('single_page.show.time_periods.past-year.leading')}")
     end
   end
 
@@ -95,7 +95,7 @@ RSpec.describe '/content' do
 
     it 'links to the page data page after filtering' do
       click_on 'The title'
-      expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.last-month.leading')}")
+      expect(page).to have_content("Page data: #{I18n.t('single_page.show.time_periods.last-month.leading')}")
     end
 
     it 'selected organisation is shown in dropdown menu' do
@@ -115,7 +115,7 @@ RSpec.describe '/content' do
       select 'another org', from: 'organisation_id'
       click_on 'Filter'
       click_on 'The title'
-      expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.past-year.leading')}")
+      expect(page).to have_content("Page data: #{I18n.t('single_page.show.time_periods.past-year.leading')}")
     end
 
     context 'when no organisation_id in params' do

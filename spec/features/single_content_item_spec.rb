@@ -1,4 +1,4 @@
-RSpec.describe '/metrics/base/path', type: :feature do
+RSpec.describe '/single_page/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
   let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no] }
@@ -23,7 +23,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     before do
       GDS::SSO.test_user = build(:user)
       stub_metrics_page(base_path: nil, time_period: :last_month)
-      visit '/metrics?date_range=last-month'
+      visit '/single_page?date_range=last-month'
     end
 
     it 'renders the page without errors' do
@@ -35,7 +35,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
     before do
       GDS::SSO.test_user = build(:user)
       stub_metrics_page(base_path: 'base/path', time_period: :past_30_days)
-      visit '/metrics/base/path'
+      visit '/single_page/base/path'
     end
 
     describe 'metadata section' do
@@ -229,7 +229,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         content_data_api_has_single_page_with_nil_values(base_path: 'base/path',
                                                          from: prev_from.to_s,
                                                          to: prev_to.to_s)
-        visit '/metrics/base/path'
+        visit '/single_page/base/path'
         expect(page.status_code).to eq(200)
         expect(page).to have_selector '.upviews .app-c-glance-metric__trend', text: 'no comparison data'
       end
@@ -240,7 +240,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         content_data_api_does_not_have_base_path(base_path: 'base/path',
                                                  from: from.to_s,
                                                  to: to.to_s)
-        visit '/metrics/base/path'
+        visit '/single_page/base/path'
         expect(page.status_code).to eq(404)
         expect(page).to have_content "Page not found"
       end
@@ -250,7 +250,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       before do
         content_data_api_has_single_page_missing_data(base_path: 'base/path', from: from.to_s, to: to.to_s)
         content_data_api_has_single_page_missing_data(base_path: 'base/path', from: prev_from.to_s, to: prev_to.to_s)
-        visit '/metrics/base/path'
+        visit '/single_page/base/path'
       end
 
       it 'renders a div to indicate no data when empty' do
@@ -267,29 +267,29 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
       it 'renders the contacts application' do
         stub_metrics_page(base_path: 'contacts/path', time_period: :past_30_days, publishing_app: 'contacts')
-        visit '/metrics/contacts/path'
-        label = I18n.t("metrics.show.navigation.edit_link", publishing_app: 'Contacts')
+        visit '/single_page/contacts/path'
+        label = I18n.t("single_page.show.navigation.edit_link", publishing_app: 'Contacts')
         expect(page).to have_link(label, href: 'http://contacts-admin.dev.gov.uk/admin/contacts/path/edit')
       end
 
       it 'renders the specialist publisher application' do
         stub_metrics_page(base_path: 'specialist/path', time_period: :past_30_days, publishing_app: 'specialist-publisher')
-        visit '/metrics/specialist/path'
-        label = I18n.t("metrics.show.navigation.edit_link", publishing_app: 'Specialist publisher')
+        visit '/single_page/specialist/path'
+        label = I18n.t("single_page.show.navigation.edit_link", publishing_app: 'Specialist publisher')
         expect(page).to have_link(label, href: "http://specialist-publisher.dev.gov.uk/news-storys/content-id/edit")
       end
 
       it 'renders the collections application' do
         stub_metrics_page(base_path: 'collections/path', time_period: :past_30_days, publishing_app: 'collections-publisher')
-        visit '/metrics/collections/path'
-        label = I18n.t("metrics.show.navigation.request_change_link")
+        visit '/single_page/collections/path'
+        label = I18n.t("single_page.show.navigation.request_change_link")
         expect(page).to have_link(label, href: 'http://support.dev.gov.uk/content_change_request/new')
       end
 
       it 'renders the travel advice application' do
         stub_metrics_page(base_path: 'travel/path', time_period: :past_30_days, publishing_app: 'travel-advice-publisher')
-        visit '/metrics/travel/path'
-        label = I18n.t("metrics.show.navigation.edit_link", publishing_app: 'Travel advice publisher')
+        visit '/single_page/travel/path'
+        label = I18n.t("single_page.show.navigation.edit_link", publishing_app: 'Travel advice publisher')
         expect(page).to have_link(label, href: 'http://travel-advice-publisher.dev.gov.uk/admin/countries/path')
       end
     end

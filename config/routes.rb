@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   }
   get '/dev' => 'development#index'
 
-  get '/metrics/(*base_path)', to: 'metrics#show', as: :metrics
+  get '/single_page/(*base_path)', to: 'single_page#show', as: :single_page
   get '/content', to: 'content#index'
   mount GovukPublishingComponents::Engine, at: "/component-guide"
 end

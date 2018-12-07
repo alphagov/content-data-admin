@@ -2,7 +2,7 @@ RSpec.describe 'date selection', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
   let(:base_path) { 'base/path' }
-  let(:page_uri) { "/metrics/#{base_path}" }
+  let(:page_uri) { "/single_page/#{base_path}" }
 
   before do
     Timecop.freeze(Date.new(2018, 12, 25))
@@ -22,12 +22,12 @@ RSpec.describe 'date selection', type: :feature do
         { el.find('label').text => el.find('span').text }
       end
       expect(time_labels).to match([
-        { I18n.t('metrics.show.time_periods.past-30-days.leading') => "25 November 2018 to 24 December 2018" },
-        { I18n.t('metrics.show.time_periods.last-month.leading') => "1 November 2018 to 30 November 2018" },
-        { I18n.t('metrics.show.time_periods.past-3-months.leading') => "25 September 2018 to 24 December 2018" },
-        { I18n.t('metrics.show.time_periods.past-6-months.leading') => "25 June 2018 to 24 December 2018" },
-        { I18n.t('metrics.show.time_periods.past-year.leading') => "25 December 2017 to 24 December 2018" },
-        { I18n.t('metrics.show.time_periods.past-2-years.leading') => "25 December 2016 to 24 December 2018" },
+        { I18n.t('single_page.show.time_periods.past-30-days.leading') => "25 November 2018 to 24 December 2018" },
+        { I18n.t('single_page.show.time_periods.last-month.leading') => "1 November 2018 to 30 November 2018" },
+        { I18n.t('single_page.show.time_periods.past-3-months.leading') => "25 September 2018 to 24 December 2018" },
+        { I18n.t('single_page.show.time_periods.past-6-months.leading') => "25 June 2018 to 24 December 2018" },
+        { I18n.t('single_page.show.time_periods.past-year.leading') => "25 December 2017 to 24 December 2018" },
+        { I18n.t('single_page.show.time_periods.past-2-years.leading') => "25 December 2016 to 24 December 2018" },
       ])
     end
 

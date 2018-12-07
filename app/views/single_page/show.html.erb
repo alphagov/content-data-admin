@@ -43,7 +43,7 @@
   </div>
 </div>
 
-<%= form_for("date", url: "/metrics#{@performance_data.base_path}", method: :get, html: { id: 'filter-form' }) do %>
+<%= form_for("date", url: "/single_page#{@performance_data.base_path}", method: :get, html: { id: 'filter-form' }) do %>
   <%= render "components/time-select", {
     render_button: true,
     current_selection: current_selection,
