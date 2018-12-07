@@ -206,8 +206,6 @@ RSpec.describe SingleContentItemPresenter do
   describe '#metadata' do
     it 'returns a hash with the metadata' do
       expect(subject.base_path).to eq('/the/base/path')
-      expect(subject.published_at).to eq("17 July 2018")
-      expect(subject.last_updated).to eq("17 July 2018")
       expect(subject.document_type).to eq("News story")
       expect(subject.publishing_organisation).to eq("The Ministry")
     end

@@ -10,16 +10,12 @@ examples:
   default:
     data:
       status: "withdrawn"
-      published_at: "1 September 2016"
-      last_updated: "1 October 2017"
       publishing_organisation: "UK Visas and Immigration"
       document_type: "Guidance"
       base_path: "/government/publications/visitor-visa-guide-to-supporting-documents"
   without_status:
     description: Without a status
     data:
-      published_at: "1 September 2016"
-      last_updated: "1 October 2017"
       publishing_organisation: "UK Visas and Immigration"
       document_type: "Guidance"
       base_path: "/government/publications/visitor-visa-guide-to-supporting-documents"
