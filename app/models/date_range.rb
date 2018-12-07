@@ -11,6 +11,7 @@ class DateRange
 
   def previous
     relative_date = Date.parse(@from)
+    relative_date = relative_date - 1.day unless @time_period == 'last-month'
     DateRange.new(time_period, relative_date)
   end
 
@@ -25,27 +26,27 @@ private
       }
     when 'past-3-months'
       {
-        from: (relative_date - 3.months).to_s,
+        from: ((relative_date - 3.months) + 1.day).to_s,
         to: relative_date.to_s
       }
     when 'past-6-months'
       {
-        from: (relative_date - 6.months).to_s,
+        from: ((relative_date - 6.months) + 1.day).to_s,
         to: relative_date.to_s
       }
     when 'past-year'
       {
-        from: (relative_date - 1.year).to_s,
+        from: ((relative_date - 1.year) + 1.day).to_s,
         to: relative_date.to_s
       }
     when 'past-2-years'
       {
-        from: (relative_date - 2.years).to_s,
+        from: ((relative_date - 2.years) + 1.day).to_s,
         to: relative_date.to_s
       }
     else
       {
-        from: (relative_date - 30.days).to_s,
+        from: (relative_date - 29.days).to_s,
         to: relative_date.to_s
       }
     end

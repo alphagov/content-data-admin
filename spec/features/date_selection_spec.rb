@@ -22,24 +22,24 @@ RSpec.describe 'date selection', type: :feature do
         { el.find('label').text => el.find('span').text }
       end
       expect(time_labels).to match([
-        { I18n.t('metrics.show.time_periods.past-30-days.leading') => "24 November 2018 to 24 December 2018" },
+        { I18n.t('metrics.show.time_periods.past-30-days.leading') => "25 November 2018 to 24 December 2018" },
         { I18n.t('metrics.show.time_periods.last-month.leading') => "1 November 2018 to 30 November 2018" },
-        { I18n.t('metrics.show.time_periods.past-3-months.leading') => "24 September 2018 to 24 December 2018" },
-        { I18n.t('metrics.show.time_periods.past-6-months.leading') => "24 June 2018 to 24 December 2018" },
-        { I18n.t('metrics.show.time_periods.past-year.leading') => "24 December 2017 to 24 December 2018" },
-        { I18n.t('metrics.show.time_periods.past-2-years.leading') => "24 December 2016 to 24 December 2018" },
+        { I18n.t('metrics.show.time_periods.past-3-months.leading') => "25 September 2018 to 24 December 2018" },
+        { I18n.t('metrics.show.time_periods.past-6-months.leading') => "25 June 2018 to 24 December 2018" },
+        { I18n.t('metrics.show.time_periods.past-year.leading') => "25 December 2017 to 24 December 2018" },
+        { I18n.t('metrics.show.time_periods.past-2-years.leading') => "25 December 2016 to 24 December 2018" },
       ])
     end
 
     it 'renders data for the past 30 days' do
       visit page_uri
-      expect_upviews_table_to_contain_dates(['24 Nov 2018', '25 Nov 2018', '24 Dec 2018'])
+      expect_upviews_table_to_contain_dates(['25 Nov 2018', '26 Nov 2018', '24 Dec 2018'])
     end
   end
 
   it 'renders data for the past 30 days when `Past 30 days` is selected' do
     visit_page_and_filter_by_date_range('past-30-days')
-    expect_upviews_table_to_contain_dates(['24 Nov 2018', '25 Nov 2018', '24 Dec 2018'])
+    expect_upviews_table_to_contain_dates(['25 Nov 2018', '26 Nov 2018', '24 Dec 2018'])
   end
 
   it 'renders data for the previous month when `Past month` is selected' do
@@ -51,25 +51,25 @@ RSpec.describe 'date selection', type: :feature do
   it 'renders data for the past 3 months when `Past 3 months` is selected' do
     stub_metrics_page(base_path: base_path, time_period: :past_3_months)
     visit_page_and_filter_by_date_range('past-3-months')
-    expect_upviews_table_to_contain_dates(['24 Sep 2018', '25 Sep 2018', '24 Dec 2018'])
+    expect_upviews_table_to_contain_dates(['25 Sep 2018', '26 Sep 2018', '24 Dec 2018'])
   end
 
   it 'renders data for the past 6 months when `Past 6 months` is selected' do
     stub_metrics_page(base_path: base_path, time_period: :past_6_months)
     visit_page_and_filter_by_date_range('past-6-months')
-    expect_upviews_table_to_contain_dates(['24 Jun 2018', '25 Jun 2018', '24 Dec 2018'])
+    expect_upviews_table_to_contain_dates(['25 Jun 2018', '26 Jun 2018', '24 Dec 2018'])
   end
 
   it 'renders data for the past year when `Past year` is selected' do
     stub_metrics_page(base_path: base_path, time_period: :past_year)
     visit_page_and_filter_by_date_range('past-year')
-    expect_upviews_table_to_contain_dates(['24 Dec 2017', '25 Dec 2017', '24 Dec 2018'])
+    expect_upviews_table_to_contain_dates(['25 Dec 2017', '26 Dec 2017', '24 Dec 2018'])
   end
 
   it 'renders data for the past 2 years when `Past 2 years` is selected' do
     stub_metrics_page(base_path: base_path, time_period: :past_2_years)
     visit_page_and_filter_by_date_range('past-2-years')
-    expect_upviews_table_to_contain_dates(['24 Dec 2016', '25 Dec 2016', '24 Dec 2018'])
+    expect_upviews_table_to_contain_dates(['25 Dec 2016', '26 Dec 2016', '24 Dec 2018'])
   end
 
   def visit_page_and_filter_by_date_range(date_range)
