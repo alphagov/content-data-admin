@@ -2,6 +2,8 @@ class ContentController < ApplicationController
   include PaginationHelper
   include Concerns::ExportableToCSV
 
+  DEFAULT_ORGANISATION_ID = 'all'.freeze
+
   layout 'application'
   before_action :set_constants
 
@@ -40,7 +42,7 @@ private
     @search_params ||= begin
       defaults = {
         date_range: 'past-30-days',
-        organisation_id: current_user.organisation_content_id,
+        organisation_id: DEFAULT_ORGANISATION_ID,
         document_type: ''
       }
 

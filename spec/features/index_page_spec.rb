@@ -118,26 +118,26 @@ RSpec.describe '/content' do
       expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.past-year.leading')}")
     end
 
-    context 'with users organisation' do
+    context 'when no organisation_id in params' do
       before do
         content_data_api_has_content_items(
           date_range: 'last-month',
-          organisation_id: 'users-org-id',
+          organisation_id: 'all',
           items: [
-            items[0].merge(title: 'Content from users-org-id')
+            items[0].merge(title: 'Content from all-orgs')
           ]
         )
 
         visit "/content?date_range=last-month"
       end
 
-      it 'uses the users organisation by default' do
+      it 'uses the `all` filter by default' do
         expect(page.status_code).to eq(200)
-        expect(page).to have_content('Content from users-org-id')
+        expect(page).to have_content('Content from all-orgs')
       end
 
       it 'describes the filter in the table header' do
-        expect(page).to have_css('h1.table-header', text: 'Showing 1 to 1 of 1 results from Users Org')
+        expect(page).to have_css('h1.table-header', text: 'Showing 1 to 1 of 1 results from All organisations')
       end
     end
 
@@ -153,7 +153,7 @@ RSpec.describe '/content' do
           organisation_id: 'all',
           items: [items[0].merge(title: 'Content from all orgs')]
         )
-        visit '/content?date_range=past-30-days'
+        visit '/content?date_range=past-30-days&organisation_id=users-org-id'
         select('All organisations', from: 'organisation_id')
         click_on 'Filter'
       end
@@ -176,7 +176,7 @@ RSpec.describe '/content' do
           organisation_id: 'none',
           items: [items[0].merge(title: 'Content with no primary org')]
         )
-        visit '/content?date_range=past-30-days'
+        visit '/content?date_range=past-30-days&organisation_id=users-org-id'
         select('No primary organisation', from: 'organisation_id')
         click_on 'Filter'
       end
@@ -191,12 +191,12 @@ RSpec.describe '/content' do
       before do
         content_data_api_has_content_items(
           date_range: 'past-30-days',
-          organisation_id: 'users-org-id',
+          organisation_id: 'all',
           items: items
         )
         content_data_api_has_content_items(
           date_range: 'past-30-days',
-          organisation_id: 'users-org-id',
+          organisation_id: 'all',
           search_term: 'Relevant',
           items: [items[0].merge(title: 'Relevant content article')]
         )
@@ -210,7 +210,7 @@ RSpec.describe '/content' do
       end
 
       it 'describes the filter in the table header' do
-        expect(page).to have_css('h1.table-header', text: 'Showing 1 to 1 of 1 results for "Relevant" from Users Org')
+        expect(page).to have_css('h1.table-header', text: 'Showing 1 to 1 of 1 results for "Relevant" from All organisations')
       end
     end
   end
