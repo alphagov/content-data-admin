@@ -8,6 +8,9 @@
 </div>
 
 <%= render 'chart', series: @performance_data.get_chart(metric_name) %>
+<a href=<%=@performance_data.csv_url(metric_name)%> class="govuk-link" data-gtm="csv download">
+  <%=t("single_page.metric_section.download_link", metric_name: @performance_data.human_friendly_metric(metric_name))%>
+</a>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-half">

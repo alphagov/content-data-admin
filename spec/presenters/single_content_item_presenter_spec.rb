@@ -279,6 +279,18 @@ RSpec.describe SingleContentItemPresenter do
     ]
   end
 
+  describe '#csv_url' do
+    it 'returns the url for csv download link' do
+      expect(subject.csv_url('upviews')).to eq('/metrics/the/base/path?metric_name=upviews&from=2018-11-25&to=2018-12-24.csv')
+    end
+  end
+
+  describe '#human_friendly_metric' do
+    it 'returns a human readable metric' do
+      expect(subject.link_text('upviews')).to eq('unique pageviews')
+    end
+  end
+
   def complete_previous_data
     previous_month_time_series = []
     (2.months.ago.to_date.beginning_of_month..2.months.ago.to_date.end_of_month).each do |date|

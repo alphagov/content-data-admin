@@ -127,6 +127,12 @@ class SingleContentItemPresenter
     I18n.t("metrics.#{metric_name}.title").try(:downcase)
   end
 
+  def csv_url(metric_name)
+    from = @date_range.from
+    to = @date_range.to
+    "/metrics#{base_path}?metric_name=#{metric_name}&from=#{from}&to=#{to}.csv"
+  end
+
   def document_type
     metadata[:document_type].tr('_', ' ').capitalize
   end
@@ -148,6 +154,10 @@ class SingleContentItemPresenter
   def get_chart(metric_name)
     time_series = @metrics[metric_name][:time_series]
     ChartPresenter.new(json: time_series, metric: metric_name, date_range: date_range)
+  end
+
+  def human_friendly_metric(metric_name)
+    I18n.t "metrics.#{metric_name}.title"
   end
 
 private
