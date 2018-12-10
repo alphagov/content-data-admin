@@ -131,14 +131,6 @@ class SingleContentItemPresenter
     metadata[:document_type].tr('_', ' ').capitalize
   end
 
-  def published_at
-    format_date(metadata[:first_published_at])
-  end
-
-  def last_updated
-    format_date(metadata[:public_updated_at])
-  end
-
   def publishing_organisation
     metadata[:primary_organisation_title]
   end
@@ -237,9 +229,5 @@ private
     previous_date = @previous_metrics['upviews'][:time_series].first[:date].to_date
     days_in_month = Time.days_in_month(previous_date.month, previous_date.year)
     days_in_month != previous_value[:time_series].length
-  end
-
-  def format_date(date_str)
-    Date.parse(date_str).strftime('%-d %B %Y')
   end
 end
