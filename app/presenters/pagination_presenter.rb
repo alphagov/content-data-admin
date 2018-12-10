@@ -34,8 +34,16 @@ class PaginationPresenter
     previous_record_count + 1
   end
 
+  def formatted_first_record
+    number_with_delimiter first_record
+  end
+
   def last_record
     [@page * @per_page, @total_results].min
+  end
+
+  def formatted_last_record
+    number_with_delimiter last_record
   end
 
   def paginate(items)
