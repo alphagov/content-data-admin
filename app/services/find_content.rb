@@ -26,6 +26,7 @@ class FindContent
       date_range: @date_range,
       organisation_id: @organisation,
       document_type: @document_type,
+      search_term: @search_term,
     }
 
     Enumerator.new do |yielder|

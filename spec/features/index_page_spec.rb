@@ -312,14 +312,21 @@ RSpec.describe '/content' do
     # partial page back from the Content Performance Manager.
     let(:csv_items) { items * 11 }
 
-    it 'it provides a CSV file' do
+    it 'it provides a CSV file respecting all filters' do
       content_data_api_has_content_items(
         date_range: 'last-month',
         organisation_id: 'org-id',
         items: csv_items,
-        page_size: 5000
+        search_term: 'find this'
       )
-
+      content_data_api_has_content_items(
+        date_range: 'last-month',
+        organisation_id: 'org-id',
+        items: csv_items,
+        page_size: 5000,
+        search_term: 'find this'
+      )
+      visit "/content?date_range=last-month&organisation_id=org-id&search_term=find+this"
       click_link 'Download all data in CSV format'
 
       expect(CSV.parse(page.body).length).to be(csv_items.length + 1)
