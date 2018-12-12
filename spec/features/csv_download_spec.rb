@@ -8,8 +8,9 @@ RSpec.describe 'csv download', type: :feature do
   before do
     GDS::SSO.test_user = build(:user)
     stub_metrics_page(base_path: 'base/path', time_period: :past_30_days)
+
     visit '/single_page/base/path'
-    content_data_api_has_csv
+    content_data_api_has_csv(columns: %w(Date Value), values: [['10-10-2018', 1000], ['11-10-2018', 1100]])
   end
 
   it 'downloads csv' do

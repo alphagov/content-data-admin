@@ -1,4 +1,5 @@
 require 'gds_api/content_data_api'
+require 'csv'
 
 module GdsApi
   module TestHelpers
@@ -119,9 +120,15 @@ module GdsApi
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
-      def content_data_api_has_csv
+      def content_data_api_has_csv(columns: [], values: [])
         url = "#{content_data_api_endpoint}/metrics/base_path?metric_name=upviews&from=2018-11-10&to=2018-12-09"
-        body = { value: '"Date,Value\n10-10-2018,1000,\n11-10-2018,1100"' }.to_json
+        csv_output = CSV.generate do |csv|
+          csv << columns
+          values.each do |value|
+            csv << value
+          end
+        end
+        body = { value: csv_output }.to_json
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
