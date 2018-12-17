@@ -74,4 +74,24 @@ RSpec.describe ContentItemsCSVPresenter do
       ).to include('from-org-in-news-story.csv')
     end
   end
+
+  context 'when `All Organisations` is selected' do
+    subject { described_class.new(data_enum, search_params.merge(organisation_id: 'all'), document_types, organisations) }
+
+    it 'includes all-organisations in filename' do
+      expect(
+        subject.filename
+      ).to include('from-all-organisations-in-news-story.csv')
+    end
+  end
+
+  context 'when `No primary organisation` is selected' do
+    subject { described_class.new(data_enum, search_params.merge(organisation_id: 'none'), document_types, organisations) }
+
+    it 'includes no-organisation in filename' do
+      expect(
+        subject.filename
+      ).to include('from-no-organisation-in-news-story.csv')
+    end
+  end
 end

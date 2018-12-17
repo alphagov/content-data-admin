@@ -1,6 +1,9 @@
 require 'csv'
 
 class ContentItemsCSVPresenter
+  ALL_ORGANISATIONS = 'all'.freeze
+  NO_ORGANISATION = 'none'.freeze
+
   def initialize(data_enum, search_params, document_types, organisations)
     @data_enum = data_enum
     @document_type = search_params[:document_type]
@@ -56,6 +59,8 @@ private
   end
 
   def organisation_title
+    return 'All organisations' if @organisation_id == ALL_ORGANISATIONS
+    return 'No organisation' if @organisation_id == NO_ORGANISATION
     organisation_data = @organisations.find do |org|
       org[:organisation_id] == @organisation_id
     end
