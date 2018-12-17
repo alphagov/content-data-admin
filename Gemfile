@@ -7,7 +7,7 @@ gem "rails", "~> 5.2"
 gem "bootsnap", "~> 1"
 gem "chartkick"
 gem "gds-api-adapters", "~> 55"
-gem "gds-sso", "~> 13"
+gem "gds-sso", "~> 14"
 gem "govuk_app_config", "~> 1"
 gem "govuk_publishing_components", "~> 12.20"
 gem 'kaminari'
