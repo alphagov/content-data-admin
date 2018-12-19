@@ -281,7 +281,7 @@ RSpec.describe SingleContentItemPresenter do
 
   describe '#csv_url' do
     it 'returns the url for csv download link' do
-      expect(subject.csv_url('upviews')).to eq('/metrics/the/base/path?metric_name=upviews&from=2018-11-25&to=2018-12-24.csv')
+      expect(subject.csv_url('upviews')).to eq('/metrics/the/base/path?metric_name=upviews&from=2018-11-25&to=2018-12-24')
     end
   end
 

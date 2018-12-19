@@ -1,4 +1,3 @@
-require 'csv'
 class MetricsController < ApplicationController
   include Concerns::ExportableToCSV
 
