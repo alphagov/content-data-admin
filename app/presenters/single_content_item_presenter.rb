@@ -161,6 +161,7 @@ private
     upviews = @metrics['upviews'][:value].to_f
 
     return 0 if searches.zero? || upviews.zero?
+
     search_rate = (searches / upviews) * 100
     search_rate = 100 if search_rate > 100
     search_rate.round(2)

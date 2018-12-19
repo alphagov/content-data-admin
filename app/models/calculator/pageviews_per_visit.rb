@@ -6,12 +6,14 @@ class Calculator::PageviewsPerVisit
 
   def current_period
     return 0 if zero_pageviews? || zero_unique_pageviews?
+
     calculate
   end
 
   def previous_period
     return nil if no_pageviews_data? || no_unique_pageviews_data?
     return 0 if zero_pageviews? || zero_unique_pageviews?
+
     calculate
   end
 

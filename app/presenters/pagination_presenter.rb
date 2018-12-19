@@ -31,6 +31,7 @@ class PaginationPresenter
 
   def first_record
     return 1 if page == 1
+
     previous_record_count + 1
   end
 
