@@ -55,12 +55,20 @@ RSpec.describe PaginationPresenter do
       expect(subject.prev_label).to eq('123456 of 123457')
     end
 
-    it 'returns 100 for #first_record' do
+    it 'returns 1234561 for #first_record' do
       expect(subject.first_record).to eq(1234561)
     end
 
-    it 'returns 105 for #last_record' do
+    it 'returns "1,234,561" for #formatted_first_record' do
+      expect(subject.formatted_first_record).to eq('1,234,561')
+    end
+
+    it 'returns 1234567 for #last_record' do
       expect(subject.last_record).to eq(1234567)
+    end
+
+    it 'returns "1,234,567" for #formatted_last_record' do
+      expect(subject.formatted_last_record).to eq('1,234,567')
     end
   end
 

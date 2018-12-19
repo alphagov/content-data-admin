@@ -1,9 +1,9 @@
 <h1 class="table-header">
     <% if pagination.total_results > 0 %>
         Showing
-        <span class="table-header__param"><%= pagination.first_record %></span> to
-        <span class="table-header__param"><%= pagination.last_record %></span> of
-        <span class="table-header__param"><%= pagination.total_results %></span> results
+        <span class="table-header__param"><%= pagination.formatted_first_record %></span> to
+        <span class="table-header__param"><%= pagination.formatted_last_record %></span> of
+        <span class="table-header__param"><%= pagination.formatted_total_results %></span> results
     <% else %>
         <span class="table-header__param"><%= I18n.t('no_matching_results') %></span>
     <% end %>
