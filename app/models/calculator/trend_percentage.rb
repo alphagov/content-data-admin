@@ -8,6 +8,7 @@ class Calculator::TrendPercentage
 
   def run
     return 0 if previous_value <= 0
+
     trend
   end
 

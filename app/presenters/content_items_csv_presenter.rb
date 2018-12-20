@@ -61,6 +61,7 @@ private
   def organisation_title
     return 'All organisations' if @organisation_id == ALL_ORGANISATIONS
     return 'No organisation' if @organisation_id == NO_ORGANISATION
+
     organisation_data = @organisations.find do |org|
       org[:organisation_id] == @organisation_id
     end
