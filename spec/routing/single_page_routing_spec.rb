@@ -1,6 +1,6 @@
 RSpec.describe '/metrics routing' do
   it 'routes correctly with given base path' do
-    expect(get: '/single_page/long/base/path?date_range=past-30-days').to route_to(
+    expect(get: '/metrics/long/base/path?date_range=past-30-days').to route_to(
       controller: 'single_page',
       action: 'show',
       base_path: 'long/base/path',
@@ -18,7 +18,7 @@ RSpec.describe '/metrics routing' do
   end
 
   it 'routes correctly without a base path for the homepage' do
-    expect(get: '/single_page?date_range=last-month').to route_to(
+    expect(get: '/metrics?date_range=last-month').to route_to(
       controller: 'single_page',
       action: 'show',
       date_range: 'last-month'

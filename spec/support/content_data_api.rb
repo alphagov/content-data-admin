@@ -34,7 +34,7 @@ module GdsApi
 
       def content_data_api_does_not_have_base_path(base_path:, from:, to:)
         query = query(from: from, to: to)
-        url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
+        url = "#{content_data_api_endpoint}/metrics/#{base_path}#{query}"
         stub_request(:get, url).to_return(status: 404, body: { some: 'error' }.to_json)
       end
 
@@ -89,21 +89,21 @@ module GdsApi
 
       def content_data_api_has_single_page(base_path:, from:, to:, payload: nil, publishing_app: 'whitehall')
         query = query(from: from, to: to)
-        url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
+        url = "#{content_data_api_endpoint}/metrics/#{base_path}#{query}"
         body = payload || default_single_page_payload(base_path, from, to, publishing_app)
         stub_request(:get, url).to_return(status: 200, body: body.to_json)
       end
 
       def content_data_api_has_single_page_missing_data(base_path:, from:, to:)
         query = query(from: from, to: to)
-        url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
+        url = "#{content_data_api_endpoint}/metrics/#{base_path}#{query}"
         body = no_data_single_page_payload(base_path, from, to).to_json
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
       def content_data_api_has_single_page_with_nil_values(base_path:, from:, to:)
         query = query(from: from, to: to)
-        url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
+        url = "#{content_data_api_endpoint}/metrics/#{base_path}#{query}"
         body = nil_values_in_single_page_payload(base_path, from, to).to_json
         stub_request(:get, url).to_return(status: 200, body: body)
       end

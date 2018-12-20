@@ -2,7 +2,7 @@ RSpec.describe 'date selection', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
   let(:base_path) { 'base/path' }
-  let(:page_uri) { "/single_page/#{base_path}" }
+  let(:page_uri) { "/metrics/#{base_path}" }
 
   before do
     Timecop.freeze(Date.new(2018, 12, 25))

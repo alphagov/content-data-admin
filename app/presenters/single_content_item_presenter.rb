@@ -130,7 +130,7 @@ class SingleContentItemPresenter
   def csv_url(metric_name)
     from = @date_range.from
     to = @date_range.to
-    "/metrics#{base_path}?metric_name=#{metric_name}&from=#{from}&to=#{to}"
+    "/csv-metrics#{base_path}?metric_name=#{metric_name}&from=#{from}&to=#{to}"
   end
 
   def document_type

@@ -64,7 +64,7 @@ private
   end
 
   def single_page_url(base_path, from, to)
-    "#{content_data_api_endpoint}/single_page/#{base_path}#{query_string(from: from, to: to)}"
+    "#{content_data_api_endpoint}/metrics/#{base_path}#{query_string(from: from, to: to)}"
   end
 
   def organisations_url

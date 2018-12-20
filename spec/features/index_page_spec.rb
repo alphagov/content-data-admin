@@ -68,7 +68,7 @@ RSpec.describe '/content' do
   context 'click title of an item' do
     it 'takes you to single content item page' do
       click_link 'The title'
-      expect(current_path).to eq '/single_page/path/1'
+      expect(current_path).to eq '/metrics/path/1'
     end
 
     it 'respects the date filter' do
@@ -77,7 +77,7 @@ RSpec.describe '/content' do
 
       visit "/content?date_range=past-year&organisation_id=org-id"
       click_link 'The title'
-      expect(current_path).to eq '/single_page/path/1'
+      expect(current_path).to eq '/metrics/path/1'
       expect(page).to have_content("Page data: #{I18n.t('single_page.show.time_periods.past-year.leading')}")
     end
   end
