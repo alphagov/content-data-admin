@@ -15,6 +15,7 @@ RSpec.describe ContentItemsCSVPresenter do
       {
         title: 'GOV.UK homepage',
         base_path: '/',
+  organisation_id: 'none',
         document_type: 'homepage',
         upviews: 15,
         satisfaction_score_responses: 2,
@@ -23,6 +24,7 @@ RSpec.describe ContentItemsCSVPresenter do
       {
         title: 'Title 1',
         base_path: '/base-path-1',
+  organisation_id: 'another-org-id',
         document_type: 'guide',
         upviews: 15,
         satisfaction_score_responses: 2,
@@ -38,6 +40,7 @@ RSpec.describe ContentItemsCSVPresenter do
   describe 'CSV headers' do
     expected_headers = [
       'Title',
+      'Organisation',
       'URL',
       'Content Data Link',
       'Document Type',
@@ -62,8 +65,15 @@ RSpec.describe ContentItemsCSVPresenter do
     it 'correctly generates data rows' do
       data_row = subject.csv_rows.to_a[1]
 
-      expect(CSV.parse_line(data_row).length).to be(9)
+      expect(CSV.parse_line(data_row).length).to be(10)
       expect(data_row).to include('2')
+    end
+
+    it 'the organisation' do
+      data_row = subject.csv_rows.to_a
+
+      expect(CSV.parse_line(data_row[1])[1]).to eq('No organisation')
+      expect(CSV.parse_line(data_row[2])[1]).to eq('another org')
     end
   end
 
