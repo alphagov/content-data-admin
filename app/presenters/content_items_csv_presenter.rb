@@ -27,12 +27,16 @@ class ContentItemsCSVPresenter
       end,
       'Document Type' => raw_field(:document_type),
       I18n.t('metrics.upviews.short_title') => raw_field(:upviews),
+      I18n.t('metrics.pviews.short_title') => raw_field(:pviews),
       I18n.t('metrics.satisfaction.short_title') => raw_field(:satisfaction),
       'User satisfaction score responses' => raw_field(:satisfaction_score_responses),
       I18n.t('metrics.searches.short_title') => raw_field(:searches),
+      I18n.t('metrics.feedex.short_title') => raw_field(:feedex),
       'Link to feedback comments' => lambda do |result_row|
         feedback_comments_link(result_row[:base_path])
       end,
+      I18n.t('metrics.words.short_title') => raw_field(:word_count),
+      I18n.t('metrics.pdf_count.short_title') => raw_field(:pdf_count),
     }
 
     Enumerator.new do |yielder|
