@@ -230,7 +230,8 @@ RSpec.describe SingleContentItemPresenter do
         content_id: 'content-id',
         publishing_app: 'whitehall',
         base_path: '/the/base/path',
-        document_type: 'news_story'
+        document_type: 'news_story',
+        parent_content_id: ''
       ).and_return(
         'https://expected-link'
       )

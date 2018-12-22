@@ -1,12 +1,16 @@
 module ExternalLinksHelper
-  def edit_url_for(content_id:, publishing_app:, base_path:, document_type:)
+  def edit_url_for(content_id:, publishing_app:, base_path:, document_type:, parent_content_id: '')
     case publishing_app
     when 'whitehall'
       "#{external_url_for('whitehall-admin')}/government/admin/by-content-id/#{content_id}"
     when 'publisher'
       "#{external_url_for('support')}/content_change_request/new"
     when 'manuals-publisher'
-      "#{external_url_for('manuals-publisher')}/manuals/#{content_id}"
+      if document_type == 'manual'
+        "#{external_url_for('manuals-publisher')}/manuals/#{content_id}"
+      elsif document_type == 'manual_section'
+        "#{external_url_for('manuals-publisher')}/manuals/#{parent_content_id}/sections/#{content_id}"
+      end
     when 'maslow', 'need-api'
       "#{external_url_for('maslow')}/needs/#{content_id}"
     when 'contacts'
