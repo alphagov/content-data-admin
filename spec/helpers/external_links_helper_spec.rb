@@ -55,6 +55,35 @@ RSpec.describe ExternalLinksHelper do
       end
     end
 
+    context 'with manuals-publisher' do
+      it 'generates a link to the manuals publisher app for manual itself' do
+        expect(
+          edit_url_for(
+            content_id: 'manual-id',
+            publishing_app: 'manuals-publisher',
+            base_path: '/guidance/style-guide',
+            document_type: 'manual'
+          )
+        ).to eq(
+          "#{external_url_for('manuals-publisher')}/manuals/manual-id"
+        )
+      end
+
+      it 'generates a link to the manuals publisher app for a manual section' do
+        expect(
+          edit_url_for(
+            content_id: 'manual-section-id',
+            publishing_app: 'manuals-publisher',
+            base_path: '/guidance/style-guide/a-to-z-of-gov-uk-style',
+            document_type: 'manual_section',
+            parent_content_id: 'manual-id'
+          )
+        ).to eq(
+          "#{external_url_for('manuals-publisher')}/manuals/manual-id/sections/manual-section-id"
+        )
+      end
+    end
+
     context 'with collections' do
       it 'generates a link to the collections publisher app' do
         expect(

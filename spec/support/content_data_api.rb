@@ -168,7 +168,8 @@ module GdsApi
             document_type:  "news_story",
             primary_organisation_title:  "The Ministry",
             historical: false,
-            withdrawn: false
+            withdrawn: false,
+            parent_content_id: ''
           },
           time_period: {
             to: to,

@@ -107,6 +107,7 @@ class SingleContentItemPresenter
       content_id: metadata[:content_id],
       publishing_app: metadata[:publishing_app],
       base_path: base_path,
+      parent_content_id: metadata[:parent_content_id],
       document_type: metadata[:document_type]
     )
   end
