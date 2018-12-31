@@ -29,7 +29,8 @@ class ContentItemsCSVPresenter
       I18n.t('metrics.upviews.short_title') => raw_field(:upviews),
       I18n.t('metrics.pviews.short_title') => raw_field(:pviews),
       I18n.t('metrics.satisfaction.short_title') => raw_field(:satisfaction),
-      'User satisfaction score responses' => raw_field(:satisfaction_score_responses),
+      'Yes responses: satisfaction score' => raw_field(:useful_yes),
+      'No responses: satisfaction score' => raw_field(:useful_no),
       I18n.t('metrics.searches.short_title') => raw_field(:searches),
       I18n.t('metrics.feedex.short_title') => raw_field(:feedex),
       'Link to feedback comments' => lambda do |result_row|
@@ -66,8 +67,10 @@ private
   end
 
   def organisation_title(organisation_id)
+    if organisation_id == NO_ORGANISATION || organisation_id == nil
+      return 'No organisation'
+    end
     return 'All organisations' if organisation_id == ALL_ORGANISATIONS
-    return 'No organisation' if organisation_id == NO_ORGANISATION
 
     organisation_data = @organisations.find do |org|
       org[:organisation_id] == organisation_id
