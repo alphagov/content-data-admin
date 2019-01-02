@@ -65,6 +65,10 @@ class SingleContentItemPresenter
   end
 
   def searches_context
+    on_page_search_rate = calculate_average_searches_per_user(
+      searches: @metrics['searches'][:value],
+      unique_pageviews: @metrics['upviews'][:value]
+    )
     I18n.t("metrics.searches.context", percent_users_searched: on_page_search_rate)
   end
 
@@ -156,17 +160,6 @@ private
 
   def useful_yes_no_total
     @metrics['useful_yes'][:value] + @metrics['useful_no'][:value]
-  end
-
-  def on_page_search_rate
-    searches = @metrics['searches'][:value].to_f
-    upviews = @metrics['upviews'][:value].to_f
-
-    return 0 if searches.zero? || upviews.zero?
-
-    search_rate = (searches / upviews) * 100
-    search_rate = 100 if search_rate > 100
-    search_rate.round(2)
   end
 
   def metadata
