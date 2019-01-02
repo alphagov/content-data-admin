@@ -35,6 +35,11 @@ class ContentItemsCSVPresenter
           pageviews: result_row[:pviews], unique_pageviews: result_row[:upviews]
         )
       end,
+      'Percentage of users searched' => lambda do |result_row|
+        calculate_average_searches_per_user(
+          searches: result_row[:searches], unique_pageviews: result_row[:upviews]
+        )
+      end,
       I18n.t('metrics.satisfaction.short_title') => raw_field(:satisfaction),
       'Yes responses: satisfaction score' => raw_field(:useful_yes),
       'No responses: satisfaction score' => raw_field(:useful_no),
