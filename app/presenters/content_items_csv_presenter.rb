@@ -1,6 +1,8 @@
 require 'csv'
 
 class ContentItemsCSVPresenter
+  include CustomMetricsHelper
+
   ALL_ORGANISATIONS = 'all'.freeze
   NO_ORGANISATION = 'none'.freeze
 
@@ -28,6 +30,11 @@ class ContentItemsCSVPresenter
       'Document Type' => raw_field(:document_type),
       I18n.t('metrics.upviews.short_title') => raw_field(:upviews),
       I18n.t('metrics.pviews.short_title') => raw_field(:pviews),
+      I18n.t('metrics.pageviews_per_visit.short_title') => lambda do |result_row|
+        calculate_pageviews_per_visit(
+          pageviews: result_row[:pviews], unique_pageviews: result_row[:upviews]
+        )
+      end,
       I18n.t('metrics.satisfaction.short_title') => raw_field(:satisfaction),
       'Yes responses: satisfaction score' => raw_field(:useful_yes),
       'No responses: satisfaction score' => raw_field(:useful_no),
@@ -67,9 +74,7 @@ private
   end
 
   def organisation_title(organisation_id)
-    if organisation_id == NO_ORGANISATION || organisation_id == nil
-      return 'No organisation'
-    end
+    return 'No organisation' if [NO_ORGANISATION, nil].include?(organisation_id)
     return 'All organisations' if organisation_id == ALL_ORGANISATIONS
 
     organisation_data = @organisations.find do |org|

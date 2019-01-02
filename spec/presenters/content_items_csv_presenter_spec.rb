@@ -69,6 +69,7 @@ RSpec.describe ContentItemsCSVPresenter do
         'Document Type',
         I18n.t('metrics.upviews.short_title'),
         I18n.t('metrics.pviews.short_title'),
+        I18n.t('metrics.pageviews_per_visit.short_title'),
         I18n.t('metrics.satisfaction.short_title'),
         'Yes responses: satisfaction score',
         'No responses: satisfaction score',
@@ -119,36 +120,40 @@ RSpec.describe ContentItemsCSVPresenter do
         expect(subject[6]).to eq('25')
       end
 
+      it 'has pageviews per visit' do
+        expect(subject[7]).to eq('1.67')
+      end
+
       it 'has satisfaction score' do
-        expect(subject[7]).to eq('0.25')
+        expect(subject[8]).to eq('0.25')
       end
 
       it 'has yes responses' do
-        expect(subject[8]).to eq('100')
+        expect(subject[9]).to eq('100')
       end
 
       it 'has no responses' do
-        expect(subject[9]).to eq('300')
+        expect(subject[10]).to eq('300')
       end
 
       it 'has number of searches' do
-        expect(subject[10]).to eq('14')
+        expect(subject[11]).to eq('14')
       end
 
       it 'has number of feedback comments' do
-        expect(subject[11]).to eq('24')
+        expect(subject[12]).to eq('24')
       end
 
       it 'has link to feedback comments' do
-        expect(subject[12]).to start_with('http')
+        expect(subject[13]).to start_with('http')
       end
 
       it 'has word count' do
-        expect(subject[13]).to eq('50')
+        expect(subject[14]).to eq('50')
       end
 
       it 'has pdf count' do
-        expect(subject[14]).to eq('0')
+        expect(subject[15]).to eq('0')
       end
     end
   end
