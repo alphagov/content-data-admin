@@ -1,6 +1,7 @@
 class SingleContentItemPresenter
   include MetricsFormatterHelper
   include ExternalLinksHelper
+  include CustomMetricsHelper
 
   attr_reader :date_range
 
@@ -191,17 +192,16 @@ private
   end
 
   def assign_pageviews_per_visit
-    assign_current_pageviews_per_visit
-    assign_previous_pageviews_per_visit
-  end
-
-  def assign_current_pageviews_per_visit
-    current = Calculator::PageviewsPerVisit.new(@metrics).current_period
+    current = calculate_pageviews_per_visit(
+      pageviews: @metrics['pviews'][:value],
+      unique_pageviews: @metrics['upviews'][:value]
+    )
     @metrics['pageviews_per_visit'] = { value: current }
-  end
 
-  def assign_previous_pageviews_per_visit
-    previous = Calculator::PageviewsPerVisit.new(@previous_metrics).previous_period
+    previous = calculate_pageviews_per_visit(
+      pageviews: @previous_metrics['pviews'][:value],
+      unique_pageviews: @previous_metrics['upviews'][:value]
+    )
     @previous_metrics['pageviews_per_visit'] = { value: previous }
   end
 
