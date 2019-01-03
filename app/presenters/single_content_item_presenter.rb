@@ -1,6 +1,7 @@
 class SingleContentItemPresenter
   include MetricsFormatterHelper
   include ExternalLinksHelper
+  include CustomMetricsHelper
 
   attr_reader :date_range
 
@@ -64,6 +65,10 @@ class SingleContentItemPresenter
   end
 
   def searches_context
+    on_page_search_rate = calculate_average_searches_per_user(
+      searches: @metrics['searches'][:value],
+      unique_pageviews: @metrics['upviews'][:value]
+    )
     I18n.t("metrics.searches.context", percent_users_searched: on_page_search_rate)
   end
 
@@ -157,17 +162,6 @@ private
     @metrics['useful_yes'][:value] + @metrics['useful_no'][:value]
   end
 
-  def on_page_search_rate
-    searches = @metrics['searches'][:value].to_f
-    upviews = @metrics['upviews'][:value].to_f
-
-    return 0 if searches.zero? || upviews.zero?
-
-    search_rate = (searches / upviews) * 100
-    search_rate = 100 if search_rate > 100
-    search_rate.round(2)
-  end
-
   def metadata
     @metadata ||= @single_page_data[:metadata]
   end
@@ -191,17 +185,16 @@ private
   end
 
   def assign_pageviews_per_visit
-    assign_current_pageviews_per_visit
-    assign_previous_pageviews_per_visit
-  end
-
-  def assign_current_pageviews_per_visit
-    current = Calculator::PageviewsPerVisit.new(@metrics).current_period
+    current = calculate_pageviews_per_visit(
+      pageviews: @metrics['pviews'][:value],
+      unique_pageviews: @metrics['upviews'][:value]
+    )
     @metrics['pageviews_per_visit'] = { value: current }
-  end
 
-  def assign_previous_pageviews_per_visit
-    previous = Calculator::PageviewsPerVisit.new(@previous_metrics).previous_period
+    previous = calculate_pageviews_per_visit(
+      pageviews: @previous_metrics['pviews'][:value],
+      unique_pageviews: @previous_metrics['upviews'][:value]
+    )
     @previous_metrics['pageviews_per_visit'] = { value: previous }
   end
 

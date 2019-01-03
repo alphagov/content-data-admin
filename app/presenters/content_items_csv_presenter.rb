@@ -1,6 +1,8 @@
 require 'csv'
 
 class ContentItemsCSVPresenter
+  include CustomMetricsHelper
+
   ALL_ORGANISATIONS = 'all'.freeze
   NO_ORGANISATION = 'none'.freeze
 
@@ -16,6 +18,9 @@ class ContentItemsCSVPresenter
   def csv_rows
     fields = {
       'Title' => raw_field(:title),
+      'Organisation' => lambda do |result_row|
+        organisation_title(result_row[:organisation_id])
+      end,
       'URL' => lambda do |result_row|
         url(result_row[:base_path])
       end,
@@ -24,12 +29,27 @@ class ContentItemsCSVPresenter
       end,
       'Document Type' => raw_field(:document_type),
       I18n.t('metrics.upviews.short_title') => raw_field(:upviews),
+      I18n.t('metrics.pviews.short_title') => raw_field(:pviews),
+      I18n.t('metrics.pageviews_per_visit.short_title') => lambda do |result_row|
+        calculate_pageviews_per_visit(
+          pageviews: result_row[:pviews], unique_pageviews: result_row[:upviews]
+        )
+      end,
+      'Percentage of users searched' => lambda do |result_row|
+        calculate_average_searches_per_user(
+          searches: result_row[:searches], unique_pageviews: result_row[:upviews]
+        )
+      end,
       I18n.t('metrics.satisfaction.short_title') => raw_field(:satisfaction),
-      'User satisfaction score responses' => raw_field(:satisfaction_score_responses),
+      'Yes responses: satisfaction score' => raw_field(:useful_yes),
+      'No responses: satisfaction score' => raw_field(:useful_no),
       I18n.t('metrics.searches.short_title') => raw_field(:searches),
+      I18n.t('metrics.feedex.short_title') => raw_field(:feedex),
       'Link to feedback comments' => lambda do |result_row|
         feedback_comments_link(result_row[:base_path])
       end,
+      I18n.t('metrics.words.short_title') => raw_field(:word_count),
+      I18n.t('metrics.pdf_count.short_title') => raw_field(:pdf_count),
     }
 
     Enumerator.new do |yielder|
@@ -47,7 +67,7 @@ class ContentItemsCSVPresenter
     "content-data-export-from-%<from>s-to-%<to>s-from-%<org>s%<document_type>s.csv" % {
       from: @date_range.from,
       to: @date_range.to,
-      org: organisation_title.parameterize,
+      org: organisation_title(@organisation_id).parameterize,
       document_type: @document_type.present? ? "-in-#{@document_type.tr('_', '-')}" : ''
     }
   end
@@ -58,12 +78,12 @@ private
     lambda { |result_row| result_row[name] }
   end
 
-  def organisation_title
-    return 'All organisations' if @organisation_id == ALL_ORGANISATIONS
-    return 'No organisation' if @organisation_id == NO_ORGANISATION
+  def organisation_title(organisation_id)
+    return 'No organisation' if [NO_ORGANISATION, nil].include?(organisation_id)
+    return 'All organisations' if organisation_id == ALL_ORGANISATIONS
 
     organisation_data = @organisations.find do |org|
-      org[:organisation_id] == @organisation_id
+      org[:organisation_id] == organisation_id
     end
 
     organisation_data[:title]
