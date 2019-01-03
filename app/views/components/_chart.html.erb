@@ -44,7 +44,7 @@
     legend: 'none',
     chartArea: { width: chart_width, height: '80%' },
     curveType: 'none',
-    tooltip: { textStyle: { color: '#000' }, showColorCode: true },
+    tooltip: { showColorCode: true, isHtml: true, trigger: 'both'},
     crosshair: { orientation: 'vertical', trigger: 'both', color: '#ccc' },
     hAxis: {
       viewWindow: { min: from, max: to },
@@ -58,7 +58,7 @@
     },
     pointSize: 0,
     series: {
-      0 => { lineWidth: 2, color: '#912B88' },
+      0 => { lineWidth: 2, color: '#2b8cc4' },
       1 => { lineWidth: 2, lineDashStyle: [10, 2], color: '#454a4c' }
     }
   }
