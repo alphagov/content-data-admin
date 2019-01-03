@@ -91,3 +91,18 @@
   }
 }
 // scss-lint:enable IdSelector
+
+.google-visualization-tooltip {
+  background-color: $black !important;
+  opacity: 0.95;
+
+  span {
+    color: $white !important;
+    font-family: "nta", Arial, sans-serif !important;
+    font-size: 14px !important;
+  }
+
+  .google-visualization-tooltip-square {
+    border-bottom: none !important;
+  }
+}
