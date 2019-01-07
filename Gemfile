@@ -6,7 +6,7 @@ gem "rails", "~> 5.2"
 
 gem "bootsnap", "~> 1"
 gem "chartkick"
-gem "gds-api-adapters", "~> 55"
+gem "gds-api-adapters", "~> 56"
 gem "gds-sso", "~> 14"
 gem "govuk_app_config", "~> 1"
 gem "govuk_publishing_components", "~> 13.5"
