@@ -140,7 +140,7 @@ RSpec.describe '/content' do
       end
 
       it 'describes the filter in the table header' do
-        expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 results from All organisations')
+        expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 result from All organisations')
       end
     end
 
@@ -213,7 +213,7 @@ RSpec.describe '/content' do
       end
 
       it 'describes the filter in the table header' do
-        expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 results for "Relevant" from All organisations')
+        expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 result for "Relevant" from All organisations')
       end
     end
   end
@@ -237,7 +237,7 @@ RSpec.describe '/content' do
     end
 
     it 'describes the filter in the table header' do
-      expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 results in News story from org')
+      expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 result in News story from org')
     end
 
     it 'allows the filter to be cleared' do
