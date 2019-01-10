@@ -130,7 +130,7 @@ RSpec.describe ContentItemsCSVPresenter do
       end
 
       it 'has satisfaction score' do
-        expect(subject[9]).to eq('0.25')
+        expect(subject[9]).to eq('25%')
       end
 
       it 'has yes responses' do
