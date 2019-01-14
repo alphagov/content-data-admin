@@ -2,6 +2,7 @@ require 'csv'
 
 class ContentItemsCSVPresenter
   include CustomMetricsHelper
+  include MetricsFormatterHelper
 
   ALL_ORGANISATIONS = 'all'.freeze
   NO_ORGANISATION = 'none'.freeze
@@ -40,7 +41,9 @@ class ContentItemsCSVPresenter
           searches: result_row[:searches], unique_pageviews: result_row[:upviews]
         )
       end,
-      I18n.t('metrics.satisfaction.short_title') => raw_field(:satisfaction),
+      I18n.t('metrics.satisfaction.short_title') => lambda do |result_row|
+        format_metric_value('satisfaction', result_row[:satisfaction])
+      end,
       'Yes responses: satisfaction score' => raw_field(:useful_yes),
       'No responses: satisfaction score' => raw_field(:useful_no),
       I18n.t('metrics.searches.short_title') => raw_field(:searches),
