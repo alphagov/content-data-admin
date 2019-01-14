@@ -2,7 +2,7 @@
 @import "../../../node_modules/govuk-frontend/helpers/visually-hidden";
 
 .app-c-glance-metric {
-  border-top: 2px solid $govuk-border-colour;
+  border-top: 1px solid $govuk-border-colour;
   border-bottom: 1px solid $govuk-border-colour;
 
   @include media(mobile) {

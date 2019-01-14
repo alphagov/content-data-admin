@@ -1,11 +1,11 @@
 @import "../../../node_modules/govuk-frontend/helpers/visually-hidden";
 
 .app-c-related-actions {
-  border-top: 2px solid $govuk-border-colour;
+  border-top: 1px solid $govuk-border-colour;
   @include govuk-responsive-margin(3, "bottom");
 
   @include media-down(mobile-down) {
-    border-bottom: 2px solid $govuk-border-colour;
+    border-bottom: 1px solid $govuk-border-colour;
   }
 }
 
