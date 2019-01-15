@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     GovukError.notify('Sentry works')
     [200, {}, ["Sentry notified"]]
   }
-  get '/dev' => 'development#index'
+
+  if Rails.env.development? || Rails.application.config.govuk_environment == 'integration'
+    get '/dev' => 'development#index'
+  end
 
   get '/metrics/(*base_path)', to: 'metrics#show', as: :metrics
   get '/content', to: 'content#index'
