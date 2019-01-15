@@ -250,62 +250,6 @@ RSpec.describe '/content' do
     end
   end
 
-  context 'pagination' do
-    let(:other_page_items) do
-      [
-        {
-          base_path: '/path/3',
-          title: 'third title',
-          upviews: 233_018,
-          document_type: 'press_release',
-          satisfaction: 0.81301,
-          satisfaction_score_responses: 250,
-          searches: 220
-        },
-        {
-          base_path: '/path/4',
-          title: 'forth title',
-          upviews: 100_018,
-          document_type: 'news_story',
-          satisfaction: 0.68,
-          satisfaction_score_responses: 42,
-          searches: 12
-        }
-      ]
-    end
-
-    before do
-      content_data_api_has_content_items(
-        date_range: 'last-month',
-        organisation_id: 'org-id',
-        items: (items[1..-1] * 50) + other_page_items
-      )
-
-      visit "/content?date_range=last-month&organisation_id=org-id"
-    end
-
-    it 'shows the second page of data' do
-      expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 to 100 of 102 results from org')
-      click_on 'Next'
-      table_rows = extract_table_content('.govuk-table')
-      expect(table_rows).to eq(
-        [
-          ['Page title', 'Content type', 'Unique pageviews', 'User satisfaction score', 'Searches from page'],
-          ['third title /path/3', 'Press release', '233,018', '81% (250 responses)', '220'],
-          ['forth title /path/4', 'News story', '100,018', '68% (42 responses)', '12'],
-        ]
-      )
-      expect(page).to have_css('h1.table-header', exact_text: 'Showing 101 to 102 of 102 results from org')
-    end
-
-    it 'has GTM data attributes' do
-      expect(page).to have_css('span[data-gtm-pagination-total-results]')
-
-      total_results = page.find('span[data-gtm-pagination-total-results]')['data-gtm-pagination-total-results']
-      expect(total_results).to eq('102')
-    end
-  end
-
   describe 'no results returned' do
     before do
       content_data_api_has_no_matching_items(date_range: 'past-3-months', organisation_id: 'org-id')
