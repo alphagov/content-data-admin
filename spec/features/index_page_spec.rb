@@ -297,6 +297,13 @@ RSpec.describe '/content' do
       )
       expect(page).to have_css('h1.table-header', exact_text: 'Showing 101 to 102 of 102 results from org')
     end
+
+    it 'has GTM data attributes' do
+      expect(page).to have_css('span[data-gtm-pagination-total-results]')
+
+      total_results = page.find('span[data-gtm-pagination-total-results]')['data-gtm-pagination-total-results']
+      expect(total_results).to eq('102')
+    end
   end
 
   describe 'no results returned' do
