@@ -45,8 +45,13 @@
 }
 
 .banner {
-  border-bottom: 1px solid $govuk-border-colour;
+  margin: 0;
   @include govuk-responsive-margin(2, "bottom");
+  border-bottom: 1px solid $govuk-border-colour;
+
+  .govuk-grid-column-three-quarters {
+    padding: 0;
+  }
 }
 
 .govuk-width-container .local-nav {
