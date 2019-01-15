@@ -1,7 +1,7 @@
 .section-performance {
 
   @include media-down(mobile) {
-    border-top: 2px solid $govuk-border-colour;
+    border-top: 1px solid $govuk-border-colour;
   }
 }
 
@@ -24,14 +24,14 @@
 }
 
 .govuk-section-break--visible {
-  border-width: 2px;
+  border-width: 1px;
 }
 
 .metric-summary__words {
   padding: 0 !important;
 
   @include media-down(mobile) {
-    border-bottom: 2px solid $govuk-border-colour;
+    border-bottom: 1px solid $govuk-border-colour;
   }
 }
 
