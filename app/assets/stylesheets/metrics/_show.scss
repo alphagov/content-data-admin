@@ -23,6 +23,11 @@
   margin: 0;
 }
 
+.section-content__quality {
+  @include govuk-responsive-margin(2, "left");
+  @include govuk-responsive-margin(2, "right");
+}
+
 .govuk-section-break--visible {
   border-width: 1px;
 }
