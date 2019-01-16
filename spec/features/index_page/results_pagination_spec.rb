@@ -2,42 +2,64 @@ RSpec.describe "Results pagination" do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
   let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no] }
-  let(:items) do
-    [
-      {
-        base_path: '/',
-        title: 'GOV.UK homepage',
+
+  context 'has no results' do
+    before do
+      GDS::SSO.test_user = build(:user, organisation_content_id: 'users-org-id')
+      content_data_api_has_orgs
+      content_data_api_has_document_types
+
+      content_data_api_has_no_matching_items(
+        date_range: 'last-month',
         organisation_id: 'org-id',
-        upviews: 1_233_018,
-        document_type: 'homepage',
-        satisfaction: 0.85,
-        satisfaction_score_responses: 2050,
-        searches: 1220
-      },
-      {
-        base_path: '/path/1',
-        title: 'The title',
-        organisation_id: 'org-id',
-        upviews: 233_018,
-        document_type: 'news_story',
-        satisfaction: 0.81301,
-        satisfaction_score_responses: 250,
-        searches: 220
-      },
-      {
-        base_path: '/path/2',
-        title: 'Another title',
-        organisation_id: 'org-id',
-        upviews: 100_018,
-        document_type: 'guide',
-        satisfaction: 0.68,
-        satisfaction_score_responses: 42,
-        searches: 12
-      }
-    ]
+      )
+
+      visit "/content?date_range=last-month&organisation_id=org-id"
+    end
+
+    it 'has GTM data attributes' do
+      expect(page).to have_css('span[data-gtm-pagination-total-results]')
+
+      total_results = page.find('span[data-gtm-pagination-total-results]')['data-gtm-pagination-total-results']
+      expect(total_results).to eq('0')
+    end
   end
 
-  context 'pagination' do
+  context 'has results' do
+    let(:items) do
+      [
+        {
+          base_path: '/',
+          title: 'GOV.UK homepage',
+          organisation_id: 'org-id',
+          upviews: 1_233_018,
+          document_type: 'homepage',
+          satisfaction: 0.85,
+          satisfaction_score_responses: 2050,
+          searches: 1220
+        },
+        {
+          base_path: '/path/1',
+          title: 'The title',
+          organisation_id: 'org-id',
+          upviews: 233_018,
+          document_type: 'news_story',
+          satisfaction: 0.81301,
+          satisfaction_score_responses: 250,
+          searches: 220
+        },
+        {
+          base_path: '/path/2',
+          title: 'Another title',
+          organisation_id: 'org-id',
+          upviews: 100_018,
+          document_type: 'guide',
+          satisfaction: 0.68,
+          satisfaction_score_responses: 42,
+          searches: 12
+        }
+      ]
+    end
     let(:other_page_items) do
       [
         {

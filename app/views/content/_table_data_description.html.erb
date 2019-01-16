@@ -9,7 +9,7 @@
             <span class="table-header__param" data-gtm-pagination-total-results="<%= pagination.total_results %>"><%= pagination.formatted_total_results %></span> <%= 'result'.pluralize(pagination.total_results) %>
         <% end %>
     <% else %>
-        <span class="table-header__param"><%= I18n.t('no_matching_results') %></span>
+        <span class="table-header__param" data-gtm-pagination-total-results="0"><%= I18n.t('no_matching_results') %></span>
     <% end %>
     <% if filter.search_terms? %>
         for "<span class="table-header__param"><%= filter.search_terms %></span>"
