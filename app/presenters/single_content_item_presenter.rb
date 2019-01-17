@@ -150,7 +150,7 @@ class SingleContentItemPresenter
     end
   end
 
-  def get_chart(metric_name)
+  def chart_for_metric(metric_name)
     time_series = @metrics[metric_name][:time_series]
     ChartPresenter.new(json: time_series, metric: metric_name, date_range: date_range)
   end

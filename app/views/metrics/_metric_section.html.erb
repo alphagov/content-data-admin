@@ -7,7 +7,7 @@
   }%>
 </div>
 
-<%= render 'chart', series: @performance_data.get_chart(metric_name) %>
+<%= render 'chart', series: @performance_data.chart_for_metric(metric_name) %>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-half">
