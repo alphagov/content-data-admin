@@ -28,7 +28,7 @@
   }
 
   .govuk-table__header {
-    @include govuk-font(16);
+    @include govuk-font(14);
     outline: 1px solid $govuk-border-colour;
   }
 
@@ -37,7 +37,12 @@
   }
 
   .govuk-table__cell {
-    @include govuk-font(16);
+    @include govuk-font(14);
+    @include govuk-responsive-padding(2);
+  }
+
+  .govuk-table__cell--numeric {
+    @include govuk-font($size: 14, $tabular: true);
     @include govuk-responsive-padding(2);
   }
 
@@ -57,10 +62,6 @@
     font-weight: normal;
   }
 
-  .govuk-table__cell {
-    @include govuk-responsive-padding(2);
-  }
-
   .govuk-table__cell:last-child {
     @include govuk-responsive-padding(2);
   }
@@ -72,9 +73,6 @@
 
   .filter-form {
     @include govuk-responsive-padding(3, "left");
-    .govuk-label--s {
-      @include govuk-font(16);
-    }
 
     .govuk-radios__hint {
       @include govuk-font(16);
@@ -90,7 +88,7 @@
     @include govuk-responsive-padding(3, "top");
 
     .govuk-label {
-      @include govuk-font(16);
+      @include govuk-font($size: 16, $weight: bold);
     }
 
     .govuk-select {
