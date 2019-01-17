@@ -39,6 +39,7 @@ RSpec.describe SingleContentItemPresenter do
     SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
   end
 
+  it_behaves_like 'Metadata presentation'
   describe '#status' do
     context 'when content is published' do
       it 'displays nothing' do
@@ -189,66 +190,6 @@ RSpec.describe SingleContentItemPresenter do
     it 'rounds to 2 decimal places' do
       current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 4 }, { name: 'pviews', total: 13 }]
       expect(subject.pageviews_per_visit).to eq('3.25')
-    end
-  end
-
-  describe '#metadata' do
-    it 'returns a hash with the metadata' do
-      expect(subject.base_path).to eq('/the/base/path')
-      expect(subject.document_type).to eq("News story")
-      expect(subject.publishing_organisation).to eq("The Ministry")
-    end
-
-    it 'returns the title' do
-      expect(subject.title).to eq('Content Title')
-    end
-  end
-
-  describe '#feedback_explorer_href' do
-    it 'returns a URI for the feedback explorer' do
-      host = Plek.new.external_url_for('support')
-      expected_link = "#{host}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=%2Fthe%2Fbase%2Fpath"
-      expect(subject.feedback_explorer_href).to eq(expected_link)
-    end
-  end
-
-  describe '#google_analytics_href' do
-    it 'returns a URI for Google Analytics' do
-      expected_link = 'https://analytics.google.com/analytics/web/?hl=en&pli=1#/report/content-site-search-pages/a26179049w50705554p53872948/_u.date00=20181125&_u.date01=20181224&_r.drilldown=analytics.searchStartPage:~2Fthe~2Fbase~2Fpath'
-
-      expect(subject.search_terms_href).to eq(expected_link)
-    end
-  end
-
-  describe '#edit_url' do
-    it 'uses the ExternalLinksHelper' do
-      allow_any_instance_of(ExternalLinksHelper).to receive(
-        :edit_url_for
-      ).with(
-        content_id: 'content-id',
-        publishing_app: 'whitehall',
-        base_path: '/the/base/path',
-        document_type: 'news_story',
-        parent_content_id: ''
-      ).and_return(
-        'https://expected-link'
-      )
-
-      expect(subject.edit_url).to eq('https://expected-link')
-    end
-  end
-
-  describe '#edit_label' do
-    it 'uses the ExternalLinksHelper' do
-      allow_any_instance_of(ExternalLinksHelper).to receive(
-        :edit_label_for
-      ).with(
-        publishing_app: 'whitehall'
-      ).and_return(
-        'expected-label'
-      )
-
-      expect(subject.edit_label).to eq('expected-label')
     end
   end
 
