@@ -33,9 +33,9 @@ class FilterPresenter
              }]
     @document_types.each do |document_type|
       types.push(
-        text: document_type.humanize,
-        value: document_type,
-        selected: document_type == @search_parameters[:document_type]
+        text: document_type[:name].humanize,
+        value: document_type[:id],
+        selected: document_type[:id] == @search_parameters[:document_type]
       )
     end
     types
@@ -45,9 +45,9 @@ class FilterPresenter
     additional_organisation_options +
       @organisations.map do |org|
         {
-          text: org[:title],
-          value: org[:organisation_id],
-          selected: org[:organisation_id] == @search_parameters[:organisation_id]
+          text: org[:name],
+          value: org[:id],
+          selected: org[:id] == @search_parameters[:organisation_id]
         }
       end
   end

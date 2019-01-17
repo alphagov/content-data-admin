@@ -86,10 +86,10 @@ private
     return 'All organisations' if organisation_id == ALL_ORGANISATIONS
 
     organisation_data = @organisations.find do |org|
-      org[:organisation_id] == organisation_id
+      org[:id] == organisation_id
     end
 
-    organisation_data[:title]
+    organisation_data[:name]
   end
 
   def url(base_path)

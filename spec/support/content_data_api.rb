@@ -123,13 +123,13 @@ module GdsApi
       end
 
       def content_data_api_has_orgs
-        url = "#{content_data_api_endpoint}/organisations"
+        url = "#{content_data_api_endpoint}/api/v1/organisations"
         body = { organisations: default_organisations }.to_json
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
       def content_data_api_has_document_types
-        url = "#{content_data_api_endpoint}/document_types"
+        url = "#{content_data_api_endpoint}/api/v1/document_types"
         body = { document_types: default_document_types }.to_json
         stub_request(:get, url).to_return(status: 200, body: body)
       end
@@ -159,14 +159,14 @@ module GdsApi
         day3 = to
         {
           metadata: {
-            title:  "Content Title",
-            base_path:  "/#{base_path}",
+            title: "Content Title",
+            base_path: "/#{base_path}",
             content_id: 'content-id',
-            first_published_at:  "2018-07-17T10:35:59.000Z",
-            public_updated_at:  "2018-07-17T10:35:57.000Z",
-            publishing_app:  publishing_app,
-            document_type:  "news_story",
-            primary_organisation_title:  "The Ministry",
+            first_published_at: "2018-07-17T10:35:59.000Z",
+            public_updated_at: "2018-07-17T10:35:57.000Z",
+            publishing_app: publishing_app,
+            document_type: "news_story",
+            primary_organisation_title: "The Ministry",
             historical: false,
             withdrawn: false,
             parent_content_id: ''
@@ -251,13 +251,13 @@ module GdsApi
         day3 = to
         {
           metadata: {
-            title:  "Content Title",
-            base_path:  "/#{base_path}",
-            first_published_at:  "2018-07-17T10:35:59.000Z",
-            public_updated_at:  "2018-07-17T10:35:57.000Z",
-            publishing_app:  "publisher",
-            document_type:  "news_story",
-            primary_organisation_title:  "The Ministry",
+            title: "Content Title",
+            base_path: "/#{base_path}",
+            first_published_at: "2018-07-17T10:35:59.000Z",
+            public_updated_at: "2018-07-17T10:35:57.000Z",
+            publishing_app: "publisher",
+            document_type: "news_story",
+            primary_organisation_title: "The Ministry",
             historical: false,
             withdrawn: false
           },
@@ -338,13 +338,13 @@ module GdsApi
       def no_data_single_page_payload(base_path, from, to)
         {
           metadata: {
-            title:  "Content Title",
-            base_path:  "/#{base_path}",
-            first_published_at:  "2018-07-17T10:35:59.000Z",
-            public_updated_at:  "2018-07-17T10:35:57.000Z",
-            publishing_app:  "publisher",
-            document_type:  "news_story",
-            primary_organisation_title:  "The Ministry",
+            title: "Content Title",
+            base_path: "/#{base_path}",
+            first_published_at: "2018-07-17T10:35:59.000Z",
+            public_updated_at: "2018-07-17T10:35:57.000Z",
+            publishing_app: "publisher",
+            document_type: "news_story",
+            primary_organisation_title: "The Ministry",
             historical: false,
             withdrawn: false
           },
@@ -368,13 +368,13 @@ module GdsApi
       def nil_values_in_single_page_payload(base_path, from, to)
         {
           metadata: {
-            title:  "Content Title",
-            base_path:  "/#{base_path}",
-            first_published_at:  "2018-07-17T10:35:59.000Z",
-            public_updated_at:  "2018-07-17T10:35:57.000Z",
-            publishing_app:  "publisher",
-            document_type:  "news_story",
-            primary_organisation_title:  "The Ministry",
+            title: "Content Title",
+            base_path: "/#{base_path}",
+            first_published_at: "2018-07-17T10:35:59.000Z",
+            public_updated_at: "2018-07-17T10:35:57.000Z",
+            publishing_app: "publisher",
+            document_type: "news_story",
+            primary_organisation_title: "The Ministry",
             historical: false,
             withdrawn: false
           },
@@ -398,22 +398,39 @@ module GdsApi
       def default_organisations
         [
           {
-            title: 'org',
-            organisation_id: 'org-id'
+            name: 'org',
+            id: 'org-id'
           },
           {
-            title: 'another org',
-            organisation_id: 'another-org-id'
+            name: 'another org',
+            id: 'another-org-id'
           },
           {
-            title: 'Users Org',
-            organisation_id: 'users-org-id'
+            name: 'Users Org',
+            id: 'users-org-id'
           }
         ]
       end
 
       def default_document_types
-        %w[case_study guide news_story html_publication]
+        [
+          {
+            id: 'case_study',
+            name: 'Case study'
+          },
+          {
+            id: 'guide',
+            name: 'Guide'
+          },
+          {
+            id: 'news_story',
+            name: 'News story'
+          },
+          {
+            id: 'html_publication',
+            name: 'HTML publication'
+          }
+        ]
       end
     end
   end
