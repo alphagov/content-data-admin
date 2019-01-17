@@ -1,6 +1,50 @@
 <%# see the controller for the settings to implement full-width mode %>
 <%= content_for :title, "Dev page" %>
 
+
+<%= render "govuk_publishing_components/components/accessible_autocomplete", {
+  label: {
+    text: "Countries"
+  },
+  options: [
+    [
+      "",
+      ""
+    ],
+    [
+      "France",
+      "fr"
+    ],
+    [
+      "Germany",
+      "de"
+    ],
+    [
+      "Sweden",
+      "se"
+    ],
+    [
+      "Switzerland",
+      "ch"
+    ],
+    [
+      "United Kingdom",
+      "gb"
+    ],
+    [
+      "United States",
+      "us"
+    ],
+    [
+      "The Separate Customs Territory of Taiwan, Penghu, Kinmen, and Matsu (Chinese Taipei)",
+      "tw"
+    ]
+  ],
+  selected_option: ""
+} %>
+
+
+
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-quarter">
       <div class="filters-control__wrapper govuk-visually-hidden" data-module="filter-toggle">

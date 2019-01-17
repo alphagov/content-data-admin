@@ -44,7 +44,7 @@ RSpec.describe '/content' do
     content_data_api_has_orgs
     content_data_api_has_document_types
 
-    visit "/content?date_range=last-month&organisation_id=org-id"
+    visit "/content?submitted=true&date_range=last-month&organisation_id=org-id"
   end
 
   it 'renders the page without error' do
@@ -243,7 +243,7 @@ RSpec.describe '/content' do
     it 'allows the filter to be cleared' do
       select 'All document types', from: 'document_type'
       click_on 'Filter'
-      expect(page).to have_select('document_type', selected: 'All document types')
+      expect(page).to have_select('document_type', selected: ["", "All document types"])
       table_rows = extract_table_content('.govuk-table')
       expect(table_rows.count).to eq(4)
       expect(page).to have_css('h1.table-header', exact_text: 'Showing 3 results from org (OI)')

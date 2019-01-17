@@ -14,8 +14,8 @@
     <% if filter.search_terms? %>
         for "<span class="table-header__param"><%= filter.search_terms %></span>"
     <% end %>
-    <% if filter.document_type? %>
-        in <span class="table-header__param"><%= filter.document_type %></span>
+    <% if filter.document_type? && filter.document_type_id != "all" %>
+        in <span class="table-header__param"><%= filter.document_type_name %></span>
     <% end %>
     from <span class="table-header__param"><%= filter.organisation_name %></span>
 </h1>
