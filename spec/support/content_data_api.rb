@@ -129,7 +129,7 @@ module GdsApi
       end
 
       def content_data_api_has_document_types
-        url = "#{content_data_api_endpoint}/document_types"
+        url = "#{content_data_api_endpoint}/api/v1/document_types"
         body = { document_types: default_document_types }.to_json
         stub_request(:get, url).to_return(status: 200, body: body)
       end
@@ -413,7 +413,24 @@ module GdsApi
       end
 
       def default_document_types
-        %w[case_study guide news_story html_publication]
+        [
+          {
+            id: 'case_study',
+            name: 'Case study'
+          },
+          {
+            id: 'guide',
+            name: 'Guide'
+          },
+          {
+            id: 'news_story',
+            name: 'News story'
+          },
+          {
+            id: 'html_publication',
+            name: 'HTML publication'
+          }
+        ]
       end
     end
   end
