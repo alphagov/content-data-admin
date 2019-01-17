@@ -45,9 +45,9 @@ class FilterPresenter
     additional_organisation_options +
       @organisations.map do |org|
         {
-          text: org[:title],
-          value: org[:organisation_id],
-          selected: org[:organisation_id] == @search_parameters[:organisation_id]
+          text: org[:name],
+          value: org[:id],
+          selected: org[:id] == @search_parameters[:organisation_id]
         }
       end
   end

@@ -68,7 +68,7 @@ private
   end
 
   def organisations_url
-    "#{content_data_api_endpoint}/organisations"
+    "#{content_data_api_endpoint}/api/v1/organisations"
   end
 
   def document_types_url

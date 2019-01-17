@@ -123,7 +123,7 @@ module GdsApi
       end
 
       def content_data_api_has_orgs
-        url = "#{content_data_api_endpoint}/organisations"
+        url = "#{content_data_api_endpoint}/api/v1/organisations"
         body = { organisations: default_organisations }.to_json
         stub_request(:get, url).to_return(status: 200, body: body)
       end
@@ -398,16 +398,16 @@ module GdsApi
       def default_organisations
         [
           {
-            title: 'org',
-            organisation_id: 'org-id'
+            name: 'org',
+            id: 'org-id'
           },
           {
-            title: 'another org',
-            organisation_id: 'another-org-id'
+            name: 'another org',
+            id: 'another-org-id'
           },
           {
-            title: 'Users Org',
-            organisation_id: 'users-org-id'
+            name: 'Users Org',
+            id: 'users-org-id'
           }
         ]
       end
