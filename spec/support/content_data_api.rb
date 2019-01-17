@@ -159,14 +159,14 @@ module GdsApi
         day3 = to
         {
           metadata: {
-            title:  "Content Title",
-            base_path:  "/#{base_path}",
+            title: "Content Title",
+            base_path: "/#{base_path}",
             content_id: 'content-id',
-            first_published_at:  "2018-07-17T10:35:59.000Z",
-            public_updated_at:  "2018-07-17T10:35:57.000Z",
-            publishing_app:  publishing_app,
-            document_type:  "news_story",
-            primary_organisation_title:  "The Ministry",
+            first_published_at: "2018-07-17T10:35:59.000Z",
+            public_updated_at: "2018-07-17T10:35:57.000Z",
+            publishing_app: publishing_app,
+            document_type: "news_story",
+            primary_organisation_title: "The Ministry",
             historical: false,
             withdrawn: false,
             parent_content_id: ''
@@ -251,13 +251,13 @@ module GdsApi
         day3 = to
         {
           metadata: {
-            title:  "Content Title",
-            base_path:  "/#{base_path}",
-            first_published_at:  "2018-07-17T10:35:59.000Z",
-            public_updated_at:  "2018-07-17T10:35:57.000Z",
-            publishing_app:  "publisher",
-            document_type:  "news_story",
-            primary_organisation_title:  "The Ministry",
+            title: "Content Title",
+            base_path: "/#{base_path}",
+            first_published_at: "2018-07-17T10:35:59.000Z",
+            public_updated_at: "2018-07-17T10:35:57.000Z",
+            publishing_app: "publisher",
+            document_type: "news_story",
+            primary_organisation_title: "The Ministry",
             historical: false,
             withdrawn: false
           },
@@ -338,13 +338,13 @@ module GdsApi
       def no_data_single_page_payload(base_path, from, to)
         {
           metadata: {
-            title:  "Content Title",
-            base_path:  "/#{base_path}",
-            first_published_at:  "2018-07-17T10:35:59.000Z",
-            public_updated_at:  "2018-07-17T10:35:57.000Z",
-            publishing_app:  "publisher",
-            document_type:  "news_story",
-            primary_organisation_title:  "The Ministry",
+            title: "Content Title",
+            base_path: "/#{base_path}",
+            first_published_at: "2018-07-17T10:35:59.000Z",
+            public_updated_at: "2018-07-17T10:35:57.000Z",
+            publishing_app: "publisher",
+            document_type: "news_story",
+            primary_organisation_title: "The Ministry",
             historical: false,
             withdrawn: false
           },
@@ -368,13 +368,13 @@ module GdsApi
       def nil_values_in_single_page_payload(base_path, from, to)
         {
           metadata: {
-            title:  "Content Title",
-            base_path:  "/#{base_path}",
-            first_published_at:  "2018-07-17T10:35:59.000Z",
-            public_updated_at:  "2018-07-17T10:35:57.000Z",
-            publishing_app:  "publisher",
-            document_type:  "news_story",
-            primary_organisation_title:  "The Ministry",
+            title: "Content Title",
+            base_path: "/#{base_path}",
+            first_published_at: "2018-07-17T10:35:59.000Z",
+            public_updated_at: "2018-07-17T10:35:57.000Z",
+            publishing_app: "publisher",
+            document_type: "news_story",
+            primary_organisation_title: "The Ministry",
             historical: false,
             withdrawn: false
           },
