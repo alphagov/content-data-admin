@@ -70,7 +70,7 @@ en:
         introduced in February 2018 so there are no responses before this date.
     feedex:
       title: 'Number of feedback comments'
-      short_title: 'Feedback comments'
+      short_title: 'Number of feedback comments'
       summary: 'Number of anonymous user responses to ''Is there anything wrong with this page?'''
       context: ''
       unit: 'comments'
