@@ -97,8 +97,7 @@ class SingleContentItemPresenter
   end
 
   def metric_about_label(metric_name)
-    short_title = metric_short_title(metric_name).downcase
-    I18n.t("components.info-metric.about_dropdown", metric_short_title: short_title)
+    I18n.t("metrics.#{metric_name}.about_title")
   end
 
   def trend_percentage(metric_name)
