@@ -154,7 +154,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders about label for pdf count' do
-        label = 'About number of pdfs'
+        label = 'About number of PDFs'
         expect(page).to have_selector(".metric-summary__pdf-count .govuk-details__summary-text", text: label)
       end
 
