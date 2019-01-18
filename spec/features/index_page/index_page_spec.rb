@@ -237,7 +237,7 @@ RSpec.describe '/content' do
     end
 
     it 'describes the filter in the table header' do
-      expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 result in News story from org')
+      expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 result in News story from org (OI)')
     end
 
     it 'allows the filter to be cleared' do
@@ -246,7 +246,7 @@ RSpec.describe '/content' do
       expect(page).to have_select('document_type', selected: 'All document types')
       table_rows = extract_table_content('.govuk-table')
       expect(table_rows.count).to eq(4)
-      expect(page).to have_css('h1.table-header', exact_text: 'Showing 3 results from org')
+      expect(page).to have_css('h1.table-header', exact_text: 'Showing 3 results from org (OI)')
     end
   end
 
@@ -257,7 +257,7 @@ RSpec.describe '/content' do
     end
 
     it 'shows a no data message in the table header' do
-      expect(page).to have_css('h1.table-header', exact_text: "#{I18n.t 'no_matching_results'} from org")
+      expect(page).to have_css('h1.table-header', exact_text: "#{I18n.t 'no_matching_results'} from org (OI)")
     end
   end
 
@@ -268,7 +268,7 @@ RSpec.describe '/content' do
     end
 
     it 'formats the page numbers correctly in the table header' do
-      expect(page).to have_css('h1.table-header', exact_text: 'Showing 19,901 to 20,000 of 30,000 results from org')
+      expect(page).to have_css('h1.table-header', exact_text: 'Showing 19,901 to 20,000 of 30,000 results from org (OI)')
     end
   end
 

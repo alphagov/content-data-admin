@@ -399,15 +399,17 @@ module GdsApi
         [
           {
             name: 'org',
-            id: 'org-id'
+            id: 'org-id',
+            acronym: 'OI',
           },
           {
             name: 'another org',
-            id: 'another-org-id'
+            id: 'another-org-id',
           },
           {
             name: 'Users Org',
-            id: 'users-org-id'
+            id: 'users-org-id',
+            acronym: 'UOI',
           }
         ]
       end

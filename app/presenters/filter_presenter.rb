@@ -42,14 +42,18 @@ class FilterPresenter
   end
 
   def organisation_options
-    additional_organisation_options +
-      @organisations.map do |org|
-        {
-          text: org[:name],
-          value: org[:id],
-          selected: org[:id] == @search_parameters[:organisation_id]
-        }
-      end
+    @organisation_options ||= begin
+      additional_organisation_options +
+        @organisations.map do |org|
+          name = org[:name]
+          name.concat " (#{org[:acronym]})" if org[:acronym].present?
+          {
+            text: name,
+            value: org[:id],
+            selected: org[:id] == @search_parameters[:organisation_id]
+          }
+        end
+    end
   end
 
 private
