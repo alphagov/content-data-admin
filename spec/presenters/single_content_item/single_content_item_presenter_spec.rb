@@ -98,6 +98,104 @@ RSpec.describe SingleContentItemPresenter do
     end
   end
 
+  describe '#total_upviews' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 500_000_000 }, { name: 'pviews', total: 0 }]
+
+      expect(subject.total_upviews).to eq('500,000,000')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 5 }, { name: 'pviews', total: 0 }]
+
+      expect(subject.total_upviews).to eq('5')
+    end
+  end
+
+  describe '#total_pviews' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:time_series_metrics] = [{ name: 'pviews', total: 500_000_000 }, { name: 'upviews', total: 0 }]
+
+      expect(subject.total_pviews).to eq('500,000,000')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:time_series_metrics] = [{ name: 'pviews', total: 5 }, { name: 'upviews', total: 0 }]
+
+      expect(subject.total_pviews).to eq('5')
+    end
+  end
+
+  describe '#total_searches' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:time_series_metrics] = [{ name: 'searches', total: 500_000_000 }, { name: 'upviews', total: '0' }, { name: 'pviews', total: 0 }]
+
+      expect(subject.total_searches).to eq('500,000,000')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:time_series_metrics] = [{ name: 'searches', total: 5 }, { name: 'pviews', total: 5 }, { name: 'upviews', total: 0 }]
+
+      expect(subject.total_searches).to eq('5')
+    end
+  end
+
+  describe '#total_satisfaction' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:time_series_metrics] = [{ name: 'satisfaction', total: 1 }, { name: 'upviews', total: '0' }, { name: 'pviews', total: 0 }]
+
+      expect(subject.total_satisfaction).to eq('100%')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:time_series_metrics] = [{ name: 'satisfaction', total: 0.01 }, { name: 'pviews', total: 5 }, { name: 'upviews', total: 0 }]
+
+      expect(subject.total_satisfaction).to eq('1%')
+    end
+  end
+
+  describe '#total_feedex' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:time_series_metrics] = [{ name: 'feedex', total: 1_000 }, { name: 'upviews', total: '0' }, { name: 'pviews', total: 0 }]
+
+      expect(subject.total_feedex).to eq('1,000')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:time_series_metrics] = [{ name: 'feedex', total: 1 }, { name: 'pviews', total: 5 }, { name: 'upviews', total: 0 }]
+
+      expect(subject.total_feedex).to eq('1')
+    end
+  end
+
+  describe '#total_words' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:edition_metrics] = [{ name: 'words', value: 5_000 }]
+
+      expect(subject.total_words).to eq('5,000')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:edition_metrics] = [{ name: 'words', value: 50 }]
+
+      expect(subject.total_words).to eq('50')
+    end
+  end
+
+  describe '#total_pdf_count' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:edition_metrics] = [{ name: 'pdf_count', value: 5_000 }]
+
+      expect(subject.total_pdf_count).to eq('5,000')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:edition_metrics] = [{ name: 'pdf_count', value: 50 }]
+
+      expect(subject.total_pdf_count).to eq('50')
+    end
+  end
+
   describe '#pageviews_per_visit' do
     it 'calculates number of times the page was viewed in one visit' do
       current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 50 }, { name: 'pviews', total: 100 }]
@@ -120,9 +218,21 @@ RSpec.describe SingleContentItemPresenter do
     end
   end
 
+  describe '#searches_context' do
+    it 'returns calculated on page search rate formatted as percentage' do
+      expect(subject.searches_context).to include('4.05%')
+    end
+  end
+
   describe '#link_text' do
     it 'returns the downcased translation of the metric name' do
       expect(subject.link_text('upviews')).to eq('unique pageviews')
+    end
+  end
+
+  describe '#feedback_explorer_href' do
+    it 'generates a URL to feedback explorer with correct params' do
+      expect(subject.feedback_explorer_href).to eq("#{Plek.new.external_url_for('support')}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=#{CGI.escape('/the/base/path')}")
     end
   end
 end
