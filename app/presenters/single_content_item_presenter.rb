@@ -9,14 +9,9 @@ class SingleContentItemPresenter
     @single_page_data = current_period_data
 
     @date_range = date_range
-    @metrics = parse_metrics(
-      current_period_data[:time_series_metrics],
-      current_period_data[:edition_metrics]
-    )
-    @previous_metrics = parse_metrics(
-      previous_period_data[:time_series_metrics],
-      previous_period_data[:edition_metrics]
-    )
+    @metrics = Metric.parse_metrics(current_period_data)
+    @previous_metrics = Metric.parse_metrics(previous_period_data)
+
     assign_pageviews_per_visit
   end
 
@@ -167,24 +162,6 @@ private
 
   def metadata
     @metadata ||= @single_page_data[:metadata]
-  end
-
-  def parse_metrics(time_series_metrics, edition_metrics)
-    metrics = {}
-    time_series_metrics.each do |metric|
-      metrics[metric[:name]] = {
-        'value': metric[:total],
-        'time_series': metric[:time_series]
-      }
-    end
-
-    edition_metrics.each do |metric|
-      metrics[metric[:name]] = {
-        'value': format_metric_value(metric[:name], metric[:value]),
-        'time_series': nil
-      }
-    end
-    metrics
   end
 
   def assign_pageviews_per_visit
