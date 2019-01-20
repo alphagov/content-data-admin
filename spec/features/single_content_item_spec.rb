@@ -1,7 +1,7 @@
 RSpec.describe '/metrics/base/path', type: :feature do
   include RequestStubs
   include TableDataSpecHelpers
-  let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no] }
+  let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no reading_time] }
   let(:prev_from) { Time.zone.yesterday - 59.days }
   let(:prev_to) { Time.zone.yesterday - 30.days }
   let(:from) { Time.zone.yesterday - 29.days }
@@ -158,14 +158,24 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector(".metric-summary__pdf-count .govuk-details__summary-text", text: label)
       end
 
-      it 'renders a metric for words count' do
+      it 'renders a metric for word count' do
         expect(page).to have_selector '.metric-summary__words', text: '200'
       end
 
-      it 'renders about label for  words count' do
+      it 'renders about label for word count' do
         label = 'About word count'
         expect(page).to have_selector(".metric-summary__words .govuk-details__summary-text", text: label)
       end
+
+      it 'renders a metric for time to read' do
+        expect(page).to have_selector '.metric-summary__reading-time', text: '200'
+      end
+
+      it 'renders about label for time to read' do
+        label = 'About reading time'
+        expect(page).to have_selector(".metric-summary__reading-time .govuk-details__summary-text", text: label)
+      end
+
 
       it 'renders the page title' do
         expect(page).to have_selector 'h1.govuk-heading-xl', text: 'Content Title'

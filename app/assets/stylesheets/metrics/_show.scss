@@ -33,15 +33,19 @@
 }
 
 .metric-summary__words {
-  padding: 0 !important;
 
   @include media-down(mobile) {
+    width: 95%;
     border-bottom: 1px solid $govuk-border-colour;
   }
 }
 
-.metric-summary__pdf-count {
-  padding: 0 !important;
+.metric-summary__reading-time {
+
+  @include media-down(mobile) {
+    width: 95%;
+    border-bottom: 1px solid $govuk-border-colour;
+  }
 }
 
 .banner {
