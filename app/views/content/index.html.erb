@@ -60,41 +60,50 @@
     </div>
     <div class="govuk-grid-column-three-quarters">
       <div class="table-wrapper">
-        <%= GovukPublishingComponents::AppHelpers::TableHelper.helper(
-            self,
-            render('table_data_description', pagination: @presenter.pagination, filter: @presenter.filter),
-            sortable: false
-          ) do |t| %>
-            <%= t.head do %>
-              <!-- TODO: Once sorting is supported, fill in the href and sort_direction header arguments with proper values -->
-              <%# t.header("Page title", href: '#', sort_direction: nil) %>
-              <%= t.header("Page title") %>
-              <%= t.header("Content type") %>
-              <%= t.header("Unique pageviews<br> #{image_tag('question_mark_default.svg', alt: 'Help', title: "#{t "metrics.upviews.summary"}")}".html_safe) %>
-              <%= t.header("User satisfaction score<br> #{image_tag('question_mark_default.svg', alt: 'Help', title: "#{t "metrics.satisfaction.summary"}")}".html_safe) %>
-              <%= t.header("Searches from page<br> #{image_tag('question_mark_default.svg', alt: 'Help', title: "#{t "metrics.searches.summary"}")}".html_safe) %>
-            <% end %>
-
-            <%= t.body do %>
-              <% @presenter.content_items.each do |item| %>
-                <%= t.row do %>
-                  <%= t.cell(
-                    render(
-                      partial: 'page_title',
-                      locals: {
-                        item: item,
-                        date_range: @presenter.time_period
-                      }
-                    )
-                  ) %>
-                  <%= t.cell item.document_type %>
-                  <%= t.cell item.upviews, format: 'numeric' %>
-                  <%= t.cell item.user_satisfaction %>
-                  <%= t.cell item.searches, format: 'numeric' %>
-                <% end %>
-              <% end %>
-            <% end %>
+        <table class="govuk-table">
+          <caption class="govuk-table__caption">
+            <%= render('table_data_description', pagination: @presenter.pagination, filter: @presenter.filter) %>
+          </caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="col">Page title</th>
+              <th class="govuk-table__header" scope="col">Content type</th>
+              <th class="govuk-table__header" scope="col">
+                Unique pageviews<br>
+                <%= image_tag('question_mark_default.svg', alt: 'Help', title: "#{t "metrics.upviews.summary"}") %>
+              </th>
+              <th class="govuk-table__header" scope="col">
+                User satisfaction score<br>
+                <%= image_tag('question_mark_default.svg', alt: 'Help', title: "#{t "metrics.satisfaction.summary"}") %>
+              </th>
+              <th class="govuk-table__header" scope="col">
+                Searches from page<br>
+                <%= image_tag('question_mark_default.svg', alt: 'Help', title: "#{t "metrics.searches.summary"}") %>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+          <% @presenter.content_items.each do |item| %>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                <%=
+                  render(
+                    partial: 'page_title',
+                    locals: {
+                      item: item,
+                      date_range: @presenter.time_period
+                    }
+                ) %>
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.document_type %></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.upviews %></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.user_satisfaction %></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.searches %></td>
+            </tr>
           <% end %>
+          </tbody>
+   </table>
+
         </div>
         <%= render "govuk_publishing_components/components/previous_and_next_navigation", navigation_links %>
     </div>
