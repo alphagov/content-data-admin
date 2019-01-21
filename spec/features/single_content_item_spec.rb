@@ -141,7 +141,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders about label for feedex' do
-        label = 'About feedback comments'
+        label = 'About number of feedback comments'
         expect(page).to have_selector(".metric-summary__feedex .govuk-details__summary-text", text: label)
       end
 

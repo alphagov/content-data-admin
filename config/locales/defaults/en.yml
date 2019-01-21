@@ -75,13 +75,13 @@ en:
         introduced in February 2018 so there are no responses before this date.
     feedex:
       title: 'Number of feedback comments'
-      short_title: 'Number of feedback comments'
+      short_title: 'Feedback comments'
       summary: 'Number of anonymous user responses to ''Is there anything wrong with this page?'''
       context: ''
       unit: 'comments'
       data_source: feedback_explorer
       external_link: 'See comments in Feedback Explorer'
-      about_title: 'About feedback comments'
+      about_title: 'About number of feedback comments'
       about: >
         You can use Feedback Explorer ('Feedex') to find out what users are saying about your
         content. A high rate of feedback could indicate a problem with the content. The data comes
