@@ -50,9 +50,9 @@ RSpec.describe FilterPresenter do
         expect(subject.organisation_options).to eq([
           { text: 'All organisations', value: 'all', selected: false },
           { text: 'No primary organisation', value: 'none', selected: false },
-          { text: 'org', value: 'org-id', selected: true },
+          { text: 'org (OI)', value: 'org-id', selected: true },
           { text: 'another org', value: 'another-org-id', selected: false },
-          { text: 'Users Org', value: 'users-org-id', selected: false }
+          { text: 'Users Org (UOI)', value: 'users-org-id', selected: false }
         ])
       end
     end
@@ -64,9 +64,9 @@ RSpec.describe FilterPresenter do
         expect(subject.organisation_options).to eq([
           { text: 'All organisations', value: 'all', selected: true },
           { text: 'No primary organisation', value: 'none', selected: false },
-          { text: 'org', value: 'org-id', selected: false },
+          { text: 'org (OI)', value: 'org-id', selected: false },
           { text: 'another org', value: 'another-org-id', selected: false },
-          { text: 'Users Org', value: 'users-org-id', selected: false }
+          { text: 'Users Org (UOI)', value: 'users-org-id', selected: false }
         ])
       end
     end
@@ -78,9 +78,9 @@ RSpec.describe FilterPresenter do
         expect(subject.organisation_options).to eq([
           { text: 'All organisations', value: 'all', selected: false },
           { text: 'No primary organisation', value: 'none', selected: true },
-          { text: 'org', value: 'org-id', selected: false },
+          { text: 'org (OI)', value: 'org-id', selected: false },
           { text: 'another org', value: 'another-org-id', selected: false },
-          { text: 'Users Org', value: 'users-org-id', selected: false }
+          { text: 'Users Org (UOI)', value: 'users-org-id', selected: false }
         ])
       end
     end
@@ -109,7 +109,7 @@ RSpec.describe FilterPresenter do
 
   describe '#organisation_name' do
     it 'returns the selected organisation name' do
-      expect(subject.organisation_name).to eq('org')
+      expect(subject.organisation_name).to eq('org (OI)')
     end
   end
 end
