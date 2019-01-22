@@ -21,35 +21,35 @@ class SingleContentItemPresenter
   end
 
   def total_upviews
-    number_with_delimiter @metrics['upviews'][:value]
+    number_with_delimiter value_for('upviews')
   end
 
   def total_pviews
-    number_with_delimiter @metrics['pviews'][:value]
+    number_with_delimiter value_for('pviews')
   end
 
   def total_searches
-    number_with_delimiter @metrics['searches'][:value]
+    number_with_delimiter value_for('searches')
   end
 
   def total_satisfaction
-    number_to_percentage(@metrics['satisfaction'][:value] * 100, precision: 0)
+    number_to_percentage(value_for('satisfaction') * 100, precision: 0)
   end
 
   def total_feedex
-    number_with_delimiter @metrics['feedex'][:value]
+    number_with_delimiter value_for('feedex')
   end
 
   def total_words
-    number_with_delimiter @metrics['words'][:value]
+    number_with_delimiter value_for('words')
   end
 
   def total_pdf_count
-    number_with_delimiter @metrics['pdf_count'][:value]
+    number_with_delimiter value_for('pdf_count')
   end
 
   def pageviews_per_visit
-    number_with_delimiter @metrics['pageviews_per_visit'][:value]
+    number_with_delimiter value_for('pageviews_per_visit')
   end
 
   def upviews_context
@@ -66,8 +66,8 @@ class SingleContentItemPresenter
 
   def searches_context
     on_page_search_rate = calculate_average_searches_per_user(
-      searches: @metrics['searches'][:value],
-      unique_pageviews: @metrics['upviews'][:value]
+      searches: value_for('searches'),
+      unique_pageviews: value_for('upviews')
     )
     I18n.t("metrics.searches.context", percent_users_searched: on_page_search_rate)
   end
@@ -157,8 +157,12 @@ class SingleContentItemPresenter
 
 private
 
+  def value_for(metric)
+    @metrics[metric][:value]
+  end
+
   def useful_yes_no_total
-    @metrics['useful_yes'][:value] + @metrics['useful_no'][:value]
+    value_for('useful_yes') + value_for('useful_no')
   end
 
   def metadata
@@ -185,8 +189,8 @@ private
 
   def assign_pageviews_per_visit
     current = calculate_pageviews_per_visit(
-      pageviews: @metrics['pviews'][:value],
-      unique_pageviews: @metrics['upviews'][:value]
+      pageviews: value_for('pviews'),
+      unique_pageviews: value_for('upviews')
     )
     @metrics['pageviews_per_visit'] = { value: current }
 
