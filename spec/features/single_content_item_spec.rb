@@ -203,6 +203,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
         ])
       end
 
+      it 'renders link to search terms' do
+        expect(page).to have_selector('.govuk-link', text: I18n.t("metrics.searches.external_link"))
+      end
+
       it 'renders the metric timeseries for satisfaction' do
         satisfaction_rows = extract_table_content(".chart.satisfaction table")
         expect(satisfaction_rows).to match_array([

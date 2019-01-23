@@ -53,7 +53,7 @@ en:
       context: '%{percent_users_searched}% of users searched from the page'
       unit: 'search terms'
       data_source: google_analytics
-      external_link: ''
+      external_link: 'See search terms in Google Analytics'
       about_title: 'About searches from the page'
       about: >
         This is the number of internal site searches that were started from the page. When people
