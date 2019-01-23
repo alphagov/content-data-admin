@@ -46,6 +46,13 @@ module ExternalLinksHelper
     "#{host}/anonymous_feedback?from=#{from}&to=#{to}&paths=#{path}"
   end
 
+  def google_analytics_url(from:, to:, base_path:)
+    from.delete!('-')
+    to.delete!('-')
+    base_path.gsub!(%r((\/)(?!\z)), '~2F')
+    "https://analytics.google.com/analytics/web/?hl=en&pli=1#/report/content-site-search-pages/a26179049w50705554p53872948/_u.date00=#{to}&_u.date01=#{from}&_r.drilldown=analytics.searchStartPage:#{base_path}"
+  end
+
   def external_url_for(service)
     Plek.new.external_url_for(service)
   end
