@@ -142,4 +142,17 @@ RSpec.describe ExternalLinksHelper do
       end
     end
   end
+
+  describe '#feedex_url' do
+    it 'generates URL to feedex with given parameters' do
+      host = Plek.new.external_url_for('support')
+      expected_link = "#{host}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=%2Fthe%2Fbase%2Fpath"
+
+      expect(feedex_url(
+               from: '2018-11-25',
+               to: '2018-12-24',
+               base_path: '/the/base/path'
+      )).to eq(expected_link)
+    end
+  end
 end

@@ -77,11 +77,7 @@ class SingleContentItemPresenter
   end
 
   def feedback_explorer_href
-    host = Plek.new.external_url_for('support')
-    from = @date_range.from
-    to = @date_range.to
-    path = CGI.escape(base_path)
-    "#{host}/anonymous_feedback?from=#{from}&to=#{to}&paths=#{path}"
+    feedex_url(from: date_range.from, to: date_range.to, base_path: base_path)
   end
 
   def period
