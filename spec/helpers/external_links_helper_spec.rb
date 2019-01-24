@@ -158,7 +158,7 @@ RSpec.describe ExternalLinksHelper do
 
   describe '#google_analytics_url' do
     it 'generates URL to Google Analytics with given parameters' do
-      expected_link = 'https://analytics.google.com/analytics/web/?hl=en&pli=1#/report/content-site-search-pages/a26179049w50705554p53872948/_u.date00=20181224&_u.date01=20181125&_r.drilldown=analytics.searchStartPage:~2Fthe~2Fbase~2Fpath'
+      expected_link = 'https://analytics.google.com/analytics/web/?hl=en&pli=1#/report/content-site-search-pages/a26179049w50705554p53872948/_u.date00=20181125&_u.date01=20181224&_r.drilldown=analytics.searchStartPage:~2Fthe~2Fbase~2Fpath'
 
       expect(google_analytics_url(
                from: '2018-11-25',
