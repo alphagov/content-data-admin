@@ -33,5 +33,8 @@ $govuk-global-styles: true;
   border: none;
 }
 
+.govuk-main-wrapper {
+  @include govuk-responsive-padding(2, "top");
+}
 //overrides must be imported last
 @import "govuk-frontend/overrides/all";
