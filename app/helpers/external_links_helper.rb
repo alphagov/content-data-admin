@@ -47,9 +47,9 @@ module ExternalLinksHelper
   end
 
   def google_analytics_url(from:, to:, base_path:)
-    from.delete!('-')
-    to.delete!('-')
-    base_path.gsub!(%r((\/)(?!\z)), '~2F')
+    from = from.delete('-')
+    to = to.delete('-')
+    base_path = base_path.gsub(%r((\/)(?!\z)), '~2F')
     "https://analytics.google.com/analytics/web/?hl=en&pli=1"\
     "#/report/content-site-search-pages/a26179049w50705554p53872948/"\
     "_u.date00=#{to}&_u.date01=#{from}&"\
