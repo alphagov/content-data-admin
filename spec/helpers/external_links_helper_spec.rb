@@ -142,4 +142,29 @@ RSpec.describe ExternalLinksHelper do
       end
     end
   end
+
+  describe '#feedex_url' do
+    it 'generates URL to feedex with given parameters' do
+      host = Plek.new.external_url_for('support')
+      expected_link = "#{host}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=%2Fthe%2Fbase%2Fpath"
+
+      expect(feedex_url(
+               from: '2018-11-25',
+               to: '2018-12-24',
+               base_path: '/the/base/path'
+      )).to eq(expected_link)
+    end
+  end
+
+  describe '#google_analytics_url' do
+    it 'generates URL to Google Analytics with given parameters' do
+      expected_link = 'https://analytics.google.com/analytics/web/?hl=en&pli=1#/report/content-site-search-pages/a26179049w50705554p53872948/_u.date00=20181224&_u.date01=20181125&_r.drilldown=analytics.searchStartPage:~2Fthe~2Fbase~2Fpath'
+
+      expect(google_analytics_url(
+               from: '2018-11-25',
+               to: '2018-12-24',
+               base_path: '/the/base/path'
+      )).to eq(expected_link)
+    end
+  end
 end

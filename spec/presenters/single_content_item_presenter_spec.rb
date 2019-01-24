@@ -212,6 +212,14 @@ RSpec.describe SingleContentItemPresenter do
     end
   end
 
+  describe '#google_analytics_href' do
+    it 'returns a URI for Google Analytics' do
+      expected_link = 'https://analytics.google.com/analytics/web/?hl=en&pli=1#/report/content-site-search-pages/a26179049w50705554p53872948/_u.date00=20181224&_u.date01=20181125&_r.drilldown=analytics.searchStartPage:~2Fthe~2Fbase~2Fpath'
+
+      expect(subject.search_terms_href).to eq(expected_link)
+    end
+  end
+
   describe '#edit_url' do
     it 'uses the ExternalLinksHelper' do
       allow_any_instance_of(ExternalLinksHelper).to receive(
