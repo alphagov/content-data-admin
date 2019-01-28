@@ -85,7 +85,7 @@
   }
 
   .filter-form__filters {
-    @include govuk-responsive-padding(3, "top");
+    @include govuk-responsive-padding(6, "top");
 
     .govuk-label {
       @include govuk-font($size: 16, $weight: bold);
@@ -105,4 +105,10 @@
   .gem-c-phase-banner {
     @include govuk-responsive-padding(3, "left");
   }
+
+  .download-link {
+    display: block;
+    @include govuk-responsive-margin(6, "top");
+  }
+
 }

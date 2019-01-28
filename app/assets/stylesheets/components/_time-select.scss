@@ -1,6 +1,6 @@
 .app-c-time-select {
   @include govuk-responsive-padding(3, "top");
-  @include govuk-responsive-padding(3, "bottom");
+  @include govuk-responsive-padding(6, "bottom");
   border-top: 1px solid $govuk-border-colour;
 }
 
