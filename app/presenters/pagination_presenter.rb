@@ -18,15 +18,15 @@ class PaginationPresenter
   end
 
   def prev_label
-    "#{page - 1} of #{total_pages}"
+    "#{prev_page} of #{formatted_total_pages}"
   end
 
   def next_label
-    "#{page + 1} of #{total_pages}"
+    "#{next_page} of #{formatted_total_pages}"
   end
 
   def next_link?
-    page < total_pages
+    page < @total_pages
   end
 
   def first_record
@@ -53,6 +53,18 @@ class PaginationPresenter
   end
 
 private
+
+  def formatted_total_pages
+    number_with_delimiter(@total_pages)
+  end
+
+  def prev_page
+    number_with_delimiter(@page - 1)
+  end
+
+  def next_page
+    number_with_delimiter(@page + 1)
+  end
 
   def previous_record_count
     (@page - 1) * @per_page
