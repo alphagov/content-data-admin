@@ -4,10 +4,8 @@
         <% if pagination.total_pages > 1 %>
             <span class="table-header__param"><%= pagination.formatted_first_record %></span> to
             <span class="table-header__param"><%= pagination.formatted_last_record %></span> of
-            <span class="table-header__param" data-gtm-pagination-total-results="<%= pagination.total_results %>"><%= pagination.formatted_total_results %></span> results
-        <% else %>
-            <span class="table-header__param" data-gtm-pagination-total-results="<%= pagination.total_results %>"><%= pagination.formatted_total_results %></span> <%= 'result'.pluralize(pagination.total_results) %>
         <% end %>
+        <span class="table-header__param" data-gtm-pagination-total-results="<%= pagination.total_results %>"><%= pagination.formatted_total_results %></span> <%= 'result'.pluralize(pagination.total_results) %>
     <% else %>
         <span class="table-header__param" data-gtm-pagination-total-results="0"><%= I18n.t('no_matching_results') %></span>
     <% end %>

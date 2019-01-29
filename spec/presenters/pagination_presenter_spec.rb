@@ -27,8 +27,8 @@ RSpec.describe PaginationPresenter do
       expect(subject.next_link?).to eq(true)
     end
 
-    it 'return the correct next page label' do
-      expect(subject.next_label).to eq('2 of 123457')
+    it 'returns the correct next page label' do
+      expect(subject.next_label).to eq('2 of 123,457')
     end
 
     it 'returns 1 for #first_record' do
@@ -51,8 +51,8 @@ RSpec.describe PaginationPresenter do
       expect(subject.next_link?).to eq(false)
     end
 
-    it 'returns the correct next page label' do
-      expect(subject.prev_label).to eq('123456 of 123457')
+    it 'returns the correct previous page label' do
+      expect(subject.prev_label).to eq('123,456 of 123,457')
     end
 
     it 'returns 1234561 for #first_record' do
@@ -83,12 +83,12 @@ RSpec.describe PaginationPresenter do
       expect(subject.prev_link?).to eq(true)
     end
 
-    it 'returns the correct next page label' do
-      expect(subject.prev_label).to eq('5 of 123457')
+    it 'returns the correct previous page label' do
+      expect(subject.prev_label).to eq('5 of 123,457')
     end
 
-    it 'return the correct next page label' do
-      expect(subject.next_label).to eq('7 of 123457')
+    it 'returns the correct next page label' do
+      expect(subject.next_label).to eq('7 of 123,457')
     end
 
     it 'returns 51 for #first_record' do
