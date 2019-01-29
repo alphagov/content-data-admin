@@ -4,7 +4,7 @@ class ContentItemsPresenter
   delegate :page, :total_pages, :prev_link?, :next_link?, :prev_label, :next_label, to: :pagination
 
   def initialize(search_results, search_parameters, document_types, organisations)
-    @title = 'Content Items'
+    @title = 'Content items'
     @filter = FilterPresenter.new(search_parameters, document_types, organisations)
     @search_parameters = search_parameters
     @pagination = PaginationPresenter.new(
