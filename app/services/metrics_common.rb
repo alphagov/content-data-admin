@@ -5,7 +5,7 @@ private
 
   def api
     @api ||= GdsApi::ContentDataApi.new.tap do |client|
-      client.options[:timeout] = 15
+      client.options[:timeout] = 60
     end
   end
 
