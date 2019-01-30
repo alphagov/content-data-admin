@@ -39,6 +39,9 @@ RSpec.describe SingleContentItemPresenter do
     SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
   end
 
+  it_behaves_like 'Metadata presentation'
+  it_behaves_like 'Trend percentages presentation'
+
   describe '#status' do
     context 'when content is published' do
       it 'displays nothing' do
@@ -64,81 +67,6 @@ RSpec.describe SingleContentItemPresenter do
       }
       it 'displays withdrawn and history mode' do
         expect(subject.status).to eq(I18n.t('components.metadata.statuses.withdrawn_and_historical'))
-      end
-    end
-  end
-
-  describe '#trend_percentage' do
-    it 'calculates an increase percentage change' do
-      current_period_data[:time_series_metrics] = time_series_metrics(100)
-      previous_period_data[:time_series_metrics] = time_series_metrics(50)
-
-      expect(subject.trend_percentage('upviews')).to eq(100.0)
-    end
-
-    it 'calculates an decrease percentage change' do
-      current_period_data[:time_series_metrics] = time_series_metrics(50)
-      previous_period_data[:time_series_metrics] = time_series_metrics(100)
-
-      expect(subject.trend_percentage('upviews')).to eq(-50.0)
-    end
-
-    it 'calculates an no percentage change' do
-      current_period_data[:time_series_metrics] = time_series_metrics(100)
-      previous_period_data[:time_series_metrics] = time_series_metrics(100)
-
-      expect(subject.trend_percentage('upviews')).to eq(0.0)
-    end
-
-    it 'calculates an infinite percent increase (0 to non-zero)' do
-      current_period_data[:time_series_metrics] = time_series_metrics(100)
-      previous_period_data[:time_series_metrics] = time_series_metrics(0)
-
-      expect(subject.trend_percentage('upviews')).to eq(0.0)
-    end
-
-    it 'returns `no comparison data` if there is no comparison data' do
-      current_period_data[:time_series_metrics] = time_series_metrics(100)
-      previous_period_data[:time_series_metrics] = time_series_metrics(nil, nil)
-
-      expect(subject.trend_percentage('upviews')).to eq(nil)
-    end
-
-    it 'returns `no comparison data` if there is incomplete comparison data' do
-      current_time_series = [{ date: '2018-11-25', value: 100 }, { date: '2018-11-26', value: 100 }]
-      previous_time_series = [{ date: '2018-11-24', value: 100 }]
-
-      current_period_data[:time_series_metrics] = time_series_metrics(100, current_time_series)
-      previous_period_data[:time_series_metrics] = time_series_metrics(100, previous_time_series)
-
-      expect(subject.trend_percentage('upviews')).to eq(nil)
-    end
-
-    context 'selected date range is `past-month`' do
-      it 'calculates percentage change if previous month has data for every day in it' do
-        date_range = build(:date_range, :last_month)
-        current_time_series = complete_current_data
-        previous_month_time_series = complete_previous_data
-
-        current_period_data[:time_series_metrics] = time_series_metrics(200, current_time_series)
-        previous_period_data[:time_series_metrics] = time_series_metrics(100, previous_month_time_series)
-
-        subject = SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
-
-        expect(subject.trend_percentage('upviews')).to eq(100.0)
-      end
-
-      it 'returns nil if previous month does not have data for every day in it' do
-        build(:date_range, :last_month)
-        current_time_series = complete_current_data
-        previous_month_time_series = incomplete_previous_data
-
-        current_period_data[:time_series_metrics] = time_series_metrics(200, current_time_series)
-        previous_period_data[:time_series_metrics] = time_series_metrics(100, previous_month_time_series)
-
-        subject = SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
-
-        expect(subject.trend_percentage('upviews')).to eq(nil)
       end
     end
   end
@@ -170,6 +98,104 @@ RSpec.describe SingleContentItemPresenter do
     end
   end
 
+  describe '#total_upviews' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 500_000_000 }, { name: 'pviews', total: 0 }]
+
+      expect(subject.total_upviews).to eq('500,000,000')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 5 }, { name: 'pviews', total: 0 }]
+
+      expect(subject.total_upviews).to eq('5')
+    end
+  end
+
+  describe '#total_pviews' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:time_series_metrics] = [{ name: 'pviews', total: 500_000_000 }, { name: 'upviews', total: 0 }]
+
+      expect(subject.total_pviews).to eq('500,000,000')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:time_series_metrics] = [{ name: 'pviews', total: 5 }, { name: 'upviews', total: 0 }]
+
+      expect(subject.total_pviews).to eq('5')
+    end
+  end
+
+  describe '#total_searches' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:time_series_metrics] = [{ name: 'searches', total: 500_000_000 }, { name: 'upviews', total: '0' }, { name: 'pviews', total: 0 }]
+
+      expect(subject.total_searches).to eq('500,000,000')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:time_series_metrics] = [{ name: 'searches', total: 5 }, { name: 'pviews', total: 5 }, { name: 'upviews', total: 0 }]
+
+      expect(subject.total_searches).to eq('5')
+    end
+  end
+
+  describe '#total_satisfaction' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:time_series_metrics] = [{ name: 'satisfaction', total: 1 }, { name: 'upviews', total: '0' }, { name: 'pviews', total: 0 }]
+
+      expect(subject.total_satisfaction).to eq('100%')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:time_series_metrics] = [{ name: 'satisfaction', total: 0.01 }, { name: 'pviews', total: 5 }, { name: 'upviews', total: 0 }]
+
+      expect(subject.total_satisfaction).to eq('1%')
+    end
+  end
+
+  describe '#total_feedex' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:time_series_metrics] = [{ name: 'feedex', total: 1_000 }, { name: 'upviews', total: '0' }, { name: 'pviews', total: 0 }]
+
+      expect(subject.total_feedex).to eq('1,000')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:time_series_metrics] = [{ name: 'feedex', total: 1 }, { name: 'pviews', total: 5 }, { name: 'upviews', total: 0 }]
+
+      expect(subject.total_feedex).to eq('1')
+    end
+  end
+
+  describe '#total_words' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:edition_metrics] = [{ name: 'words', value: 5_000 }]
+
+      expect(subject.total_words).to eq('5,000')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:edition_metrics] = [{ name: 'words', value: 50 }]
+
+      expect(subject.total_words).to eq('50')
+    end
+  end
+
+  describe '#total_pdf_count' do
+    it 'correctly formats number for a value in the millions' do
+      current_period_data[:edition_metrics] = [{ name: 'pdf_count', value: 5_000 }]
+
+      expect(subject.total_pdf_count).to eq('5,000')
+    end
+
+    it 'correctly formats number for a small value' do
+      current_period_data[:edition_metrics] = [{ name: 'pdf_count', value: 50 }]
+
+      expect(subject.total_pdf_count).to eq('50')
+    end
+  end
+
   describe '#pageviews_per_visit' do
     it 'calculates number of times the page was viewed in one visit' do
       current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 50 }, { name: 'pviews', total: 100 }]
@@ -192,63 +218,9 @@ RSpec.describe SingleContentItemPresenter do
     end
   end
 
-  describe '#metadata' do
-    it 'returns a hash with the metadata' do
-      expect(subject.base_path).to eq('/the/base/path')
-      expect(subject.document_type).to eq("News story")
-      expect(subject.publishing_organisation).to eq("The Ministry")
-    end
-
-    it 'returns the title' do
-      expect(subject.title).to eq('Content Title')
-    end
-  end
-
-  describe '#feedback_explorer_href' do
-    it 'returns a URI for the feedback explorer' do
-      host = Plek.new.external_url_for('support')
-      expected_link = "#{host}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=%2Fthe%2Fbase%2Fpath"
-      expect(subject.feedback_explorer_href).to eq(expected_link)
-    end
-  end
-
-  describe '#google_analytics_href' do
-    it 'returns a URI for Google Analytics' do
-      expected_link = 'https://analytics.google.com/analytics/web/?hl=en&pli=1#/report/content-site-search-pages/a26179049w50705554p53872948/_u.date00=20181125&_u.date01=20181224&_r.drilldown=analytics.searchStartPage:~2Fthe~2Fbase~2Fpath'
-
-      expect(subject.search_terms_href).to eq(expected_link)
-    end
-  end
-
-  describe '#edit_url' do
-    it 'uses the ExternalLinksHelper' do
-      allow_any_instance_of(ExternalLinksHelper).to receive(
-        :edit_url_for
-      ).with(
-        content_id: 'content-id',
-        publishing_app: 'whitehall',
-        base_path: '/the/base/path',
-        document_type: 'news_story',
-        parent_content_id: ''
-      ).and_return(
-        'https://expected-link'
-      )
-
-      expect(subject.edit_url).to eq('https://expected-link')
-    end
-  end
-
-  describe '#edit_label' do
-    it 'uses the ExternalLinksHelper' do
-      allow_any_instance_of(ExternalLinksHelper).to receive(
-        :edit_label_for
-      ).with(
-        publishing_app: 'whitehall'
-      ).and_return(
-        'expected-label'
-      )
-
-      expect(subject.edit_label).to eq('expected-label')
+  describe '#searches_context' do
+    it 'returns calculated on page search rate formatted as percentage' do
+      expect(subject.searches_context).to include('4.05%')
     end
   end
 
@@ -258,47 +230,9 @@ RSpec.describe SingleContentItemPresenter do
     end
   end
 
-  def time_series_metrics(upviews_total = 100, upviews_timeseries = [{ date: '2018-11-25', value: 100 }])
-    [
-      {
-        name: 'upviews',
-        total: upviews_total,
-        time_series: upviews_timeseries
-      },
-      {
-        name: 'pviews',
-        total: 100,
-        time_series: [
-          {
-            date: '2018-11-25',
-            value: 100
-          }
-        ]
-      }
-    ]
-  end
-
-  def complete_previous_data
-    previous_month_time_series = []
-    (2.months.ago.to_date.beginning_of_month..2.months.ago.to_date.end_of_month).each do |date|
-      previous_month_time_series << { date: date.strftime, value: 100 }
+  describe '#feedback_explorer_href' do
+    it 'generates a URL to feedback explorer with correct params' do
+      expect(subject.feedback_explorer_href).to eq("#{Plek.new.external_url_for('support')}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=#{CGI.escape('/the/base/path')}")
     end
-    previous_month_time_series
-  end
-
-  def complete_current_data
-    previous_month_time_series = []
-    (1.month.ago.to_date.beginning_of_month..1.month.ago.to_date.end_of_month).each do |date|
-      previous_month_time_series << { date: date.strftime, value: 100 }
-    end
-    previous_month_time_series
-  end
-
-  def incomplete_previous_data
-    previous_month_time_series = []
-    (2.months.ago.to_date.beginning_of_month + 10.days..2.months.ago.to_date.end_of_month).each do |date|
-      previous_month_time_series << { date: date.strftime, value: 100 }
-    end
-    previous_month_time_series
   end
 end
