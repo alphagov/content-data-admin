@@ -154,9 +154,9 @@ module GdsApi
       end
 
       def default_single_page_payload(base_path, from, to, publishing_app = 'whitehall')
-        day1 = from
-        day2 = (Date.parse(from) + 1.day).to_s
-        day3 = to
+        day1 = from.to_s
+        day2 = (from + 1.day).to_s
+        day3 = to.to_s
         {
           metadata: {
             title: "Content Title",
@@ -246,9 +246,9 @@ module GdsApi
       end
 
       def default_previous_single_page_payload(base_path, from, to)
-        day1 = from
-        day2 = (Date.parse(from) + 1.day).to_s
-        day3 = to
+        day1 = from.to_s
+        day2 = (from + 1.day).to_s
+        day3 = to.to_s
         {
           metadata: {
             title: "Content Title",

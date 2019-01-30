@@ -8,8 +8,8 @@ RSpec.describe SingleContentItemPresenter do
   end
 
   let(:date_range) { build(:date_range, :past_30_days) }
-  let(:current_period_data) { default_single_page_payload('the/base/path', '2018-11-25', '2018-12-24') }
-  let(:previous_period_data) { default_single_page_payload('the/base/path', '2018-10-26', '2018-11-24') }
+  let(:current_period_data) { default_single_page_payload('the/base/path', Date.new(2018, 11, 25), Date.new(2018, 12, 24)) }
+  let(:previous_period_data) { default_single_page_payload('the/base/path', Date.new(2018, 10, 26), Date.new(2018, 11, 24)) }
   let(:default_timeseries_metrics) {
     [
       {
