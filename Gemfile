@@ -14,6 +14,7 @@ gem 'kaminari'
 gem 'logstasher'
 gem "pg", "~> 1"
 gem "plek", "~> 2"
+gem "puma"
 gem "uglifier", "~> 4"
 
 group :development do
