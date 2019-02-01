@@ -3,9 +3,7 @@ require 'csv'
 class ContentItemsCSVPresenter
   include CustomMetricsHelper
   include MetricsFormatterHelper
-
-  ALL_ORGANISATIONS = 'all'.freeze
-  NO_ORGANISATION = 'none'.freeze
+  include OrganisationsHelper
 
   def initialize(data_enum, search_params, document_types, organisations)
     @data_enum = data_enum
@@ -20,7 +18,7 @@ class ContentItemsCSVPresenter
     fields = {
       'Title' => raw_field(:title),
       'Organisation' => lambda do |result_row|
-        organisation_title(result_row[:organisation_id])
+        organisation_title(@organisations, result_row[:organisation_id])
       end,
       'URL' => lambda do |result_row|
         url(result_row[:base_path])
@@ -70,7 +68,7 @@ class ContentItemsCSVPresenter
     "content-data-export-from-%<from>s-to-%<to>s-from-%<org>s%<document_type>s.csv" % {
       from: @date_range.from,
       to: @date_range.to,
-      org: organisation_title(@organisation_id).parameterize,
+      org: organisation_title(@organisations, @organisation_id).parameterize,
       document_type: @document_type.present? ? "-in-#{@document_type.tr('_', '-')}" : ''
     }
   end
@@ -79,17 +77,6 @@ private
 
   def raw_field(name)
     lambda { |result_row| result_row[name] }
-  end
-
-  def organisation_title(organisation_id)
-    return 'No organisation' if [NO_ORGANISATION, nil].include?(organisation_id)
-    return 'All organisations' if organisation_id == ALL_ORGANISATIONS
-
-    organisation_data = @organisations.find do |org|
-      org[:id] == organisation_id
-    end
-
-    organisation_data[:name]
   end
 
   def url(base_path)
