@@ -69,10 +69,11 @@
   .table-wrapper {
     min-width: 900px;
     background-color: $white;
+    @include govuk-responsive-padding(6, "right");
   }
 
   .filter-form {
-    @include govuk-responsive-padding(3, "left");
+    @include govuk-responsive-padding(6, "left");
 
     .govuk-label--s {
       @include govuk-font($size: 16, $weight: bold);
