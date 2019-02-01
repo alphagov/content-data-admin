@@ -12,7 +12,15 @@ This application is currently in development for a private beta.
 
 * The [data warehouse](https://github.com/alphagov/content-performance-manager)
 
-## Setting up the application
+## Running the application
+
+### Standalone
+
+Launch the rails server:
+
+```bash
+bundle exec unicorn -c config/unicorn.rb
+```
 
 ### Using the GDS development VM
 
