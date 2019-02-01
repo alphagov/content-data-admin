@@ -74,6 +74,10 @@
   .filter-form {
     @include govuk-responsive-padding(3, "left");
 
+    .govuk-label--s {
+      @include govuk-font($size: 16, $weight: bold);
+    }
+
     .govuk-radios__hint {
       @include govuk-font(16);
     }

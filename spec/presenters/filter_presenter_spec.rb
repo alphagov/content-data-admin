@@ -18,71 +18,28 @@ RSpec.describe FilterPresenter do
   end
 
   describe '#document_type_options' do
-    context 'when valid document type in parameter' do
-      it 'formats the document types for the options component' do
-        expect(subject.document_type_options).to eq([
-          { text: 'All document types', value: '', selected: false },
-          { text: 'Case study', value: 'case_study', selected: false },
-          { text: 'Guide', value: 'guide', selected: false },
-          { text: 'News story', value: 'news_story', selected: true },
-          { text: 'HTML publication', value: 'html_publication', selected: false }
-        ])
-      end
-    end
-
-    context 'when no document type in parameter' do
-      before { search_parameters[:document_type] = '' }
-      it 'formats the document types for the options component' do
-        expect(subject.document_type_options).to eq([
-          { text: 'All document types', value: '', selected: true },
-          { text: 'Case study', value: 'case_study', selected: false },
-          { text: 'Guide', value: 'guide', selected: false },
-          { text: 'News story', value: 'news_story', selected: false },
-          { text: 'HTML publication', value: 'html_publication', selected: false }
-        ])
-      end
+    it 'formats the document types for the options component' do
+      expect(subject.document_type_options).to eq([
+        ["", "all"],
+        ["All document types", "all"],
+        ["Case study", "case_study"],
+        %w(Guide guide),
+        ["News story", "news_story"],
+        ["HTML publication", "html_publication"]
+      ])
     end
   end
 
   describe '#organisation_options' do
-    context 'when valid organisation id in parameter' do
-      it 'formats the organisations for the options component' do
-        expect(subject.organisation_options).to eq([
-          { text: 'All organisations', value: 'all', selected: false },
-          { text: 'No primary organisation', value: 'none', selected: false },
-          { text: 'org (OI)', value: 'org-id', selected: true },
-          { text: 'another org', value: 'another-org-id', selected: false },
-          { text: 'Users Org (UOI)', value: 'users-org-id', selected: false }
-        ])
-      end
-    end
-
-    context 'when organisation_id is `all` in parameter' do
-      before { search_parameters[:organisation_id] = 'all' }
-
-      it 'formats the organisations for the options component' do
-        expect(subject.organisation_options).to eq([
-          { text: 'All organisations', value: 'all', selected: true },
-          { text: 'No primary organisation', value: 'none', selected: false },
-          { text: 'org (OI)', value: 'org-id', selected: false },
-          { text: 'another org', value: 'another-org-id', selected: false },
-          { text: 'Users Org (UOI)', value: 'users-org-id', selected: false }
-        ])
-      end
-    end
-
-    context 'when organisation_id is `none` in parameter' do
-      before { search_parameters[:organisation_id] = 'none' }
-
-      it 'formats the organisations for the options component' do
-        expect(subject.organisation_options).to eq([
-          { text: 'All organisations', value: 'all', selected: false },
-          { text: 'No primary organisation', value: 'none', selected: true },
-          { text: 'org (OI)', value: 'org-id', selected: false },
-          { text: 'another org', value: 'another-org-id', selected: false },
-          { text: 'Users Org (UOI)', value: 'users-org-id', selected: false }
-        ])
-      end
+    it 'formats the organisations for the options component' do
+      expect(subject.organisation_options).to eq([
+        ["", "all"],
+        ["All organisations", "all"],
+        ["No primary organisation", "none"],
+        ["org (OI)", "org-id"],
+        ["another org", "another-org-id"],
+        ["Users Org (UOI)", "users-org-id"]
+      ])
     end
   end
 
@@ -101,9 +58,9 @@ RSpec.describe FilterPresenter do
     end
   end
 
-  describe '#document_type' do
+  describe '#document_type_name' do
     it 'returns the formatted document type' do
-      expect(subject.document_type).to eq("News story")
+      expect(subject.document_type_name).to eq("News story")
     end
   end
 

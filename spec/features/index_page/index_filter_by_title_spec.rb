@@ -16,7 +16,7 @@ RSpec.describe '/content' do
     content_data_api_has_orgs
     content_data_api_has_document_types
 
-    visit '/content?date_range=last-month&organisation_id=org-id'
+    visit '/content?submitted=true&date_range=last-month&organisation_id=org-id'
   end
 
   describe 'Filter by title / url' do

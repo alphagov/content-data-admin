@@ -18,27 +18,58 @@ class FilterPresenter
   end
 
   def document_type
-    find_document_type[:text]
+    find_selected_document_type || ['', '']
+  end
+
+  def document_type_id
+    find_selected_document_type[1]
+  end
+
+  def document_type_name
+    document_type[0]
+  end
+
+  def selected_document_type(params)
+    if params[:submitted].blank?
+      ['', '']
+    else
+      document_type
+    end
+  end
+
+  def organisation
+    find_selected_org || ['', 'all']
   end
 
   def organisation_name
-    find_selected_org[:text]
+    org_name = find_selected_org[0]
+    if org_name == ""
+      "All organisations"
+    else
+      org_name
+    end
+  end
+
+  def organisation_id
+    find_selected_org
+  end
+
+  def selected_organisation(params)
+    if params[:submitted].blank?
+      ['', '']
+    else
+      organisation
+    end
   end
 
   def document_type_options
-    types = [{
-               text: 'All document types',
-               value: '',
-               selected: @search_parameters[:document_type] == ''
-             }]
-    @document_types.each do |document_type|
-      types.push(
-        text: document_type[:name].humanize,
-        value: document_type[:id],
-        selected: document_type[:id] == @search_parameters[:document_type]
-      )
+    @document_type_options ||= begin
+      types = [['', 'all'], ['All document types', 'all']]
+      @document_types.each do |document_type|
+        types.push([document_type[:name], document_type[:id]])
+      end
+      types
     end
-    types
   end
 
   def organisation_options
@@ -47,11 +78,7 @@ class FilterPresenter
         @organisations.map do |org|
           name = org[:name]
           name.concat " (#{org[:acronym]})" if org[:acronym].present?
-          {
-            text: name,
-            value: org[:id],
-            selected: org[:id] == @search_parameters[:organisation_id]
-          }
+          [name, org[:id]]
         end
     end
   end
@@ -59,17 +86,18 @@ class FilterPresenter
 private
 
   def find_selected_org
-    organisation_options.find { |o| o[:selected] }
+    organisation_options.find { |o| o[1] == @search_parameters[:organisation_id] } || ['All organisations', 'all']
   end
 
-  def find_document_type
-    document_type_options.find { |d| d[:selected] }
+  def find_selected_document_type
+    document_type_options.find { |d| d[1] == @search_parameters[:document_type] } || ['All document types', 'all']
   end
 
   def additional_organisation_options
     [
-      { text: 'All organisations', value: 'all', selected: @search_parameters[:organisation_id] == 'all' },
-      { text: 'No primary organisation', value: 'none', selected: @search_parameters[:organisation_id] == 'none' }
+      ['', 'all'],
+      ['All organisations', 'all'],
+      ['No primary organisation', 'none']
     ]
   end
 end

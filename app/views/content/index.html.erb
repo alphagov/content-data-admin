@@ -11,8 +11,10 @@
       </div>
 
 
+
       <div class="filter-form">
         <%= form_tag content_path, method: 'get', name: 'organisation-picker', id: 'filter-form' do %>
+          <input type="hidden" name="submitted" value="true" >
           <%= render "components/time-select", {
             current_selection: @presenter.time_period,
             compact: true,
@@ -31,16 +33,28 @@
                 tabindex: 0,
                 value: params[:search_term],
               } %>
-              <%= render "govuk_publishing_components/components/select", {
-              id: "document_type",
-              label: "Document type",
-              options: @presenter.filter.document_type_options
-            } %>
-            <%= render "govuk_publishing_components/components/select", {
-              id: "organisation_id",
-              label: "Organisation",
-              options: @presenter.filter.organisation_options
-            } %>
+
+          <%= render "govuk_publishing_components/components/accessible_autocomplete",
+              {
+                id: 'document_type',
+                label: {
+                  text: "Document type"
+                },
+                options: @presenter.filter.document_type_options,
+                selected_option: @presenter.filter.selected_document_type(params)
+              }
+          %>
+
+          <%= render "govuk_publishing_components/components/accessible_autocomplete",
+              {
+                id: 'organisation_id',
+                label: {
+                  text: "Organisation"
+                },
+                options: @presenter.filter.organisation_options.unshift(['','all']),
+                selected_option: @presenter.filter.selected_organisation(params)
+              }
+          %>
 
             <%= render "govuk_publishing_components/components/button", {text: "Filter"} %>
           <% end %>
