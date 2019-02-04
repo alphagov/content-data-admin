@@ -3,6 +3,8 @@ require 'gds_api/content_data_api'
 module GdsApi
   module TestHelpers
     module ContentDataApi
+      CONTENT_DATA_API_ENDPOINT = Plek.current.find('content-performance-manager')
+
       def stub_metrics_page(base_path:, time_period:, publishing_app: 'whitehall')
         dates = build(:date_range, time_period)
         prev_dates = dates.previous
@@ -30,10 +32,10 @@ module GdsApi
           payload: previous_period_data
         )
       end
-
+      
       def content_data_api_does_not_have_base_path(base_path:, from:, to:)
         query = query(from: from, to: to)
-        url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
+        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}#{query}"
         stub_request(:get, url).to_return(status: 404, body: { some: 'error' }.to_json)
       end
 
@@ -57,13 +59,13 @@ module GdsApi
           }.to_json
 
           params_plus_page = params.merge(page: page)
-          url = "#{content_data_api_endpoint}/content#{query(params_plus_page)}"
+          url = "#{CONTENT_DATA_API_ENDPOINT}/content#{query(params_plus_page)}"
           stub_request(:get, url).to_return(status: 200, body: body)
 
           if page == 1
             # The 0'th page can be requested without specifying a page
             # number, so stub that request as well
-            url = "#{content_data_api_endpoint}/content#{query(params)}"
+            url = "#{CONTENT_DATA_API_ENDPOINT}/content#{query(params)}"
             stub_request(:get, url).to_return(status: 200, body: body)
           end
         end
@@ -82,7 +84,7 @@ module GdsApi
           total_pages: 0,
           page: 1
         }.to_json
-        url = "#{content_data_api_endpoint}/content#{query(params)}"
+        url = "#{CONTENT_DATA_API_ENDPOINT}/content#{query(params)}"
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
@@ -97,45 +99,41 @@ module GdsApi
           total_pages: 3000,
           page: page
         }.to_json
-        url = "#{content_data_api_endpoint}/content#{query(params)}"
+        url = "#{CONTENT_DATA_API_ENDPOINT}/content#{query(params)}"
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
       def content_data_api_has_single_page(base_path:, from:, to:, payload: nil, publishing_app: 'whitehall')
         query = query(from: from, to: to)
-        url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
+        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}#{query}"
         body = payload || default_single_page_payload(base_path, from, to, publishing_app)
         stub_request(:get, url).to_return(status: 200, body: body.to_json)
       end
 
       def content_data_api_has_single_page_missing_data(base_path:, from:, to:)
         query = query(from: from, to: to)
-        url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
+        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}#{query}"
         body = no_data_single_page_payload(base_path, from, to).to_json
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
       def content_data_api_has_single_page_with_nil_values(base_path:, from:, to:)
         query = query(from: from, to: to)
-        url = "#{content_data_api_endpoint}/single_page/#{base_path}#{query}"
+        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}#{query}"
         body = nil_values_in_single_page_payload(base_path, from, to).to_json
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
       def content_data_api_has_orgs
-        url = "#{content_data_api_endpoint}/api/v1/organisations"
+        url = "#{CONTENT_DATA_API_ENDPOINT}/api/v1/organisations"
         body = { organisations: default_organisations }.to_json
         stub_request(:get, url).to_return(status: 200, body: body)
       end
 
       def content_data_api_has_document_types
-        url = "#{content_data_api_endpoint}/api/v1/document_types"
+        url = "#{CONTENT_DATA_API_ENDPOINT}/api/v1/document_types"
         body = { document_types: default_document_types }.to_json
         stub_request(:get, url).to_return(status: 200, body: body)
-      end
-
-      def content_data_api_endpoint
-        Plek.current.find('content-performance-manager').to_s
       end
 
       def query(params)
