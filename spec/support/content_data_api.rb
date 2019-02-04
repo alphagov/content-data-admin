@@ -32,11 +32,12 @@ module GdsApi
           payload: previous_period_data
         )
       end
-      
+
       def content_data_api_does_not_have_base_path(base_path:, from:, to:)
-        query = query(from: from, to: to)
-        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}#{query}"
-        stub_request(:get, url).to_return(status: 404, body: { some: 'error' }.to_json)
+        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}"
+        stub_request(:get, url)
+          .with(query: { from: from, to: to })
+          .to_return(status: 404, body: { some: 'error' }.to_json)
       end
 
       def content_data_api_has_content_items(date_range:, organisation_id:, document_type: nil, search_term: nil, items:, page_size: nil)
@@ -58,16 +59,18 @@ module GdsApi
             page: page
           }.to_json
 
-          params_plus_page = params.merge(page: page)
-          url = "#{CONTENT_DATA_API_ENDPOINT}/content#{query(params_plus_page)}"
-          stub_request(:get, url).to_return(status: 200, body: body)
+          url = "#{CONTENT_DATA_API_ENDPOINT}/content"
 
           if page == 1
-            # The 0'th page can be requested without specifying a page
-            # number, so stub that request as well
-            url = "#{CONTENT_DATA_API_ENDPOINT}/content#{query(params)}"
-            stub_request(:get, url).to_return(status: 200, body: body)
+            # In addition, the 1st page can be requested without specifying a page number
+            stub_request(:get, url)
+              .with(query: params)
+              .to_return(status: 200, body: body)
           end
+
+          stub_request(:get, url)
+            .with(query: params.merge(page: page))
+            .to_return(status: 200, body: body)
         end
       end
 
@@ -84,8 +87,10 @@ module GdsApi
           total_pages: 0,
           page: 1
         }.to_json
-        url = "#{CONTENT_DATA_API_ENDPOINT}/content#{query(params)}"
-        stub_request(:get, url).to_return(status: 200, body: body)
+        url = "#{CONTENT_DATA_API_ENDPOINT}/content"
+        stub_request(:get, url)
+          .with(query: params)
+          .to_return(status: 200, body: body)
       end
 
       def content_data_api_has_many_matching_items(date_range:, organisation_id:, page: 1)
@@ -99,29 +104,34 @@ module GdsApi
           total_pages: 3000,
           page: page
         }.to_json
-        url = "#{CONTENT_DATA_API_ENDPOINT}/content#{query(params)}"
-        stub_request(:get, url).to_return(status: 200, body: body)
+        url = "#{CONTENT_DATA_API_ENDPOINT}/content"
+        stub_request(:get, url)
+          .with(query: params)
+          .to_return(status: 200, body: body)
       end
 
       def content_data_api_has_single_page(base_path:, from:, to:, payload: nil, publishing_app: 'whitehall')
-        query = query(from: from, to: to)
-        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}#{query}"
+        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}"
         body = payload || default_single_page_payload(base_path, from, to, publishing_app)
-        stub_request(:get, url).to_return(status: 200, body: body.to_json)
+        stub_request(:get, url)
+          .with(query: { from: from, to: to })
+          .to_return(status: 200, body: body.to_json)
       end
 
       def content_data_api_has_single_page_missing_data(base_path:, from:, to:)
-        query = query(from: from, to: to)
-        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}#{query}"
+        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}"
         body = no_data_single_page_payload(base_path, from, to).to_json
-        stub_request(:get, url).to_return(status: 200, body: body)
+        stub_request(:get, url)
+          .with(query: { from: from, to: to })
+          .to_return(status: 200, body: body)
       end
 
       def content_data_api_has_single_page_with_nil_values(base_path:, from:, to:)
-        query = query(from: from, to: to)
-        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}#{query}"
+        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}"
         body = nil_values_in_single_page_payload(base_path, from, to).to_json
-        stub_request(:get, url).to_return(status: 200, body: body)
+        stub_request(:get, url)
+          .with(query: { from: from, to: to })
+          .to_return(status: 200, body: body)
       end
 
       def content_data_api_has_orgs
@@ -134,21 +144,6 @@ module GdsApi
         url = "#{CONTENT_DATA_API_ENDPOINT}/api/v1/document_types"
         body = { document_types: default_document_types }.to_json
         stub_request(:get, url).to_return(status: 200, body: body)
-      end
-
-      def query(params)
-        param_pairs = params.sort.map { |key, value|
-          case value
-          when Array
-            value.map { |v|
-              "#{CGI.escape(key.to_s + '[]')}=#{CGI.escape(v.to_s)}"
-            }
-          else
-            "#{CGI.escape(key.to_s)}=#{CGI.escape(value.to_s)}"
-          end
-        }.flatten
-
-        "?#{param_pairs.join('&')}"
       end
 
       def default_single_page_payload(base_path, from, to, publishing_app = 'whitehall')
