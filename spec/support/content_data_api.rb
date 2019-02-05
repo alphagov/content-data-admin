@@ -75,22 +75,6 @@ module GdsApi
           .to_return(status: 200, body: body.to_json)
       end
 
-      def content_data_api_has_single_page_missing_data(base_path:, from:, to:)
-        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}"
-        body = no_data_single_page_payload(base_path, from, to).to_json
-        stub_request(:get, url)
-          .with(query: { from: from, to: to })
-          .to_return(status: 200, body: body)
-      end
-
-      def content_data_api_has_single_page_with_nil_values(base_path:, from:, to:)
-        url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}"
-        body = nil_values_in_single_page_payload(base_path, from, to).to_json
-        stub_request(:get, url)
-          .with(query: { from: from, to: to })
-          .to_return(status: 200, body: body)
-      end
-
       def default_single_page_payload(base_path, from, to, publishing_app = 'whitehall')
         day1 = from.to_s
         day2 = (from + 1.day).to_s
@@ -269,66 +253,6 @@ module GdsApi
               name: "pdf_count",
               value: 5
             }
-          ]
-        }
-      end
-
-      def no_data_single_page_payload(base_path, from, to)
-        {
-          metadata: {
-            title: "Content Title",
-            base_path: "/#{base_path}",
-            first_published_at: "2018-07-17T10:35:59.000Z",
-            public_updated_at: "2018-07-17T10:35:57.000Z",
-            publishing_app: "publisher",
-            document_type: "news_story",
-            primary_organisation_title: "The Ministry",
-            historical: false,
-            withdrawn: false
-          },
-          time_period: { to: to, from: from },
-          time_series_metrics: [
-            { name: "upviews", total: 0, time_series: [] },
-            { name: "pviews", total: 0, time_series: [] },
-            { name: "searches", total: 0, time_series: [] },
-            { name: "feedex", total: 0, time_series: [] },
-            { name: "satisfaction", total: 0.0, time_series: [] },
-            { name: "useful_yes", total: 0, time_series: [] },
-            { name: "useful_no", total: 0, time_series: [] }
-          ],
-          edition_metrics: [
-            { name: "words", value: 0 },
-            { name: "pdf_count", value: 0 }
-          ]
-        }
-      end
-
-      def nil_values_in_single_page_payload(base_path, from, to)
-        {
-          metadata: {
-            title: "Content Title",
-            base_path: "/#{base_path}",
-            first_published_at: "2018-07-17T10:35:59.000Z",
-            public_updated_at: "2018-07-17T10:35:57.000Z",
-            publishing_app: "publisher",
-            document_type: "news_story",
-            primary_organisation_title: "The Ministry",
-            historical: false,
-            withdrawn: false
-          },
-          time_period: { to: to, from: from },
-          time_series_metrics: [
-            { name: "upviews", total: nil, time_series: [] },
-            { name: "pviews", total: nil, time_series: [] },
-            { name: "searches", total: nil, time_series: [] },
-            { name: "feedex", total: nil, time_series: [] },
-            { name: "satisfaction", total: nil, time_series: [] },
-            { name: "useful_yes", total: nil, time_series: [] },
-            { name: "useful_no", total: nil, time_series: [] }
-          ],
-          edition_metrics: [
-            { name: "words", value: nil },
-            { name: "pdf_count", value: nil }
           ]
         }
       end
