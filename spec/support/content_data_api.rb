@@ -67,25 +67,6 @@ module GdsApi
         end
       end
 
-      def content_data_api_has_no_matching_items(date_range:, organisation_id:, document_type: nil, search_term: nil)
-        params = {
-          date_range: date_range,
-          organisation_id: organisation_id,
-          document_type: document_type,
-          search_term: search_term,
-        }.reject { |_, v| v.blank? }
-        body = {
-          results: [],
-          total_results: 0,
-          total_pages: 0,
-          page: 1
-        }.to_json
-        url = "#{CONTENT_DATA_API_ENDPOINT}/content"
-        stub_request(:get, url)
-          .with(query: params)
-          .to_return(status: 200, body: body)
-      end
-
       def content_data_api_has_single_page(base_path:, from:, to:, payload: nil, publishing_app: 'whitehall')
         url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}"
         body = payload || default_single_page_payload(base_path, from, to, publishing_app)
