@@ -33,28 +33,37 @@ module GdsApi
           page_size: page_size,
         }.reject { |_, v| v.blank? }
 
-        page_size ||= 100
-        total_pages = (items.length.to_f / page_size).ceil
-        items.each_slice(page_size).with_index(1) do |(*items_for_page), page|
-          body = {
-            results: items_for_page,
-            total_results: items.length,
-            total_pages: total_pages,
-            page: page
-          }.to_json
+        url = "#{CONTENT_DATA_API_ENDPOINT}/content"
 
-          url = "#{CONTENT_DATA_API_ENDPOINT}/content"
+        if items.empty?
+          stub_request(:get, url).with(query: params).to_return(
+            status: 200,
+            body: { results: [], total_results: 0, total_pages: 0, page: 1 }.to_json
+          )
+        else
+          page_size ||= 100
+          total_pages = (items.length.to_f / page_size).ceil
 
-          if page == 1
-            # In addition, the 1st page can be requested without specifying a page number
+          items.each_slice(page_size).with_index(1) do |(*items_for_page), page|
+            body = {
+              results: items_for_page,
+              total_results: items.length,
+              total_pages: total_pages,
+              page: page
+            }.to_json
+
+
+            if page == 1
+              # In addition, the 1st page can be requested without specifying a page number
+              stub_request(:get, url)
+                .with(query: params)
+                .to_return(status: 200, body: body)
+            end
+
             stub_request(:get, url)
-              .with(query: params)
+              .with(query: params.merge(page: page))
               .to_return(status: 200, body: body)
           end
-
-          stub_request(:get, url)
-            .with(query: params.merge(page: page))
-            .to_return(status: 200, body: body)
         end
       end
 
@@ -70,23 +79,6 @@ module GdsApi
           total_results: 0,
           total_pages: 0,
           page: 1
-        }.to_json
-        url = "#{CONTENT_DATA_API_ENDPOINT}/content"
-        stub_request(:get, url)
-          .with(query: params)
-          .to_return(status: 200, body: body)
-      end
-
-      def content_data_api_has_many_matching_items(date_range:, organisation_id:, page: 1)
-        params = {
-          date_range: date_range,
-          organisation_id: organisation_id,
-        }.reject { |_, v| v.blank? }
-        body = {
-          results: [],
-          total_results: 30_000,
-          total_pages: 3000,
-          page: page
         }.to_json
         url = "#{CONTENT_DATA_API_ENDPOINT}/content"
         stub_request(:get, url)

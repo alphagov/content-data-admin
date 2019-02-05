@@ -30,4 +30,28 @@ module RequestStubs
       payload: previous_period_data
     )
   end
+
+  def stub_content_page(time_period:, organisation_id: nil, document_type: nil, search_terms: nil, items:)
+    content_data_api_has_orgs
+    content_data_api_has_document_types
+
+    content_data_api_has_content_items(
+      date_range: time_period,
+      organisation_id: organisation_id,
+      document_type: document_type,
+      search_term: search_terms,
+      items: items
+    )
+  end
+
+  def stub_content_page_csv_download(time_period:, organisation_id: nil, document_type: nil, search_terms: nil, items:)
+    content_data_api_has_content_items(
+      date_range: time_period,
+      organisation_id: organisation_id,
+      document_type: document_type,
+      search_term: search_terms,
+      items: items,
+      page_size: 5000
+    )
+  end
 end
