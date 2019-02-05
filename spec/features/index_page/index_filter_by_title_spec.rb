@@ -1,5 +1,5 @@
 RSpec.describe '/content' do
-  include GdsApi::TestHelpers::ContentDataApi
+  include RequestStubs
   include TableDataSpecHelpers
 
   let(:items) do
@@ -12,16 +12,15 @@ RSpec.describe '/content' do
   before do
     GDS::SSO.test_user = build(:user, organisation_content_id: 'org-id')
 
-    content_data_api_has_content_items(date_range: 'last-month', organisation_id: 'org-id', items: items)
-    content_data_api_has_orgs
-    content_data_api_has_document_types
+    stub_content_page(time_period: 'last-month', organisation_id: 'org-id', items: items)
 
     visit '/content?submitted=true&date_range=last-month&organisation_id=org-id'
   end
 
   describe 'Filter by title / url' do
     before do
-      content_data_api_has_content_items(date_range: 'last-month', organisation_id: 'org-id', search_term: 'title', items: items)
+      stub_content_page(time_period: 'last-month', organisation_id: 'org-id', search_terms: 'title', items: items)
+
       fill_in 'Search for a title or URL', with: 'title'
       click_on 'Filter'
     end
