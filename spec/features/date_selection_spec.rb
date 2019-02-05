@@ -1,5 +1,5 @@
 RSpec.describe 'date selection', type: :feature do
-  include GdsApi::TestHelpers::ContentDataApi
+  include RequestStubs
   include TableDataSpecHelpers
   let(:base_path) { 'base/path' }
   let(:page_uri) { "/metrics/#{base_path}" }

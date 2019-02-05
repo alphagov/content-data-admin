@@ -5,32 +5,16 @@ module GdsApi
     module ContentDataApi
       CONTENT_DATA_API_ENDPOINT = Plek.current.find('content-performance-manager')
 
-      def stub_metrics_page(base_path:, time_period:, publishing_app: 'whitehall')
-        dates = build(:date_range, time_period)
-        prev_dates = dates.previous
+      def content_data_api_has_orgs
+        url = "#{CONTENT_DATA_API_ENDPOINT}/api/v1/organisations"
+        body = { organisations: default_organisations }.to_json
+        stub_request(:get, url).to_return(status: 200, body: body)
+      end
 
-        current_period_data = default_single_page_payload(
-          base_path, dates.from, dates.to
-        )
-        previous_period_data = default_previous_single_page_payload(
-          base_path, prev_dates.from, prev_dates.to
-        )
-
-        current_period_data[:metadata][:publishing_app] = publishing_app
-        previous_period_data[:metadata][:publishing_app] = publishing_app
-
-        content_data_api_has_single_page(
-          base_path: base_path,
-          from: dates.from,
-          to: dates.to,
-          payload: current_period_data
-        )
-        content_data_api_has_single_page(
-          base_path: base_path,
-          from: prev_dates.from,
-          to: prev_dates.to,
-          payload: previous_period_data
-        )
+      def content_data_api_has_document_types
+        url = "#{CONTENT_DATA_API_ENDPOINT}/api/v1/document_types"
+        body = { document_types: default_document_types }.to_json
+        stub_request(:get, url).to_return(status: 200, body: body)
       end
 
       def content_data_api_does_not_have_base_path(base_path:, from:, to:)
@@ -132,18 +116,6 @@ module GdsApi
         stub_request(:get, url)
           .with(query: { from: from, to: to })
           .to_return(status: 200, body: body)
-      end
-
-      def content_data_api_has_orgs
-        url = "#{CONTENT_DATA_API_ENDPOINT}/api/v1/organisations"
-        body = { organisations: default_organisations }.to_json
-        stub_request(:get, url).to_return(status: 200, body: body)
-      end
-
-      def content_data_api_has_document_types
-        url = "#{CONTENT_DATA_API_ENDPOINT}/api/v1/document_types"
-        body = { document_types: default_document_types }.to_json
-        stub_request(:get, url).to_return(status: 200, body: body)
       end
 
       def default_single_page_payload(base_path, from, to, publishing_app = 'whitehall')

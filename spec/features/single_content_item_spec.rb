@@ -1,5 +1,6 @@
 RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
+  include RequestStubs
   include TableDataSpecHelpers
   let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no] }
   let(:prev_from) { Time.zone.yesterday - 59.days }
