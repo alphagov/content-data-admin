@@ -1,5 +1,5 @@
 RSpec.describe '/content' do
-  include GdsApi::TestHelpers::ContentDataApi
+  include RequestStubs
   include TableDataSpecHelpers
   let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no] }
   let(:items) do
@@ -39,10 +39,8 @@ RSpec.describe '/content' do
 
   before do
     stub_metrics_page(base_path: 'path/1', time_period: :last_month)
-    content_data_api_has_content_items(date_range: 'last-month', organisation_id: 'org-id', items: items)
+    stub_content_page(time_period: 'last-month', organisation_id: 'org-id', items: items)
     GDS::SSO.test_user = build(:user, organisation_content_id: 'users-org-id')
-    content_data_api_has_orgs
-    content_data_api_has_document_types
 
     visit "/content?submitted=true&date_range=last-month&organisation_id=org-id"
   end
@@ -76,7 +74,7 @@ RSpec.describe '/content' do
 
     it 'respects the date filter' do
       stub_metrics_page(base_path: 'path/1', time_period: :past_year)
-      content_data_api_has_content_items(date_range: 'past-year', organisation_id: 'org-id', items: items)
+      stub_content_page(time_period: 'past-year', organisation_id: 'org-id', items: items)
 
       visit "/content?date_range=past-year&organisation_id=org-id"
       click_link 'The title'
@@ -87,7 +85,7 @@ RSpec.describe '/content' do
 
   context 'filter by organisation' do
     before do
-      content_data_api_has_content_items(date_range: 'last-month', organisation_id: 'another-org-id', items: items)
+      stub_content_page(time_period: 'last-month', organisation_id: 'another-org-id', items: items)
       select 'another org', from: 'organisation_id'
       click_on 'Filter'
     end
@@ -111,7 +109,7 @@ RSpec.describe '/content' do
 
     it 'respects date range' do
       stub_metrics_page(base_path: 'path/1', time_period: :past_year)
-      content_data_api_has_content_items(date_range: 'past-year', organisation_id: 'another-org-id', items: items)
+      stub_content_page(time_period: 'past-year', organisation_id: 'another-org-id', items: items)
 
       visit "/content?date_range=past-year&organisation_id=another-org-id"
 
@@ -123,8 +121,8 @@ RSpec.describe '/content' do
 
     context 'when no organisation_id in params' do
       before do
-        content_data_api_has_content_items(
-          date_range: 'last-month',
+        stub_content_page(
+          time_period: 'last-month',
           organisation_id: 'all',
           items: [
             items[0].merge(title: 'Content from all-orgs')
@@ -146,13 +144,13 @@ RSpec.describe '/content' do
 
     context 'with all organisations' do
       before do
-        content_data_api_has_content_items(
-          date_range: 'past-30-days',
+        stub_content_page(
+          time_period: 'past-30-days',
           organisation_id: 'users-org-id',
           items: items
         )
-        content_data_api_has_content_items(
-          date_range: 'past-30-days',
+        stub_content_page(
+          time_period: 'past-30-days',
           organisation_id: 'all',
           items: [items[0].merge(title: 'Content from all orgs')]
         )
@@ -169,13 +167,13 @@ RSpec.describe '/content' do
 
     context 'with no organisations' do
       before do
-        content_data_api_has_content_items(
-          date_range: 'past-30-days',
+        stub_content_page(
+          time_period: 'past-30-days',
           organisation_id: 'users-org-id',
           items: items
         )
-        content_data_api_has_content_items(
-          date_range: 'past-30-days',
+        stub_content_page(
+          time_period: 'past-30-days',
           organisation_id: 'none',
           items: [items[0].merge(title: 'Content with no primary org')]
         )
@@ -192,15 +190,15 @@ RSpec.describe '/content' do
 
     context 'filter by title or slug' do
       before do
-        content_data_api_has_content_items(
-          date_range: 'past-30-days',
+        stub_content_page(
+          time_period: 'past-30-days',
           organisation_id: 'all',
           items: items
         )
-        content_data_api_has_content_items(
-          date_range: 'past-30-days',
+        stub_content_page(
+          time_period: 'past-30-days',
           organisation_id: 'all',
-          search_term: 'Relevant',
+          search_terms: 'Relevant',
           items: [items[0].merge(title: 'Relevant content article')]
         )
         visit '/content?date_range=past-30-days'
@@ -220,7 +218,7 @@ RSpec.describe '/content' do
 
   context 'filter by document_type' do
     before do
-      content_data_api_has_content_items(date_range: 'last-month', organisation_id: 'org-id', document_type: 'news_story', items: [items.second])
+      stub_content_page(time_period: 'last-month', organisation_id: 'org-id', document_type: 'news_story', items: [items.second])
       select 'News story', from: 'document_type'
       click_on 'Filter'
     end
@@ -252,7 +250,7 @@ RSpec.describe '/content' do
 
   describe 'no results returned' do
     before do
-      content_data_api_has_no_matching_items(date_range: 'past-3-months', organisation_id: 'org-id')
+      stub_content_page(time_period: 'past-3-months', organisation_id: 'org-id', items: [])
       visit "/content?date_range=past-3-months&organisation_id=org-id"
     end
 
@@ -263,12 +261,12 @@ RSpec.describe '/content' do
 
   describe 'large set of results' do
     before do
-      content_data_api_has_many_matching_items(date_range: 'past-3-months', organisation_id: 'org-id', page: 200)
+      stub_content_page(time_period: 'past-3-months', organisation_id: 'org-id', items: items * 50)
       visit "/content?date_range=past-3-months&organisation_id=org-id"
     end
 
     it 'formats the page numbers correctly in the table header' do
-      expect(page).to have_css('h1.table-header', exact_text: 'Showing 19,901 to 20,000 of 30,000 results from org (OI)')
+      expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 to 100 of 150 results from org (OI)')
     end
   end
 
@@ -278,18 +276,17 @@ RSpec.describe '/content' do
     let(:csv_items) { items * 11 }
 
     it 'it provides a CSV file respecting all filters' do
-      content_data_api_has_content_items(
-        date_range: 'last-month',
+      stub_content_page(
+        time_period: 'last-month',
         organisation_id: 'org-id',
         items: csv_items,
-        search_term: 'find this'
+        search_terms: 'find this'
       )
-      content_data_api_has_content_items(
-        date_range: 'last-month',
+      stub_content_page_csv_download(
+        time_period: 'last-month',
         organisation_id: 'org-id',
         items: csv_items,
-        page_size: 5000,
-        search_term: 'find this'
+        search_terms: 'find this'
       )
       visit "/content?date_range=last-month&organisation_id=org-id&search_term=find+this"
       click_link 'Download all data in CSV format'

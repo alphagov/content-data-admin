@@ -1,5 +1,5 @@
 RSpec.shared_examples 'Metadata presentation' do
-  include GdsApi::TestHelpers::ContentDataApi
+  include GdsApi::TestHelpers::ResponseHelpers
 
   around do |example|
     Timecop.freeze Date.new(2018, 12, 25) do
@@ -8,8 +8,8 @@ RSpec.shared_examples 'Metadata presentation' do
   end
 
   let(:date_range) { build(:date_range, :past_30_days) }
-  let(:current_period_data) { default_single_page_payload('the/base/path', Date.new(2018, 11, 25), Date.new(2018, 12, 24)) }
-  let(:previous_period_data) { default_single_page_payload('the/base/path', Date.new(2018, 10, 26), Date.new(2018, 11, 24)) }
+  let(:current_period_data) { single_page_response('the/base/path', Date.new(2018, 11, 25), Date.new(2018, 12, 24)) }
+  let(:previous_period_data) { single_page_response('the/base/path', Date.new(2018, 10, 26), Date.new(2018, 11, 24)) }
 
   subject do
     SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)

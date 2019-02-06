@@ -1,18 +1,12 @@
 RSpec.describe "Results pagination" do
-  include GdsApi::TestHelpers::ContentDataApi
+  include RequestStubs
   include TableDataSpecHelpers
   let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no] }
 
   context 'has no results' do
     before do
       GDS::SSO.test_user = build(:user, organisation_content_id: 'users-org-id')
-      content_data_api_has_orgs
-      content_data_api_has_document_types
-
-      content_data_api_has_no_matching_items(
-        date_range: 'last-month',
-        organisation_id: 'org-id',
-      )
+      stub_content_page(time_period: 'last-month', organisation_id: 'org-id', items: [])
 
       visit "/content?date_range=last-month&organisation_id=org-id"
     end
@@ -85,11 +79,8 @@ RSpec.describe "Results pagination" do
 
     before do
       GDS::SSO.test_user = build(:user, organisation_content_id: 'users-org-id')
-      content_data_api_has_orgs
-      content_data_api_has_document_types
-
-      content_data_api_has_content_items(
-        date_range: 'last-month',
+      stub_content_page(
+        time_period: 'last-month',
         organisation_id: 'org-id',
         items: (items[1..-1] * 50) + other_page_items
       )
