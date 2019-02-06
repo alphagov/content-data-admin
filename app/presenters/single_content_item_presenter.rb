@@ -48,7 +48,8 @@ class SingleContentItemPresenter
   end
 
   def reading_time
-    "1hr 50m"
+    dur = ActiveSupport::Duration.build(@metrics['reading_time'][:value] * 60)
+    Time.at(dur).utc.strftime("%kh %-Mm")
   end
 
   def upviews_context

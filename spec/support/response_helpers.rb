@@ -90,6 +90,10 @@ module GdsApi
             {
               name: "pdf_count",
               value: 3
+            },
+            {
+              name: "reading_time",
+              value: 20
             }
           ]
         }
@@ -180,6 +184,10 @@ module GdsApi
             {
               name: "pdf_count",
               value: 5
+            },
+            {
+              name: "reading_time",
+              value: 20
             }
           ]
         }
