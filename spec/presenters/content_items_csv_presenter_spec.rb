@@ -1,8 +1,17 @@
 RSpec.describe ContentItemsCSVPresenter do
-  include GdsApi::TestHelpers::ContentDataApi
+  let(:document_types) do
+    [{ id: 'case_study', name: 'Case study' },
+     { id: 'guide', name: 'Guide' },
+     { id: 'news_story', name: 'News story' },
+     { id: 'html_publication', name: 'HTML publication' }]
+  end
 
-  let(:document_types) { default_document_types }
-  let(:organisations) { default_organisations }
+  let(:organisations) do
+    [{ name: 'org', id: 'org-id', acronym: 'OI', },
+     { name: 'another org', id: 'another-org-id', },
+     { name: 'Users Org', id: 'users-org-id', acronym: 'UOI', }]
+  end
+
   let(:search_params) do
     {
       date_range: 'past-30-days',

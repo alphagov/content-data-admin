@@ -1,8 +1,8 @@
 RSpec.describe ContentItemsPresenter do
   include GdsApi::TestHelpers::ContentDataApi
 
-  let(:document_types) { default_document_types }
-  let(:organisations) { default_organisations }
+  let(:document_types) { [] }
+  let(:organisations) { [] }
   let(:search_parameters) do
     {
       date_range: 'last-30-days',

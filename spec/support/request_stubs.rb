@@ -1,16 +1,18 @@
 require 'support/content_data_api'
+require 'support/response_helpers'
 
 module RequestStubs
   include GdsApi::TestHelpers::ContentDataApi
+  include GdsApi::TestHelpers::ResponseHelpers
 
   def stub_metrics_page(base_path:, time_period:, publishing_app: 'whitehall', content_item_missing: false, current_data_missing: false, comparision_data_missing: false)
     dates = build(:date_range, time_period)
     prev_dates = dates.previous
 
-    current_period_data = default_single_page_payload(
+    current_period_data = single_page_response(
       base_path, dates.from, dates.to
     )
-    previous_period_data = default_previous_single_page_payload(
+    previous_period_data = older_single_page_response(
       base_path, prev_dates.from, prev_dates.to
     )
 
