@@ -34,6 +34,7 @@ RSpec.describe ContentItemsCSVPresenter do
         searches: 14,
         feedex: 24,
         word_count: 50,
+        reading_time: 50,
         pdf_count: 0
       },
       {
@@ -49,6 +50,7 @@ RSpec.describe ContentItemsCSVPresenter do
         searches: 14,
         feedex: 24,
         word_count: 100,
+        reading_time: 100,
         pdf_count: 3
       }
     ]
@@ -88,6 +90,7 @@ RSpec.describe ContentItemsCSVPresenter do
         'Link to feedback comments',
         I18n.t('metrics.words.short_title'),
         I18n.t('metrics.pdf_count.short_title'),
+        I18n.t('metrics.reading_time.short_title')
       ]
 
       expected_headers.each do |header_name|
@@ -168,6 +171,10 @@ RSpec.describe ContentItemsCSVPresenter do
 
       it 'has pdf count' do
         expect(subject[16]).to eq('0')
+      end
+
+      it 'has reading time' do
+        expect(subject[17]).to eq('0h 50m')
       end
     end
   end
