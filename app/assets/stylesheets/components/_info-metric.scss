@@ -29,7 +29,14 @@
   @include govuk-responsive-margin(1, "top");
 }
 
+.app-c-info-metric__words {
+  @include govuk-responsive-margin(1, "top");
+}
+
 .app-c-info-metric {
+
+  @include govuk-responsive-margin(3, "left");
+  @include govuk-responsive-margin(3, "right");
 
   .govuk-details__summary-text {
     @include govuk-font(16);
@@ -39,4 +46,11 @@
     @include govuk-font(16);
   }
 
+}
+
+.govuk-grid-column-one-third {
+
+  .app-c-info-metric {
+    @include govuk-responsive-margin(1, "left");
+  }
 }

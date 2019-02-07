@@ -47,6 +47,10 @@ class SingleContentItemPresenter
     number_with_delimiter value_for('pageviews_per_visit')
   end
 
+  def reading_time
+    format_duration(@metrics['reading_time'][:value])
+  end
+
   def upviews_context
     I18n.t("metrics.upviews.context", percent_org_views: 2.74)
   end
