@@ -3,6 +3,65 @@ require 'gds_api/content_data_api'
 module GdsApi
   module TestHelpers
     module ResponseHelpers
+      def content_response
+        {
+          total_results: 3,
+          page: 1,
+          total_pages: 1,
+          page_size: 100,
+          results: [
+            {
+              base_path: '/',
+              title: 'GOV.UK homepage',
+              organisation_id: 'org-id',
+              upviews: 1_233_018,
+              document_type: 'homepage',
+              satisfaction: 0.85,
+              satisfaction_score_responses: 2050,
+              searches: 1220,
+              pviews: 8373274,
+              feedex: 137,
+              useful_yes: 1050,
+              useful_no: 2334,
+              pdf_count: 0,
+              word_count: 0
+            },
+            {
+              base_path: '/path/1',
+              title: 'The title',
+              organisation_id: 'org-id',
+              upviews: 233_018,
+              document_type: 'news_story',
+              satisfaction: 0.81301,
+              satisfaction_score_responses: 250,
+              searches: 220,
+              pviews: 179_926,
+              feedex: 180,
+              useful_yes: 2837,
+              useful_no: 7495,
+              pdf_count: 0,
+              word_count: 0
+            },
+            {
+              base_path: '/path/2',
+              title: 'Another title',
+              organisation_id: 'org-id',
+              upviews: 100_018,
+              document_type: 'guide',
+              satisfaction: 0.68,
+              satisfaction_score_responses: 42,
+              searches: 12,
+              pviews: 95_232,
+              feedex: 72,
+              useful_yes: 1530,
+              useful_no: 1255,
+              pdf_count: 0,
+              word_count: 170
+            }
+          ]
+        }
+      end
+
       def single_page_response(base_path, from, to, publishing_app = 'whitehall')
         day1 = from.to_s
         day2 = (from + 1.day).to_s

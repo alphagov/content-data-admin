@@ -1,3 +1,8 @@
-<%= link_to item.title, metrics_path(item.base_path, date_range: date_range), data: { gtm: item.raw_document_type } %>
+<%= link_to item.title,
+  metrics_path(item.base_path, date_range: date_range),
+  data: {
+    'gtm-id': 'content-item-link',
+    'gtm-item-document-type': item.raw_document_type
+  } %>
 <br>
 <span class="base-path">/<%= item.base_path %></span>

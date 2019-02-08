@@ -15,7 +15,7 @@
   end
 %>
 <% if dates.length > 1 && current_selection %>
-  <div class="app-c-time-select <% if compact %> app-c-time-select--compact<% end %>">
+  <div class="app-c-time-select <% if compact %> app-c-time-select--compact<% end %>" data-gtm-id="time-period-options">
     <%if compact %>
       <h2 class="govuk-heading-s app-c-time-select__heading"><%= t '.title_compact', time_period: dates.find {|d| d[:value] == current_selection }[:text] %></h2>
     <% else %>
