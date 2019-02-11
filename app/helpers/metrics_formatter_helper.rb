@@ -11,6 +11,8 @@ module MetricsFormatterHelper
   end
 
   def format_duration(minutes)
+    return nil unless minutes
+
     dur = ActiveSupport::Duration.build(minutes * 60)
     Time.at(dur).utc.to_s(:reading_time)
   end

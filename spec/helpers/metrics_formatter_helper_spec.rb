@@ -33,5 +33,9 @@ RSpec.describe MetricsFormatterHelper do
     it 'formats duration for reading time of several hours and minutes' do
       expect(format_duration(150)).to eq('2h 30m')
     end
+
+    it 'return nil if minutes is nil' do
+      expect(format_duration(nil)).to be_nil
+    end
   end
 end

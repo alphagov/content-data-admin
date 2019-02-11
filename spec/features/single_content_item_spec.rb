@@ -31,6 +31,23 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
   end
 
+  context 'when the page has no edition metrics' do
+    before do
+      GDS::SSO.test_user = build(:user)
+      stub_metrics_page(base_path: nil, time_period: :last_month, edition_metrics_missing: true)
+      visit '/metrics?date_range=last-month'
+    end
+
+    it 'renders the page without errors' do
+      expect(page.status_code).to eq(200)
+    end
+
+    it 'does not display reading time' do
+      label = 'About reading time'
+      expect(page).to_not have_selector("metric-summary__reading-time .govuk-details__summary-text", text: label)
+    end
+  end
+
   context 'successful request' do
     before do
       GDS::SSO.test_user = build(:user)
