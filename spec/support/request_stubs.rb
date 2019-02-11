@@ -5,7 +5,7 @@ module RequestStubs
   include GdsApi::TestHelpers::ContentDataApi
   include GdsApi::TestHelpers::ResponseHelpers
 
-  def stub_metrics_page(base_path:, time_period:, publishing_app: 'whitehall', content_item_missing: false, current_data_missing: false, comparision_data_missing: false)
+  def stub_metrics_page(base_path:, time_period:, publishing_app: 'whitehall', content_item_missing: false, current_data_missing: false, comparision_data_missing: false, edition_metrics_missing: false)
     dates = build(:date_range, time_period)
     prev_dates = dates.previous
 
@@ -20,11 +20,17 @@ module RequestStubs
     previous_period_data[:metadata][:publishing_app] = publishing_app
 
     if current_data_missing
-      set_content_item_metrics_to_missing(current_period_data)
+      set_time_series_metrics_to_missing(current_period_data)
+      set_edition_metrics_to_missing(current_period_data)
     end
 
     if comparision_data_missing
-      set_content_item_metrics_to_missing(previous_period_data)
+      set_time_series_metrics_to_missing(previous_period_data)
+      set_edition_metrics_to_missing(current_period_data)
+    end
+
+    if edition_metrics_missing
+      set_edition_metrics_to_missing(current_period_data)
     end
 
     if content_item_missing
@@ -71,12 +77,14 @@ module RequestStubs
     )
   end
 
-  def set_content_item_metrics_to_missing(response)
+  def set_time_series_metrics_to_missing(response)
     response[:time_series_metrics].each do |metric|
       metric[:total] = nil
       metric[:time_series] = []
     end
+  end
 
+  def set_edition_metrics_to_missing(response)
     response[:edition_metrics].each do |metric|
       metric[:value] = nil
     end
