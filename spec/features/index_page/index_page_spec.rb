@@ -12,7 +12,8 @@ RSpec.describe '/content' do
         document_type: 'homepage',
         satisfaction: 0.85,
         satisfaction_score_responses: 2050,
-        searches: 1220
+        searches: 1220,
+        reading_time: 50
       },
       {
         base_path: '/path/1',
@@ -22,7 +23,8 @@ RSpec.describe '/content' do
         document_type: 'news_story',
         satisfaction: 0.81301,
         satisfaction_score_responses: 250,
-        searches: 220
+        searches: 220,
+        reading_time: 50
       },
       {
         base_path: '/path/2',
@@ -32,7 +34,8 @@ RSpec.describe '/content' do
         document_type: 'guide',
         satisfaction: 0.68,
         satisfaction_score_responses: 42,
-        searches: 12
+        searches: 12,
+        reading_time: 50
       }
     ]
   end
