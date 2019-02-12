@@ -1,14 +1,14 @@
 <% content_for :title, t('.browser_title', content_title: @performance_data.title) %>
 <% content_for :local_nav do %>
   <div class="local-nav govuk-grid-column-one-quarter">
-    <a href="/content" class="local-nav__search-link govuk-link govuk-link--no-visited-state" data-gtm="back-link">Search</a>
+    <a href="/content" class="local-nav__search-link govuk-link govuk-link--no-visited-state" data-gtm-id="back-link">Search</a>
   </div>
 <% end %>
 <% current_selection = @performance_data.date_range.time_period || 'past-30-days' %>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <span class="govuk-caption-xl"><%= t ".page_kicker" %></span>
+    <span class="govuk-caption-xl" data-gtm-id="page-kicker"><%= t ".page_kicker" %></span>
   </div>
 </div>
 <div class="govuk-grid-row">
@@ -42,7 +42,11 @@
       } %>
   </div>
 </div>
-<%= form_for("date", url: "/metrics#{@performance_data.base_path}", method: :get, html: { id: 'filter-form' }) do %>
+<%= form_for "date",
+  url: "/metrics#{@performance_data.base_path}",
+  method: :get,
+  html: { id: 'filter-form' },
+  data: { 'gtm-id': 'time-period-form' } do %>
   <%= render "components/time-select", {
     render_button: true,
     current_selection: current_selection,
@@ -50,7 +54,7 @@
   } %>
 <% end %>
 
-<div class="govuk-grid-row">
+<div class="govuk-grid-row" data-gtm-id="glance-metrics">
   <%= render "glance_metric",
       metric_name: "upviews",
       total: @performance_data.total_upviews,
