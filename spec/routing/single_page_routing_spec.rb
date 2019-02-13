@@ -13,4 +13,12 @@ RSpec.describe 'routes for Single Data Page' do
       action: 'show'
     )
   end
+
+  it 'routes /metrics/base/path.cy' do
+    expect(get: '/metrics/base/path.cy').to route_to(
+      controller: 'metrics',
+      action: 'show',
+      base_path: 'base/path.cy'
+    )
+  end
 end
