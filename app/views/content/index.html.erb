@@ -13,7 +13,11 @@
 
 
       <div class="filter-form">
-        <%= form_tag content_path, method: 'get', name: 'organisation-picker', id: 'filter-form' do %>
+        <%= form_tag content_path,
+          method: 'get',
+          name: 'organisation-picker',
+          id: 'filter-form',
+          data: { 'gtm-id': 'filters-form' } do %>
           <input type="hidden" name="submitted" value="true" >
           <%= render "components/time-select", {
             current_selection: @presenter.time_period,
@@ -60,13 +64,12 @@
           <% end %>
         </div>
 
-            <p><a href="/content" class="govuk-link govuk-body-s">Clear all filters</a></p>
+            <p><a href="/content" class="govuk-link govuk-body-s" data-gtm-id="clear-filters">Clear all filters</a></p>
 
             <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
             <p>
               <a href="<%= content_path(@presenter.search_parameters.merge(format: :csv)) %>"
-                 class="govuk-link govuk-body-s download-link"
-              >
+                 class="govuk-link govuk-body-s download-link" data-gtm-id="csv-download-link">
                 Download all data in CSV format
               </a>
             </p>
@@ -74,25 +77,37 @@
     </div>
     <div class="govuk-grid-column-three-quarters">
       <div class="table-wrapper">
-        <table class="govuk-table">
+        <table class="govuk-table"
+          data-gtm-total-results="<%= @presenter.pagination.total_results %>"
+          data-gtm-page="<%= @presenter.pagination.page %>"
+          >
           <caption class="govuk-table__caption">
             <%= render('table_data_description', pagination: @presenter.pagination, filter: @presenter.filter) %>
           </caption>
-          <thead class="govuk-table__head">
+          <thead class="govuk-table__head" data-gtm-id="table-header">
             <tr class="govuk-table__row">
-              <th class="govuk-table__header" scope="col">Page title</th>
-              <th class="govuk-table__header" scope="col">Content type</th>
-              <th class="govuk-table__header" scope="col">
+              <th class="govuk-table__header" scope="col" data-gtm-id="title-column">Page title</th>
+              <th class="govuk-table__header" scope="col" data-gtm-id="document-type-column">Content type</th>
+              <th class="govuk-table__header" scope="col" data-gtm-id="upviews-column">
                 Unique pageviews<br>
-                <%= image_tag('question_mark_default.svg', alt: 'Help', title: "#{t "metrics.upviews.summary"}") %>
+                <%= image_tag 'question_mark_default.svg',
+                  alt: 'Help',
+                  title: "#{t "metrics.upviews.summary"}",
+                  data: { 'gtm-id': 'help-icon' } %>
               </th>
-              <th class="govuk-table__header" scope="col">
+              <th class="govuk-table__header" scope="col" data-gtm-id="satisfaction-column">
                 User satisfaction score<br>
-                <%= image_tag('question_mark_default.svg', alt: 'Help', title: "#{t "metrics.satisfaction.summary"}") %>
+                <%= image_tag 'question_mark_default.svg',
+                  alt: 'Help',
+                  title: "#{t "metrics.satisfaction.summary"}",
+                  data: { 'gtm-id': 'help-icon' } %>
               </th>
-              <th class="govuk-table__header" scope="col">
+              <th class="govuk-table__header" scope="col" data-gtm-id="searches-column">
                 Searches from page<br>
-                <%= image_tag('question_mark_default.svg', alt: 'Help', title: "#{t "metrics.searches.summary"}") %>
+                <%= image_tag 'question_mark_default.svg',
+                  alt: 'Help',
+                  title: "#{t "metrics.searches.summary"}",
+                  data: { 'gtm-id': 'help-icon' } %>
               </th>
             </tr>
           </thead>
@@ -119,6 +134,8 @@
    </table>
 
         </div>
-        <%= render "govuk_publishing_components/components/previous_and_next_navigation", navigation_links %>
+        <div data-gtm-id="pagination-links">
+          <%= render "govuk_publishing_components/components/previous_and_next_navigation", navigation_links %>
+        </div>
     </div>
 </div>

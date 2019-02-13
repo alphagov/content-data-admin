@@ -12,9 +12,9 @@ RSpec.describe "Results pagination" do
     end
 
     it 'has GTM data attributes' do
-      expect(page).to have_css('span[data-gtm-pagination-total-results]')
+      expect(page).to have_css('[data-gtm-total-results]')
 
-      total_results = page.find('span[data-gtm-pagination-total-results]')['data-gtm-pagination-total-results']
+      total_results = page.find('[data-gtm-total-results]')['data-gtm-total-results']
       expect(total_results).to eq('0')
     end
   end
@@ -103,9 +103,9 @@ RSpec.describe "Results pagination" do
     end
 
     it 'has GTM data attributes' do
-      expect(page).to have_css('span[data-gtm-pagination-total-results]')
+      expect(page).to have_css('[data-gtm-total-results]')
 
-      total_results = page.find('span[data-gtm-pagination-total-results]')['data-gtm-pagination-total-results']
+      total_results = page.find('[data-gtm-total-results]')['data-gtm-total-results']
       expect(total_results).to eq('102')
     end
   end
