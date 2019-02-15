@@ -15,6 +15,7 @@ class FindContent
     @document_type = params[:document_type] unless params[:document_type] == 'all'
     @page = params[:page]
     @search_term = params[:search_term]
+    @sort = params[:sort]
   end
 
   def call
@@ -23,7 +24,8 @@ class FindContent
       organisation_id: @organisation,
       document_type: @document_type,
       page: @page,
-      search_term: @search_term
+      search_term: @search_term,
+      sort: @sort,
     )
   end
 
@@ -33,6 +35,7 @@ class FindContent
       organisation_id: @organisation,
       document_type: @document_type,
       search_term: @search_term,
+      sort: @sort,
     }
 
     Enumerator.new do |yielder|

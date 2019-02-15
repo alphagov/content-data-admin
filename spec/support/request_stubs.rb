@@ -53,7 +53,7 @@ module RequestStubs
     end
   end
 
-  def stub_content_page(time_period:, organisation_id: nil, document_type: nil, search_terms: nil, items: nil)
+  def stub_content_page(time_period:, organisation_id: nil, document_type: nil, search_terms: nil, sort: 'upviews:desc', items: nil)
     content_data_api_has_orgs
     content_data_api_has_document_types
 
@@ -64,17 +64,19 @@ module RequestStubs
       organisation_id: organisation_id,
       document_type: document_type,
       search_term: search_terms,
+      sort: sort,
       items: items
     )
   end
 
-  def stub_content_page_csv_download(time_period:, organisation_id: nil, document_type: nil, search_terms: nil, items:)
+  def stub_content_page_csv_download(time_period:, organisation_id: nil, document_type: nil, search_terms: nil, sort: 'upviews:desc', items:)
     content_data_api_has_content_items(
       date_range: time_period,
       organisation_id: organisation_id,
       document_type: document_type,
       search_term: search_terms,
       items: items,
+      sort: sort,
       page_size: 5000
     )
   end

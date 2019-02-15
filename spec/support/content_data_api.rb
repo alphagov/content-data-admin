@@ -35,13 +35,14 @@ module GdsApi
           .to_return(status: 200, body: body.to_json)
       end
 
-      def content_data_api_has_content_items(date_range:, organisation_id:, document_type: nil, search_term: nil, items:, page_size: nil)
+      def content_data_api_has_content_items(date_range:, organisation_id:, document_type: nil, search_term: nil, items:, page_size: nil, sort: nil)
         params = {
           date_range: date_range,
           organisation_id: organisation_id,
           document_type: document_type,
           search_term: search_term,
           page_size: page_size,
+          sort: sort
         }.reject { |_, v| v.blank? }
 
         url = "#{CONTENT_DATA_API_ENDPOINT}/content"
