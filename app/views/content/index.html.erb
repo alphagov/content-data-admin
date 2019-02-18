@@ -115,7 +115,7 @@
           <tbody class="govuk-table__body">
           <% @presenter.content_items.each do |item| %>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell">
+              <td class="govuk-table__cell" data-gtm-id="title-column">
                 <%=
                   render(
                     partial: 'page_title',
@@ -125,10 +125,10 @@
                     }
                 ) %>
               </td>
-              <td class="govuk-table__cell govuk-table__cell--shaded"><%= item.document_type %></td>
-              <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.upviews %></td>
-              <td class="govuk-table__cell govuk-table__cell--shaded"><%= item.user_satisfaction %></td>
-              <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.searches %></td>
+              <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="document_type-column"><%= item.document_type %></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric" data-gtm-id="upviews-column"><%= item.upviews %></td>
+              <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="satisfaction-column"><%= item.user_satisfaction %></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric" data-gtm-id="searches-column"><%= item.searches %></td>
             </tr>
           <% end %>
           </tbody>
