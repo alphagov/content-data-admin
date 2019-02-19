@@ -18,7 +18,13 @@ class FindContent
   end
 
   def call
-    api.content(date_range: @date_range, organisation_id: @organisation, document_type: @document_type, page: @page, search_term: @search_term)
+    api.content(
+      date_range: @date_range,
+      organisation_id: @organisation,
+      document_type: @document_type,
+      page: @page,
+      search_term: @search_term
+    )
   end
 
   def enum
