@@ -72,19 +72,19 @@ $sort-link-arrow-spacing: 4px;
     }
   }
 
-  .table__sort-link--ascending,
-  .table__sort-link--descending {
+  .table__sort-link--asc,
+  .table__sort-link--desc {
     .table__header-title {
       @include govuk-responsive-padding(1, "right");
     }
   }
 
-  .table__sort-link--ascending::before,
-  .table__sort-link--descending::before {
+  .table__sort-link--asc::before,
+  .table__sort-link--desc::before {
     content: none;
   }
 
-  .table__sort-link--ascending::after {
+  .table__sort-link--asc::after {
     content: "";
     position: absolute;
     top: $sort-link-arrow-spacing;
@@ -93,7 +93,7 @@ $sort-link-arrow-spacing: 4px;
     @include govuk-shape-arrow($direction: up, $base: $sort-link-arrow-size, $display: inline-block);
   }
 
-  .table__sort-link--descending::after {
+  .table__sort-link--desc::after {
     content: "";
     position: absolute;
     top: $sort-link-arrow-spacing;
