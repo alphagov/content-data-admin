@@ -7,7 +7,8 @@ RSpec.describe ContentItemsPresenter do
     {
       date_range: 'last-30-days',
       organisation_id: 'org-id',
-      document_type: 'news_story'
+      document_type: 'news_story',
+      sort: 'upviews:desc'
     }
   end
   let(:content_items) do

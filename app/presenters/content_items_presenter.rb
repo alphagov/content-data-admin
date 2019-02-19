@@ -1,12 +1,13 @@
 class ContentItemsPresenter
   include Kaminari::Helpers::HelperMethods
-  attr_reader :title, :content_items, :pagination, :filter, :search_parameters
+  attr_reader :title, :content_items, :pagination, :filter, :search_parameters, :sort
   delegate :page, :total_pages, :prev_link?, :next_link?, :prev_label, :next_label, to: :pagination
 
   def initialize(search_results, search_parameters, document_types, organisations)
     @title = 'Content items'
     @filter = FilterPresenter.new(search_parameters, document_types, organisations)
     @search_parameters = search_parameters
+    @sort = Sort.parse(search_parameters[:sort])
     @pagination = PaginationPresenter.new(
       page: search_results[:page] || 1,
       total_pages: search_results[:total_pages],
