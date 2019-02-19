@@ -279,6 +279,8 @@ RSpec.describe '/content' do
     let(:csv_items) { items * 11 }
 
     it 'it provides a CSV file respecting all filters' do
+      pending('Feature temporarily disabled')
+
       stub_content_page(
         time_period: 'last-month',
         organisation_id: 'org-id',
