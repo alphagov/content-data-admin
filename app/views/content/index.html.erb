@@ -77,10 +77,9 @@
     </div>
     <div class="govuk-grid-column-three-quarters">
       <div class="table-wrapper">
-        <table class="govuk-table"
+        <table class="table govuk-table"
           data-gtm-total-results="<%= @presenter.pagination.total_results %>"
-          data-gtm-page="<%= @presenter.pagination.page %>"
-          >
+          data-gtm-page="<%= @presenter.pagination.page %>">
           <caption class="govuk-table__caption">
             <%= render('table_data_description', pagination: @presenter.pagination, filter: @presenter.filter) %>
           </caption>
@@ -131,9 +130,9 @@
                     }
                 ) %>
               </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.document_type %></td>
+              <td class="govuk-table__cell govuk-table__cell--shaded"><%= item.document_type %></td>
               <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.upviews %></td>
-              <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.user_satisfaction %></td>
+              <td class="govuk-table__cell govuk-table__cell--shaded"><%= item.user_satisfaction %></td>
               <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.searches %></td>
             </tr>
           <% end %>
