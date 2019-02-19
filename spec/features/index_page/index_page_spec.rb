@@ -57,7 +57,7 @@ RSpec.describe '/content' do
     table_rows = extract_table_content('.govuk-table')
     expect(table_rows).to eq(
       [
-        ['Page title', 'Content type', 'Unique pageviews', 'User satisfaction score', 'Searches from page'],
+        ['Page title', 'Document type', 'Unique pageviews', 'User satisfaction score', 'Searches from the page'],
         ['GOV.UK homepage /', 'Homepage', '1,233,018', '85% (2,050 responses)', '1,220'],
         ['The title /path/1', 'News story', '233,018', '81% (250 responses)', '220'],
         ['Another title /path/2', 'Guide', '100,018', '68% (42 responses)', '12'],

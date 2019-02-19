@@ -94,7 +94,7 @@ RSpec.describe "Results pagination" do
       table_rows = extract_table_content('.govuk-table')
       expect(table_rows).to eq(
         [
-          ['Page title', 'Content type', 'Unique pageviews', 'User satisfaction score', 'Searches from page'],
+          ['Page title', 'Document type', 'Unique pageviews', 'User satisfaction score', 'Searches from the page'],
           ['third title /path/3', 'Press release', '233,018', '81% (250 responses)', '220'],
           ['forth title /path/4', 'News story', '100,018', '68% (42 responses)', '12'],
         ]

@@ -1,0 +1,7 @@
+en:
+  content:
+    index:
+      table:
+        headers:
+          title: 'Page title'
+          document_type: 'Document type'

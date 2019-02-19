@@ -86,24 +86,31 @@
           </caption>
           <thead class="govuk-table__head" data-gtm-id="table-header">
             <tr class="govuk-table__row">
-              <th class="govuk-table__header" scope="col" data-gtm-id="title-column">Page title</th>
-              <th class="govuk-table__header" scope="col" data-gtm-id="document-type-column">Content type</th>
+              <th class="govuk-table__header" scope="col" data-gtm-id="title-column">
+                <%= t('.table.headers.title') %>
+              </th>
+              <th class="govuk-table__header" scope="col" data-gtm-id="document-type-column">
+                <%= t('.table.headers.document_type') %>
+              </th>
               <th class="govuk-table__header" scope="col" data-gtm-id="upviews-column">
-                Unique pageviews<br>
+                <%= t('metrics.upviews.title') %>
+                <br>
                 <%= image_tag 'question_mark_default.svg',
                   alt: 'Help',
                   title: "#{t "metrics.upviews.summary"}",
                   data: { 'gtm-id': 'help-icon' } %>
               </th>
               <th class="govuk-table__header" scope="col" data-gtm-id="satisfaction-column">
-                User satisfaction score<br>
+                <%= t('metrics.satisfaction.title') %>
+                <br>
                 <%= image_tag 'question_mark_default.svg',
                   alt: 'Help',
                   title: "#{t "metrics.satisfaction.summary"}",
                   data: { 'gtm-id': 'help-icon' } %>
               </th>
               <th class="govuk-table__header" scope="col" data-gtm-id="searches-column">
-                Searches from page<br>
+                <%= t('metrics.searches.title') %>
+                <br>
                 <%= image_tag 'question_mark_default.svg',
                   alt: 'Help',
                   title: "#{t "metrics.searches.summary"}",
