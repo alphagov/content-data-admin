@@ -12,15 +12,12 @@ class FindContent
   def initialize(params)
     @date_range = params[:date_range]
     @organisation = params[:organisation_id]
-    @document_type = params[:document_type]
+    @document_type = params[:document_type] unless params[:document_type] == 'all'
     @page = params[:page]
     @search_term = params[:search_term]
   end
 
   def call
-    if @document_type == "all"
-      @document_type = ""
-    end
     api.content(date_range: @date_range, organisation_id: @organisation, document_type: @document_type, page: @page, search_term: @search_term)
   end
 
