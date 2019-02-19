@@ -5,8 +5,9 @@ RSpec.describe ContentRowPresenter do
       document_type: 'news_story',
       title: 'a title',
       upviews: 200_001,
-      satisfaction: 0.801001,
-      satisfaction_score_responses: 301,
+      satisfaction: 0.801,
+      useful_yes: 801,
+      useful_no: 199,
     }
   end
 
@@ -26,6 +27,6 @@ RSpec.describe ContentRowPresenter do
   end
 
   it 'formats user_satifaction_score correctly' do
-    expect(subject.user_satisfaction).to eq('80% (301 responses)')
+    expect(subject.user_satisfaction).to eq('80% (1,000 responses)')
   end
 end

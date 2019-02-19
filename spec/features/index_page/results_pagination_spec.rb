@@ -22,7 +22,8 @@ RSpec.describe "Results pagination" do
           upviews: 1_233_018,
           document_type: 'homepage',
           satisfaction: 0.85,
-          satisfaction_score_responses: 2050,
+          useful_yes: 85,
+          useful_no: 15,
           searches: 1220
         },
         {
@@ -31,8 +32,9 @@ RSpec.describe "Results pagination" do
           organisation_id: 'org-id',
           upviews: 233_018,
           document_type: 'news_story',
-          satisfaction: 0.81301,
-          satisfaction_score_responses: 250,
+          satisfaction: 0.813,
+          useful_yes: 813,
+          useful_no: 187,
           searches: 220
         },
         {
@@ -42,7 +44,8 @@ RSpec.describe "Results pagination" do
           upviews: 100_018,
           document_type: 'guide',
           satisfaction: 0.68,
-          satisfaction_score_responses: 42,
+          useful_yes: 34,
+          useful_no: 16,
           searches: 12
         }
       ]
@@ -54,8 +57,9 @@ RSpec.describe "Results pagination" do
           title: 'third title',
           upviews: 233_018,
           document_type: 'press_release',
-          satisfaction: 0.81301,
-          satisfaction_score_responses: 250,
+          satisfaction: 0.813,
+          useful_yes: 813,
+          useful_no: 187,
           searches: 220
         },
         {
@@ -64,7 +68,8 @@ RSpec.describe "Results pagination" do
           upviews: 100_018,
           document_type: 'news_story',
           satisfaction: 0.68,
-          satisfaction_score_responses: 42,
+          useful_yes: 34,
+          useful_no: 16,
           searches: 12
         }
       ]
@@ -88,8 +93,8 @@ RSpec.describe "Results pagination" do
       expect(table_rows).to eq(
         [
           ['Page title', 'Document type', 'Unique pageviews', 'User satisfaction score', 'Searches from the page'],
-          ['third title /path/3', 'Press release', '233,018', '81% (250 responses)', '220'],
-          ['forth title /path/4', 'News story', '100,018', '68% (42 responses)', '12'],
+          ['third title /path/3', 'Press release', '233,018', '81% (1,000 responses)', '220'],
+          ['forth title /path/4', 'News story', '100,018', '68% (50 responses)', '12'],
         ]
       )
       expect(page).to have_css('h1.table-caption', exact_text: 'Showing 101 to 102 of 102 results from org (OI)')
