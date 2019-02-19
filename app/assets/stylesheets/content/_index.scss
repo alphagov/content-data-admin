@@ -1,3 +1,9 @@
+$sort-link-active-colour: govuk-colour("white");
+$sort-link-arrow-size: 14px;
+$sort-link-arrow-size-small: 8px;
+$sort-link-arrow-spacing: 4px;
+
+
 .content-data__index {
   .gem-c-pagination {
 
@@ -6,19 +12,94 @@
     }
   }
 
-  .table-header {
+  .table-caption {
     @include govuk-font(16);
     @include media(mobile) {
       @include govuk-responsive-padding(3, "left");
     }
+
   }
 
-  .govuk-table--sortable {
-    outline: none;
-  }
-
-  .table-header__param {
+  .table-caption__param {
     @include govuk-font($size: 16, $weight: bold);
+  }
+
+  .govuk-table__header {
+    white-space: nowrap;
+    vertical-align: top;
+  }
+
+  .table__header-title {
+    display: inline-block;
+    height: 100%;
+  }
+
+  .table__header-help {
+    display: inline-block;
+    height: 100%;
+    margin-left: 10px;
+    margin-right: 5px;
+    @include govuk-responsive-margin(2, "left");
+    @include govuk-responsive-margin(1, "right");
+  }
+
+
+  .table__sort-link {
+    @include govuk-link-style-no-visited-state;
+    @include govuk-focusable-fill;
+    position: relative;
+    padding-right: $sort-link-arrow-size;
+    color: $govuk-link-colour;
+    text-decoration: none;
+
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      @include govuk-shape-arrow($direction: up, $base: $sort-link-arrow-size-small, $display: block);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      right: 0;
+
+      @include govuk-shape-arrow($direction: down, $base: $sort-link-arrow-size-small, $display: block);
+    }
+  }
+
+  .table__sort-link--ascending,
+  .table__sort-link--descending {
+    .table__header-title {
+      @include govuk-responsive-padding(1, "right");
+    }
+  }
+
+  .table__sort-link--ascending::before,
+  .table__sort-link--descending::before {
+    content: none;
+  }
+
+  .table__sort-link--ascending::after {
+    content: "";
+    position: absolute;
+    top: $sort-link-arrow-spacing;
+    right: 0;
+
+    @include govuk-shape-arrow($direction: up, $base: $sort-link-arrow-size, $display: inline-block);
+  }
+
+  .table__sort-link--descending::after {
+    content: "";
+    position: absolute;
+    top: $sort-link-arrow-spacing;
+    right: 0;
+
+    @include govuk-shape-arrow($direction: down, $base: $sort-link-arrow-size, $display: inline-block);
   }
 
   .govuk-table {
@@ -41,6 +122,10 @@
     @include govuk-responsive-padding(2);
   }
 
+  .govuk-table__cell--shaded {
+    background-color: govuk-colour("grey-4");
+  }
+
   .govuk-table__cell--numeric {
     @include govuk-font($size: 14, $tabular: true);
     @include govuk-responsive-padding(2);
@@ -54,9 +139,17 @@
     color: $govuk-text-colour;
     position: sticky;
     top: 0;
+
+    &.govuk-table__header--sorted {
+      background-color: govuk-colour("blue");
+
+      .table__sort-link {
+        color: $white;
+      }
+    }
   }
 
-  .govuk-table .govuk-table__header {
+  .govuk-table__header {
     @include govuk-responsive-padding(2);
     background-color: $grey-3;
     font-weight: normal;

@@ -57,7 +57,7 @@ RSpec.describe '/content' do
     table_rows = extract_table_content('.govuk-table')
     expect(table_rows).to eq(
       [
-        ['Page title', 'Content type', 'Unique pageviews', 'User satisfaction score', 'Searches from page'],
+        ['Page title', 'Document type', 'Unique pageviews', 'User satisfaction score', 'Searches from the page'],
         ['GOV.UK homepage /', 'Homepage', '1,233,018', '85% (2,050 responses)', '1,220'],
         ['The title /path/1', 'News story', '233,018', '81% (250 responses)', '220'],
         ['Another title /path/2', 'Guide', '100,018', '68% (42 responses)', '12'],
@@ -107,7 +107,7 @@ RSpec.describe '/content' do
     end
 
     it 'describes the filter in the table header' do
-      expect(page).to have_css('h1.table-header', exact_text: 'Showing 3 results from another org')
+      expect(page).to have_css('h1.table-caption', exact_text: 'Showing 3 results from another org')
     end
 
     it 'respects date range' do
@@ -141,7 +141,7 @@ RSpec.describe '/content' do
       end
 
       it 'describes the filter in the table header' do
-        expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 result from All organisations')
+        expect(page).to have_css('h1.table-caption', exact_text: 'Showing 1 result from All organisations')
       end
     end
 
@@ -214,7 +214,7 @@ RSpec.describe '/content' do
       end
 
       it 'describes the filter in the table header' do
-        expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 result for "Relevant" from All organisations')
+        expect(page).to have_css('h1.table-caption', exact_text: 'Showing 1 result for "Relevant" from All organisations')
       end
     end
   end
@@ -238,7 +238,7 @@ RSpec.describe '/content' do
     end
 
     it 'describes the filter in the table header' do
-      expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 result in News story from org (OI)')
+      expect(page).to have_css('h1.table-caption', exact_text: 'Showing 1 result in News story from org (OI)')
     end
 
     it 'allows the filter to be cleared' do
@@ -247,7 +247,7 @@ RSpec.describe '/content' do
       expect(page).to have_select('document_type', selected: ["", "All document types"])
       table_rows = extract_table_content('.govuk-table')
       expect(table_rows.count).to eq(4)
-      expect(page).to have_css('h1.table-header', exact_text: 'Showing 3 results from org (OI)')
+      expect(page).to have_css('h1.table-caption', exact_text: 'Showing 3 results from org (OI)')
     end
   end
 
@@ -258,7 +258,7 @@ RSpec.describe '/content' do
     end
 
     it 'shows a no data message in the table header' do
-      expect(page).to have_css('h1.table-header', exact_text: "#{I18n.t 'no_matching_results'} from org (OI)")
+      expect(page).to have_css('h1.table-caption', exact_text: "#{I18n.t 'no_matching_results'} from org (OI)")
     end
   end
 
@@ -269,7 +269,7 @@ RSpec.describe '/content' do
     end
 
     it 'formats the page numbers correctly in the table header' do
-      expect(page).to have_css('h1.table-header', exact_text: 'Showing 1 to 100 of 150 results from org (OI)')
+      expect(page).to have_css('h1.table-caption', exact_text: 'Showing 1 to 100 of 150 results from org (OI)')
     end
   end
 

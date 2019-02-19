@@ -1,19 +1,19 @@
-<h1 class="table-header">
+<h1 class="table-caption">
     <% if pagination.total_results > 0 %>
         Showing
         <% if pagination.total_pages > 1 %>
-            <span class="table-header__param"><%= pagination.formatted_first_record %></span> to
-            <span class="table-header__param"><%= pagination.formatted_last_record %></span> of
+            <span class="table-caption__param"><%= pagination.formatted_first_record %></span> to
+            <span class="table-caption__param"><%= pagination.formatted_last_record %></span> of
         <% end %>
-        <span class="table-header__param" ><%= pagination.formatted_total_results %></span> <%= 'result'.pluralize(pagination.total_results) %>
+        <span class="table-caption__param"><%= pagination.formatted_total_results %></span> <%= 'result'.pluralize(pagination.total_results) %>
     <% else %>
-        <span class="table-header__param"><%= I18n.t('no_matching_results') %></span>
+        <span class="table-caption__param"><%= I18n.t('no_matching_results') %></span>
     <% end %>
     <% if filter.search_terms? %>
-        for "<span class="table-header__param"><%= filter.search_terms %></span>"
+        for "<span class="table-caption__param"><%= filter.search_terms %></span>"
     <% end %>
     <% if filter.document_type? && filter.document_type_id != "all" %>
-        in <span class="table-header__param"><%= filter.document_type_name %></span>
+        in <span class="table-caption__param"><%= filter.document_type_name %></span>
     <% end %>
-    from <span class="table-header__param"><%= filter.organisation_name %></span>
+    from <span class="table-caption__param"><%= filter.organisation_name %></span>
 </h1>

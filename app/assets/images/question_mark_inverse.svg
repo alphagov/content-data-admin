@@ -3,8 +3,8 @@
     <defs></defs>
     <g id="Default-state" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Group-Copy-6">
-            <circle id="Oval-3" fill="#005EA5" fill-rule="nonzero" cx="12" cy="12" r="12"></circle>
-            <text id="?" font-family="GDSTransportWebsite-Bold, GDS Transport Website" font-size="16" font-weight="bold" fill="#FFFFFF">
+            <circle id="Oval-3" fill="#FFFFFF" fill-rule="nonzero" cx="12" cy="12" r="12"></circle>
+            <text id="?" font-family="GDSTransportWebsite-Bold, GDS Transport Website" font-size="16" font-weight="bold" fill="#005EA5">
                 <tspan x="8" y="18">?</tspan>
             </text>
         </g>
