@@ -11,7 +11,8 @@ RSpec.describe '/content' do
         upviews: 1_233_018,
         document_type: 'homepage',
         satisfaction: 0.85,
-        satisfaction_score_responses: 2050,
+        useful_yes: 85,
+        useful_no: 15,
         searches: 1220,
         reading_time: 50
       },
@@ -21,8 +22,9 @@ RSpec.describe '/content' do
   organisation_id: 'org-id',
         upviews: 233_018,
         document_type: 'news_story',
-        satisfaction: 0.81301,
-        satisfaction_score_responses: 250,
+        satisfaction: 0.813,
+        useful_yes: 813,
+        useful_no: 187,
         searches: 220,
         reading_time: 50
       },
@@ -33,7 +35,8 @@ RSpec.describe '/content' do
         upviews: 100_018,
         document_type: 'guide',
         satisfaction: 0.68,
-        satisfaction_score_responses: 42,
+        useful_yes: 34,
+        useful_no: 16,
         searches: 12,
         reading_time: 50
       }
@@ -58,9 +61,9 @@ RSpec.describe '/content' do
     expect(table_rows).to eq(
       [
         ['Page title', 'Document type', 'Unique pageviews', 'User satisfaction score', 'Searches from the page'],
-        ['GOV.UK homepage /', 'Homepage', '1,233,018', '85% (2,050 responses)', '1,220'],
-        ['The title /path/1', 'News story', '233,018', '81% (250 responses)', '220'],
-        ['Another title /path/2', 'Guide', '100,018', '68% (42 responses)', '12'],
+        ['GOV.UK homepage /', 'Homepage', '1,233,018', '85% (100 responses)', '1,220'],
+        ['The title /path/1', 'News story', '233,018', '81% (1,000 responses)', '220'],
+        ['Another title /path/2', 'Guide', '100,018', '68% (50 responses)', '12'],
       ]
     )
   end
