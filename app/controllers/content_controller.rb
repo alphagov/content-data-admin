@@ -43,7 +43,8 @@ private
       defaults = {
         date_range: 'past-30-days',
         organisation_id: DEFAULT_ORGANISATION_ID,
-        document_type: ''
+        document_type: '',
+        sort: 'upviews:desc',
       }
 
       defaults.merge(
@@ -53,6 +54,7 @@ private
           :document_type,
           :page,
           :search_term,
+          :sort,
         ).to_h.symbolize_keys
       )
     end

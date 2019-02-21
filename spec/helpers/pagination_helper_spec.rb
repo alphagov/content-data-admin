@@ -1,5 +1,5 @@
 RSpec.describe PaginationHelper do
-  let(:search_parameters) { { date_range: 'last-30-days' } }
+  let(:search_parameters) { { date_range: 'last-30-days', sort: 'upviews:desc' } }
   let(:search_results) do
     {
       results: [],

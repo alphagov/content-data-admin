@@ -29,7 +29,7 @@ RSpec.feature 'user analytics' do
 
   help_icon_columns.each do |column|
     scenario "tracks help icon for #{column} in table headers" do
-      expect(page).to have_selector("[data-gtm-id=\"#{column}-column\"] > [data-gtm-id=\"help-icon\"]")
+      expect(page).to have_selector("[data-gtm-id=\"#{column}-column\"] [data-gtm-id=\"help-icon\"]")
     end
   end
 

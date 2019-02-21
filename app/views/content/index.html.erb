@@ -89,42 +89,35 @@
           </caption>
           <thead class="govuk-table__head" data-gtm-id="table-header">
             <tr class="govuk-table__row">
-              <th class="govuk-table__header" scope="col" data-gtm-id="title-column">
-                <%= t('.table.headers.title') %>
-              </th>
-              <th class="govuk-table__header" scope="col" data-gtm-id="document-type-column">
-                <%= t('.table.headers.document_type') %>
-              </th>
-              <th class="govuk-table__header" scope="col" data-gtm-id="upviews-column">
-                <%= t('metrics.upviews.title') %>
+            <% TableHeaderHelper::HEADER_NAMES.each do |header| %>
+              <% sort_direction = @presenter.sort.direction if (header == @presenter.sort.key) %>
+              <th class="govuk-table__header <% if sort_direction.present? %>govuk-table__header--sorted<% end %>"
+                scope="col"
+                role="columnheader"
+                aria-sort="<%= aria_sort(sort_direction) %>"
+                data-gtm-id="<%= header %>-column">
+                <a href="<%= url_for(request.params.merge(sort: sort_param(header, sort_direction))) %>" 
+                  class="table__sort-link <% if sort_direction.present? %> table__sort-link--<%= sort_direction %> <% end %>">
+                  <%= t(".table.headers.#{header}", default: :"metrics.#{header}.title") %>
+                </a>
                 <br>
-                <%= image_tag 'question_mark_default.svg',
-                  alt: 'Help',
-                  title: "#{t "metrics.upviews.summary"}",
-                  data: { 'gtm-id': 'help-icon' } %>
+                <% if include_help_icon?(header) %>
+                  <span class="table__header-help">
+                    <%= image_tag(
+                      (sort_direction.present? ? 'question_mark_inverse.svg' : 'question_mark_default.svg'),
+                      alt: 'Help',
+                      title: t("metrics.#{header}.summary"),
+                      data: { 'gtm-id': 'help-icon' }) %>
+                  </span>
+                <% end %>
               </th>
-              <th class="govuk-table__header" scope="col" data-gtm-id="satisfaction-column">
-                <%= t('metrics.satisfaction.title') %>
-                <br>
-                <%= image_tag 'question_mark_default.svg',
-                  alt: 'Help',
-                  title: "#{t "metrics.satisfaction.summary"}",
-                  data: { 'gtm-id': 'help-icon' } %>
-              </th>
-              <th class="govuk-table__header" scope="col" data-gtm-id="searches-column">
-                <%= t('metrics.searches.title') %>
-                <br>
-                <%= image_tag 'question_mark_default.svg',
-                  alt: 'Help',
-                  title: "#{t "metrics.searches.summary"}",
-                  data: { 'gtm-id': 'help-icon' } %>
-              </th>
+            <% end %>
             </tr>
           </thead>
           <tbody class="govuk-table__body">
           <% @presenter.content_items.each do |item| %>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell">
+              <td class="govuk-table__cell" data-gtm-id="title-column">
                 <%=
                   render(
                     partial: 'page_title',
@@ -134,10 +127,10 @@
                     }
                 ) %>
               </td>
-              <td class="govuk-table__cell govuk-table__cell--shaded"><%= item.document_type %></td>
-              <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.upviews %></td>
-              <td class="govuk-table__cell govuk-table__cell--shaded"><%= item.user_satisfaction %></td>
-              <td class="govuk-table__cell govuk-table__cell--numeric"><%= item.searches %></td>
+              <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="document_type-column"><%= item.document_type %></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric" data-gtm-id="upviews-column"><%= item.upviews %></td>
+              <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="satisfaction-column"><%= item.user_satisfaction %></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric" data-gtm-id="searches-column"><%= item.searches %></td>
             </tr>
           <% end %>
           </tbody>
