@@ -195,13 +195,37 @@ $sort-link-arrow-spacing: 4px;
 
   }
 
+  .filter-form__clear-link {
+    display: block;
+    @include govuk-responsive-padding(2, "top");
+    @include govuk-responsive-margin(4, "top");
+
+    @include govuk-media-query($from: desktop) {
+      float: left;
+      @include govuk-responsive-margin(4, "left");
+      @include govuk-responsive-margin(0, "top");
+    }
+  }
+
   .filters-control {
     display: block;
     @include govuk-responsive-padding(3, "bottom");
   }
 
+
+  .gem-c-button {
+    @include govuk-media-query($from: desktop) {
+      float: left;
+    }
+
+  }
+
   .gem-c-phase-banner {
     @include govuk-responsive-padding(3, "left");
+  }
+
+  .govuk-section-break {
+    clear: left;
   }
 
   .download-link {
