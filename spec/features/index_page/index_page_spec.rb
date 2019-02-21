@@ -272,7 +272,7 @@ RSpec.describe '/content' do
     end
 
     it 'formats the page numbers correctly in the table header' do
-      expect(page).to have_css('h1.table-caption', exact_text: 'Showing 1 to 100 of 150 results from org (OI)')
+      expect(page).to have_css('h1.table-caption', exact_text: 'Showing 150 results from org (OI)')
     end
   end
 

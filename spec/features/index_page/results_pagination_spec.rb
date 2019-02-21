@@ -87,7 +87,7 @@ RSpec.describe "Results pagination" do
     end
 
     it 'shows the second page of data' do
-      expect(page).to have_css('h1.table-caption', exact_text: 'Showing 1 to 100 of 102 results from org (OI)')
+      expect(page).to have_css('h1.table-caption', exact_text: 'Showing 102 results from org (OI)')
       click_on 'Next'
       table_rows = extract_table_content('.govuk-table')
       expect(table_rows).to eq(
@@ -97,7 +97,7 @@ RSpec.describe "Results pagination" do
           ['forth title /path/4', 'News story', '100,018', '68% (50 responses)', '12'],
         ]
       )
-      expect(page).to have_css('h1.table-caption', exact_text: 'Showing 101 to 102 of 102 results from org (OI)')
+      expect(page).to have_css('h1.table-caption', exact_text: 'Showing 102 results from org (OI)')
     end
   end
 end
