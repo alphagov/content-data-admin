@@ -17,12 +17,20 @@ RSpec.feature 'user analytics' do
     expect(page).to have_selector('[data-gtm-total-results]')
   end
 
+  scenario 'tracks total number of results (old way)' do
+    expect(page).to have_selector('[data-gtm-pagination-total-results]')
+  end
+
   scenario 'tracks prev and next pagination links' do
     expect(page).to have_selector('[data-gtm-id="pagination-links"]')
   end
 
   scenario 'tracks content item page links' do
     expect(page).to have_selector('[data-gtm-id="content-item-link"][data-gtm-item-document-type]')
+  end
+
+  scenario 'tracks content item page links (old way)' do
+    expect(page).to have_selector('[data-gtm-id="content-item-link"][data-gtm]')
   end
 
   help_icon_columns = %w(upviews satisfaction searches)
