@@ -13,6 +13,10 @@ RSpec.feature 'user analytics' do
     expect(page).to have_selector('[data-gtm-id="page-kicker"]')
   end
 
+  scenario 'tracks view table reveal section' do
+    expect(page).to have_selector('[data-gtm="view-table-reveal"]')
+  end
+
   scenario 'tracks time period submit' do
     expect(page).to have_selector('[data-gtm-id="time-period-form"]')
   end
