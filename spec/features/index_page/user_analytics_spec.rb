@@ -17,6 +17,10 @@ RSpec.feature 'user analytics' do
     expect(page).to have_selector('[data-gtm-total-results]')
   end
 
+  scenario 'tracks total number of results (old way)' do
+    expect(page).to have_selector('[data-gtm-pagination-total-results]')
+  end
+
   scenario 'tracks prev and next pagination links' do
     expect(page).to have_selector('[data-gtm-id="pagination-links"]')
   end
