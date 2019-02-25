@@ -1,5 +1,6 @@
 module TableHeaderHelper
   HEADER_NAMES = %w(title document_type upviews satisfaction searches).freeze
+  HEADERS_WITH_SORT_ENABLED = %w(document_type upviews satisfaction searches).freeze
   HEADERS_WITH_HELP_ICON = %w(upviews satisfaction searches).freeze
   REVERSE_DEFAULT_DIRECTION = %w(title document_type).freeze
 

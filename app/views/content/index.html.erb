@@ -97,10 +97,14 @@
                 role="columnheader"
                 aria-sort="<%= aria_sort(sort_direction) %>"
                 data-gtm-id="<%= header %>-column">
-                <a href="<%= url_for(request.params.merge(sort: sort_param(header, sort_direction))) %>" 
-                  class="table__sort-link <% if sort_direction.present? %> table__sort-link--<%= sort_direction %> <% end %>">
+                <% if header.in? TableHeaderHelper::HEADERS_WITH_SORT_ENABLED %>
+                  <a href="<%= url_for(request.params.merge(sort: sort_param(header, sort_direction))) %>"
+                    class="table__sort-link <% if sort_direction.present? %> table__sort-link--<%= sort_direction %> <% end %>">
+                    <%= t(".table.headers.#{header}", default: :"metrics.#{header}.title") %>
+                  </a>
+                <% else %>
                   <%= t(".table.headers.#{header}", default: :"metrics.#{header}.title") %>
-                </a>
+                <% end %>
                 <br>
                 <% if include_help_icon?(header) %>
                   <span class="table__header-help">
