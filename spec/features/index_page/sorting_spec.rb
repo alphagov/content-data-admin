@@ -46,16 +46,13 @@ RSpec.feature "Sort results" do
     expect(values).to eq(%w[300 200 100])
   end
 
-  scenario 'sort on title column' do
-    sorted_items = items.sort_by { |item| item[:title] }
-    sorted_items.reverse!
+  scenario 'sort on title column is disabled' do
     stub_content_page(time_period: 'past-30-days', organisation_id: 'all', items: items)
-    stub_content_page(time_period: 'past-30-days', organisation_id: 'all', items: sorted_items, sort: 'title:asc')
     visit "/content"
-    find('th[data-gtm-id="title-column"] > a').click
 
-    values = extract_table_column_values('title')
-    expect(values).to eq(['C /path/1', 'B /path/2', 'A /'])
+    within('th[data-gtm-id="title-column"]') do
+      expect(page).not_to have_selector('.table__sort-link')
+    end
   end
 
   scenario 'sort on document_type column' do
