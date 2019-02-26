@@ -76,8 +76,11 @@ class FilterPresenter
     @organisation_options ||= begin
       additional_organisation_options +
         @organisations.map do |org|
-          name = org[:name]
-          name.concat " (#{org[:acronym]})" if org[:acronym].present?
+          name = org[:name].strip
+          if org[:acronym].present?
+            acronym = org[:acronym].strip
+            name.concat " (#{acronym})" if acronym != name
+          end
           [name, org[:id]]
         end
     end
