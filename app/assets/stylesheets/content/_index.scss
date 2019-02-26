@@ -24,11 +24,6 @@ $sort-link-arrow-spacing: 4px;
     @include govuk-font($size: 16, $weight: bold);
   }
 
-  .govuk-table__header {
-    white-space: nowrap;
-    vertical-align: top;
-  }
-
   .table__header-title {
     display: inline-block;
     height: 100%;
@@ -37,10 +32,7 @@ $sort-link-arrow-spacing: 4px;
   .table__header-help {
     display: inline-block;
     height: 100%;
-    margin-left: 10px;
-    margin-right: 5px;
-    @include govuk-responsive-margin(2, "left");
-    @include govuk-responsive-margin(1, "right");
+    @include govuk-responsive-margin(1, "top");
   }
 
 
@@ -108,11 +100,6 @@ $sort-link-arrow-spacing: 4px;
     margin-top: -1px;
   }
 
-  .govuk-table__header {
-    @include govuk-font(14);
-    outline: 1px solid $govuk-border-colour;
-  }
-
   .govuk-table__body {
     outline: 1px solid $govuk-border-colour;
   }
@@ -120,6 +107,8 @@ $sort-link-arrow-spacing: 4px;
   .govuk-table__cell {
     @include govuk-font(14);
     @include govuk-responsive-padding(2);
+    @include govuk-responsive-padding(3, "left");
+    @include govuk-responsive-padding(3, "right");
   }
 
   .govuk-table__cell--shaded {
@@ -128,7 +117,6 @@ $sort-link-arrow-spacing: 4px;
 
   .govuk-table__cell--numeric {
     @include govuk-font($size: 14, $tabular: true);
-    @include govuk-responsive-padding(2);
   }
 
   .gem-c-layout-for-admin .govuk-grid-row {
@@ -139,6 +127,17 @@ $sort-link-arrow-spacing: 4px;
     color: $govuk-text-colour;
     position: sticky;
     top: 0;
+    white-space: nowrap;
+    vertical-align: top;
+
+    @include govuk-responsive-padding(3);
+    @include govuk-responsive-padding(2, "bottom");
+
+    @include govuk-font(14);
+    outline: 1px solid $govuk-border-colour;
+
+    background-color: govuk-colour("grey-3");
+    font-weight: normal;
 
     &.govuk-table__header--sorted {
       background-color: govuk-colour("blue");
@@ -147,16 +146,6 @@ $sort-link-arrow-spacing: 4px;
         color: $white;
       }
     }
-  }
-
-  .govuk-table__header {
-    @include govuk-responsive-padding(2);
-    background-color: $grey-3;
-    font-weight: normal;
-  }
-
-  .govuk-table__cell:last-child {
-    @include govuk-responsive-padding(2);
   }
 
   .table-wrapper {
