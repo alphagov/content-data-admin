@@ -1,3 +1,4 @@
+$govuk-tertiary-text-colour: #6a7276;
 $sort-link-active-colour: govuk-colour("white");
 $sort-link-arrow-size: 14px;
 $sort-link-arrow-size-small: 8px;
@@ -152,6 +153,10 @@ $sort-link-arrow-spacing: 4px;
     min-width: 900px;
     background-color: $white;
     @include govuk-responsive-padding(6, "right");
+  }
+
+  .satisfaction-column__responses {
+    color: $govuk-tertiary-text-colour;
   }
 
   .filter-form {
