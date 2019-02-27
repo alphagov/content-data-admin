@@ -6,4 +6,4 @@
     'gtm': item.raw_document_type
   } %>
 <br>
-<span class="base-path">/<%= item.base_path %></span>
+<span class="base-path">/<%= CGI::unescape(item.base_path) %></span>
