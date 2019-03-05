@@ -4,8 +4,8 @@ RSpec.describe '/content' do
 
   let(:items) do
     [
-      { base_path: '/path/1', title: 'The title' },
-      { base_path: '/path/2', title: 'Another title' }
+      { base_path: '/path/1', title: 'The title', satisfaction: nil, useful_yes: 0, useful_no: 0 },
+      { base_path: '/path/2', title: 'Another title', satisfaction: nil, useful_yes: 0, useful_no: 0 }
     ]
   end
 

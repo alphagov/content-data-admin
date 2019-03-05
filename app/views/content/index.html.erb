@@ -10,8 +10,6 @@
           <a href="" class="govuk-link filters-control__link filters-control__link--show">Show filters</a>&nbsp;&#x25BC;</span>
       </div>
 
-
-
       <div class="filter-form">
         <%= form_tag content_path,
           method: 'get',
@@ -65,8 +63,6 @@
             <a href="/content" class="govuk-link govuk-body-s filter-form__clear-link" data-gtm-id="clear-filters">Clear all filters</a>
           <% end %>
         </div>
-
-
 
             <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
 <!--
@@ -134,7 +130,14 @@
               </td>
               <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="document_type-column"><%= item.document_type %></td>
               <td class="govuk-table__cell govuk-table__cell--numeric" data-gtm-id="upviews-column"><%= item.upviews %></td>
-              <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="satisfaction-column"><%= item.user_satisfaction %></td>
+              <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="satisfaction-column">
+                <% if item.satisfaction_percentage %>
+                    <%= item.satisfaction_percentage %>
+                    <span class="satisfaction-column__responses"> (<%= item.satisfaction_responses %>) </span>
+                <% else %>
+                   <%= item.satisfaction_responses %>
+                <% end %>
+              </td>
               <td class="govuk-table__cell govuk-table__cell--numeric" data-gtm-id="searches-column"><%= item.searches %></td>
             </tr>
           <% end %>
