@@ -103,13 +103,12 @@
                 <% end %>
                 <br>
                 <% if include_help_icon?(header) %>
-                  <span class="table__header-help">
-                    <%= image_tag(
-                      (sort_direction.present? ? 'question_mark_inverse.svg' : 'question_mark_default.svg'),
-                      alt: 'Help',
-                      title: t("metrics.#{header}.summary"),
-                      data: { 'gtm-id': 'help-icon' }) %>
-                  </span>
+                  <a href="/help/?hkey=<%= header %>" data-toggle="modal" data-target="modal-<%= header %>" class="table__header-help">
+                      <%= image_tag(
+                        (sort_direction.present? ? 'question_mark_inverse.svg' : 'question_mark_default.svg'),
+                        alt: 'Help',
+                        data: { 'gtm-id': 'help-icon' }) %>
+                  </a>
                 <% end %>
               </th>
             <% end %>
@@ -150,3 +149,17 @@
         </div>
     </div>
 </div>
+
+<% content_for :modals do %>
+  <% TableHeaderHelper::HEADER_NAMES.each do |header| %>
+    <% if include_help_icon?(header) %>
+      <%= render "govuk_publishing_components/components/modal_dialogue", {
+        id: "modal-#{header}",
+        wide: true
+      } do %>
+        <h1 class="govuk-heading-l"><%= t(".table.headers.#{header}", default: :"metrics.#{header}.title") %></h1>
+        <p class="govuk-body"><%= t(".table.headers.#{header}", default: :"metrics.#{header}.about") %></p>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
