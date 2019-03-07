@@ -6,7 +6,8 @@
     <script>
       dataLayer = [
         { 'gtm.blacklist' : ['customPixels', 'customScripts', 'html', 'nonGoogleScripts'] },
-        { 'user-organisation': '<%= current_user.organisation_slug %>' }
+        { 'user-organisation': '<%= current_user.organisation_slug %>' },
+        { 'cd-uid': '<%= current_user.uid %>' }
       ];
     </script>
     <%= render "govuk_publishing_components/components/google_tag_manager_script", {
