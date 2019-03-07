@@ -1,64 +1,76 @@
-.section-performance {
+.content-data__metrics {
 
-  @include media-down(mobile) {
-    border-top: 1px solid $govuk-border-colour;
+  .govuk-heading-xl {
+    @include govuk-responsive-margin(7, "bottom");
   }
-}
 
-.section-performance__header {
-  @include govuk-font($size: 36, $weight: bold);
-  margin: 0;
+  .section-performance {
 
-  @include media-down(mobile) {
-    @include govuk-responsive-margin(3, "top");
+    @include media-down(mobile) {
+      border-top: 1px solid $govuk-border-colour;
+    }
   }
-}
 
-.section-content {
-  padding: 0;
-}
+  .section-performance__header {
+    @include govuk-font($size: 36, $weight: bold);
+    margin: 0;
 
-.section-content__header {
-  @include govuk-font($size: 36, $weight: bold);
-  margin: 0;
-}
-
-.section-content__quality {
-  @include govuk-responsive-margin(2, "left");
-  @include govuk-responsive-margin(2, "right");
-}
-
-.govuk-section-break--visible {
-  border-width: 1px;
-}
-
-.metric-summary__words {
-
-  @include media-down(mobile) {
-    width: 95%;
-    border-bottom: 1px solid $govuk-border-colour;
+    @include media-down(mobile) {
+      @include govuk-responsive-margin(3, "top");
+    }
   }
-}
 
-.metric-summary__reading-time {
-
-  @include media-down(mobile) {
-    width: 95%;
-    border-bottom: 1px solid $govuk-border-colour;
+  .local-nav__search-link {
+    display: block;
+    @include govuk-responsive-margin(2, "top");
   }
-}
 
-.banner {
-  margin: 0;
-  @include govuk-responsive-margin(2, "bottom");
-  border-bottom: 1px solid $govuk-border-colour;
-
-  .govuk-grid-column-three-quarters {
+  .section-content {
     padding: 0;
   }
-}
 
-.govuk-width-container .local-nav {
-  text-align: right;
-  @include govuk-responsive-margin(2, "top");
+  .section-content__header {
+    @include govuk-font($size: 36, $weight: bold);
+    margin: 0;
+  }
+
+  .section-content__quality {
+    @include govuk-responsive-margin(2, "left");
+    @include govuk-responsive-margin(2, "right");
+  }
+
+  .govuk-section-break--visible {
+    border-width: 1px;
+  }
+
+  .metric-summary__words {
+
+    @include media-down(mobile) {
+      width: 95%;
+      border-bottom: 1px solid $govuk-border-colour;
+    }
+  }
+
+  .metric-summary__reading-time {
+
+    @include media-down(mobile) {
+      width: 95%;
+      border-bottom: 1px solid $govuk-border-colour;
+    }
+  }
+
+  .banner {
+    margin: 0;
+    @include govuk-responsive-margin(2, "bottom");
+    border-bottom: 1px solid $govuk-border-colour;
+
+    .govuk-grid-column-three-quarters {
+      padding: 0;
+    }
+  }
+
+  .govuk-width-container .local-nav {
+    text-align: right;
+    @include govuk-responsive-margin(2, "top");
+  }
 }

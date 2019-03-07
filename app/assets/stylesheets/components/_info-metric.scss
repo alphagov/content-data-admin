@@ -2,6 +2,7 @@
 @import "../../../node_modules/govuk-frontend/helpers/visually-hidden";
 
 .app-c-info-metric__heading {
+  @include govuk-responsive-margin(6, "top");
   @include govuk-responsive-margin(1, "bottom");
 }
 
@@ -37,6 +38,7 @@
 
   @include govuk-responsive-margin(3, "left");
   @include govuk-responsive-margin(3, "right");
+  @include govuk-responsive-margin(2, "bottom");
 
   .govuk-details__summary-text {
     @include govuk-font(16);

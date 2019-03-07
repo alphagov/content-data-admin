@@ -2,6 +2,7 @@
 @import "../../../node_modules/govuk-frontend/helpers/visually-hidden";
 
 .app-c-glance-metric {
+  @include govuk-responsive-margin(6, "bottom");
   border-top: 1px solid $govuk-border-colour;
   border-bottom: 1px solid $govuk-border-colour;
 
@@ -12,7 +13,8 @@
 
 .app-c-glance-metric__heading {
   @include govuk-responsive-margin(3, "top");
-  @include govuk-responsive-margin(2, "bottom");
+  @include govuk-responsive-margin(1, "bottom");
+  @include govuk-responsive-padding(3, "top");
   min-height: 2.6em;
 
 
@@ -27,6 +29,7 @@
 
 .app-c-glance-metric__figure {
   @include govuk-font($size: 36, $weight: bold);
+  @include govuk-responsive-margin(1, "bottom");
 
   @include media-down(mobile) {
     @include govuk-font($size: 48, $weight: bold);
@@ -64,6 +67,7 @@
 }
 
 .app-c-glance-metric__period {
+  @include govuk-responsive-margin(6, "bottom");
 
   @include media-down(mobile) {
     @include govuk-font(16);
