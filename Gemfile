@@ -32,6 +32,7 @@ group :development, :test do
   gem "capybara"
   gem "factory_bot_rails"
   gem "govuk-lint", "~> 3"
+  gem "govuk_test"
   gem 'pry'
   gem "rspec-rails", "~> 3"
   gem "spring-commands-rspec"
