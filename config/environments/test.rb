@@ -1,5 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :test
+  config.action_mailer.raise_delivery_errors = true
 
   # The test environment is used exclusively to run your application's
   # test suite. You never need to work with it otherwise. Remember that

@@ -47,6 +47,11 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  # Save emails to files from ActionMailer
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :file
+  config.action_mailer.raise_delivery_errors = true
+
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # This not used as evented file updates are not supported via VM
