@@ -29,6 +29,10 @@ $govuk-global-styles: true;
 
 }
 
+.banner {
+  border-bottom: 1px solid $govuk-border-colour;
+}
+
 .gem-c-phase-banner {
   border: none;
 }
@@ -36,5 +40,12 @@ $govuk-global-styles: true;
 .govuk-main-wrapper {
   @include govuk-responsive-padding(2, "top");
 }
+
+.local-nav__search-link {
+  display: block;
+  @include govuk-responsive-margin(2, "top");
+  text-align: right;
+}
+
 //overrides must be imported last
 @import "govuk-frontend/overrides/all";
