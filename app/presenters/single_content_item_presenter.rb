@@ -161,7 +161,7 @@ private
   end
 
   def useful_yes_no_total
-    value_for('useful_yes') + value_for('useful_no')
+    value_for('useful_yes').to_i + value_for('useful_no').to_i
   end
 
   def metadata

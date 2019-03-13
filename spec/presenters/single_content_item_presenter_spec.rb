@@ -167,6 +167,19 @@ RSpec.describe SingleContentItemPresenter do
       expect(subject.satisfaction_context).to eq(expected_context)
     end
 
+    it 'does not fail when there are no metrics' do
+      current_period_data[:time_series_metrics] = [
+        { name: 'pviews', total: 5 },
+        { name: 'upviews', total: 5 },
+        { name: 'useful_yes', total: nil },
+        { name: 'useful_no', total: nil },
+      ]
+
+      expected_context = 'Users who found the page useful, out of 0 responses'
+      expect(subject.satisfaction_context).to eq(expected_context)
+    end
+  end
+
   describe '#total_feedex' do
     it 'correctly formats number for a value in the millions' do
       current_period_data[:time_series_metrics] = [{ name: 'feedex', total: 1_000 }, { name: 'upviews', total: '0' }, { name: 'pviews', total: 0 }]
