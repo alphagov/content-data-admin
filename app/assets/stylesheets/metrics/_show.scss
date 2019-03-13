@@ -4,6 +4,10 @@
     @include govuk-responsive-margin(7, "bottom");
   }
 
+  .section-metadata {
+    @include govuk-responsive-margin(2, "bottom");
+  }
+
   .section-performance {
 
     @include media-down(mobile) {
@@ -18,11 +22,6 @@
     @include media-down(mobile) {
       @include govuk-responsive-margin(3, "top");
     }
-  }
-
-  .local-nav__search-link {
-    display: block;
-    @include govuk-responsive-margin(2, "top");
   }
 
   .section-content {
@@ -61,7 +60,7 @@
 
   .banner {
     margin: 0;
-    @include govuk-responsive-margin(2, "bottom");
+    @include govuk-responsive-margin(4, "bottom");
     border-bottom: 1px solid $govuk-border-colour;
 
     .govuk-grid-column-three-quarters {

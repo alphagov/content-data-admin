@@ -9,6 +9,7 @@
   @include govuk-font(16);
 
   @include govuk-responsive-padding(2, "top");
+  @include govuk-responsive-padding(1, "bottom");
 
   .app-c-time-select__heading {
     @include govuk-font($size: 16, $weight: bold);
