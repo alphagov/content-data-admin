@@ -171,6 +171,10 @@ $sort-link-arrow-spacing: 4px;
     }
   }
 
+  .content-item__link {
+    font-weight: bold;
+  }
+
   .filters-control__wrapper {
     border-bottom: 1px solid $govuk-border-colour;
     @include govuk-responsive-padding(3, "left");
