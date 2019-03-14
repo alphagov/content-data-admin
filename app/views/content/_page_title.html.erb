@@ -1,5 +1,6 @@
 <%= link_to item.title,
   metrics_path(item.base_path, date_range: date_range),
+  class: 'content-item__link',
   data: {
     'gtm-id': 'content-item-link',
     'gtm-item-document-type': item.raw_document_type,
