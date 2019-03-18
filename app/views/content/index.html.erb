@@ -95,6 +95,7 @@
                 data-gtm-id="<%= header %>-column">
                 <% if header.in? TableHeaderHelper::HEADERS_WITH_SORT_ENABLED %>
                   <a href="<%= url_for(request.params.merge(sort: sort_param(header, sort_direction))) %>"
+                    data-gtm-id="sort-link"
                     class="table__sort-link <% if sort_direction.present? %> table__sort-link--<%= sort_direction %> <% end %>">
                     <%= t(".table.headers.#{header}", default: :"metrics.#{header}.title") %>
                   </a>
