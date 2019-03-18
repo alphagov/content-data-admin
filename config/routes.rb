@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   get '/metrics/(*base_path)', to: 'metrics#show', as: :metrics, format: false
   get '/content', to: 'content#index'
+  get '/help', to: 'help#show', as: :show, format: false
   mount GovukPublishingComponents::Engine, at: "/component-guide"
 end

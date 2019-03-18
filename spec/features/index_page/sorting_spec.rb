@@ -73,7 +73,7 @@ RSpec.feature "Sort results" do
     stub_content_page(time_period: 'past-30-days', organisation_id: 'all', items: items)
     stub_content_page(time_period: 'past-30-days', organisation_id: 'all', items: sorted_items, sort: 'satisfaction:desc')
     visit "/content"
-    find('th[data-gtm-id="satisfaction-column"] > a').click
+    find('th[data-gtm-id="satisfaction-column"] > .table__sort-link').click
 
     values = extract_table_column_values('satisfaction')
     expect(values).to eq(['75% (100 responses)', '50% (10 responses)', '25% (100 responses)'])
@@ -85,7 +85,7 @@ RSpec.feature "Sort results" do
     stub_content_page(time_period: 'past-30-days', organisation_id: 'all', items: items)
     stub_content_page(time_period: 'past-30-days', organisation_id: 'all', items: sorted_items, sort: 'searches:desc')
     visit "/content"
-    find('th[data-gtm-id="searches-column"] > a').click
+    find('th[data-gtm-id="searches-column"] > .table__sort-link').click
 
     values = extract_table_column_values('searches')
     expect(values).to eq(%w[3 2 1])

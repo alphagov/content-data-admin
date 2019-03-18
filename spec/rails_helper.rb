@@ -2,6 +2,8 @@ require "byebug"
 require 'capybara/rspec'
 require 'webmock/rspec'
 
+WebMock.disable_net_connect!(allow_localhost: true)
+
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path('../config/environment', __dir__)
 require "rspec/rails"
@@ -11,6 +13,8 @@ if ENV["TEST_COVERAGE"] == "true"
   require "simplecov"
   SimpleCov.start
 end
+
+GovukTest.configure
 
 RSpec.configure do |config|
   config.expose_dsl_globally = false

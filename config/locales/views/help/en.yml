@@ -1,0 +1,7 @@
+en:
+  help:
+    page_title: 'Help'
+    title:
+      default: 'Help page'
+    about:
+      default: ''

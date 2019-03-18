@@ -13,7 +13,6 @@ RSpec.describe '/content' do
     GDS::SSO.test_user = build(:user, organisation_content_id: 'org-id')
 
     stub_content_page(time_period: 'last-month', organisation_id: 'org-id', items: items)
-
     visit '/content?submitted=true&date_range=last-month&organisation_id=org-id'
   end
 
@@ -36,6 +35,14 @@ RSpec.describe '/content' do
 
     it 'populates the search field with the current filter' do
       expect(page).to have_selector('input[name=search_term][value=title]')
+    end
+
+    it 'launches help text in a modal', js: true do
+      help_string = I18n.t('metrics.upviews.about')
+      expect(page).to_not have_text(help_string)
+      click_link(href: "/help/?hkey=upviews")
+      expect(page).to have_selector('.gem-c-modal-dialogue__box')
+      expect(page).to have_text(help_string)
     end
   end
 end
