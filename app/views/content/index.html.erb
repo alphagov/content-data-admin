@@ -103,11 +103,11 @@
                 <% end %>
                 <br>
                 <% if include_help_icon?(header) %>
-                  <a href="/help/?hkey=<%= header %>" data-toggle="modal" data-target="modal-<%= header %>" class="table__header-help">
+                  <a href="/help/?hkey=<%= header %>" data-toggle="modal" data-target="modal-<%= header %>" data-gtm-id="help-icon" class="table__header-help">
                       <%= image_tag(
                         (sort_direction.present? ? 'question_mark_inverse.svg' : 'question_mark_default.svg'),
-                        alt: 'Help',
-                        data: { 'gtm-id': 'help-icon' }) %>
+                        alt: 'Help')
+                      %>
                   </a>
                 <% end %>
               </th>
