@@ -41,6 +41,13 @@ RSpec.feature 'user analytics' do
     end
   end
 
+  sortable_columns = %w(document_type upviews satisfaction searches)
+  sortable_columns.each do |column|
+    scenario "tracks sort link for #{column}" do
+      expect(page).to have_selector("[data-gtm-id=\"#{column}-column\"] [data-gtm-id=\"sort-link\"]")
+    end
+  end
+
   scenario 'tracks table header' do
     expect(page).to have_selector('[data-gtm-id="table-header"]')
   end
