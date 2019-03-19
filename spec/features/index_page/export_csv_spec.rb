@@ -1,6 +1,6 @@
 require 'govuk_sidekiq/testing'
 
-RSpec.feature 'Exporting CSV' do
+RSpec.describe 'Exporting CSV' do
   include RequestStubs
   let(:items) do
     [
@@ -43,10 +43,26 @@ RSpec.feature 'Exporting CSV' do
     ]
   end
 
-  before do
+  before(:each) do
     stub_content_page(time_period: 'past-30-days', organisation_id: 'all', items: items)
     stub_content_page_csv_download(time_period: 'past-30-days', organisation_id: 'all', items: items)
     GDS::SSO.test_user = build(:user, organisation_content_id: 'users-org-id', email: 'to@example.com')
+
+    Fog.mock!
+    ENV['AWS_REGION'] = 'eu-west-1'
+    ENV['AWS_ACCESS_KEY_ID'] = 'test'
+    ENV['AWS_SECRET_ACCESS_KEY'] = 'test'
+    ENV['AWS_S3_BUCKET_NAME'] = 'test-bucket'
+
+    # Create an S3 bucket so the code being tested can find it
+    connection = Fog::Storage.new(
+      provider: 'AWS',
+      region: ENV['AWS_REGION'],
+      aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+    )
+    connection.directories.each(&:destroy)
+    @directory = connection.directories.get(ENV['AWS_S3_BUCKET_NAME']) || connection.directories.create(key: ENV['AWS_S3_BUCKET_NAME'])
 
     visit "/content"
     click_link('Download all data in CSV format')
@@ -54,12 +70,21 @@ RSpec.feature 'Exporting CSV' do
 
   it 'renders the page without error' do
     expect(page.status_code).to eq(200)
-    expect(page).to have_content('Sending Content Data CSV export')
+    expect(page).to have_content('Sending the CSV export')
+  end
+
+  it 'uploads the file' do
+    csv = CSV.parse(@directory.files.first.body)
+    expect(csv.length).to eq(4)
   end
 
   it 'sends a email with link to CSV export' do
     mail = ActionMailer::Base.deliveries.last
     expect(mail.to[0]).to eq('to@example.com')
-    expect(mail.body).to match('https://somelink.com')
+    expect(mail.body.to_s).to match(@directory.files.first.public_url)
+  end
+
+  after(:each) do
+    Fog::Mock.reset
   end
 end

@@ -61,21 +61,38 @@ RSpec.describe CsvExportWorker do
 
   before do
     Sidekiq::Worker.clear_all
+
+    allow(FetchDocumentTypes).to receive(:call)
+      .and_return(document_types: document_types)
+    allow(FetchOrganisations).to receive(:call)
+      .and_return(organisations: organisations)
+    allow(FindContent).to receive(:enum)
+      .with(search_params)
+      .and_return(content_items)
+
+    Fog.mock!
+    ENV['AWS_REGION'] = 'eu-west-1'
+    ENV['AWS_ACCESS_KEY_ID'] = 'test'
+    ENV['AWS_SECRET_ACCESS_KEY'] = 'test'
+    ENV['AWS_S3_BUCKET_NAME'] = 'test-bucket'
+
+    # Create an S3 bucket so the code being tested can find it
+    connection = Fog::Storage.new(
+      provider: 'AWS',
+      region: ENV['AWS_REGION'],
+      aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+    )
+    @directory = connection.directories.get(ENV['AWS_S3_BUCKET_NAME']) || connection.directories.create(key: ENV['AWS_S3_BUCKET_NAME'])
   end
 
   subject { described_class.new.perform(search_params, 'to@example.com') }
 
-  it 'mails a csv' do
-    expect(FetchDocumentTypes).to receive(:call).and_return(document_types: document_types)
-    expect(FetchOrganisations).to receive(:call).and_return(organisations: organisations)
-    expect(FindContent).to receive(:enum)
-      .with(search_params)
-      .and_return(content_items)
-
+  it 'emails a link of the uploaded file' do
     subject
 
     mail = ActionMailer::Base.deliveries.last
     expect(mail.to[0]).to eq('to@example.com')
-    expect(mail.body).to match('https://somelink.com')
+    expect(mail.body).to match(/https:\/\/test-bucket.s3-eu-west-1.amazonaws.com/)
   end
 end

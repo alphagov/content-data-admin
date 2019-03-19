@@ -66,7 +66,7 @@ class ContentItemsCSVPresenter
   end
 
   def filename
-    "content-data-export-from-%<from>s-to-%<to>s-from-%<org>s%<document_type>s.csv" % {
+    "content-data-export-from-%<from>s-to-%<to>s-from-%<org>s%<document_type>s" % {
       from: @date_range.from,
       to: @date_range.to,
       org: organisation_title(@organisations, @organisation_id).parameterize,

@@ -184,7 +184,7 @@ RSpec.describe ContentItemsCSVPresenter do
     it 'includes the organisation and document_type' do
       expect(
         subject.filename
-      ).to include('from-org-in-news-story.csv')
+      ).to include('from-org-in-news-story')
     end
   end
 
@@ -194,7 +194,7 @@ RSpec.describe ContentItemsCSVPresenter do
     it 'includes all-organisations in filename' do
       expect(
         subject.filename
-      ).to include('from-all-organisations-in-news-story.csv')
+      ).to include('from-all-organisations-in-news-story')
     end
   end
 
@@ -204,7 +204,7 @@ RSpec.describe ContentItemsCSVPresenter do
     it 'includes no-organisation in filename' do
       expect(
         subject.filename
-      ).to include('from-no-organisation-in-news-story.csv')
+      ).to include('from-no-organisation-in-news-story')
     end
   end
 end
