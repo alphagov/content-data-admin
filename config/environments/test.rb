@@ -36,4 +36,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Perform sidekiq jobs immediately
+  config.active_job.queue_adapter = :sidekiq
+  require 'govuk_sidekiq/testing'
+  Sidekiq::Testing.inline!
 end

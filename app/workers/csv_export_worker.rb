@@ -2,6 +2,7 @@ class CsvExportWorker
   include Sidekiq::Worker
 
   def perform(search_params, recipient_address)
+    search_params = search_params.symbolize_keys
     document_types = FetchDocumentTypes.call[:document_types]
     organisations = FetchOrganisations.call[:organisations]
 

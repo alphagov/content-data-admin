@@ -5,7 +5,7 @@ class ContentController < ApplicationController
   DEFAULT_ORGANISATION_ID = 'all'.freeze
 
   layout 'application'
-  before_action :set_constants
+  before_action :set_constants, only: [:index]
 
   def set_constants
     @fullwidth = true
@@ -20,6 +20,12 @@ class ContentController < ApplicationController
     @presenter = ContentItemsPresenter.new(
       search_results, search_params, document_types, organisations,
     )
+  end
+
+  def export_csv
+    recipient = current_user.email
+
+    CsvExportWorker.perform_async(search_params, recipient)
   end
 
 private
