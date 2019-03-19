@@ -15,25 +15,11 @@ class ContentController < ApplicationController
     document_types = FetchDocumentTypes.call[:document_types]
     organisations = FetchOrganisations.call[:organisations]
 
-    respond_to do |format|
-      format.html do
-        search_results = FindContent.call(search_params)
+    search_results = FindContent.call(search_params)
 
-        @presenter = ContentItemsPresenter.new(
-          search_results, search_params, document_types, organisations,
-        )
-      end
-      format.csv do
-        presenter = ContentItemsCSVPresenter.new(
-          FindContent.enum(search_params),
-          search_params,
-          document_types,
-          organisations
-        )
-
-        export_to_csv(enum: presenter.csv_rows, filename: presenter.filename)
-      end
-    end
+    @presenter = ContentItemsPresenter.new(
+      search_results, search_params, document_types, organisations,
+    )
   end
 
 private
