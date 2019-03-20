@@ -234,12 +234,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector('.govuk-link', text: I18n.t("metrics.searches.external_link"))
       end
 
-      it 'renders the metric timeseries for satisfaction' do
-        satisfaction_rows = extract_table_content(".chart.satisfaction table")
-        expect(satisfaction_rows).to match_array([
-          expected_table_dates,
-          ["User satisfaction score", "100%", "90%", "80%"]
-        ])
+      it 'renders the satisfaction score' do
+        within '.section-performance' do
+          expect(page).to have_selector('.metric-summary__satisfaction', text: '90% (700 responses) +50.00%')
+        end
       end
 
       it 'renders the metric timeseries for ' do

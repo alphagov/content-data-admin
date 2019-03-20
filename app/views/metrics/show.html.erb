@@ -126,11 +126,14 @@
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-    <%= render 'metric_section',
-        metric_name: 'satisfaction',
-        total: @performance_data.total_satisfaction,
-        short_context: @performance_data.satisfaction_short_context,
-        external_link: nil %>
+    <div class="metric-summary__satisfaction">
+      <%= render 'metric_header', {
+          metric_name: 'satisfaction',
+          value: @performance_data.total_satisfaction,
+          show_trend: true,
+          short_context: @performance_data.satisfaction_short_context
+      }%>
+    </div>
   </div>
 </div>
 
