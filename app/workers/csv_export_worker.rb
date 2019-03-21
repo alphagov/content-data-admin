@@ -2,6 +2,8 @@ require 'fog/aws'
 
 class CsvExportWorker
   include Sidekiq::Worker
+  sidekiq_options retry: 0
+  sidekiq_options queue: 'export_csv'
 
   def perform(search_params, recipient_address)
     search_params = search_params.symbolize_keys
