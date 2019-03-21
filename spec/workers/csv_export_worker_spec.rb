@@ -88,6 +88,15 @@ RSpec.describe CsvExportWorker do
 
   subject { described_class.new.perform(search_params, 'to@example.com') }
 
+  it 'uploads the file to S3' do
+    subject
+
+    expect(@directory.files.count).to eq(1)
+
+    csv = CSV.parse(@directory.files.first.body)
+    expect(csv.length).to eq(3)
+  end
+
   it 'emails a link of the uploaded file' do
     subject
 

@@ -7,11 +7,10 @@ class CsvExportWorker
     search_params = search_params.symbolize_keys
     presenter = get_csv_presenter(search_params)
 
-    timestamp = Time.now.utc.strftime('%Y-%m-%d-%H-%M-%S')
     basename = presenter.filename
     csv_string = presenter.csv_rows
 
-    file_url = upload_to_s3("#{timestamp}/#{basename}.csv", csv_string)
+    file_url = upload_to_s3("#{basename}.csv", csv_string)
 
     # Send email with link
     ContentCsvMailer.content_csv_email(recipient_address, file_url).deliver_now
@@ -30,7 +29,7 @@ class CsvExportWorker
     )
   end
 
-  def upload_to_s3(key, body)
+  def upload_to_s3(filename, body)
     connection = Fog::Storage.new(
       provider: 'AWS',
       region: ENV['AWS_REGION'],
@@ -40,7 +39,16 @@ class CsvExportWorker
 
     directory = connection.directories.get(ENV['AWS_CSV_EXPORT_BUCKET_NAME'])
 
-    file = directory.files.create(key: key, body: body, public: true)
+    timestamp = Time.now.utc.strftime('%Y-%m-%d-%H-%M-%S')
+    key = "#{timestamp}/#{filename}"
+
+    file = directory.files.create(
+      key: key,
+      body: body,
+      public: true,
+      content_disposition: "attachment; filename=\"#{filename}\"",
+      content_type: 'text/csv'
+    )
 
     file.public_url
   end
