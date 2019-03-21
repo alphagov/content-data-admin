@@ -36,4 +36,8 @@ RSpec.feature 'user analytics' do
   scenario 'tracks metric "about this data" reveal' do
     expect(page).to have_selector('[data-gtm-id="metric-summary"] summary')
   end
+
+  scenario 'tracks clicks on app name in header' do
+    expect(page).to have_selector('.govuk-phase-banner__content__app-name')
+  end
 end
