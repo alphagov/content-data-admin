@@ -2,15 +2,20 @@
   name ||= false
   figure ||= false
   period ||= false
-  measurement_display_label ||= ""
-  measurement_explicit_label ||= ""
   context ||= ""
   trend_percentage ||= ""
+  measurement_display_label ||= ""
+  measurement_explicit_label ||= ""
 %>
 <% if name && figure && period %>
   <div class="app-c-glance-metric govuk-body">
     <h3 class="app-c-glance-metric__heading"><%= name %></h3>
-    <span class="app-c-glance-metric__figure"><%= figure %><span class="app-c-glance-metric__measurement" <% if measurement_explicit_label %>aria-label="<%= measurement_explicit_label %>"<% end %>><%= measurement_display_label %></span></span>
+    <span class="app-c-glance-metric__figure"><%= figure %><% if measurement_display_label %><span class="app-c-glance-metric__measurement"
+        <% if measurement_explicit_label %>
+          aria-label="<%= measurement_explicit_label %>"
+        <% end %>><%= measurement_display_label %></span>
+    <% end %>
+    </span>
     <p class="app-c-glance-metric__context govuk-body-xs"><%= context %></p>
     <span class="app-c-glance-metric__trend">
       <% if trend_percentage.blank? %>
