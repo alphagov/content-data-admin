@@ -4,9 +4,7 @@ RSpec.describe "Glance Metric", type: :view do
   let(:data) {
     {
       name: "Unique pageviews",
-      figure: "167",
-      measurement_display_label: "m",
-      measurement_explicit_label: "million",
+      figure: "167,000,000",
       context: "This is in your top 10 items",
       trend_percentage: 0.5,
       period: "Apr 2018 to Mar 2018",
@@ -37,10 +35,27 @@ RSpec.describe "Glance Metric", type: :view do
     assert_select ".app-c-glance-metric"
     assert_select ".app-c-glance-metric__heading", text: "Unique pageviews"
     assert_select ".app-c-glance-metric__figure", text: "167m"
-    assert_select ".app-c-glance-metric__measurement[aria-label=million]"
+    assert_select ".app-c-glance-metric__measurement[aria-label=Million]"
     assert_select ".app-c-glance-metric__context", text: "This is in your top 10 items"
     assert_select ".app-c-glance-metric__trend", text: "+0.50%"
     assert_select ".app-c-glance-metric__period", text: "Apr 2018 to Mar 2018"
+  end
+
+  it "formats the number and label correctly" do
+    render_component(data)
+    assert_select ".app-c-glance-metric__figure", text: "167m"
+    assert_select ".app-c-glance-metric__measurement[aria-label=Million]"
+    data[:figure] = "15,000,000,000"
+    render_component(data)
+    assert_select ".app-c-glance-metric__figure", text: "15b"
+    assert_select ".app-c-glance-metric__measurement[aria-label=Billion]"
+    data[:figure] = "15,000"
+    render_component(data)
+    assert_select ".app-c-glance-metric__figure", text: "15k"
+    assert_select ".app-c-glance-metric__measurement[aria-label=Thousand]"
+    data[:figure] = "15%"
+    render_component(data)
+    assert_select ".app-c-glance-metric__figure", text: "15%"
   end
 
   it "does not show an aria label if no explicit measurement label is provided" do
