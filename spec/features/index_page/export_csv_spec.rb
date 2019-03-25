@@ -52,7 +52,7 @@ RSpec.describe 'Exporting CSV' do
     ENV['AWS_REGION'] = 'eu-west-1'
     ENV['AWS_ACCESS_KEY_ID'] = 'test'
     ENV['AWS_SECRET_ACCESS_KEY'] = 'test'
-    ENV['AWS_S3_BUCKET_NAME'] = 'test-bucket'
+    ENV['AWS_CSV_EXPORT_BUCKET_NAME'] = 'test-bucket'
 
     # Create an S3 bucket so the code being tested can find it
     connection = Fog::Storage.new(
@@ -62,7 +62,7 @@ RSpec.describe 'Exporting CSV' do
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
     )
     connection.directories.each(&:destroy)
-    @directory = connection.directories.get(ENV['AWS_S3_BUCKET_NAME']) || connection.directories.create(key: ENV['AWS_S3_BUCKET_NAME'])
+    @directory = connection.directories.create(key: ENV['AWS_CSV_EXPORT_BUCKET_NAME'])
 
     visit "/content"
     click_link('Download all data in CSV format')

@@ -38,7 +38,7 @@ class CsvExportWorker
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
     )
 
-    directory = connection.directories.get(ENV['AWS_S3_BUCKET_NAME'])
+    directory = connection.directories.get(ENV['AWS_CSV_EXPORT_BUCKET_NAME'])
 
     file = directory.files.create(key: key, body: body, public: true)
 

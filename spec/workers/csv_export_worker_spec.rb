@@ -74,7 +74,7 @@ RSpec.describe CsvExportWorker do
     ENV['AWS_REGION'] = 'eu-west-1'
     ENV['AWS_ACCESS_KEY_ID'] = 'test'
     ENV['AWS_SECRET_ACCESS_KEY'] = 'test'
-    ENV['AWS_S3_BUCKET_NAME'] = 'test-bucket'
+    ENV['AWS_CSV_EXPORT_BUCKET_NAME'] = 'test-bucket'
 
     # Create an S3 bucket so the code being tested can find it
     connection = Fog::Storage.new(
@@ -83,7 +83,7 @@ RSpec.describe CsvExportWorker do
       aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
     )
-    @directory = connection.directories.get(ENV['AWS_S3_BUCKET_NAME']) || connection.directories.create(key: ENV['AWS_S3_BUCKET_NAME'])
+    @directory = connection.directories.create(key: ENV['AWS_CSV_EXPORT_BUCKET_NAME'])
   end
 
   subject { described_class.new.perform(search_params, 'to@example.com') }
@@ -94,5 +94,9 @@ RSpec.describe CsvExportWorker do
     mail = ActionMailer::Base.deliveries.last
     expect(mail.to[0]).to eq('to@example.com')
     expect(mail.body).to match(/https:\/\/test-bucket.s3-eu-west-1.amazonaws.com/)
+  end
+
+  after(:each) do
+    Fog::Mock.reset
   end
 end
