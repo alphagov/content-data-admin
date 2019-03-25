@@ -71,6 +71,7 @@ RSpec.describe 'Exporting CSV' do
   it 'renders the page without error' do
     expect(page.status_code).to eq(200)
     expect(page).to have_content('Sending the CSV export')
+    expect(page).to have_content('to@example.com')
   end
 
   it 'uploads the file' do
