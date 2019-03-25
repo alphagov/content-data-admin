@@ -1,7 +1,9 @@
 require 'fog/aws'
 
 class CsvExportWorker
+  include FileStorage
   include Sidekiq::Worker
+
   sidekiq_options retry: 0
   sidekiq_options queue: 'export_csv'
 
@@ -12,7 +14,7 @@ class CsvExportWorker
     basename = presenter.filename
     csv_string = presenter.csv_rows
 
-    file_url = upload_to_s3("#{basename}.csv", csv_string)
+    file_url = upload_csv_to_s3(basename, csv_string)
 
     # Send email with link
     ContentCsvMailer.content_csv_email(recipient_address, file_url).deliver_now
@@ -29,29 +31,5 @@ class CsvExportWorker
       document_types,
       organisations
     )
-  end
-
-  def upload_to_s3(filename, body)
-    connection = Fog::Storage.new(
-      provider: 'AWS',
-      region: ENV['AWS_REGION'],
-      aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-      aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
-    )
-
-    directory = connection.directories.get(ENV['AWS_CSV_EXPORT_BUCKET_NAME'])
-
-    timestamp = Time.now.utc.strftime('%Y-%m-%d-%H-%M-%S')
-    key = "#{timestamp}/#{filename}"
-
-    file = directory.files.create(
-      key: key,
-      body: body,
-      public: true,
-      content_disposition: "attachment; filename=\"#{filename}\"",
-      content_type: 'text/csv'
-    )
-
-    file.public_url
   end
 end
