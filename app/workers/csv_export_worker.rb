@@ -7,7 +7,7 @@ class CsvExportWorker
 
   def perform(search_params, recipient_address)
     search_params = search_params.symbolize_keys
-    presenter = get_csv_presenter(search_params)
+    presenter = build_csv_presenter(search_params)
 
     basename = presenter.filename
     csv_string = presenter.csv_rows
@@ -18,7 +18,7 @@ class CsvExportWorker
     ContentCsvMailer.content_csv_email(recipient_address, file_url).deliver_now
   end
 
-  def get_csv_presenter(search_params)
+  def build_csv_presenter(search_params)
     document_types = FetchDocumentTypes.call[:document_types]
     organisations = FetchOrganisations.call[:organisations]
 
