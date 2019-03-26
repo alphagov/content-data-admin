@@ -56,19 +56,17 @@ class ContentItemsCSVPresenter
       end
     }
 
-    Enumerator.new do |yielder|
-      yielder << CSV.generate_line(fields.keys)
+    CSV.generate do |csv|
+      csv << fields.keys
 
       @data_enum.each do |result_row|
-        yielder << CSV.generate_line(
-          fields.values.map { |value_callable| value_callable.call(result_row) }
-        )
+        csv << fields.values.map { |value_callable| value_callable.call(result_row) }
       end
     end
   end
 
   def filename
-    "content-data-export-from-%<from>s-to-%<to>s-from-%<org>s%<document_type>s.csv" % {
+    "content-data-export-from-%<from>s-to-%<to>s-from-%<org>s%<document_type>s" % {
       from: @date_range.from,
       to: @date_range.to,
       org: organisation_title(@organisations, @organisation_id).parameterize,

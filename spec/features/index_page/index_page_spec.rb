@@ -275,31 +275,4 @@ RSpec.describe '/content' do
       expect(page).to have_css('h1.table-caption', exact_text: 'Showing 150 results from org (OI)')
     end
   end
-
-  context 'CSV export' do
-    # Use lots of items to test getting a couple of full pages, plus a
-    # partial page back from the Content Performance Manager.
-    let(:csv_items) { items * 11 }
-
-    it 'it provides a CSV file respecting all filters' do
-      pending('Feature temporarily disabled')
-
-      stub_content_page(
-        time_period: 'last-month',
-        organisation_id: 'org-id',
-        items: csv_items,
-        search_terms: 'find this'
-      )
-      stub_content_page_csv_download(
-        time_period: 'last-month',
-        organisation_id: 'org-id',
-        items: csv_items,
-        search_terms: 'find this'
-      )
-      visit "/content?date_range=last-month&organisation_id=org-id&search_term=find+this"
-      click_link 'Download all data in CSV format'
-
-      expect(CSV.parse(page.body).length).to be(csv_items.length + 1)
-    end
-  end
 end

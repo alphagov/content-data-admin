@@ -76,6 +76,7 @@ GEM
       nokogiri (~> 1.8)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
+    connection_pool (2.2.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
@@ -85,6 +86,7 @@ GEM
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.8.0)
+    excon (0.62.0)
     execjs (2.7.0)
     factory_bot (5.0.0)
       activesupport (>= 4.2.0)
@@ -94,6 +96,23 @@ GEM
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.10.0)
+    fog-aws (3.4.0)
+      fog-core (~> 2.1)
+      fog-json (~> 1.1)
+      fog-xml (~> 0.1)
+      ipaddress (~> 0.8)
+    fog-core (2.1.2)
+      builder
+      excon (~> 0.58)
+      formatador (~> 0.2)
+      mime-types
+    fog-json (1.2.0)
+      fog-core
+      multi_json (~> 1.10)
+    fog-xml (0.1.3)
+      fog-core
+      nokogiri (>= 1.5.11, < 2.0.0)
+    formatador (0.2.5)
     gds-api-adapters (57.5.0)
       addressable
       link_header
@@ -142,6 +161,13 @@ GEM
       rake
       rouge
       sass-rails (>= 5.0.4)
+    govuk_sidekiq (3.0.3)
+      gds-api-adapters (>= 19.1.0)
+      govuk_app_config (>= 1.1)
+      redis-namespace (~> 1.6)
+      sidekiq (>= 5, < 6)
+      sidekiq-logging-json (~> 0.0)
+      sidekiq-statsd (~> 0.1)
     govuk_test (0.4.1)
       capybara
       chromedriver-helper
@@ -156,6 +182,7 @@ GEM
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
+    ipaddress (0.8.3)
     jaro_winkler (1.5.2)
     json (2.1.0)
     jwt (2.1.0)
@@ -242,6 +269,8 @@ GEM
     rack (2.0.6)
     rack-cache (1.9.0)
       rack (>= 0.4)
+    rack-protection (2.0.5)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.2.1)
@@ -274,6 +303,9 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    redis (4.1.0)
+    redis-namespace (1.6.0)
+      redis (>= 3.0.4)
     regexp_parser (1.3.0)
     request_store (1.4.1)
       rack (>= 1.4)
@@ -337,6 +369,17 @@ GEM
       rubyzip (~> 1.2, >= 1.2.2)
     sentry-raven (2.7.4)
       faraday (>= 0.7.6, < 1.0)
+    sidekiq (5.2.5)
+      connection_pool (~> 2.2, >= 2.2.2)
+      rack (>= 1.5.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
+    sidekiq-logging-json (0.0.18)
+      sidekiq (>= 3)
+    sidekiq-statsd (0.1.5)
+      activesupport
+      sidekiq (>= 2.6)
+      statsd-ruby (>= 1.1.0)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -394,11 +437,13 @@ DEPENDENCIES
   capybara
   chartkick
   factory_bot_rails
+  fog-aws (~> 3)
   gds-api-adapters (~> 57)
   gds-sso (~> 14)
   govuk-lint (~> 3)
   govuk_app_config (~> 1)
   govuk_publishing_components (~> 16.6)
+  govuk_sidekiq (~> 3)
   govuk_test
   kaminari
   listen (~> 3)

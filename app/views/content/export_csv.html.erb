@@ -1,0 +1,15 @@
+<% content_for :title, "Sending CSV export" %>
+<% content_for :page_class, "content-data__metrics" %>
+<% content_for :local_nav do %>
+  <div class="local-nav govuk-grid-column-one-quarter">
+    <a href="/content" class="local-nav__search-link govuk-link govuk-link--no-visited-state" data-gtm-id="back-link">Search</a>
+  </div>
+<% end %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Sending the CSV export</h1>
+    <p>The data you exported is on its way. We'll send an email to <%= @recipient %> with a link to download the CSV.</p>
+    <p>Most emails should arrive within 15 mins. If you don't recieve an email within 30 mins, contact 
+    <a href="mailto:content-data-feedback@digital.cabinet-office.gov.uk">content-data-feedback@digital.cabinet-office.gov.uk</a>.</p>
+  </div>
+</div>

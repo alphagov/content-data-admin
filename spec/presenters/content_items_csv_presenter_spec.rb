@@ -19,6 +19,7 @@ RSpec.describe ContentItemsCSVPresenter do
       document_type: 'news_story'
     }
   end
+
   let(:data_enum) do
     [
       {
@@ -63,14 +64,14 @@ RSpec.describe ContentItemsCSVPresenter do
   describe '#csv_rows' do
     let(:presenter) { described_class.new(data_enum, search_params, document_types, organisations) }
 
-    subject { presenter.csv_rows }
+    subject { CSV.parse(presenter.csv_rows) }
 
     it 'returns the right number of rows' do
       expect(subject.count).to eq(3)
     end
 
     describe 'headers' do
-      subject { presenter.csv_rows.first }
+      subject { CSV.parse(presenter.csv_rows).first }
 
       expected_headers = [
         'Title',
@@ -98,12 +99,12 @@ RSpec.describe ContentItemsCSVPresenter do
       end
 
       it 'returns correct number of columns' do
-        expect(CSV.parse_line(subject).length).to be(expected_headers.length)
+        expect(subject.length).to be(expected_headers.length)
       end
     end
 
     describe 'values' do
-      subject { CSV.parse_line(presenter.csv_rows.to_a[1]) }
+      subject { CSV.parse(presenter.csv_rows)[1] }
 
       it 'has a title' do
         expect(subject[0]).to eq('GOV.UK homepage')
@@ -183,7 +184,7 @@ RSpec.describe ContentItemsCSVPresenter do
     it 'includes the organisation and document_type' do
       expect(
         subject.filename
-      ).to include('from-org-in-news-story.csv')
+      ).to include('from-org-in-news-story')
     end
   end
 
@@ -193,7 +194,7 @@ RSpec.describe ContentItemsCSVPresenter do
     it 'includes all-organisations in filename' do
       expect(
         subject.filename
-      ).to include('from-all-organisations-in-news-story.csv')
+      ).to include('from-all-organisations-in-news-story')
     end
   end
 
@@ -203,7 +204,7 @@ RSpec.describe ContentItemsCSVPresenter do
     it 'includes no-organisation in filename' do
       expect(
         subject.filename
-      ).to include('from-no-organisation-in-news-story.csv')
+      ).to include('from-no-organisation-in-news-story')
     end
   end
 end
