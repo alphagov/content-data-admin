@@ -53,7 +53,6 @@ RSpec.feature 'user analytics' do
   end
 
   scenario 'tracks CSV download link' do
-    pending("something else getting finished")
     expect(page).to have_selector('[data-gtm-id="csv-download-link"]')
   end
 
