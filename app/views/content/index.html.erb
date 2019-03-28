@@ -9,7 +9,6 @@
         <span class="filters-control filters-control--show govuk-visually-hidden">
           <a href="" class="govuk-link filters-control__link filters-control__link--show">Show filters</a>&nbsp;&#x25BC;</span>
       </div>
-
       <div class="filter-form">
         <%= form_tag content_path,
           method: 'get',
@@ -23,7 +22,6 @@
             base_path: "/",
             dates: time_select_options(TimeSelectHelper::CONTENT_PAGE_TIME_PERIODS)
           } %>
-          <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
 
           <div class="filter-form__filters">
             <%= render "govuk_publishing_components/components/input", {
