@@ -58,22 +58,22 @@
 <div class="govuk-grid-row" data-gtm-id="glance-metrics">
   <%= render "glance_metric",
       metric_name: "upviews",
-      total: @performance_data.total_upviews,
+      total: @performance_data.abbreviated_total_upviews,
       context: nil %>
 
   <%= render "glance_metric",
       metric_name: "satisfaction",
-      total: @performance_data.total_satisfaction,
+      total: {figure: @performance_data.total_satisfaction},
       context: @performance_data.satisfaction_context %>
 
   <%= render "glance_metric",
       metric_name: "searches",
-      total: @performance_data.total_searches,
+      total: @performance_data.abbreviated_total_searches,
       context: @performance_data.searches_context %>
 
   <%= render "glance_metric",
       metric_name: "feedex",
-      total: @performance_data.total_feedex,
+      total: @performance_data.abbreviated_total_feedex,
       context: @performance_data.feedex_context %>
 </div>
 

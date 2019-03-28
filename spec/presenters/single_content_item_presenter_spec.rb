@@ -194,6 +194,38 @@ RSpec.describe SingleContentItemPresenter do
     end
   end
 
+  describe '#abbreviated_total_feedex' do
+    it 'correctly formats a value in the billions' do
+      current_period_data[:time_series_metrics] = [{ name: 'feedex', total: 1_000_000_000 }, { name: 'upviews', total: '0' }, { name: 'pviews', total: 0 }]
+
+      expect(subject.abbreviated_total_feedex).to eq(display_label: "b", explicit_label: "Billion", figure: "1")
+    end
+
+    it 'correctly formats a value in the millions' do
+      current_period_data[:time_series_metrics] = [{ name: 'feedex', total: 1_489_000 }, { name: 'upviews', total: '0' }, { name: 'pviews', total: 0 }]
+
+      expect(subject.abbreviated_total_feedex).to eq(display_label: "m", explicit_label: "Million", figure: "1.49")
+    end
+
+    it 'correctly formats a value in the thousands' do
+      current_period_data[:time_series_metrics] = [{ name: 'feedex', total: 3_353 }, { name: 'upviews', total: '0' }, { name: 'pviews', total: 0 }]
+
+      expect(subject.abbreviated_total_feedex).to eq(display_label: "k", explicit_label: "Thousand", figure: "3.35")
+    end
+
+    it 'correctly formats a small value' do
+      current_period_data[:time_series_metrics] = [{ name: 'feedex', total: 53 }, { name: 'upviews', total: '0' }, { name: 'pviews', total: 0 }]
+
+      expect(subject.abbreviated_total_feedex).to eq(display_label: "", explicit_label: "", figure: "53")
+    end
+
+    it 'handles nil values' do
+      current_period_data[:time_series_metrics] = [{ name: 'feedex', total: nil }, { name: 'upviews', total: '0' }, { name: 'pviews', total: 0 }]
+
+      expect(subject.abbreviated_total_feedex).to eq(display_label: nil, explicit_label: nil, figure: nil)
+    end
+  end
+
   describe '#total_words' do
     it 'correctly formats number for a value in the millions' do
       current_period_data[:edition_metrics] = [{ name: 'words', value: 5_000 }]

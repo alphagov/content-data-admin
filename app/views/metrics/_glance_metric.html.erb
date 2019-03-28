@@ -1,7 +1,9 @@
 <div class="govuk-grid-column-one-quarter glance-metric <%=metric_name%>">
   <%= render "components/glance-metric", {
       name: @performance_data.metric_short_title(metric_name),
-      figure: total,
+      figure: total[:figure],
+      measurement_display_label: total[:display_label],
+      measurement_explicit_label: total[:explicit_label],
       context: context,
       trend_percentage: @performance_data.trend_percentage(metric_name),
       period: @performance_data.period

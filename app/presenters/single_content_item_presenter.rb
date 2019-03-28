@@ -15,6 +15,18 @@ class SingleContentItemPresenter
     assign_pageviews_per_visit
   end
 
+  def abbreviated_total_upviews
+    abbreviate(value_for('upviews'))
+  end
+
+  def abbreviated_total_searches
+    abbreviate(value_for('searches'))
+  end
+
+  def abbreviated_total_feedex
+    abbreviate(value_for('feedex'))
+  end
+
   def total_upviews
     number_with_delimiter value_for('upviews')
   end
@@ -155,6 +167,14 @@ class SingleContentItemPresenter
   end
 
 private
+
+  def abbreviate(number)
+    {
+      figure: number_to_human(number, format: '%n'),
+      display_label: number_to_human(number, format: '%u', units: { unit: "", thousand: "k", million: "m", billion: "b" }),
+      explicit_label: number_to_human(number, format: '%u')
+    }
+  end
 
   def value_for(metric)
     @metrics[metric][:value]
