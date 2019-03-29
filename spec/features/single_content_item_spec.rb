@@ -57,13 +57,13 @@ RSpec.describe '/metrics/base/path', type: :feature do
 
     describe 'metadata section' do
       it 'renders the metadata' do
-        metadata = find('.page-metadata').all('dl').map do |el|
-          el.all('dt,dd').map(&:text)
+        metadata = find('.page-metadata').all('tr').map do |el|
+          el.all('th,td').map(&:text)
         end
         expect(metadata).to eq([
-                                 [I18n.t("components.metadata.labels.publishing_organisation"), 'The Ministry',
-                                  I18n.t("components.metadata.labels.document_type"), 'News story',
-                                  I18n.t("components.metadata.labels.base_path"), 'gov.uk/base/path']
+                                [I18n.t("components.metadata.labels.publishing_organisation"), 'The Ministry'],
+                                [I18n.t("components.metadata.labels.document_type"), 'News story'],
+                                [I18n.t("components.metadata.labels.base_path"), 'gov.uk/base/path']
                                ])
       end
     end

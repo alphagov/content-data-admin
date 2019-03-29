@@ -5,21 +5,28 @@
     status ||= nil
 %>
 
-<div class="app-c-metadata govuk-body govuk-body-xs">
+<table class="app-c-metadata govuk-body govuk-body-xs app-c-metadata__list">
+
   <% if status %>
-    <dl class="app-c-metadata__list">
-      <dt class="app-c-metadata__title"><%= t ".labels.status" %></dt>
-      <dd class="app-c-metadata__description govuk-!-font-weight-bold"><%= status %></dd>
-    </dl>
+    <tr>
+        <th scope="row" class="app-c-metadata__title"><%= t ".labels.status" %></th>
+        <td class="app-c-metadata__description govuk-!-font-weight-bold"><%= status %></td>
+    </tr>
   <% end %>
-  <dl class="app-c-metadata__list">
-    <% if publishing_organisation %>
-      <dt class="app-c-metadata__title"><%= t ".labels.publishing_organisation" %></dt>
-      <dd class="app-c-metadata__description"><%= publishing_organisation %></dd>
-    <% end %>
-    <dt class="app-c-metadata__title"><%= t ".labels.document_type" %></dt>
-    <dd class="app-c-metadata__description"><%= document_type %></dd>
-    <dt class="app-c-metadata__title app-c-metadata__title--wrappable"><%= t ".labels.base_path" %></dt>
-    <dd class="app-c-metadata__description">gov.uk<%= base_path %></dd>
-  </dl>
-</div>
+  <% if publishing_organisation %>
+    <tr>
+      <th scope="row" class="app-c-metadata__title"><%= t ".labels.publishing_organisation" %></th>
+      <td class="app-c-metadata__description"><%= publishing_organisation %></td>
+    </tr>
+  <% end %>
+
+    <tr>
+      <th scope="row" class="app-c-metadata__title"><%= t ".labels.document_type" %></th>
+      <td class="app-c-metadata__description"><%= document_type %></td>
+    </tr>
+    <tr>
+      <th scope="row" class="app-c-metadata__title app-c-metadata__title--wrappable"><%= t ".labels.base_path" %></th>
+      <td class="app-c-metadata__description">gov.uk<%= base_path %></td>
+    </tr>
+
+</table>
