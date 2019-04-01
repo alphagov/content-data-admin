@@ -6,14 +6,14 @@ gem "rails", "~> 5.2"
 
 gem "bootsnap", "~> 1"
 gem "chartkick"
-gem 'fog-aws', '~> 3'
+gem "fog-aws", '~> 3'
 gem "gds-api-adapters", "~> 59"
 gem "gds-sso", "~> 14"
 gem "govuk_app_config", "~> 1"
 gem "govuk_publishing_components", "~> 16.6"
-gem 'govuk_sidekiq', '~> 3'
-gem 'kaminari'
-gem 'logstasher'
+gem "govuk_sidekiq", '~> 3'
+gem "kaminari"
+gem "logstasher"
 gem "pg", "~> 1"
 gem "plek", "~> 2"
 gem "uglifier", "~> 4"
