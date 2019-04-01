@@ -23,7 +23,7 @@ RSpec.describe FilterPresenter do
   end
 
   subject do
-    FilterPresenter.new search_parameters
+    FilterPresenter.new(search_parameters)
   end
 
   describe '#document_type_options' do
