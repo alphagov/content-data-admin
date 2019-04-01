@@ -1,8 +1,6 @@
 RSpec.describe ContentItemsPresenter do
   include GdsApi::TestHelpers::ContentDataApi
 
-  let(:document_types) { [] }
-  let(:organisations) { [] }
   let(:search_parameters) do
     {
       date_range: 'last-30-days',
@@ -27,7 +25,7 @@ RSpec.describe ContentItemsPresenter do
   end
 
   subject do
-    ContentItemsPresenter.new(content_items, search_parameters, document_types, organisations)
+    ContentItemsPresenter.new(content_items, search_parameters)
   end
 
   describe '#prev_link?' do

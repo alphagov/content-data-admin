@@ -12,14 +12,10 @@ class ContentController < ApplicationController
   end
 
   def index
-    document_types = FetchDocumentTypes.call[:document_types]
-    organisations = FetchOrganisations.call[:organisations]
-
     search_results = FindContent.call(search_params)
 
-    @presenter = ContentItemsPresenter.new(
-      search_results, search_params, document_types, organisations,
-    )
+    @filter = FilterPresenter.new(search_params)
+    @presenter = ContentItemsPresenter.new(search_results, search_params)
   end
 
   def export_csv

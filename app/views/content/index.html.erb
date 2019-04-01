@@ -42,8 +42,8 @@
                 label: {
                   text: "Document type"
                 },
-                options: @presenter.filter.document_type_options,
-                selected_option: @presenter.filter.selected_document_type(params)
+                options: @filter.document_type_options,
+                selected_option: @filter.selected_document_type(params)
               }
           %>
 
@@ -53,8 +53,8 @@
                 label: {
                   text: "Organisation"
                 },
-                options: @presenter.filter.organisation_options.unshift(['','all']),
-                selected_option: @presenter.filter.selected_organisation(params)
+                options: @filter.organisation_options.unshift(['','all']),
+                selected_option: @filter.selected_organisation(params)
               }
           %>
 
@@ -80,7 +80,7 @@
           data-gtm-pagination-total-results="<%= @presenter.pagination.total_results %>"
           data-gtm-page="<%= @presenter.pagination.page %>">
           <caption class="govuk-table__caption">
-            <%= render('table_data_description', pagination: @presenter.pagination, filter: @presenter.filter) %>
+            <%= render('table_data_description', pagination: @presenter.pagination, filter: @filter) %>
           </caption>
           <thead class="govuk-table__head" data-gtm-id="table-header">
             <tr class="govuk-table__row">

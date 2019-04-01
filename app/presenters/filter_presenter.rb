@@ -1,8 +1,9 @@
 class FilterPresenter
-  def initialize(search_parameters, document_types, organisations)
-    @document_types = document_types
+  def initialize(search_parameters)
+    @document_types = FetchDocumentTypes.call[:document_types]
+    @organisations = FetchOrganisations.call[:organisations]
+
     @search_parameters = search_parameters
-    @organisations = organisations
   end
 
   def search_terms?
