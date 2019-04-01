@@ -4,39 +4,40 @@ source "https://rubygems.org"
 
 gem "rails", "~> 5.2"
 
-gem "bootsnap", "~> 1"
+gem "bootsnap"
 gem "chartkick"
-gem "fog-aws", '~> 3'
-gem "gds-api-adapters", "~> 59"
-gem "gds-sso", "~> 14"
-gem "govuk_app_config", "~> 1"
-gem "govuk_publishing_components", "~> 16.6"
-gem "govuk_sidekiq", '~> 3'
+gem "factory_bot_rails"
+gem "fog-aws"
+gem "gds-api-adapters"
+gem "gds-sso"
+gem "govuk_app_config"
+gem "govuk_publishing_components"
+gem "govuk_sidekiq"
 gem "kaminari"
 gem "logstasher"
 gem "pg", "~> 1"
-gem "plek", "~> 2"
-gem "uglifier", "~> 4"
+gem "plek"
+gem "uglifier"
 
 group :development do
   gem "listen", "~> 3"
 end
 
 group :test do
-  gem "simplecov", "~> 0.16"
-  gem "timecop", "~> 0.9.1"
+  gem "simplecov"
+  gem "timecop"
 end
 
 group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
-  gem "byebug", "~> 11"
+  gem "byebug"
   gem "capybara"
   gem "factory_bot_rails"
-  gem "govuk-lint", "~> 3"
+  gem "govuk-lint"
   gem "govuk_test"
   gem 'pry'
-  gem "rspec-rails", "~> 3"
+  gem "rspec-rails"
   gem "spring-commands-rspec"
   gem "webmock"
 end

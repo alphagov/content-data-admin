@@ -432,31 +432,31 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
-  bootsnap (~> 1)
-  byebug (~> 11)
+  bootsnap
+  byebug
   capybara
   chartkick
   factory_bot_rails
-  fog-aws (~> 3)
-  gds-api-adapters (~> 59)
-  gds-sso (~> 14)
-  govuk-lint (~> 3)
-  govuk_app_config (~> 1)
-  govuk_publishing_components (~> 16.6)
-  govuk_sidekiq (~> 3)
+  fog-aws
+  gds-api-adapters
+  gds-sso
+  govuk-lint
+  govuk_app_config
+  govuk_publishing_components
+  govuk_sidekiq
   govuk_test
   kaminari
   listen (~> 3)
   logstasher
   pg (~> 1)
-  plek (~> 2)
+  plek
   pry
   rails (~> 5.2)
-  rspec-rails (~> 3)
-  simplecov (~> 0.16)
+  rspec-rails
+  simplecov
   spring-commands-rspec
-  timecop (~> 0.9.1)
-  uglifier (~> 4)
+  timecop
+  uglifier
   webmock
 
 RUBY VERSION
