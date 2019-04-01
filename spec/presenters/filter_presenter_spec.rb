@@ -17,12 +17,13 @@ RSpec.describe FilterPresenter do
     }
   end
 
+  before do
+    allow(FetchDocumentTypes).to receive(:call).and_return(document_types: document_types)
+    allow(FetchOrganisations).to receive(:call).and_return(organisations: organisations)
+  end
+
   subject do
-    FilterPresenter.new(
-      search_parameters,
-      document_types,
-      organisations,
-    )
+    FilterPresenter.new(search_parameters)
   end
 
   describe '#document_type_options' do
