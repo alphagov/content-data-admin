@@ -205,7 +205,7 @@ private
   def calculate_trend_percentage(current_value, previous_value, metric_name)
     return if incomplete_previous_data?(current_value, previous_value, metric_name)
 
-    Calculator::TrendPercentage.new(current_value[:value], previous_value[:value]).run
+    Calculator::TrendPercentage.calculate(current_value[:value], previous_value[:value])
   end
 
   def incomplete_previous_data?(current_value, previous_value, metric_name)
