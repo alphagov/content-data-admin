@@ -1,5 +1,5 @@
 class FindContent
-  include MetricsCommon
+  include Concerns::ContentDataApiClient
 
   def self.call(params)
     new(params).call
