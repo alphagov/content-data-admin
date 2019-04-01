@@ -7,13 +7,13 @@ class GdsApi::ContentDataApi < GdsApi::Base
       bearer_token: ENV['CONTENT_PERFORMANCE_MANAGER_BEARER_TOKEN'] || 'example')
   end
 
-  def aggregated_metrics(base_path:, from:, to:, metrics:)
-    url = aggregated_metrics_url(base_path, from, to, metrics)
+  def aggregated_metrics(base_path:, from:, to:)
+    url = aggregated_metrics_url(base_path, from, to)
     get_json(url).to_hash.deep_symbolize_keys
   end
 
-  def time_series(base_path:, from:, to:, metrics:)
-    url = time_series_request_url(base_path, from, to, metrics)
+  def time_series(base_path:, from:, to:)
+    url = time_series_request_url(base_path, from, to)
     get_json(url).to_hash.deep_symbolize_keys
   end
 
@@ -41,12 +41,12 @@ private
     Plek.current.find('content-performance-manager').to_s
   end
 
-  def aggregated_metrics_url(base_path, from, to, metrics)
-    "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}#{query_string(from: from, to: to, metrics: metrics)}"
+  def aggregated_metrics_url(base_path, from, to)
+    "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}#{query_string(from: from, to: to)}"
   end
 
-  def time_series_request_url(base_path, from, to, metrics)
-    "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}/time-series#{query_string(from: from, to: to, metrics: metrics)}"
+  def time_series_request_url(base_path, from, to)
+    "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}/time-series#{query_string(from: from, to: to)}"
   end
 
   def content_items_url(date_range, organisation_id, document_type, page, page_size, search_term, sort)

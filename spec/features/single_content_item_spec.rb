@@ -13,12 +13,6 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
   end
 
-  around do |example|
-    Timecop.freeze Date.new(2018, 12, 25) do
-      example.run
-    end
-  end
-
   context 'when the page we are requesting is the homepage' do
     before do
       GDS::SSO.test_user = build(:user)

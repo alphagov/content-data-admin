@@ -1,5 +1,6 @@
 class FetchSinglePage
-  include MetricsCommon
+  include Concerns::ContentDataApiClient
+
   def self.call(args)
     new(args).call
   end

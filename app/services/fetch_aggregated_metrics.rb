@@ -1,5 +1,6 @@
 class FetchAggregatedMetrics
-  include MetricsCommon
+  include Concerns::ContentDataApiClient
+
   def self.call(args)
     new(args).call
   end
@@ -12,6 +13,6 @@ class FetchAggregatedMetrics
   end
 
   def call
-    api.aggregated_metrics(base_path: @base_path, from: @from, to: @to, metrics: default_metrics)
+    api.aggregated_metrics(base_path: @base_path, from: @from, to: @to)
   end
 end

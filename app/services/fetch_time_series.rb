@@ -1,5 +1,6 @@
 class FetchTimeSeries
-  include MetricsCommon
+  include Concerns::ContentDataApiClient
+
   def self.call(params)
     new(params).call
   end
@@ -12,6 +13,6 @@ class FetchTimeSeries
   end
 
   def call
-    api.time_series(base_path: @base_path, from: @from, to: @to, metrics: default_metrics)
+    api.time_series(base_path: @base_path, from: @from, to: @to)
   end
 end

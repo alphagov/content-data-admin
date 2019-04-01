@@ -1,5 +1,5 @@
 class FetchOrganisations
-  include MetricsCommon
+  include Concerns::ContentDataApiClient
 
   def self.call
     new.call
