@@ -189,13 +189,13 @@ private
   end
 
   def assign_pageviews_per_visit
-    current = calculate_pageviews_per_visit(
+    current = Calculator::PageviewsPerVisit.calculate(
       pageviews: value_for('pviews'),
       unique_pageviews: value_for('upviews')
     )
     @metrics['pageviews_per_visit'] = { value: current }
 
-    previous = calculate_pageviews_per_visit(
+    previous = Calculator::PageviewsPerVisit.calculate(
       pageviews: @previous_metrics['pviews'][:value],
       unique_pageviews: @previous_metrics['upviews'][:value]
     )
