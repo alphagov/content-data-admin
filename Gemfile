@@ -19,10 +19,6 @@ gem "pg", "~> 1"
 gem "plek"
 gem "uglifier"
 
-group :development do
-  gem "listen", "~> 3"
-end
-
 group :test do
   gem "simplecov"
   gem "timecop"
