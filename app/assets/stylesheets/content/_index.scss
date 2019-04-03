@@ -182,10 +182,9 @@ $sort-link-arrow-spacing: 4px;
   }
 
   .filter-form__filters {
-    @include govuk-responsive-padding(6, "top");
 
     .govuk-label {
-      @include govuk-font($size: 16, $weight: bold);
+      @include govuk-font($size: 16);
     }
 
     .govuk-select {
@@ -232,4 +231,33 @@ $sort-link-arrow-spacing: 4px;
     @include govuk-responsive-margin(6, "top");
   }
 
+  .gem-c-input {
+    @include govuk-font(16);
+    @include govuk-responsive-padding(2, "left");
+  }
+
+  .autocomplete__option {
+    @include govuk-responsive-padding(2, "top");
+    @include govuk-responsive-padding(2, "bottom");
+    @include govuk-responsive-padding(2, "left");
+    @include govuk-font(16);
+  }
+
+  .autocomplete__input {
+    @include govuk-responsive-padding(2, "top");
+    @include govuk-responsive-padding(2, "bottom");
+    @include govuk-responsive-padding(2, "left");
+    @include govuk-font(16);
+  }
+
+  .autocomplete__hint {
+    @include govuk-responsive-padding(2, "top");
+    @include govuk-responsive-padding(2, "bottom");
+    @include govuk-responsive-padding(2, "left");
+    @include govuk-font(16);
+  }
+
+  .autocomplete__dropdown-arrow-down {
+    @include govuk-responsive-padding(1, "top");
+  }
 }
