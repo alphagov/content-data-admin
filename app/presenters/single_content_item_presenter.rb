@@ -1,7 +1,6 @@
 class SingleContentItemPresenter
   include MetricsFormatterHelper
   include ExternalLinksHelper
-  include CustomMetricsHelper
 
   attr_reader :date_range
 
@@ -76,7 +75,7 @@ class SingleContentItemPresenter
   end
 
   def searches_context
-    on_page_search_rate = calculate_average_searches_per_user(
+    on_page_search_rate = Calculator::AverageSearchesPerUser.calculate(
       searches: value_for('searches'),
       unique_pageviews: value_for('upviews')
     )

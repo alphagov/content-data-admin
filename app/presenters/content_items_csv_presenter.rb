@@ -1,7 +1,6 @@
 require 'csv'
 
 class ContentItemsCSVPresenter
-  include CustomMetricsHelper
   include MetricsFormatterHelper
   include OrganisationsHelper
 
@@ -35,7 +34,7 @@ class ContentItemsCSVPresenter
         )
       end,
       'Percentage of users searched' => lambda do |result_row|
-        calculate_average_searches_per_user(
+        Calculator::AverageSearchesPerUser.calculate(
           searches: result_row[:searches], unique_pageviews: result_row[:upviews]
         )
       end,
