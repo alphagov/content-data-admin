@@ -1,6 +1,4 @@
 class Calculator::AverageSearchesPerUser
-  attr_reader :searches, :unique_pageviews
-
   def self.calculate(*args)
     new(*args).calculate
   end
@@ -11,8 +9,8 @@ class Calculator::AverageSearchesPerUser
   end
 
   def calculate
-    searches_float = searches.to_f
-    unique_pageviews_float = unique_pageviews.to_f
+    searches_float = @searches.to_f
+    unique_pageviews_float = @unique_pageviews.to_f
 
     return 0 if searches_float.zero? || unique_pageviews_float.zero?
 
