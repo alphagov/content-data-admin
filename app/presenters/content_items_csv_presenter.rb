@@ -1,7 +1,6 @@
 require 'csv'
 
 class ContentItemsCSVPresenter
-  include CustomMetricsHelper
   include MetricsFormatterHelper
   include OrganisationsHelper
 
@@ -30,12 +29,12 @@ class ContentItemsCSVPresenter
       I18n.t('metrics.upviews.short_title') => raw_field(:upviews),
       I18n.t('metrics.pviews.short_title') => raw_field(:pviews),
       I18n.t('metrics.pageviews_per_visit.short_title') => lambda do |result_row|
-        calculate_pageviews_per_visit(
+        Calculator::PageviewsPerVisit.calculate(
           pageviews: result_row[:pviews], unique_pageviews: result_row[:upviews]
         )
       end,
       'Percentage of users searched' => lambda do |result_row|
-        calculate_average_searches_per_user(
+        Calculator::AverageSearchesPerUser.calculate(
           searches: result_row[:searches], unique_pageviews: result_row[:upviews]
         )
       end,

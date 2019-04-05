@@ -1,7 +1,6 @@
 class SingleContentItemPresenter
   include MetricsFormatterHelper
   include ExternalLinksHelper
-  include CustomMetricsHelper
 
   attr_reader :date_range
 
@@ -76,7 +75,7 @@ class SingleContentItemPresenter
   end
 
   def searches_context
-    on_page_search_rate = calculate_average_searches_per_user(
+    on_page_search_rate = Calculator::AverageSearchesPerUser.calculate(
       searches: value_for('searches'),
       unique_pageviews: value_for('upviews')
     )
@@ -189,13 +188,13 @@ private
   end
 
   def assign_pageviews_per_visit
-    current = calculate_pageviews_per_visit(
+    current = Calculator::PageviewsPerVisit.calculate(
       pageviews: value_for('pviews'),
       unique_pageviews: value_for('upviews')
     )
     @metrics['pageviews_per_visit'] = { value: current }
 
-    previous = calculate_pageviews_per_visit(
+    previous = Calculator::PageviewsPerVisit.calculate(
       pageviews: @previous_metrics['pviews'][:value],
       unique_pageviews: @previous_metrics['upviews'][:value]
     )
@@ -205,7 +204,7 @@ private
   def calculate_trend_percentage(current_value, previous_value, metric_name)
     return if incomplete_previous_data?(current_value, previous_value, metric_name)
 
-    Calculator::TrendPercentage.new(current_value[:value], previous_value[:value]).run
+    Calculator::TrendPercentage.calculate(current_value[:value], previous_value[:value])
   end
 
   def incomplete_previous_data?(current_value, previous_value, metric_name)
