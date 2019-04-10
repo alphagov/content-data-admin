@@ -8,8 +8,7 @@ en:
       page_kicker: 'Page data'
       navigation:
         back_link: 'View all pages'
-        visit_page: 'View the page on GOV.UK'
-        accessibility_message: 'Visit on GOV.UK:'
+        visit_page: 'View on GOV.UK'
         edit_page: 'Make changes to the page'
         edit_link: 'Edit in %{publishing_app}'
         publisher_edit_link: 'Request a content change in GOV.UK Support'
