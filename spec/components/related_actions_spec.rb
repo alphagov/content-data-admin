@@ -5,15 +5,12 @@ RSpec.describe "Related actions", type: :view do
     {
       links: [
                 {
-                  header: "View the page on GOV.UK",
                   link_url: "//www.gov.uk/govpage",
-                  label: "Govpage",
-                  accessibility_message: "Visit on GOV.UK:"
+                  label: "View on GOV.UK"
                 },
                 {
-                  header: "Make changes to the page",
                   link_url: "//www.gov.uk/moregov",
-                  label: "More gov"
+                  label: "Edit in Whitehall"
                 }
               ]
       }
@@ -30,26 +27,11 @@ RSpec.describe "Related actions", type: :view do
   it "renders correctly when given valid data" do
     render_component(data)
     assert_select ".app-c-related-actions", 1
-    assert_select "dl", 1
-    assert_select "dt", 2
-    assert_select "dd", 2
-    assert_select ".app-c-related-actions__header", text: "View the page on GOV.UK"
-    assert_select ".app-c-related-actions__header", text: "Make changes to the page"
-    assert_select "a", href: "//www.gov.uk/govpage", text: "Visit on GOV.UK: Govpage"
-    assert_select "a", href: "//www.gov.uk/moregov", text: "More gov"
+    assert_select "ul", 1
+    assert_select "li", 2
+    assert_select "a", href: "//www.gov.uk/govpage", text: "View on GOV.UK"
+    assert_select "a", href: "//www.gov.uk/moregov", text: "Edit in Whitehall"
   end
-
-  context "recieves an accessibility_message" do
-    it "renders accessibility message which is visually hidden" do
-      render_component(data)
-      assert_select ".app-c-related-actions", 1
-      assert_select "dl", 1
-      assert_select "dt", 2
-      assert_select "dd", 2
-      assert_select ".app-c-related-actions__accessibility-message", 1
-    end
-  end
-
 
   def render_component(locals)
     render partial: "components/related-actions", locals: locals

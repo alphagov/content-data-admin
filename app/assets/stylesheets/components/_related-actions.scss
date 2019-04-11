@@ -1,36 +1,19 @@
 @import "../../../node_modules/govuk-frontend/helpers/visually-hidden";
 
 .app-c-related-actions {
-  border-top: 1px solid $govuk-border-colour;
-  @include govuk-responsive-margin(3, "bottom");
-
-  @include media-down(mobile-down) {
-    border-bottom: 1px solid $govuk-border-colour;
-  }
+  background-color: $grey-4;
+  @include govuk-responsive-padding(3, "top");
+  @include govuk-responsive-margin(1, "bottom");
+  @include govuk-font(19);
 }
 
-.app-c-related-actions__header {
-
-  @include media-down(mobile) {
-    @include govuk-font(19);
-    @include govuk-clearfix;
-    @include govuk-responsive-margin(5, "top");
-  }
-
+.app-c-related-actions__links {
+  @include govuk-responsive-padding(3, "left");
+  @include govuk-responsive-padding(2, "bottom");
+  list-style-type: none;
 }
 
 .app-c-related-actions__link {
-  @include govuk-responsive-margin(0, "left");
-  @include govuk-responsive-margin(3, "bottom");
-
-  @include media-down(mobile) {
-    @include govuk-font(19);
-    @include govuk-responsive-margin(1, "top");
-
-  }
-
-}
-
-.app-c-related-actions__accessibility-message {
-  @include govuk-visually-hidden;
+  @include govuk-responsive-padding(1, "bottom");
+  list-style-type: none;
 }

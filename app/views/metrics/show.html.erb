@@ -15,6 +15,8 @@
 <div class="govuk-grid-row section-metadata">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl"><%= @performance_data.title %></h1>
+  </div>
+  <div class="govuk-grid-column-two-thirds">
     <div class="page-metadata">
       <%= render "components/metadata",
           publishing_organisation: @performance_data.publishing_organisation,
@@ -29,13 +31,10 @@
       {
         links: [
           {
-            header: t(".navigation.visit_page"),
             link_url: "//www.gov.uk#{@performance_data.base_path}",
-            accessibility_message: t('.navigation.accessibility_message'),
-            label: @performance_data.title
+            label: t(".navigation.visit_page")
           },
           {
-            header: t(".navigation.edit_page"),
             link_url: @performance_data.edit_url,
             label: @performance_data.edit_label
           }
