@@ -53,7 +53,7 @@ en:
       context: '%{percent_users_searched}% of users searched from the page'
       unit: 'search terms'
       data_source: google_analytics
-      external_link: 'See search terms in Google Analytics'
+      external_link: 'See search terms in Google Analytics (opens in new tab)'
       about_title: 'About searches from the page'
       about: >
         This is the number of internal site searches that were started from the page. When people
@@ -80,7 +80,7 @@ en:
       context: ''
       unit: 'comments'
       data_source: feedback_explorer
-      external_link: 'See comments in Feedback Explorer'
+      external_link: 'See comments in Feedback Explorer (opens in new tab)'
       about_title: 'About number of feedback comments'
       about: >
         You can use Feedback Explorer ('Feedex') to find out what users are saying about your
