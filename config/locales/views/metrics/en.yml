@@ -2,7 +2,7 @@ en:
   metrics:
     metric_section:
       download_link: 'Download %{metric_name} CSV'
-      external_link: 'See %{metric_unit} in %{data_source}'
+      external_link: 'See %{metric_unit} in %{data_source} (opens in new tab)'
     show:
       browser_title: '%{content_title}: Page data'
       page_kicker: 'Page data'
