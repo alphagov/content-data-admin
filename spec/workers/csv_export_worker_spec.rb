@@ -59,6 +59,11 @@ RSpec.describe CsvExportWorker do
     ]
   end
 
+  let(:start_time) { Time.zone.local(2019, 4, 12, 14, 0, 0).to_s }
+  #The start time has been converted to a string
+  #by the time the Sidekiq worker receives it
+  let(:completed_time) { Time.zone.local(2019, 4, 12, 14, 0, 25) }
+
   before do
     Sidekiq::Worker.clear_all
 
@@ -69,6 +74,7 @@ RSpec.describe CsvExportWorker do
     allow(FindContent).to receive(:enum)
       .with(search_params)
       .and_return(content_items)
+    allow(GovukStatsd).to receive(:count)
 
     Fog.mock!
     ENV['AWS_REGION'] = 'eu-west-1'
@@ -86,7 +92,11 @@ RSpec.describe CsvExportWorker do
     @directory = connection.directories.create(key: ENV['AWS_CSV_EXPORT_BUCKET_NAME'])
   end
 
-  subject { described_class.new.perform(search_params, 'to@example.com') }
+  around do |example|
+    Timecop.freeze(completed_time) { example.run }
+  end
+
+  subject { described_class.new.perform(search_params, 'to@example.com', start_time) }
 
   it 'uploads the file to S3' do
     subject
@@ -103,6 +113,28 @@ RSpec.describe CsvExportWorker do
     mail = ActionMailer::Base.deliveries.last
     expect(mail.to[0]).to eq('to@example.com')
     expect(mail.body).to match(/https:\/\/test-bucket.s3-eu-west-1.amazonaws.com/)
+  end
+
+  it 'sends StatsD counter with the seconds elapsed' do
+    subject
+
+    expect(GovukStatsd).to have_received(:count).with('monitor.csv.download.seconds', 25)
+  end
+
+  context 'when the elapsed time is over 60 seconds' do
+    let(:completed_time) { Time.zone.local(2019, 4, 12, 14, 1, 1) }
+
+    it 'sends StatsD counter with the seconds elapsed' do
+      subject
+
+      expect(GovukStatsd).to have_received(:count).with('monitor.csv.download.seconds', 61)
+    end
+
+    it 'also sends StatsD counter (slow) with the seconds elapsed' do
+      subject
+
+      expect(GovukStatsd).to have_received(:count).with('monitor.csv.download.seconds.slow', 61)
+    end
   end
 
   after(:each) do

@@ -64,6 +64,8 @@ RSpec.describe 'Exporting CSV' do
     connection.directories.each(&:destroy)
     @directory = connection.directories.create(key: ENV['AWS_CSV_EXPORT_BUCKET_NAME'])
 
+    allow(GovukStatsd).to receive(:count)
+
     visit "/content"
     click_link('Download all data in CSV format')
   end
