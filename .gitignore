@@ -20,3 +20,4 @@
 .byebug_history
 
 /coverage
+/config/local_env.yml
