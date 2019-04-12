@@ -6,7 +6,6 @@ gem "rails", "~> 5.2"
 
 gem "bootsnap"
 gem "chartkick"
-gem "factory_bot_rails"
 gem "fog-aws"
 gem "gds-api-adapters"
 gem "gds-sso"
