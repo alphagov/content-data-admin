@@ -3,6 +3,9 @@ $govuk-global-styles: true;
 // gem components
 @import 'govuk_publishing_components/all_components';
 
+// TODO: remove the font-face include when govuk_publishing_components doesn't
+// rely on govuk_template and has $govuk-compatibility-govuktemplate set to false
+@include _govuk-font-face-nta;
 
 // local components
 @import "components/chart";
