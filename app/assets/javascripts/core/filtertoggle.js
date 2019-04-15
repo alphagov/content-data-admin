@@ -3,20 +3,20 @@ function FilterToggle () {
   var toggle = function(action){
     if (action == "hide") {
       event.preventDefault();
-      document.getElementsByClassName("filters-control--show")[0].classList.remove("govuk-visually-hidden");
-      document.getElementsByClassName("filters-control--hide")[0].classList.add("govuk-visually-hidden");
-      document.getElementsByClassName("filter-form")[0].classList.add("govuk-visually-hidden");
+      document.getElementsByClassName("filters-control--show")[0].classList.remove("filter--hidden");
+      document.getElementsByClassName("filters-control--hide")[0].classList.add("filter--hidden");
+      document.getElementsByClassName("filter-form")[0].classList.add("filter--hidden");
     } else {
       event.preventDefault();
-      document.getElementsByClassName("filters-control--hide")[0].classList.remove("govuk-visually-hidden");
-      document.getElementsByClassName("filters-control--show")[0].classList.add("govuk-visually-hidden");
-      document.getElementsByClassName("filter-form")[0].classList.remove("govuk-visually-hidden");
+      document.getElementsByClassName("filters-control--hide")[0].classList.remove("filter--hidden");
+      document.getElementsByClassName("filters-control--show")[0].classList.add("filter--hidden");
+      document.getElementsByClassName("filter-form")[0].classList.remove("filter--hidden");
     }
   }
 
   if (document.documentElement.clientWidth < 480) {
-    document.getElementsByClassName("filters-control--hide")[0].classList.remove("govuk-visually-hidden");
-    document.getElementsByClassName("filters-control__wrapper")[0].classList.remove("govuk-visually-hidden");
+    document.getElementsByClassName("filters-control--hide")[0].classList.remove("filter--hidden");
+    document.getElementsByClassName("filters-control__wrapper")[0].classList.remove("filter--hidden");
   };
 
 
