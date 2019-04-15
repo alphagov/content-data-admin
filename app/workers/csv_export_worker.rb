@@ -20,7 +20,7 @@ class CsvExportWorker
     ContentCsvMailer.content_csv_email(recipient_address, file_url).deliver_now
     elapsed_time_seconds = (Time.zone.now - Time.zone.parse(start_time)).truncate
     GovukStatsd.count('monitor.csv.download.seconds', elapsed_time_seconds)
-    if elapsed_time_seconds > 60
+    if elapsed_time_seconds > 60 * 15
       GovukStatsd.count('monitor.csv.download.seconds.slow', elapsed_time_seconds)
     end
   end

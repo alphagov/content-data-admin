@@ -62,7 +62,7 @@ RSpec.describe CsvExportWorker do
   let(:start_time) { Time.zone.local(2019, 4, 12, 14, 0, 0).to_s }
   #The start time has been converted to a string
   #by the time the Sidekiq worker receives it
-  let(:completed_time) { Time.zone.local(2019, 4, 12, 14, 0, 25) }
+  let(:completed_time) { Time.zone.local(2019, 4, 12, 14, 15, 0) }
 
   before do
     Sidekiq::Worker.clear_all
@@ -118,22 +118,28 @@ RSpec.describe CsvExportWorker do
   it 'sends StatsD counter with the seconds elapsed' do
     subject
 
-    expect(GovukStatsd).to have_received(:count).with('monitor.csv.download.seconds', 25)
+    expect(GovukStatsd).to have_received(:count).with('monitor.csv.download.seconds', 900)
   end
 
-  context 'when the elapsed time is over 60 seconds' do
-    let(:completed_time) { Time.zone.local(2019, 4, 12, 14, 1, 1) }
+  it 'does not send the slow download counter' do
+    subject
+
+    expect(GovukStatsd).not_to have_received(:count).with('monitor.csv.download.seconds.slow', anything)
+  end
+
+  context 'when the elapsed time is over 15 minutes' do
+    let(:completed_time) { Time.zone.local(2019, 4, 12, 14, 15, 1) }
 
     it 'sends StatsD counter with the seconds elapsed' do
       subject
 
-      expect(GovukStatsd).to have_received(:count).with('monitor.csv.download.seconds', 61)
+      expect(GovukStatsd).to have_received(:count).with('monitor.csv.download.seconds', 901)
     end
 
     it 'also sends StatsD counter (slow) with the seconds elapsed' do
       subject
 
-      expect(GovukStatsd).to have_received(:count).with('monitor.csv.download.seconds.slow', 61)
+      expect(GovukStatsd).to have_received(:count).with('monitor.csv.download.seconds.slow', 901)
     end
   end
 
