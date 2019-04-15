@@ -74,7 +74,7 @@ RSpec.describe CsvExportWorker do
     allow(FindContent).to receive(:enum)
       .with(search_params)
       .and_return(content_items)
-    allow(GovukStatsd).to receive(:count)
+    allow(GovukStatsd).to receive(:timing)
 
     Fog.mock!
     ENV['AWS_REGION'] = 'eu-west-1'
@@ -115,10 +115,10 @@ RSpec.describe CsvExportWorker do
     expect(mail.body).to match(/https:\/\/test-bucket.s3-eu-west-1.amazonaws.com/)
   end
 
-  it 'sends StatsD counter with the seconds elapsed' do
+  it 'sends StatsD timing with the milliseconds elapsed' do
     subject
 
-    expect(GovukStatsd).to have_received(:count).with('monitor.csv.download.seconds', 25)
+    expect(GovukStatsd).to have_received(:timing).with('monitor.csv.download.ms', 25_000)
   end
 
   after(:each) do

@@ -19,7 +19,7 @@ class CsvExportWorker
     # Send email with link
     ContentCsvMailer.content_csv_email(recipient_address, file_url).deliver_now
     elapsed_time_seconds = (Time.zone.now - Time.zone.parse(start_time)).truncate
-    GovukStatsd.count('monitor.csv.download.seconds', elapsed_time_seconds)
+    GovukStatsd.timing('monitor.csv.download.ms', elapsed_time_seconds * 1000)
   end
 
   def build_csv_presenter(search_params)
