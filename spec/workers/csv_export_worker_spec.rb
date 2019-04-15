@@ -121,22 +121,6 @@ RSpec.describe CsvExportWorker do
     expect(GovukStatsd).to have_received(:count).with('monitor.csv.download.seconds', 25)
   end
 
-  context 'when the elapsed time is over 60 seconds' do
-    let(:completed_time) { Time.zone.local(2019, 4, 12, 14, 1, 1) }
-
-    it 'sends StatsD counter with the seconds elapsed' do
-      subject
-
-      expect(GovukStatsd).to have_received(:count).with('monitor.csv.download.seconds', 61)
-    end
-
-    it 'also sends StatsD counter (slow) with the seconds elapsed' do
-      subject
-
-      expect(GovukStatsd).to have_received(:count).with('monitor.csv.download.seconds.slow', 61)
-    end
-  end
-
   after(:each) do
     Fog::Mock.reset
   end
