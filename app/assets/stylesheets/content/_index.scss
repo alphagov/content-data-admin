@@ -6,6 +6,11 @@ $sort-link-arrow-spacing: 4px;
 
 
 .content-data__index {
+
+  .filter--hidden {
+    display: none !important;
+  }
+
   .gem-c-pagination {
 
     @include media(mobile) {
