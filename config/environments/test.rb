@@ -41,4 +41,14 @@ Rails.application.configure do
   config.active_job.queue_adapter = :sidekiq
   require 'govuk_sidekiq/testing'
   Sidekiq::Testing.inline!
+
+  # load environment variables from local_env.yml
+  config.before_configuration do
+    env_file = Rails.root.join('config', 'local_env.yml')
+    if File.exist?(env_file)
+      YAML.safe_load(File.open(env_file)).each do |key, value|
+        ENV[key.to_s] = value
+      end
+    end
+  end
 end
