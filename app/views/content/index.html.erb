@@ -30,7 +30,6 @@
                 },
                 name: "search_term",
                 tabindex: 0,
-                value: params[:search_term],
               } %>
 
           <%= render "govuk_publishing_components/components/accessible_autocomplete",
@@ -39,8 +38,7 @@
                 label: {
                   text: "Document type"
                 },
-                options: @filter.document_type_options,
-                selected_option: @filter.selected_document_type(params)
+                options: @filter.document_type_options
               }
           %>
 
@@ -50,18 +48,15 @@
                 label: {
                   text: "Organisation"
                 },
-                options: @filter.organisation_options.unshift(['','all']),
-                selected_option: @filter.selected_organisation(params)
+                options: @filter.organisation_options
               }
           %>
 
             <%= render "govuk_publishing_components/components/button", {text: "Filter"} %>
-
-            <a href="/content" class="govuk-link govuk-body-s filter-form__clear-link" data-gtm-id="clear-filters">Clear all filters</a>
           <% end %>
         </div>
 
-            <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+            <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible" style="margin-top:90px">
             <p>
               <a href="<%= content_export_csv_path(@presenter.search_parameters) %>"
                  class="govuk-link govuk-body-s download-link" data-gtm-id="csv-download-link">

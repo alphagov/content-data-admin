@@ -12,13 +12,13 @@ RSpec.describe '/content' do
   before do
     GDS::SSO.test_user = build(:user, organisation_content_id: 'org-id')
 
-    stub_content_page(time_period: 'last-month', organisation_id: 'org-id', items: items)
-    visit '/content?submitted=true&date_range=last-month&organisation_id=org-id'
+    stub_content_page(time_period: 'last-month', organisation_id: 'all', items: items)
+    visit '/content?submitted=true&date_range=last-month'
   end
 
   describe 'Filter by title / url' do
     before do
-      stub_content_page(time_period: 'last-month', organisation_id: 'org-id', search_terms: 'title', items: items)
+      stub_content_page(time_period: 'last-month', organisation_id: 'all', search_terms: 'title', items: items)
 
       fill_in 'Search for a title or URL', with: 'title'
       click_on 'Filter'
@@ -31,10 +31,6 @@ RSpec.describe '/content' do
       expect(table_rows.length).to eq(2)
       expect(table_rows[0]).to include('The title /path/1')
       expect(table_rows[1]).to include('Another title /path/2')
-    end
-
-    it 'populates the search field with the current filter' do
-      expect(page).to have_selector('input[name=search_term][value=title]')
     end
 
     it 'launches help text in a modal', js: true do

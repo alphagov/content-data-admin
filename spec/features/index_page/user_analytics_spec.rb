@@ -5,10 +5,6 @@ RSpec.feature 'user analytics' do
     visit '/content'
   end
 
-  scenario 'tracks clear all filters button' do
-    expect(page).to have_selector('[data-gtm-id="clear-filters"]')
-  end
-
   scenario 'tracks filter form submit' do
     expect(page).to have_selector('[data-gtm-id="filters-form"]')
   end
