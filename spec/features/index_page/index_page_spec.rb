@@ -46,6 +46,7 @@ RSpec.describe '/content' do
   before do
     stub_metrics_page(base_path: 'path/1', time_period: :last_month)
     stub_content_page(time_period: 'last-month', organisation_id: 'org-id', items: items)
+    stub_content_page(time_period: 'last-month', organisation_id: 'all', items: items)
     GDS::SSO.test_user = build(:user, organisation_content_id: 'users-org-id')
 
     visit "/content?submitted=true&date_range=last-month&organisation_id=org-id"
@@ -103,10 +104,6 @@ RSpec.describe '/content' do
     it 'links to the page data page after filtering' do
       click_on 'The title'
       expect(page).to have_content("Page data: #{I18n.t('metrics.show.time_periods.last-month.leading')}")
-    end
-
-    it 'selected organisation is shown in dropdown menu' do
-      expect(page).to have_select('organisation_id', selected: 'another org')
     end
 
     it 'describes the filter in the table header' do
@@ -225,12 +222,10 @@ RSpec.describe '/content' do
   context 'filter by document_type' do
     before do
       stub_content_page(time_period: 'last-month', organisation_id: 'org-id', document_type: 'news_story', items: [items.second])
+      stub_content_page(time_period: 'last-month', organisation_id: 'all', document_type: 'news_story', items: [items.second])
+      stub_content_page(time_period: 'last-month', organisation_id: 'all', document_type: 'all', items: [items.second])
       select 'News story', from: 'document_type'
       click_on 'Filter'
-    end
-
-    it 'selects the document_type in the dropdown menu' do
-      expect(page).to have_select('document_type', selected: 'News story')
     end
 
     it 'renders the filtered results' do
@@ -241,16 +236,7 @@ RSpec.describe '/content' do
     end
 
     it 'describes the filter in the table header' do
-      expect(page).to have_css('h1.table-caption', exact_text: 'Showing 1 result for news story from org (OI)')
-    end
-
-    it 'allows the filter to be cleared' do
-      select 'All document types', from: 'document_type'
-      click_on 'Filter'
-      expect(page).to have_select('document_type', selected: ["", "All document types"])
-      table_rows = extract_table_content('.govuk-table')
-      expect(table_rows.count).to eq(4)
-      expect(page).to have_css('h1.table-caption', exact_text: 'Showing 3 results for all document types from org (OI)')
+      expect(page).to have_css('h1.table-caption', exact_text: 'Showing 1 result for news story from all organisations')
     end
   end
 
