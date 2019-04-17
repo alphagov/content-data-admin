@@ -1,5 +1,5 @@
 en:
-  no_matching_results: 'no matching results'
+  no_matching_results: 'No matching results'
   data_sources:
     google_analytics: 'Google Analytics'
     calculated_google_analytics: 'calculated from Google Analytics'
