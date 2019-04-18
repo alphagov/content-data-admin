@@ -21,9 +21,7 @@
     <% else %>
       <h2 class="govuk-heading-l app-c-time-select__heading"><%= t '.title', time_period: dates.find {|d| d[:value] == current_selection }[:text] %></h2>
     <% end %>
-    <%= render "govuk_publishing_components/components/details", {
-      title: t('.change_dropdown')
-    } do %>
+
         <%= render "govuk_publishing_components/components/radio", {
           name: "date_range",
           items: dates
@@ -31,6 +29,6 @@
         <% if render_button != false %>
           <%= render "govuk_publishing_components/components/button", {text: submit_button_text} %>
         <% end %>
-    <% end %>
+
   </div>
 <% end %>

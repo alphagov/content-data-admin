@@ -1,9 +1,11 @@
 This is a prototype to test the filters and how users react if on submit no values are preserved.
 
-This version does NOT prefill the user's choice of date range, org, document or search terms.
+This version does NOT prefill the user's choice of date range, org, document or search terms, but
+the date selection is permanently exposed so the user can see the default is selected.
 
 To implement this properly we would need to remove/refactor the code that was added to preserve states,
-and tidy up the inline CSS on the horizontal rule on the form.
+and tidy up the inline CSS on the horizontal rule on the form. The date selection should be hidden again
+on the metric pages even if we expose it on the index page.
 
 We also need to consider the tests as for ease this prototype has skipped a bunch where the stubbing
-needs further attention.
+needs further attention and the analytics are broken.
