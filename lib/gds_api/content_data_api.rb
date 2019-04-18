@@ -2,7 +2,7 @@ require 'gds_api/base'
 
 class GdsApi::ContentDataApi < GdsApi::Base
   def initialize
-    super("#{Plek.current.find('content-performance-manager')}/api/v1",
+    super("#{Plek.current.find('content-data-api')}/api/v1",
       disable_cache: true,
       bearer_token: ENV['CONTENT_PERFORMANCE_MANAGER_BEARER_TOKEN'] || 'example')
   end
@@ -38,7 +38,7 @@ class GdsApi::ContentDataApi < GdsApi::Base
 private
 
   def content_data_api_endpoint
-    Plek.current.find('content-performance-manager').to_s
+    Plek.current.find('content-data-api').to_s
   end
 
   def aggregated_metrics_url(base_path, from, to)
