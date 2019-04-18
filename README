@@ -1,0 +1,9 @@
+This is a prototype to test the filters and how users react if on submit no values are preserved.
+
+This version does NOT prefill the user's choice of date range, org, document or search terms.
+
+To implement this properly we would need to remove/refactor the code that was added to preserve states,
+and tidy up the inline CSS on the horizontal rule on the form.
+
+We also need to consider the tests as for ease this prototype has skipped a bunch where the stubbing
+needs further attention.

@@ -17,7 +17,7 @@
           data: { 'gtm-id': 'filters-form' } do %>
           <input type="hidden" name="submitted" value="true" >
           <%= render "components/time-select", {
-            current_selection: @presenter.time_period,
+            current_selection: 'past-30-days',
             compact: true,
             base_path: "/",
             dates: time_select_options(TimeSelectHelper::CONTENT_PAGE_TIME_PERIODS)

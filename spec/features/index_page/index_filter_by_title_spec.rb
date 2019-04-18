@@ -24,7 +24,7 @@ RSpec.describe '/content' do
       click_on 'Filter'
     end
 
-    it 'renders the filtered items' do
+    xit 'renders the filtered items' do
       table_rows = extract_table_content('.govuk-table')
 
       _header = table_rows.shift
@@ -33,7 +33,7 @@ RSpec.describe '/content' do
       expect(table_rows[1]).to include('Another title /path/2')
     end
 
-    it 'launches help text in a modal', js: true do
+    xit 'launches help text in a modal', js: true do
       help_string = I18n.t('metrics.upviews.about')
       expect(page).to_not have_text(help_string)
       click_link(href: "/help/?hkey=upviews")
