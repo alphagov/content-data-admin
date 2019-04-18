@@ -6,7 +6,7 @@ module GdsApi
     module ContentDataApi
       include ResponseHelpers
 
-      CONTENT_DATA_API_ENDPOINT = Plek.current.find('content-performance-manager')
+      CONTENT_DATA_API_ENDPOINT = Plek.current.find('content-data-api')
 
       def content_data_api_has_orgs
         url = "#{CONTENT_DATA_API_ENDPOINT}/api/v1/organisations"
