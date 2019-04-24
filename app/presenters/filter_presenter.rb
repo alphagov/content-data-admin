@@ -65,11 +65,10 @@ class FilterPresenter
 
   def document_type_options
     @document_type_options ||= begin
-      types = [['', 'all'], ['All document types', 'all']]
-      @document_types.each do |document_type|
-        types.push([document_type[:name], document_type[:id]])
-      end
-      types
+      additional_document_type_options +
+        @document_types.map do |document_type|
+          [document_type[:name], document_type[:id]]
+        end
     end
   end
 
@@ -95,6 +94,13 @@ private
 
   def find_selected_document_type
     document_type_options.find { |d| d[1] == @search_parameters[:document_type] } || ['All document types', 'all']
+  end
+
+  def additional_document_type_options
+    [
+      ['', 'all'],
+      ['All document types', 'all']
+    ]
   end
 
   def additional_organisation_options
