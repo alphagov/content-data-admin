@@ -21,7 +21,7 @@
     <% end %>
         <% dates = time_select_options(TimeSelectHelper::CONTENT_PAGE_TIME_PERIODS) %>
 
-        <%= time_period: dates.find {|d| d[:value] == @presenter.time_period }[:text] %>
+        <%= dates.find {|d| d[:value] == @presenter.time_period }[:text] %>
 
 
     </span>
