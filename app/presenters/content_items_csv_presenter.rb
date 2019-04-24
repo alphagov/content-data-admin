@@ -84,7 +84,7 @@ private
   end
 
   def content_data_link(base_path)
-    base = Plek.new.external_url_for('content-data-admin')
+    base = Plek.new.external_url_for('content-data')
 
     base + Rails.application.routes.url_helpers.metrics_path(
       # Remove / from the start of the base_path, as the url helper
