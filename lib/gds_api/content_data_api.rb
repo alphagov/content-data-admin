@@ -4,7 +4,7 @@ class GdsApi::ContentDataApi < GdsApi::Base
   def initialize
     super("#{Plek.current.find('content-data-api')}/api/v1",
       disable_cache: true,
-      bearer_token: ENV['CONTENT_PERFORMANCE_MANAGER_BEARER_TOKEN'] || 'example')
+      bearer_token: ENV['CONTENT_DATA_API_BEARER_TOKEN'] || 'example')
   end
 
   def aggregated_metrics(base_path:, from:, to:)
