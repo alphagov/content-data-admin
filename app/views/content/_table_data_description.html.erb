@@ -19,10 +19,12 @@
     <% else %>
         <%= filter.organisation_name %>
     <% end %>
-        <% dates = time_select_options(TimeSelectHelper::CONTENT_PAGE_TIME_PERIODS) %>
-
-        <%= dates.find {|d| d[:value] == @presenter.time_period }[:text] %>
-
-
     </span>
+    during the
+    <span class="table-caption__param">
+        <% dates = time_select_options(TimeSelectHelper::CONTENT_PAGE_TIME_PERIODS) %>
+        <%= dates.find {|d| d[:value] == @presenter.time_period }[:text] %>
+    </span>
+
+
 </h1>
