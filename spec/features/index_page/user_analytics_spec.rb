@@ -25,10 +25,6 @@ RSpec.feature 'user analytics' do
     expect(page).to have_selector('[data-gtm-id="content-item-link"][data-gtm-item-document-type]')
   end
 
-  scenario 'tracks content item page links (old way)' do
-    expect(page).to have_selector('[data-gtm-id="content-item-link"][data-gtm]')
-  end
-
   help_icon_columns = %w(upviews satisfaction searches)
 
   help_icon_columns.each do |column|
