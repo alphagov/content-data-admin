@@ -165,6 +165,20 @@ RSpec.describe SingleContentItemPresenter do
 
       expected_context = 'Users who found the page useful, out of 15 responses'
       expect(subject.satisfaction_context).to eq(expected_context)
+      expect(subject.satisfaction_short_context).to eq('15 responses')
+    end
+
+    it 'returns context about the satisfaction metric for a single response' do
+      current_period_data[:time_series_metrics] = [
+        { name: 'pviews', total: 5 },
+        { name: 'upviews', total: 5 },
+        { name: 'useful_yes', total: 1 },
+        { name: 'useful_no', total: 0 },
+      ]
+
+      expected_context = 'Users who found the page useful, out of 1 response'
+      expect(subject.satisfaction_context).to eq(expected_context)
+      expect(subject.satisfaction_short_context).to eq('1 response')
     end
 
     it 'does not fail when there are no metrics' do
@@ -177,6 +191,7 @@ RSpec.describe SingleContentItemPresenter do
 
       expected_context = 'Users who found the page useful, out of 0 responses'
       expect(subject.satisfaction_context).to eq(expected_context)
+      expect(subject.satisfaction_short_context).to eq('0 responses')
     end
   end
 

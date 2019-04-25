@@ -62,9 +62,13 @@ en:
       title: 'User satisfaction score'
       short_title: 'User satisfaction score'
       summary: 'Percentage of users who answered ''yes'' to the ''Is this page useful?'' survey'
-      context: 'Users who found the page useful, out of %{total_responses} responses'
+      context:
+        one: 'Users who found the page useful, out of %{total_responses} response'
+        other: 'Users who found the page useful, out of %{total_responses} responses'
       unit: ''
-      short_context: '%{total_responses} responses'
+      short_context:
+        one: '%{total_responses} response'
+        other: '%{total_responses} responses'
       data_source: calculated_google_analytics
       external_link: ''
       about_title: 'About satisfaction score'
