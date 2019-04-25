@@ -119,7 +119,7 @@ RSpec.describe ContentItemsCSVPresenter do
       end
 
       it 'has a Content Data Link' do
-        expect(subject[3]).to start_with('http')
+        expect(subject[3]).to eq('http://content-data.dev.gov.uk/metrics')
       end
 
       it 'has a Document Type' do
