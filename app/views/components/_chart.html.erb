@@ -83,7 +83,7 @@
       <% end %>
       <%= line_chart(chart_format_data, library: chart_library_options, defer: true) %>
     </div>
-    <div class="app-c-chart__table" id="<%= table_id %>" data-gtm="view-table-reveal" data-gtm-id="view-table-reveal">
+    <div class="app-c-chart__table" id="<%= table_id %>" data-gtm-id="view-table-reveal">
       <%= render(
         "govuk_publishing_components/components/details",
         title: t(".table_dropdown", metric_name: chart_label)
