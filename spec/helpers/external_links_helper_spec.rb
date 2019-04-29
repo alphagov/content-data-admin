@@ -154,6 +154,17 @@ RSpec.describe ExternalLinksHelper do
                base_path: '/the/base/path'
       )).to eq(expected_link)
     end
+
+    it 'adds document type of homepage when when the page concerned is the homepage' do
+      host = Plek.new.external_url_for('support')
+      expected_link = "#{host}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=%2F&document_type=homepage"
+
+      expect(feedex_url(
+               from: Date.new(2018, 11, 25),
+               to: Date.new(2018, 12, 24),
+               base_path: '/'
+      )).to eq(expected_link)
+    end
   end
 
   describe '#google_analytics_url' do
