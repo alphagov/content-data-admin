@@ -59,14 +59,4 @@ Rails.application.configure do
 
   # Using polling file checker, requires VM time to be in sync with host
   config.file_watcher = ActiveSupport::FileUpdateChecker
-
-  # load environment variables from local_env.yml
-  config.before_configuration do
-    env_file = Rails.root.join('config', 'local_env.yml')
-    if File.exist?(env_file)
-      YAML.safe_load(File.open(env_file)).each do |key, value|
-        ENV[key.to_s] = value
-      end
-    end
-  end
 end
