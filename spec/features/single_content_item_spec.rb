@@ -92,7 +92,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders trend percentage for page searches' do
-        expect(page).to have_selector '.searches .app-c-glance-metric__trend', text: '406.25%'
+        expect(page).to have_selector '.searches .app-c-glance-metric__trend', text: '3,950.00%'
       end
 
       it 'renders glance metric for feedex comments' do

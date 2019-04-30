@@ -21,7 +21,7 @@
       <% if trend_percentage.blank? %>
         no comparison data
       <% else %>
-        <% if trend_percentage > 0 %>+<% end %><%= '%.2f' % trend_percentage %>%
+        <% if trend_percentage > 0 %>+<% end %><%= number_to_percentage(trend_percentage, precision: 2, delimiter: ',') %>
       <% end %>
     </span>
     <% unless trend_percentage.blank? %>
