@@ -43,7 +43,12 @@ module ExternalLinksHelper
   def feedex_url(from:, to:, base_path:)
     host = Plek.new.external_url_for('support')
     path = CGI.escape(base_path)
-    "#{host}/anonymous_feedback?from=#{from}&to=#{to}&paths=#{path}"
+    base_request = "#{host}/anonymous_feedback?from=#{from}&to=#{to}&paths=#{path}"
+    if base_path == '/'
+      base_request + '&document_type=homepage'
+    else
+      base_request
+    end
   end
 
   def google_analytics_url(from:, to:, base_path:)
