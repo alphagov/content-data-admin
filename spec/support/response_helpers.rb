@@ -196,11 +196,11 @@ module GdsApi
             },
             {
               name: "searches",
-              total: 48,
+              total: 6,
               time_series: [
-                { "date" => day1, "value" => 16 },
-                { "date" => day2, "value" => 16 },
-                { "date" => day3, "value" => 16 }
+                { "date" => day1, "value" => 2 },
+                { "date" => day2, "value" => 2 },
+                { "date" => day3, "value" => 2 }
               ]
             },
             {
