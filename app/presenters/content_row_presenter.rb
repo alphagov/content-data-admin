@@ -3,7 +3,8 @@ class ContentRowPresenter
   include ActiveSupport::Inflector
 
   attr_reader :title, :base_path, :document_type, :upviews, :searches,
-    :raw_document_type, :satisfaction_percentage, :satisfaction_responses
+              :raw_document_type, :satisfaction_percentage,
+              :satisfaction_responses
 
   def initialize(data)
     @title = data[:title]
