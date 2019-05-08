@@ -68,14 +68,14 @@ class SingleContentItemPresenter
 
   def satisfaction_context
     I18n.t("metrics.satisfaction.context",
-      total_responses: number_with_delimiter(useful_yes_no_total),
-      count: useful_yes_no_total)
+           total_responses: number_with_delimiter(useful_yes_no_total),
+           count: useful_yes_no_total)
   end
 
   def satisfaction_short_context
     I18n.t("metrics.satisfaction.short_context",
-      total_responses: number_with_delimiter(useful_yes_no_total),
-      count: useful_yes_no_total)
+           total_responses: number_with_delimiter(useful_yes_no_total),
+           count: useful_yes_no_total)
   end
 
   def searches_context
