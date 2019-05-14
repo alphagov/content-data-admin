@@ -161,30 +161,30 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders a metric for pdf_count' do
-        expect(page).to have_selector '.metric-summary__pdf-count', text: '3'
+        expect(page).to have_selector '.content-metric__total-pdf-count .govuk-summary-list__value', text: '3'
       end
 
       it 'renders about label for pdf count' do
-        label = 'About number of PDFs'
-        expect(page).to have_selector(".metric-summary__pdf-count .govuk-details__summary-text", text: label)
+        label = 'Number of PDFs'
+        expect(page).to have_selector(".content-metric__total-pdf-count .govuk-summary-list__key", text: label)
       end
 
       it 'renders a metric for word count' do
-        expect(page).to have_selector '.metric-summary__words', text: '200'
+        expect(page).to have_selector '.content-metric__total-words .govuk-summary-list__value', text: '200'
       end
 
       it 'renders about label for word count' do
-        label = 'About word count'
-        expect(page).to have_selector(".metric-summary__words .govuk-details__summary-text", text: label)
+        label = 'Word count'
+        expect(page).to have_selector(".content-metric__total-words .govuk-summary-list__key", text: label)
       end
 
       it 'renders a metric for time to read' do
-        expect(page).to have_selector '.metric-summary__reading-time', text: '200'
+        expect(page).to have_selector '.content-metric__reading-time .govuk-summary-list__value', text: '0h 20m'
       end
 
       it 'renders about label for time to read' do
-        label = 'About reading time'
-        expect(page).to have_selector(".metric-summary__reading-time .govuk-details__summary-text", text: label)
+        label = 'Reading time'
+        expect(page).to have_selector(".content-metric__reading-time .govuk-summary-list__key", text: label)
       end
 
 

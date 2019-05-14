@@ -93,7 +93,7 @@ en:
         end of a transaction that started on GOV.UK.
 
         You'll need a Signon account with Feedback Explorer permissions to see the comments.
-    words:
+    total_words:
       title: 'Word count'
       short_title: 'Word count'
       summary: 'Number of words on the page'
@@ -120,7 +120,7 @@ en:
         of 200 words per minute. The time it takes to read the page is rounded up to the nearest minute.
         This calculation doesn’t take into account how complicated the content is or any of the page’s
         attachments.
-    pdf_count:
+    total_pdf_count:
       title: 'Number of PDFs'
       short_title: 'Number of PDFs'
       summary: 'Number of .pdf attachments on the page'
@@ -134,4 +134,5 @@ en:
         maintain. PDFs can often be bad for accessibility and rarely comply with open standards.
         Several PDFs on one page may indicate that too many users needs are being met by them.
         <a href="https://gds.blog.gov.uk/2018/07/16/why-gov-uk-content-should-be-published-in-html-and-not-pdf/">Read more about why to avoid PDFs</a>.
-
+    page_content:
+      about_title: "About 'page content' metrics"
