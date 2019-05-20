@@ -4,10 +4,6 @@ A front end for the [Content Data API].
 
 This application is currently in development for a private beta.
 
-## Ruby version
-
-2.5.1
-
 ## Dependencies
 
 * The [Content Data API]
