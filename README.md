@@ -1,6 +1,6 @@
 # Content Data Admin
 
-A front end for the [data warehouse](https://github.com/alphagov/content-performance-manager).
+A front end for the [Content Data API].
 
 This application is currently in development for a private beta.
 
@@ -10,7 +10,9 @@ This application is currently in development for a private beta.
 
 ## Dependencies
 
-* The [data warehouse](https://github.com/alphagov/content-performance-manager)
+* The [Content Data API]
+
+[Content Data API]: https://github.com/alphagov/content-data-api
 
 ## Running the application
 
