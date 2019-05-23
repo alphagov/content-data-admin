@@ -23,8 +23,9 @@ RSpec.describe "Glance Metric", type: :view do
   end
 
   it "does not render if figure is not supplied" do
-    data[:figure] = false
-    assert_empty render_component(data)
+    data[:figure] = nil
+    render_component(data)
+    assert_select ".app-c-glance-metric__figure", text: 'No data'
   end
 
   it "does not render if period is not supplied" do

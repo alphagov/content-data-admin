@@ -4,7 +4,7 @@
       figure: total[:figure],
       measurement_display_label: total[:display_label],
       measurement_explicit_label: total[:explicit_label],
-      context: context,
+      context: (context if total[:figure]),
       trend_percentage: @performance_data.trend_percentage(metric_name),
       period: @performance_data.period
     } %>

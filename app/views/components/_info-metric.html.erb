@@ -1,6 +1,6 @@
 <%
   name ||= false
-  figure ||= false
+  figure ||= nil
   period ||= false
   about ||= false
   trend_percentage ||= false
@@ -8,7 +8,7 @@
   short_context ||= false
   about_label ||= "About this data"
 %>
-<% if name && figure && context %>
+<% if name && context %>
   <div class="app-c-info-metric govuk-body">
     <h3 class="app-c-info-metric__heading" data-gtm-id="metric-section-heading"><%= name %></h3>
     <p class="app-c-info-metric__context govuk-body-s"><%= context %></p>
@@ -24,35 +24,42 @@
         <% end %>
       </div>
     <% end %>
-    <span class="app-c-info-metric__figure govuk-!-font-weight-bold govuk-!-font-size-36 "><%= figure %></span>
-    <% if short_context %>
-      <span class="app-c-info-metric__short-context">
-        (<%= short_context %>)
-      </span>
-    <% end %>
-    <% if trend_percentage %>
-      <span class="app-c-info-metric__trend">
-        <% if trend_percentage > 0 %>+<% end %><%= '%.2f' % trend_percentage %>%
-      </span>
-      <% if trend_percentage > 0 %>
-        <span class="app-c-info-metric__trend--up">
-          <span aria-hidden="true" class="app-c-info-metric__trend-icon">&#9650;</span>
-          <span class="app-c-info-metric__trend-text">Upward trend</span>
-        <span>
-      <% elsif trend_percentage < 0 %>
-        <span class="app-c-info-metric__trend--down">
-          <span aria-hidden="true" class="app-c-info-metric__trend-icon">&#9660;</span>
-          <span class="app-c-info-metric__trend-text">Downward trend</span>
-        <span>
-      <% else %>
-        <span class="app-c-info-metric__trend--no-change">
-          <span aria-hidden="true" class="app-c-info-metric__trend-icon">&#9679;</span>
-          <span class="app-c-info-metric__trend-text">No change</span>
-        <span>
-      <% end %>
-    <% end %>
-    <% if period && trend_percentage %>
-      <span class="app-c-info-metric__period"><%= period %></span>
-    <% end %>
-  </div>
+
+  <span class="app-c-info-metric__figure govuk-!-font-weight-bold govuk-!-font-size-36 ">
+    <% if figure.nil? %>
+      No data
+    <% else %>
+      <%= figure %>
+        </span>
+          <% if short_context %>
+            <span class="app-c-info-metric__short-context">
+              (<%= short_context %>)
+            </span>
+          <% end %>
+          <% if trend_percentage %>
+            <span class="app-c-info-metric__trend">
+              <% if trend_percentage > 0 %>+<% end %><%= '%.2f' % trend_percentage %>%
+            </span>
+            <% if trend_percentage > 0 %>
+              <span class="app-c-info-metric__trend--up">
+                <span aria-hidden="true" class="app-c-info-metric__trend-icon">&#9650;</span>
+                <span class="app-c-info-metric__trend-text">Upward trend</span>
+              <span>
+            <% elsif trend_percentage < 0 %>
+              <span class="app-c-info-metric__trend--down">
+                <span aria-hidden="true" class="app-c-info-metric__trend-icon">&#9660;</span>
+                <span class="app-c-info-metric__trend-text">Downward trend</span>
+              <span>
+            <% else %>
+              <span class="app-c-info-metric__trend--no-change">
+                <span aria-hidden="true" class="app-c-info-metric__trend-icon">&#9679;</span>
+                <span class="app-c-info-metric__trend-text">No change</span>
+              <span>
+            <% end %>
+          <% end %>
+          <% if period && trend_percentage %>
+            <span class="app-c-info-metric__period"><%= period %></span>
+          <% end %>
+        </div>
+    <%end %>
 <% end %>
