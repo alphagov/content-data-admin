@@ -47,14 +47,14 @@ en:
         high ratio (above 1.4), this indicates that users have to come back to that page within
         their session - investigate the navigation from that page further to identify any issues.
     searches:
-      title: 'Searches from the page'
-      short_title: 'Searches from the page'
+      title: 'Searches from page'
+      short_title: 'Searches from page'
       summary: 'Number of on-page searches'
       context: '%{percent_users_searched}% of users searched from the page'
       unit: 'search terms'
       data_source: google_analytics
       external_link: 'See search terms in Google Analytics (opens in new tab)'
-      about_title: 'About searches from the page'
+      about_title: 'About searches from page'
       about: >
         This is the number of internal site searches that were started from the page. When people
         use internal search, it's an indication that they haven't found what they're looking for.
