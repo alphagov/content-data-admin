@@ -41,8 +41,8 @@ class ContentItemsCSVPresenter
       I18n.t('metrics.satisfaction.short_title') => lambda do |result_row|
         format_metric_value('satisfaction', result_row[:satisfaction])
       end,
-      'Yes responses: satisfaction score' => raw_field(:useful_yes),
-      'No responses: satisfaction score' => raw_field(:useful_no),
+      'Yes responses: is page useful?' => raw_field(:useful_yes),
+      'No responses: is page useful?' => raw_field(:useful_no),
       I18n.t('metrics.searches.short_title') => raw_field(:searches),
       I18n.t('metrics.feedex.short_title') => raw_field(:feedex),
       'Link to feedback comments' => lambda do |result_row|
