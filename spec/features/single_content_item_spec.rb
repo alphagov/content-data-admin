@@ -220,7 +220,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         internal_searches_rows = extract_table_content(".chart.searches table")
         expect(internal_searches_rows).to match_array([
           expected_table_dates,
-          ["Searches from the page", "80", "80", "83"]
+          ["Searches from page", "80", "80", "83"]
         ])
       end
 
