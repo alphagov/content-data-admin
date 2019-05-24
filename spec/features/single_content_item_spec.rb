@@ -139,7 +139,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders about label for satisfaction' do
-        label = 'About satisfaction score'
+        label = "About 'users who found page useful'"
         expect(page).to have_selector(".metric-summary__satisfaction .govuk-details__summary-text", text: label)
       end
 
