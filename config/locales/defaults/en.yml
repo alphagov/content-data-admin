@@ -59,19 +59,19 @@ en:
         This is the number of internal site searches that were started from the page. When people
         use internal search, it's an indication that they haven't found what they're looking for.
     satisfaction:
-      title: 'User satisfaction score'
-      short_title: 'User satisfaction score'
+      title: 'Users who found page useful'
+      short_title: 'Users who found page useful'
       summary: 'Percentage of users who answered ''yes'' to the ''Is this page useful?'' survey'
       context:
-        one: 'Users who found the page useful, out of %{total_responses} response'
-        other: 'Users who found the page useful, out of %{total_responses} responses'
+        one: 'Out of %{total_responses} response'
+        other: 'Out of %{total_responses} responses'
       unit: ''
       short_context:
         one: '%{total_responses} response'
         other: '%{total_responses} responses'
       data_source: calculated_google_analytics
       external_link: ''
-      about_title: 'About satisfaction score'
+      about_title: "About 'users who found page useful'"
       about: >
         Percentage of users who answered 'Yes' rather than 'No' to the 'Is this page useful?' survey.
         The more users who responded, the more reliable the score is. For a more reliable score

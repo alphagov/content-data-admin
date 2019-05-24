@@ -163,7 +163,7 @@ RSpec.describe SingleContentItemPresenter do
         { name: 'useful_no', total: 10 },
       ]
 
-      expected_context = 'Users who found the page useful, out of 15 responses'
+      expected_context = 'Out of 15 responses'
       expect(subject.satisfaction_context).to eq(expected_context)
       expect(subject.satisfaction_short_context).to eq('15 responses')
     end
@@ -176,7 +176,7 @@ RSpec.describe SingleContentItemPresenter do
         { name: 'useful_no', total: 0 },
       ]
 
-      expected_context = 'Users who found the page useful, out of 1 response'
+      expected_context = 'Out of 1 response'
       expect(subject.satisfaction_context).to eq(expected_context)
       expect(subject.satisfaction_short_context).to eq('1 response')
     end
@@ -189,7 +189,7 @@ RSpec.describe SingleContentItemPresenter do
         { name: 'useful_no', total: nil },
       ]
 
-      expected_context = 'Users who found the page useful, out of 0 responses'
+      expected_context = 'Out of 0 responses'
       expect(subject.satisfaction_context).to eq(expected_context)
       expect(subject.satisfaction_short_context).to eq('0 responses')
     end
