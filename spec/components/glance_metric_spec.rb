@@ -22,7 +22,7 @@ RSpec.describe "Glance Metric", type: :view do
     assert_empty render_component(data)
   end
 
-  it "does not render if figure is not supplied" do
+  it "renders no data if figure is not present" do
     data[:figure] = nil
     render_component(data)
     assert_select ".app-c-glance-metric__figure", text: 'No data'
