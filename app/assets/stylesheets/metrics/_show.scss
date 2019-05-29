@@ -8,6 +8,10 @@
     @include govuk-responsive-margin(2, "bottom");
   }
 
+  .app-c-related-actions__link {
+    @include govuk-responsive-margin(2, "right");
+  }
+
   .section-performance {
 
     @include media-down(mobile) {
