@@ -39,7 +39,9 @@ class SingleContentItemPresenter
   end
 
   def total_satisfaction
-    number_to_percentage(value_for('satisfaction') * 100, precision: 0)
+    if !value_for('satisfaction').nil?
+      number_to_percentage(value_for('satisfaction') * 100, precision: 0)
+    end
   end
 
   def total_feedex
