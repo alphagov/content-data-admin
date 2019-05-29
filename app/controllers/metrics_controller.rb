@@ -17,6 +17,6 @@ class MetricsController < ApplicationController
   end
 
   rescue_from GdsApi::HTTPNotFound do
-    render file: Rails.root.join('public', '404.html'), status: :not_found, layout: false
+    render file: Rails.root.join('app/views/errors', '404.html.erb'), status: :not_found, layout: true
   end
 end
