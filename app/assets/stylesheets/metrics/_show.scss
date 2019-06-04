@@ -77,46 +77,50 @@
     @include govuk-responsive-margin(2, "top");
   }
 
-  .govuk-summary-list--small {
-    @include govuk-font($size: 16);
-    @include govuk-responsive-margin(1, "bottom");
-
-  }
-
-  .govuk-summary-list__value--right-align {
-    text-align: right;
-   }
-
-  .govuk-summary-list__key {
-    font-weight: normal;
-  }
-
-  .content-metrics {
-    .page-help {
-      @include govuk-responsive-margin(1, "left");
-    }
-   }
-
   .content-metrics__header {
     @include govuk-responsive-margin(4, "bottom");
   }
 
-  .content-metrics__help-icon {
-    vertical-align: bottom;
-  }
+  @include govuk-media-query($from: tablet) {
+    .govuk-summary-list--small {
+      @include govuk-font($size: 16);
+      @include govuk-responsive-margin(1, "bottom");
 
-  .content-metrics__data {
-    .govuk-summary-list__row {
-      &:last-of-type {
-        .govuk-summary-list__key,
-        .govuk-summary-list__value {
-          border-bottom: none;
+    }
+
+    .govuk-summary-list__value--right-align {
+      text-align: right;
+     }
+
+    .govuk-summary-list__key {
+      font-weight: normal;
+    }
+
+    .content-metrics {
+      .page-help {
+        @include govuk-responsive-margin(1, "left");
+      }
+     }
+
+
+
+    .content-metrics__help-icon {
+      vertical-align: bottom;
+    }
+
+    .content-metrics__data {
+      .govuk-summary-list__row {
+        &:last-of-type {
+          .govuk-summary-list__key,
+          .govuk-summary-list__value {
+            border-bottom: none;
+          }
         }
       }
     }
-  }
 
-  .content-metrics__data {
-    border-top: 2px solid $grey-3;
+    .content-metrics__data {
+      border-top: 2px solid $grey-3;
+    }
   }
 }
