@@ -27,6 +27,7 @@
     product_name: "Publishing",
     full_width: @fullwidth,
     navigation_items: [
+      { text: "Switch app", href: Plek.new.external_url_for("signon") },
       { text: current_user.name, href: Plek.new.external_url_for('signon') },
       { text: "Log out", href: gds_sign_out_path }
     ]
