@@ -9,9 +9,13 @@ class Calculator::TrendPercentage
   end
 
   def calculate
-    return 0 if previous <= 0
-
-    trend
+    if previous.nil? || current.nil?
+      nil
+    elsif previous <= 0
+      0
+    else
+      trend
+    end
   end
 
 private
