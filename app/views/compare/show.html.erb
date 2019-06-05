@@ -1,0 +1,42 @@
+<% current_selection = current_selection || 'past-30-days' %>
+<% content_for :title, "comparison page title" %>
+
+<% content_for :page_class, "content-data__compare" %>
+<% content_for :local_nav do %>
+  <div class="local-nav govuk-grid-column-one-quarter">
+    <a href="/content" class="local-nav__search-link govuk-link govuk-link--no-visited-state" data-gtm-id="back-link">Search</a>
+  </div>
+<% end %>
+
+<div class="content-wrapper">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds headings">
+      <span class="govuk-caption-xl" data-gtm-id="page-kicker">section comparison</span>
+      <h1 class="govuk-heading-l">
+        Immigration Rules
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds date-select">
+      <%= form_for "date",
+      url: "/compare",
+      method: :get,
+      html: { id: 'filter-form' },
+      data: { 'gtm-id': 'time-period-form' } do %>
+      <%= render "components/time-select", {
+        compact: true,
+        render_button: true,
+        current_selection: current_selection,
+        dates: time_select_options(TimeSelectHelper::METRIC_PAGE_TIME_PERIODS)
+      } %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="table-wrapper sortable-table">
+    <%= render 'table' %>
+  </div>
+
+</div>
