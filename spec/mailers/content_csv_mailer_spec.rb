@@ -9,7 +9,7 @@ RSpec.describe ContentCsvMailer, type: :mailer do
     end
 
     it 'renders the body' do
-      expect(mail.body.encoded).to match('The data you exported from Content Data is available')
+      expect(mail.body.encoded).to match('The data you exported from Content Data will be available from this link for 7 days.')
     end
 
     it 'contains the link' do
