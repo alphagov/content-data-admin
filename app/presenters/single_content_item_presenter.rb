@@ -128,7 +128,8 @@ class SingleContentItemPresenter
       publishing_app: metadata[:publishing_app],
       base_path: base_path,
       parent_content_id: metadata[:parent_content_id],
-      document_type: metadata[:document_type]
+      document_type: metadata[:document_type],
+      locale: metadata[:locale]
     )
   end
 
