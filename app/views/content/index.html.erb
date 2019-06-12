@@ -43,14 +43,13 @@
                 selected_option: @filter.selected_document_type(params)
               }
           %>
-
           <%= render "govuk_publishing_components/components/accessible_autocomplete",
               {
                 id: 'organisation_id',
                 label: {
                   text: "Organisation"
                 },
-                options: @filter.organisation_options.unshift(['','all']),
+                options: @filter.organisation_options,
                 selected_option: @filter.selected_organisation(params)
               }
           %>
