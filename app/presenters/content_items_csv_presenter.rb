@@ -34,9 +34,7 @@ class ContentItemsCSVPresenter
         )
       end,
       I18n.t('metrics.percentage_users_searched.title') => lambda do |result_row|
-        Calculator::AverageSearchesPerUser.calculate(
-          searches: result_row[:searches], unique_pageviews: result_row[:upviews]
-        )
+        percentage_users_searched(result_row[:searches], result_row[:upviews])
       end,
       I18n.t('metrics.satisfaction.short_title') => lambda do |result_row|
         format_metric_value('satisfaction', result_row[:satisfaction])
@@ -99,5 +97,13 @@ private
     to = @date_range.to
     path = CGI.escape(base_path)
     "#{host}/anonymous_feedback?from=#{from}&to=#{to}&paths=#{path}"
+  end
+
+  def percentage_users_searched(searches, unique_pageviews)
+    value = Calculator::AverageSearchesPerUser.calculate(
+      searches: searches, unique_pageviews: unique_pageviews
+    )
+
+    number_to_percentage(value, precision: 2)
   end
 end

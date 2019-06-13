@@ -139,7 +139,7 @@ RSpec.describe ContentItemsCSVPresenter do
       end
 
       it 'has searches per user' do
-        expect(subject[8]).to eq('93.33')
+        expect(subject[8]).to eq('93.33%')
       end
 
       it 'has satisfaction score' do
