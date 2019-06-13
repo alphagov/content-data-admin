@@ -89,9 +89,9 @@ RSpec.describe ContentItemsCSVPresenter do
         I18n.t('metrics.searches.short_title'),
         I18n.t('metrics.feedex.short_title'),
         I18n.t('row_headers.feedback_explorer_url'),
+        I18n.t('metrics.reading_time.short_title'),
         I18n.t('metrics.words.short_title'),
-        I18n.t('metrics.pdf_count.short_title'),
-        I18n.t('metrics.reading_time.short_title')
+        I18n.t('metrics.pdf_count.short_title')
       ]
 
       expected_headers.each do |header_name|
@@ -166,16 +166,16 @@ RSpec.describe ContentItemsCSVPresenter do
         expect(subject[14]).to start_with('http')
       end
 
+      it 'has reading time' do
+        expect(subject[15]).to eq('0h 50m')
+      end
+
       it 'has word count' do
-        expect(subject[15]).to eq('50')
+        expect(subject[16]).to eq('50')
       end
 
       it 'has pdf count' do
-        expect(subject[16]).to eq('0')
-      end
-
-      it 'has reading time' do
-        expect(subject[17]).to eq('0h 50m')
+        expect(subject[17]).to eq('0')
       end
     end
   end
