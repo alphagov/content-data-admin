@@ -41,6 +41,7 @@ RSpec.shared_examples 'Metadata presentation' do
         :edit_url_for
       ).with(
         content_id: 'content-id',
+        locale: 'fr',
         publishing_app: 'whitehall',
         base_path: '/the/base/path',
         document_type: 'news_story',

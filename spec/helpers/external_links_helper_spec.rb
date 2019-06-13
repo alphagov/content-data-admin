@@ -20,6 +20,20 @@ RSpec.describe ExternalLinksHelper do
       end
     end
 
+    context 'with content-publisher' do
+      it 'generates a link to the content-publisher app' do
+        expect(
+          edit_url_for(content_id: 'content_id',
+            publishing_app: 'content-publisher',
+            base_path: '/anything',
+            document_type: 'news_story',
+            locale: 'fr')
+        ).to eq(
+          "#{external_url_for('content-publisher')}/documents/content_id:fr"
+        )
+      end
+    end
+
     context 'with contacts' do
       it 'generates a link to the contacts publisher app' do
         expect(
@@ -139,6 +153,17 @@ RSpec.describe ExternalLinksHelper do
         ).to eq(
           'Request a content change in GOV.UK Support'
         )
+      end
+    end
+
+    context 'with content-publisher' do
+      it 'uses the specific label' do
+        expect(
+          edit_label_for(publishing_app: 'content-publisher')
+        ).to eq(I18n.t(
+                  'metrics.show.navigation.edit_link',
+                  publishing_app: 'Content publisher'
+        ))
       end
     end
   end
