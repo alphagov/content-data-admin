@@ -5,7 +5,7 @@ module RequestStubs
   include GdsApi::TestHelpers::ContentDataApi
   include GdsApi::TestHelpers::ResponseHelpers
 
-  def stub_metrics_page(base_path:, time_period:, publishing_app: 'whitehall', content_item_missing: false, current_data_missing: false, comparision_data_missing: false, edition_metrics_missing: false)
+  def stub_metrics_page(base_path:, time_period:, publishing_app: 'whitehall', content_item_missing: false, current_data_missing: false, comparision_data_missing: false, edition_metrics_missing: false, related_content: 0, parent_document_id: nil)
     dates = build(:date_range, time_period)
     prev_dates = dates.previous
 
@@ -15,6 +15,9 @@ module RequestStubs
     previous_period_data = older_single_page_response(
       base_path, prev_dates.from, prev_dates.to
     )
+
+    current_period_data[:metadata][:parent_document_id] = parent_document_id
+    current_period_data[:number_of_related_content] = related_content
 
     current_period_data[:metadata][:publishing_app] = publishing_app
     previous_period_data[:metadata][:publishing_app] = publishing_app

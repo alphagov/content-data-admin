@@ -126,8 +126,9 @@ module GdsApi
             primary_organisation_title: "The Ministry",
             historical: false,
             withdrawn: false,
-            parent_content_id: ''
+            parent_document_id: nil
           },
+          number_of_related_content: 0,
           time_period: {
             to: to,
             from: from

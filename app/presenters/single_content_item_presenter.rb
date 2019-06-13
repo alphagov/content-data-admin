@@ -1,6 +1,7 @@
 class SingleContentItemPresenter
   include MetricsFormatterHelper
   include ExternalLinksHelper
+  include DocumentChildrenHelper
 
   attr_reader :date_range
 
@@ -131,6 +132,25 @@ class SingleContentItemPresenter
       document_type: metadata[:document_type],
       locale: metadata[:locale]
     )
+  end
+
+  def local_links
+    local_links = []
+    if @single_page_data[:number_of_related_content] > 1
+
+      document_id = parent_document_id(
+        @single_page_data[:metadata][:content_id],
+        @single_page_data[:metadata][:locale],
+        @single_page_data[:metadata][:parent_document_id]
+      )
+
+      local_links.append(
+        link_url: document_children_link_for(document_id),
+        label: 'See data for all sections',
+        gtm_id: 'compare-link'
+      )
+    end
+    local_links
   end
 
   def edit_label
