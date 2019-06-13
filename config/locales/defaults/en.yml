@@ -77,6 +77,12 @@ en:
         The more users who responded, the more reliable the score is. For a more reliable score
         on a page that doesn't have many responses, choose a longer time period. This survey was
         introduced in February 2018 so there are no responses before this date.
+    useful_yes:
+      title: 'Yes responses: is page useful?'
+    useful_no:
+      title: 'No responses: is page useful?'
+    percentage_users_searched:
+      title: 'Users who searched from page'
     feedex:
       title: 'Number of feedback comments'
       short_title: 'Feedback comments'

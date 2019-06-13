@@ -15,17 +15,17 @@ class ContentItemsCSVPresenter
 
   def csv_rows
     fields = {
-      'Title' => raw_field(:title),
-      'Organisation' => lambda do |result_row|
+      I18n.t('row_headers.title') => raw_field(:title),
+      I18n.t('row_headers.organisation') => lambda do |result_row|
         organisation_title(@organisations, result_row[:organisation_id])
       end,
-      'URL' => lambda do |result_row|
+      I18n.t('row_headers.govuk_url') => lambda do |result_row|
         url(result_row[:base_path])
       end,
-      'Content Data Link' => lambda do |result_row|
+      I18n.t('row_headers.content_data_url') => lambda do |result_row|
         content_data_link(result_row[:base_path])
       end,
-      'Document Type' => raw_field(:document_type),
+      I18n.t('row_headers.document_type') => raw_field(:document_type),
       I18n.t('metrics.upviews.short_title') => raw_field(:upviews),
       I18n.t('metrics.pviews.short_title') => raw_field(:pviews),
       I18n.t('metrics.pageviews_per_visit.short_title') => lambda do |result_row|
@@ -33,7 +33,7 @@ class ContentItemsCSVPresenter
           pageviews: result_row[:pviews], unique_pageviews: result_row[:upviews]
         )
       end,
-      'Percentage of users searched' => lambda do |result_row|
+      I18n.t('metrics.percentage_users_searched.title') => lambda do |result_row|
         Calculator::AverageSearchesPerUser.calculate(
           searches: result_row[:searches], unique_pageviews: result_row[:upviews]
         )
@@ -41,11 +41,11 @@ class ContentItemsCSVPresenter
       I18n.t('metrics.satisfaction.short_title') => lambda do |result_row|
         format_metric_value('satisfaction', result_row[:satisfaction])
       end,
-      'Yes responses: is page useful?' => raw_field(:useful_yes),
-      'No responses: is page useful?' => raw_field(:useful_no),
+      I18n.t('metrics.useful_yes.title') => raw_field(:useful_yes),
+      I18n.t('metrics.useful_no.title') => raw_field(:useful_no),
       I18n.t('metrics.searches.short_title') => raw_field(:searches),
       I18n.t('metrics.feedex.short_title') => raw_field(:feedex),
-      'Link to feedback comments' => lambda do |result_row|
+      I18n.t('row_headers.feedback_explorer_url') => lambda do |result_row|
         feedback_comments_link(result_row[:base_path])
       end,
       I18n.t('metrics.words.short_title') => raw_field(:word_count),

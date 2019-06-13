@@ -1,0 +1,8 @@
+en:
+  row_headers:
+    title: 'Title'
+    organisation: 'Organisation'
+    document_type: 'Document Type'
+    govuk_url: 'GOV.UK URL'
+    content_data_url: 'Content Data URL'
+    feedback_explorer_url: 'Feedback Explorer URL'
