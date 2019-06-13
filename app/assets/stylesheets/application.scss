@@ -3,7 +3,7 @@ $sort-link-active-colour: govuk-colour("white");
 $sort-link-arrow-size: 14px;
 $sort-link-arrow-size-small: 8px;
 $sort-link-arrow-spacing: 4px;
- $sort-link-arrow-margin: -4px;
+$sort-link-arrow-margin: -4px;
 $govuk-global-styles: true;
 
 // gem components
@@ -63,7 +63,6 @@ $govuk-global-styles: true;
     @include media(mobile) {
       @include govuk-responsive-padding(3, "left");
     }
-
   }
 
   .table-caption__param {
@@ -125,7 +124,7 @@ $govuk-global-styles: true;
   .table__sort-link--asc::after {
     content: "";
     position: absolute;
-    top:  $sort-link-arrow-margin;
+    top: $sort-link-arrow-margin;
     right: -4px;
 
     @include govuk-shape-arrow($direction: up, $base: $sort-link-arrow-size, $display: inline-block);

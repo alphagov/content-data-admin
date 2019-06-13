@@ -4,6 +4,7 @@
     text-align: right;
     @include govuk-responsive-margin(2, "top");
   }
+
   .local-nav__search-link {
     display: block;
     @include govuk-responsive-margin(5, "right");
