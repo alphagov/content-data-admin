@@ -48,7 +48,7 @@ class ContentItemsCSVPresenter
       'Link to feedback comments' => lambda do |result_row|
         feedback_comments_link(result_row[:base_path])
       end,
-      I18n.t('metrics.words.short_title') => raw_field(:word_count),
+      I18n.t('metrics.words.short_title') => raw_field(:words),
       I18n.t('metrics.pdf_count.short_title') => raw_field(:pdf_count),
       I18n.t('metrics.reading_time.short_title') => lambda do |result_row|
         format_duration(result_row[:reading_time])

@@ -93,7 +93,7 @@ en:
         end of a transaction that started on GOV.UK.
 
         You'll need a Signon account with Feedback Explorer permissions to see the comments.
-    total_words:
+    words:
       title: 'Word count'
       short_title: 'Word count'
       summary: 'Number of words on the page'

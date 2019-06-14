@@ -241,17 +241,17 @@ RSpec.describe SingleContentItemPresenter do
     end
   end
 
-  describe '#total_words' do
+  describe '#words' do
     it 'correctly formats number for a value in the millions' do
       current_period_data[:edition_metrics] = [{ name: 'words', value: 5_000 }]
 
-      expect(subject.total_words).to eq('5,000')
+      expect(subject.words).to eq('5,000')
     end
 
     it 'correctly formats number for a small value' do
       current_period_data[:edition_metrics] = [{ name: 'words', value: 50 }]
 
-      expect(subject.total_words).to eq('50')
+      expect(subject.words).to eq('50')
     end
   end
 
