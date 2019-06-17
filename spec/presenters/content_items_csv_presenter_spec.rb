@@ -34,7 +34,7 @@ RSpec.describe ContentItemsCSVPresenter do
         useful_no: 300,
         searches: 14,
         feedex: 24,
-        word_count: 50,
+        words: 50,
         reading_time: 50,
         pdf_count: 0
       },
@@ -50,7 +50,7 @@ RSpec.describe ContentItemsCSVPresenter do
         useful_no: 200,
         searches: 14,
         feedex: 24,
-        word_count: 100,
+        words: 100,
         reading_time: 100,
         pdf_count: 3
       }
