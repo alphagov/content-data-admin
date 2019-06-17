@@ -48,7 +48,7 @@ class SingleContentItemPresenter
     number_with_delimiter value_for('feedex')
   end
 
-  def total_words
+  def words
     number_with_delimiter value_for('words')
   end
 

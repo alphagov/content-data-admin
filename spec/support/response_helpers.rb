@@ -23,7 +23,7 @@ module GdsApi
               useful_yes: 1050,
               useful_no: 2334,
               pdf_count: 0,
-              word_count: 0
+              words: 0
             },
             {
               base_path: '/path/1',
@@ -38,7 +38,7 @@ module GdsApi
               useful_yes: 2837,
               useful_no: 7495,
               pdf_count: 0,
-              word_count: 0
+              words: 0
             },
             {
               base_path: '/path/2',
@@ -53,7 +53,7 @@ module GdsApi
               useful_yes: 1530,
               useful_no: 1255,
               pdf_count: 0,
-              word_count: 170
+              words: 170
             }
           ]
         }
