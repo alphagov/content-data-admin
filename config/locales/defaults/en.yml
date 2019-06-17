@@ -120,7 +120,7 @@ en:
         of 200 words per minute. The time it takes to read the page is rounded up to the nearest minute.
         This calculation doesn’t take into account how complicated the content is or any of the page’s
         attachments.
-    total_pdf_count:
+    pdf_count:
       title: 'Number of PDFs'
       short_title: 'Number of PDFs'
       summary: 'Number of .pdf attachments on the page'

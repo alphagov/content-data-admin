@@ -52,7 +52,7 @@ class SingleContentItemPresenter
     number_with_delimiter value_for('words')
   end
 
-  def total_pdf_count
+  def pdf_count
     number_with_delimiter value_for('pdf_count')
   end
 
