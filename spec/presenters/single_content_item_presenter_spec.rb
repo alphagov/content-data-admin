@@ -255,17 +255,17 @@ RSpec.describe SingleContentItemPresenter do
     end
   end
 
-  describe '#total_pdf_count' do
+  describe '#pdf_count' do
     it 'correctly formats number for a value in the millions' do
       current_period_data[:edition_metrics] = [{ name: 'pdf_count', value: 5_000 }]
 
-      expect(subject.total_pdf_count).to eq('5,000')
+      expect(subject.pdf_count).to eq('5,000')
     end
 
     it 'correctly formats number for a small value' do
       current_period_data[:edition_metrics] = [{ name: 'pdf_count', value: 50 }]
 
-      expect(subject.total_pdf_count).to eq('50')
+      expect(subject.pdf_count).to eq('50')
     end
   end
 

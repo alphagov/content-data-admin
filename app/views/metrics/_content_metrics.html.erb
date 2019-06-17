@@ -7,7 +7,7 @@
     </h2>
 
     <dl class="govuk-summary-list govuk-summary-list--small content-metrics__data">
-      <% ['reading_time', 'total_words', 'total_pdf_count'].each do |metric| %>
+      <% ['reading_time', 'total_words', 'pdf_count'].each do |metric| %>
         <div class="govuk-summary-list__row content-metric__<%= metric.gsub('_', '-') %>">
         <dt class="govuk-summary-list__key" data-gtm-id="metric-section-heading">
           <%= t "metrics.#{metric}.title" %>
@@ -22,7 +22,7 @@
     <%= render "govuk_publishing_components/components/details", {
       title: t("metrics.page_content.about_title")
     } do %>
-      <% ['reading_time', 'total_words', 'total_pdf_count'].each do |metric| %>
+      <% ['reading_time', 'total_words', 'pdf_count'].each do |metric| %>
         <h3 class="govuk-heading-s"><%= @performance_data.metric_about_label(metric) %></h3>
         <p class="govuk-body govuk-body-s"><%= raw t("metrics.#{metric}.about") %></p>
       <% end %>
