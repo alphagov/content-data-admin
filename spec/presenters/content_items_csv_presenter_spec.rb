@@ -74,24 +74,24 @@ RSpec.describe ContentItemsCSVPresenter do
       subject { CSV.parse(presenter.csv_rows).first }
 
       expected_headers = [
-        'Title',
-        'Organisation',
-        'URL',
-        'Content Data Link',
-        'Document Type',
+        I18n.t('row_headers.title'),
+        I18n.t('row_headers.organisation'),
+        I18n.t('row_headers.govuk_url'),
+        I18n.t('row_headers.content_data_url'),
+        I18n.t('row_headers.document_type'),
         I18n.t('metrics.upviews.short_title'),
         I18n.t('metrics.pviews.short_title'),
         I18n.t('metrics.pageviews_per_visit.short_title'),
-        'Percentage of users searched',
+        I18n.t('metrics.percentage_users_searched.title'),
         I18n.t('metrics.satisfaction.short_title'),
-        'Yes responses: is page useful?',
-        'No responses: is page useful?',
+        I18n.t('metrics.useful_yes.title'),
+        I18n.t('metrics.useful_no.title'),
         I18n.t('metrics.searches.short_title'),
         I18n.t('metrics.feedex.short_title'),
-        'Link to feedback comments',
+        I18n.t('row_headers.feedback_explorer_url'),
+        I18n.t('metrics.reading_time.short_title'),
         I18n.t('metrics.words.short_title'),
-        I18n.t('metrics.pdf_count.short_title'),
-        I18n.t('metrics.reading_time.short_title')
+        I18n.t('metrics.pdf_count.short_title')
       ]
 
       expected_headers.each do |header_name|
@@ -139,7 +139,7 @@ RSpec.describe ContentItemsCSVPresenter do
       end
 
       it 'has searches per user' do
-        expect(subject[8]).to eq('93.33')
+        expect(subject[8]).to eq('93.33%')
       end
 
       it 'has satisfaction score' do
@@ -166,16 +166,16 @@ RSpec.describe ContentItemsCSVPresenter do
         expect(subject[14]).to start_with('http')
       end
 
+      it 'has reading time' do
+        expect(subject[15]).to eq('0h 50m')
+      end
+
       it 'has word count' do
-        expect(subject[15]).to eq('50')
+        expect(subject[16]).to eq('50')
       end
 
       it 'has pdf count' do
-        expect(subject[16]).to eq('0')
-      end
-
-      it 'has reading time' do
-        expect(subject[17]).to eq('0h 50m')
+        expect(subject[17]).to eq('0')
       end
     end
   end
