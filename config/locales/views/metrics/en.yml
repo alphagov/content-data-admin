@@ -16,7 +16,7 @@ en:
       section_headings:
         performance: 'Performance'
         feedback: 'Feedback'
-        content: 'Page content'
+        content: 'Document content'
       time_periods:
         past-30-days:
           leading: 'past 30 days'
