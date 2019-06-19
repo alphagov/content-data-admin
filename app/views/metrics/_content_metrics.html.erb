@@ -30,6 +30,11 @@
 
 
     </dl>
+
+    <% if multipart?(@performance_data.document_type.humanize) %>
+      <a href="../../compare" class="govuk-link govuk-body-s content-metrics__compare-link">See data for all nn <%= part_name(@performance_data.document_type.humanize) %></a>
+    <% end %>
+
     <%= render "govuk_publishing_components/components/details", {
       title: t("metrics.page_content.about_title")
     } do %>

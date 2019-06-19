@@ -122,5 +122,11 @@
     .content-metrics__data {
       border-top: 1px solid $grey-2;
     }
+
+    .content-metrics__compare-link {
+      display: block;
+      @include govuk-responsive-margin(3, "bottom");
+    }
+
   }
 }
