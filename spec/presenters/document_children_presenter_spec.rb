@@ -38,6 +38,12 @@ RSpec.describe DocumentChildrenPresenter do
     end
   end
 
+  describe '#title' do
+    it 'return the page title' do
+      expect(subject.title).to eq('Parent: Manual comparision')
+    end
+  end
+
   describe '#content_items' do
     it 'return parent followed by children' do
       expect(subject.content_items).to eq(%w(Parent Child1 Child2))

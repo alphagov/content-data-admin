@@ -30,6 +30,10 @@ RSpec.describe '/documents/:document_id/children' do
     expect(page).to have_link("Send us feedback", href: Plek.new.external_url_for('support') + '/content_data_feedback/new')
   end
 
+  it 'renders the page title' do
+    expect(page).to have_title('Parent: Manual comparision')
+  end
+
   it 'renders the page kicker' do
     expect(page).to have_content('Manual comparision')
   end
