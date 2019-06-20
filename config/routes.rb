@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   get '/content', to: 'content#index'
   get '/content/export_csv', to: 'content#export_csv'
   get '/help', to: 'help#show', as: :show, format: false
-  get '/compare', to: 'compare#show', format: false
+  get '/documents/:document_id/children', to: 'documents#children', format: false
   mount GovukPublishingComponents::Engine, at: "/component-guide"
 end

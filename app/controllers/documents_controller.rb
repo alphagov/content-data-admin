@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CompareController < ApplicationController
+class DocumentsController < ApplicationController
   layout 'application'
   before_action :set_constants
 
@@ -8,7 +8,7 @@ class CompareController < ApplicationController
     @fullwidth = true
   end
 
-  def show
+  def children
     @hkey = params[:hkey]
   end
 end
