@@ -22,6 +22,58 @@ class GdsApi::ContentDataApi < GdsApi::Base
     get_json(url).to_hash.deep_symbolize_keys
   end
 
+  def document_children(document_id:, from:, to:)
+    {
+      "documents" => [
+        {
+          "base_path" => "/parent",
+          "content_id" => "1234",
+          "title" => "Parent",
+          "primary_organisation_id" => "7809-org",
+          "document_type" => "manual",
+          "sibling_order" => nil,
+          "upviews" => 10,
+          "pviews" => 2,
+          "feedex" => 0,
+          "useful_yes" => 75,
+          "useful_no" => 25,
+          "satisfaction" => 0.75,
+          "searches" => 3
+        },
+        {
+          "base_path" => "/child/1",
+          "content_id" => "12341",
+          "title" => "Child 1",
+          "primary_organisation_id" => "7809-org",
+          "document_type" => "manual_section",
+          "sibling_order" => 1,
+          "upviews" => 1000000,
+          "pviews" => 2,
+          "feedex" => 0,
+          "useful_yes" => 75,
+          "useful_no" => 25,
+          "satisfaction" => 0.75,
+          "searches" => 3
+        },
+        {
+          "base_path" => "/child/2",
+          "content_id" => "12342",
+          "title" => "Child 2",
+          "primary_organisation_id" => "7809-org",
+          "document_type" => "manual_section",
+          "sibling_order" => 2,
+          "upviews" => 0,
+          "pviews" => 2,
+          "feedex" => 0,
+          "useful_yes" => 75,
+          "useful_no" => 25,
+          "satisfaction" => 0.75,
+          "searches" => 3
+        }
+      ]
+    }.deep_symbolize_keys
+  end
+
   def single_page(base_path:, from:, to:)
     url = single_page_url(base_path, from, to)
     get_json(url).to_hash.deep_symbolize_keys
@@ -62,6 +114,10 @@ private
     params.reject! { |_, v| v.blank? }
 
     "#{content_data_api_endpoint}/content#{query_string(params)}"
+  end
+
+  def document_children_url(document_id, from, to)
+    "#{content_data_api_endpoint}/documents/#{document_id}/children#{query_string(from: from, to: to)}"
   end
 
   def single_page_url(base_path, from, to)

@@ -4,13 +4,14 @@ class ContentRowPresenter
 
   attr_reader :title, :base_path, :document_type, :upviews, :searches,
               :raw_document_type, :satisfaction_percentage,
-              :satisfaction_responses
+              :satisfaction_responses, :sibling_order
 
   def initialize(data)
     @title = data[:title]
     @base_path = format_base_path(data[:base_path])
     @raw_document_type = data[:document_type]
     @document_type = humanize(data[:document_type])
+    @sibling_order = data[:sibling_order] || '-'
     @upviews = number_with_delimiter(data[:upviews], delimiter: ',')
     @satisfaction_percentage = format_satisfaction_percentage(data[:satisfaction])
     @satisfaction_responses = format_satisfaction_responses(data[:useful_yes], data[:useful_no])
