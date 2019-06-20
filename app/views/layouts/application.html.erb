@@ -22,6 +22,7 @@
   environment: Rails.application.config.govuk_environment,
   browser_title: yield(:title) do %>
   <%= render "govuk_publishing_components/components/skip_link" %>
+  <%= current_user.inspect %>
   <%= render "govuk_publishing_components/components/layout_header", {
     environment: Rails.application.config.govuk_environment,
     product_name: "Publishing",
