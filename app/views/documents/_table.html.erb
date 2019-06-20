@@ -73,29 +73,25 @@
       </tr>
     </thead>
     <tbody class="govuk-table__body">
-      <% ['-','1','2'].each do |item| %>
+      <% @presenter.content_items.each do |item| %>
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell" data-gtm-id="item_number-column">
-            <%= item %>
-          </td>
+          <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="document_type-column"><%= item.sibling_order %></td>
           <td class="govuk-table__cell" data-gtm-id="title-column">
-            <a class="content-item__link" data-gtm-id="content-item-link" data-gtm-item-document-type="search" href="link to metrics">Item title</a>
+            <a class="content-item__link" data-gtm-id="content-item-link" data-gtm-item-document-type="search" href="link to metrics"><%= item.title %></a>
             <br>
-            <span class="base-path">/item/slug</span>
+            <span class="base-path">/<%= item.base_path %></span>
           </td>
-          <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="document_type-column">
-            Type
-          </td>
-          <td class="govuk-table__cell govuk-table__cell--numeric" data-gtm-id="upviews-column">
-            54,032,701
-          </td>
+          <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="document_type-column"><%= item.document_type %></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-gtm-id="upviews-column"><%= item.upviews %></td>
           <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="satisfaction-column">
-            30%
-            <span class="satisfaction-column__responses"> (92,653 responses) </span>
+            <% if item.satisfaction_percentage %>
+                <%= item.satisfaction_percentage %>
+                <span class="satisfaction-column__responses"> (<%= item.satisfaction_responses %>) </span>
+            <% else %>
+               <%= item.satisfaction_responses %>
+            <% end %>
           </td>
-          <td class="govuk-table__cell govuk-table__cell--numeric" data-gtm-id="searches-column">
-            4,962,738
-          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-gtm-id="searches-column"><%= item.searches %></td>
         </tr>
       <% end %>
     </tbody>

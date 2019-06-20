@@ -1,7 +1,14 @@
 RSpec.describe DocumentChildrenPresenter do
   include GdsApi::TestHelpers::ContentDataApi
 
-  let(:documents) { [{ title: 'Parent' }, { title: 'Child1' }, { title: 'Child2' }] }
+  let(:parent_document_type) { 'Manual' }
+  let(:documents) do
+    [
+      { title: 'Parent', document_type: parent_document_type },
+      { title: 'Child1' },
+      { title: 'Child2' }
+    ]
+  end
 
   around do |example|
     Timecop.freeze Date.new(2018, 6, 1) do
@@ -17,9 +24,11 @@ RSpec.describe DocumentChildrenPresenter do
     allow(ContentRowPresenter).to receive(:new) { |d| d[:title] }
   end
 
-  describe '#title' do
-    it 'returns Page title' do
-      expect(subject.title).to eq('Comparision')
+  describe '#kicker' do
+    context 'when the parent is a manual' do
+      it 'returns manual kicker' do
+        expect(subject.kicker).to eq('Manual comparision')
+      end
     end
   end
 

@@ -19,9 +19,9 @@ RSpec.describe '/documents/:document_id/children' do
     expect(table_rows).to eq(
       [
         ['Section', 'Page title', 'Document type', 'Unique pageviews', 'Users who found page useful', 'Searches from page'],
-        ['-', 'Item title /item/slug', 'Type', '54,032,701', '30% (92,653 responses)', '4,962,738'],
-        ['1', 'Item title /item/slug', 'Type', '54,032,701', '30% (92,653 responses)', '4,962,738'],
-        ['2', 'Item title /item/slug', 'Type', '54,032,701', '30% (92,653 responses)', '4,962,738'],
+        ['-', 'Parent /parent', 'Manual', '10', '75% (100 responses)', '3'],
+        ['1', 'Child 1 /child/1', 'Manual section', '1,000,000', '75% (100 responses)', '3'],
+        ['2', 'Child 2 /child/2', 'Manual section', '0', '75% (100 responses)', '3'],
       ]
     )
   end
@@ -30,10 +30,14 @@ RSpec.describe '/documents/:document_id/children' do
     expect(page).to have_link("Send us feedback", href: Plek.new.external_url_for('support') + '/content_data_feedback/new')
   end
 
+  it 'renders the page kicker' do
+    expect(page).to have_content('Manual comparision')
+  end
+
   context 'click title of an item' do
     xit 'takes you to single content item page' do
-      click_link 'Item title'
-      expect(current_path).to eq '/metrics/item/slug'
+      click_link 'Parent'
+      expect(current_path).to eq '/parent'
     end
 
     xit 'respects the date filter' do
