@@ -32,6 +32,12 @@ RSpec.describe DocumentChildrenPresenter do
     end
   end
 
+  describe '#header' do
+    it 'return the page heading' do
+      expect(subject.header).to eq('Parent')
+    end
+  end
+
   describe '#content_items' do
     it 'return parent followed by children' do
       expect(subject.content_items).to eq(%w(Parent Child1 Child2))

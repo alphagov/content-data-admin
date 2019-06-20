@@ -34,6 +34,10 @@ RSpec.describe '/documents/:document_id/children' do
     expect(page).to have_content('Manual comparision')
   end
 
+  it 'renders the page heading' do
+    expect(page).to have_content('Parent')
+  end
+
   context 'click title of an item' do
     xit 'takes you to single content item page' do
       click_link 'Parent'
