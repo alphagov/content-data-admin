@@ -48,6 +48,10 @@
     @include govuk-font(16);
   }
 
+  .app-c-info-metric__short-context {
+    @include govuk-font(19);
+  }
+
 }
 
 .govuk-grid-column-one-third {
