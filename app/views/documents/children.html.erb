@@ -1,4 +1,4 @@
-<% current_selection = current_selection || 'past-30-days' %>
+<% current_selection = params['time_period'] || 'past-30-days' %>
 <% content_for :title, @presenter.title %>
 
 <% content_for :page_class, "content-data__compare" %>
@@ -17,11 +17,10 @@
       </h1>
     </div>
   </div>
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds date-select">
       <%= form_for "date",
-      url: "/compare",
+      url: "/documents/#{params['document_id']}/children",
       method: :get,
       html: { id: 'filter-form' },
       data: { 'gtm-id': 'time-period-form' } do %>

@@ -2,3 +2,17 @@ en:
   documents:
     children:
       kicker: "%{type} comparision"
+    sibling_order:
+      title: 'Section'
+    title:
+      title: 'Page title'
+    document_type:
+      title:   'Document type'
+    upviews:
+      title: 'Unique page views'
+    satisfaction:
+      title: 'Users who found page useful'
+    upviews:
+      title: 'Unique page views'
+    searches:
+      title: 'Searches from page'

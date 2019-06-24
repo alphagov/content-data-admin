@@ -4,73 +4,38 @@
     </caption>
     <thead class="govuk-table__head" data-gtm-id="table-header">
       <tr class="govuk-table__row">
-        <th class="govuk-table__header govuk-table__header--sorted"
+      <% TableHeaderHelper::COMPARISON_HEADER_NAMES.each do |header| %>
+        <% if (header == @sort_key) %>
+          <% sort_direction = @sort.direction %>
+        <% end %>
+        <th class="govuk-table__header<% if sort_direction.present? %> govuk-table__header--sorted<% end %>"
           scope="col"
           role="columnheader"
-          aria-sort="ascending"
-          data-gtm-id="upviews-column">
-          <a href="" data-gtm-id="sort-link" class="table__sort-link  table__sort-link--desc">
-          Section
-          </a>
-        </th>
-        <th class="govuk-table__header "
-          scope="col"
-          role="columnheader"
-          aria-sort="none"
-          data-gtm-id="title-column">
-          Page title
+          aria-sort="<%= aria_sort(sort_direction) %>"
+          data-gtm-id="<%= header %>-column">
+
+          <% if header.in? TableHeaderHelper::COMPARISON_HEADERS_WITH_SORT_ENABLED %>
+            <a href="<%= url_for(request.params.merge(sort: sort_param(header, sort_direction))) %>"
+              data-gtm-id="sort-link"
+              class="table__sort-link <% if sort_direction.present? %> table__sort-link--<%= sort_direction %> <% end %>">
+              <%= t(".table.headers.#{header}", default: :"documents.#{header}.title") %>
+            </a>
+          <% else %>
+            <%= t(".table.headers.#{header}", default: :"documents.#{header}.title") %>
+          <% end %>
           <br>
+          <% if include_help_icon?(header) %>
+            <a href="/help/?hkey=<%= header %>" data-toggle="modal" data-target="modal-<%= header %>" data-gtm-id="help-icon" class="table__header-help">
+            <%= image_tag(
+              (sort_direction.present? ? 'question_mark_inverse.svg' : 'question_mark_default.svg'),
+              alt: 'Help')
+            %>
+            </a>
+          <% end %>
         </th>
-        <th class="govuk-table__header "
-          scope="col"
-          role="columnheader"
-          aria-sort="none"
-          data-gtm-id="document_type-column">
-          <a href="" data-gtm-id="sort-link" class="table__sort-link ">
-          Document type
-          </a>
-          <br>
-        </th>
-        <th class="govuk-table__header"
-          scope="col"
-          role="columnheader"
-          aria-sort="none"
-          data-gtm-id="upviews-column">
-          <a href="" data-gtm-id="sort-link" class="table__sort-link">
-          Unique pageviews
-          </a>
-          <br>
-          <a href="/help/?hkey=upviews" data-toggle="modal" data-target="modal-upviews" data-gtm-id="help-icon" class="table__header-help">
-          <img alt="Help" src="/assets/question_mark_default-b9e2041934ec219e3da105faa25bdd92baec5391b09a3b9eecab972c1b441392.svg" />
-          </a>
-        </th>
-        <th class="govuk-table__header "
-          scope="col"
-          role="columnheader"
-          aria-sort="none"
-          data-gtm-id="satisfaction-column">
-          <a href="" data-gtm-id="sort-link" class="table__sort-link ">
-          Users who found page useful
-          </a>
-          <br>
-          <a href="/help/?hkey=satisfaction" data-toggle="modal" data-target="modal-satisfaction" data-gtm-id="help-icon" class="table__header-help">
-          <img alt="Help" src="/assets/question_mark_default-b9e2041934ec219e3da105faa25bdd92baec5391b09a3b9eecab972c1b441392.svg" />
-          </a>
-        </th>
-        <th class="govuk-table__header "
-          scope="col"
-          role="columnheader"
-          aria-sort="none"
-          data-gtm-id="searches-column">
-          <a href="" data-gtm-id="sort-link" class="table__sort-link ">
-          Searches from page
-          </a>
-          <br>
-          <a href="/help/?hkey=searches" data-toggle="modal" data-target="modal-searches" data-gtm-id="help-icon" class="table__header-help">
-          <img alt="Help" src="/assets/question_mark_default-b9e2041934ec219e3da105faa25bdd92baec5391b09a3b9eecab972c1b441392.svg" />
-          </a>
-        </th>
-      </tr>
+      <% end %>
+    </tr>
+
     </thead>
     <tbody class="govuk-table__body">
       <% @presenter.content_items.each do |item| %>

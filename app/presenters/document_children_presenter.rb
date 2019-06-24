@@ -12,7 +12,6 @@ class DocumentChildrenPresenter
     @content_items = documents.map { |d| ContentRowPresenter.new(d) }
   end
 
-
 private
 
   def format_page_kicker(document_type)
