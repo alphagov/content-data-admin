@@ -22,7 +22,7 @@ class GdsApi::ContentDataApi < GdsApi::Base
     get_json(url).to_hash.deep_symbolize_keys
   end
 
-  def document_children(document_id:, from:, to:)
+  def document_children(document_id:, from:, to:, sort:)
     {
       "documents" => [
         {
