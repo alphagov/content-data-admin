@@ -1,3 +1,9 @@
+$govuk-tertiary-text-colour: #6a7276;
+$sort-link-active-colour: govuk-colour("white");
+$sort-link-arrow-size: 14px;
+$sort-link-arrow-size-small: 8px;
+$sort-link-arrow-spacing: 4px;
+$sort-link-arrow-margin: -4px;
 $govuk-global-styles: true;
 
 // gem components
@@ -18,6 +24,7 @@ $govuk-global-styles: true;
 // local views
 @import "metrics/show";
 @import "content/index";
+@import "compare/show";
 
 .gem-c-environment-tag {
   @media (max-width: 360px) {
@@ -48,6 +55,144 @@ $govuk-global-styles: true;
   display: block;
   @include govuk-responsive-margin(2, "top");
   text-align: right;
+}
+
+.sortable-table {
+  .table-caption {
+    @include govuk-font(16);
+    @include media(mobile) {
+      @include govuk-responsive-padding(3, "left");
+    }
+
+  }
+
+  .table-caption__param {
+    @include govuk-font($size: 16, $weight: bold);
+  }
+
+  .table__header-title {
+    display: inline-block;
+    height: 100%;
+  }
+
+  .table__header-help {
+    display: inline-block;
+    height: 100%;
+    @include govuk-responsive-margin(1, "top");
+  }
+
+
+  .table__sort-link {
+    @include govuk-link-style-no-visited-state;
+    @include govuk-focusable-fill;
+    position: relative;
+    padding-right: $sort-link-arrow-size;
+    color: $govuk-link-colour;
+    text-decoration: none;
+
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      @include govuk-shape-arrow($direction: up, $base: $sort-link-arrow-size-small, $display: block);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      right: 0;
+
+      @include govuk-shape-arrow($direction: down, $base: $sort-link-arrow-size-small, $display: block);
+    }
+  }
+
+  .table__sort-link--asc,
+  .table__sort-link--desc {
+    .table__header-title {
+      @include govuk-responsive-padding(1, "right");
+    }
+  }
+
+  .table__sort-link--asc::before,
+  .table__sort-link--desc::before {
+    content: none;
+  }
+
+  .table__sort-link--asc::after {
+    content: "";
+    position: absolute;
+    top: $sort-link-arrow-margin;
+    right: -4px;
+
+    @include govuk-shape-arrow($direction: up, $base: $sort-link-arrow-size, $display: inline-block);
+  }
+
+  .table__sort-link--desc::after {
+    content: "";
+    position: absolute;
+    top: $sort-link-arrow-spacing;
+    right: $sort-link-arrow-margin;
+
+    @include govuk-shape-arrow($direction: down, $base: $sort-link-arrow-size, $display: inline-block);
+  }
+
+  .govuk-table {
+    background-color: $white;
+    // re-align text content of left and right columns
+    margin-top: -1px;
+  }
+
+  .govuk-table__body {
+    outline: 1px solid $govuk-border-colour;
+  }
+
+  .govuk-table__cell {
+    @include govuk-font(14);
+    @include govuk-responsive-padding(2);
+    @include govuk-responsive-padding(3, "left");
+    @include govuk-responsive-padding(3, "right");
+  }
+
+  .govuk-table__cell--shaded {
+    background-color: govuk-colour("grey-4");
+  }
+
+  .govuk-table__cell--numeric {
+    @include govuk-font($size: 14, $tabular: true);
+  }
+
+  .gem-c-layout-for-admin .govuk-grid-row {
+    margin: 0;
+  }
+
+  .govuk-table .govuk-table__header {
+    color: $govuk-text-colour;
+    position: sticky;
+    top: 0;
+    white-space: nowrap;
+    vertical-align: top;
+
+    @include govuk-responsive-padding(3);
+    @include govuk-responsive-padding(2, "bottom");
+
+    @include govuk-font(14);
+    outline: 1px solid $govuk-border-colour;
+
+    background-color: govuk-colour("grey-3");
+    font-weight: normal;
+
+    &.govuk-table__header--sorted {
+      background-color: govuk-colour("blue");
+
+      .table__sort-link {
+        color: $white;
+      }
+    }
+  }
 }
 
 //overrides must be imported last

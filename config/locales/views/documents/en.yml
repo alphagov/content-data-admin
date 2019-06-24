@@ -1,0 +1,4 @@
+en:
+  documents:
+    children:
+      kicker: "%{type} comparision"

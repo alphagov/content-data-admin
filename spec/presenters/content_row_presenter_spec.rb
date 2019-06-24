@@ -11,7 +11,9 @@ RSpec.describe ContentRowPresenter do
     }
   end
 
-  subject { described_class.new(row_hash) }
+  let(:additional_params) { {} }
+
+  subject { described_class.new(row_hash.merge(additional_params)) }
 
   it 'returns the basic attributes' do
     expect(subject).to have_attributes(
@@ -32,6 +34,20 @@ RSpec.describe ContentRowPresenter do
 
   it 'formats user_satifaction_responses correctly' do
     expect(subject.satisfaction_responses).to eq('1,000 responses')
+  end
+
+  describe '#sibling_order' do
+    it 'it returns dash if nil' do
+      expect(subject.sibling_order).to eq('-')
+    end
+
+    context 'when sibling_order is set' do
+      let(:additional_params) { { sibling_order: 1 } }
+
+      it 'it returns the order number' do
+        expect(subject.sibling_order).to eq(1)
+      end
+    end
   end
 
   context 'when there is no satisfaction score' do

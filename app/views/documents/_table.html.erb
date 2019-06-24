@@ -1,0 +1,103 @@
+<table class="table govuk-table" data-gtm-total-results="440627" data-gtm-page="1">
+    <caption class="govuk-table__caption">
+      <p class="table-caption"><span class="table-caption__param">6</span> pages</p>
+    </caption>
+    <thead class="govuk-table__head" data-gtm-id="table-header">
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header govuk-table__header--sorted"
+          scope="col"
+          role="columnheader"
+          aria-sort="ascending"
+          data-gtm-id="upviews-column">
+          <a href="" data-gtm-id="sort-link" class="table__sort-link  table__sort-link--desc">
+          Section
+          </a>
+        </th>
+        <th class="govuk-table__header "
+          scope="col"
+          role="columnheader"
+          aria-sort="none"
+          data-gtm-id="title-column">
+          Page title
+          <br>
+        </th>
+        <th class="govuk-table__header "
+          scope="col"
+          role="columnheader"
+          aria-sort="none"
+          data-gtm-id="document_type-column">
+          <a href="" data-gtm-id="sort-link" class="table__sort-link ">
+          Document type
+          </a>
+          <br>
+        </th>
+        <th class="govuk-table__header"
+          scope="col"
+          role="columnheader"
+          aria-sort="none"
+          data-gtm-id="upviews-column">
+          <a href="" data-gtm-id="sort-link" class="table__sort-link">
+          Unique pageviews
+          </a>
+          <br>
+          <a href="/help/?hkey=upviews" data-toggle="modal" data-target="modal-upviews" data-gtm-id="help-icon" class="table__header-help">
+          <img alt="Help" src="/assets/question_mark_default-b9e2041934ec219e3da105faa25bdd92baec5391b09a3b9eecab972c1b441392.svg" />
+          </a>
+        </th>
+        <th class="govuk-table__header "
+          scope="col"
+          role="columnheader"
+          aria-sort="none"
+          data-gtm-id="satisfaction-column">
+          <a href="" data-gtm-id="sort-link" class="table__sort-link ">
+          Users who found page useful
+          </a>
+          <br>
+          <a href="/help/?hkey=satisfaction" data-toggle="modal" data-target="modal-satisfaction" data-gtm-id="help-icon" class="table__header-help">
+          <img alt="Help" src="/assets/question_mark_default-b9e2041934ec219e3da105faa25bdd92baec5391b09a3b9eecab972c1b441392.svg" />
+          </a>
+        </th>
+        <th class="govuk-table__header "
+          scope="col"
+          role="columnheader"
+          aria-sort="none"
+          data-gtm-id="searches-column">
+          <a href="" data-gtm-id="sort-link" class="table__sort-link ">
+          Searches from page
+          </a>
+          <br>
+          <a href="/help/?hkey=searches" data-toggle="modal" data-target="modal-searches" data-gtm-id="help-icon" class="table__header-help">
+          <img alt="Help" src="/assets/question_mark_default-b9e2041934ec219e3da105faa25bdd92baec5391b09a3b9eecab972c1b441392.svg" />
+          </a>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <% @presenter.content_items.each do |item| %>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="document_type-column"><%= item.sibling_order %></td>
+          <td class="govuk-table__cell" data-gtm-id="title-column">
+            <%=
+              render(
+                partial: 'components/table_column_page_title',
+                locals: {
+                  item: item,
+                  date_range: @date_range.time_period
+                }
+            ) %>
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="document_type-column"><%= item.document_type %></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-gtm-id="upviews-column"><%= item.upviews %></td>
+          <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="satisfaction-column">
+            <% if item.satisfaction_percentage %>
+                <%= item.satisfaction_percentage %>
+                <span class="satisfaction-column__responses"> (<%= item.satisfaction_responses %>) </span>
+            <% else %>
+               <%= item.satisfaction_responses %>
+            <% end %>
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-gtm-id="searches-column"><%= item.searches %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
