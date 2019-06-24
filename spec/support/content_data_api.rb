@@ -35,6 +35,14 @@ module GdsApi
           .to_return(status: 200, body: body.to_json)
       end
 
+      def content_data_api_has_document_children(document_id:, payload:, time_period: 'past-30-days', sort: 'sibling_order:asc')
+        url = "#{CONTENT_DATA_API_ENDPOINT}/api/v1/documents/#{document_id}/children"
+        body = payload
+        stub_request(:get, url)
+          .with(query: { time_period: time_period, sort: sort })
+          .to_return(status: 200, body: body.to_json)
+      end
+
       def content_data_api_has_content_items(date_range:, organisation_id:, document_type: nil, search_term: nil, items:, page_size: nil, sort: nil)
         params = {
           date_range: date_range,

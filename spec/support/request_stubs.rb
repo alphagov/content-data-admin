@@ -53,6 +53,17 @@ module RequestStubs
     end
   end
 
+  def stub_document_children_page(document_id:, time_period: 'past-30-days', sort: 'sibling_order:asc', response: nil)
+    response = document_children_response if response.nil?
+
+    content_data_api_has_document_children(
+      document_id: document_id,
+      payload: response,
+      time_period: time_period,
+      sort: sort
+    )
+  end
+
   def stub_content_page(time_period:, organisation_id: nil, document_type: nil, search_terms: nil, sort: 'upviews:desc', items: nil)
     content_data_api_has_orgs
     content_data_api_has_document_types

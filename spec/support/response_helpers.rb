@@ -59,6 +59,55 @@ module GdsApi
         }
       end
 
+      def document_children_response
+        {
+          "documents" => [
+            {
+              "base_path" => '/parent',
+              "title" => "Parent",
+              "primary_organisation_id" => "7809-org",
+              "document_type" => "manual",
+              "sibling_order" => nil,
+              "upviews" => 10,
+              "pviews" => 2,
+              "feedex" => 0,
+              "useful_yes" => 75,
+              "useful_no" => 25,
+              "satisfaction" => 0.75,
+              "searches" => 3
+            },
+            {
+              "base_path" => "/child/1",
+              "title" => "Child 1",
+              "primary_organisation_id" => "7809-org",
+              "document_type" => "manual_section",
+              "sibling_order" => 1,
+              "upviews" => 1000000,
+              "pviews" => 2,
+              "feedex" => 0,
+              "useful_yes" => 75,
+              "useful_no" => 25,
+              "satisfaction" => 0.75,
+              "searches" => 3
+            },
+            {
+              "base_path" => "/child/2",
+              "title" => "Child 2",
+              "primary_organisation_id" => "7809-org",
+              "document_type" => "manual_section",
+              "sibling_order" => 2,
+              "upviews" => 0,
+              "pviews" => 2,
+              "feedex" => 0,
+              "useful_yes" => 75,
+              "useful_no" => 25,
+              "satisfaction" => 0.75,
+              "searches" => 3
+            }
+          ]
+        }
+      end
+
       def single_page_response(base_path, from, to, publishing_app = 'whitehall')
         day1 = from.to_s
         day2 = (from + 1.day).to_s
