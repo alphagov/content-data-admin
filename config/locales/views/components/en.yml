@@ -15,7 +15,7 @@ en:
         historical: 'History mode'
         withdrawn_and_historical: 'History mode and Withdrawn'
     time-select:
-      title: 'Page data: %{time_period}'
+      title: 'Showing data from %{time_period}'
       title_compact: 'Showing data from %{time_period}'
       change_dropdown: 'Change time period'
       submit_button: 'Change dates'
