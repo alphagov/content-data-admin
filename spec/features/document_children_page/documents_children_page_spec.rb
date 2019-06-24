@@ -2,11 +2,13 @@ RSpec.describe '/documents/:document_id/children' do
   include RequestStubs
   include TableDataSpecHelpers
 
+  let(:document_id) { '1234:en' }
+
   before do
-    # stub_metrics_page(base_path: 'path/1', time_period: :last_month)
+    stub_document_children_page(document_id: document_id)
     GDS::SSO.test_user = build(:user, organisation_content_id: 'users-org-id')
 
-    visit "/documents/1234:en/children?date_range=last-month"
+    visit "/documents/#{document_id}/children"
   end
 
   it 'renders the page without error' do
