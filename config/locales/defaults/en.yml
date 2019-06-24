@@ -73,7 +73,7 @@ en:
       external_link: ''
       about_title: "About 'users who found page useful'"
       about: >
-        Percentage of users who answered 'Yes' rather than 'No' to the 'Is this page useful?' survey.
+        Percentage of users who answered 'Yes' rather than 'No' to the 'Is this page useful?' survey found on every page of GOV.UK.
         The more users who responded, the more reliable the score is. For a more reliable score
         on a page that doesn't have many responses, choose a longer time period. This survey was
         introduced in February 2018 so there are no responses before this date.
@@ -138,7 +138,7 @@ en:
       about: >
         Compared with HTML content, information published in a PDF is harder to find, use and
         maintain. PDFs can often be bad for accessibility and rarely comply with open standards.
-        Several PDFs on one page may indicate that too many users needs are being met by them.
+        Several PDFs on one page may indicate that too many user needs are being met by them.
         <a href="https://gds.blog.gov.uk/2018/07/16/why-gov-uk-content-should-be-published-in-html-and-not-pdf/">Read more about why to avoid PDFs</a>.
     page_content:
       about_title: "About 'page content' metrics"
