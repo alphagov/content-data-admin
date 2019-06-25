@@ -2,3 +2,8 @@ en:
   documents:
     children:
       kicker: "%{type} comparision"
+      table:
+        headers:
+          sibling_order: 'Section'
+          title: 'Page title'
+          document_type: 'Document type'
