@@ -134,7 +134,7 @@ RSpec.describe ContentItemsCSVPresenter do
         expect(subject[6]).to eq('25')
       end
 
-      it 'has pageviews per visit' do
+      it 'has page views per visit' do
         expect(subject[7]).to eq('1.67')
       end
 

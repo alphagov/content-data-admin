@@ -13,7 +13,7 @@ shared_accessibility_criteria:
 examples:
   default:
     data:
-      name: "Unique pageviews"
+      name: "Unique page views"
       figure: "167"
       measurement_display_label: "m"
       measurement_explicit_label: "million"

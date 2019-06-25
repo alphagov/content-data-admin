@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Glance Metric", type: :view do
   let(:data) {
     {
-      name: "Unique pageviews",
+      name: "Unique page views",
       figure: "167",
       measurement_explicit_label: 'Million',
       measurement_display_label: "m",
@@ -36,7 +36,7 @@ RSpec.describe "Glance Metric", type: :view do
   it "renders correctly when given valid data" do
     render_component(data)
     assert_select ".app-c-glance-metric"
-    assert_select ".app-c-glance-metric__heading", text: "Unique pageviews"
+    assert_select ".app-c-glance-metric__heading", text: "Unique page views"
     assert_select ".app-c-glance-metric__figure", text: "167m"
     assert_select ".app-c-glance-metric__measurement[aria-label=Million]"
     assert_select ".app-c-glance-metric__context", text: "This is in your top 10 items"

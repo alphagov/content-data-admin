@@ -20,7 +20,7 @@ RSpec.describe '/documents/:document_id/children' do
     table_rows = extract_table_content('.govuk-table')
     expect(table_rows).to eq(
       [
-        ['Section', 'Page title', 'Document type', 'Unique pageviews', 'Users who found page useful', 'Searches from page'],
+        ['Section', 'Page title', 'Document type', 'Unique page views', 'Users who found page useful', 'Searches from page'],
         ['-', 'Parent /parent', 'Manual', '10', '75% (100 responses)', '3'],
         ['1', 'Child 1 /child/1', 'Manual section', '1,000,000', '75% (100 responses)', '3'],
         ['2', 'Child 2 /child/2', 'Manual section', '0', '75% (100 responses)', '3'],

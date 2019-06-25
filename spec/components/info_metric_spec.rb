@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Info Metric", type: :view do
   let(:data) {
     {
-      name: "Unique pageviews",
+      name: "Unique page views",
       figure: "167,345",
       context: "This is in your top 10 items",
       trend_percentage: 0.5,
@@ -32,7 +32,7 @@ RSpec.describe "Info Metric", type: :view do
   it "renders correctly when given valid data" do
     render_component(data)
     assert_select ".app-c-info-metric"
-    assert_select ".app-c-info-metric__heading", text: "Unique pageviews"
+    assert_select ".app-c-info-metric__heading", text: "Unique page views"
     assert_select ".app-c-info-metric__figure", text: "167,345"
     assert_select ".app-c-info-metric__context", text: "This is in your top 10 items"
     assert_select ".app-c-info-metric__trend", text: "+0.50%"
