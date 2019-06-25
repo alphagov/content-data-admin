@@ -39,3 +39,18 @@
   </div>
 
 </div>
+
+<% content_for :modals do %>
+  <% TableHeaderHelper::COMPARISON_HEADER_NAMES.each do |header| %>
+    <% if include_help_icon?(header) %>
+      <%= render "govuk_publishing_components/components/modal_dialogue", {
+        id: "modal-#{header}",
+        wide: false
+      } do %>
+        <h1 class="govuk-heading-l"><%= t(".table.headers.#{header}", default: :"metrics.#{header}.title") %></h1>
+        <p class="govuk-body"><%= t(".table.headers.#{header}", default: :"metrics.#{header}.about") %></p>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
