@@ -9,7 +9,7 @@
         for '<span class="table-caption__param"><%= filter.search_terms %></span>'
     <% end %>
     <% if filter.document_type? && filter.document_type_id != "all" %>
-        for <span class="table-caption__param"><%= filter.document_type_name.downcase %></span>
+        for <span class="table-caption__param"><%= filter.document_type_name.humanize(capitalize: false) %></span>
     <% else %>
         for <span class="table-caption__param">all document types</span>
     <% end %>
