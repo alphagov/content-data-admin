@@ -9,13 +9,12 @@ class DocumentsController < ApplicationController
   end
 
   def children
-    document_id = params[:document_id]
-    time_period = params[:date_range] || 'past-30-days'
+    @document_id = params[:document_id]
+    @time_period = params[:date_range] || 'past-30-days'
+
     @sort = Sort.parse(params[:sort] || 'sibling_order:asc')
 
-    @date_range = DateRange.new(time_period)
-
-    response = FetchDocumentChildren.call(document_id: document_id, time_period: time_period, sort: @sort)
+    response = FetchDocumentChildren.call(document_id: @document_id, time_period: @time_period, sort: @sort)
     @presenter = DocumentChildrenPresenter.new(response[:documents])
   end
 end

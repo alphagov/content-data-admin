@@ -1,4 +1,3 @@
-<% current_selection = params['time_period'] || 'past-30-days' %>
 <% content_for :title, @presenter.title %>
 
 <% content_for :page_class, "content-data__compare" %>
@@ -20,14 +19,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds date-select">
       <%= form_for "date",
-      url: "/documents/#{params['document_id']}/children",
+      url: "/documents/#{@document_id}/children",
       method: :get,
       html: { id: 'filter-form' },
       data: { 'gtm-id': 'time-period-form' } do %>
       <%= render "components/time-select", {
         compact: true,
         render_button: true,
-        current_selection: current_selection,
+        current_selection: @time_period,
         dates: time_select_options(TimeSelectHelper::METRIC_PAGE_TIME_PERIODS)
       } %>
       <% end %>
