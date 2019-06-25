@@ -40,7 +40,7 @@
     <tbody class="govuk-table__body">
       <% @presenter.content_items.each do |item| %>
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="document_type-column"><%= item.sibling_order %></td>
+          <td class="govuk-table__cell govuk-table__cell--shaded" data-gtm-id="sibling_order-column"><%= item.sibling_order %></td>
           <td class="govuk-table__cell" data-gtm-id="title-column">
             <%=
               render(
