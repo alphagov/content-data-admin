@@ -77,7 +77,7 @@ RSpec.describe SingleContentItemPresenter do
       expect(subject.searches_context).to eq "10.0% of users searched from the page"
     end
 
-    it 'return 0 if there are no unique pageviews' do
+    it 'return 0 if there are no unique page views' do
       current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 0 }, { name: 'searches', total: 10 }, { name: 'pviews', total: 100 }]
       expect(subject.searches_context).to eq "0% of users searched from the page"
     end
@@ -275,12 +275,12 @@ RSpec.describe SingleContentItemPresenter do
       expect(subject.pageviews_per_visit).to eq('2.0')
     end
 
-    it 'return 0 if there are no pageviews' do
+    it 'return 0 if there are no page views' do
       current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 100 }, { name: 'pviews', total: 0 }]
       expect(subject.pageviews_per_visit).to eq('0')
     end
 
-    it 'return 0 if there are no unique pageviews' do
+    it 'return 0 if there are no unique page views' do
       current_period_data[:time_series_metrics] = [{ name: 'upviews', total: 0 }, { name: 'pviews', total: 100 }]
       expect(subject.pageviews_per_visit).to eq('0')
     end
@@ -299,7 +299,7 @@ RSpec.describe SingleContentItemPresenter do
 
   describe '#link_text' do
     it 'returns the downcased translation of the metric name' do
-      expect(subject.link_text('upviews')).to eq('unique pageviews')
+      expect(subject.link_text('upviews')).to eq('unique page views')
     end
   end
 

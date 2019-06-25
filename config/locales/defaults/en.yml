@@ -7,42 +7,42 @@ en:
     none: false
   metrics:
     upviews:
-      title: 'Unique pageviews'
-      short_title: 'Unique pageviews'
+      title: 'Unique page views'
+      short_title: 'Unique page views'
       summary: 'Number of visits during which the page was viewed at least once'
-      context: "%{percent_org_views}% of the organisation's unique pageviews"
+      context: "%{percent_org_views}% of the organisation's unique page views"
       unit: ''
       data_source: google_analytics
       external_link: ''
-      about_title: 'About unique pageviews'
+      about_title: 'About unique page views'
       about: >
         This represents the number of visits in which the page was viewed at least once.
         For example, if a user visits the same page 5 times during their browsing session,
         it will show up as 1 unique pageview.
     pviews:
-      title: 'Pageviews'
-      short_title: 'Pageviews'
+      title: 'Page views'
+      short_title: 'Page views'
       summary: 'Number of times the page was viewed'
       context: ''
       unit: ''
       data_source: google_analytics
       external_link: ''
-      about_title: 'About pageviews'
+      about_title: 'About page views'
       about: >
         This is a count of every time the page was viewed. For example, if someone visits page X,
-        then goes to page Y and then back to page X again, page X will have 2 pageviews (and
-        1 unique pageview).
+        then goes to page Y and then back to page X again, page X will have 2 page views (and
+        1 unique page view).
     pageviews_per_visit:
-      title: 'Pageviews per visit'
-      short_title: 'Pageviews per visit'
+      title: 'Page views per visit'
+      short_title: 'Page views per visit'
       summary: 'Number of times per visit the page was viewed'
       context: ''
       unit: ''
       data_source: calculated_google_analytics
       external_link: ''
-      about_title: 'About pageviews per visit'
+      about_title: 'About page views per visit'
       about: >
-        This figure is calculated by dividing Google Analytics pageviews by unique pageviews. It
+        This figure is calculated by dividing Google Analytics page views by unique page views. It
         shows on average how many times a page was viewed during a user's session. If a page has a
         high ratio (above 1.4), this indicates that users have to come back to that page within
         their session - investigate the navigation from that page further to identify any issues.
