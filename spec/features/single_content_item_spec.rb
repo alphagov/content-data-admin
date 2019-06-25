@@ -67,7 +67,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         expect(page).to have_selector '.glance-metric.upviews', text: '6k'
       end
 
-      it 'renders trend percentage for unique pageviews' do
+      it 'renders trend percentage for unique page views' do
         expect(page).to have_selector '.upviews .app-c-glance-metric__trend', text: '+500.00%'
       end
 
@@ -116,7 +116,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders about label for upviews' do
-        label = 'About unique pageviews'
+        label = 'About unique page views'
         expect(page).to have_selector(".metric-summary__upviews .govuk-details__summary-text", text: label)
         expect(page).to have_selector '.metric-summary__upviews', text: '6,000'
       end
@@ -130,7 +130,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       it 'renders about label for pviews' do
-        label = 'About pageviews'
+        label = 'About page views'
         expect(page).to have_selector(".metric-summary__pviews .govuk-details__summary-text", text: label)
       end
 
@@ -204,7 +204,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         upviews_rows = extract_table_content(".chart.upviews table")
         expect(upviews_rows).to match_array([
           expected_table_dates,
-          ["Unique pageviews", "1,000", "2,000", "3,000"]
+          ["Unique page views", "1,000", "2,000", "3,000"]
         ])
       end
 
@@ -212,7 +212,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         pviews_rows = extract_table_content(".chart.pviews table")
         expect(pviews_rows).to match_array([
           expected_table_dates,
-          %w[Pageviews 10,000 20,000 30,000]
+          ["Page views", "10,000", "20,000", "30,000"]
         ])
       end
 
@@ -285,9 +285,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
       end
 
       xit 'renders a div to indicate no data when empty' do
-        expect(page).not_to have_content('Unique pageviews table')
+        expect(page).not_to have_content('Unique page views table')
         expect(page).to have_selector 'div',
-                                      text: 'No Unique pageviews data for the selected time period'
+                                      text: 'No Unique page views data for the selected time period'
       end
     end
 

@@ -30,7 +30,7 @@ RSpec.describe ChartPresenter do
   end
 
   it 'returns the correct message for no data' do
-    expect(subject.no_data_message).to eq 'No Unique pageviews data for the selected time period'
+    expect(subject.no_data_message).to eq 'No Unique page views data for the selected time period'
   end
 
   it 'returns formatted hash of chart data' do
@@ -39,9 +39,9 @@ RSpec.describe ChartPresenter do
 
   def upviews_chart_data
     {
-      caption: "Unique pageviews from 2018-01-01 to 2018-01-30",
+      caption: "Unique page views from 2018-01-01 to 2018-01-30",
       chart_id: "upviews_chart",
-      chart_label: "Unique pageviews",
+      chart_label: "Unique page views",
       from: "Date(2018, 0, 1)",
       to: "Date(2018, 0, 30)",
       keys: [
@@ -52,7 +52,7 @@ RSpec.describe ChartPresenter do
 
       rows: [
         {
-          label: "Unique pageviews ",
+          label: "Unique page views ",
           values: [
             101,
             202,
