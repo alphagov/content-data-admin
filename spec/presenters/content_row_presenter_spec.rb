@@ -56,7 +56,7 @@ RSpec.describe ContentRowPresenter do
         base_path: '/some/base_path',
         document_type: 'news_story',
         title: 'a title',
-        upviews: '200,001',
+        upviews: 200_001,
         satisfaction: nil,
         useful_yes: 0,
         useful_no: 0,
@@ -69,6 +69,38 @@ RSpec.describe ContentRowPresenter do
 
     it 'returns "no responses" for responses' do
       expect(subject.satisfaction_responses).to eq("No responses")
+    end
+  end
+
+  context 'when there is nil for useful_yes' do
+    let(:additional_params) { { useful_yes: nil } }
+
+    it 'returns nil for percentage' do
+      expect(subject.satisfaction_responses).to eq('No data')
+    end
+  end
+
+  context 'when there is nil for useful_no' do
+    let(:additional_params) { { useful_no: nil } }
+
+    it 'returns nil for percentage' do
+      expect(subject.satisfaction_responses).to eq('No data')
+    end
+  end
+
+  context 'when there is nil for upviews' do
+    let(:additional_params) { { upviews: nil } }
+
+    it 'returns nil for percentage' do
+      expect(subject.upviews).to eq('No data')
+    end
+  end
+
+  context 'when there is nil for searches' do
+    let(:additional_params) { { searches: nil } }
+
+    it 'returns nil for percentage' do
+      expect(subject.searches).to eq('No data')
     end
   end
 end

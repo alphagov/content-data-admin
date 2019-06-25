@@ -12,11 +12,11 @@ class ContentRowPresenter
     @raw_document_type = data[:document_type]
     @document_type = humanize(data[:document_type])
     @sibling_order = data[:sibling_order] || '-'
-    @upviews = number_with_delimiter(data[:upviews], delimiter: ',')
+    @upviews = number_with_delimiter(data[:upviews], delimiter: ',') || 'No data'
     @satisfaction_percentage = format_satisfaction_percentage(data[:satisfaction])
     @satisfaction_responses = format_satisfaction_responses(data[:useful_yes], data[:useful_no])
 
-    @searches = number_with_delimiter(data[:searches], delimiter: ',')
+    @searches = number_with_delimiter(data[:searches], delimiter: ',') || 'No data'
   end
 
 private
@@ -26,6 +26,8 @@ private
   end
 
   def format_satisfaction_responses(yes_responses, no_responses)
+    return 'No data' if yes_responses.nil? || no_responses.nil?
+
     total_responses = yes_responses + no_responses
 
     if total_responses.positive?
