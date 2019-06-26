@@ -24,7 +24,7 @@
   <%= render "govuk_publishing_components/components/skip_link" %>
   <%= render "govuk_publishing_components/components/layout_header", {
     environment: Rails.application.config.govuk_environment,
-    product_name: "Publishing",
+    product_name: "Content Data",
     full_width: @fullwidth,
     navigation_items: [
       { text: "Switch app", href: Plek.new.external_url_for("signon") },
@@ -47,7 +47,7 @@
 
   <div class="banner govuk-grid-row">
     <div class="govuk-grid-column-three-quarters">
-      <%= render "govuk_publishing_components/components/phase_banner", {phase: "beta", message: banner_message, app_name: "Content data"} %>
+      <%= render "govuk_publishing_components/components/phase_banner", {phase: "beta", message: banner_message} %>
     </div>
     <%= content_for :local_nav %>
   </div>

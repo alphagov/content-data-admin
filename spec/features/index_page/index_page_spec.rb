@@ -53,7 +53,7 @@ RSpec.describe '/content' do
 
   it 'renders the page without error' do
     expect(page.status_code).to eq(200)
-    expect(page).to have_content('Content data')
+    expect(page).to have_content('Content Data')
   end
 
   it 'renders the data in a table' do
@@ -102,7 +102,7 @@ RSpec.describe '/content' do
     end
 
     it 'makes request to api with correct organisation_id' do
-      expect(page).to have_content('Content data')
+      expect(page).to have_content('Content Data')
     end
 
     it 'links to the page data page after filtering' do
