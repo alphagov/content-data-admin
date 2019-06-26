@@ -59,7 +59,7 @@ RSpec.describe 'No metric data' do
 
   it 'renders the page without error' do
     expect(page.status_code).to eq(200)
-    expect(page).to have_content('Content data')
+    expect(page).to have_content('Content Data')
   end
 
   it 'renders the data in a table' do
