@@ -63,7 +63,6 @@ $govuk-global-styles: true;
     @include media(mobile) {
       @include govuk-responsive-padding(3, "left");
     }
-
   }
 
   .table-caption__param {
@@ -163,6 +162,11 @@ $govuk-global-styles: true;
 
   .govuk-table__cell--numeric {
     @include govuk-font($size: 14, $tabular: true);
+  }
+
+  .content-item__link {
+    font-weight: bold;
+    text-decoration: none;
   }
 
   .gem-c-layout-for-admin .govuk-grid-row {

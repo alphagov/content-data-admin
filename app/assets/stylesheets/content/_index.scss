@@ -33,11 +33,6 @@
     }
   }
 
-  .content-item__link {
-    font-weight: bold;
-    text-decoration: none;
-  }
-
   .filters-control__wrapper {
     border-bottom: 1px solid $govuk-border-colour;
     @include govuk-responsive-padding(3, "left");
