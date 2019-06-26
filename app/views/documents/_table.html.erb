@@ -5,7 +5,7 @@
     <thead class="govuk-table__head" data-gtm-id="table-header">
       <tr class="govuk-table__row">
       <% TableHeaderHelper::COMPARISON_HEADER_NAMES.each do |header| %>
-        <% if (header == @sort_key) %>
+        <% if (header == @sort.key) %>
           <% sort_direction = @sort.direction %>
         <% end %>
         <th class="govuk-table__header<% if sort_direction.present? %> govuk-table__header--sorted<% end %>"
