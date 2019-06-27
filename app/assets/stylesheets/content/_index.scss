@@ -117,4 +117,13 @@
   .autocomplete__dropdown-arrow-down {
     @include govuk-responsive-padding(1, "top");
   }
+
+  .no-results {
+    @include govuk-font($size: 16);
+    @include govuk-responsive-padding(1, "left");
+  }
+
+  .no-results__header {
+    @include govuk-font(16, "bold");
+  }
 }
