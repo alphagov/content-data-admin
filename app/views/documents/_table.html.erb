@@ -1,6 +1,11 @@
 <table class="table govuk-table" data-gtm-total-results="440627" data-gtm-page="1">
     <caption class="govuk-table__caption">
-      <p class="table-caption"><span class="table-caption__param">6</span> pages</p>
+      <p class="table-caption">
+        <span class="table-caption__param">
+          <%= @presenter.content_items.length %>
+        </span>
+        <%= @presenter.content_items.length == 1 ? 'page' : 'pages' %>
+      </p>
     </caption>
     <thead class="govuk-table__head" data-gtm-id="table-header">
       <tr class="govuk-table__row">
