@@ -7,7 +7,8 @@
 
   .local-nav__search-link {
     display: block;
-    @include govuk-responsive-margin(5, "right");
+    @include govuk-responsive-margin(0, "top");
+    @include govuk-responsive-margin(4, "right");
   }
 
   .gem-c-phase-banner {
