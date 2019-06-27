@@ -4,7 +4,7 @@ class DocumentChildrenPresenter
   attr_reader :kicker, :header, :title, :content_items
 
   def initialize(documents)
-    parent = documents.find { |d| d[:sibling_order] == nil }
+    parent = documents.find { |d| d[:sibling_order].nil? || d[:sibling_order].zero? }
     @kicker = format_page_kicker(parent[:document_type])
     @header = parent[:title]
     @title = "#{@header}: #{@kicker}"
