@@ -162,7 +162,7 @@ RSpec.describe ExternalLinksHelper do
           edit_label_for(publishing_app: 'content-publisher')
         ).to eq(I18n.t(
                   'metrics.show.navigation.edit_link',
-                  publishing_app: 'Content publisher'
+                  publishing_app: 'Content Publisher'
         ))
       end
     end
