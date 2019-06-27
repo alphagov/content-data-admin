@@ -67,7 +67,7 @@ module GdsApi
               "title" => "Parent",
               "primary_organisation_id" => "7809-org",
               "document_type" => "manual",
-              "sibling_order" => nil,
+              "sibling_order" => 0,
               "upviews" => 10,
               "pviews" => 2,
               "feedex" => 0,

@@ -11,7 +11,7 @@ class ContentRowPresenter
     @base_path = format_base_path(data[:base_path])
     @raw_document_type = data[:document_type]
     @document_type = humanize(data[:document_type])
-    @sibling_order = data[:sibling_order] || '-'
+    @sibling_order = format_sibling_order(data[:sibling_order])
     @upviews = number_with_delimiter(data[:upviews], delimiter: ',') || 'No data'
     @satisfaction_percentage = format_satisfaction_percentage(data[:satisfaction])
     @satisfaction_responses = format_satisfaction_responses(data[:useful_yes], data[:useful_no])
@@ -40,5 +40,9 @@ private
   def format_base_path(base_path)
     #  remove '/' to make base_path usable in links
     base_path.delete_prefix('/')
+  end
+
+  def format_sibling_order(number)
+    number.nil? || number.zero? ? '-' : number
   end
 end
