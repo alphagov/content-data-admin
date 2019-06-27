@@ -36,6 +36,20 @@ RSpec.describe DocumentChildrenPresenter do
     it 'return the page heading' do
       expect(subject.header).to eq('Parent')
     end
+
+    context 'when guide with single colon' do
+      let(:documents) { [{ title: 'Parent: overview', document_type: 'guide' }] }
+      it 'return base of the title' do
+        expect(subject.header).to eq('Parent')
+      end
+    end
+
+    context 'when guide with multiple colons' do
+      let(:documents) { [{ title: 'Parent: topic: overview', document_type: 'guide' }] }
+      it 'removed section from last colon from title' do
+        expect(subject.header).to eq('Parent: topic')
+      end
+    end
   end
 
   describe '#title' do
