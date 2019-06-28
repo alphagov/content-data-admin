@@ -20,6 +20,7 @@
 
 <%= render 'govuk_publishing_components/components/layout_for_admin',
   environment: Rails.application.config.govuk_environment,
+  product_name: "Content Data",
   browser_title: yield(:title) do %>
   <%= render "govuk_publishing_components/components/skip_link" %>
   <%= render "govuk_publishing_components/components/layout_header", {
