@@ -83,7 +83,7 @@ RSpec.feature "Sort results" do
     sorted_items = items.sort_by { |item| item['upviews'] }
     sorted_items.reverse!
 
-    response = { documents: sorted_items }
+    response = { parent_base_path: '/parent', documents: sorted_items }
     stub_document_children_page(document_id: document_id, time_period: 'past-30-days', sort: 'sibling_order:asc')
     stub_document_children_page(document_id: document_id, time_period: 'past-30-days', sort: 'upviews:desc', response: response)
 
@@ -98,7 +98,7 @@ RSpec.feature "Sort results" do
     sorted_items = items.sort_by { |item| item['satisfaction'] }
     sorted_items.reverse!
 
-    response = { documents: sorted_items }
+    response = { parent_base_path: '/parent', documents: sorted_items }
     stub_document_children_page(document_id: document_id, time_period: 'past-30-days', sort: 'sibling_order:asc')
     stub_document_children_page(document_id: document_id, time_period: 'past-30-days', sort: 'satisfaction:desc', response: response)
 
@@ -113,7 +113,7 @@ RSpec.feature "Sort results" do
     sorted_items = items.sort_by { |item| item['searches'] }
     sorted_items.reverse!
 
-    response = { documents: sorted_items }
+    response = { parent_base_path: '/parent', documents: sorted_items }
     stub_document_children_page(document_id: document_id, time_period: 'past-30-days', sort: 'sibling_order:asc')
     stub_document_children_page(document_id: document_id, time_period: 'past-30-days', sort: 'searches:desc', response: response)
 

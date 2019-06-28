@@ -50,7 +50,7 @@ RSpec.describe 'No metric data' do
   end
 
   before do
-    response = { documents: items }
+    response = { parent_base_path: '/parent', documents: items }
     stub_document_children_page(document_id: document_id, response: response)
     GDS::SSO.test_user = build(:user, organisation_content_id: 'users-org-id')
 

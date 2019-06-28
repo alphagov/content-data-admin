@@ -61,6 +61,7 @@ module GdsApi
 
       def document_children_response
         {
+          "parent_base_path": '/parent',
           "documents" => [
             {
               "base_path" => '/parent',

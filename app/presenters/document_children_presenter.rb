@@ -3,8 +3,8 @@ class DocumentChildrenPresenter
 
   attr_reader :kicker, :header, :title, :content_items
 
-  def initialize(documents)
-    parent = documents.find { |d| d[:sibling_order].nil? || d[:sibling_order].zero? }
+  def initialize(documents, parent_base_path)
+    parent = documents.find { |d| d[:base_path] == parent_base_path }
     @kicker = format_page_kicker(parent[:document_type])
     @header = format_header(parent[:title], parent[:document_type])
     @title = "#{@header}: #{@kicker}"

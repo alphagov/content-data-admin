@@ -4,7 +4,11 @@ RSpec.describe DocumentChildrenPresenter do
   let(:parent_document_type) { 'Manual' }
   let(:documents) do
     [
-      { title: 'Parent', document_type: parent_document_type },
+      {
+        title: 'Parent',
+        base_path: '/parent',
+        document_type: parent_document_type
+      },
       { title: 'Child1' },
       { title: 'Child2' }
     ]
@@ -17,7 +21,7 @@ RSpec.describe DocumentChildrenPresenter do
   end
 
   subject do
-    DocumentChildrenPresenter.new(documents)
+    DocumentChildrenPresenter.new(documents, '/parent')
   end
 
   before do
@@ -38,14 +42,14 @@ RSpec.describe DocumentChildrenPresenter do
     end
 
     context 'when guide with single colon' do
-      let(:documents) { [{ title: 'Parent: overview', document_type: 'guide' }] }
+      let(:documents) { [{ title: 'Parent: overview', document_type: 'guide', base_path: '/parent' }] }
       it 'return base of the title' do
         expect(subject.header).to eq('Parent')
       end
     end
 
     context 'when guide with multiple colons' do
-      let(:documents) { [{ title: 'Parent: topic: overview', document_type: 'guide' }] }
+      let(:documents) { [{ title: 'Parent: topic: overview', document_type: 'guide', base_path: '/parent' }] }
       it 'removed section from last colon from title' do
         expect(subject.header).to eq('Parent: topic')
       end
