@@ -41,6 +41,13 @@ RSpec.describe DocumentChildrenPresenter do
       expect(subject.header).to eq('Parent')
     end
 
+    context 'when travel advice with single colon' do
+      let(:documents) { [{ title: 'Parent: overview', document_type: 'travel_advice', base_path: '/parent' }] }
+      it 'return base of the title' do
+        expect(subject.header).to eq('Parent')
+      end
+    end
+
     context 'when guide with single colon' do
       let(:documents) { [{ title: 'Parent: overview', document_type: 'guide', base_path: '/parent' }] }
       it 'return base of the title' do
