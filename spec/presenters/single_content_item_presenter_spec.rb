@@ -311,7 +311,7 @@ RSpec.describe SingleContentItemPresenter do
 
   describe '#local_links' do
     context 'when there are 2 related content pages' do
-      before { current_period_data[:number_of_related_content] = 2 }
+      before { current_period_data[:number_of_related_content] = 1 }
 
       context 'when it is the parent page' do
         before do
@@ -351,14 +351,6 @@ RSpec.describe SingleContentItemPresenter do
             }
           ])
         end
-      end
-    end
-
-    context 'when there is 1 related content pages' do
-      before { current_period_data[:number_of_related_content] = 1 }
-
-      it 'return a link to the document children page' do
-        expect(subject.local_links).to eq([])
       end
     end
 

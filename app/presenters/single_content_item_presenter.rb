@@ -136,7 +136,7 @@ class SingleContentItemPresenter
 
   def local_links
     local_links = []
-    if @single_page_data[:number_of_related_content] > 1
+    if @single_page_data[:number_of_related_content].positive?
 
       document_id = parent_document_id(
         @single_page_data[:metadata][:content_id],
