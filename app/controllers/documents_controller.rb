@@ -15,6 +15,6 @@ class DocumentsController < ApplicationController
     @sort = Sort.parse(params[:sort] || 'sibling_order:asc')
 
     response = FetchDocumentChildren.call(document_id: @document_id, time_period: @time_period, sort: @sort)
-    @presenter = DocumentChildrenPresenter.new(response[:documents])
+    @presenter = DocumentChildrenPresenter.new(response[:documents], response[:parent_base_path])
   end
 end
