@@ -37,7 +37,7 @@ module ExternalLinksHelper
     else
       I18n.t(
         'metrics.show.navigation.edit_link',
-        publishing_app: publishing_app.capitalize.tr('-', ' ')
+        publishing_app: publishing_app.tr('-', ' ').titlecase
       )
     end
   end

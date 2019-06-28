@@ -306,7 +306,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the specialist publisher application' do
         stub_metrics_page(base_path: 'specialist/path', time_period: :past_30_days, publishing_app: 'specialist-publisher')
         visit '/metrics/specialist/path'
-        label = I18n.t("metrics.show.navigation.edit_link", publishing_app: 'Specialist publisher')
+        label = I18n.t("metrics.show.navigation.edit_link", publishing_app: 'Specialist Publisher')
         expect(page).to have_link(label, href: "http://specialist-publisher.dev.gov.uk/news-storys/content-id/edit")
       end
 
@@ -320,7 +320,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
       it 'renders the travel advice application' do
         stub_metrics_page(base_path: 'travel/path', time_period: :past_30_days, publishing_app: 'travel-advice-publisher')
         visit '/metrics/travel/path'
-        label = I18n.t("metrics.show.navigation.edit_link", publishing_app: 'Travel advice publisher')
+        label = I18n.t("metrics.show.navigation.edit_link", publishing_app: 'Travel Advice Publisher')
         expect(page).to have_link(label, href: 'http://travel-advice-publisher.dev.gov.uk/admin/countries/path')
       end
     end
