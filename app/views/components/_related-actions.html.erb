@@ -1,18 +1,39 @@
 <%
-  links ||= []
+  external_links ||= []
+  local_links ||= []
+  classname ||= false
 %>
-<% if links.any? %>
+<% if external_links.any? || local_links.any? %>
   <div class="app-c-related-actions">
-    <ul class="govuk-body govuk-body-s app-c-related-actions__links">
-      <% links.each do |l| %>
-        <% if l[:label] && l[:link_url] %>
-          <li class="app-c-related-actions__link">
-            <a href="<%= l[:link_url] %>" class="govuk-link">
-              <%= l[:label] %>
-            </a>
-          </li>
+    <% if external_links.any? %>
+      <ul class="govuk-body govuk-body-s app-c-related-actions__links app-c-related-actions__links--external">
+        <% external_links.each do |l| %>
+          <% if l[:label] && l[:link_url] %>
+            <li class="app-c-related-actions__link">
+              <a href="<%= l[:link_url] %>" class="govuk-link">
+                <%= l[:label] %>
+              </a>
+            </li>
+          <% end %>
         <% end %>
-      <% end %>
-    </ul>
+      </ul>
+    <% end %>
+    <% if local_links.any? %>
+      <ul
+      class="govuk-body govuk-body-s app-c-related-actions__links app-c-related-actions__links--local">
+        <% local_links.each do |l| %>
+          <% if l[:label] && l[:link_url] %>
+            <li class="app-c-related-actions__link">
+              <a
+              href="<%= l[:link_url] %>" class="govuk-link"
+              <% if l[:gtm_id].present? %>data-gtm-id="<%= l[:gtm_id] %>"<% end %>
+              >
+                <%= l[:label] %>
+              </a>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 <% end %>

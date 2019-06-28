@@ -29,7 +29,7 @@
   <div class="govuk-grid-column-one-third related-actions">
     <%= render "components/related-actions",
       {
-        links: [
+        external_links: [
           {
             link_url: "//www.gov.uk#{@performance_data.base_path}",
             label: t(".navigation.visit_page")
@@ -38,7 +38,8 @@
             link_url: @performance_data.edit_url,
             label: @performance_data.edit_label
           }
-        ]
+        ],
+        local_links: @performance_data.local_links
       } %>
   </div>
 </div>

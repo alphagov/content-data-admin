@@ -308,4 +308,58 @@ RSpec.describe SingleContentItemPresenter do
       expect(subject.feedback_explorer_href).to eq("#{Plek.new.external_url_for('support')}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=#{CGI.escape('/the/base/path')}")
     end
   end
+
+  describe '#local_links' do
+    context 'when there are 2 related content pages' do
+      before { current_period_data[:number_of_related_content] = 1 }
+
+      context 'when it is the parent page' do
+        before do
+          current_period_data[:metadata][:content_id] = '1234'
+          current_period_data[:metadata][:locale] = 'en'
+          current_period_data[:metadata][:parent_document_id] = nil
+        end
+
+        it 'return a link to the document children page' do
+          link_url = "#{Plek.new.external_url_for('content-data')}/documents/1234:en/children"
+
+          expect(subject.local_links).to eq([
+            {
+              link_url: link_url,
+              label: 'See data for all sections',
+              gtm_id: 'compare-link'
+            }
+          ])
+        end
+      end
+
+      context 'when it is the child page' do
+        before do
+          current_period_data[:metadata][:content_id] = '1234'
+          current_period_data[:metadata][:locale] = 'en'
+          current_period_data[:metadata][:parent_document_id] = '5678:fr'
+        end
+
+        it 'return a link to the document children page' do
+          link_url = "#{Plek.new.external_url_for('content-data')}/documents/5678:fr/children"
+
+          expect(subject.local_links).to eq([
+            {
+              link_url: link_url,
+              label: 'See data for all sections',
+              gtm_id: 'compare-link'
+            }
+          ])
+        end
+      end
+    end
+
+    context 'when there is 0 related content pages' do
+      before { current_period_data[:number_of_related_content] = 0 }
+
+      it 'return a link to the document children page' do
+        expect(subject.local_links).to eq([])
+      end
+    end
+  end
 end

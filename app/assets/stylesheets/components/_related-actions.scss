@@ -2,18 +2,25 @@
 
 .app-c-related-actions {
   background-color: $grey-4;
-  @include govuk-responsive-padding(3, "top");
-  @include govuk-responsive-margin(1, "bottom");
+  @include govuk-responsive-padding(5, "top");
+  @include govuk-responsive-padding(3, "bottom");
+  @include govuk-responsive-padding(3, "left");
+  @include govuk-responsive-padding(3, "right");
   @include govuk-font(19);
 }
 
 .app-c-related-actions__links {
-  @include govuk-responsive-padding(3, "left");
-  @include govuk-responsive-padding(2, "bottom");
+  @include govuk-responsive-padding(0);
   list-style-type: none;
 }
 
 .app-c-related-actions__link {
   @include govuk-responsive-padding(1, "bottom");
+  margin: 0;
   list-style-type: none;
+}
+
+.app-c-related-actions__links--local {
+  border-top: 1px solid $grey-2;
+  @include govuk-responsive-padding(3, "top");
 }

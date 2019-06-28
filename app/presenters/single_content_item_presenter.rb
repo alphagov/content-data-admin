@@ -1,6 +1,7 @@
 class SingleContentItemPresenter
   include MetricsFormatterHelper
   include ExternalLinksHelper
+  include DocumentChildrenHelper
 
   attr_reader :date_range
 
@@ -127,10 +128,29 @@ class SingleContentItemPresenter
       content_id: metadata[:content_id],
       publishing_app: metadata[:publishing_app],
       base_path: base_path,
-      parent_content_id: metadata[:parent_content_id],
+      parent_content_id: parent_content_id,
       document_type: metadata[:document_type],
       locale: metadata[:locale]
     )
+  end
+
+  def local_links
+    local_links = []
+    if @single_page_data[:number_of_related_content].positive?
+
+      document_id = parent_document_id(
+        @single_page_data[:metadata][:content_id],
+        @single_page_data[:metadata][:locale],
+        @single_page_data[:metadata][:parent_document_id]
+      )
+
+      local_links.append(
+        link_url: document_children_link_for(document_id),
+        label: 'See data for all sections',
+        gtm_id: 'compare-link'
+      )
+    end
+    local_links
   end
 
   def edit_label
@@ -184,6 +204,11 @@ private
 
   def value_for(metric)
     @metrics[metric][:value]
+  end
+
+  def parent_content_id
+    document_id = metadata[:parent_document_id]
+    document_id.split(':')[0] unless document_id.nil?
   end
 
   def useful_yes_no_total

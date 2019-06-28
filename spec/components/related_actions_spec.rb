@@ -3,16 +3,23 @@ require 'rails_helper'
 RSpec.describe "Related actions", type: :view do
   let(:data) {
     {
-      links: [
-                {
-                  link_url: "//www.gov.uk/govpage",
-                  label: "View on GOV.UK"
-                },
-                {
-                  link_url: "//www.gov.uk/moregov",
-                  label: "Edit in Whitehall"
-                }
-              ]
+        external_links: [
+          {
+            link_url: "//www.gov.uk/govpage",
+            label: "View on GOV.UK"
+          },
+          {
+            link_url: "//www.gov.uk/moregov",
+            label: "Edit in Whitehall"
+          }
+        ],
+        local_links: [
+          {
+            link_url: "../compare",
+            label: "See all 5 chapters",
+            gtm_id: 'compare-link'
+          }
+        ]
       }
   }
 
@@ -26,11 +33,14 @@ RSpec.describe "Related actions", type: :view do
 
   it "renders correctly when given valid data" do
     render_component(data)
-    assert_select ".app-c-related-actions", 1
-    assert_select "ul", 1
-    assert_select "li", 2
+    assert_select ".app-c-related-actions__links--external", 1
+    assert_select ".app-c-related-actions__links--local", 1
+    assert_select "ul", 2
+    assert_select "li", 3
     assert_select "a", href: "//www.gov.uk/govpage", text: "View on GOV.UK"
     assert_select "a", href: "//www.gov.uk/moregov", text: "Edit in Whitehall"
+    assert_select "a", href: "/../compare", text: "See all 5 chapters"
+    assert_select "a[data-gtm-id=\"compare-link\"]", 1
   end
 
   def render_component(locals)

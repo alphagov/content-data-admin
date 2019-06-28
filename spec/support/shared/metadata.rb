@@ -45,7 +45,7 @@ RSpec.shared_examples 'Metadata presentation' do
         publishing_app: 'whitehall',
         base_path: '/the/base/path',
         document_type: 'news_story',
-        parent_content_id: ''
+        parent_content_id: nil
       ).and_return(
         'https://expected-link'
       )
