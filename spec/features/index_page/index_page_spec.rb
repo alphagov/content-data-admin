@@ -54,6 +54,7 @@ RSpec.describe '/content' do
   it 'renders the page without error' do
     expect(page.status_code).to eq(200)
     expect(page).to have_content('Content Data')
+    expect(page).to have_title('Content items - GOV.UK Content Data')
   end
 
   it 'renders the data in a table' do
