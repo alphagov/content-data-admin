@@ -4,6 +4,7 @@ class GdsApi::ContentDataApi < GdsApi::Base
   def initialize
     super("#{Plek.current.find('content-data-api')}/api/v1",
       disable_cache: true,
+      timeout: 60,
       bearer_token: ENV['CONTENT_DATA_API_BEARER_TOKEN'] || 'example')
   end
 
