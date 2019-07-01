@@ -9,3 +9,7 @@ Metrics/BlockLength:
     - "spec/**/*.rb"
     - "config/routes.rb"
     - "config/environments/*.rb"
+
+Rails/HelperInstanceVariable:
+  Exclude:
+    - "app/helpers/pagination_helper.rb"
