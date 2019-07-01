@@ -23,6 +23,6 @@ private
   attr_reader :current, :previous
 
   def trend
-    ((current.to_f / previous.to_f) - 1) * 100
+    ((current / previous.to_f) - 1) * 100
   end
 end
