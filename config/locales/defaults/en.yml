@@ -57,7 +57,7 @@ en:
       about_title: 'About searches from page'
       about: >
         This is the number of internal site searches that were started from the page. When people
-        use internal search, it's an indication that they haven't found what they're looking for.
+        use internal search, it could be an indication that they haven't found what they're looking for. You'll need access to Google Analytics to see the search terms.
     satisfaction:
       title: 'Users who found page useful'
       short_title: 'Users who found page useful'
