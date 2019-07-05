@@ -33,11 +33,11 @@ RSpec.describe '/documents/:document_id/children' do
   end
 
   it 'renders the page title' do
-    expect(page).to have_title('Parent: Manual comparision')
+    expect(page).to have_title('Parent: Manual comparison')
   end
 
   it 'renders the page kicker' do
-    expect(page).to have_content('Manual comparision')
+    expect(page).to have_content('Manual comparison')
   end
 
   it 'renders the page heading' do

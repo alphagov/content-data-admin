@@ -1,7 +1,7 @@
 en:
   documents:
     children:
-      kicker: "%{type} comparision"
+      kicker: "%{type} comparison"
       table:
         headers:
           sibling_order: 'Section'

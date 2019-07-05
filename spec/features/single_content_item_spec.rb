@@ -249,7 +249,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
         stub_metrics_page(
           base_path: 'base/path',
           time_period: 'past_30_days',
-          comparision_data_missing: true
+          comparison_data_missing: true
         )
 
         visit '/metrics/base/path'
@@ -278,7 +278,7 @@ RSpec.describe '/metrics/base/path', type: :feature do
           base_path: 'base/path',
           time_period: 'past_30_days',
           current_data_missing: true,
-          comparision_data_missing: true
+          comparison_data_missing: true
         )
 
         visit '/metrics/base/path'
