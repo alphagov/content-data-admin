@@ -31,7 +31,7 @@ RSpec.describe DocumentChildrenPresenter do
   describe '#kicker' do
     context 'when the parent is a manual' do
       it 'returns manual kicker' do
-        expect(subject.kicker).to eq('Manual comparision')
+        expect(subject.kicker).to eq('Manual comparison')
       end
     end
   end
@@ -65,7 +65,7 @@ RSpec.describe DocumentChildrenPresenter do
 
   describe '#title' do
     it 'return the page title' do
-      expect(subject.title).to eq('Parent: Manual comparision')
+      expect(subject.title).to eq('Parent: Manual comparison')
     end
   end
 
