@@ -115,7 +115,7 @@ GEM
       plek (>= 1.9.0)
       rack-cache
       rest-client (~> 2.0)
-    gds-sso (14.0.0)
+    gds-sso (14.1.0)
       multi_json (~> 1.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
@@ -170,7 +170,7 @@ GEM
     ipaddress (0.8.3)
     jaro_winkler (1.5.3)
     json (2.2.0)
-    jwt (2.1.0)
+    jwt (2.2.1)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
