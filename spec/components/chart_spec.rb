@@ -70,7 +70,7 @@ RSpec.describe "Chart", type: :view do
 
   it "calls the chart library" do
     render_component(data)
-    assert_select "script", text: /new Chartkick.LineChart/
+    assert_select "script", text: /new Chartkick.["LineChart"]/
   end
 
   def render_component(locals)
