@@ -15,12 +15,12 @@ class DocumentChildrenPresenter
 private
 
   def format_page_kicker(document_type)
-    I18n.t('documents.children.kicker', type: humanize(document_type))
+    I18n.t("documents.children.kicker", type: humanize(document_type))
   end
 
   def format_header(title, document_type)
-    if %w(guide travel_advice).include?(document_type) && title.include?(':')
-      title[0...title.rindex(':')]
+    if %w(guide travel_advice).include?(document_type) && title.include?(":")
+      title[0...title.rindex(":")]
     else
       title
     end

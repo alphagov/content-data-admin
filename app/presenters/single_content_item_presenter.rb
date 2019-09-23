@@ -16,53 +16,53 @@ class SingleContentItemPresenter
   end
 
   def abbreviated_total_upviews
-    abbreviate(value_for('upviews'))
+    abbreviate(value_for("upviews"))
   end
 
   def abbreviated_total_searches
-    abbreviate(value_for('searches'))
+    abbreviate(value_for("searches"))
   end
 
   def abbreviated_total_feedex
-    abbreviate(value_for('feedex'))
+    abbreviate(value_for("feedex"))
   end
 
   def total_upviews
-    number_with_delimiter value_for('upviews')
+    number_with_delimiter value_for("upviews")
   end
 
   def total_pviews
-    number_with_delimiter value_for('pviews')
+    number_with_delimiter value_for("pviews")
   end
 
   def total_searches
-    number_with_delimiter value_for('searches')
+    number_with_delimiter value_for("searches")
   end
 
   def total_satisfaction
-    if !value_for('satisfaction').nil?
-      number_to_percentage(value_for('satisfaction') * 100, precision: 0)
+    if !value_for("satisfaction").nil?
+      number_to_percentage(value_for("satisfaction") * 100, precision: 0)
     end
   end
 
   def total_feedex
-    number_with_delimiter value_for('feedex')
+    number_with_delimiter value_for("feedex")
   end
 
   def words
-    number_with_delimiter value_for('words')
+    number_with_delimiter value_for("words")
   end
 
   def pdf_count
-    number_with_delimiter value_for('pdf_count')
+    number_with_delimiter value_for("pdf_count")
   end
 
   def pageviews_per_visit
-    number_with_delimiter value_for('pageviews_per_visit')
+    number_with_delimiter value_for("pageviews_per_visit")
   end
 
   def reading_time
-    format_duration(@metrics['reading_time'][:value])
+    format_duration(@metrics["reading_time"][:value])
   end
 
   def upviews_context
@@ -83,8 +83,8 @@ class SingleContentItemPresenter
 
   def searches_context
     on_page_search_rate = Calculator::AverageSearchesPerUser.calculate(
-      searches: value_for('searches'),
-      unique_pageviews: value_for('upviews')
+      searches: value_for("searches"),
+      unique_pageviews: value_for("upviews"),
     )
     I18n.t("metrics.searches.context", percent_users_searched: on_page_search_rate)
   end
@@ -130,7 +130,7 @@ class SingleContentItemPresenter
       base_path: base_path,
       parent_content_id: parent_content_id,
       document_type: metadata[:document_type],
-      locale: metadata[:locale]
+      locale: metadata[:locale],
     )
   end
 
@@ -141,13 +141,13 @@ class SingleContentItemPresenter
       document_id = parent_document_id(
         @single_page_data[:metadata][:content_id],
         @single_page_data[:metadata][:locale],
-        @single_page_data[:metadata][:parent_document_id]
+        @single_page_data[:metadata][:parent_document_id],
       )
 
       local_links.append(
         link_url: document_children_link_for(document_id),
-        label: 'See data for all sections',
-        gtm_id: 'compare-link'
+        label: "See data for all sections",
+        gtm_id: "compare-link",
       )
     end
     local_links
@@ -170,7 +170,7 @@ class SingleContentItemPresenter
   end
 
   def document_type
-    metadata[:document_type].tr('_', ' ').capitalize
+    metadata[:document_type].tr("_", " ").capitalize
   end
 
   def publishing_organisation
@@ -179,11 +179,11 @@ class SingleContentItemPresenter
 
   def status
     if metadata[:withdrawn] && metadata[:historical]
-      I18n.t('components.metadata.statuses.withdrawn_and_historical')
+      I18n.t("components.metadata.statuses.withdrawn_and_historical")
     elsif metadata[:withdrawn]
-      I18n.t('components.metadata.statuses.withdrawn')
+      I18n.t("components.metadata.statuses.withdrawn")
     elsif metadata[:historical]
-      I18n.t('components.metadata.statuses.historical')
+      I18n.t("components.metadata.statuses.historical")
     end
   end
 
@@ -196,9 +196,9 @@ private
 
   def abbreviate(number)
     {
-      figure: number_to_human(number, format: '%n'),
-      display_label: number_to_human(number, format: '%u', units: { unit: "", thousand: "k", million: "m", billion: "b" }),
-      explicit_label: number_to_human(number, format: '%u')
+      figure: number_to_human(number, format: "%n"),
+      display_label: number_to_human(number, format: "%u", units: { unit: "", thousand: "k", million: "m", billion: "b" }),
+      explicit_label: number_to_human(number, format: "%u"),
     }
   end
 
@@ -208,11 +208,11 @@ private
 
   def parent_content_id
     document_id = metadata[:parent_document_id]
-    document_id.split(':')[0] unless document_id.nil?
+    document_id.split(":")[0] unless document_id.nil?
   end
 
   def useful_yes_no_total
-    value_for('useful_yes').to_i + value_for('useful_no').to_i
+    value_for("useful_yes").to_i + value_for("useful_no").to_i
   end
 
   def metadata
@@ -221,16 +221,16 @@ private
 
   def assign_pageviews_per_visit
     current = Calculator::PageviewsPerVisit.calculate(
-      pageviews: value_for('pviews'),
-      unique_pageviews: value_for('upviews')
+      pageviews: value_for("pviews"),
+      unique_pageviews: value_for("upviews"),
     )
-    @metrics['pageviews_per_visit'] = { value: current }
+    @metrics["pageviews_per_visit"] = { value: current }
 
     previous = Calculator::PageviewsPerVisit.calculate(
-      pageviews: @previous_metrics['pviews'][:value],
-      unique_pageviews: @previous_metrics['upviews'][:value]
+      pageviews: @previous_metrics["pviews"][:value],
+      unique_pageviews: @previous_metrics["upviews"][:value],
     )
-    @previous_metrics['pageviews_per_visit'] = { value: previous }
+    @previous_metrics["pageviews_per_visit"] = { value: previous }
   end
 
   def calculate_trend_percentage(current_value, previous_value, metric_name)
@@ -240,9 +240,9 @@ private
   end
 
   def incomplete_previous_data?(current_value, previous_value, metric_name)
-    return incomplete_previous_pageviews_per_visit_data? if metric_name == 'pageviews_per_visit'
+    return incomplete_previous_pageviews_per_visit_data? if metric_name == "pageviews_per_visit"
     return true if no_previous_timeseries?(previous_value)
-    return incomplete_last_month_data?(previous_value) if @date_range.time_period == 'last-month'
+    return incomplete_last_month_data?(previous_value) if @date_range.time_period == "last-month"
 
     current_value[:time_series].length != previous_value[:time_series].length
   end
@@ -252,11 +252,11 @@ private
   end
 
   def incomplete_previous_pageviews_per_visit_data?
-    incomplete_previous_data?(@metrics['pviews'], @previous_metrics['pviews'], 'pviews') && incomplete_previous_data?(@metrics['upviews'], @previous_metrics['upviews'], 'upviews')
+    incomplete_previous_data?(@metrics["pviews"], @previous_metrics["pviews"], "pviews") && incomplete_previous_data?(@metrics["upviews"], @previous_metrics["upviews"], "upviews")
   end
 
   def incomplete_last_month_data?(previous_value)
-    previous_date = @previous_metrics['upviews'][:time_series].first[:date].to_date
+    previous_date = @previous_metrics["upviews"][:time_series].first[:date].to_date
     days_in_month = Time.days_in_month(previous_date.month, previous_date.year)
     days_in_month != previous_value[:time_series].length
   end

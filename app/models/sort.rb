@@ -12,10 +12,10 @@ class Sort
   end
 
   def self.parse(sort_str)
-    split_str = sort_str.split(':')
+    split_str = sort_str.split(":")
 
-    key = split_str[0] || ''
-    direction = split_str[1] || ''
+    key = split_str[0] || ""
+    direction = split_str[1] || ""
 
     new(key, direction)
   end
@@ -25,6 +25,6 @@ class Sort
   end
 
   def reverse!
-    @direction = @direction == 'asc' ? 'desc' : 'asc'
+    @direction = @direction == "asc" ? "desc" : "asc"
   end
 end

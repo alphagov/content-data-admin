@@ -1,5 +1,5 @@
-require 'active_support/concern'
-require 'gds_api/content_data_api'
+require "active_support/concern"
+require "gds_api/content_data_api"
 
 module Concerns::ContentDataApiClient
   extend ActiveSupport::Concern

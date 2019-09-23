@@ -13,27 +13,27 @@ RSpec.describe ChartPresenter do
     ChartPresenter.new(
       json:
         [
-          { date: '2018-01-13', value: 101 },
-          { date: '2018-01-14', value: 202 },
-          { date: '2018-01-15', value: 303 }
+          { date: "2018-01-13", value: 101 },
+          { date: "2018-01-14", value: 202 },
+          { date: "2018-01-15", value: 303 },
         ],
       metric: :upviews,
       date_range: date_range,
     )
   end
 
-  it 'returns start date' do
+  it "returns start date" do
     expect(subject.from).to eq Date.new(2018, 1, 1)
   end
-  it 'returns end date' do
+  it "returns end date" do
     expect(subject.to).to eq Date.new(2018, 1, 30)
   end
 
-  it 'returns the correct message for no data' do
-    expect(subject.no_data_message).to eq 'No Unique page views data for the selected time period'
+  it "returns the correct message for no data" do
+    expect(subject.no_data_message).to eq "No Unique page views data for the selected time period"
   end
 
-  it 'returns formatted hash of chart data' do
+  it "returns formatted hash of chart data" do
     expect(subject.chart_data).to eq upviews_chart_data
   end
 
@@ -47,7 +47,7 @@ RSpec.describe ChartPresenter do
       keys: [
         Date.new(2018, 1, 13),
         Date.new(2018, 1, 14),
-        Date.new(2018, 1, 15)
+        Date.new(2018, 1, 15),
       ],
 
       rows: [
@@ -56,13 +56,13 @@ RSpec.describe ChartPresenter do
           values: [
             101,
             202,
-            303
-          ]
-        }
+            303,
+          ],
+        },
       ],
       table_id: "upviews_table",
       table_direction: "horizontal",
-      percent_metric: false
+      percent_metric: false,
     }
   end
 end

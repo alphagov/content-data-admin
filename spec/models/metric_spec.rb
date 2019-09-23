@@ -1,40 +1,40 @@
 RSpec.describe Metric do
-  describe '.parse_metrics' do
-    it 'parses API data payload' do
+  describe ".parse_metrics" do
+    it "parses API data payload" do
       metric_data =
         {
           edition_metrics: [
             {
               name: "words",
-              value: 200
+              value: 200,
             },
             {
               name: "pdf_count",
-              value: 3
-            }
+              value: 3,
+            },
           ],
           time_series_metrics: [
             {
-              name: 'upviews',
+              name: "upviews",
               total: 100,
               time_series: [
                 {
-                  date: '2018-11-25',
-                  value: 100
-                }
-              ]
+                  date: "2018-11-25",
+                  value: 100,
+                },
+              ],
             },
             {
-              name: 'pviews',
+              name: "pviews",
               total: 100,
               time_series: [
                 {
-                  date: '2018-11-25',
-                  value: 100
-                }
-              ]
-            }
-          ]
+                  date: "2018-11-25",
+                  value: 100,
+                },
+              ],
+            },
+          ],
         }
       metrics = Metric.parse_metrics(metric_data)
 

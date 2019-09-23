@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class HelpController < ApplicationController
-  layout 'application'
+  layout "application"
 
   def show
     @hkey = params[:hkey]

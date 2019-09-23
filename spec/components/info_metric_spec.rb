@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Info Metric", type: :view do
   let(:data) {
@@ -9,7 +9,7 @@ RSpec.describe "Info Metric", type: :view do
       trend_percentage: 0.5,
       period: "Apr 2018 to Mar 2018",
       about: "About this data.",
-      data_source: "source"
+      data_source: "source",
     }
   }
 
@@ -25,7 +25,7 @@ RSpec.describe "Info Metric", type: :view do
   it "renders no data if figure is not present" do
     data[:figure] = nil
     render_component(data)
-    assert_select ".app-c-info-metric__figure", text: 'No data'
+    assert_select ".app-c-info-metric__figure", text: "No data"
   end
 
 
@@ -53,7 +53,7 @@ RSpec.describe "Info Metric", type: :view do
     assert_select ".app-c-info-metric__trend--no-change .app-c-info-metric__trend-text", text: "No change"
   end
 
-  it 'does not display a trend direction if there is no comparison data' do
+  it "does not display a trend direction if there is no comparison data" do
     data[:trend_percentage] = nil
     render_component(data)
     assert_select ".app-c-info-metric__trend", count: 0

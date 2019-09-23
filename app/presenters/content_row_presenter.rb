@@ -12,11 +12,11 @@ class ContentRowPresenter
     @raw_document_type = data[:document_type]
     @document_type = humanize(data[:document_type])
     @sibling_order = format_sibling_order(data[:sibling_order])
-    @upviews = number_with_delimiter(data[:upviews], delimiter: ',') || 'No data'
+    @upviews = number_with_delimiter(data[:upviews], delimiter: ",") || "No data"
     @satisfaction_percentage = format_satisfaction_percentage(data[:satisfaction])
     @satisfaction_responses = format_satisfaction_responses(data[:useful_yes], data[:useful_no])
 
-    @searches = number_with_delimiter(data[:searches], delimiter: ',') || 'No data'
+    @searches = number_with_delimiter(data[:searches], delimiter: ",") || "No data"
   end
 
 private
@@ -26,7 +26,7 @@ private
   end
 
   def format_satisfaction_responses(yes_responses, no_responses)
-    return 'No data' if yes_responses.nil? || no_responses.nil?
+    return "No data" if yes_responses.nil? || no_responses.nil?
 
     total_responses = yes_responses + no_responses
 
@@ -39,10 +39,10 @@ private
 
   def format_base_path(base_path)
     #  remove '/' to make base_path usable in links
-    base_path.delete_prefix('/')
+    base_path.delete_prefix("/")
   end
 
   def format_sibling_order(number)
-    number.nil? || number.zero? ? '-' : number
+    number.nil? || number.zero? ? "-" : number
   end
 end

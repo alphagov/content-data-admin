@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Related actions", type: :view do
   let(:data) {
@@ -6,20 +6,20 @@ RSpec.describe "Related actions", type: :view do
         external_links: [
           {
             link_url: "//www.gov.uk/govpage",
-            label: "View on GOV.UK"
+            label: "View on GOV.UK",
           },
           {
             link_url: "//www.gov.uk/moregov",
-            label: "Edit in Whitehall"
-          }
+            label: "Edit in Whitehall",
+          },
         ],
         local_links: [
           {
             link_url: "../compare",
             label: "See all 5 chapters",
-            gtm_id: 'compare-link'
-          }
-        ]
+            gtm_id: "compare-link",
+          },
+        ],
       }
   }
 

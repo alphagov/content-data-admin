@@ -1,4 +1,4 @@
-RSpec.shared_examples 'Trend percentages presentation' do
+RSpec.shared_examples "Trend percentages presentation" do
   include GdsApi::TestHelpers::ResponseHelpers
 
   around do |example|
@@ -8,61 +8,61 @@ RSpec.shared_examples 'Trend percentages presentation' do
   end
 
   let(:date_range) { build(:date_range, :past_30_days) }
-  let(:current_period_data) { single_page_response('the/base/path', Date.new(2018, 11, 25), Date.new(2018, 12, 24)) }
-  let(:previous_period_data) { single_page_response('the/base/path', Date.new(2018, 10, 26), Date.new(2018, 11, 24)) }
+  let(:current_period_data) { single_page_response("the/base/path", Date.new(2018, 11, 25), Date.new(2018, 12, 24)) }
+  let(:previous_period_data) { single_page_response("the/base/path", Date.new(2018, 10, 26), Date.new(2018, 11, 24)) }
 
   subject do
     SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
   end
 
-  describe '#trend_percentage' do
-    it 'calculates an increase percentage change' do
+  describe "#trend_percentage" do
+    it "calculates an increase percentage change" do
       current_period_data[:time_series_metrics] = time_series_metrics(100)
       previous_period_data[:time_series_metrics] = time_series_metrics(50)
 
-      expect(subject.trend_percentage('upviews')).to eq(100.0)
+      expect(subject.trend_percentage("upviews")).to eq(100.0)
     end
 
-    it 'calculates an decrease percentage change' do
+    it "calculates an decrease percentage change" do
       current_period_data[:time_series_metrics] = time_series_metrics(50)
       previous_period_data[:time_series_metrics] = time_series_metrics(100)
 
-      expect(subject.trend_percentage('upviews')).to eq(-50.0)
+      expect(subject.trend_percentage("upviews")).to eq(-50.0)
     end
 
-    it 'calculates an no percentage change' do
+    it "calculates an no percentage change" do
       current_period_data[:time_series_metrics] = time_series_metrics(100)
       previous_period_data[:time_series_metrics] = time_series_metrics(100)
 
-      expect(subject.trend_percentage('upviews')).to eq(0.0)
+      expect(subject.trend_percentage("upviews")).to eq(0.0)
     end
 
-    it 'calculates an infinite percent increase (0 to non-zero)' do
+    it "calculates an infinite percent increase (0 to non-zero)" do
       current_period_data[:time_series_metrics] = time_series_metrics(100)
       previous_period_data[:time_series_metrics] = time_series_metrics(0)
 
-      expect(subject.trend_percentage('upviews')).to eq(0.0)
+      expect(subject.trend_percentage("upviews")).to eq(0.0)
     end
 
-    it 'returns `no comparison data` if there is no comparison data' do
+    it "returns `no comparison data` if there is no comparison data" do
       current_period_data[:time_series_metrics] = time_series_metrics(100)
       previous_period_data[:time_series_metrics] = time_series_metrics(nil, nil)
 
-      expect(subject.trend_percentage('upviews')).to eq(nil)
+      expect(subject.trend_percentage("upviews")).to eq(nil)
     end
 
-    it 'returns `no comparison data` if there is incomplete comparison data' do
-      current_time_series = [{ date: '2018-11-25', value: 100 }, { date: '2018-11-26', value: 100 }]
-      previous_time_series = [{ date: '2018-11-24', value: 100 }]
+    it "returns `no comparison data` if there is incomplete comparison data" do
+      current_time_series = [{ date: "2018-11-25", value: 100 }, { date: "2018-11-26", value: 100 }]
+      previous_time_series = [{ date: "2018-11-24", value: 100 }]
 
       current_period_data[:time_series_metrics] = time_series_metrics(100, current_time_series)
       previous_period_data[:time_series_metrics] = time_series_metrics(100, previous_time_series)
 
-      expect(subject.trend_percentage('upviews')).to eq(nil)
+      expect(subject.trend_percentage("upviews")).to eq(nil)
     end
 
-    context 'selected date range is `past-month`' do
-      it 'calculates percentage change if previous month has data for every day in it' do
+    context "selected date range is `past-month`" do
+      it "calculates percentage change if previous month has data for every day in it" do
         date_range = build(:date_range, :last_month)
         current_time_series = complete_current_data
         previous_month_time_series = complete_previous_data
@@ -72,10 +72,10 @@ RSpec.shared_examples 'Trend percentages presentation' do
 
         subject = SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
 
-        expect(subject.trend_percentage('upviews')).to eq(100.0)
+        expect(subject.trend_percentage("upviews")).to eq(100.0)
       end
 
-      it 'returns nil if previous month does not have data for every day in it' do
+      it "returns nil if previous month does not have data for every day in it" do
         build(:date_range, :last_month)
         current_time_series = complete_current_data
         previous_month_time_series = incomplete_previous_data
@@ -85,28 +85,28 @@ RSpec.shared_examples 'Trend percentages presentation' do
 
         subject = SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
 
-        expect(subject.trend_percentage('upviews')).to eq(nil)
+        expect(subject.trend_percentage("upviews")).to eq(nil)
       end
     end
   end
 
-  def time_series_metrics(upviews_total = 100, upviews_timeseries = [{ date: '2018-11-25', value: 100 }])
+  def time_series_metrics(upviews_total = 100, upviews_timeseries = [{ date: "2018-11-25", value: 100 }])
     [
       {
-        name: 'upviews',
+        name: "upviews",
         total: upviews_total,
-        time_series: upviews_timeseries
+        time_series: upviews_timeseries,
       },
       {
-        name: 'pviews',
+        name: "pviews",
         total: 100,
         time_series: [
           {
-            date: '2018-11-25',
-            value: 100
-          }
-        ]
-      }
+            date: "2018-11-25",
+            value: 100,
+          },
+        ],
+      },
     ]
   end
 

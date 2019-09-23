@@ -1,14 +1,14 @@
 require "byebug"
-require 'capybara/rspec'
-require 'webmock/rspec'
+require "capybara/rspec"
+require "webmock/rspec"
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
 ENV["RAILS_ENV"] ||= "test"
-require File.expand_path('../config/environment', __dir__)
+require File.expand_path("../config/environment", __dir__)
 require "rspec/rails"
 
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+Dir[Rails.root.join("spec", "support", "**", "*.rb")].each { |f| require f }
 if ENV["TEST_COVERAGE"] == "true"
   require "simplecov"
   SimpleCov.start

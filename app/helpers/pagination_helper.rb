@@ -8,9 +8,9 @@ module PaginationHelper
       result = result.merge(
         previous_page:  {
           url: path_to_prev_page(@presenter.content_items),
-          title: 'Previous',
-          label: @presenter.prev_label
-        }
+          title: "Previous",
+          label: @presenter.prev_label,
+        },
       )
     end
 
@@ -18,9 +18,9 @@ module PaginationHelper
       result = result.merge(
         next_page: {
           url: path_to_next_page(@presenter.content_items),
-          title: 'Next',
-          label: @presenter.next_label
-        }
+          title: "Next",
+          label: @presenter.next_label,
+        },
       )
     end
     result

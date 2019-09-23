@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Chart", type: :view do
   let(:data) {
@@ -6,19 +6,19 @@ RSpec.describe "Chart", type: :view do
       caption: "Unique page views",
       chart_label: "Page views chart",
       table_label: "Page views table",
-      chart_id: 'pviews_jan_chart',
-      table_id: 'pviews_jan_table',
+      chart_id: "pviews_jan_chart",
+      table_id: "pviews_jan_table",
       keys: (Date.new(2017, 12, 1)..Date.new(2017, 12, 12)).to_a,
       rows: [
         {
           label: "2017",
-          values: [5, nil, nil, 119, 74, 117, 50, 119, 61, 110, 12, 21, 121, 67]
+          values: [5, nil, nil, 119, 74, 117, 50, 119, 61, 110, 12, 21, 121, 67],
         },
         {
           label: "2018",
-          values: [3, 8, 37, 435, 78, 4, 9, 61, 110, 12, 21, 121]
-        }
-      ]
+          values: [3, 8, 37, 435, 78, 4, 9, 61, 110, 12, 21, 121],
+        },
+      ],
     }
   }
 
@@ -45,11 +45,11 @@ RSpec.describe "Chart", type: :view do
 
   it "renders when given valid data" do
     render_component(data)
-    assert_select '.app-c-chart', 1
+    assert_select ".app-c-chart", 1
   end
 
   it "renders the correct table data horizontally" do
-    data[:table_direction] = 'horizontal'
+    data[:table_direction] = "horizontal"
     render_component(data)
     assert_select ".govuk-table__body .govuk-table__header:nth-child(1)", text: "2017"
     assert_select ".govuk-table__cell--numeric", 26
@@ -59,7 +59,7 @@ RSpec.describe "Chart", type: :view do
   end
 
   it "renders the correct table data vertically" do
-    data[:table_direction] = 'vertical'
+    data[:table_direction] = "vertical"
     render_component(data)
     assert_select ".govuk-table__body .govuk-table__header:nth-child(1)", text: "1 Dec 2017"
     assert_select ".govuk-table__cell--numeric", 24
