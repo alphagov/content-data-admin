@@ -1,11 +1,11 @@
-require 'gds_api/base'
+require "gds_api/base"
 
 class GdsApi::ContentDataApi < GdsApi::Base
   def initialize
     super("#{Plek.current.find('content-data-api')}/api/v1",
       disable_cache: true,
       timeout: 60,
-      bearer_token: ENV['CONTENT_DATA_API_BEARER_TOKEN'] || 'example')
+      bearer_token: ENV["CONTENT_DATA_API_BEARER_TOKEN"] || "example")
   end
 
   def aggregated_metrics(base_path:, from:, to:)
@@ -44,7 +44,7 @@ class GdsApi::ContentDataApi < GdsApi::Base
 private
 
   def content_data_api_endpoint
-    Plek.current.find('content-data-api').to_s
+    Plek.current.find("content-data-api").to_s
   end
 
   def aggregated_metrics_url(base_path, from, to)
@@ -63,7 +63,7 @@ private
       search_term: search_term,
       page: page,
       page_size: page_size,
-      sort: sort
+      sort: sort,
     }
     params.reject! { |_, v| v.blank? }
 

@@ -34,10 +34,10 @@ class ChartPresenter
       rows: [
         {
           label: "#{human_friendly_metric} ",
-          values: values
-        }
+          values: values,
+        },
       ],
-      percent_metric: percentage_metric?
+      percent_metric: percentage_metric?,
     }
   end
 

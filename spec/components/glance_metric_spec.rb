@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Glance Metric", type: :view do
   let(:data) {
     {
       name: "Unique pageviews",
       figure: "167",
-      measurement_explicit_label: 'Million',
+      measurement_explicit_label: "Million",
       measurement_display_label: "m",
       context: "This is in your top 10 items",
       trend_percentage: 0.5,
@@ -25,7 +25,7 @@ RSpec.describe "Glance Metric", type: :view do
   it "renders no data if figure is not present" do
     data[:figure] = nil
     render_component(data)
-    assert_select ".app-c-glance-metric__figure", text: 'No data'
+    assert_select ".app-c-glance-metric__figure", text: "No data"
   end
 
   it "does not render if period is not supplied" do
@@ -61,7 +61,7 @@ RSpec.describe "Glance Metric", type: :view do
     assert_select ".app-c-glance-metric__trend--no-change .app-c-glance-metric__trend-text", text: "No change"
   end
 
-  it 'displays no trend direction if no comparison data available' do
+  it "displays no trend direction if no comparison data available" do
     data[:trend_percentage] = nil
     render_component(data)
     assert_select ".app-c-glance-metric__trend-text", count: 0

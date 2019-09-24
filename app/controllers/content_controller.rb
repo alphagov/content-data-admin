@@ -2,9 +2,9 @@ class ContentController < ApplicationController
   include PaginationHelper
   include Concerns::ExportableToCSV
 
-  DEFAULT_ORGANISATION_ID = 'all'.freeze
+  DEFAULT_ORGANISATION_ID = "all".freeze
 
-  layout 'application'
+  layout "application"
   before_action :set_constants, only: [:index]
 
   def set_constants
@@ -29,10 +29,10 @@ private
   def search_params
     @search_params ||= begin
       defaults = {
-        date_range: 'past-30-days',
+        date_range: "past-30-days",
         organisation_id: DEFAULT_ORGANISATION_ID,
-        document_type: '',
-        sort: 'upviews:desc',
+        document_type: "",
+        sort: "upviews:desc",
       }
 
       defaults.merge(
@@ -43,7 +43,7 @@ private
           :page,
           :search_term,
           :sort,
-        ).to_h.symbolize_keys
+        ).to_h.symbolize_keys,
       )
     end
   end

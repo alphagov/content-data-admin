@@ -14,7 +14,7 @@ module TableHeaderHelper
   end
 
   def aria_sort(direction)
-    direction.present? ? direction + 'ending' : 'none'
+    direction.present? ? direction + "ending" : "none"
   end
 
   def sort_param(header_name, direction)
@@ -22,7 +22,7 @@ module TableHeaderHelper
       sort = Sort.new(header_name, direction)
       sort.reverse!
     else
-      sort = Sort.new(header_name, 'desc')
+      sort = Sort.new(header_name, "desc")
       sort.reverse! if REVERSE_DEFAULT_DIRECTION.include?(header_name)
     end
     sort.to_s

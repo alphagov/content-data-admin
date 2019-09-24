@@ -1,11 +1,11 @@
-require 'support/content_data_api'
-require 'support/response_helpers'
+require "support/content_data_api"
+require "support/response_helpers"
 
 module RequestStubs
   include GdsApi::TestHelpers::ContentDataApi
   include GdsApi::TestHelpers::ResponseHelpers
 
-  def stub_metrics_page(base_path:, time_period:, publishing_app: 'whitehall', content_item_missing: false, current_data_missing: false, comparison_data_missing: false, edition_metrics_missing: false, related_content: 0, parent_document_id: nil)
+  def stub_metrics_page(base_path:, time_period:, publishing_app: "whitehall", content_item_missing: false, current_data_missing: false, comparison_data_missing: false, edition_metrics_missing: false, related_content: 0, parent_document_id: nil)
     dates = build(:date_range, time_period)
     prev_dates = dates.previous
 
@@ -38,36 +38,36 @@ module RequestStubs
 
     if content_item_missing
       content_data_api_does_not_have_base_path(
-        base_path: base_path, from: dates.from, to: dates.to
+        base_path: base_path, from: dates.from, to: dates.to,
       )
     else
       content_data_api_has_single_page(
         base_path: base_path,
         from: dates.from,
         to: dates.to,
-        payload: current_period_data
+        payload: current_period_data,
       )
       content_data_api_has_single_page(
         base_path: base_path,
         from: prev_dates.from,
         to: prev_dates.to,
-        payload: previous_period_data
+        payload: previous_period_data,
       )
     end
   end
 
-  def stub_document_children_page(document_id:, time_period: 'past-30-days', sort: 'sibling_order:asc', response: nil)
+  def stub_document_children_page(document_id:, time_period: "past-30-days", sort: "sibling_order:asc", response: nil)
     response = document_children_response if response.nil?
 
     content_data_api_has_document_children(
       document_id: document_id,
       payload: response,
       time_period: time_period,
-      sort: sort
+      sort: sort,
     )
   end
 
-  def stub_content_page(time_period:, organisation_id: nil, document_type: nil, search_terms: nil, sort: 'upviews:desc', items: nil)
+  def stub_content_page(time_period:, organisation_id: nil, document_type: nil, search_terms: nil, sort: "upviews:desc", items: nil)
     content_data_api_has_orgs
     content_data_api_has_document_types
 
@@ -79,11 +79,11 @@ module RequestStubs
       document_type: document_type,
       search_term: search_terms,
       sort: sort,
-      items: items
+      items: items,
     )
   end
 
-  def stub_content_page_csv_download(time_period:, organisation_id: nil, document_type: nil, search_terms: nil, sort: 'upviews:desc', items:)
+  def stub_content_page_csv_download(time_period:, organisation_id: nil, document_type: nil, search_terms: nil, sort: "upviews:desc", items:)
     content_data_api_has_content_items(
       date_range: time_period,
       organisation_id: organisation_id,
@@ -91,7 +91,7 @@ module RequestStubs
       search_term: search_terms,
       items: items,
       sort: sort,
-      page_size: 5000
+      page_size: 5000,
     )
   end
 

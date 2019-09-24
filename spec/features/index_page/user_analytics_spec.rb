@@ -1,27 +1,27 @@
-RSpec.feature 'user analytics' do
+RSpec.feature "user analytics" do
   include RequestStubs
   before do
-    stub_content_page(time_period: 'past-30-days', organisation_id: 'all')
-    visit '/content'
+    stub_content_page(time_period: "past-30-days", organisation_id: "all")
+    visit "/content"
   end
 
-  scenario 'tracks clear all filters button' do
+  scenario "tracks clear all filters button" do
     expect(page).to have_selector('[data-gtm-id="clear-filters"]')
   end
 
-  scenario 'tracks filter form submit' do
+  scenario "tracks filter form submit" do
     expect(page).to have_selector('[data-gtm-id="filters-form"]')
   end
 
-  scenario 'tracks total number of results' do
-    expect(page).to have_selector('[data-gtm-total-results]')
+  scenario "tracks total number of results" do
+    expect(page).to have_selector("[data-gtm-total-results]")
   end
 
-  scenario 'tracks prev and next pagination links' do
+  scenario "tracks prev and next pagination links" do
     expect(page).to have_selector('[data-gtm-id="pagination-links"]')
   end
 
-  scenario 'tracks content item page links' do
+  scenario "tracks content item page links" do
     expect(page).to have_selector('[data-gtm-id="content-item-link"][data-gtm-item-document-type]')
   end
 
@@ -40,15 +40,15 @@ RSpec.feature 'user analytics' do
     end
   end
 
-  scenario 'tracks table header' do
+  scenario "tracks table header" do
     expect(page).to have_selector('[data-gtm-id="table-header"]')
   end
 
-  scenario 'tracks CSV download link' do
+  scenario "tracks CSV download link" do
     expect(page).to have_selector('[data-gtm-id="csv-download-link"]')
   end
 
-  scenario 'tracks time period reveal' do
+  scenario "tracks time period reveal" do
     expect(page).to have_selector('[data-gtm-id="time-period-options"] summary')
   end
 end

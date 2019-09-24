@@ -7,14 +7,14 @@ class Metric
     time_series_metrics.each do |metric|
       metrics[metric[:name]] = {
         'value': metric[:total],
-        'time_series': metric[:time_series]
+        'time_series': metric[:time_series],
       }
     end
 
     edition_metrics.each do |metric|
       metrics[metric[:name]] = {
         'value': metric[:value],
-        'time_series': nil
+        'time_series': nil,
       }
     end
     metrics

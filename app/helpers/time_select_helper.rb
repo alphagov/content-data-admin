@@ -1,6 +1,6 @@
 module TimeSelectHelper
-  METRIC_PAGE_TIME_PERIODS = ['past-30-days', 'last-month', 'past-3-months', 'past-6-months', 'past-year', 'past-2-years'].freeze
-  CONTENT_PAGE_TIME_PERIODS = ['past-30-days', 'last-month', 'past-3-months', 'past-6-months', 'past-year'].freeze
+  METRIC_PAGE_TIME_PERIODS = ["past-30-days", "last-month", "past-3-months", "past-6-months", "past-year", "past-2-years"].freeze
+  CONTENT_PAGE_TIME_PERIODS = ["past-30-days", "last-month", "past-3-months", "past-6-months", "past-year"].freeze
 
   def time_select_options(time_periods)
     time_periods.map do |time_period|

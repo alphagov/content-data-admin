@@ -1,12 +1,12 @@
-require 'gds_api/content_data_api'
-require 'support/response_helpers'
+require "gds_api/content_data_api"
+require "support/response_helpers"
 
 module GdsApi
   module TestHelpers
     module ContentDataApi
       include ResponseHelpers
 
-      CONTENT_DATA_API_ENDPOINT = Plek.current.find('content-data-api')
+      CONTENT_DATA_API_ENDPOINT = Plek.current.find("content-data-api")
 
       def content_data_api_has_orgs
         url = "#{CONTENT_DATA_API_ENDPOINT}/api/v1/organisations"
@@ -24,10 +24,10 @@ module GdsApi
         url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}"
         stub_request(:get, url)
           .with(query: { from: from, to: to })
-          .to_return(status: 404, body: { some: 'error' }.to_json)
+          .to_return(status: 404, body: { some: "error" }.to_json)
       end
 
-      def content_data_api_has_single_page(base_path:, from:, to:, payload: nil, publishing_app: 'whitehall')
+      def content_data_api_has_single_page(base_path:, from:, to:, payload: nil, publishing_app: "whitehall")
         url = "#{CONTENT_DATA_API_ENDPOINT}/single_page/#{base_path}"
         body = payload || single_page_response(base_path, from, to, publishing_app)
         stub_request(:get, url)
@@ -35,7 +35,7 @@ module GdsApi
           .to_return(status: 200, body: body.to_json)
       end
 
-      def content_data_api_has_document_children(document_id:, payload:, time_period: 'past-30-days', sort: 'sibling_order:asc')
+      def content_data_api_has_document_children(document_id:, payload:, time_period: "past-30-days", sort: "sibling_order:asc")
         url = "#{CONTENT_DATA_API_ENDPOINT}/api/v1/documents/#{document_id}/children"
         body = payload
         stub_request(:get, url)
@@ -50,7 +50,7 @@ module GdsApi
           document_type: document_type,
           search_term: search_term,
           page_size: page_size,
-          sort: sort
+          sort: sort,
         }.reject { |_, v| v.blank? }
 
         url = "#{CONTENT_DATA_API_ENDPOINT}/content"
@@ -58,7 +58,7 @@ module GdsApi
         if items.empty?
           stub_request(:get, url).with(query: params).to_return(
             status: 200,
-            body: { results: [], total_results: 0, total_pages: 0, page: 1 }.to_json
+            body: { results: [], total_results: 0, total_pages: 0, page: 1 }.to_json,
           )
         else
           page_size ||= 100
@@ -69,7 +69,7 @@ module GdsApi
               results: items_for_page,
               total_results: items.length,
               total_pages: total_pages,
-              page: page
+              page: page,
             }.to_json
 
 

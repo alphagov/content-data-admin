@@ -19,7 +19,7 @@ class FilterPresenter
   end
 
   def document_type
-    find_selected_document_type || ['', '']
+    find_selected_document_type || ["", ""]
   end
 
   def document_type_id
@@ -32,14 +32,14 @@ class FilterPresenter
 
   def selected_document_type(params)
     if params[:submitted].blank?
-      ['', '']
+      ["", ""]
     else
       document_type
     end
   end
 
   def organisation
-    find_selected_org || ['', 'all']
+    find_selected_org || ["", "all"]
   end
 
   def organisation_name
@@ -57,7 +57,7 @@ class FilterPresenter
 
   def selected_organisation(params)
     if params[:submitted].blank?
-      ['', '']
+      ["", ""]
     else
       organisation
     end
@@ -89,25 +89,25 @@ class FilterPresenter
 private
 
   def find_selected_org
-    organisation_options.find { |o| o[1] == @search_parameters[:organisation_id] } || ['All organisations', 'all']
+    organisation_options.find { |o| o[1] == @search_parameters[:organisation_id] } || ["All organisations", "all"]
   end
 
   def find_selected_document_type
-    document_type_options.find { |d| d[1] == @search_parameters[:document_type] } || ['All document types', 'all']
+    document_type_options.find { |d| d[1] == @search_parameters[:document_type] } || ["All document types", "all"]
   end
 
   def additional_document_type_options
     [
-      ['', 'all'],
-      ['All document types', 'all']
+      ["", "all"],
+      ["All document types", "all"],
     ]
   end
 
   def additional_organisation_options
     [
-      ['', 'all'],
-      ['All organisations', 'all'],
-      ['No primary organisation', 'none']
+      ["", "all"],
+      ["All organisations", "all"],
+      ["No primary organisation", "none"],
     ]
   end
 end

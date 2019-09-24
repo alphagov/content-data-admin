@@ -1,27 +1,27 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Time Select", type: :view do
   let(:data) {
     {
     render_button: true,
-    current_selection: 'last-30-days',
+    current_selection: "last-30-days",
       dates: [
         {
           value: "last-30-days",
           text: "Past 30 Days",
-          hint_text:  "19 August 2018 to 18 September 2018"
+          hint_text:  "19 August 2018 to 18 September 2018",
         },
         {
           value: "last-month",
           text: "Last month",
-          hint_text: "1 August 2018 to 31 August 2018"
+          hint_text: "1 August 2018 to 31 August 2018",
         },
         {
           value: "last-3-months",
           text: "Past 3 months",
-          hint_text: "18 June 2018 to 18 September 2018"
-        }
-      ]
+          hint_text: "18 June 2018 to 18 September 2018",
+        },
+      ],
     }
   }
 

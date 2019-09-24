@@ -1,11 +1,11 @@
-require 'fog/aws'
+require "fog/aws"
 
 class CsvExportWorker
   include FileStorage
   include Sidekiq::Worker
 
   sidekiq_options retry: 0
-  sidekiq_options queue: 'export_csv'
+  sidekiq_options queue: "export_csv"
 
   def perform(search_params, recipient_address, start_time)
     search_params = search_params.symbolize_keys
@@ -19,7 +19,7 @@ class CsvExportWorker
     # Send email with link
     ContentCsvMailer.content_csv_email(recipient_address, file_url).deliver_now
     elapsed_time_seconds = (Time.zone.now - Time.zone.parse(start_time)).truncate
-    GovukStatsd.timing('monitor.csv.download.ms', elapsed_time_seconds * 1000)
+    GovukStatsd.timing("monitor.csv.download.ms", elapsed_time_seconds * 1000)
   end
 
   def build_csv_presenter(search_params)
@@ -31,7 +31,7 @@ class CsvExportWorker
       content_items,
       search_params,
       document_types,
-      organisations
+      organisations,
     )
   end
 end
