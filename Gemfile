@@ -29,10 +29,11 @@ group :development, :test do
   gem "byebug"
   gem "capybara"
   gem "factory_bot_rails"
-  gem "govuk-lint"
   gem "govuk_test"
   gem 'pry'
   gem "rspec-rails"
+  gem "rubocop-govuk", "~> 1"
+  gem "scss_lint-govuk", "~> 0"
   gem "spring-commands-rspec"
   gem "webmock"
 end

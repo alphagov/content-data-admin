@@ -123,11 +123,6 @@ GEM
       warden-oauth2 (~> 0.0.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    govuk-lint (4.2.0)
-      rubocop (~> 0.76)
-      rubocop-rails (~> 2)
-      rubocop-rspec (~> 1.28)
-      scss_lint
     govuk_app_config (2.0.1)
       logstasher (>= 1.2.2, < 1.4.0)
       sentry-raven (>= 2.7.1, < 2.12.0)
@@ -313,6 +308,10 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-govuk (1.0.0)
+      rubocop (~> 0.76)
+      rubocop-rails (~> 2)
+      rubocop-rspec (~> 1.28)
     rubocop-rails (2.3.2)
       rack (>= 1.1)
       rubocop (>= 0.72.0)
@@ -337,6 +336,8 @@ GEM
       tilt
     scss_lint (0.59.0)
       sass (~> 3.5, >= 3.5.5)
+    scss_lint-govuk (0.2.0)
+      scss_lint
     selenium-webdriver (3.142.6)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -417,7 +418,6 @@ DEPENDENCIES
   fog-aws
   gds-api-adapters
   gds-sso
-  govuk-lint
   govuk_app_config
   govuk_publishing_components
   govuk_sidekiq
@@ -429,6 +429,8 @@ DEPENDENCIES
   pry
   rails (~> 5.2)
   rspec-rails
+  rubocop-govuk (~> 1)
+  scss_lint-govuk (~> 0)
   simplecov
   spring-commands-rspec
   timecop
