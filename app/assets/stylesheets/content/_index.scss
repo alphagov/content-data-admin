@@ -21,6 +21,12 @@
     color: $govuk-tertiary-text-colour;
   }
 
+  .ga-data-notice-column {
+    @include govuk-responsive-padding(4, "top");
+    @include govuk-responsive-padding(7, "left");
+    @include govuk-responsive-padding(7, "right");
+  }
+
   .filter-form {
     @include govuk-responsive-padding(6, "left");
 

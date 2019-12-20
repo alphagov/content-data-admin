@@ -1,0 +1,10 @@
+.govuk-inset-text {
+  margin-top: 0;
+  background-color: govuk-colour("grey-4");
+
+  @include govuk-media-query($from: desktop) {
+    .govuk-body {
+      max-width: 34em;
+    }
+  }
+}
