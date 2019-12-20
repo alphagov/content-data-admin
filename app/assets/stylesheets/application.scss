@@ -15,6 +15,7 @@ $govuk-global-styles: true;
 
 // local components
 @import "components/chart";
+@import "components/ga_data_notice";
 @import "components/glance-metric";
 @import "components/info-metric";
 @import "components/metadata";
