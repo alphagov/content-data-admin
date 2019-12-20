@@ -7,6 +7,7 @@
 <% end %>
 <% current_selection = @performance_data.date_range.time_period || 'past-30-days' %>
 
+<%= render(partial: 'components/ga_data_notice') %>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl" data-gtm-id="page-kicker"><%= t ".page_kicker" %></span>
