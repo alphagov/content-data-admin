@@ -1,6 +1,9 @@
-.govuk-inset-text {
+$ga-data-notice-border-colour: #626a6e;
+
+.ga-data-notice {
   margin-top: 0;
-  background-color: govuk-colour("grey-4");
+  background-color: $govuk-grey-background-colour;
+  border-left: 5px solid $ga-data-notice-border-colour;
 
   @include govuk-media-query($from: desktop) {
     .govuk-body {
