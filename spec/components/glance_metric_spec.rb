@@ -40,8 +40,6 @@ RSpec.describe "Glance Metric", type: :view do
     assert_select ".app-c-glance-metric__figure", text: "167m"
     assert_select ".app-c-glance-metric__measurement[aria-label=Million]"
     assert_select ".app-c-glance-metric__context", text: "This is in your top 10 items"
-    assert_select ".app-c-glance-metric__trend", text: "+0.50%"
-    assert_select ".app-c-glance-metric__period", text: "Apr 2018 to Mar 2018"
   end
 
   it "does not show an aria label if no explicit measurement label is provided" do
@@ -50,7 +48,7 @@ RSpec.describe "Glance Metric", type: :view do
     assert_select ".app-c-glance-metric__measurement[aria-label=million]", 0
   end
 
-  it "displays the correct trend direction" do
+  pending "displays the correct trend direction" do
     render_component(data)
     assert_select ".app-c-glance-metric__trend--up .app-c-glance-metric__trend-text", text: "Upward trend"
     data[:trend_percentage] = -2

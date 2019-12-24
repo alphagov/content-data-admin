@@ -22,31 +22,5 @@
       <% end %>
     </span>
     <p class="app-c-glance-metric__context govuk-body-xs"><%= context %></p>
-    <span class="app-c-glance-metric__trend">
-      <% if trend_percentage.blank? %>
-        no comparison data
-      <% else %>
-        <% if trend_percentage > 0 %>+<% end %><%= number_to_percentage(trend_percentage, precision: 2, delimiter: ',') %>
-      <% end %>
-    </span>
-    <% unless trend_percentage.blank? %>
-      <% if trend_percentage > 0 %>
-        <span class="app-c-glance-metric__trend--up">
-          <span aria-hidden="true" class="app-c-glance-metric__trend-icon">&#9650;</span>
-          <span class="app-c-glance-metric__trend-text">Upward trend</span>
-        <span>
-      <% elsif trend_percentage < 0 %>
-        <span class="app-c-glance-metric__trend--down">
-          <span aria-hidden="true" class="app-c-glance-metric__trend-icon">&#9660;</span>
-          <span class="app-c-glance-metric__trend-text">Downward trend</span>
-        <span>
-      <% else %>
-        <span class="app-c-glance-metric__trend--no-change">
-          <span aria-hidden="true" class="app-c-glance-metric__trend-icon">&#9679;</span>
-          <span class="app-c-glance-metric__trend-text">No change</span>
-        <span>
-      <% end %>
-    <% end %>
-    <p class="app-c-glance-metric__period govuk-body-xs"><%= period %></p>
   </div>
 <% end %>

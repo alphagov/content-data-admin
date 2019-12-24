@@ -4,11 +4,7 @@
 .app-c-glance-metric {
   @include govuk-responsive-margin(6, "bottom");
   border-top: 1px solid $govuk-border-colour;
-  border-bottom: 1px solid $govuk-border-colour;
-
-  @include media(mobile) {
-    border-bottom: 0;
-  }
+  border-bottom: 0;
 }
 
 .app-c-glance-metric__heading {
