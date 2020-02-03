@@ -420,7 +420,6 @@ DEPENDENCIES
   govuk_sidekiq
   govuk_test
   kaminari
-  logstasher
   pg (~> 1)
   plek
   pry
