@@ -31,7 +31,7 @@ group :development, :test do
   gem "govuk_test"
   gem 'pry'
   gem "rspec-rails"
-  gem "rubocop-govuk", "~> 2"
+  gem "rubocop-govuk", "~> 3"
   gem "scss_lint-govuk", "~> 0"
   gem "spring-commands-rspec"
   gem "webmock"
