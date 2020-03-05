@@ -184,4 +184,33 @@ RSpec.describe DateRange do
       it { is_expected.to have_attributes(time_period: "past-2-years") }
     end
   end
+
+  describe "for a specific month and year" do
+    let(:time_period) { "november-2019" }
+
+    describe "relative to the specified month and year" do
+      subject { DateRange.new(time_period) }
+
+      it { is_expected.to have_attributes(to: Date.new(2019, 11, 30)) }
+      it { is_expected.to have_attributes(from: Date.new(2019, 11, 1)) }
+      it { is_expected.to have_attributes(time_period: "november-2019") }
+    end
+
+    describe "#previous" do
+      subject { DateRange.new(time_period).previous }
+
+      it { is_expected.to be_an_instance_of(DateRange) }
+      it { is_expected.to have_attributes(to: Date.new(2019, 10, 31)) }
+      it { is_expected.to have_attributes(from: Date.new(2019, 10, 1)) }
+      it { is_expected.to have_attributes(time_period: "october-2019") }
+    end
+
+    describe "when an invalid month is specified" do
+      subject { DateRange.new("september-1885") }
+
+      it { is_expected.to have_attributes(to: Date.new(2018, 12, 24)) }
+      it { is_expected.to have_attributes(from: Date.new(2018, 11, 25)) }
+      it { is_expected.to have_attributes(time_period: "past-30-days") }
+    end
+  end
 end
