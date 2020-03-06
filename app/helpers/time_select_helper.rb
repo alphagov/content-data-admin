@@ -15,4 +15,19 @@ module TimeSelectHelper
       }
     end
   end
+
+  def custom_months
+    years = (2018..Time.zone.today.year).to_a.freeze
+    months = Date::MONTHNAMES.compact
+
+    years.flat_map do |year|
+      months.map do |month|
+        "#{month.downcase}-#{year}"
+      end
+    end
+  end
+
+  def custom_month_selected(time_period)
+    custom_months.include?(time_period)
+  end
 end

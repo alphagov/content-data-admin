@@ -45,5 +45,15 @@ RSpec.describe TimeSelectHelper do
         ])
       end
     end
+
+    describe "#custom_month_selected" do
+      it "returns true for a valid custom month" do
+        expect(custom_month_selected("november-2018")).to eq(true)
+      end
+
+      it "returns false for a non custom month" do
+        expect(custom_month_selected("past-2-years")).to eq(false)
+      end
+    end
   end
 end

@@ -52,6 +52,7 @@
   <%= render "components/time-select", {
     render_button: true,
     current_selection: current_selection,
+    custom_month_selected: custom_month_selected(current_selection),
     dates: time_select_options(TimeSelectHelper::METRIC_PAGE_TIME_PERIODS)
   } %>
 <% end %>
@@ -86,7 +87,8 @@
         metric_name: 'upviews',
         total: @performance_data.total_upviews,
         short_context: nil,
-        external_link: nil %>
+        external_link: nil,
+        custom_month_selected: custom_month_selected(current_selection) %>
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
@@ -94,7 +96,8 @@
         metric_name: 'pviews',
         total: @performance_data.total_pviews,
         short_context: nil,
-        external_link: nil %>
+        external_link: nil,
+        custom_month_selected: custom_month_selected(current_selection) %>
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
@@ -102,6 +105,7 @@
       <%= render 'metric_header', {
         metric_name: 'pageviews_per_visit',
         value: @performance_data.pageviews_per_visit,
+        custom_month_selected: custom_month_selected(current_selection),
         show_trend: false,
         short_context: nil
       }%>
@@ -113,7 +117,8 @@
         metric_name: 'searches',
         total: @performance_data.total_searches,
         short_context: nil,
-        external_link: @performance_data.search_terms_href %>
+        external_link: @performance_data.search_terms_href,
+        custom_month_selected: custom_month_selected(current_selection) %>
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
@@ -123,7 +128,8 @@
         metric_name: 'feedex',
         total: @performance_data.total_feedex,
         short_context: nil ,
-        external_link: @performance_data.feedback_explorer_href %>
+        external_link: @performance_data.feedback_explorer_href,
+        custom_month_selected: custom_month_selected(current_selection) %>
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
@@ -132,7 +138,8 @@
           metric_name: 'satisfaction',
           value: @performance_data.total_satisfaction,
           show_trend: true,
-          short_context: @performance_data.satisfaction_short_context
+          short_context: @performance_data.satisfaction_short_context,
+          custom_month_selected: custom_month_selected(current_selection)
       }%>
     </div>
   </div>
