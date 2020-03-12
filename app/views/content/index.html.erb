@@ -27,6 +27,7 @@
             current_selection: @presenter.time_period,
             compact: true,
             base_path: "/",
+            custom_month_selected: custom_month_selected(@presenter.time_period),
             dates: time_select_options(TimeSelectHelper::CONTENT_PAGE_TIME_PERIODS)
           } %>
 

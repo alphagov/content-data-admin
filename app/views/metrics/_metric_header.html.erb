@@ -1,6 +1,7 @@
 <%
   show_trend ||= false
   short_context ||= false
+  custom_month_selected ||= false
   if defined?(context_value)
     context = t("metrics.#{metric_name}.summary", context_value)
   else
@@ -18,10 +19,17 @@
   }
 
   if show_trend
-    options.update({
-      trend_percentage: @performance_data.trend_percentage(metric_name),
-      period: t("metrics.show.time_periods.#{time_period}.reference")
-    })
+    if custom_month_selected
+      options.update({
+        trend_percentage: @performance_data.trend_percentage(metric_name),
+        period: t("metrics.show.time_periods.custom-month.reference")
+      })
+    else
+      options.update({
+        trend_percentage: @performance_data.trend_percentage(metric_name),
+        period: t("metrics.show.time_periods.#{time_period}.reference")
+      })
+    end
   end
 
   if short_context

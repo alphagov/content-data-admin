@@ -36,3 +36,6 @@ en:
         past-2-years:
           leading: 'past 2 years'
           reference: 'from previous 2 years'
+        custom-month:
+          leading: 'custom month selection'
+          reference: 'from specified month'

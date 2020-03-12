@@ -65,6 +65,12 @@ RSpec.describe "Time Select", type: :view do
     assert_select ".gem-c-button.govuk-button"
   end
 
+  it "renders custom month text if custom month specified" do
+    data[:custom_month_selected] = true
+    render_component(data)
+    assert_select ".app-c-time-select__heading", text: "Showing data from custom month selection"
+  end
+
   def render_component(locals)
     render partial: "components/time-select", locals: locals
   end

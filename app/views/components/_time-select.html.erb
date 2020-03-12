@@ -4,22 +4,32 @@
   render_button ||= false
   submit_button_text = t ".submit_button"
   compact ||= false
+  custom_month_selected ||= false
 
   if dates.length > 1
     dates.each {|d| d[:bold] = "true"}
+
+    if current_selection
+      if custom_month_selected
+        translation = I18n.t("metrics.show.time_periods.custom-month.leading")
+      else
+        translation = dates.find {|d| d[:value] == current_selection }[:text]
+      end
+    end
   end
 
   selectable = dates.find {|d| d[:value] == current_selection}
   if selectable
     selectable[:checked] = true
   end
+
 %>
 <% if dates.length > 1 && current_selection %>
   <div class="app-c-time-select <% if compact %> app-c-time-select--compact<% end %>" data-gtm-id="time-period-options">
     <%if compact %>
-      <h2 class="govuk-heading-s app-c-time-select__heading"><%= t '.title_compact', time_period: dates.find {|d| d[:value] == current_selection }[:text] %></h2>
+      <h2 class="govuk-heading-s app-c-time-select__heading"><%= t '.title_compact', time_period: translation  %></h2>
     <% else %>
-      <h2 class="govuk-heading-l app-c-time-select__heading"><%= t '.title', time_period: dates.find {|d| d[:value] == current_selection }[:text] %></h2>
+      <h2 class="govuk-heading-l app-c-time-select__heading"><%= t '.title', time_period: translation %></h2>
     <% end %>
     <%= render "govuk_publishing_components/components/details", {
       title: t('.change_dropdown')
