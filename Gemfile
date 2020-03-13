@@ -29,7 +29,7 @@ group :development, :test do
   gem "capybara"
   gem "factory_bot_rails"
   gem "govuk_test"
-  gem 'pry'
+  gem "pry"
   gem "rspec-rails"
   gem "rubocop-govuk", "~> 3"
   gem "scss_lint-govuk", "~> 0"
