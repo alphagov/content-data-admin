@@ -4,7 +4,7 @@ RSpec.describe ContentCsvMailer, type: :mailer do
 
     it "renders the headers" do
       expect(mail.subject).to eq("Your GOV.UK Content Data export")
-      expect(mail.from).to eq(["no-reply-content-data@digital.cabinet-office.gov.uk"])
+      expect(mail.from).to eq(["no-reply+content-data@digital.cabinet-office.gov.uk"])
       expect(mail.to).to eq(["to@example.org"])
     end
 
