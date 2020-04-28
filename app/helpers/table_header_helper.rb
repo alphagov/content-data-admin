@@ -8,7 +8,6 @@ module TableHeaderHelper
   REVERSE_DEFAULT_DIRECTION = %w(title document_type sibling_order).freeze
   HEADERS_WITH_HELP_ICON = %w(upviews satisfaction searches).freeze
 
-
   def include_help_icon?(header_name)
     HEADERS_WITH_HELP_ICON.include?(header_name)
   end
