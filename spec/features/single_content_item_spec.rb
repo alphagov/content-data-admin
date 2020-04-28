@@ -187,7 +187,6 @@ RSpec.describe "/metrics/base/path", type: :feature do
         expect(page).to have_selector(".content-metric__reading-time .govuk-summary-list__key", text: label)
       end
 
-
       it "renders the page title" do
         expect(page).to have_selector "h1.govuk-heading-xl", text: "Content Title"
       end

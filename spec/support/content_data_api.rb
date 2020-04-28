@@ -72,7 +72,6 @@ module GdsApi
               page: page,
             }.to_json
 
-
             if page == 1
               # In addition, the 1st page can be requested without specifying a page number
               stub_request(:get, url)

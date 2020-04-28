@@ -28,7 +28,6 @@ RSpec.describe "Info Metric", type: :view do
     assert_select ".app-c-info-metric__figure", text: "No data"
   end
 
-
   it "renders correctly when given valid data" do
     render_component(data)
     assert_select ".app-c-info-metric"
