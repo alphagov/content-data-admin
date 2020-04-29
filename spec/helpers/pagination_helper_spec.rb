@@ -20,8 +20,8 @@ RSpec.describe PaginationHelper do
     let(:presenter) { ContentItemsPresenter.new(search_results, search_parameters) }
     it "only returns the `Next` link" do
       expect(navigation_links).to eq(next_page: { url: "/content?organisation_id=org-1&page=2",
-                                                                  title: "Next",
-                                                                  label: "2 of 3" })
+                                                  title: "Next",
+                                                  label: "2 of 3" })
     end
   end
 
@@ -30,8 +30,8 @@ RSpec.describe PaginationHelper do
 
     it "only returns the `Previous` link" do
       expect(navigation_links).to eq(previous_page: { url: "/content?organisation_id=org-1&page=2",
-                                                  title: "Previous",
-                                                  label: "2 of 3" })
+                                                      title: "Previous",
+                                                      label: "2 of 3" })
     end
   end
 

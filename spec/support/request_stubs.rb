@@ -71,7 +71,7 @@ module RequestStubs
     content_data_api_has_orgs
     content_data_api_has_document_types
 
-    items = content_response[:results] unless items != nil
+    items = content_response[:results] if items.nil?
 
     content_data_api_has_content_items(
       date_range: time_period,

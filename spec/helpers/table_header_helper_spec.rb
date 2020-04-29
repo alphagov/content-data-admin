@@ -1,6 +1,6 @@
 RSpec.describe TableHeaderHelper do
   describe "#include_help_icon?" do
-    help_icon_headers = %w(upviews satisfaction searches)
+    help_icon_headers = %w[upviews satisfaction searches]
 
     help_icon_headers.each do |header_name|
       it "returns true with #{header_name} header" do
@@ -39,7 +39,7 @@ RSpec.describe TableHeaderHelper do
     end
 
     context "on unsorted column" do
-      default_desc_headers = %w(upviews satisfaction searches)
+      default_desc_headers = %w[upviews satisfaction searches]
 
       default_desc_headers.each do |header|
         it "defaults to desc with #{header} header" do
@@ -47,7 +47,7 @@ RSpec.describe TableHeaderHelper do
         end
       end
 
-      default_asc_headers = %w(title document_type)
+      default_asc_headers = %w[title document_type]
 
       default_asc_headers.each do |header|
         it "defaults to asc with #{header} header" do

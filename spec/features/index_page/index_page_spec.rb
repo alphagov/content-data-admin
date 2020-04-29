@@ -7,7 +7,7 @@ RSpec.describe "/content" do
       {
         base_path: "/",
         title: "GOV.UK homepage",
-  organisation_id: "org-id",
+        organisation_id: "org-id",
         upviews: 1_233_018,
         document_type: "homepage",
         satisfaction: 0.85,
@@ -19,7 +19,7 @@ RSpec.describe "/content" do
       {
         base_path: "/path/1",
         title: "The title",
-  organisation_id: "org-id",
+        organisation_id: "org-id",
         upviews: 233_018,
         document_type: "news_story",
         satisfaction: 0.813,
@@ -31,7 +31,7 @@ RSpec.describe "/content" do
       {
         base_path: "/path/2",
         title: "Another title",
-  organisation_id: "org-id",
+        organisation_id: "org-id",
         upviews: 100_018,
         document_type: "guide",
         satisfaction: 0.68,
