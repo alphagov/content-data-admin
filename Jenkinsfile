@@ -4,7 +4,7 @@ library("govuk")
 
 node("postgresql-9.3") {
   govuk.buildProject(
-    rubyLintDiff: false,
+    rubyLintDirs: "",
     beforeTest: {
       govuk.setEnvar("TEST_COVERAGE", "true")
     }
