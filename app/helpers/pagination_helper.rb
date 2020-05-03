@@ -6,7 +6,7 @@ module PaginationHelper
     result = {}
     if @presenter.prev_link?
       result = result.merge(
-        previous_page:  {
+        previous_page: {
           url: path_to_prev_page(@presenter.content_items),
           title: "Previous",
           label: @presenter.prev_label,

@@ -60,8 +60,8 @@ RSpec.describe CsvExportWorker do
   end
 
   let(:start_time) { Time.zone.local(2019, 4, 12, 14, 0, 0).to_s }
-  #The start time has been converted to a string
-  #by the time the Sidekiq worker receives it
+  # The start time has been converted to a string
+  # by the time the Sidekiq worker receives it
   let(:completed_time) { Time.zone.local(2019, 4, 12, 14, 0, 25) }
 
   before do

@@ -3,7 +3,7 @@ class DateRange
   attr_accessor :time_period
 
   def initialize(time_period, relative_date = nil)
-    relative_date = relative_date || Time.zone.yesterday
+    relative_date ||= Time.zone.yesterday
     @time_period = time_period
     @to = date_to_range(relative_date, time_period)[:to]
     @from = date_to_range(relative_date, time_period)[:from]

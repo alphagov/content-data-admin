@@ -24,10 +24,10 @@ RSpec.describe ExternalLinksHelper do
       it "generates a link to the content-publisher app" do
         expect(
           edit_url_for(content_id: "content_id",
-            publishing_app: "content-publisher",
-            base_path: "/anything",
-            document_type: "news_story",
-            locale: "fr"),
+                       publishing_app: "content-publisher",
+                       base_path: "/anything",
+                       document_type: "news_story",
+                       locale: "fr"),
         ).to eq(
           "#{external_url_for('content-publisher')}/documents/content_id:fr",
         )
@@ -163,7 +163,7 @@ RSpec.describe ExternalLinksHelper do
         ).to eq(I18n.t(
                   "metrics.show.navigation.edit_link",
                   publishing_app: "Content Publisher",
-        ))
+                ))
       end
     end
   end
@@ -177,7 +177,7 @@ RSpec.describe ExternalLinksHelper do
                from: Date.new(2018, 11, 25),
                to: Date.new(2018, 12, 24),
                base_path: "/the/base/path",
-      )).to eq(expected_link)
+             )).to eq(expected_link)
     end
 
     it "adds document type of homepage when when the page concerned is the homepage" do
@@ -188,7 +188,7 @@ RSpec.describe ExternalLinksHelper do
                from: Date.new(2018, 11, 25),
                to: Date.new(2018, 12, 24),
                base_path: "/",
-      )).to eq(expected_link)
+             )).to eq(expected_link)
     end
   end
 
@@ -200,7 +200,7 @@ RSpec.describe ExternalLinksHelper do
                from: Date.new(2018, 11, 25),
                to: Date.new(2018, 12, 24),
                base_path: "/the/base/path",
-      )).to eq(expected_link)
+             )).to eq(expected_link)
     end
   end
 end

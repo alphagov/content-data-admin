@@ -19,7 +19,7 @@ private
   end
 
   def format_header(title, document_type)
-    if %w(guide travel_advice).include?(document_type) && title.include?(":")
+    if %w[guide travel_advice].include?(document_type) && title.include?(":")
       title[0...title.rindex(":")]
     else
       title

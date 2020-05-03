@@ -25,7 +25,7 @@ RSpec.feature "user analytics" do
     expect(page).to have_selector('[data-gtm-id="content-item-link"][data-gtm-item-document-type]')
   end
 
-  help_icon_columns = %w(upviews satisfaction searches)
+  help_icon_columns = %w[upviews satisfaction searches]
 
   help_icon_columns.each do |column|
     scenario "tracks help icon for #{column} in table headers" do
@@ -33,7 +33,7 @@ RSpec.feature "user analytics" do
     end
   end
 
-  sortable_columns = %w(document_type upviews satisfaction searches)
+  sortable_columns = %w[document_type upviews satisfaction searches]
   sortable_columns.each do |column|
     scenario "tracks sort link for #{column}" do
       expect(page).to have_selector("[data-gtm-id=\"#{column}-column\"] [data-gtm-id=\"sort-link\"]")

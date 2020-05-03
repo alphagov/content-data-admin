@@ -71,7 +71,7 @@ RSpec.describe DocumentChildrenPresenter do
 
   describe "#content_items" do
     it "return parent followed by children" do
-      expect(subject.content_items).to eq(%w(Parent Child1 Child2))
+      expect(subject.content_items).to eq(%w[Parent Child1 Child2])
     end
   end
 end

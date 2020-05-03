@@ -32,7 +32,7 @@ RSpec.describe FilterPresenter do
         ["", "all"],
         ["All document types", "all"],
         ["Case study", "case_study"],
-        %w(Guide guide),
+        %w[Guide guide],
         ["News story", "news_story"],
         ["HTML publication", "html_publication"],
       ])

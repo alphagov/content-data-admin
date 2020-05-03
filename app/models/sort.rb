@@ -4,7 +4,7 @@ class Sort
   attr_reader :key, :direction
 
   validates :key, presence: true
-  validates :direction, inclusion: { in: %w(asc desc) }
+  validates :direction, inclusion: { in: %w[asc desc] }
 
   def initialize(key, direction)
     @key = key

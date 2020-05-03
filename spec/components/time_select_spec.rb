@@ -5,11 +5,11 @@ RSpec.describe "Time Select", type: :view do
     {
     render_button: true,
     current_selection: "last-30-days",
-      dates: [
+    dates: [
         {
           value: "last-30-days",
           text: "Past 30 Days",
-          hint_text:  "19 August 2018 to 18 September 2018",
+          hint_text: "19 August 2018 to 18 September 2018",
         },
         {
           value: "last-month",
