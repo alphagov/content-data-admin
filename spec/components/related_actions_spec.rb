@@ -3,24 +3,24 @@ require "rails_helper"
 RSpec.describe "Related actions", type: :view do
   let(:data) {
     {
-        external_links: [
-          {
-            link_url: "//www.gov.uk/govpage",
-            label: "View on GOV.UK",
-          },
-          {
-            link_url: "//www.gov.uk/moregov",
-            label: "Edit in Whitehall",
-          },
-        ],
-        local_links: [
-          {
-            link_url: "../compare",
-            label: "See all 5 chapters",
-            gtm_id: "compare-link",
-          },
-        ],
-      }
+      external_links: [
+        {
+          link_url: "//www.gov.uk/govpage",
+          label: "View on GOV.UK",
+        },
+        {
+          link_url: "//www.gov.uk/moregov",
+          label: "Edit in Whitehall",
+        },
+      ],
+      local_links: [
+        {
+          link_url: "../compare",
+          label: "See all 5 chapters",
+          gtm_id: "compare-link",
+        },
+      ],
+    }
   }
 
   it "does not render when no data is passed" do

@@ -55,10 +55,10 @@ RSpec.describe "/metrics/base/path", type: :feature do
           el.all("th,td").map(&:text)
         end
         expect(metadata).to eq([
-                                [I18n.t("components.metadata.labels.publishing_organisation"), "The Ministry"],
-                                [I18n.t("components.metadata.labels.document_type"), "News story"],
-                                [I18n.t("components.metadata.labels.base_path"), "gov.uk/base/path"],
-                               ])
+          [I18n.t("components.metadata.labels.publishing_organisation"), "The Ministry"],
+          [I18n.t("components.metadata.labels.document_type"), "News story"],
+          [I18n.t("components.metadata.labels.base_path"), "gov.uk/base/path"],
+        ])
       end
     end
 
