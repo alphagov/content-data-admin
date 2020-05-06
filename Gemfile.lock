@@ -229,7 +229,7 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     parallel (1.19.1)
-    parser (2.7.1.1)
+    parser (2.7.1.2)
       ast (~> 2.4.0)
     pg (1.2.3)
     plek (3.0.0)
@@ -314,7 +314,7 @@ GEM
       rexml
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-govuk (3.7.0)
+    rubocop-govuk (3.8.0)
       rubocop (= 0.82.0)
       rubocop-rails (~> 2)
       rubocop-rake (~> 0.5.1)
@@ -325,7 +325,7 @@ GEM
       rubocop (>= 0.72.0)
     rubocop-rake (0.5.1)
       rubocop
-    rubocop-rspec (1.38.1)
+    rubocop-rspec (1.39.0)
       rubocop (>= 0.68.1)
     ruby-progressbar (1.10.1)
     rubyzip (2.0.0)

@@ -3,9 +3,9 @@ require "rails_helper"
 RSpec.describe "Time Select", type: :view do
   let(:data) {
     {
-    render_button: true,
-    current_selection: "last-30-days",
-    dates: [
+      render_button: true,
+      current_selection: "last-30-days",
+      dates: [
         {
           value: "last-30-days",
           text: "Past 30 Days",

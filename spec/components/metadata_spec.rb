@@ -3,10 +3,10 @@ require "rails_helper"
 RSpec.describe "Metadata", type: :view do
   let(:data) {
     {
-        status: "withdrawn",
-        publishing_organisation: "UK Visas and Immigration",
-        document_type: "Guidance",
-        base_path: "/government/publications/visitor-visa-guide-to-supporting-documents",
+      status: "withdrawn",
+      publishing_organisation: "UK Visas and Immigration",
+      document_type: "Guidance",
+      base_path: "/government/publications/visitor-visa-guide-to-supporting-documents",
     }
   }
 
