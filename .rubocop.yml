@@ -6,17 +6,3 @@ inherit_gem:
 inherit_mode:
   merge:
     - Exclude
-
-AllCops:
-  TargetRubyVersion: 2.6
-Metrics/BlockLength:
-  Exclude:
-    - "Rakefile"
-    - "**/*.rake"
-    - "spec/**/*.rb"
-    - "config/routes.rb"
-    - "config/environments/*.rb"
-
-Rails/HelperInstanceVariable:
-  Exclude:
-    - "app/helpers/pagination_helper.rb"
