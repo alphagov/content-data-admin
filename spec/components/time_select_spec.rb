@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Time Select", type: :view do
-  let(:data) {
+  let(:data) do
     {
       render_button: true,
       current_selection: "last-30-days",
@@ -23,7 +23,7 @@ RSpec.describe "Time Select", type: :view do
         },
       ],
     }
-  }
+  end
 
   it "does not render when not enough dates are given" do
     data[:dates] = []

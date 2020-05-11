@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Related actions", type: :view do
-  let(:data) {
+  let(:data) do
     {
       external_links: [
         {
@@ -21,7 +21,7 @@ RSpec.describe "Related actions", type: :view do
         },
       ],
     }
-  }
+  end
 
   it "does not render when no data is passed" do
     assert_empty render_component({})

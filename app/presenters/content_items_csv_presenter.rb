@@ -63,18 +63,13 @@ class ContentItemsCSVPresenter
   end
 
   def filename
-    "content-data-export-from-%<from>s-to-%<to>s-from-%<org>s%<document_type>s" % {
-      from: @date_range.from,
-      to: @date_range.to,
-      org: organisation_title(@organisations, @organisation_id).parameterize,
-      document_type: @document_type.present? ? "-in-#{@document_type.tr('_', '-')}" : "",
-    }
+    format("content-data-export-from-%<from>s-to-%<to>s-from-%<org>s%<document_type>s", from: @date_range.from, to: @date_range.to, org: organisation_title(@organisations, @organisation_id).parameterize, document_type: @document_type.present? ? "-in-#{@document_type.tr('_', '-')}" : "")
   end
 
 private
 
   def raw_field(name)
-    lambda { |result_row| result_row[name] }
+    ->(result_row) { result_row[name] }
   end
 
   def url(base_path)

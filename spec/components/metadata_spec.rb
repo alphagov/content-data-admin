@@ -1,14 +1,14 @@
 require "rails_helper"
 
 RSpec.describe "Metadata", type: :view do
-  let(:data) {
+  let(:data) do
     {
       status: "withdrawn",
       publishing_organisation: "UK Visas and Immigration",
       document_type: "Guidance",
       base_path: "/government/publications/visitor-visa-guide-to-supporting-documents",
     }
-  }
+  end
 
   it "renders correctly when given valid data" do
     render_component(data)

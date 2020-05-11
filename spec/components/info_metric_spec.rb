@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Info Metric", type: :view do
-  let(:data) {
+  let(:data) do
     {
       name: "Unique pageviews",
       figure: "167,345",
@@ -11,7 +11,7 @@ RSpec.describe "Info Metric", type: :view do
       about: "About this data.",
       data_source: "source",
     }
-  }
+  end
 
   it "does not render when no data is given" do
     assert_empty render_component({})
