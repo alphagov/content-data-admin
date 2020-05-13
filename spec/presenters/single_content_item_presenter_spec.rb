@@ -10,7 +10,7 @@ RSpec.describe SingleContentItemPresenter do
   let(:date_range) { build(:date_range, :past_30_days) }
   let(:current_period_data) { single_page_response("the/base/path", Date.new(2018, 11, 25), Date.new(2018, 12, 24)) }
   let(:previous_period_data) { single_page_response("the/base/path", Date.new(2018, 10, 26), Date.new(2018, 11, 24)) }
-  let(:default_timeseries_metrics) {
+  let(:default_timeseries_metrics) do
     [
       {
         name: "upviews",
@@ -33,7 +33,7 @@ RSpec.describe SingleContentItemPresenter do
         ],
       },
     ]
-  }
+  end
 
   subject do
     SingleContentItemPresenter.new(current_period_data, previous_period_data, date_range)
@@ -61,10 +61,10 @@ RSpec.describe SingleContentItemPresenter do
       end
     end
     context "when content is withdrawn and historical" do
-      before {
+      before do
         current_period_data[:metadata][:historical] = true
         current_period_data[:metadata][:withdrawn] = true
-      }
+      end
       it "displays withdrawn and history mode" do
         expect(subject.status).to eq(I18n.t("components.metadata.statuses.withdrawn_and_historical"))
       end

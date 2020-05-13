@@ -8,7 +8,7 @@ module OrganisationsHelper
 
     organisation = organisations.find { |o| o[:id] == id }
 
-    return "Unknown organisation" if organisation == nil
+    return "Unknown organisation" if organisation.nil?
 
     organisation[:name]
   end

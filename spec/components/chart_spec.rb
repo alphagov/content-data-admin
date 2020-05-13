@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Chart", type: :view do
-  let(:data) {
+  let(:data) do
     {
       caption: "Unique page views",
       chart_label: "Page views chart",
@@ -20,7 +20,7 @@ RSpec.describe "Chart", type: :view do
         },
       ],
     }
-  }
+  end
 
   it "does not render when no data is given" do
     assert_empty render_component({})

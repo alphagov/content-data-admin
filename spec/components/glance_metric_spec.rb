@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Glance Metric", type: :view do
-  let(:data) {
+  let(:data) do
     {
       name: "Unique pageviews",
       figure: "167",
@@ -11,7 +11,7 @@ RSpec.describe "Glance Metric", type: :view do
       trend_percentage: 0.5,
       period: "Apr 2018 to Mar 2018",
     }
-  }
+  end
 
   it "does not render when no data is given" do
     assert_empty render_component({})
