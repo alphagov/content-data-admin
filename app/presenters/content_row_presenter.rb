@@ -2,9 +2,15 @@ class ContentRowPresenter
   include ActionView::Helpers::NumberHelper
   include ActiveSupport::Inflector
 
-  attr_reader :title, :base_path, :document_type, :upviews, :searches,
-              :raw_document_type, :satisfaction_percentage,
-              :satisfaction_responses, :sibling_order
+  attr_reader :title,
+              :base_path,
+              :document_type,
+              :upviews,
+              :searches,
+              :raw_document_type,
+              :satisfaction_percentage,
+              :satisfaction_responses,
+              :sibling_order
 
   def initialize(data)
     @title = data[:title]

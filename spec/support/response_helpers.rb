@@ -18,7 +18,7 @@ module GdsApi
               document_type: "homepage",
               satisfaction: 0.85,
               searches: 1220,
-              pviews: 8373274,
+              pviews: 8_373_274,
               feedex: 137,
               useful_yes: 1050,
               useful_no: 2334,
@@ -83,7 +83,7 @@ module GdsApi
               "primary_organisation_id" => "7809-org",
               "document_type" => "manual_section",
               "sibling_order" => 1,
-              "upviews" => 1000000,
+              "upviews" => 1_000_000,
               "pviews" => 2,
               "feedex" => 0,
               "useful_yes" => 75,
@@ -145,11 +145,11 @@ module GdsApi
             },
             {
               name: "pviews",
-              total: 60000,
+              total: 60_000,
               time_series: [
-                { "date" => day1, "value" => 10000 },
-                { "date" => day2, "value" => 20000 },
-                { "date" => day3, "value" => 30000 },
+                { "date" => day1, "value" => 10_000 },
+                { "date" => day2, "value" => 20_000 },
+                { "date" => day3, "value" => 30_000 },
               ],
             },
             {
@@ -239,7 +239,7 @@ module GdsApi
             },
             {
               name: "pviews",
-              total: 30000,
+              total: 30_000,
               time_series: [
                 { "date" => day1, "value" => 5 },
                 { "date" => day2, "value" => 5 },

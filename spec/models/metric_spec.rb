@@ -39,10 +39,12 @@ RSpec.describe Metric do
       metrics = Metric.parse_metrics(metric_data)
 
       expect(metrics).not_to be_empty
-      expect(metrics).to eq("upviews" => { value: 100, time_series: [{ date: "2018-11-25", value: 100 }] },
-                            "pviews" => { value: 100, time_series: [{ date: "2018-11-25", value: 100 }] },
-                            "words" => { value: 200, time_series: nil },
-                            "pdf_count" => { value: 3, time_series: nil })
+      expect(metrics).to eq(
+        "upviews" => { value: 100, time_series: [{ date: "2018-11-25", value: 100 }] },
+        "pviews" => { value: 100, time_series: [{ date: "2018-11-25", value: 100 }] },
+        "words" => { value: 200, time_series: nil },
+        "pdf_count" => { value: 3, time_series: nil },
+      )
     end
   end
 end

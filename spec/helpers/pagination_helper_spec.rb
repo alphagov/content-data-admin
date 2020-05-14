@@ -38,12 +38,14 @@ RSpec.describe PaginationHelper do
     let(:presenter) { ContentItemsPresenter.new(search_results.merge(page: 2), search_parameters) }
 
     it "returns `Previous` and `Next` links" do
-      expect(navigation_links(presenter)).to eq(previous_page: { url: "/content?organisation_id=org-1",
-                                                                 title: "Previous",
-                                                                 label: "1 of 3" },
-                                                next_page: { url: "/content?organisation_id=org-1&page=3",
-                                                             title: "Next",
-                                                             label: "3 of 3" })
+      expect(navigation_links(presenter)).to eq(
+        previous_page: { url: "/content?organisation_id=org-1",
+                         title: "Previous",
+                         label: "1 of 3" },
+        next_page: { url: "/content?organisation_id=org-1&page=3",
+                     title: "Next",
+                     label: "3 of 3" },
+      )
     end
   end
 end

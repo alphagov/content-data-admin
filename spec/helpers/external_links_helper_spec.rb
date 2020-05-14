@@ -23,11 +23,13 @@ RSpec.describe ExternalLinksHelper do
     context "with content-publisher" do
       it "generates a link to the content-publisher app" do
         expect(
-          edit_url_for(content_id: "content_id",
-                       publishing_app: "content-publisher",
-                       base_path: "/anything",
-                       document_type: "news_story",
-                       locale: "fr"),
+          edit_url_for(
+            content_id: "content_id",
+            publishing_app: "content-publisher",
+            base_path: "/anything",
+            document_type: "news_story",
+            locale: "fr",
+          ),
         ).to eq(
           "#{external_url_for('content-publisher')}/documents/content_id:fr",
         )
@@ -37,10 +39,12 @@ RSpec.describe ExternalLinksHelper do
     context "with contacts" do
       it "generates a link to the contacts publisher app" do
         expect(
-          edit_url_for(content_id: "content_id",
-                       publishing_app: "contacts",
-                       base_path: "government/organisations/hm-revenue-customs/contact/tax-credits-agent-priority-line",
-                       document_type: "news_story"),
+          edit_url_for(
+            content_id: "content_id",
+            publishing_app: "contacts",
+            base_path: "government/organisations/hm-revenue-customs/contact/tax-credits-agent-priority-line",
+            document_type: "news_story",
+          ),
         ).to eq(
           "#{external_url_for('contacts-admin')}/admin/contacts/tax-credits-agent-priority-line/edit",
         )
@@ -50,19 +54,23 @@ RSpec.describe ExternalLinksHelper do
     context "with specialist-publisher" do
       it "generates a link to the specialist publisher app with document_type" do
         expect(
-          edit_url_for(content_id: "spec-pub-id",
-                       publishing_app: "specialist-publisher",
-                       base_path: "government/organisations/hm-revenue-customs/contact/tax-credits-agent-priority-line",
-                       document_type: "service_standard_report"),
+          edit_url_for(
+            content_id: "spec-pub-id",
+            publishing_app: "specialist-publisher",
+            base_path: "government/organisations/hm-revenue-customs/contact/tax-credits-agent-priority-line",
+            document_type: "service_standard_report",
+          ),
         ).to eq(
           "#{external_url_for('specialist-publisher')}/service-standard-reports/spec-pub-id/edit",
         )
 
         expect(
-          edit_url_for(content_id: "spec-pub-id",
-                       publishing_app: "specialist-publisher",
-                       base_path: "government/organisations/hm-revenue-customs/contact/tax-credits-agent-priority-line",
-                       document_type: "aaib_report"),
+          edit_url_for(
+            content_id: "spec-pub-id",
+            publishing_app: "specialist-publisher",
+            base_path: "government/organisations/hm-revenue-customs/contact/tax-credits-agent-priority-line",
+            document_type: "aaib_report",
+          ),
         ).to eq(
           "#{external_url_for('specialist-publisher')}/aaib-reports/spec-pub-id/edit",
         )
@@ -101,10 +109,12 @@ RSpec.describe ExternalLinksHelper do
     context "with collections" do
       it "generates a link to the collections publisher app" do
         expect(
-          edit_url_for(content_id: "coll-pub-id",
-                       publishing_app: "collections-publisher",
-                       base_path: "government/organisations/hm-revenue-customs/contact/tax-credits-agent-priority-line",
-                       document_type: "news_story"),
+          edit_url_for(
+            content_id: "coll-pub-id",
+            publishing_app: "collections-publisher",
+            base_path: "government/organisations/hm-revenue-customs/contact/tax-credits-agent-priority-line",
+            document_type: "news_story",
+          ),
         ).to eq(
           "#{external_url_for('support')}/content_change_request/new",
         )
@@ -114,10 +124,12 @@ RSpec.describe ExternalLinksHelper do
     context "with travel advice" do
       it "generates a link to the collections publisher app" do
         expect(
-          edit_url_for(content_id: "ta-pub-id",
-                       publishing_app: "travel-advice-publisher",
-                       base_path: "/foreign-travel-advice/brunei",
-                       document_type: "news_story"),
+          edit_url_for(
+            content_id: "ta-pub-id",
+            publishing_app: "travel-advice-publisher",
+            base_path: "/foreign-travel-advice/brunei",
+            document_type: "news_story",
+          ),
         ).to eq(
           "#{external_url_for('travel-advice-publisher')}/admin/countries/brunei",
         )

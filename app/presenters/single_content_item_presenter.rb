@@ -40,7 +40,7 @@ class SingleContentItemPresenter
   end
 
   def total_satisfaction
-    if !value_for("satisfaction").nil?
+    unless value_for("satisfaction").nil?
       number_to_percentage(value_for("satisfaction") * 100, precision: 0)
     end
   end
@@ -70,15 +70,19 @@ class SingleContentItemPresenter
   end
 
   def satisfaction_context
-    I18n.t("metrics.satisfaction.context",
-           total_responses: number_with_delimiter(useful_yes_no_total),
-           count: useful_yes_no_total)
+    I18n.t(
+      "metrics.satisfaction.context",
+      total_responses: number_with_delimiter(useful_yes_no_total),
+      count: useful_yes_no_total,
+    )
   end
 
   def satisfaction_short_context
-    I18n.t("metrics.satisfaction.short_context",
-           total_responses: number_with_delimiter(useful_yes_no_total),
-           count: useful_yes_no_total)
+    I18n.t(
+      "metrics.satisfaction.short_context",
+      total_responses: number_with_delimiter(useful_yes_no_total),
+      count: useful_yes_no_total,
+    )
   end
 
   def searches_context

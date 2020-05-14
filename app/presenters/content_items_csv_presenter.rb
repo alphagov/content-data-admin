@@ -63,7 +63,7 @@ class ContentItemsCSVPresenter
   end
 
   def filename
-    format("content-data-export-from-%<from>s-to-%<to>s-from-%<org>s%<document_type>s", from: @date_range.from, to: @date_range.to, org: organisation_title(@organisations, @organisation_id).parameterize, document_type: @document_type.present? ? "-in-#{@document_type.tr('_', '-')}" : "")
+    sprintf("content-data-export-from-%<from>s-to-%<to>s-from-%<org>s%<document_type>s", from: @date_range.from, to: @date_range.to, org: organisation_title(@organisations, @organisation_id).parameterize, document_type: @document_type.present? ? "-in-#{@document_type.tr('_', '-')}" : "")
   end
 
 private
