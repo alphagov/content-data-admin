@@ -1,8 +1,6 @@
 def seed
-  if User.where(name: "Test user").present?
-    puts "Skipping because user already exists"
-    return
-  end
+  return if User.where(name: "Test user").present?
+
   create_test_user
 end
 
