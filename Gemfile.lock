@@ -432,13 +432,13 @@ DEPENDENCIES
   govuk_test
   kaminari
   mail-notify
-  pg (~> 1)
+  pg
   plek
   pry
   rails (~> 5.2)
   rspec-rails
-  rubocop-govuk (~> 3)
-  scss_lint-govuk (~> 0)
+  rubocop-govuk
+  scss_lint-govuk
   simplecov
   spring-commands-rspec
   timecop
