@@ -1,5 +1,5 @@
 class FetchDocumentTypes
-  include Concerns::ContentDataApiClient
+  include ContentDataApiClient
 
   def self.call
     new.call

@@ -1,5 +1,5 @@
 class FindContent
-  include Concerns::ContentDataApiClient
+  include ContentDataApiClient
 
   def self.call(params)
     new(params).call

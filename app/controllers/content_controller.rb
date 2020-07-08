@@ -1,6 +1,6 @@
 class ContentController < ApplicationController
   include PaginationHelper
-  include Concerns::ExportableToCSV
+  include ExportableToCSV
 
   DEFAULT_ORGANISATION_ID = "all".freeze
 

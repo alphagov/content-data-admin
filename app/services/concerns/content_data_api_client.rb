@@ -1,7 +1,7 @@
 require "active_support/concern"
 require "gds_api/content_data_api"
 
-module Concerns::ContentDataApiClient
+module ContentDataApiClient
   extend ActiveSupport::Concern
 
   included do
