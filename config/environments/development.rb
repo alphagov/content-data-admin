@@ -61,4 +61,8 @@ Rails.application.configure do
 
   # Using polling file checker, requires VM time to be in sync with host
   config.file_watcher = ActiveSupport::FileUpdateChecker
+
+  config.hosts += [
+    "content-data-admin.dev.gov.uk",
+  ]
 end
