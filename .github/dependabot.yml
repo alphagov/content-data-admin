@@ -30,3 +30,10 @@ updates:
         dependency-type: direct
       - dependency-name: rspec-rails
         dependency-type: direct
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+    allow:
+      - dependency-name: govuk-frontend
+        dependency-type: direct
