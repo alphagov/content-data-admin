@@ -9,11 +9,11 @@ module FileStorage
 
     directory = connection.directories.get(ENV["AWS_CSV_EXPORT_BUCKET_NAME"])
 
-    timestamp = Time.now.utc.strftime("%Y-%m-%d-%H-%M-%S")
+    timestamp = Time.zone.now.utc.strftime("%Y-%m-%d-%H-%M-%S")
     filename = "#{basename}.csv"
     key = "#{timestamp}/#{filename}"
 
-    file = directory.files.create(
+    file = directory.files.create!(
       key: key,
       body: body,
       public: true,

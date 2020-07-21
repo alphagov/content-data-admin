@@ -14,6 +14,6 @@ module MetricsFormatterHelper
     return nil unless minutes
 
     dur = ActiveSupport::Duration.build(minutes * 60)
-    Time.at(dur).utc.to_s(:reading_time)
+    Time.zone.at(dur).utc.to_s(:reading_time)
   end
 end
