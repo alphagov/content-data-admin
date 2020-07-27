@@ -13,7 +13,7 @@ module FileStorage
     filename = "#{basename}.csv"
     key = "#{timestamp}/#{filename}"
 
-    file = directory.files.create!(
+    file = directory.files.create(
       key: key,
       body: body,
       public: true,

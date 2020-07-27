@@ -62,7 +62,7 @@ RSpec.describe "Exporting CSV" do
       aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
     )
     connection.directories.each(&:destroy)
-    @directory = connection.directories.create!(key: ENV["AWS_CSV_EXPORT_BUCKET_NAME"])
+    @directory = connection.directories.create(key: ENV["AWS_CSV_EXPORT_BUCKET_NAME"])
 
     allow(GovukStatsd).to receive(:count)
 
