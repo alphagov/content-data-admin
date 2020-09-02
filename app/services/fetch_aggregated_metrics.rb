@@ -1,5 +1,5 @@
 class FetchAggregatedMetrics
-  include Concerns::ContentDataApiClient
+  include ContentDataApiClient
 
   def self.call(args)
     new(args).call

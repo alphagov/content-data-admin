@@ -1,6 +1,6 @@
 require "active_support/concern"
 
-module Concerns::ExportableToCSV
+module ExportableToCSV
   extend ActiveSupport::Concern
 
   included do
