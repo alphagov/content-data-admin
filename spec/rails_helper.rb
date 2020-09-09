@@ -1,3 +1,7 @@
+# Must go at top of file
+require "simplecov"
+SimpleCov.start
+
 require "byebug"
 require "capybara/rspec"
 require "webmock/rspec"
@@ -9,10 +13,6 @@ require File.expand_path("../config/environment", __dir__)
 require "rspec/rails"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
-if ENV["TEST_COVERAGE"] == "true"
-  require "simplecov"
-  SimpleCov.start
-end
 
 GovukTest.configure
 
