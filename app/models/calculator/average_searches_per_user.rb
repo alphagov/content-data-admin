@@ -1,6 +1,6 @@
 class Calculator::AverageSearchesPerUser
-  def self.calculate(*args)
-    new(*args).calculate
+  def self.calculate(**args)
+    new(**args).calculate
   end
 
   def initialize(searches:, unique_pageviews:)

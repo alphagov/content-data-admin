@@ -1,6 +1,6 @@
 class Calculator::PageviewsPerVisit
-  def self.calculate(*args)
-    new(*args).calculate
+  def self.calculate(**args)
+    new(**args).calculate
   end
 
   def initialize(pageviews:, unique_pageviews:)

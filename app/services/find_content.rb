@@ -41,7 +41,7 @@ class FindContent
     Enumerator.new do |yielder|
       (1..Float::INFINITY).each do |index|
         page = api.content(
-          params.merge(page: index, page_size: 5000),
+          **params.merge({ page: index, page_size: 5000 }),
         ).to_h
 
         page

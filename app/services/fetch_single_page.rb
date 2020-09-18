@@ -1,8 +1,8 @@
 class FetchSinglePage
   include ContentDataApiClient
 
-  def self.call(args)
-    new(args).call
+  def self.call(**args)
+    new(**args).call
   end
 
   def initialize(base_path:, date_range:)
