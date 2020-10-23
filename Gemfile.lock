@@ -444,7 +444,7 @@ DEPENDENCIES
   gds-api-adapters
   gds-sso
   govuk_app_config
-  govuk_publishing_components
+  govuk_publishing_components (~> 17)
   govuk_sidekiq
   govuk_test
   kaminari
