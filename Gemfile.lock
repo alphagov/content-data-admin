@@ -91,7 +91,7 @@ GEM
     docile (1.3.2)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    erubi (1.9.0)
+    erubi (1.10.0)
     excon (0.76.0)
     execjs (2.7.0)
     factory_bot (6.1.0)
@@ -142,19 +142,13 @@ GEM
       sentry-raven (~> 3.1.1)
       statsd-ruby (~> 1.4.0)
       unicorn (>= 5.4, < 5.8)
-    govuk_frontend_toolkit (8.2.0)
-      railties (>= 3.1.0)
-      sass (>= 3.2.0)
-    govuk_publishing_components (17.21.0)
-      gds-api-adapters
+    govuk_publishing_components (23.9.2)
       govuk_app_config
-      govuk_frontend_toolkit
       kramdown
       plek
       rails (>= 5.0.0.1)
-      rake
       rouge
-      sassc-rails (>= 2.0.1)
+      sprockets (< 4)
     govuk_sidekiq (4.0.0)
       gds-api-adapters (>= 19.1.0)
       govuk_app_config (>= 1.1)
@@ -198,7 +192,7 @@ GEM
       activesupport (>= 4.0)
       logstash-event (~> 1.2.0)
       request_store
-    loofah (2.7.0)
+    loofah (2.8.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -302,7 +296,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.4)
-    rouge (3.23.0)
+    rouge (3.26.0)
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.2)
@@ -354,14 +348,6 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     scss_lint (0.59.0)
       sass (~> 3.5, >= 3.5.5)
     scss_lint-govuk (0.2.0)
@@ -388,7 +374,7 @@ GEM
     spring (2.1.1)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
-    sprockets (4.0.2)
+    sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.2.2)
@@ -398,7 +384,6 @@ GEM
     statsd-ruby (1.4.0)
     thor (1.0.1)
     thread_safe (0.3.6)
-    tilt (2.0.10)
     timecop (0.9.1)
     tzinfo (1.2.8)
       thread_safe (~> 0.1)
