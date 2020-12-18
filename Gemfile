@@ -8,7 +8,7 @@ gem "fog-aws"
 gem "gds-api-adapters"
 gem "gds-sso"
 gem "govuk_app_config"
-gem "govuk_publishing_components", "~> 17" # Content Data uses the accessible autocomplete component which was removed in version 18
+gem "govuk_publishing_components", "~> 23" # Content Data uses the accessible autocomplete component which was removed in version 18
 gem "govuk_sidekiq"
 gem "kaminari"
 gem "mail-notify"
