@@ -10,7 +10,6 @@
   @include govuk-responsive-padding(3, "top");
   min-height: 2.6em;
 
-
   @include media-down(tablet) {
     min-height: 4em;
   }

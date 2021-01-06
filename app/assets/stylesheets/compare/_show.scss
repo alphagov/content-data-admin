@@ -1,5 +1,4 @@
 .content-data__compare {
-
   .local-nav {
     text-align: right;
     @include govuk-responsive-margin(2, "top");
@@ -20,5 +19,4 @@
     @include govuk-responsive-padding(4, "left");
     @include govuk-responsive-padding(4, "right");
   }
-
 }

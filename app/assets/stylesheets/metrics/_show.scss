@@ -1,5 +1,4 @@
 .content-data__metrics {
-
   .govuk-heading-xl {
     @include govuk-responsive-margin(7, "bottom");
   }
@@ -85,12 +84,11 @@
     .govuk-summary-list--small {
       @include govuk-font($size: 16);
       @include govuk-responsive-margin(1, "bottom");
-
     }
 
     .govuk-summary-list__value--right-align {
       text-align: right;
-     }
+    }
 
     .govuk-summary-list__key {
       font-weight: normal;
@@ -100,9 +98,7 @@
       .page-help {
         @include govuk-responsive-margin(1, "left");
       }
-     }
-
-
+    }
 
     .content-metrics__help-icon {
       vertical-align: bottom;

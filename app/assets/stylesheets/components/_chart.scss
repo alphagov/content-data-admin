@@ -13,7 +13,6 @@
 
   @include media(mobile) {
     max-height: 250px;
-
   }
 
   .govuk-details__summary-text {
@@ -41,7 +40,6 @@
       border: 0;
       text-align: center;
     }
-
   }
 
   .govuk-table {
@@ -55,7 +53,6 @@
   .govuk-table__header--stacked[scope=row] {
     max-width: 20%;
   }
-
 }
 
 .app-c-chart__accessibility-message {
@@ -91,7 +88,7 @@
 
 .google-visualization-tooltip {
   background-color: $black !important;
-  opacity: 0.95;
+  opacity: .95;
 
   span {
     color: $white !important;
