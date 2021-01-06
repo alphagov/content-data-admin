@@ -191,7 +191,7 @@ $govuk-global-styles: true;
     &.govuk-table__header--sorted {
       background-color: govuk-colour("blue");
 
-      .table__sort-link {
+      .table__sort-link { // stylelint-disable-line max-nesting-depth
         color: $white;
       }
     }

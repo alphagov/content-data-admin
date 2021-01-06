@@ -1,6 +1,6 @@
 .content-data__index {
   .filter--hidden {
-    display: none !important;
+    display: none !important; // stylelint-disable-line declaration-no-important
   }
 
   .gem-c-pagination {

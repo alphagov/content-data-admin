@@ -105,18 +105,14 @@
     }
 
     .content-metrics__data {
-      .govuk-summary-list__row {
-        &:last-of-type {
-          .govuk-summary-list__key,
-          .govuk-summary-list__value {
-            border-bottom: none;
-          }
-        }
-      }
+      border-top: 1px solid $grey-2;
     }
 
-    .content-metrics__data {
-      border-top: 1px solid $grey-2;
+    .content-metrics__data .govuk-summary-list__row:last-of-type {
+      .govuk-summary-list__key,
+      .govuk-summary-list__value {
+        border-bottom: none;
+      }
     }
   }
 }
