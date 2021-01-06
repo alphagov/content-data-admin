@@ -3,5 +3,8 @@
 library("govuk")
 
 node("postgresql-9.6") {
-  govuk.buildProject()
+  govuk.buildProject(
+    beforeTest: { sh("yarn install") },
+    sassLint: false,
+  )
 }
