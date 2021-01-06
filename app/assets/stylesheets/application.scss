@@ -200,6 +200,3 @@ $govuk-global-styles: true;
     }
   }
 }
-
-//overrides must be imported last
-@import "govuk-frontend/overrides/all";
