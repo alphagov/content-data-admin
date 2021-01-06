@@ -1,3 +1,5 @@
+/* globals dataLayer */
+
 (function () {
   function filterFormSubmitListner (event) {
     window.dataLayer = window.dataLayer || []

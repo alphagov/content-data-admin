@@ -1,6 +1,6 @@
 function FilterToggle () {
   var toggle = function (action) {
-    if (action == 'hide') {
+    if (action === 'hide') {
       event.preventDefault()
       document.getElementsByClassName('filters-control--show')[0].classList.remove('filter--hidden')
       document.getElementsByClassName('filters-control--hide')[0].classList.add('filter--hidden')
@@ -28,4 +28,6 @@ function FilterToggle () {
 
 // Initialise
 var $filter = document.querySelector('[data-module="filter-toggle"]')
-if ($filter) new FilterToggle()
+if ($filter) {
+  new FilterToggle() // eslint-disable-line no-new
+}
