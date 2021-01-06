@@ -456,6 +456,7 @@ DEPENDENCIES
   rails (= 6.0.3.4)
   rspec-rails
   rubocop-govuk
+  sassc-rails
   scss_lint-govuk
   simplecov
   spring-commands-rspec

@@ -14,6 +14,7 @@ gem "kaminari"
 gem "mail-notify"
 gem "pg"
 gem "plek"
+gem "sassc-rails"
 gem "uglifier"
 
 group :test do
