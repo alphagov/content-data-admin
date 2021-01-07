@@ -40,5 +40,11 @@ module ContentDataAdmin
     # Load all the locale files and raise execptions if locale missing.
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.yml")]
     config.action_view.raise_on_missing_translations = true
+
+    # Using a sass css compressor causes a scss file to be processed twice
+    # (once to build, once to compress) which breaks the usage of "unquote"
+    # to use CSS that has same function names as SCSS such as max.
+    # https://github.com/alphagov/govuk-frontend/issues/1350
+    config.assets.css_compressor = nil
   end
 end
