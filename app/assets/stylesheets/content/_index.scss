@@ -1,7 +1,6 @@
 .content-data__index {
-
   .filter--hidden {
-    display: none !important;
+    display: none !important; // stylelint-disable-line declaration-no-important
   }
 
   .gem-c-pagination {
@@ -45,7 +44,6 @@
   }
 
   .filter-form__filters {
-
     .govuk-label {
       @include govuk-font($size: 16);
     }
@@ -53,7 +51,6 @@
     .govuk-select {
       @include govuk-font(16);
     }
-
   }
 
   .filter-form__clear-link {
@@ -73,12 +70,10 @@
     @include govuk-responsive-padding(3, "bottom");
   }
 
-
   .gem-c-button {
     @include govuk-media-query($from: desktop) {
       float: left;
     }
-
   }
 
   .gem-c-phase-banner {

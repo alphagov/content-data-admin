@@ -1,3 +1,5 @@
+/* globals dataLayer */
+
 (function () {
   function filterFormSubmitListner (event) {
     window.dataLayer = window.dataLayer || []
@@ -8,14 +10,14 @@
     var dateRangeElement = form.querySelector('input[name="date_range"]:checked')
     if (dateRangeElement && dateRangeElement.value.length > 0) {
       message = {}
-      message[eventName] = { 'date_range': dateRangeElement.value }
+      message[eventName] = { date_range: dateRangeElement.value }
       window.dataLayer.push(message)
     }
 
     var searchTermElement = form.querySelector('input[name="search_term"]')
     if (searchTermElement && searchTermElement.value.length > 0) {
       message = {}
-      message[eventName] = { 'search_term': searchTermElement.value }
+      message[eventName] = { search_term: searchTermElement.value }
       window.dataLayer.push(message)
     };
 
@@ -24,7 +26,7 @@
       var documentType = documentTypeElement.selectedOptions[0].value
       if (documentType.length > 0) {
         message = {}
-        message[eventName] = { 'document_type': documentType }
+        message[eventName] = { document_type: documentType }
         window.dataLayer.push(message)
       }
     }
@@ -34,7 +36,7 @@
       var organisation = organisationElement.selectedOptions[0].text
       if (organisation.length > 0) {
         message = {}
-        message[eventName] = { 'organisation': organisation }
+        message[eventName] = { organisation: organisation }
         window.dataLayer.push(message)
       }
     }

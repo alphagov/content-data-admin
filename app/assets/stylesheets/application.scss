@@ -38,7 +38,6 @@ $govuk-global-styles: true;
   @media (max-width: 360px) {
     @include govuk-font($size: 24);
   }
-
 }
 
 .banner {
@@ -82,7 +81,6 @@ $govuk-global-styles: true;
     @include govuk-responsive-margin(1, "top");
   }
 
-
   .table__sort-link {
     @include govuk-link-style-no-visited-state;
     @include govuk-focusable-fill;
@@ -91,8 +89,7 @@ $govuk-global-styles: true;
     color: $govuk-link-colour;
     text-decoration: none;
 
-
-    &::after {
+    &:after {
       content: "";
       position: absolute;
       top: 0;
@@ -101,7 +98,7 @@ $govuk-global-styles: true;
       @include govuk-shape-arrow($direction: up, $base: $sort-link-arrow-size-small, $display: block);
     }
 
-    &::before {
+    &:before {
       content: "";
       position: absolute;
       top: 8px;
@@ -118,12 +115,12 @@ $govuk-global-styles: true;
     }
   }
 
-  .table__sort-link--asc::before,
-  .table__sort-link--desc::before {
+  .table__sort-link--asc:before,
+  .table__sort-link--desc:before {
     content: none;
   }
 
-  .table__sort-link--asc::after {
+  .table__sort-link--asc:after {
     content: "";
     position: absolute;
     top: $sort-link-arrow-margin;
@@ -132,7 +129,7 @@ $govuk-global-styles: true;
     @include govuk-shape-arrow($direction: up, $base: $sort-link-arrow-size, $display: inline-block);
   }
 
-  .table__sort-link--desc::after {
+  .table__sort-link--desc:after {
     content: "";
     position: absolute;
     top: $sort-link-arrow-spacing;
@@ -194,12 +191,9 @@ $govuk-global-styles: true;
     &.govuk-table__header--sorted {
       background-color: govuk-colour("blue");
 
-      .table__sort-link {
+      .table__sort-link { // stylelint-disable-line max-nesting-depth
         color: $white;
       }
     }
   }
 }
-
-//overrides must be imported last
-@import "govuk-frontend/overrides/all";

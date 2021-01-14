@@ -14,6 +14,7 @@ gem "kaminari"
 gem "mail-notify"
 gem "pg"
 gem "plek"
+gem "sassc-rails"
 gem "uglifier"
 
 group :test do
@@ -31,7 +32,6 @@ group :development, :test do
   gem "pry"
   gem "rspec-rails"
   gem "rubocop-govuk"
-  gem "scss_lint-govuk"
   gem "spring-commands-rspec"
   gem "webmock"
 end

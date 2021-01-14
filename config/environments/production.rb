@@ -22,8 +22,12 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
-  # Compress CSS using a preprocessor.
-  # config.assets.css_compressor = :sass
+  # Compress JavaScripts and CSS.
+  config.assets.js_compressor = :uglifier
+
+  # Rather than use a CSS compressor, use the SASS style to perform compression.
+  config.sass.style = :compressed
+  config.sass.line_comments = false
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
