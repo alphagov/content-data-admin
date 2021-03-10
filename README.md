@@ -4,22 +4,23 @@ A front end for the [Content Data API].
 
 This application is currently in development for a private beta.
 
-## Dependencies
+## Technical Documentation
 
-* The [Content Data API]
+This is a Ruby on Rails app, and should follow [our Rails app conventions](https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html).
 
-[Content Data API]: https://github.com/alphagov/content-data-api
+You can use the [GOV.UK Docker environment](https://github.com/alphagov/govuk-docker) to run the application and its tests with all the necessary dependencies. Follow [the usage instructions](https://github.com/alphagov/govuk-docker#usage) to get started.
 
-## Running the test suite
-To run the test suite:
+**Use GOV.UK Docker to run any commands that follow.**
 
- ```bash
- $ bundle exec rake
- ```
+### Running the test suite
 
-## Deployment
+```bash
+$ bundle exec rake
+```
 
-⚠️ This repo is Continuously Deployed: make sure you [follow the guidance](https://docs.publishing.service.gov.uk/manual/development-pipeline.html#merge-your-own-pull-request) ⚠️
+### Further documentation
+
+Check the [docs/](docs/) directory.
 
 ## Licence
 
