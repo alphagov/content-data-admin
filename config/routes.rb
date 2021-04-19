@@ -8,6 +8,9 @@ Rails.application.routes.draw do
             [200, {}, ["Sentry notified"]]
           }
 
+  get "/healthcheck/live", to: proc { [200, {}, %w[OK]] }
+  get "/healthcheck/ready", to: GovukHealthcheck.rack_response
+
   if Rails.env.development? || Rails.application.config.govuk_environment == "integration"
     get "/dev" => "development#index"
   end
