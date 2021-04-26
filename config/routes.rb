@@ -1,13 +1,6 @@
 Rails.application.routes.draw do
   root to: redirect("/content")
 
-  get "/healthcheck", to: proc { [200, {}, %w[OK]] }
-  get "/healthcheck-f",
-      to: proc {
-            GovukError.notify("Sentry works")
-            [200, {}, ["Sentry notified"]]
-          }
-
   get "/healthcheck/live", to: proc { [200, {}, %w[OK]] }
   get "/healthcheck/ready", to: GovukHealthcheck.rack_response
 
