@@ -48,7 +48,7 @@ module ExternalLinksHelper
     path = CGI.escape(base_path)
     base_request = "#{host}/anonymous_feedback?from=#{from}&to=#{to}&paths=#{path}"
     if base_path == "/"
-      base_request + "&document_type=homepage"
+      "#{base_request}&document_type=homepage"
     else
       base_request
     end
@@ -73,7 +73,7 @@ module ExternalLinksHelper
   end
 
   def specialist_publisher_path(document_type, content_id)
-    formatted_document_type = document_type.tr("_", "-") + "s"
+    formatted_document_type = "#{document_type.tr('_', '-')}s"
     "#{formatted_document_type}/#{content_id}/edit"
   end
 end
