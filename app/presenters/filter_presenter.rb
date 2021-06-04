@@ -64,26 +64,22 @@ class FilterPresenter
   end
 
   def document_type_options
-    @document_type_options ||= begin
-      additional_document_type_options +
-        @document_types.map do |document_type|
-          [document_type[:name], document_type[:id]]
-        end
-    end
+    @document_type_options ||= additional_document_type_options +
+      @document_types.map do |document_type|
+        [document_type[:name], document_type[:id]]
+      end
   end
 
   def organisation_options
-    @organisation_options ||= begin
-      additional_organisation_options +
-        @organisations.map do |org|
-          name = org[:name].strip
-          if org[:acronym].present?
-            acronym = org[:acronym].strip
-            name.concat " (#{acronym})" if acronym != name
-          end
-          [name, org[:id]]
+    @organisation_options ||= additional_organisation_options +
+      @organisations.map do |org|
+        name = org[:name].strip
+        if org[:acronym].present?
+          acronym = org[:acronym].strip
+          name.concat " (#{acronym})" if acronym != name
         end
-    end
+        [name, org[:id]]
+      end
   end
 
 private
