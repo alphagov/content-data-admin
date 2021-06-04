@@ -8,9 +8,10 @@ module ExternalLinksHelper
     when "content-publisher"
       "#{external_url_for('content-publisher')}/documents/#{content_id}:#{locale}"
     when "manuals-publisher"
-      if document_type == "manual"
+      case document_type
+      when "manual"
         "#{external_url_for('manuals-publisher')}/manuals/#{content_id}"
-      elsif document_type == "manual_section"
+      when "manual_section"
         "#{external_url_for('manuals-publisher')}/manuals/#{parent_content_id}/sections/#{content_id}"
       end
     when "maslow", "need-api"
