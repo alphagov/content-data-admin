@@ -80,7 +80,7 @@ RSpec.describe "Results pagination" do
       stub_content_page(
         time_period: "last-month",
         organisation_id: "org-id",
-        items: (items[1..-1] * 50) + other_page_items,
+        items: (items[1..] * 50) + other_page_items,
       )
 
       visit "/content?date_range=last-month&organisation_id=org-id"

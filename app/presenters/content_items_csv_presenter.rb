@@ -82,7 +82,7 @@ private
     base + Rails.application.routes.url_helpers.metrics_path(
       # Remove / from the start of the base_path, as the url helper
       # adds it in
-      base_path[1..-1],
+      base_path[1..],
     )
   end
 
