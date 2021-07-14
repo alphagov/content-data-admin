@@ -2,7 +2,7 @@ class PaginationPresenter
   include ActionView::Helpers::NumberHelper
   attr_reader :page, :total_pages, :total_results
 
-  def initialize(page: 1, total_pages:, total_results:, per_page: 100)
+  def initialize(total_pages:, total_results:, page: 1, per_page: 100)
     @page = page
     @total_pages = total_pages
     @total_results = total_results

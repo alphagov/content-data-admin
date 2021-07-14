@@ -13,7 +13,7 @@ module TableHeaderHelper
   end
 
   def aria_sort(direction)
-    direction.present? ? direction + "ending" : "none"
+    direction.present? ? "#{direction}ending" : "none"
   end
 
   def sort_param(header_name, direction)

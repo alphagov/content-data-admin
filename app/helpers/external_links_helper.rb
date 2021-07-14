@@ -8,9 +8,10 @@ module ExternalLinksHelper
     when "content-publisher"
       "#{external_url_for('content-publisher')}/documents/#{content_id}:#{locale}"
     when "manuals-publisher"
-      if document_type == "manual"
+      case document_type
+      when "manual"
         "#{external_url_for('manuals-publisher')}/manuals/#{content_id}"
-      elsif document_type == "manual_section"
+      when "manual_section"
         "#{external_url_for('manuals-publisher')}/manuals/#{parent_content_id}/sections/#{content_id}"
       end
     when "maslow", "need-api"
@@ -47,7 +48,7 @@ module ExternalLinksHelper
     path = CGI.escape(base_path)
     base_request = "#{host}/anonymous_feedback?from=#{from}&to=#{to}&paths=#{path}"
     if base_path == "/"
-      base_request + "&document_type=homepage"
+      "#{base_request}&document_type=homepage"
     else
       base_request
     end
@@ -56,7 +57,7 @@ module ExternalLinksHelper
   def google_analytics_url(from:, to:, base_path:)
     from = from.to_s(:number)
     to = to.to_s(:number)
-    base_path = base_path.downcase.gsub(%r{(\/)(?!\z)}, "~2F")
+    base_path = base_path.downcase.gsub(%r{(/)(?!\z)}, "~2F")
     "https://analytics.google.com/analytics/web/?hl=en&pli=1"\
     "#/report/content-site-search-pages/a26179049w50705554p53872948/"\
     "_u.date00=#{from}&_u.date01=#{to}&"\
@@ -72,7 +73,7 @@ module ExternalLinksHelper
   end
 
   def specialist_publisher_path(document_type, content_id)
-    formatted_document_type = document_type.tr("_", "-") + "s"
+    formatted_document_type = "#{document_type.tr('_', '-')}s"
     "#{formatted_document_type}/#{content_id}/edit"
   end
 end

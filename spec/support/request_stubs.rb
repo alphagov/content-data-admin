@@ -83,7 +83,7 @@ module RequestStubs
     )
   end
 
-  def stub_content_page_csv_download(time_period:, organisation_id: nil, document_type: nil, search_terms: nil, sort: "upviews:desc", items:)
+  def stub_content_page_csv_download(time_period:, items:, organisation_id: nil, document_type: nil, search_terms: nil, sort: "upviews:desc")
     content_data_api_has_content_items(
       date_range: time_period,
       organisation_id: organisation_id,

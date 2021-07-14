@@ -43,7 +43,7 @@ module GdsApi
           .to_return(status: 200, body: body.to_json)
       end
 
-      def content_data_api_has_content_items(date_range:, organisation_id:, document_type: nil, search_term: nil, items:, page_size: nil, sort: nil)
+      def content_data_api_has_content_items(date_range:, organisation_id:, items:, document_type: nil, search_term: nil, page_size: nil, sort: nil)
         params = {
           date_range: date_range,
           organisation_id: organisation_id,
