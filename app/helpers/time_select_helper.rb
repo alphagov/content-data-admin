@@ -5,8 +5,8 @@ module TimeSelectHelper
   def time_select_options(time_periods)
     time_periods.map do |time_period|
       date_range = DateRange.new(time_period)
-      start_date = date_range.from.to_s(:long_date)
-      end_date = date_range.to.to_s(:long_date)
+      start_date = date_range.from.to_fs(:long_date)
+      end_date = date_range.to.to_fs(:long_date)
 
       {
         value: time_period,
