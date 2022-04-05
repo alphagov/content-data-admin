@@ -81,7 +81,7 @@
           in the <a href="#<%= table_id %>">table</a>.
         </div>
       <% end %>
-      <%= line_chart(chart_format_data, library: chart_library_options, defer: true) %>
+      <%= line_chart(chart_format_data, library: chart_library_options) %>
     </div>
     <div class="app-c-chart__table" id="<%= table_id %>" data-gtm-id="view-table-reveal">
       <%= render(
