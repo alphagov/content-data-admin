@@ -35,7 +35,7 @@ RSpec.describe "FileStorage" do
     it "returns the public url" do
       url = upload_csv_to_s3("basename", "")
 
-      expect(url).to eq("https://test-bucket.s3-eu-west-1.amazonaws.com/2019-05-04-03-02-01/basename.csv")
+      expect(url).to eq("https://test-bucket.s3.eu-west-1.amazonaws.com/2019-05-04-03-02-01/basename.csv")
     end
   end
 end
