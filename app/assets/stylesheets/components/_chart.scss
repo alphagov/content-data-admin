@@ -45,7 +45,7 @@
     max-width: 15%;
   }
 
-  .govuk-table__header--stacked[scope=row] {
+  .govuk-table__header--stacked[scope="row"] {
     max-width: 20%;
   }
 }
@@ -88,7 +88,7 @@
 
   span {
     color: $white !important;
-    font-family: "nta", Arial, sans-serif !important;
+    font-family: nta, Arial, sans-serif !important;
     font-size: 14px !important;
   }
 
