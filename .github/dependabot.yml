@@ -7,7 +7,7 @@ updates:
     allow:
       # Security updates
       - dependency-name: brakeman
-        dependency-type: all
+        dependency-type: direct
       # Internal gems
       - dependency-name: "govuk*"
         dependency-type: direct
