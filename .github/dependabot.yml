@@ -4,6 +4,12 @@ updates:
     directory: /
     schedule:
       interval: daily
+    open-pull-requests-limit: 0 # security updates only
+
+  - package-ecosystem: bundler
+    directory: /
+    schedule:
+      interval: daily
     allow:
       # Security updates
       - dependency-name: brakeman
