@@ -4,6 +4,11 @@ updates:
     directory: /
     schedule:
       interval: daily
+    # Security related PRs will ignore the following config.
+    # See https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#target-branch
+    target-branch: latest-dependencies # Raise PRs for version updates against this branch
+    labels:
+      - "dependencies not-security" # Labels on PRs for version updates only
     allow:
       # Security updates
       - dependency-name: brakeman
@@ -37,6 +42,11 @@ updates:
     directory: /
     schedule:
       interval: daily
+    # Security related PRs will ignore the following config.
+    # See https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#target-branch
+    target-branch: latest-dependencies # Raise PRs for version updates against this branch
+    labels:
+      - "dependencies not-security" # Labels on PRs for version updates only
     allow:
       # Internal packages
       - dependency-name: stylelint-config-gds
