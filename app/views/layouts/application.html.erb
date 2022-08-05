@@ -53,6 +53,20 @@
     <%= content_for :local_nav %>
   </div>
 
+  <div class="survey-banner" hidden="">
+    <h1 class="survey-banner__title">Help us improve Content Data App</h1>
+    <p class="survey-banner__intro">Hello, we want to understand how you use Content Data
+    app to make sure it works well for you and we'd love your feedback. You can
+    tell us about your experience of using the app by completing this short
+    questionnaire. It will take about 5 minutes and most questions are multiple
+    choice.
+    </p>
+    <div class="survey-banner__buttons govuk-button-group">
+      <a href="https://surveys.publishing.service.gov.uk/s/AYBBC5/" role="button" draggable="false" class="govuk-button button--start_white survey-banner__button" data-module="govuk-button">View Questionnaire</button>
+      <a href="" class="govuk-link govuk-!-font-size-16" data-hide-survey-banner="">Hide this</a>
+    </div>
+  </div>
+
   <% if flash[:notice] %>
     <p>
       <%= flash[:notice] %>
