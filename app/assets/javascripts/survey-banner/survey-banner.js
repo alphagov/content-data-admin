@@ -3,7 +3,7 @@
   var surveyBanner = document.querySelector('.survey-banner')
   var surveyBannerHidden = document.cookie
     .split(';')
-    .some((item) => item.trim().startsWith('hideContentDataSurveyBanner='))
+    .some(function (item) { return item.trim().startsWith('hideContentDataSurveyBanner=') })
 
   function hide (el) {
     el.hidden = true
@@ -22,14 +22,14 @@
     show(surveyBanner)
   }
 
-  document.querySelectorAll('[data-hide-survey-banner]').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
+  document.querySelectorAll('[data-hide-survey-banner]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
       e.preventDefault()
       hide(surveyBanner)
       show(standardBanner)
       var expires = new Date()
       expires.setFullYear(expires.getFullYear() + 1)
-      document.cookie = `hideContentDataSurveyBanner=; expires=${expires.toUTCString()}; SameSite=strict`
+      document.cookie = 'hideContentDataSurveyBanner=; expires=' + expires.toUTCString() + '; SameSite=strict'
     })
   })
 })()
