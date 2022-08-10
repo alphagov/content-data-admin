@@ -22,14 +22,24 @@
     show(surveyBanner)
   }
 
+  function setHideBannerCookie () {
+    var expires = new Date()
+    expires.setFullYear(expires.getFullYear() + 1)
+    document.cookie = 'hideContentDataSurveyBanner=; expires=' + expires.toUTCString() + '; SameSite=strict'
+  }
+
+  document.querySelectorAll('[data-show-survey]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      setHideBannerCookie()
+    })
+  })
+
   document.querySelectorAll('[data-hide-survey-banner]').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault()
       hide(surveyBanner)
       show(standardBanner)
-      var expires = new Date()
-      expires.setFullYear(expires.getFullYear() + 1)
-      document.cookie = 'hideContentDataSurveyBanner=; expires=' + expires.toUTCString() + '; SameSite=strict'
+      setHideBannerCookie()
     })
   })
 })()
