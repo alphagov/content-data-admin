@@ -53,6 +53,7 @@
     <%= content_for :local_nav %>
   </div>
 
+  <% if css_classes.include? "content-data__index" %>
   <div class="survey-banner" hidden="">
     <h2 class="survey-banner__title">Help us improve Content Data App</h2>
     <p class="survey-banner__intro">Hello, we want to understand how you use Content Data
@@ -66,6 +67,7 @@
       <a href="" class="govuk-link govuk-!-font-size-16" data-hide-survey-banner>Hide this</a>
     </div>
   </div>
+<% end %>
 
   <% if flash[:notice] %>
     <p>
