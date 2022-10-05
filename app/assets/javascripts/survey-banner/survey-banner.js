@@ -15,11 +15,13 @@
     el.style.display = 'block'
   }
 
-  if (surveyBannerHidden) {
-    hide(surveyBanner)
-  } else {
-    hide(standardBanner)
-    show(surveyBanner)
+  if (surveyBanner) {
+    if (surveyBannerHidden) {
+      hide(surveyBanner)
+    } else {
+      hide(standardBanner)
+      show(surveyBanner)
+    }
   }
 
   function setHideBannerCookie () {
