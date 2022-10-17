@@ -2,4 +2,3 @@
 //= require govuk_publishing_components/all_components
 //= require_tree ./components
 //= require_tree ./core
-//= require_tree ./survey-banner
