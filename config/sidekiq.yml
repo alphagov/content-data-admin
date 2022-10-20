@@ -1,3 +1,6 @@
 :concurrency:  2
 :queues:
   - export_csv
+<% if ENV.key?('SIDEKIQ_LOGFILE') %>
+:logfile: <%= ENV['SIDEKIQ_LOGFILE'] %>
+<% end %>
