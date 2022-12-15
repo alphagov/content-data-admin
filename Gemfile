@@ -11,7 +11,7 @@ gem "govuk_app_config"
 gem "govuk_publishing_components", "~> 17" # Content Data uses the accessible autocomplete component which was removed in version 18
 gem "govuk_sidekiq"
 gem "kaminari"
-gem "mail", "~> 2.7.1"  # TODO: remove once https://github.com/mikel/mail/issues/1489 is fixed.
+gem "mail", "~> 2.8.0"  # TODO: remove once https://github.com/mikel/mail/issues/1489 is fixed.
 gem "mail-notify"
 gem "pg"
 gem "plek"
