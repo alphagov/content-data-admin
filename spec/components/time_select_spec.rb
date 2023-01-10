@@ -72,6 +72,6 @@ RSpec.describe "Time Select", type: :view do
   end
 
   def render_component(locals)
-    render partial: "components/time-select", locals: locals
+    render partial: "components/time-select", locals:
   end
 end

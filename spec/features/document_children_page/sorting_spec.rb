@@ -51,7 +51,7 @@ RSpec.feature "Sort results" do
   end
 
   scenario "visit the content page" do
-    stub_document_children_page(document_id: document_id, time_period: "past-30-days", sort: "sibling_order:asc")
+    stub_document_children_page(document_id:, time_period: "past-30-days", sort: "sibling_order:asc")
 
     visit page_url
 
@@ -60,7 +60,7 @@ RSpec.feature "Sort results" do
   end
 
   scenario "sort on title column is disabled" do
-    stub_document_children_page(document_id: document_id, time_period: "past-30-days", sort: "sibling_order:asc")
+    stub_document_children_page(document_id:, time_period: "past-30-days", sort: "sibling_order:asc")
 
     visit page_url
 
@@ -70,7 +70,7 @@ RSpec.feature "Sort results" do
   end
 
   scenario "sort on document type column is disabled" do
-    stub_document_children_page(document_id: document_id, time_period: "past-30-days", sort: "sibling_order:asc")
+    stub_document_children_page(document_id:, time_period: "past-30-days", sort: "sibling_order:asc")
 
     visit page_url
 
@@ -84,8 +84,8 @@ RSpec.feature "Sort results" do
     sorted_items.reverse!
 
     response = { parent_base_path: "/parent", documents: sorted_items }
-    stub_document_children_page(document_id: document_id, time_period: "past-30-days", sort: "sibling_order:asc")
-    stub_document_children_page(document_id: document_id, time_period: "past-30-days", sort: "upviews:desc", response: response)
+    stub_document_children_page(document_id:, time_period: "past-30-days", sort: "sibling_order:asc")
+    stub_document_children_page(document_id:, time_period: "past-30-days", sort: "upviews:desc", response:)
 
     visit page_url
     find('th[data-gtm-id="upviews-column"] > .table__sort-link').click
@@ -99,8 +99,8 @@ RSpec.feature "Sort results" do
     sorted_items.reverse!
 
     response = { parent_base_path: "/parent", documents: sorted_items }
-    stub_document_children_page(document_id: document_id, time_period: "past-30-days", sort: "sibling_order:asc")
-    stub_document_children_page(document_id: document_id, time_period: "past-30-days", sort: "satisfaction:desc", response: response)
+    stub_document_children_page(document_id:, time_period: "past-30-days", sort: "sibling_order:asc")
+    stub_document_children_page(document_id:, time_period: "past-30-days", sort: "satisfaction:desc", response:)
 
     visit page_url
     find('th[data-gtm-id="satisfaction-column"] > .table__sort-link').click
@@ -114,8 +114,8 @@ RSpec.feature "Sort results" do
     sorted_items.reverse!
 
     response = { parent_base_path: "/parent", documents: sorted_items }
-    stub_document_children_page(document_id: document_id, time_period: "past-30-days", sort: "sibling_order:asc")
-    stub_document_children_page(document_id: document_id, time_period: "past-30-days", sort: "searches:desc", response: response)
+    stub_document_children_page(document_id:, time_period: "past-30-days", sort: "sibling_order:asc")
+    stub_document_children_page(document_id:, time_period: "past-30-days", sort: "searches:desc", response:)
 
     visit page_url
     find('th[data-gtm-id="searches-column"] > .table__sort-link').click

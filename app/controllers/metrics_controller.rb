@@ -6,8 +6,8 @@ class MetricsController < ApplicationController
     curr_period = DateRange.new(time_period)
     prev_period = curr_period.previous
 
-    curr_period_data = FetchSinglePage.call(base_path: base_path, date_range: curr_period)
-    prev_period_data = FetchSinglePage.call(base_path: base_path, date_range: prev_period)
+    curr_period_data = FetchSinglePage.call(base_path:, date_range: curr_period)
+    prev_period_data = FetchSinglePage.call(base_path:, date_range: prev_period)
 
     @performance_data = SingleContentItemPresenter.new(
       curr_period_data,

@@ -45,7 +45,7 @@ RSpec.describe "/content" do
 
   before do
     stub_metrics_page(base_path: "path/1", time_period: :last_month)
-    stub_content_page(time_period: "last-month", organisation_id: "org-id", items: items)
+    stub_content_page(time_period: "last-month", organisation_id: "org-id", items:)
     GDS::SSO.test_user = build(:user, organisation_content_id: "users-org-id")
 
     visit "/content?submitted=true&date_range=last-month&organisation_id=org-id"
@@ -81,7 +81,7 @@ RSpec.describe "/content" do
 
     it "respects the date filter" do
       stub_metrics_page(base_path: "path/1", time_period: :past_year)
-      stub_content_page(time_period: "past-year", organisation_id: "org-id", items: items)
+      stub_content_page(time_period: "past-year", organisation_id: "org-id", items:)
 
       visit "/content?date_range=past-year&organisation_id=org-id"
       click_link "The title"
@@ -97,7 +97,7 @@ RSpec.describe "/content" do
 
   context "filter by organisation" do
     before do
-      stub_content_page(time_period: "last-month", organisation_id: "another-org-id", items: items)
+      stub_content_page(time_period: "last-month", organisation_id: "another-org-id", items:)
       select "another org", from: "organisation_id"
       click_on "Filter"
     end
@@ -125,7 +125,7 @@ RSpec.describe "/content" do
 
     it "respects date range" do
       stub_metrics_page(base_path: "path/1", time_period: :past_year)
-      stub_content_page(time_period: "past-year", organisation_id: "another-org-id", items: items)
+      stub_content_page(time_period: "past-year", organisation_id: "another-org-id", items:)
 
       visit "/content?date_range=past-year&organisation_id=another-org-id"
 
@@ -167,7 +167,7 @@ RSpec.describe "/content" do
         stub_content_page(
           time_period: "past-30-days",
           organisation_id: "users-org-id",
-          items: items,
+          items:,
         )
         stub_content_page(
           time_period: "past-30-days",
@@ -190,7 +190,7 @@ RSpec.describe "/content" do
         stub_content_page(
           time_period: "past-30-days",
           organisation_id: "users-org-id",
-          items: items,
+          items:,
         )
         stub_content_page(
           time_period: "past-30-days",
@@ -213,7 +213,7 @@ RSpec.describe "/content" do
         stub_content_page(
           time_period: "past-30-days",
           organisation_id: "all",
-          items: items,
+          items:,
         )
         stub_content_page(
           time_period: "past-30-days",

@@ -1,7 +1,7 @@
 RSpec.describe PaginationPresenter do
   subject do
     PaginationPresenter.new(
-      page: page,
+      page:,
       total_pages: 123_457,
       per_page: 10,
       total_results: 1_234_567,

@@ -44,8 +44,8 @@ RSpec.describe "Exporting CSV" do
   end
 
   before(:each) do
-    stub_content_page(time_period: "past-30-days", organisation_id: "all", items: items)
-    stub_content_page_csv_download(time_period: "past-30-days", organisation_id: "all", items: items)
+    stub_content_page(time_period: "past-30-days", organisation_id: "all", items:)
+    stub_content_page_csv_download(time_period: "past-30-days", organisation_id: "all", items:)
     GDS::SSO.test_user = build(:user, organisation_content_id: "users-org-id", email: "to@example.com")
 
     Fog.mock!

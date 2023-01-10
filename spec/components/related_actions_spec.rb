@@ -44,6 +44,6 @@ RSpec.describe "Related actions", type: :view do
   end
 
   def render_component(locals)
-    render partial: "components/related-actions", locals: locals
+    render partial: "components/related-actions", locals:
   end
 end

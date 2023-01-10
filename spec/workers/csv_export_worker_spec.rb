@@ -68,9 +68,9 @@ RSpec.describe CsvExportWorker do
     Sidekiq::Worker.clear_all
 
     allow(FetchDocumentTypes).to receive(:call)
-      .and_return(document_types: document_types)
+      .and_return(document_types:)
     allow(FetchOrganisations).to receive(:call)
-      .and_return(organisations: organisations)
+      .and_return(organisations:)
     allow(FindContent).to receive(:enum)
       .with(search_params)
       .and_return(content_items)

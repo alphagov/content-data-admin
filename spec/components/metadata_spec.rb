@@ -37,6 +37,6 @@ RSpec.describe "Metadata", type: :view do
   end
 
   def render_component(locals)
-    render partial: "components/metadata", locals: locals
+    render partial: "components/metadata", locals:
   end
 end
