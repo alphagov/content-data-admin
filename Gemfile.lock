@@ -473,7 +473,7 @@ DEPENDENCIES
   govuk_sidekiq
   govuk_test
   kaminari
-  mail (~> 2.8.0)
+  mail
   mail-notify
   pg
   plek
