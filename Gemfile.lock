@@ -469,7 +469,6 @@ DEPENDENCIES
   govuk_sidekiq
   govuk_test
   kaminari
-  mail
   mail-notify
   pg
   plek
