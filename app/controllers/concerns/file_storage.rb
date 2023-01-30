@@ -2,9 +2,8 @@ module FileStorage
   def upload_csv_to_s3(basename, body)
     connection = Fog::Storage.new(
       provider: "AWS",
+      use_iam_profile: true,
       region: ENV["AWS_REGION"],
-      aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
-      aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
     )
 
     directory = connection.directories.get(ENV["AWS_CSV_EXPORT_BUCKET_NAME"])
