@@ -15,6 +15,7 @@ $govuk-global-styles: true;
 @include _govuk-font-face-nta;
 
 // local components
+@import "components/accessible-autocomplete";
 @import "components/chart";
 @import "components/ga_data_notice";
 @import "components/glance-metric";

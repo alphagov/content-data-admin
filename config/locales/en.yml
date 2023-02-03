@@ -30,4 +30,6 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  components:
+    autocomplete:
+      multiselect: "To select multiple items in a list, hold down Ctrl (PC) or Cmd (Mac) key."

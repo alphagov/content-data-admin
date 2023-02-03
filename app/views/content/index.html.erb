@@ -41,7 +41,7 @@
                 value: params[:search_term],
               } %>
 
-          <%= render "govuk_publishing_components/components/accessible_autocomplete",
+          <%= render "components/accessible_autocomplete",
               {
                 id: 'document_type',
                 label: {
@@ -51,7 +51,7 @@
                 selected_option: @filter.selected_document_type(params)
               }
           %>
-          <%= render "govuk_publishing_components/components/accessible_autocomplete",
+          <%= render "components/accessible_autocomplete",
               {
                 id: 'organisation_id',
                 label: {
