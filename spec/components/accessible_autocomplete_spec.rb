@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "AccessibleAutocomplete", type: :view do
+RSpec.describe "AccessibleAutocomplete", type: :view do
   def component_name
     "accessible_autocomplete"
   end
