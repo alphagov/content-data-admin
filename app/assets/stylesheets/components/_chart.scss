@@ -10,7 +10,7 @@
   max-height: 300px;
   margin-top: govuk-spacing(3);
 
-  @include media(mobile) {
+  @include govuk-media-query($from: mobile) {
     max-height: 250px;
   }
 
@@ -24,7 +24,7 @@
 
   .govuk-table .govuk-table__header {
     border: none;
-    background-color: $white;
+    background-color: govuk-colour("white");
     @include govuk-font($size: 14, $weight: bold);
     text-align: center;
     min-width: 4em;
@@ -32,7 +32,7 @@
 
   .govuk-table .govuk-table__body .govuk-table__cell {
     @include govuk-font(14);
-    border-top: 1px solid $black;
+    border-top: 1px solid govuk-colour("black");
   }
 
   .govuk-table .govuk-table__cell {
@@ -67,7 +67,7 @@
     height: 250px;
   }
 
-  @include media(mobile) {
+  @include govuk-media-query($from: mobile) {
     #chart-1,
     #chart-2,
     #chart-3,
@@ -83,11 +83,11 @@
 
 // stylelint-disable declaration-no-important
 .google-visualization-tooltip {
-  background-color: $black !important;
+  background-color: govuk-colour("black") !important;
   opacity: .95;
 
   span {
-    color: $white !important;
+    color: govuk-colour("white") !important;
     font-family: nta, Arial, sans-serif !important;
     font-size: 14px !important;
   }

@@ -19,6 +19,6 @@
 }
 
 .app-c-related-actions__links--local {
-  border-top: 1px solid $grey-2;
+  border-top: 1px solid govuk-colour("mid-grey");
   @include govuk-responsive-padding(3, "top");
 }

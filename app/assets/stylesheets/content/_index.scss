@@ -5,14 +5,14 @@
 
   .gem-c-pagination {
 
-    @include media(mobile) {
+    @include govuk-media-query($from: mobile) {
       @include govuk-responsive-padding(3, "left");
     }
   }
 
   .table-wrapper {
     min-width: 900px;
-    background-color: $white;
+    background-color: govuk-colour("white");
     @include govuk-responsive-padding(6, "right");
   }
 

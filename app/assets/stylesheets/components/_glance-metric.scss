@@ -51,7 +51,7 @@
 }
 
 .app-c-glance-metric__trend-icon {
-  color: $grey-1;
+  color: govuk-colour("dark-grey");
 
   @include media-down(mobile) {
     @include govuk-font(19);
