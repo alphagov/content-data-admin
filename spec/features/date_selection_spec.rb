@@ -20,7 +20,7 @@ RSpec.describe "date selection", type: :feature do
       visit page_uri
 
       time_labels = find(".app-c-time-select", visible: false).all(".govuk-radios__item", visible: false).map do |el|
-        { el.find("label", visible: false).text(:all) => el.find("span", visible: false).text(:all) }
+        { el.find("label", visible: false).text(:all) => el.find(class: "govuk-radios__hint", visible: false).text(:all) }
       end
 
       expect(time_labels).to match([
