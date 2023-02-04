@@ -26,6 +26,7 @@
     "accessible-autocomplete": "^2.0.4"
   },
   "devDependencies": {
+    "postcss": "^8.4.21",
     "standardx": "^7.0.0",
     "stylelint": "^14.16.1",
     "stylelint-config-gds": "^0.2.0"
