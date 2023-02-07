@@ -74,6 +74,6 @@ RSpec.describe "Chart", type: :view do
   end
 
   def render_component(locals)
-    render partial: "components/chart", locals: locals
+    render partial: "components/chart", locals:
   end
 end

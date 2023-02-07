@@ -30,11 +30,11 @@ class ChartPresenter
       table_direction: "horizontal",
       from: google_charts_date_string(from),
       to: google_charts_date_string(to),
-      keys: keys,
+      keys:,
       rows: [
         {
           label: "#{human_friendly_metric} ",
-          values: values,
+          values:,
         },
       ],
       percent_metric: percentage_metric?,

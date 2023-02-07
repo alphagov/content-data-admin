@@ -325,7 +325,7 @@ RSpec.describe SingleContentItemPresenter do
 
           expect(subject.local_links).to eq([
             {
-              link_url: link_url,
+              link_url:,
               label: "See data for all sections",
               gtm_id: "compare-link",
             },
@@ -345,7 +345,7 @@ RSpec.describe SingleContentItemPresenter do
 
           expect(subject.local_links).to eq([
             {
-              link_url: link_url,
+              link_url:,
               label: "See data for all sections",
               gtm_id: "compare-link",
             },

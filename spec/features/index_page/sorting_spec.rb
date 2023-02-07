@@ -39,7 +39,7 @@ RSpec.feature "Sort results" do
   end
 
   scenario "visit the content page" do
-    stub_content_page(time_period: "past-30-days", organisation_id: "all", items: items)
+    stub_content_page(time_period: "past-30-days", organisation_id: "all", items:)
     visit "/content"
 
     values = extract_table_column_values("upviews")
@@ -47,7 +47,7 @@ RSpec.feature "Sort results" do
   end
 
   scenario "sort on title column is disabled" do
-    stub_content_page(time_period: "past-30-days", organisation_id: "all", items: items)
+    stub_content_page(time_period: "past-30-days", organisation_id: "all", items:)
     visit "/content"
 
     within('th[data-gtm-id="title-column"]') do
@@ -58,7 +58,7 @@ RSpec.feature "Sort results" do
   scenario "sort on document_type column" do
     sorted_items = items.sort_by { |item| item[:document_type] }
     sorted_items.reverse!
-    stub_content_page(time_period: "past-30-days", organisation_id: "all", items: items)
+    stub_content_page(time_period: "past-30-days", organisation_id: "all", items:)
     stub_content_page(time_period: "past-30-days", organisation_id: "all", items: sorted_items, sort: "document_type:asc")
     visit "/content"
     find('th[data-gtm-id="document_type-column"] > a').click
@@ -70,7 +70,7 @@ RSpec.feature "Sort results" do
   scenario "sort on satisfaction column" do
     sorted_items = items.sort_by { |item| item[:satisfaction] }
     sorted_items.reverse!
-    stub_content_page(time_period: "past-30-days", organisation_id: "all", items: items)
+    stub_content_page(time_period: "past-30-days", organisation_id: "all", items:)
     stub_content_page(time_period: "past-30-days", organisation_id: "all", items: sorted_items, sort: "satisfaction:desc")
     visit "/content"
     find('th[data-gtm-id="satisfaction-column"] > .table__sort-link').click
@@ -82,7 +82,7 @@ RSpec.feature "Sort results" do
   scenario "sort on searches column" do
     sorted_items = items.sort_by { |item| item[:searches] }
     sorted_items.reverse!
-    stub_content_page(time_period: "past-30-days", organisation_id: "all", items: items)
+    stub_content_page(time_period: "past-30-days", organisation_id: "all", items:)
     stub_content_page(time_period: "past-30-days", organisation_id: "all", items: sorted_items, sort: "searches:desc")
     visit "/content"
     find('th[data-gtm-id="searches-column"] > .table__sort-link').click

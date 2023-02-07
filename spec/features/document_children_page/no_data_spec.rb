@@ -51,7 +51,7 @@ RSpec.describe "No metric data" do
 
   before do
     response = { parent_base_path: "/parent", documents: items }
-    stub_document_children_page(document_id: document_id, response: response)
+    stub_document_children_page(document_id:, response:)
     GDS::SSO.test_user = build(:user, organisation_content_id: "users-org-id")
 
     visit "/documents/#{document_id}/children"

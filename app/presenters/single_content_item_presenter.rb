@@ -98,11 +98,11 @@ class SingleContentItemPresenter
   end
 
   def feedback_explorer_href
-    feedex_url(from: date_range.from, to: date_range.to, base_path: base_path)
+    feedex_url(from: date_range.from, to: date_range.to, base_path:)
   end
 
   def search_terms_href
-    google_analytics_url(from: date_range.from, to: date_range.to, base_path: base_path)
+    google_analytics_url(from: date_range.from, to: date_range.to, base_path:)
   end
 
   def period
@@ -131,8 +131,8 @@ class SingleContentItemPresenter
     edit_url_for(
       content_id: metadata[:content_id],
       publishing_app: metadata[:publishing_app],
-      base_path: base_path,
-      parent_content_id: parent_content_id,
+      base_path:,
+      parent_content_id:,
       document_type: metadata[:document_type],
       locale: metadata[:locale],
     )
@@ -193,7 +193,7 @@ class SingleContentItemPresenter
 
   def chart_for_metric(metric_name)
     time_series = @metrics[metric_name][:time_series]
-    ChartPresenter.new(json: time_series, metric: metric_name, date_range: date_range)
+    ChartPresenter.new(json: time_series, metric: metric_name, date_range:)
   end
 
 private

@@ -49,22 +49,22 @@ private
   end
 
   def aggregated_metrics_url(base_path, from, to)
-    "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}#{query_string(from: from, to: to)}"
+    "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}#{query_string(from:, to:)}"
   end
 
   def time_series_request_url(base_path, from, to)
-    "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}/time-series#{query_string(from: from, to: to)}"
+    "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}/time-series#{query_string(from:, to:)}"
   end
 
   def content_items_url(date_range, organisation_id, document_type, page, page_size, search_term, sort)
     params = {
-      date_range: date_range,
-      organisation_id: organisation_id,
-      document_type: document_type,
-      search_term: search_term,
-      page: page,
-      page_size: page_size,
-      sort: sort,
+      date_range:,
+      organisation_id:,
+      document_type:,
+      search_term:,
+      page:,
+      page_size:,
+      sort:,
     }
     params.reject! { |_, v| v.blank? }
 
@@ -72,11 +72,11 @@ private
   end
 
   def document_children_url(document_id, time_period, sort)
-    "#{content_data_api_endpoint}/api/v1/documents/#{document_id}/children#{query_string(time_period: time_period, sort: sort)}"
+    "#{content_data_api_endpoint}/api/v1/documents/#{document_id}/children#{query_string(time_period:, sort:)}"
   end
 
   def single_page_url(base_path, from, to)
-    "#{content_data_api_endpoint}/single_page/#{base_path}#{query_string(from: from, to: to)}"
+    "#{content_data_api_endpoint}/single_page/#{base_path}#{query_string(from:, to:)}"
   end
 
   def organisations_url

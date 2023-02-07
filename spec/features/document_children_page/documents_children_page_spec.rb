@@ -5,7 +5,7 @@ RSpec.describe "/documents/:document_id/children" do
   let(:document_id) { "1234:en" }
 
   before do
-    stub_document_children_page(document_id: document_id)
+    stub_document_children_page(document_id:)
     GDS::SSO.test_user = build(:user, organisation_content_id: "users-org-id")
 
     visit "/documents/#{document_id}/children"

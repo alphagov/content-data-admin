@@ -14,8 +14,8 @@ module FileStorage
     key = "#{timestamp}/#{filename}"
 
     file = directory.files.create(
-      key: key,
-      body: body,
+      key:,
+      body:,
       public: true,
       content_disposition: "attachment; filename=\"#{filename}\"",
       content_type: "text/csv",

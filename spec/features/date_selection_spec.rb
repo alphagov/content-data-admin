@@ -8,7 +8,7 @@ RSpec.describe "date selection", type: :feature do
     Timecop.freeze(Date.new(2018, 12, 25))
     GDS::SSO.test_user = build(:user)
     # Stub backend API for initial page visit
-    stub_metrics_page(base_path: base_path, time_period: :past_30_days)
+    stub_metrics_page(base_path:, time_period: :past_30_days)
   end
 
   after do
@@ -45,31 +45,31 @@ RSpec.describe "date selection", type: :feature do
   end
 
   it "renders data for the previous month when `Past month` is selected" do
-    stub_metrics_page(base_path: base_path, time_period: :last_month)
+    stub_metrics_page(base_path:, time_period: :last_month)
     visit_page_and_filter_by_date_range("last-month")
     expect_upviews_table_to_contain_dates(["1 Nov 2018", "2 Nov 2018", "30 Nov 2018"])
   end
 
   it "renders data for the past 3 months when `Past 3 months` is selected" do
-    stub_metrics_page(base_path: base_path, time_period: :past_3_months)
+    stub_metrics_page(base_path:, time_period: :past_3_months)
     visit_page_and_filter_by_date_range("past-3-months")
     expect_upviews_table_to_contain_dates(["25 Sep 2018", "26 Sep 2018", "24 Dec 2018"])
   end
 
   it "renders data for the past 6 months when `Past 6 months` is selected" do
-    stub_metrics_page(base_path: base_path, time_period: :past_6_months)
+    stub_metrics_page(base_path:, time_period: :past_6_months)
     visit_page_and_filter_by_date_range("past-6-months")
     expect_upviews_table_to_contain_dates(["25 Jun 2018", "26 Jun 2018", "24 Dec 2018"])
   end
 
   it "renders data for the past year when `Past year` is selected" do
-    stub_metrics_page(base_path: base_path, time_period: :past_year)
+    stub_metrics_page(base_path:, time_period: :past_year)
     visit_page_and_filter_by_date_range("past-year")
     expect_upviews_table_to_contain_dates(["25 Dec 2017", "26 Dec 2017", "24 Dec 2018"])
   end
 
   it "renders data for the past 2 years when `Past 2 years` is selected" do
-    stub_metrics_page(base_path: base_path, time_period: :past_2_years)
+    stub_metrics_page(base_path:, time_period: :past_2_years)
     visit_page_and_filter_by_date_range("past-2-years")
     expect_upviews_table_to_contain_dates(["25 Dec 2016", "26 Dec 2016", "24 Dec 2018"])
   end

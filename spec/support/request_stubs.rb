@@ -38,17 +38,17 @@ module RequestStubs
 
     if content_item_missing
       content_data_api_does_not_have_base_path(
-        base_path: base_path, from: dates.from, to: dates.to,
+        base_path:, from: dates.from, to: dates.to,
       )
     else
       content_data_api_has_single_page(
-        base_path: base_path,
+        base_path:,
         from: dates.from,
         to: dates.to,
         payload: current_period_data,
       )
       content_data_api_has_single_page(
-        base_path: base_path,
+        base_path:,
         from: prev_dates.from,
         to: prev_dates.to,
         payload: previous_period_data,
@@ -60,10 +60,10 @@ module RequestStubs
     response = document_children_response if response.nil?
 
     content_data_api_has_document_children(
-      document_id: document_id,
+      document_id:,
       payload: response,
-      time_period: time_period,
-      sort: sort,
+      time_period:,
+      sort:,
     )
   end
 
@@ -75,22 +75,22 @@ module RequestStubs
 
     content_data_api_has_content_items(
       date_range: time_period,
-      organisation_id: organisation_id,
-      document_type: document_type,
+      organisation_id:,
+      document_type:,
       search_term: search_terms,
-      sort: sort,
-      items: items,
+      sort:,
+      items:,
     )
   end
 
   def stub_content_page_csv_download(time_period:, items:, organisation_id: nil, document_type: nil, search_terms: nil, sort: "upviews:desc")
     content_data_api_has_content_items(
       date_range: time_period,
-      organisation_id: organisation_id,
-      document_type: document_type,
+      organisation_id:,
+      document_type:,
       search_term: search_terms,
-      items: items,
-      sort: sort,
+      items:,
+      sort:,
       page_size: 5000,
     )
   end

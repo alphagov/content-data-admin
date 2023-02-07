@@ -121,7 +121,7 @@ module GdsApi
             locale: "fr",
             first_published_at: "2018-07-17T10:35:59.000Z",
             public_updated_at: "2018-07-17T10:35:57.000Z",
-            publishing_app: publishing_app,
+            publishing_app:,
             document_type: "news_story",
             primary_organisation_title: "The Ministry",
             historical: false,
@@ -130,8 +130,8 @@ module GdsApi
           },
           number_of_related_content: 0,
           time_period: {
-            to: to,
-            from: from,
+            to:,
+            from:,
           },
           time_series_metrics: [
             {
@@ -224,8 +224,8 @@ module GdsApi
             withdrawn: false,
           },
           time_period: {
-            to: to,
-            from: from,
+            to:,
+            from:,
           },
           time_series_metrics: [
             {

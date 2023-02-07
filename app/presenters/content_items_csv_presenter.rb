@@ -96,7 +96,7 @@ private
 
   def percentage_users_searched(searches, unique_pageviews)
     value = Calculator::AverageSearchesPerUser.calculate(
-      searches: searches, unique_pageviews: unique_pageviews,
+      searches:, unique_pageviews:,
     )
 
     number_to_percentage(value, precision: 2)

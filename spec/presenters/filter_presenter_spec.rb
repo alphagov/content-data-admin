@@ -18,8 +18,8 @@ RSpec.describe FilterPresenter do
   end
 
   before do
-    allow(FetchDocumentTypes).to receive(:call).and_return(document_types: document_types)
-    allow(FetchOrganisations).to receive(:call).and_return(organisations: organisations)
+    allow(FetchDocumentTypes).to receive(:call).and_return(document_types:)
+    allow(FetchOrganisations).to receive(:call).and_return(organisations:)
   end
 
   subject do

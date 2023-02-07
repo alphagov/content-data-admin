@@ -18,7 +18,7 @@ RSpec.describe ChartPresenter do
           { date: "2018-01-15", value: 303 },
         ],
       metric: :upviews,
-      date_range: date_range,
+      date_range:,
     )
   end
 
