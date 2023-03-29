@@ -156,18 +156,17 @@ GEM
       sentry-rails (~> 5.3)
       sentry-ruby (~> 5.3)
       statsd-ruby (~> 1.5)
-    govuk_frontend_toolkit (9.0.1)
-      railties (>= 3.1.0)
-    govuk_publishing_components (17.21.0)
-      gds-api-adapters
+    govuk_personalisation (0.13.0)
+      plek (>= 1.9.0)
+      rails (>= 6, < 8)
+    govuk_publishing_components (35.1.1)
       govuk_app_config
-      govuk_frontend_toolkit
+      govuk_personalisation (>= 0.7.0)
       kramdown
       plek
-      rails (>= 5.0.0.1)
-      rake
+      rails (>= 6)
       rouge
-      sassc-rails (>= 2.0.1)
+      sprockets (>= 3)
     govuk_sidekiq (6.0.0)
       gds-api-adapters (>= 19.1.0)
       govuk_app_config (>= 1.1)
@@ -325,7 +324,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
-    rouge (4.0.1)
+    rouge (4.1.0)
     rspec-core (3.12.1)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.2)
@@ -464,7 +463,7 @@ DEPENDENCIES
   gds-api-adapters
   gds-sso
   govuk_app_config
-  govuk_publishing_components (~> 17)
+  govuk_publishing_components (~> 35.1.1)
   govuk_sidekiq
   govuk_test
   kaminari
