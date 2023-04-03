@@ -13,7 +13,7 @@ gem "govuk_sidekiq"
 gem "kaminari"
 gem "mail-notify"
 gem "pg"
-gem "plek", "~>4" # govuk_publishing_components 17 uses Plek.current, which was removed in Plek 5.
+gem "plek"
 gem "sassc-rails"
 gem "uglifier"
 

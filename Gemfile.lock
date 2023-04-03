@@ -469,7 +469,7 @@ DEPENDENCIES
   kaminari
   mail-notify
   pg
-  plek (~> 4)
+  plek
   pry
   rails (= 7.0.4.3)
   rspec-rails
