@@ -29,5 +29,6 @@
   },
   "dependencies": {
     "accessible-autocomplete": "^2.0.4"
-  }
+  },
+  "packageManager": "yarn@3.5.0"
 }
