@@ -113,6 +113,7 @@ RSpec.describe CsvExportWorker do
     mail = ActionMailer::Base.deliveries.last
     expect(mail.to[0]).to eq("to@example.com")
     expect(mail.body).to match(/https:\/\/test-bucket.s3.eu-west-1.amazonaws.com/)
+    expect(mail.body).to match(/https:\/\/test-bucket.s3.eu-west-1.amazonaws.com/)
   end
 
   it "sends StatsD timing with the milliseconds elapsed" do
