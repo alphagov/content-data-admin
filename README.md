@@ -1,3 +1,5 @@
+TEST
+
 # Content Data Admin
 
 A front end for the [Content Data API].
