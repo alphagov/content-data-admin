@@ -9,15 +9,13 @@
     z-index: 0;
   }
 
-  .autocomplete__option {
-    @include govuk-font(19);
-  }
-
   .js-enabled {
     display: none;
   }
 
-  .autocomplete__list .autocomplete__option {
+  .autocomplete__option {
+    @include govuk-font(19);
+    min-height: 1em;
     padding: 5px 6px;
 
     &:before {
