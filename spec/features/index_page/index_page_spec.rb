@@ -289,4 +289,28 @@ RSpec.describe "/content" do
       expect(page).to have_css("h1.table-caption", exact_text: "Showing 150 results for all document types from org (OI)")
     end
   end
+
+  describe "accessible autocomplete", js: true do
+    before do
+      stub_content_page(time_period: "past-3-months", organisation_id: "org-id", items: items * 50)
+      visit "/content?date_range=past-3-months&organisation_id=org-id"
+    end
+
+    it "works" do
+      within page.find('[data-module="accessible-autocomplete"]', text: "Document type") do |section|
+        fill_in "Document type", with: ""
+        expect(section).to have_css(".autocomplete__option", text: "All document types")
+        expect(section).to have_css(".autocomplete__option", text: "Case study")
+        expect(section).to have_css(".autocomplete__option", text: "Guide")
+
+        fill_in "Document type", with: "C"
+        expect(section).to have_css(".autocomplete__option", text: "All document types")
+        expect(section).to have_css(".autocomplete__option", text: "Case study")
+        expect(section).not_to have_css(".autocomplete__option", text: "Guide")
+
+        section.find(".autocomplete__option", text: "Case study").click
+        expect(section.find("select", visible: false).value).to eq("case_study")
+      end
+    end
+  end
 end
