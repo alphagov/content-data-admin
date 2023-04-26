@@ -6,8 +6,10 @@ ARG builder_image=ghcr.io/alphagov/govuk-ruby-builder:$ruby_version
 FROM $builder_image AS builder
 
 WORKDIR $APP_HOME
-COPY Gemfile* .ruby-version ./
+COPY Gemfile* .ruby-version package.json yarn.lock .yarnrc.yml ./
+COPY .yarn ./.yarn
 RUN bundle install
+RUN yarn install
 COPY . .
 RUN bootsnap precompile --gemfile .
 RUN rails assets:precompile && rm -fr log

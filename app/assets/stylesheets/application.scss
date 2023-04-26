@@ -10,11 +10,8 @@ $govuk-global-styles: true;
 // gem components
 @import "govuk_publishing_components/all_components";
 
-// TODO: remove the font-face include when govuk_publishing_components doesn't
-// rely on govuk_template and has $govuk-compatibility-govuktemplate set to false
-@include _govuk-font-face-nta;
-
 // local components
+@import "components/accessible-autocomplete";
 @import "components/chart";
 @import "components/ga_data_notice";
 @import "components/glance-metric";
@@ -164,7 +161,7 @@ $govuk-global-styles: true;
 .sortable-table {
   .table-caption {
     @include govuk-font(16);
-    @include media(mobile) {
+    @include govuk-media-query($from: mobile) {
       @include govuk-responsive-padding(3, "left");
     }
   }
@@ -186,11 +183,14 @@ $govuk-global-styles: true;
 
   .table__sort-link {
     @include govuk-link-style-no-visited-state;
-    @include govuk-focusable-fill;
     position: relative;
     padding-right: $sort-link-arrow-size;
     color: $govuk-link-colour;
     text-decoration: none;
+
+    &:focus {
+      @include govuk-focused-text;
+    }
 
     &:after {
       content: "";
@@ -242,7 +242,7 @@ $govuk-global-styles: true;
   }
 
   .govuk-table {
-    background-color: $white;
+    background-color: govuk-colour("white");
     // re-align text content of left and right columns
     margin-top: -1px;
   }
@@ -259,7 +259,7 @@ $govuk-global-styles: true;
   }
 
   .govuk-table__cell--shaded {
-    background-color: govuk-colour("grey-4");
+    background-color: govuk-colour("light-grey");
   }
 
   .govuk-table__cell--numeric {
@@ -288,14 +288,14 @@ $govuk-global-styles: true;
     @include govuk-font(14);
     outline: 1px solid $govuk-border-colour;
 
-    background-color: govuk-colour("grey-3");
+    background-color: govuk-colour("light-grey");
     font-weight: normal;
 
     &.govuk-table__header--sorted {
       background-color: govuk-colour("blue");
 
       .table__sort-link { // stylelint-disable-line max-nesting-depth
-        color: $white;
+        color: govuk-colour("white");
       }
     }
   }

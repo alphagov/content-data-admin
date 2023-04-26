@@ -1,0 +1,33 @@
+@import url(asset-path("accessible-autocomplete/dist/accessible-autocomplete.min.css")); /* stylelint-disable-line */
+
+.app-c-accessible-autocomplete {
+  .autocomplete__input {
+    z-index: 1;
+  }
+
+  .autocomplete__dropdown-arrow-down {
+    z-index: 0;
+  }
+
+  .js-enabled {
+    display: none;
+  }
+
+  .autocomplete__option {
+    @include govuk-font(19);
+    min-height: 1em;
+    padding: 5px 6px;
+
+    &:before {
+      position: relative;
+      top: 3px;
+      padding-top: 2px;
+    }
+  }
+}
+
+.app-c-accessible-autocomplete--hide-menu {
+  .autocomplete__menu {
+    display: none;
+  }
+}
