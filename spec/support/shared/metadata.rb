@@ -29,7 +29,7 @@ RSpec.shared_examples "Metadata presentation" do
 
   describe "#feedback_explorer_href" do
     it "returns a URI for the feedback explorer" do
-      host = Plek.new.external_url_for("support")
+      host = Plek.external_url_for("support")
       expected_link = "#{host}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=%2Fthe%2Fbase%2Fpath"
       expect(subject.feedback_explorer_href).to eq(expected_link)
     end

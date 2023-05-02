@@ -28,8 +28,8 @@
     product_name: "Content Data",
     full_width: @fullwidth,
     navigation_items: [
-      { text: "Switch app", href: Plek.new.external_url_for("signon") },
-      { text: current_user.name, href: Plek.new.external_url_for('signon') },
+      { text: "Switch app", href: Plek.external_url_for("signon") },
+      { text: current_user.name, href: Plek.external_url_for('signon') },
       { text: "Log out", href: gds_sign_out_path }
     ]
   }
@@ -41,7 +41,7 @@
 
 <div class="<%= css_classes %>">
   <% banner_message = capture do %>
-    <a href="<%= Plek.new.external_url_for('support') + '/content_data_feedback/new' %>">
+    <a href="<%= Plek.external_url_for('support') + '/content_data_feedback/new' %>">
       Send us feedback
     </a>
   <% end %>

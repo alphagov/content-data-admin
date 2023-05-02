@@ -12,7 +12,7 @@ RSpec.feature "link to document children" do
     stub_metrics_page(base_path: nil, time_period: :past_30_days, related_content: 3)
     visit "/metrics?date_range=past-30-days"
 
-    link = "#{Plek.new.external_url_for('content-data')}/documents/content-id:fr/children"
+    link = "#{Plek.external_url_for('content-data')}/documents/content-id:fr/children"
     expect(page).to have_link("See data for all sections", href: link)
   end
 
@@ -25,7 +25,7 @@ RSpec.feature "link to document children" do
     )
     visit "/metrics?date_range=past-30-days"
 
-    link = "#{Plek.new.external_url_for('content-data')}/documents/1234:en/children"
+    link = "#{Plek.external_url_for('content-data')}/documents/1234:en/children"
     expect(page).to have_link("See data for all sections", href: link)
   end
 end
