@@ -44,7 +44,7 @@ module ExternalLinksHelper
   end
 
   def feedex_url(from:, to:, base_path:)
-    host = Plek.new.external_url_for("support")
+    host = Plek.external_url_for("support")
     path = CGI.escape(base_path)
     base_request = "#{host}/anonymous_feedback?from=#{from}&to=#{to}&paths=#{path}"
     if base_path == "/"
@@ -65,7 +65,7 @@ module ExternalLinksHelper
   end
 
   def external_url_for(service)
-    Plek.new.external_url_for(service)
+    Plek.external_url_for(service)
   end
 
   def slug_from_basepath(base_path)

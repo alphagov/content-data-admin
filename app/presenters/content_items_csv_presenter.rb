@@ -73,11 +73,11 @@ private
   end
 
   def url(base_path)
-    "#{Plek.new.website_root}#{base_path}"
+    "#{Plek.website_root}#{base_path}"
   end
 
   def content_data_link(base_path)
-    base = Plek.new.external_url_for("content-data")
+    base = Plek.external_url_for("content-data")
 
     base + Rails.application.routes.url_helpers.metrics_path(
       # Remove / from the start of the base_path, as the url helper
@@ -87,7 +87,7 @@ private
   end
 
   def feedback_comments_link(base_path)
-    host = Plek.new.external_url_for("support")
+    host = Plek.external_url_for("support")
     from = @date_range.from
     to = @date_range.to
     path = CGI.escape(base_path)

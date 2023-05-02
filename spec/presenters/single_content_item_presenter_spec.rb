@@ -305,7 +305,7 @@ RSpec.describe SingleContentItemPresenter do
 
   describe "#feedback_explorer_href" do
     it "generates a URL to feedback explorer with correct params" do
-      expect(subject.feedback_explorer_href).to eq("#{Plek.new.external_url_for('support')}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=#{CGI.escape('/the/base/path')}")
+      expect(subject.feedback_explorer_href).to eq("#{Plek.external_url_for('support')}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=#{CGI.escape('/the/base/path')}")
     end
   end
 
@@ -321,7 +321,7 @@ RSpec.describe SingleContentItemPresenter do
         end
 
         it "return a link to the document children page" do
-          link_url = "#{Plek.new.external_url_for('content-data')}/documents/1234:en/children"
+          link_url = "#{Plek.external_url_for('content-data')}/documents/1234:en/children"
 
           expect(subject.local_links).to eq([
             {
@@ -341,7 +341,7 @@ RSpec.describe SingleContentItemPresenter do
         end
 
         it "return a link to the document children page" do
-          link_url = "#{Plek.new.external_url_for('content-data')}/documents/5678:fr/children"
+          link_url = "#{Plek.external_url_for('content-data')}/documents/5678:fr/children"
 
           expect(subject.local_links).to eq([
             {

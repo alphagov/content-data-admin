@@ -5,7 +5,7 @@ RSpec.describe ExternalLinksHelper do
         expect(
           edit_url_for(content_id: "content_id", publishing_app: "whitehall", base_path: "/base-path", document_type: "news_story"),
         ).to eq(
-          "#{Plek.new.external_url_for('whitehall-admin')}/government/admin/by-content-id/content_id",
+          "#{Plek.external_url_for('whitehall-admin')}/government/admin/by-content-id/content_id",
         )
       end
     end
@@ -15,7 +15,7 @@ RSpec.describe ExternalLinksHelper do
         expect(
           edit_url_for(content_id: "content_id", publishing_app: "publisher", base_path: "/base-path", document_type: "news_story"),
         ).to eq(
-          "#{Plek.new.external_url_for('support')}/content_change_request/new",
+          "#{Plek.external_url_for('support')}/content_change_request/new",
         )
       end
     end
@@ -182,7 +182,7 @@ RSpec.describe ExternalLinksHelper do
 
   describe "#feedex_url" do
     it "generates URL to feedex with given parameters" do
-      host = Plek.new.external_url_for("support")
+      host = Plek.external_url_for("support")
       expected_link = "#{host}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=%2Fthe%2Fbase%2Fpath"
 
       expect(feedex_url(
@@ -193,7 +193,7 @@ RSpec.describe ExternalLinksHelper do
     end
 
     it "adds document type of homepage when when the page concerned is the homepage" do
-      host = Plek.new.external_url_for("support")
+      host = Plek.external_url_for("support")
       expected_link = "#{host}/anonymous_feedback?from=2018-11-25&to=2018-12-24&paths=%2F&document_type=homepage"
 
       expect(feedex_url(
