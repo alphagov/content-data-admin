@@ -394,6 +394,9 @@ GEM
       sentry-ruby (~> 5.9.0)
     sentry-ruby (5.9.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
+    sentry-sidekiq (5.9.0)
+      sentry-ruby (~> 5.9.0)
+      sidekiq (>= 3.0)
     sidekiq (6.5.5)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -475,6 +478,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-govuk
   sassc-rails
+  sentry-sidekiq
   simplecov
   spring-commands-rspec
   timecop

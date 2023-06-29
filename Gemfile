@@ -15,6 +15,7 @@ gem "mail-notify"
 gem "pg"
 gem "plek"
 gem "sassc-rails"
+gem "sentry-sidekiq"
 gem "uglifier"
 
 group :test do
