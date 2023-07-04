@@ -1,9 +1,12 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds content-metrics" data-gtm-id="content-metrics">
-    <h3 class="section-content__header content-metrics__header govuk-heading-m">
+    <h3 class="content-metrics__header govuk-heading-m">
+
       <%= local_assigns[:title] %>
     </h3>
-    <p><a href="<%= local_assigns[:accessibility_issues].link %>">See accessibility issues</a></p>
+    <% if local_assigns[:show_link] %>
+      <p><a href="<%= local_assigns[:accessibility_issues].link %>">See accessibility issues on the page</a></p>
+    <% end %>
         <% local_assigns[:accessibility_issues].issue_list.each do |issue| %>
           <p>
             <%= issue.help.title%>
