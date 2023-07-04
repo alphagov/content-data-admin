@@ -147,6 +147,8 @@
 <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 <%= render 'content_metrics', performance_data: @performance_data %>
 
-<%= render "accessibility_issues", accessibility_issues: @accessibility_issues%>
+<%= render "accessibility_issues", accessibility_issues: @confirmed_accessibility_issues, level: "confirmed" %>
+<%= render "accessibility_issues", accessibility_issues: @potential_accessibility_issues, level: "potential" %>
+<%= render "policy_issues", policy_issues: @policy_issues %>
 
 
