@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/alphagov/site-improve-api-client.git
-  revision: 84288897f233dd946b3a4614ad1b6400ab120896
+  revision: 253f47101bb3dfb0d16258a8318d834d167ef7e5
+  branch: fix-difficulty
   specs:
     site-improve-api-client (1.0.0)
       typhoeus (~> 1.0, >= 1.0.1)
