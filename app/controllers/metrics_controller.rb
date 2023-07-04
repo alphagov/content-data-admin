@@ -15,7 +15,8 @@ class MetricsController < ApplicationController
       curr_period,
     )
 
-    raw_accessibility_issues = FetchSinglePageSiteImproveAccessibilityIssues.new("https://www.gov.uk/#{params[:base_path]}")
+    raw_accessibility_issues = FetchSiteImproveAccessibilityIssues.new(url: "https://www.gov.uk/#{params[:base_path]}")
+    Rails.logger.warn("RAW AI COUNT: #{raw_accessibility_issues.count}")
     @accessibility_issues = AccessibilityIssuesPresenter.new(raw_accessibility_issues)
   end
 

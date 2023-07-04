@@ -1,6 +1,6 @@
-require 'site-improve-api-client'
+require "site-improve-api-client"
 
-class FetchSinglePageSiteImproveAccessibilityIssues
+class FetchSiteImproveAccessibilityIssues
   def content_api
     @content_api ||= SiteImproveAPIClient::ContentApi.new
   end
