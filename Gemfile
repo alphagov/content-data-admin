@@ -16,6 +16,7 @@ gem "pg"
 gem "plek"
 gem "sassc-rails"
 gem "sentry-sidekiq"
+gem "siteimprove_api_client"
 gem "uglifier"
 
 group :development do
