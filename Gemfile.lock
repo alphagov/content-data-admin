@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/alphagov/site-improve-api-client.git
+  revision: 84288897f233dd946b3a4614ad1b6400ab120896
+  specs:
+    site-improve-api-client (1.0.0)
+      typhoeus (~> 1.0, >= 1.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -103,6 +110,8 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.12.0)
+    ethon (0.16.0)
+      ffi (>= 1.15.0)
     excon (0.99.0)
     execjs (2.8.1)
     factory_bot (6.2.1)
@@ -622,6 +631,8 @@ GEM
     tilt (2.0.11)
     timecop (0.9.6)
     timeout (0.4.0)
+    typhoeus (1.4.0)
+      ethon (>= 0.9.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
@@ -677,6 +688,7 @@ DEPENDENCIES
   sassc-rails
   sentry-sidekiq
   simplecov
+  site-improve-api-client!
   spring-commands-rspec
   timecop
   uglifier
