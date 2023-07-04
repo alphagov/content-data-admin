@@ -6,7 +6,9 @@ class FetchSiteImprovePolicies
   end
 
   def policies
-    @policies ||= policy_api.sites_site_id_policy_policies_get(site_id, page_size: 500).items
+    Rails.cache.fetch("site-improve-policies", expires_in: 1.hour) do
+      policy_api.sites_site_id_policy_policies_get(site_id, page_size: 500).items
+    end
   end
 
   def policy_api
