@@ -6,16 +6,16 @@ module SiteImproveApiClient
 
   included do
     def content_api
-        @content_api ||= SiteImproveAPIClient::ContentApi.new
+      @content_api ||= SiteImproveAPIClient::ContentApi.new
     end
 
     def site_id
       ENV["SITE_IMPROVE_SITE_ID"]
     end
 
-    def page_id_for_url(url: )
+    def page_id_for_url(url:)
       Rails.cache.fetch("site-improve-site-id-for/#{url}", expires_in: 1.hour) do
-        page_list = content_api.sites_site_id_content_pages_get(site_id, url: url)
+        page_list = content_api.sites_site_id_content_pages_get(site_id, url:)
         page = page_list.items.select { |i| i.url == @url }.first
         raise SiteImproveAPIClient::SiteImprovePageNotFound unless page
 
