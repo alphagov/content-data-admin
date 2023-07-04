@@ -1,12 +1,8 @@
 require "site-improve-api-client"
 
-class FetchSiteImproveAccessibilityIssues
+class FetchSiteImproveSummary
   def content_api
     @content_api ||= SiteImproveAPIClient::ContentApi.new
-  end
-
-  def a11y_api
-    @a11y_api ||= SiteImproveAPIClient::A11YNextGenApi.new
   end
 
   def site_id
@@ -24,7 +20,7 @@ class FetchSiteImproveAccessibilityIssues
   def call_raw
     page_list = content_api.sites_site_id_content_pages_get(site_id, url: @url)
     page = page_list.items.select { |i| i.url == @url }.first
-    a11y_api.sites_site_id_a11y_issue_kinds_issue_kind_pages_page_id_issues_get(site_id, "confirmed", page.id)
+    content_api.sites_site_id_content_pages_page_id_get(site_id, page.id)
   end
 
   def call
