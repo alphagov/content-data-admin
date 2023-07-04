@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   get "/healthcheck/ready", to: GovukHealthcheck.rack_response
 
   get "/metrics/(*base_path)", to: "metrics#show", as: :metrics, format: false
+
+  get "/site-improve-redirect/quality-assurance/(*base_path)", to: "site_improve_redirect#quality_assurance"
+  get "/site-improve-redirect/accessibility/(*base_path)", to: "site_improve_redirect#accessibility"
+  get "/site-improve-redirect/seo/(*base_path)", to: "site_improve_redirect#seo"
+  get "/site-improve-redirect/policy/(*base_path)", to: "site_improve_redirect#policy"
+
   get "/content", to: "content#index"
   get "/content/export_csv", to: "content#export_csv"
   get "/documents/:document_id/children", to: "documents#children", format: false
