@@ -1,24 +1,30 @@
 
-<h2 class="section-content__header content-metrics__header"><%= t("metrics.siteimprove.title") %></h2>
-<p><a href="<%= @policy_issues.link %>">See policy issues on the page</a></p>
-<table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m"><%= t("metrics.siteimprove.policy.title") %></caption>
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Priority</th>
-      <th scope="col" class="govuk-table__header">Issue</th>
-    </tr>
-  </thead>
-  <tbody class="govuk-table__body">
-    <% @policy_issues.issue_list.each do |issue| %>
-    <tr class="govuk-table__row">
-      <td class="govuk-table__cell"><%= issue.policy_priority %></td>
-      <td class="govuk-table__cell"><%= issue.policy_name %></td>
-    </tr>
-    <%end%>
-  </tbody>
-</table>
+<% if @policy_issues.issue_list.count > 0 %>
+  <h2 class="section-content__header content-metrics__header"><%= t("metrics.siteimprove.title") %></h2>
+  <p><a href="<%= @policy_issues.link %>"><%= t("metrics.siteimprove.policy_report_link") %></a></p>
+  <table class="govuk-table">
+    <caption class="govuk-table__caption govuk-table__caption--m"><%= t("metrics.siteimprove.policy.title") %></caption>
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Priority</th>
+        <th scope="col" class="govuk-table__header">Issue</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <% @policy_issues.issue_list.each do |issue| %>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><%= issue.policy_priority %></td>
+        <td class="govuk-table__cell"><%= issue.policy_name %></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+<% end %>
 
-<%= render "accessibility_issues", accessibility_issues: @confirmed_accessibility_issues, title: t("metrics.siteimprove.accessibility_confirmed.title"), show_link:true %>
-<%= render "accessibility_issues", accessibility_issues: @potential_accessibility_issues, title: t("metrics.siteimprove.accessibility_potential.title") %>
+<% if @confirmed_accessibility_issues.issue_list.count > 0 %>
+  <%= render "accessibility_issues", accessibility_issues: @confirmed_accessibility_issues, title: t("metrics.siteimprove.accessibility_confirmed.title"), show_link:true %>
+<% end %>
+<% if @potential_accessibility_issues.issue_list.count > 0 %>
+  <%= render "accessibility_issues", accessibility_issues: @potential_accessibility_issues, title: t("metrics.siteimprove.accessibility_potential.title") %>
+<% end %>
 

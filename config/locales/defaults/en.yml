@@ -82,6 +82,9 @@ en:
         introduced in February 2018 so there are no responses before this date.
     siteimprove:
       title: 'Site Improve issues'
+      more_issue_detail: 'More detail of the issue'
+      policy_report_link: 'See policy issues on the page'
+      accessibility_report_link: 'See accessibility issues on the page'
       policy:
         title: 'Policy issues'
       accessibility_confirmed:

@@ -5,7 +5,7 @@
       <%= local_assigns[:title] %>
     </h3>
     <% if local_assigns[:show_link] %>
-      <p><a href="<%= local_assigns[:accessibility_issues].link %>">See accessibility issues on the page</a></p>
+      <p><a href="<%= local_assigns[:accessibility_issues].link %>"><%= t("metrics.siteimprove.accessibility_report_link") %></a></p>
     <% end %>
         <% local_assigns[:accessibility_issues].issue_list.each do |issue| %>
           <p>
@@ -13,7 +13,7 @@
           </p>
 
           <%= render "govuk_publishing_components/components/details", {
-            title: "More detail"
+            title: t("metrics.siteimprove.more_issue_detail")
           } do %>
             <%= raw(issue.help.description) %>
           <% end %>
