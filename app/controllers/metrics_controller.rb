@@ -14,6 +14,9 @@ class MetricsController < ApplicationController
       prev_period_data,
       curr_period,
     )
+
+    raw_accessibility_issues = FetchSinglePageSiteImproveAccessibilityIssues.new("https://www.gov.uk/#{params[:base_path]}")
+    @accessibility_issues = AccessibilityIssuesPresenter.new(raw_accessibility_issues)
   end
 
   rescue_from GdsApi::HTTPNotFound do
