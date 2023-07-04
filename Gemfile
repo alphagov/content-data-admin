@@ -16,7 +16,9 @@ gem "pg"
 gem "plek"
 gem "sassc-rails"
 gem "sentry-sidekiq"
+gem "site-improve-api-client", github: "alphagov/site-improve-api-client"
 gem "uglifier"
+
 
 group :test do
   gem "simplecov"
