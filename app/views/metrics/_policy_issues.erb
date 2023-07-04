@@ -1,0 +1,13 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds content-metrics" data-gtm-id="content-metrics">
+    <h2 class="section-content__header content-metrics__header">
+      Policy Issues
+    </h2>
+    <ul>
+        <% local_assigns[:policy_issues].issue_list.each do |issue| %>
+        <li><%= issue.policy_name %></li>
+        <%# Also available: issue.policy_category, issue.policy_priority %>
+        <%end%>
+    </ul>
+  </div>
+</div>

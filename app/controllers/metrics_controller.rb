@@ -15,8 +15,12 @@ class MetricsController < ApplicationController
       curr_period,
     )
 
-    raw_accessibility_issues = FetchSiteImproveAccessibilityIssues.new(url: "https://www.gov.uk/#{params[:base_path]}").call
-    @accessibility_issues = AccessibilityIssuesPresenter.new(raw_accessibility_issues)
+    raw_confirmed_accessibility_issues = FetchSiteImproveAccessibilityIssues.new(url: "https://www.gov.uk/#{params[:base_path]}").call
+    @confirmed_accessibility_issues = AccessibilityIssuesPresenter.new(raw_confirmed_accessibility_issues)
+    raw_potential_accessibility_issues = FetchSiteImproveAccessibilityIssues.new(url: "https://www.gov.uk/#{params[:base_path]}", level: "potential").call
+    @potential_accessibility_issues = AccessibilityIssuesPresenter.new(raw_potential_accessibility_issues)
+    raw_policy_issues = FetchSiteImprovePolicyIssues.new(url: "https://www.gov.uk/#{params[:base_path]}").call
+    @policy_issues = PolicyIssuesPresenter.new(raw_policy_issues)
   end
 
   rescue_from GdsApi::HTTPNotFound do
