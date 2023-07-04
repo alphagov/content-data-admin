@@ -1,9 +1,20 @@
 class PolicyIssuesPresenter
-  attr_reader :issue_list, :summary_info
+  attr_reader :summary_info
 
-  def initialize(issue_list, summary_info)
-    @issue_list = issue_list
+  def initialize(policy_issues, summary_info)
+    @policy_issues = policy_issues
     @summary_info = summary_info
+  end
+
+  def issue_list
+    @policy_issues.map do |issue|
+      {
+        policy_category: issue.policy_category,
+        policy_name: issue.policy_name,
+        policy_priority: issue.policy_priority,
+        policy_description: FetchSiteImprovePolicies.new.find(issue.id).first.note,
+      }
+    end
   end
 
   def link

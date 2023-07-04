@@ -13,8 +13,9 @@
     <tbody class="govuk-table__body">
       <% @policy_issues.issue_list.each do |issue| %>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><%= issue.policy_priority %></td>
-        <td class="govuk-table__cell"><%= issue.policy_name %></td>
+        <td class="govuk-table__cell"><%= issue[:policy_priority] %></td>
+        <td class="govuk-table__cell"><%= issue[:policy_name] %></td>
+        <td class="govuk-table__cell"><%= issue[:policy_description] %></td>
       </tr>
       <%end%>
     </tbody>
