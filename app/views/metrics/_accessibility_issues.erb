@@ -1,13 +1,20 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds content-metrics" data-gtm-id="content-metrics">
-    <h2 class="section-content__header content-metrics__header">
-      <a href="<%= local_assigns[:accessibility_issues].link %>">Accessibility Issues (<%= local_assigns[:level] %>)</a>
-    </h2>
-    <ul>
+    <h3 class="section-content__header content-metrics__header govuk-heading-m">
+      <%= local_assigns[:title] %>
+    </h3>
         <% local_assigns[:accessibility_issues].issue_list.each do |issue| %>
-        <li><%= issue.help.title%></li>
-        <%# Also available: issue.conformance, issue.difficulty, issue.help.description, issue.occurrences, issue.rule_id %>
-        <%end%>
-    </ul>
+          <p>
+            <%= issue.help.title%>
+          </p>
+
+          <%= render "govuk_publishing_components/components/details", {
+            title: "More detail"
+          } do %>
+            <%= raw(issue.help.description) %>
+          <% end %>
+
+        <% end%>
+
   </div>
 </div>
