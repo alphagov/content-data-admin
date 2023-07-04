@@ -80,6 +80,14 @@ en:
         The more users who responded, the more reliable the score is. For a more reliable score
         on a page that doesn't have many responses, choose a longer time period. This survey was
         introduced in February 2018 so there are no responses before this date.
+    siteimprove:
+      title: 'Site Improve issues'
+      policy:
+        title: 'Policy issues'
+      accessibility_confirmed:
+        title: 'Accessibility issues'
+      accessibility_potential:
+        title: 'Potential accessibility issues'
     useful_yes:
       title: 'Yes responses: is page useful?'
     useful_no:
