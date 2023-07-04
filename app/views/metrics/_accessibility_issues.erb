@@ -1,7 +1,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds content-metrics" data-gtm-id="content-metrics">
     <h2 class="section-content__header content-metrics__header">
-      Accessibility Issues (<%= local_assigns[:level] %>)
+      <a href="<%= local_assigns[:accessibility_issues].link %>">Accessibility Issues (<%= local_assigns[:level] %>)</a>
     </h2>
     <ul>
         <% local_assigns[:accessibility_issues].issue_list.each do |issue| %>

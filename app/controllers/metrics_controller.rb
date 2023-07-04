@@ -16,12 +16,14 @@ class MetricsController < ApplicationController
     )
 
     begin
+      @summary_info = FetchSiteImproveSummary.new(url: "https://www.gov.uk/#{params[:base_path]}").call
+
       raw_confirmed_accessibility_issues = FetchSiteImproveAccessibilityIssues.new(url: "https://www.gov.uk/#{params[:base_path]}").call
-      @confirmed_accessibility_issues = AccessibilityIssuesPresenter.new(raw_confirmed_accessibility_issues)
+      @confirmed_accessibility_issues = AccessibilityIssuesPresenter.new(raw_confirmed_accessibility_issues, @summary_info)
       raw_potential_accessibility_issues = FetchSiteImproveAccessibilityIssues.new(url: "https://www.gov.uk/#{params[:base_path]}", level: "potential").call
-      @potential_accessibility_issues = AccessibilityIssuesPresenter.new(raw_potential_accessibility_issues)
+      @potential_accessibility_issues = AccessibilityIssuesPresenter.new(raw_potential_accessibility_issues, @summary_info)
       raw_policy_issues = FetchSiteImprovePolicyIssues.new(url: "https://www.gov.uk/#{params[:base_path]}").call
-      @policy_issues = PolicyIssuesPresenter.new(raw_policy_issues)
+      @policy_issues = PolicyIssuesPresenter.new(raw_policy_issues, @summary_info)
       @has_accessibility_info = true
     rescue SiteImproveAPIClient::SiteImprovePageNotFound
       @has_accessibility_info = false
