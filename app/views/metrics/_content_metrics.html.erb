@@ -23,7 +23,7 @@
       title: t("metrics.page_content.about_title")
     } do %>
       <% ['reading_time', 'words', 'pdf_count'].each do |metric| %>
-        <h3 class="govuk-heading-s"><%= @performance_data.metric_about_label(metric) %></h3>
+        <h3 class="govuk-heading-m"><%= @performance_data.metric_about_label(metric) %></h3>
         <p class="govuk-body govuk-body-s"><%= raw t("metrics.#{metric}.about") %></p>
       <% end %>
 

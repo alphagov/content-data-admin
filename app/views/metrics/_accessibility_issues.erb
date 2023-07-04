@@ -3,6 +3,7 @@
     <h3 class="section-content__header content-metrics__header govuk-heading-m">
       <%= local_assigns[:title] %>
     </h3>
+    <p><a href="<%= local_assigns[:accessibility_issues].link %>">See accessibility issues</a></p>
         <% local_assigns[:accessibility_issues].issue_list.each do |issue| %>
           <p>
             <%= issue.help.title%>
@@ -18,3 +19,5 @@
 
   </div>
 </div>
+
+
