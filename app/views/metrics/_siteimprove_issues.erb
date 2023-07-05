@@ -47,7 +47,7 @@
   <% end %>
 
   <% if @quality_assurance_issues.issue_list[:broken_links].present? %>
-    <table class="govuk-table">
+    <table class="govuk-table content-metrics__url-table">
       <caption class="govuk-table__caption govuk-table__caption--m"><%= t("metrics.siteimprove.quality_assurance.broken_links.title") %></caption>
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
@@ -58,7 +58,7 @@
       <tbody class="govuk-table__body">
         <% @quality_assurance_issues.issue_list[:broken_links].each do |link| %>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell"><a href=<%= link[:url] %>><%= link[:url] %></a></td>
+            <td class="govuk-table__cell content-metrics__url-cell"><a href=<%= link[:url] %>><%= link[:url] %></a></td>
             <td class="govuk-table__cell"><a href=<%= link[:quality_assurance_direct_link] %>><%= link[:message] %></a></td>
           </tr>
         <% end %>

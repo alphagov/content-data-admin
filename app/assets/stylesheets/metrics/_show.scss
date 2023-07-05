@@ -108,6 +108,14 @@
       border-top: 1px solid govuk-colour("mid-grey");
     }
 
+    .content-metrics__url-table {
+      table-layout:fixed;
+
+      .content-metrics__url-cell {
+        word-wrap:break-word;
+      }
+    }
+
     .content-metrics__data .govuk-summary-list__row:last-of-type {
       .govuk-summary-list__key,
       .govuk-summary-list__value {
