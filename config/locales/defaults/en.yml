@@ -88,6 +88,9 @@ en:
       quality_assurance_report_link: 'See quality assurance issues on the page'
       policy:
         title: 'Policy issues'
+        priority: 'Priority'
+        issue: 'Issue'
+        full_desc: 'Full description'
       accessibility_confirmed:
         title: 'Accessibility issues'
       accessibility_potential:
@@ -96,7 +99,9 @@ en:
         broken_links:
           title: 'Broken links'
         misspellings:
-          title: 'Misspellings'
+          title: 'Potential misspellings'
+          word: 'Word'
+          suggestions: 'Suggestions (if any)'
     useful_yes:
       title: 'Yes responses: is page useful?'
     useful_no:
