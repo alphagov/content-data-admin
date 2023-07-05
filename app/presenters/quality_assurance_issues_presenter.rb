@@ -8,8 +8,8 @@ class QualityAssuranceIssuesPresenter
 
   def issue_list
     {
-      misspellings: misspellings,
-      broken_links: broken_links,
+      misspellings:,
+      broken_links:,
     }
   end
 
@@ -21,7 +21,7 @@ class QualityAssuranceIssuesPresenter
     @quality_assurance_issues[:misspellings].map do |spelling|
       {
         word: spelling.word,
-        suggestions: spelling.suggestions&.join(', '),
+        suggestions: spelling.suggestions&.join(", "),
         quality_assurance_direct_link: quality_assurance_misspelling_direct_link(spelling.id),
       }
     end
@@ -46,7 +46,7 @@ class QualityAssuranceIssuesPresenter
   end
 
   def quality_assurance_direct_link
-    qa_link = link.gsub(/QualityAssurance\/(\d*)/,"Inspector/\\1/QualityAssurance")
+    qa_link = link.gsub(/QualityAssurance\/(\d*)/, "Inspector/\\1/QualityAssurance")
     formatted_link = qa_link.gsub(/PageDetails\/Report/, "Page")
     "#{formatted_link}#/Issue"
   end

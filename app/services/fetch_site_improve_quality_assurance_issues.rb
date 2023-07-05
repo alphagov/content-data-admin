@@ -15,8 +15,8 @@ class FetchSiteImproveQualityAssuranceIssues
 
   def call
     {
-      misspellings: misspellings,
-      broken_links: broken_links,
+      misspellings:,
+      broken_links:,
     }
   end
 
