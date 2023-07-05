@@ -7,9 +7,10 @@ class CsvExportWorker
   sidekiq_options retry: 0
   sidekiq_options queue: "export_csv"
 
-  def perform(search_params, recipient_address, start_time)
+  def perform(search_params, recipient_address, start_time_string)
     search_params = search_params.symbolize_keys
     presenter = build_csv_presenter(search_params)
+    start_time = Time.zone.parse(start_time_string)
 
     basename = presenter.filename
     csv_string = presenter.csv_rows
@@ -18,7 +19,7 @@ class CsvExportWorker
 
     # Send email with link
     ContentCsvMailer.content_csv_email(recipient_address, file_url).deliver_now
-    elapsed_time_seconds = (Time.zone.now - Time.zone.parse(start_time)).truncate
+    elapsed_time_seconds = (Time.zone.now - start_time).truncate
     GovukStatsd.timing("monitor.csv.download.ms", elapsed_time_seconds * 1000)
   end
 
