@@ -65,10 +65,6 @@ class SingleContentItemPresenter
     format_duration(@metrics["reading_time"][:value])
   end
 
-  def upviews_context
-    I18n.t("metrics.upviews.context", percent_org_views: 2.74)
-  end
-
   def satisfaction_context
     I18n.t(
       "metrics.satisfaction.context",
