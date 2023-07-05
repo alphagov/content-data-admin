@@ -1,6 +1,5 @@
 class ContentController < ApplicationController
   include PaginationHelper
-  include ExportableToCSV
 
   DEFAULT_ORGANISATION_ID = "all".freeze
 
