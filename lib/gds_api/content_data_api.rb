@@ -9,16 +9,6 @@ class GdsApi::ContentDataApi < GdsApi::Base
       bearer_token: ENV["CONTENT_DATA_API_BEARER_TOKEN"] || "example")
   end
 
-  def aggregated_metrics(base_path:, from:, to:)
-    url = aggregated_metrics_url(base_path, from, to)
-    get_json(url).to_hash.deep_symbolize_keys
-  end
-
-  def time_series(base_path:, from:, to:)
-    url = time_series_request_url(base_path, from, to)
-    get_json(url).to_hash.deep_symbolize_keys
-  end
-
   def content(date_range:, organisation_id:, document_type: nil, page: nil, page_size: nil, search_term: nil, sort: nil)
     url = content_items_url(date_range, organisation_id, document_type, page, page_size, search_term, sort)
     get_json(url).to_hash.deep_symbolize_keys
