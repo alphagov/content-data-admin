@@ -23,7 +23,7 @@
   </table>
 <% end %>
 
-<% if @quality_assurance_issues.issue_list.count > 0 %>
+<% if @quality_assurance_issues.issue_list[:misspellings].count > 0 || @quality_assurance_issues.issue_list[:broken_links].count > 0 %>
   <p><a href="<%= @quality_assurance_issues.link %>"><%= t("metrics.siteimprove.quality_assurance_report_link") %></a></p>
   <% if @quality_assurance_issues.issue_list[:misspellings].present? %>
     <table class="govuk-table">
