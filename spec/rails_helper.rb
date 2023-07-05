@@ -1,6 +1,6 @@
 # Must go at top of file
 require "simplecov"
-SimpleCov.start
+SimpleCov.start "rails"
 
 require "byebug"
 require "capybara/rspec"
