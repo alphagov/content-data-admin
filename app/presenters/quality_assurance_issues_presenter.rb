@@ -38,14 +38,16 @@ class QualityAssuranceIssuesPresenter
   end
 
   def quality_assurance_misspelling_direct_link(spelling_id)
-    qa_link = link.gsub(/QualityAssurance\/(\d*)/,"Inspector/\\1/QualityAssurance")
-    formatted_link = qa_link.gsub(/PageDetails\/Report/, "Page")
-    "#{formatted_link}#/Issue/Misspellings/#{spelling_id}"
+    "#{quality_assurance_direct_link}/Misspellings/#{spelling_id}"
   end
 
   def quality_assurance_broken_links_direct_link(link_id)
+    "#{quality_assurance_direct_link}/BrokenLinks/#{link_id}"
+  end
+
+  def quality_assurance_direct_link
     qa_link = link.gsub(/QualityAssurance\/(\d*)/,"Inspector/\\1/QualityAssurance")
     formatted_link = qa_link.gsub(/PageDetails\/Report/, "Page")
-    "#{formatted_link}#/Issue/BrokenLinks/#{link_id}"
+    "#{formatted_link}#/Issue"
   end
 end
