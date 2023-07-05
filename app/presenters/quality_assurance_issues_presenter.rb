@@ -27,6 +27,8 @@ class QualityAssuranceIssuesPresenter
   end
 
   def quality_assurance_misspelling_direct_link(spelling_id)
-    "#{link.gsub(/QualityAssurance\/(\d*)/,"Inspector/\\1/QualityAssurance")}#issue/misspellings/#{spelling_id}"
+    qa_link = link.gsub(/QualityAssurance\/(\d*)/,"Inspector/\\1/QualityAssurance")
+    formatted_link = qa_link.gsub(/PageDetails\/Report/, "Page")
+    "#{formatted_link}#/Issue/Misspellings/#{spelling_id}"
   end
 end
