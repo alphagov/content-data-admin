@@ -85,12 +85,18 @@ en:
       more_issue_detail: 'More detail of the issue'
       policy_report_link: 'See policy issues on the page'
       accessibility_report_link: 'See accessibility issues on the page'
+      quality_assurance_report_link: 'See quality assurance issues on the page'
       policy:
         title: 'Policy issues'
       accessibility_confirmed:
         title: 'Accessibility issues'
       accessibility_potential:
         title: 'Potential accessibility issues'
+      quality_assurance:
+        broken_links:
+          title: 'Broken links'
+        misspellings:
+          title: 'Misspellings'
     useful_yes:
       title: 'Yes responses: is page useful?'
     useful_no:

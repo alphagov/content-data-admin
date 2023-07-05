@@ -24,6 +24,8 @@ class MetricsController < ApplicationController
       @potential_accessibility_issues = AccessibilityIssuesPresenter.new(raw_potential_accessibility_issues, @summary_info)
       raw_policy_issues = FetchSiteImprovePolicyIssues.new(url: "https://www.gov.uk/#{params[:base_path]}").call
       @policy_issues = PolicyIssuesPresenter.new(raw_policy_issues, @summary_info)
+      raw_quality_assurance_issues = FetchSiteImproveQualityAssuranceIssues.new(url: "https://www.gov.uk/#{params[:base_path]}").call
+      @quality_assurance_issues = QualityAssuranceIssuesPresenter.new(raw_quality_assurance_issues, @summary_info)
       @has_accessibility_info = true
     rescue SiteImproveAPIClient::SiteImprovePageNotFound
       @has_accessibility_info = false

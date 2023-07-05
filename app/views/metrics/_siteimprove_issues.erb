@@ -23,6 +23,31 @@
   </table>
 <% end %>
 
+<% if @quality_assurance_issues.issue_list.count > 0 %>
+  <p><a href="<%= @quality_assurance_issues.link %>"><%= t("metrics.siteimprove.quality_assurance_report_link") %></a></p>
+  <% if @quality_assurance_issues.issue_list[:misspellings].present? %>
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m"><%= t("metrics.siteimprove.quality_assurance.misspellings.title") %></caption>
+      <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Word</th>
+        <th scope="col" class="govuk-table__header">Suggestions</th>
+      </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <% @quality_assurance_issues.issue_list[:misspellings].each do |spelling| %>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href=<%= spelling[:quality_assurance_direct_link] %>><%= spelling[:word] %></a></td>
+            <td class="govuk-table__cell"><%= spelling[:suggestions] %> </td>
+          </tr>
+        <% end %>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
+
+
 <%# if @confirmed_accessibility_issues.issue_list.count > 0 %>
   <%#= render "accessibility_issues", accessibility_issues: @confirmed_accessibility_issues, title: t("metrics.siteimprove.accessibility_confirmed.title"), show_link:true %>
 <%# end %>
