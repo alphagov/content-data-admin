@@ -48,14 +48,6 @@ private
     Plek.new.find("content-data-api").to_s
   end
 
-  def aggregated_metrics_url(base_path, from, to)
-    "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}#{query_string(from:, to:)}"
-  end
-
-  def time_series_request_url(base_path, from, to)
-    "#{content_data_api_endpoint}/api/v1/metrics/#{base_path}/time-series#{query_string(from:, to:)}"
-  end
-
   def content_items_url(date_range, organisation_id, document_type, page, page_size, search_term, sort)
     params = {
       date_range:,
