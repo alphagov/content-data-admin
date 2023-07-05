@@ -4,10 +4,6 @@ Rails.application.routes.draw do
   get "/healthcheck/live", to: proc { [200, {}, %w[OK]] }
   get "/healthcheck/ready", to: GovukHealthcheck.rack_response
 
-  if Rails.env.development? || Rails.application.config.govuk_environment == "integration"
-    get "/dev" => "development#index"
-  end
-
   get "/metrics/(*base_path)", to: "metrics#show", as: :metrics, format: false
   get "/content", to: "content#index"
   get "/content/export_csv", to: "content#export_csv"
