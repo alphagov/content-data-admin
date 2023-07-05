@@ -24,6 +24,7 @@
 <% end %>
 
 <% if @quality_assurance_issues.issue_list[:misspellings].count > 0 || @quality_assurance_issues.issue_list[:broken_links].count > 0 %>
+  <h3 class="section-content__header content-metrics__header"><%= t("metrics.siteimprove.content_quality.title") %></h3>
   <p><a href="<%= @quality_assurance_issues.link %>"><%= t("metrics.siteimprove.quality_assurance_report_link") %></a></p>
   <% if @quality_assurance_issues.issue_list[:misspellings].present? %>
     <table class="govuk-table">
@@ -51,8 +52,8 @@
       <caption class="govuk-table__caption govuk-table__caption--m"><%= t("metrics.siteimprove.quality_assurance.broken_links.title") %></caption>
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">URL</th>
-          <th scope="col" class="govuk-table__header">Error message</th>
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.quality_assurance.broken_links.url") %></th>
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.quality_assurance.broken_links.error_message") %></th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
