@@ -16,7 +16,7 @@
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><%= issue[:policy_priority] %></td>
         <td class="govuk-table__cell"><a href=<%= issue[:policy_direct_link] %>><%= issue[:policy_short_description] %></a></td>
-        <td class="govuk-table__cell"><%= issue[:policy_description] %></td>
+        <td class="govuk-table__cell"><%= raw(issue[:policy_description]) %></td>
       </tr>
       <%end%>
     </tbody>

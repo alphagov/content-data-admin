@@ -1,3 +1,5 @@
+require "govspeak"
+
 class PolicyIssuesPresenter
   attr_reader :summary_info
 
@@ -13,7 +15,7 @@ class PolicyIssuesPresenter
         gds_policy_id: gds_policy_id(issue.policy_name),
         policy_short_description: policy_short_description(issue.policy_name),
         policy_priority: issue.policy_priority,
-        policy_description: FetchSiteImprovePolicies.new.find(issue.id).first.note,
+        policy_description: policy_description(issue),
         policy_direct_link: "#{link}#issue/#{issue.id}",
       }
     end
@@ -29,5 +31,9 @@ class PolicyIssuesPresenter
 
   def policy_short_description(policy_name)
     policy_name.split(" - ").last
+  end
+
+  def policy_description(issue)
+    Govspeak::Document.new(FetchSiteImprovePolicies.new.find(issue.id).first.note).to_html
   end
 end
