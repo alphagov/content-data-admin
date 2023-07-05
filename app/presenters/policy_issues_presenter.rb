@@ -13,6 +13,7 @@ class PolicyIssuesPresenter
         policy_name: issue.policy_name,
         policy_priority: issue.policy_priority,
         policy_description: FetchSiteImprovePolicies.new.find(issue.id).first.note,
+        policy_direct_link: "#{link}#issue/#{issue.id}",
       }
     end
   end
