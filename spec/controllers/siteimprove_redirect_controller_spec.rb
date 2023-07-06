@@ -26,4 +26,15 @@ RSpec.describe SiteimproveRedirectController, type: :controller do
   it "redirects to the Policy tab" do
     expect(get(:policy, params: { base_path: "base/path" })).to redirect_to("https://my2.siteimprove.com/Inspector/1054012/Policy/Page?pageId=2&impmd=0")
   end
+
+  context "without the page" do
+    before do
+      siteimprove_has_no_matching_pages
+    end
+
+    it "returns a 404" do
+      get(:policy, params: { base_path: "base/path" })
+      expect(response.status).to eq(404)
+    end
+  end
 end
