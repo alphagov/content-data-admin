@@ -9,8 +9,8 @@ module Siteimprove
       @summary_info = summary_info
     end
 
-    def issue_list
-      @policy_issues.map do |issue|
+    def issue_list(type)
+      @policy_issues.select { |issue| type == :all || policy_type?(issue.policy_name) == type }.map do |issue|
         {
           policy_category: issue.policy_category,
           gds_policy_id: gds_policy_id(issue.policy_name),
@@ -24,6 +24,12 @@ module Siteimprove
 
     def link
       summary_info._siteimprove.policy.page_report.href
+    end
+
+    def policy_type?(policy_name)
+      return :accessibility if gds_policy_id(policy_name).start_with?("GDSA")
+
+      :style
     end
 
     def gds_policy_id(policy_name)
