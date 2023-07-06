@@ -90,7 +90,6 @@ en:
       quality_assurance_report_link: 'See content quality issues on the page'
       policy:
         title: 'Style and accessibility issues'
-        priority: 'Priority'
         issue: 'Rule name'
         full_desc: 'Guidance about rule'
       accessibility_confirmed:

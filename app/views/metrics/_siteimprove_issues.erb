@@ -6,7 +6,6 @@
     <caption class="govuk-table__caption govuk-table__caption--m"><%= t("metrics.siteimprove.policy.title") %></caption>
     <thead class="govuk-table__head">
       <tr class="govuk-table__row">
-        <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.priority") %></th>
         <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.issue") %></th>
         <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.full_desc") %></th>
       </tr>
@@ -14,7 +13,6 @@
     <tbody class="govuk-table__body">
       <% @policy_issues.issue_list.each do |issue| %>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><%= issue[:policy_priority] %></td>
         <td class="govuk-table__cell"><a href=<%= issue[:policy_direct_link] %>><%= issue[:policy_short_description] %></a></td>
         <td class="govuk-table__cell"><%= raw(issue[:policy_description]) %></td>
       </tr>
