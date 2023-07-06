@@ -7,6 +7,10 @@ module Siteimprove
       @summary_info = summary_info
     end
 
+    def any?
+      misspellings.any? || broken_links.any?
+    end
+
     def issue_list
       {
         misspellings:,
