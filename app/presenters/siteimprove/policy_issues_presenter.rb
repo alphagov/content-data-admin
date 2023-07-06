@@ -35,7 +35,9 @@ module Siteimprove
     end
 
     def policy_description(issue)
-      Govspeak::Document.new(Siteimprove::FetchPolicies.new.find(issue.id).first.note).to_html
+      note = Siteimprove::FetchPolicies.new.find(issue.id).first.note
+      note.gsub!(/https:\/\/(.+)/, "[https://\\1](https://\\1)")
+      Govspeak::Document.new(note).to_html
     end
   end
 end
