@@ -23,7 +23,7 @@ class MetricsController < ApplicationController
       raw_quality_assurance_issues = Siteimprove::FetchQualityAssuranceIssues.new(url: "https://www.gov.uk/#{params[:base_path]}").call
       @quality_assurance_issues = Siteimprove::QualityAssuranceIssuesPresenter.new(raw_quality_assurance_issues, @summary_info)
       @has_accessibility_info = true
-    rescue Siteimprove::PageNotFound
+    rescue Siteimprove::BaseError
       @has_accessibility_info = false
     end
   end

@@ -1,5 +1,6 @@
-# Note: no need for authorization here because we want to allow people
+# NOTE: no need for authorization here because we want to allow people
 # who aren't logged in to bounce to Siteimprove
+# rubocop:disable Rails/ApplicationController
 class SiteimproveRedirectController < ActionController::Base
   before_action :fetch_summary
 
@@ -23,7 +24,8 @@ private
 
   def fetch_summary
     @summary_info = Siteimprove::FetchSummary.new(url: "https://www.gov.uk/#{params[:base_path]}").call
-  rescue Siteimprove::PageNotFound
+  rescue Siteimprove::BaseError
     render "errors/404", status: :not_found
   end
 end
+# rubocop:enable Rails/ApplicationController
