@@ -103,12 +103,12 @@ en:
       quality_assurance:
         broken_links:
           title: 'Broken links on the page'
-          description: 'This table highlights broken links on the page. View these broken links in Siteimprove. <a href="https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit?usp=sharing">Report the broken link</a> if it has been flagged incorrectly.'
+          description: 'This table highlights broken links on the page. <a href="%{quality_assurance_url}">View these broken links in Siteimprove</a>. <a href="https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit?usp=sharing">Report the broken link</a> if it has been flagged incorrectly.'
           caption: 'Table of broken links on the page'
           error_message: 'Error message'
           url: 'URL'
         misspellings:
-          description: 'This table highlights misspellings on the page. View these misspellings in Siteimprove. <a href="https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit#gid=0">Report the misspelling</a> if it has been flagged incorrectly.'
+          description: 'This table highlights misspellings on the page. <a href="%{quality_assurance_url}">View these misspellings in Siteimprove</a>. <a href="https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit#gid=0">Report the misspelling</a> if it has been flagged incorrectly.'
           title: 'Misspellings on the page'
           caption: 'Table of misspellings on the page'
           word: 'Word'

@@ -1,4 +1,3 @@
-<% if @policy_issues.issue_list(:all).count > 0 %>
 <h2 class="section-content__header content-metrics__header"><%= t("metrics.siteimprove.title") %></h2>
 
   <p><%= t("metrics.siteimprove.description") %></h3>
@@ -58,13 +57,13 @@
     </table>
     <hr class="govuk-section-break govuk-section-break--l">
   <% end %>
-<% end %>
+
 
 <% if @quality_assurance_issues.issue_list[:misspellings].count > 0 || @quality_assurance_issues.issue_list[:broken_links].count > 0 %>
 
   <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.quality_assurance.misspellings.title") %></h3>
 
-  <p><%= t("metrics.siteimprove.quality_assurance.misspellings.description").html_safe %></p>
+  <p><%= t("metrics.siteimprove.quality_assurance.misspellings.description", quality_assurance_url: @quality_assurance_issues.link).html_safe %></p>
 
   <% if @quality_assurance_issues.issue_list[:misspellings].present? %>
     <table class="govuk-table">
@@ -91,7 +90,7 @@
   <% if @quality_assurance_issues.issue_list[:broken_links].present? %>
     <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.quality_assurance.broken_links.title") %></h3>
 
-    <p><%= t("metrics.siteimprove.quality_assurance.broken_links.description").html_safe %></p>
+    <p><%= t("metrics.siteimprove.quality_assurance.broken_links.description", quality_assurance_url: @quality_assurance_issues.link).html_safe %></p>
 
     <table class="govuk-table content-metrics__url-table">
       <caption class="govuk-visually-hidden"><%= t("metrics.siteimprove.quality_assurance.broken_links.caption") %></caption>
