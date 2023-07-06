@@ -93,7 +93,7 @@ en:
         accessibility:
           title: 'Accessibility issues on the page'
           description: 'This table highlights any potential accessibility issues discussed in the <a href="https://www.gov.uk/guidance/content-design">planning, writing and managing content</a> and <a href="https://www.gov.uk/guidance/how-to-publish-on-gov-uk">how to publish on GOV.UK</a>.'
-          links: 'View <a href="%{policy_url}">style and accessibility issues for this page</a> on the Policy tab in Siteimprove. <a href="https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit?usp=sharing">Report the style issue</a> if it has been flagged incorrectly.'
+          links: 'View <a href="%{policy_url}">style and accessibility issues for this page</a> on the Policy tab in Siteimprove. <a href="https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit#gid=1274735206">Report the accessibility issue</a> if it has been flagged incorrectly.'
           caption: 'Table of style issues on the page'
         style:
           title: 'Style issues on the page'
@@ -103,7 +103,7 @@ en:
       quality_assurance:
         broken_links:
           title: 'Broken links on the page'
-          description: 'This table highlights broken links on the page. <a href="%{quality_assurance_url}">View these broken links in Siteimprove</a>. <a href="https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit?usp=sharing">Report the broken link</a> if it has been flagged incorrectly.'
+          description: 'This table highlights broken links on the page. <a href="%{quality_assurance_url}">View these broken links in Siteimprove</a>. <a href="https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit#gid=409640120">Report the broken link</a> if it has been flagged incorrectly.'
           caption: 'Table of broken links on the page'
           error_message: 'Error message'
           url: 'URL'
