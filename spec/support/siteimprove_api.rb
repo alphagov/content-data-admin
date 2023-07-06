@@ -253,7 +253,7 @@ def siteimprove_has_matching_policy_issues
         "id" => 10,
         "detected_date" => "2023-07-06T11:10:12.822Z",
         "policy_category" => "content",
-        "policy_name" => "GDS001 - Style Issue",
+        "policy_name" => "GDS001 - First Style Issue",
         "policy_priority" => "medium",
         "_links" => {
           "matches" => {
@@ -265,7 +265,7 @@ def siteimprove_has_matching_policy_issues
         "id" => 11,
         "detected_date" => "2023-07-06T11:10:12.822Z",
         "policy_category" => "content",
-        "policy_name" => "GDSA021 - Accessibility Issue",
+        "policy_name" => "GDSA021 - First Accessibility Issue",
         "policy_priority" => "high",
         "_links" => {
           "matches" => {
@@ -320,7 +320,7 @@ def siteimprove_has_policies
         "edited_by" => "string",
         "last_edited" => "2023-07-06T11:16:06.621Z",
         "matches" => 0,
-        "note" => "string",
+        "note" => "Description of GDS001",
         "pending_execution" => true,
         "priority" => "none",
         "sites" => 0,
@@ -340,7 +340,7 @@ def siteimprove_has_policies
         "edited_by" => "string",
         "last_edited" => "2023-07-06T11:16:06.621Z",
         "matches" => 0,
-        "note" => "string",
+        "note" => "Description of GDSA021",
         "pending_execution" => true,
         "priority" => "none",
         "sites" => 0,
@@ -368,16 +368,37 @@ def siteimprove_has_policies
   stub_request(:get, "#{SI_BASE_URI}/sites/1/policy/policies?page_size=500").to_return(status: 200, headers:, body:)
 end
 
-def siteimprove_has_no_misspellings
+def siteimprove_has_misspellings
   headers = { "content-type" => "application/json" }
   body = {
     "items" => [
       {
         "id" => 0,
-        "suggestions" => %w[string],
-        "word" => "string",
+        "suggestions" => %w[fish],
+        "word" => "phish",
       },
     ],
+    "total_items" => 0,
+    "total_pages" => 0,
+    "links" => {
+      "next" => {
+        "href" => "string",
+      },
+      "prev" => {
+        "href" => "string",
+      },
+      "self" => {
+        "href" => "string",
+      },
+    },
+  }.to_json
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/quality_assurance/spelling/pages/2/misspellings").to_return(status: 200, headers:, body:)
+end
+
+def siteimprove_has_no_misspellings
+  headers = { "content-type" => "application/json" }
+  body = {
+    "items" => [],
     "total_items" => 0,
     "total_pages" => 0,
     "links" => {

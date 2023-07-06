@@ -74,6 +74,41 @@ RSpec.describe "/metrics/base/path Siteimprove features", type: :feature do
           visit "/metrics/base/path"
           expect(page).to have_content("Content issues identified by Siteimprove")
         end
+
+        it "shows Siteimprove issues" do
+          visit "/metrics/base/path"
+          expect(page).to have_content("Style issues on the page")
+          expect(page).to have_content("First Style Issue")
+          expect(page).to have_content("Description of GDS001")
+        end
+
+        it "shows Accesibility issues" do
+          visit "/metrics/base/path"
+          expect(page).to have_content("Accessibility issues on the page")
+          expect(page).to have_content("First Accessibility Issue")
+          expect(page).to have_content("Description of GDSA021")
+        end
+      end
+
+      context "and misspellings exist" do
+        before do
+          siteimprove_has_no_matching_policy_issues
+          siteimprove_has_policies
+          siteimprove_has_misspellings
+          siteimprove_has_no_broken_links
+        end
+
+        it "shows Siteimprove title" do
+          visit "/metrics/base/path"
+          expect(page).to have_content("Content issues identified by Siteimprove")
+        end
+
+        it "shows Misspellings" do
+          visit "/metrics/base/path"
+          expect(page).to have_content("Misspellings on the page")
+          expect(page).to have_content("phish")
+          expect(page).to have_content("fish")
+        end
       end
     end
   end
