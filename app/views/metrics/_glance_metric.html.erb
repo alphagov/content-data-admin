@@ -1,5 +1,5 @@
 <div class="govuk-grid-column-one-quarter glance-metric <%=metric_name%>">
-  <%= render "components/glance-metric", {
+  <%= render "components/glance_metric", {
       name: @performance_data.metric_short_title(metric_name),
       figure: (total[:figure] if total[:figure]),
       measurement_display_label: total[:display_label],
