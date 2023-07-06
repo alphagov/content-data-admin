@@ -100,19 +100,17 @@ en:
           description: 'This section highlights issues discussed in the <a href="https://www.gov.uk/guidance/style-guide/a-to-z-of-gov-uk-style">GOV.UK style guide</a> and <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk">writing for GOV.UK</a>.'
           links: 'View <a href="%{policy_url}">style and accessibility issues for this page</a> on the Policy tab in Siteimprove. <a href="https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit?usp=sharing">Report the style issue</a> if it has been flagged incorrectly.'
           caption: 'Table of style issues on the page'
-
       quality_assurance:
         broken_links:
           title: 'Broken links on the page'
           error_message: 'Error message'
           url: 'URL'
         misspellings:
+          description: 'This highlights potential misspellings on the page. View these misspellings in Siteimprove. <a href="https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit#gid=0">Report the misspelling</a> if it has been flagged incorrectly.'
           title: 'Misspellings on the page'
+          caption: 'Table of misspellings on the page'
           word: 'Word'
           suggestions: 'Suggestions (if any)'
-          report_false:
-            text: 'Report false misspellings'
-            url: 'https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit#gid=0'
     useful_yes:
       title: 'Yes responses: is page useful?'
     useful_no:
