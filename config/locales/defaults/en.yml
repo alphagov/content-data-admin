@@ -91,11 +91,12 @@ en:
       policy:
         title: 'Style and accessibility issues'
         issue: 'Rule name'
+        priority: 'Priority'
         full_desc: 'Guidance about rule'
-      accessibility_confirmed:
-        title: 'Accessibility issues'
-      accessibility_potential:
-        title: 'Potential accessibility issues'
+        accessibility:
+          title: 'Accessibility issues on the page'
+        style:
+          title: 'Style issues on the page'
       quality_assurance:
         broken_links:
           title: 'Broken links on the page'
