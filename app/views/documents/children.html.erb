@@ -24,7 +24,7 @@
       method: :get,
       html: { id: 'filter-form' },
       data: { 'gtm-id': 'time-period-form' } do %>
-      <%= render "components/time-select", {
+      <%= render "components/time_select", {
         compact: true,
         render_button: true,
         current_selection: @time_period,

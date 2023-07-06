@@ -49,7 +49,7 @@
   method: :get,
   html: { id: 'filter-form' },
   data: { 'gtm-id': 'time-period-form' } do %>
-  <%= render "components/time-select", {
+  <%= render "components/time_select", {
     render_button: true,
     current_selection: current_selection,
     custom_month_selected: custom_month_selected(current_selection),
