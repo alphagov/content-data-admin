@@ -4,14 +4,14 @@
   <p><%= t("metrics.siteimprove.description") %></h3>
 
   <% if @policy_issues.issue_list(:style).count > 0 %>
-    <h3 class="app-c-info-metric__heading"><%= t("metrics.siteimprove.policy.style.title") %></h3>
+    <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.policy.style.title") %></h3>
 
     <p><%= t("metrics.siteimprove.policy.style.description").html_safe %></h3>
 
     <p><%= t("metrics.siteimprove.policy.style.links", policy_url: @policy_issues.link).html_safe %></h3>
 
     <table class="govuk-table">
-      <caption class="govuk-table__caption govuk-table__caption--m"><%= t("metrics.siteimprove.policy.style.caption") %></caption>
+      <caption class="govuk-visually-hidden"><%= t("metrics.siteimprove.policy.style.caption") %></caption>
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.issue") %></th>
@@ -30,14 +30,14 @@
   <% end %>
 
   <% if @policy_issues.issue_list(:accessibility).count > 0 %>
-    <h3 class="app-c-info-metric__heading"><%= t("metrics.siteimprove.policy.accessibility.title") %></h3>
+    <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.policy.accessibility.title") %></h3>
 
     <p><%= t("metrics.siteimprove.policy.accessibility.description").html_safe %></h3>
 
     <p><%= t("metrics.siteimprove.policy.accessibility.links", policy_url: @policy_issues.link).html_safe %></h3>
 
     <table class="govuk-table">
-      <caption class="govuk-table__caption govuk-table__caption--m"><%= t("metrics.siteimprove.policy.accessibility.caption") %></caption>
+      <caption class="govuk-visually-hidden"><%= t("metrics.siteimprove.policy.accessibility.caption") %></caption>
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.priority") %></th>
