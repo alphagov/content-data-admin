@@ -66,12 +66,3 @@
     </table>
   <% end %>
 <% end %>
-
-
-<%# if @confirmed_accessibility_issues.issue_list.count > 0 %>
-  <%#= render "accessibility_issues", accessibility_issues: @confirmed_accessibility_issues, title: t("metrics.siteimprove.accessibility_confirmed.title"), show_link:true %>
-<%# end %>
-<%# if @potential_accessibility_issues.issue_list.count > 0 %>
-  <%#= render "accessibility_issues", accessibility_issues: @potential_accessibility_issues, title: t("metrics.siteimprove.accessibility_potential.title") %>
-<%# end %>
-

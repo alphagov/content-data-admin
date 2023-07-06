@@ -16,18 +16,14 @@ class MetricsController < ApplicationController
     )
 
     begin
-      @summary_info = FetchSiteImproveSummary.new(url: "https://www.gov.uk/#{params[:base_path]}").call
+      @summary_info = Siteimprove::FetchSummary.new(url: "https://www.gov.uk/#{params[:base_path]}").call
 
-      raw_confirmed_accessibility_issues = FetchSiteImproveAccessibilityIssues.new(url: "https://www.gov.uk/#{params[:base_path]}").call
-      @confirmed_accessibility_issues = AccessibilityIssuesPresenter.new(raw_confirmed_accessibility_issues, @summary_info)
-      raw_potential_accessibility_issues = FetchSiteImproveAccessibilityIssues.new(url: "https://www.gov.uk/#{params[:base_path]}", level: "potential").call
-      @potential_accessibility_issues = AccessibilityIssuesPresenter.new(raw_potential_accessibility_issues, @summary_info)
-      raw_policy_issues = FetchSiteImprovePolicyIssues.new(url: "https://www.gov.uk/#{params[:base_path]}").call
-      @policy_issues = PolicyIssuesPresenter.new(raw_policy_issues, @summary_info)
-      raw_quality_assurance_issues = FetchSiteImproveQualityAssuranceIssues.new(url: "https://www.gov.uk/#{params[:base_path]}").call
-      @quality_assurance_issues = QualityAssuranceIssuesPresenter.new(raw_quality_assurance_issues, @summary_info)
+      raw_policy_issues = Siteimprove::FetchPolicyIssues.new(url: "https://www.gov.uk/#{params[:base_path]}").call
+      @policy_issues = Siteimprove::PolicyIssuesPresenter.new(raw_policy_issues, @summary_info)
+      raw_quality_assurance_issues = Siteimprove::FetchQualityAssuranceIssues.new(url: "https://www.gov.uk/#{params[:base_path]}").call
+      @quality_assurance_issues = Siteimprove::QualityAssuranceIssuesPresenter.new(raw_quality_assurance_issues, @summary_info)
       @has_accessibility_info = true
-    rescue SiteImproveAPIClient::SiteImprovePageNotFound
+    rescue Siteimprove::PageNotFound
       @has_accessibility_info = false
     end
   end

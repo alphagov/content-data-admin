@@ -1,9 +1,8 @@
 GIT
-  remote: https://github.com/alphagov/site-improve-api-client.git
-  revision: 253f47101bb3dfb0d16258a8318d834d167ef7e5
-  branch: fix-difficulty
+  remote: https://github.com/alphagov/siteimprove_api_client.git
+  revision: 08eec5e79ec5ae0a1a1937a264ed3a07c80b1cbc
   specs:
-    site-improve-api-client (1.0.0)
+    siteimprove_api_client (1.0.0)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
@@ -705,7 +704,7 @@ DEPENDENCIES
   sassc-rails
   sentry-sidekiq
   simplecov
-  site-improve-api-client!
+  siteimprove_api_client!
   spring-commands-rspec
   timecop
   uglifier
