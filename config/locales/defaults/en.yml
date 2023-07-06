@@ -82,22 +82,25 @@ en:
         introduced in February 2018 so there are no responses before this date.
     siteimprove:
       title: 'Content issues identified by Siteimprove'
+      description: 'This section highlights any potential page issues Siteimprove has identified about style, accessibility and quality (including misspelling and broken links).'
       more_issue_detail: 'More detail of the issue'
-      policy_report_link: 'View style issues on the page in Siteimprove'
       accessibility_report_link: 'See accessibility issues on the page'
       quality_assurance_report_link: 'See content quality issues on the page'
       policy:
-        title: 'Style and accessibility issues'
         issue: 'Rule name'
         priority: 'Priority'
         full_desc: 'Guidance about rule'
-        report_issue:
-          text: 'Report style or accessibility rule issue'
-          url: 'https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit#gid=671570790'
         accessibility:
           title: 'Accessibility issues on the page'
+          description: 'This section highlights and potential accessibility issues discussed in the <a href="https://www.gov.uk/guidance/content-design">planning, writing and managing content</a> and <a href="https://www.gov.uk/guidance/how-to-publish-on-gov-uk">how to publish on GOV.UK</a>.'
+          links: 'View <a href="%{policy_url}">style and accessibility issues for this page</a> on the Policy tab in Siteimprove. <a href="https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit?usp=sharing">Report the style issue</a> if it has been flagged incorrectly.'
+          caption: 'Table of style issues on the page'
         style:
           title: 'Style issues on the page'
+          description: 'This section highlights issues discussed in the <a href="https://www.gov.uk/guidance/style-guide/a-to-z-of-gov-uk-style">GOV.UK style guide</a> and <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk">writing for GOV.UK</a>.'
+          links: 'View <a href="%{policy_url}">style and accessibility issues for this page</a> on the Policy tab in Siteimprove. <a href="https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit?usp=sharing">Report the style issue</a> if it has been flagged incorrectly.'
+          caption: 'Table of style issues on the page'
+
       quality_assurance:
         broken_links:
           title: 'Broken links on the page'
