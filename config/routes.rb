@@ -6,10 +6,10 @@ Rails.application.routes.draw do
 
   get "/metrics/(*base_path)", to: "metrics#show", as: :metrics, format: false
 
-  get "/site-improve-redirect/quality-assurance/(*base_path)", to: "site_improve_redirect#quality_assurance"
-  get "/site-improve-redirect/accessibility/(*base_path)", to: "site_improve_redirect#accessibility"
-  get "/site-improve-redirect/seo/(*base_path)", to: "site_improve_redirect#seo"
-  get "/site-improve-redirect/policy/(*base_path)", to: "site_improve_redirect#policy"
+  get "/site-improve-redirect/quality-assurance/(*base_path)", to: "siteimprove_redirect#quality_assurance"
+  get "/site-improve-redirect/accessibility/(*base_path)", to: "siteimprove_redirect#accessibility"
+  get "/site-improve-redirect/seo/(*base_path)", to: "siteimprove_redirect#seo"
+  get "/site-improve-redirect/policy/(*base_path)", to: "siteimprove_redirect#policy"
 
   get "/content", to: "content#index"
   get "/content/export_csv", to: "content#export_csv"
