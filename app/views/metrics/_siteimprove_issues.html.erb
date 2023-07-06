@@ -58,8 +58,7 @@
     <hr class="govuk-section-break govuk-section-break--l">
   <% end %>
 
-
-<% if @quality_assurance_issues.issue_list[:misspellings].count > 0 || @quality_assurance_issues.issue_list[:broken_links].count > 0 %>
+<% if @quality_assurance_issues.any? %>
 
   <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.quality_assurance.misspellings.title") %></h3>
 
