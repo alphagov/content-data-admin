@@ -1,54 +1,55 @@
 <% if @policy_issues.issue_list(:all).count > 0 %>
 <h2 class="section-content__header content-metrics__header"><%= t("metrics.siteimprove.title") %></h2>
-<% end %>
 
-<h3 class="section-content__header content-metrics__header"><%= t("metrics.siteimprove.policy.title") %></h3>
-<% if @policy_issues.issue_list(:accessibility).count > 0 %>
-  <p><a href="<%= @policy_issues.link %>"><%= t("metrics.siteimprove.policy_report_link") %></a></p>
-  <table class="govuk-table">
-    <caption class="govuk-table__caption govuk-table__caption--m"><%= t("metrics.siteimprove.policy.accessibility.title") %></caption>
-    <thead class="govuk-table__head">
-      <tr class="govuk-table__row">
-        <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.priority") %></th>
-        <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.issue") %></th>
-        <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.full_desc") %></th>
-      </tr>
-    </thead>
-    <tbody class="govuk-table__body">
-      <% @policy_issues.issue_list(:accessibility).each do |issue| %>
+  <h3 class="section-content__header content-metrics__header"><%= t("metrics.siteimprove.policy.title") %></h3>
+  <% if @policy_issues.issue_list(:accessibility).count > 0 %>
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m"><%= t("metrics.siteimprove.policy.accessibility.title") %></caption>
+      <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><%= issue[:policy_priority] %></td>
-          <td class="govuk-table__cell"><a href=<%= issue[:policy_direct_link] %>><%= issue[:policy_short_description] %></a></td>
-          <td class="govuk-table__cell"><%= raw(issue[:policy_description]) %></td>
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.priority") %></th>
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.issue") %></th>
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.full_desc") %></th>
         </tr>
-      <%end%>
-    </tbody>
-  </table>
-<% end %>
+      </thead>
+      <tbody class="govuk-table__body">
+        <% @policy_issues.issue_list(:accessibility).each do |issue| %>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><%= issue[:policy_priority] %></td>
+            <td class="govuk-table__cell"><a href=<%= issue[:policy_direct_link] %>><%= issue[:policy_short_description] %></a></td>
+            <td class="govuk-table__cell"><%= raw(issue[:policy_description]) %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  <% end %>
 
-<% if @policy_issues.issue_list(:style).count > 0 %>
-  <table class="govuk-table">
-    <caption class="govuk-table__caption govuk-table__caption--m"><%= t("metrics.siteimprove.policy.style.title") %></caption>
-    <thead class="govuk-table__head">
-      <tr class="govuk-table__row">
-        <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.issue") %></th>
-        <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.full_desc") %></th>
-      </tr>
-    </thead>
-    <tbody class="govuk-table__body">
-      <% @policy_issues.issue_list(:style).each do |issue| %>
+  <% if @policy_issues.issue_list(:style).count > 0 %>
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m"><%= t("metrics.siteimprove.policy.style.title") %></caption>
+      <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href=<%= issue[:policy_direct_link] %>><%= issue[:policy_short_description] %></a></td>
-          <td class="govuk-table__cell"><%= raw(issue[:policy_description]) %></td>
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.issue") %></th>
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.full_desc") %></th>
         </tr>
-      <%end%>
-    </tbody>
-  </table>
+      </thead>
+      <tbody class="govuk-table__body">
+        <% @policy_issues.issue_list(:style).each do |issue| %>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href=<%= issue[:policy_direct_link] %>><%= issue[:policy_short_description] %></a></td>
+            <td class="govuk-table__cell"><%= raw(issue[:policy_description]) %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  <% end %>
+  <ul class="govuk-list">
+    <li><a href="<%= @policy_issues.link %>"><%= t("metrics.siteimprove.policy_report_link") %></a></li>
+    <li><a href="<%= t("metrics.siteimprove.policy.report_issue.url") %>"><%= t("metrics.siteimprove.policy.report_issue.text") %></a></li>
+  </ul>
 <% end %>
 
 <% if @quality_assurance_issues.issue_list[:misspellings].count > 0 || @quality_assurance_issues.issue_list[:broken_links].count > 0 %>
-  <h3 class="section-content__header content-metrics__header"><%= t("metrics.siteimprove.content_quality.title") %></h3>
-  <p><a href="<%= @quality_assurance_issues.link %>"><%= t("metrics.siteimprove.quality_assurance_report_link") %></a></p>
   <% if @quality_assurance_issues.issue_list[:misspellings].present? %>
     <table class="govuk-table">
       <caption class="govuk-table__caption govuk-table__caption--m"><%= t("metrics.siteimprove.quality_assurance.misspellings.title") %></caption>
@@ -68,6 +69,7 @@
         </tr>
       </tbody>
     </table>
+    <p><a href="<%= t("metrics.siteimprove.quality_assurance.misspellings.report_false.url") %>"><%= t("metrics.siteimprove.quality_assurance.misspellings.report_false.text") %></a></p>
   <% end %>
 
   <% if @quality_assurance_issues.issue_list[:broken_links].present? %>
@@ -90,4 +92,5 @@
       </tbody>
     </table>
   <% end %>
+  <p><a href="<%= @quality_assurance_issues.link %>"><%= t("metrics.siteimprove.quality_assurance_report_link") %></a></p>
 <% end %>

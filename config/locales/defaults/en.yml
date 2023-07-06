@@ -82,10 +82,8 @@ en:
         introduced in February 2018 so there are no responses before this date.
     siteimprove:
       title: 'Content issues identified by Siteimprove'
-      content_quality:
-        title: 'Content quality issues'
       more_issue_detail: 'More detail of the issue'
-      policy_report_link: 'View style and accessibility issues in Siteimprove'
+      policy_report_link: 'View style issues on the page in Siteimprove'
       accessibility_report_link: 'See accessibility issues on the page'
       quality_assurance_report_link: 'See content quality issues on the page'
       policy:
@@ -93,6 +91,9 @@ en:
         issue: 'Rule name'
         priority: 'Priority'
         full_desc: 'Guidance about rule'
+        report_issue:
+          text: 'Report style or accessibility rule issue'
+          url: 'https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit#gid=671570790'
         accessibility:
           title: 'Accessibility issues on the page'
         style:
@@ -106,6 +107,9 @@ en:
           title: 'Misspellings on the page'
           word: 'Word'
           suggestions: 'Suggestions (if any)'
+          report_false:
+            text: 'Report false misspellings'
+            url: 'https://docs.google.com/spreadsheets/d/1GdA0akEKeWc9LpQ7VzB5xv4qYLTJI6FkUVsrGOH7hbg/edit#gid=0'
     useful_yes:
       title: 'Yes responses: is page useful?'
     useful_no:
