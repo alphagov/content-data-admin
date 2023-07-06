@@ -1,4 +1,6 @@
-class SiteimproveRedirectController < ApplicationController
+# Note: no need for authorization here because we want to allow people
+# who aren't logged in to bounce to Siteimprove
+class SiteimproveRedirectController < ActionController::Base
   before_action :fetch_summary
 
   def quality_assurance
