@@ -59,12 +59,11 @@
   <% end %>
 
 <% if @quality_assurance_issues.any? %>
-
-  <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.quality_assurance.misspellings.title") %></h3>
-
-  <p><%= t("metrics.siteimprove.quality_assurance.misspellings.description", quality_assurance_url: @quality_assurance_issues.link).html_safe %></p>
-
   <% if @quality_assurance_issues.issue_list[:misspellings].present? %>
+    <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.quality_assurance.misspellings.title") %></h3>
+
+    <p><%= t("metrics.siteimprove.quality_assurance.misspellings.description", quality_assurance_url: @quality_assurance_issues.link).html_safe %></p>
+
     <table class="govuk-table">
       <caption class="govuk-visually-hidden"><%= t("metrics.siteimprove.quality_assurance.misspellings.caption") %></caption>
       <thead class="govuk-table__head">
