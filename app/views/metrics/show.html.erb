@@ -147,7 +147,7 @@
 <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 <%= render 'content_metrics', performance_data: @performance_data %>
 
-<% if @has_accessibility_info %>
+<% if @siteimprove_metrics.has_accessibility_info? %>
   <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
   <%= render "siteimprove_issues" %>
 <% end %>

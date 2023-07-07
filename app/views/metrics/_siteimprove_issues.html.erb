@@ -2,12 +2,12 @@
 
   <p><%= t("metrics.siteimprove.description") %></h3>
 
-  <% if @policy_issues.issue_list(:style).count > 0 %>
+  <% if @siteimprove_metrics.policy_issues.issue_list(:style).count > 0 %>
     <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.policy.style.title") %></h3>
 
     <p><%= t("metrics.siteimprove.policy.style.description").html_safe %></p>
 
-    <p><%= t("metrics.siteimprove.policy.style.links", policy_url: @policy_issues.link).html_safe %></h3>
+    <p><%= t("metrics.siteimprove.policy.style.links", policy_url: @siteimprove_metrics.policy_issues.link).html_safe %></h3>
 
     <table class="govuk-table">
       <caption class="govuk-visually-hidden"><%= t("metrics.siteimprove.policy.style.caption") %></caption>
@@ -18,7 +18,7 @@
         </tr>
       </thead>
       <tbody class="govuk-table__body">
-        <% @policy_issues.issue_list(:style).each do |issue| %>
+        <% @siteimprove_metrics.policy_issues.issue_list(:style).each do |issue| %>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell"><a href=<%= issue[:policy_direct_link] %>><%= issue[:policy_short_description] %></a></td>
             <td class="govuk-table__cell"><%= raw(issue[:policy_description]) %></td>
@@ -29,12 +29,12 @@
     <hr class="govuk-section-break govuk-section-break--l">
   <% end %>
 
-  <% if @policy_issues.issue_list(:accessibility).count > 0 %>
+  <% if @siteimprove_metrics.policy_issues.issue_list(:accessibility).count > 0 %>
     <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.policy.accessibility.title") %></h3>
 
     <p><%= t("metrics.siteimprove.policy.accessibility.description").html_safe %></p>
 
-    <p><%= t("metrics.siteimprove.policy.accessibility.links", policy_url: @policy_issues.link).html_safe %></h3>
+    <p><%= t("metrics.siteimprove.policy.accessibility.links", policy_url: @siteimprove_metrics.policy_issues.link).html_safe %></h3>
 
     <table class="govuk-table">
       <caption class="govuk-visually-hidden"><%= t("metrics.siteimprove.policy.accessibility.caption") %></caption>
@@ -46,7 +46,7 @@
         </tr>
       </thead>
       <tbody class="govuk-table__body">
-        <% @policy_issues.issue_list(:accessibility).each do |issue| %>
+        <% @siteimprove_metrics.policy_issues.issue_list(:accessibility).each do |issue| %>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell"><%= issue[:policy_priority] %></td>
             <td class="govuk-table__cell"><a href=<%= issue[:policy_direct_link] %>><%= issue[:policy_short_description] %></a></td>
@@ -58,11 +58,11 @@
     <hr class="govuk-section-break govuk-section-break--l">
   <% end %>
 
-<% if @quality_assurance_issues.any? %>
-  <% if @quality_assurance_issues.issue_list[:misspellings].present? %>
+<% if @siteimprove_metrics.quality_assurance_issues.any? %>
+  <% if @siteimprove_metrics.quality_assurance_issues.issue_list[:misspellings].present? %>
     <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.quality_assurance.misspellings.title") %></h3>
 
-    <p><%= t("metrics.siteimprove.quality_assurance.misspellings.description", quality_assurance_url: @quality_assurance_issues.link).html_safe %></p>
+    <p><%= t("metrics.siteimprove.quality_assurance.misspellings.description", quality_assurance_url: @siteimprove_metrics.quality_assurance_issues.link).html_safe %></p>
 
     <table class="govuk-table">
       <caption class="govuk-visually-hidden"><%= t("metrics.siteimprove.quality_assurance.misspellings.caption") %></caption>
@@ -73,7 +73,7 @@
       </tr>
       </thead>
       <tbody class="govuk-table__body">
-        <% @quality_assurance_issues.issue_list[:misspellings].each do |spelling| %>
+        <% @siteimprove_metrics.quality_assurance_issues.issue_list[:misspellings].each do |spelling| %>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell"><a href=<%= spelling[:quality_assurance_direct_link] %>><%= spelling[:word] %></a></td>
             <td class="govuk-table__cell"><%= spelling[:suggestions] %> </td>
@@ -85,10 +85,10 @@
     <hr class="govuk-section-break govuk-section-break--l">
   <% end %>
 
-  <% if @quality_assurance_issues.issue_list[:broken_links].present? %>
+  <% if @siteimprove_metrics.quality_assurance_issues.issue_list[:broken_links].present? %>
     <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.quality_assurance.broken_links.title") %></h3>
 
-    <p><%= t("metrics.siteimprove.quality_assurance.broken_links.description", quality_assurance_url: @quality_assurance_issues.link).html_safe %></p>
+    <p><%= t("metrics.siteimprove.quality_assurance.broken_links.description", quality_assurance_url: @siteimprove_metrics.quality_assurance_issues.link).html_safe %></p>
 
     <table class="govuk-table content-metrics__url-table">
       <caption class="govuk-visually-hidden"><%= t("metrics.siteimprove.quality_assurance.broken_links.caption") %></caption>
@@ -99,7 +99,7 @@
         </tr>
       </thead>
       <tbody class="govuk-table__body">
-        <% @quality_assurance_issues.issue_list[:broken_links].each do |link| %>
+        <% @siteimprove_metrics.quality_assurance_issues.issue_list[:broken_links].each do |link| %>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell content-metrics__url-cell"><a href=<%= link[:url] %>><%= link[:url] %></a></td>
             <td class="govuk-table__cell"><a href=<%= link[:quality_assurance_direct_link] %>><%= link[:message] %></a></td>
