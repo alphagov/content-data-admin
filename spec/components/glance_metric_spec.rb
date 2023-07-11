@@ -67,6 +67,6 @@ RSpec.describe "Glance Metric", type: :view do
   end
 
   def render_component(locals)
-    render partial: "components/glance-metric", locals:
+    render partial: "components/glance_metric", locals:
   end
 end

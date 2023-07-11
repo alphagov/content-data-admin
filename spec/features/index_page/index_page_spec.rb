@@ -88,7 +88,7 @@ RSpec.describe "/content" do
       expect(current_path).to eq "/metrics/path/1"
 
       expected_text = I18n.t(
-        "components.time-select.title",
+        "components.time_select.title",
         time_period: I18n.t("metrics.show.time_periods.past-year.leading"),
       )
       expect(page).to have_content(expected_text)
@@ -109,7 +109,7 @@ RSpec.describe "/content" do
     it "links to the page data page after filtering" do
       click_on "The title"
       expected_text = I18n.t(
-        "components.time-select.title",
+        "components.time_select.title",
         time_period: I18n.t("metrics.show.time_periods.last-month.leading"),
       )
       expect(page).to have_content(expected_text)
@@ -133,7 +133,7 @@ RSpec.describe "/content" do
       click_on "Filter"
       click_on "The title"
       expected_text = I18n.t(
-        "components.time-select.title",
+        "components.time_select.title",
         time_period: I18n.t("metrics.show.time_periods.past-year.leading"),
       )
       expect(page).to have_content(expected_text)

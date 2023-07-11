@@ -73,6 +73,6 @@ RSpec.describe "Info Metric", type: :view do
   end
 
   def render_component(locals)
-    render partial: "components/info-metric", locals:
+    render partial: "components/info_metric", locals:
   end
 end

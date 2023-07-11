@@ -23,7 +23,7 @@
           id: 'filter-form',
           data: { 'gtm-id': 'filters-form' } do %>
           <input type="hidden" name="submitted" value="true" >
-          <%= render "components/time-select", {
+          <%= render "components/time_select", {
             current_selection: @presenter.time_period,
             compact: true,
             base_path: "/",
