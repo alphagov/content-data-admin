@@ -1,5 +1,32 @@
 SI_BASE_URI = "https://api.eu.siteimprove.com/v2".freeze
 
+def siteimprove_is_unauthorized
+  headers = { "content-type" => "application/json" }
+  body = {}.to_json
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/content/pages?url=https://www.gov.uk/base/path").to_return(status: 401, headers:, body:)
+end
+
+def siteimprove_has_no_matching_pages
+  headers = { "content-type" => "application/json" }
+  body = {
+    "items" => [],
+    "total_items" => 0,
+    "total_pages" => 0,
+    "links" => {
+      "next" => {
+        "href" => "string",
+      },
+      "prev" => {
+        "href" => "string",
+      },
+      "self" => {
+        "href" => "string",
+      },
+    },
+  }.to_json
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/content/pages?url=https://www.gov.uk/base/path").to_return(status: 200, headers:, body:)
+end
+
 def siteimprove_has_matching_pages
   headers = { "content-type" => "application/json" }
   body = {
@@ -41,6 +68,50 @@ def siteimprove_has_matching_pages
   }.to_json
   stub_request(:get, "#{SI_BASE_URI}/sites/1/content/pages?url=https://www.gov.uk/base/path").to_return(status: 200, headers:, body:)
 end
+
+def siteimprove_has_imperfectly_matching_pages
+  headers = { "content-type" => "application/json" }
+  body = {
+    "items" => [
+      {
+        "id" => 4,
+        "title" => "Close Matched Page 2",
+        "url" => "https://www.gov.uk/base/path/values",
+        "_links" => {
+          "details" => {
+            "href" => "https://www.gov.uk/base/path/values",
+          },
+        },
+      },
+      {
+        "id" => 3,
+        "title" => "Close Match Page",
+        "url" => "https://www.gov.uk/base/path/subpage",
+        "_links" => {
+          "details" => {
+            "href" => "https://www.gov.uk/base/path/subpage",
+          },
+        },
+      },
+    ],
+    "total_items" => 2,
+    "total_pages" => 1,
+    "links" => {
+      "next" => {
+        "href" => "string",
+      },
+      "prev" => {
+        "href" => "string",
+      },
+      "self" => {
+        "href" => "string",
+      },
+    },
+  }.to_json
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/content/pages?url=https://www.gov.uk/base/path").to_return(status: 200, headers:, body:)
+end
+
+def siteimprove_has_no_summary; end
 
 def siteimprove_has_summary
   headers = { "content-type" => "application/json" }
@@ -157,5 +228,143 @@ def siteimprove_has_summary
     },
   }.to_json
   stub_request(:get, "#{SI_BASE_URI}/sites/1/content/pages/2").to_return(status: 200, headers:, body:)
+end
+
+def siteimprove_has_no_matching_policy_issues
+  headers = { "content-type" => "application/json" }
+  body = {
+    "items" => [],
+    "total_items" => 0,
+    "total_pages" => 0,
+    "links" => {
+      "self" => {
+        "href" => "string",
+      },
+    },
+  }.to_json
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/policy/pages/2/matching_policies").to_return(status: 200, headers:, body:)
+end
+
+def siteimprove_has_matching_policy_issues
+  headers = { "content-type" => "application/json" }
+  body = {
+    "items" => [
+      {
+        "id" => 10,
+        "detected_date" => "2023-07-06T11:10:12.822Z",
+        "policy_category" => "content",
+        "policy_name" => "GDS001 - First Style Issue",
+        "policy_priority" => "medium",
+        "_links" => {
+          "matches" => {
+            "href" => "string",
+          },
+        },
+      },
+      {
+        "id" => 11,
+        "detected_date" => "2023-07-06T11:10:12.822Z",
+        "policy_category" => "content",
+        "policy_name" => "AP021 - First Accessibility Issue",
+        "policy_priority" => "high",
+        "_links" => {
+          "matches" => {
+            "href" => "string",
+          },
+        },
+      },
+    ],
+    "total_items" => 2,
+    "total_pages" => 1,
+    "links" => {
+      "self" => {
+        "href" => "string",
+      },
+    },
+  }.to_json
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/policy/pages/2/matching_policies").to_return(status: 200, headers:, body:)
+end
+
+def siteimprove_has_no_policies
+  headers = { "content-type" => "application/json" }
+  body = {
+    "items" => [],
+    "total_items" => 0,
+    "total_pages" => 0,
+    "links" => {
+      "next" => {
+        "href" => "string",
+      },
+      "prev" => {
+        "href" => "string",
+      },
+      "self" => {
+        "href" => "string",
+      },
+    },
+  }.to_json
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/policy/policies?page_size=500").to_return(status: 200, headers:, body:)
+end
+
+def siteimprove_has_policies
+  headers = { "content-type" => "application/json" }
+  body = {
+    "items" => [
+      {
+        "id" => 10,
+        "name" => "GDS001 - Style Issue",
+        "all_sites" => true,
+        "category" => "content",
+        "created_by" => "string",
+        "created_date" => "2023-07-06T11:16:06.621Z",
+        "edited_by" => "string",
+        "last_edited" => "2023-07-06T11:16:06.621Z",
+        "matches" => 0,
+        "note" => "Description of GDS001",
+        "pending_execution" => true,
+        "priority" => "none",
+        "sites" => 0,
+        "_links" => {
+          "sites" => {
+            "href" => "string",
+          },
+        },
+      },
+      {
+        "id" => 11,
+        "name" => "AP021 - Accessibility Issue",
+        "all_sites" => true,
+        "category" => "content",
+        "created_by" => "string",
+        "created_date" => "2023-07-06T11:16:06.621Z",
+        "edited_by" => "string",
+        "last_edited" => "2023-07-06T11:16:06.621Z",
+        "matches" => 0,
+        "note" => "Description of AP021",
+        "pending_execution" => true,
+        "priority" => "none",
+        "sites" => 0,
+        "_links" => {
+          "sites" => {
+            "href" => "string",
+          },
+        },
+      },
+    ],
+    "total_items" => 2,
+    "total_pages" => 1,
+    "links" => {
+      "next" => {
+        "href" => "string",
+      },
+      "prev" => {
+        "href" => "string",
+      },
+      "self" => {
+        "href" => "string",
+      },
+    },
+  }.to_json
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/policy/policies?page_size=500").to_return(status: 200, headers:, body:)
 end
 

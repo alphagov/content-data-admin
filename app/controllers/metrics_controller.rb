@@ -14,6 +14,16 @@ class MetricsController < ApplicationController
       prev_period_data,
       curr_period,
     )
+
+    begin
+      @summary_info = Siteimprove::FetchSummary.call(url: "https://www.gov.uk/#{params[:base_path]}")
+
+      raw_policy_issues = Siteimprove::FetchPolicyIssues.call(url: "https://www.gov.uk/#{params[:base_path]}")
+      @policy_issues = Siteimprove::PolicyIssuesPresenter.new(raw_policy_issues, @summary_info)
+      @has_accessibility_info = @policy_issues.any?
+    rescue Siteimprove::BaseError
+      @has_accessibility_info = false
+    end
   end
 
   rescue_from GdsApi::HTTPNotFound do

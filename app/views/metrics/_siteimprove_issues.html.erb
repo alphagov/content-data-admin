@@ -1,0 +1,53 @@
+<h2 class="section-content__header content-metrics__header"><%= t("metrics.siteimprove.title") %></h2>
+
+  <p><%= t("metrics.siteimprove.description").html_safe %></h3>
+
+  <% if @policy_issues.issue_list(:accessibility).count > 0 %>
+    <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.policy.accessibility.title") %></h3>
+
+    <p><%= t("metrics.siteimprove.policy.accessibility.description").html_safe %></p>
+
+    <table class="govuk-table govuk-table__fixed-left-column">
+      <caption class="govuk-visually-hidden"><%= t("metrics.siteimprove.policy.accessibility.caption") %></caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.issue") %></th>
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.full_desc") %></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <% @policy_issues.issue_list(:accessibility).each do |issue| %>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href=<%= issue[:policy_direct_link] %>><%= issue[:policy_short_description] %></a></td>
+            <td class="govuk-table__cell"><%= raw(issue[:policy_description]) %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+    <hr class="govuk-section-break govuk-section-break--l">
+  <% end %>
+
+  <% if @policy_issues.issue_list(:style).count > 0 %>
+    <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.policy.style.title") %></h3>
+
+    <p><%= t("metrics.siteimprove.policy.style.description").html_safe %></p>
+
+    <table class="govuk-table govuk-table__fixed-left-column">
+      <caption class="govuk-visually-hidden"><%= t("metrics.siteimprove.policy.style.caption") %></caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.issue") %></th>
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.policy.full_desc") %></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <% @policy_issues.issue_list(:style).each do |issue| %>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href=<%= issue[:policy_direct_link] %>><%= issue[:policy_short_description] %></a></td>
+            <td class="govuk-table__cell"><%= raw(issue[:policy_description]) %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+    <hr class="govuk-section-break govuk-section-break--l">
+  <% end %>
