@@ -88,6 +88,7 @@ en:
         <p>You can <a href="https://docs.google.com/forms/d/e/1FAIpQLScmGwmMIB35y5df0wpj8yl3BUAWhu__CEF6b-Eb4Js0CuoG4Q/viewform">report any issues or give us feedback</a> to help us refine and improve the tool. </p>
       more_issue_detail: 'More detail of the issue'
       accessibility_report_link: 'See accessibility issues on the page'
+      quality_assurance_report_link: 'See content quality issues on the page'
       policy:
         issue: 'Rule name'
         priority: 'Priority'
@@ -100,6 +101,18 @@ en:
           title: 'Style issues'
           description: 'This section highlights potential style issue on the page. The related style rules are discussed in <a href="https://www.gov.uk/guidance/style-guide/a-to-z-of-gov-uk-style">GOV.UK style guide</a> and <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk">writing for GOV.UK</a>.'
           caption: 'Table of style issues on the page'
+      quality_assurance:
+        broken_links:
+          title: 'Broken links'
+          description: 'This section highlights potential broken links on the page.'
+          caption: 'Table of broken links on the page'
+          url: 'URL'
+        misspellings:
+          title: 'Misspellings'
+          description: 'This section highlights potential misspellings on the page.'
+          caption: 'Table of misspellings on the page'
+          word: 'Word'
+          suggestions: 'Suggestions (if any)'
     useful_yes:
       title: 'Yes responses: is page useful?'
     useful_no:

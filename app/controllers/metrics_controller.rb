@@ -20,7 +20,9 @@ class MetricsController < ApplicationController
 
       raw_policy_issues = Siteimprove::FetchPolicyIssues.call(url: "https://www.gov.uk/#{params[:base_path]}")
       @policy_issues = Siteimprove::PolicyIssuesPresenter.new(raw_policy_issues, @summary_info)
-      @has_accessibility_info = @policy_issues.any?
+      raw_quality_assurance_issues = Siteimprove::FetchQualityAssuranceIssues.call(url: "https://www.gov.uk/#{params[:base_path]}")
+      @quality_assurance_issues = Siteimprove::QualityAssuranceIssuesPresenter.new(raw_quality_assurance_issues, @summary_info)
+      @has_accessibility_info = @policy_issues.any? || @quality_assurance_issues.any?
     rescue Siteimprove::BaseError
       @has_accessibility_info = false
     end

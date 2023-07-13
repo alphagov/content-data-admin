@@ -368,3 +368,101 @@ def siteimprove_has_policies
   stub_request(:get, "#{SI_BASE_URI}/sites/1/policy/policies?page_size=500").to_return(status: 200, headers:, body:)
 end
 
+def siteimprove_has_misspellings
+  headers = { "content-type" => "application/json" }
+  body = {
+    "items" => [
+      {
+        "id" => 0,
+        "suggestions" => %w[fish phish],
+        "word" => "feesh",
+      },
+    ],
+    "total_items" => 0,
+    "total_pages" => 0,
+    "links" => {
+      "next" => {
+        "href" => "string",
+      },
+      "prev" => {
+        "href" => "string",
+      },
+      "self" => {
+        "href" => "string",
+      },
+    },
+  }.to_json
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/quality_assurance/spelling/pages/2/misspellings").to_return(status: 200, headers:, body:)
+end
+
+def siteimprove_has_no_misspellings
+  headers = { "content-type" => "application/json" }
+  body = {
+    "items" => [],
+    "total_items" => 0,
+    "total_pages" => 0,
+    "links" => {
+      "next" => {
+        "href" => "string",
+      },
+      "prev" => {
+        "href" => "string",
+      },
+      "self" => {
+        "href" => "string",
+      },
+    },
+  }.to_json
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/quality_assurance/spelling/pages/2/misspellings").to_return(status: 200, headers:, body:)
+end
+
+def siteimprove_has_broken_links
+  headers = { "content-type" => "application/json" }
+  body = {
+    "items" => [
+      {
+        "id" => 0,
+        "url" => "string",
+        "checking_now" => true,
+        "last_checked" => "2023-07-06T11:49:30.532Z",
+        "link_status_changed" => "2023-07-06T11:49:30.532Z",
+        "message" => "string",
+      },
+    ],
+    "total_items" => 1,
+    "total_pages" => 1,
+    "links" => {
+      "next" => {
+        "href" => "string",
+      },
+      "prev" => {
+        "href" => "string",
+      },
+      "self" => {
+        "href" => "string",
+      },
+    },
+  }.to_json
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/quality_assurance/links/pages_with_broken_links/2/broken_links").to_return(status: 200, headers:, body:)
+end
+
+def siteimprove_has_no_broken_links
+  headers = { "content-type" => "application/json" }
+  body = {
+    "items" => [],
+    "total_items" => 0,
+    "total_pages" => 0,
+    "links" => {
+      "next" => {
+        "href" => "string",
+      },
+      "prev" => {
+        "href" => "string",
+      },
+      "self" => {
+        "href" => "string",
+      },
+    },
+  }.to_json
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/quality_assurance/links/pages_with_broken_links/2/broken_links").to_return(status: 200, headers:, body:)
+end

@@ -54,6 +54,8 @@ RSpec.describe "/metrics/base/path Siteimprove features", type: :feature do
       context "but there are no issues" do
         before do
           siteimprove_has_no_matching_policy_issues
+          siteimprove_has_no_misspellings
+          siteimprove_has_no_broken_links
         end
 
         it "does not show Siteimprove title" do
@@ -87,6 +89,27 @@ RSpec.describe "/metrics/base/path Siteimprove features", type: :feature do
           expect(page).to have_content("Accessibility issues")
           expect(page).to have_content("First Accessibility Issue")
           expect(page).to have_content("Description of AP021")
+        end
+      end
+
+      context "and misspellings exist" do
+        before do
+          siteimprove_has_no_matching_policy_issues
+          siteimprove_has_policies
+          siteimprove_has_misspellings
+          siteimprove_has_no_broken_links
+        end
+
+        it "shows Siteimprove title" do
+          visit "/metrics/base/path"
+          expect(page).to have_content("Potential content issues for review")
+        end
+
+        it "shows Misspellings" do
+          visit "/metrics/base/path"
+          expect(page).to have_content("Misspellings")
+          expect(page).to have_content("phish")
+          expect(page).to have_content("fish")
         end
       end
     end

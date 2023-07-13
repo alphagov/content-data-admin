@@ -27,6 +27,29 @@
     <hr class="govuk-section-break govuk-section-break--l">
   <% end %>
 
+  <% if @quality_assurance_issues.any? && @quality_assurance_issues.issue_list[:broken_links].present? %>
+    <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.quality_assurance.broken_links.title") %></h3>
+
+    <p><%= t("metrics.siteimprove.quality_assurance.broken_links.description", quality_assurance_url: @quality_assurance_issues.link).html_safe %></p>
+
+    <table class="govuk-table content-metrics__url-table">
+      <caption class="govuk-visually-hidden"><%= t("metrics.siteimprove.quality_assurance.broken_links.caption") %></caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.quality_assurance.broken_links.url") %></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <% @quality_assurance_issues.issue_list[:broken_links].each do |link| %>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell content-metrics__url-cell"><a href=<%= link[:quality_assurance_direct_link] %>><%= link[:url] %></a></td>
+          </tr>
+        <% end %>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+
   <% if @policy_issues.issue_list(:style).count > 0 %>
     <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.policy.style.title") %></h3>
 
@@ -47,6 +70,32 @@
             <td class="govuk-table__cell"><%= raw(issue[:policy_description]) %></td>
           </tr>
         <%end%>
+      </tbody>
+    </table>
+    <hr class="govuk-section-break govuk-section-break--l">
+  <% end %>
+
+  <% if @quality_assurance_issues.any? && @quality_assurance_issues.issue_list[:misspellings].present? %>
+    <h3 class="govuk-heading-m"><%= t("metrics.siteimprove.quality_assurance.misspellings.title") %></h3>
+
+    <p><%= t("metrics.siteimprove.quality_assurance.misspellings.description", quality_assurance_url: @quality_assurance_issues.link).html_safe %></p>
+
+    <table class="govuk-table govuk-table__fixed-left-column">
+      <caption class="govuk-visually-hidden"><%= t("metrics.siteimprove.quality_assurance.misspellings.caption") %></caption>
+      <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.quality_assurance.misspellings.word") %></th>
+        <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.quality_assurance.misspellings.suggestions") %></th>
+      </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <% @quality_assurance_issues.issue_list[:misspellings].each do |spelling| %>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href=<%= spelling[:quality_assurance_direct_link] %>><%= spelling[:word] %></a></td>
+            <td class="govuk-table__cell"><%= spelling[:suggestions] %> </td>
+          </tr>
+        <% end %>
+        </tr>
       </tbody>
     </table>
     <hr class="govuk-section-break govuk-section-break--l">
