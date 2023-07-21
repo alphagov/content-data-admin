@@ -23,7 +23,7 @@
     "extends": "stylelint-config-gds/scss"
   },
   "devDependencies": {
-    "postcss": "^8.4.26",
+    "postcss": "^8.4.27",
     "standardx": "^7.0.0",
     "stylelint": "^15.10.2",
     "stylelint-config-gds": "^0.3.0"
