@@ -16,7 +16,7 @@ class ContentRowPresenter
     @title = data[:title]
     @base_path = format_base_path(data[:base_path])
     @raw_document_type = data[:document_type]
-    @document_type = humanize(data[:document_type])
+    @document_type = humanize(data[:document_type] || "")
     @sibling_order = format_sibling_order(data[:sibling_order])
     @upviews = number_with_delimiter(data[:upviews], delimiter: ",") || "No data"
     @satisfaction_percentage = format_satisfaction_percentage(data[:satisfaction])
