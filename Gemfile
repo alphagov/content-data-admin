@@ -18,13 +18,16 @@ gem "sassc-rails"
 gem "sentry-sidekiq"
 gem "uglifier"
 
+group :development do
+  gem "better_errors"
+end
+
 group :test do
   gem "simplecov"
   gem "timecop"
 end
 
 group :development, :test do
-  gem "better_errors"
   gem "binding_of_caller"
   gem "byebug"
   gem "capybara"
