@@ -18,7 +18,7 @@
     min-height: 1em;
     padding: 5px 6px;
 
-    &:before {
+    &::before {
       position: relative;
       top: 3px;
       padding-top: 2px;
