@@ -192,7 +192,7 @@ $govuk-global-styles: true;
       @include govuk-focused-text;
     }
 
-    &:after {
+    &::after {
       content: "";
       position: absolute;
       top: 0;
@@ -201,7 +201,7 @@ $govuk-global-styles: true;
       @include govuk-shape-arrow($direction: up, $base: $sort-link-arrow-size-small, $display: block);
     }
 
-    &:before {
+    &::before {
       content: "";
       position: absolute;
       top: 8px;
@@ -218,12 +218,12 @@ $govuk-global-styles: true;
     }
   }
 
-  .table__sort-link--asc:before,
-  .table__sort-link--desc:before {
+  .table__sort-link--asc::before,
+  .table__sort-link--desc::before {
     content: none;
   }
 
-  .table__sort-link--asc:after {
+  .table__sort-link--asc::after {
     content: "";
     position: absolute;
     top: $sort-link-arrow-margin;
@@ -232,7 +232,7 @@ $govuk-global-styles: true;
     @include govuk-shape-arrow($direction: up, $base: $sort-link-arrow-size, $display: inline-block);
   }
 
-  .table__sort-link--desc:after {
+  .table__sort-link--desc::after {
     content: "";
     position: absolute;
     top: $sort-link-arrow-spacing;
