@@ -20,7 +20,10 @@
     }
   },
   "stylelint": {
-    "extends": "stylelint-config-gds/scss"
+    "extends": "stylelint-config-gds/scss",
+    "rules": {
+      "media-feature-range-notation": "prefix"
+    }
   },
   "devDependencies": {
     "postcss": "^8.4.27",
