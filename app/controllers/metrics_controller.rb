@@ -15,15 +15,19 @@ class MetricsController < ApplicationController
       curr_period,
     )
 
-    begin
-      @summary_info = Siteimprove::FetchSummary.call(url: "https://www.gov.uk/#{params[:base_path]}")
+    if current_user.view_siteimprove?
+      begin
+        @summary_info = Siteimprove::FetchSummary.call(url: "https://www.gov.uk/#{params[:base_path]}")
 
-      raw_policy_issues = Siteimprove::FetchPolicyIssues.call(url: "https://www.gov.uk/#{params[:base_path]}")
-      @policy_issues = Siteimprove::PolicyIssuesPresenter.new(raw_policy_issues, @summary_info)
-      raw_quality_assurance_issues = Siteimprove::FetchQualityAssuranceIssues.call(url: "https://www.gov.uk/#{params[:base_path]}")
-      @quality_assurance_issues = Siteimprove::QualityAssuranceIssuesPresenter.new(raw_quality_assurance_issues, @summary_info)
-      @has_accessibility_info = @policy_issues.any? || @quality_assurance_issues.any?
-    rescue Siteimprove::BaseError
+        raw_policy_issues = Siteimprove::FetchPolicyIssues.call(url: "https://www.gov.uk/#{params[:base_path]}")
+        @policy_issues = Siteimprove::PolicyIssuesPresenter.new(raw_policy_issues, @summary_info)
+        raw_quality_assurance_issues = Siteimprove::FetchQualityAssuranceIssues.call(url: "https://www.gov.uk/#{params[:base_path]}")
+        @quality_assurance_issues = Siteimprove::QualityAssuranceIssuesPresenter.new(raw_quality_assurance_issues, @summary_info)
+        @has_accessibility_info = @policy_issues.any? || @quality_assurance_issues.any?
+      rescue Siteimprove::BaseError
+        @has_accessibility_info = false
+      end
+    else
       @has_accessibility_info = false
     end
   end

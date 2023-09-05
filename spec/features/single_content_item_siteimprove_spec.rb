@@ -1,9 +1,39 @@
 RSpec.describe "/metrics/base/path Siteimprove features", type: :feature do
   include RequestStubs
 
-  context "logged in" do
+  context "logged in as another department" do
     before do
       GDS::SSO.test_user = build(:user)
+      stub_metrics_page(base_path: "base/path", time_period: :past_30_days)
+      Rails.application.config.siteimprove_site_id = 1
+    end
+
+    after do
+      Rails.application.config.siteimprove_site_id = nil
+    end
+
+    context "when siteimprove has matching pages" do
+      before do
+        siteimprove_has_matching_pages
+        siteimprove_has_summary
+      end
+
+      context "and matching policy issues exist" do
+        before do
+          siteimprove_has_matching_policy_issues
+        end
+
+        it "does not show the Siteimprove title" do
+          visit "/metrics/base/path"
+          expect(page).not_to have_content("Content issues identified by Siteimprove")
+        end
+      end
+    end
+  end
+
+  context "logged in as GDS" do
+    before do
+      GDS::SSO.test_user = build(:view_siteimprove_user)
       stub_metrics_page(base_path: "base/path", time_period: :past_30_days)
       Rails.application.config.siteimprove_site_id = 1
     end
