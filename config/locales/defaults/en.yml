@@ -80,6 +80,39 @@ en:
         The more users who responded, the more reliable the score is. For a more reliable score
         on a page that doesn't have many responses, choose a longer time period. This survey was
         introduced in February 2018 so there are no responses before this date.
+    siteimprove:
+      title: 'Potential content issues for review'
+      description: >
+        <p>Siteimprove is an online tool which audits the mainstream content of GOV.UK. Every 5 days it reviews a snapshot of the site for quality and accessibility. It then creates a page report for each page to highlight potential issues.</p>
+        <p>It may sometimes identify something which is not an issue (for example, flagging a scientific term as a misspelling). We are also currently beta testing inclusion of our own style and accessibility policies.</p>
+        <p>You can <a href="https://docs.google.com/forms/d/e/1FAIpQLScmGwmMIB35y5df0wpj8yl3BUAWhu__CEF6b-Eb4Js0CuoG4Q/viewform">report any issues or give us feedback</a> to help us refine and improve the tool. </p>
+      more_issue_detail: 'More detail of the issue'
+      accessibility_report_link: 'See accessibility issues on the page'
+      quality_assurance_report_link: 'See content quality issues on the page'
+      policy:
+        issue: 'Rule name'
+        priority: 'Priority'
+        full_desc: 'Guidance about rule'
+        accessibility:
+          title: 'Accessibility issues'
+          description: 'This section highlights potential accessibility issues. These are taken from the guidance about <a href="https://www.gov.uk/guidance/content-design">planning, writing and managing content</a> and <a href="https://www.gov.uk/guidance/how-to-publish-on-gov-uk">how to publish on GOV.UK</a>.'
+          caption: 'Table of accessibility issues on the page'
+        style:
+          title: 'Style issues'
+          description: 'This section highlights potential style issue on the page. The related style rules are discussed in <a href="https://www.gov.uk/guidance/style-guide/a-to-z-of-gov-uk-style">GOV.UK style guide</a> and <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk">writing for GOV.UK</a>.'
+          caption: 'Table of style issues on the page'
+      quality_assurance:
+        broken_links:
+          title: 'Broken links'
+          description: 'This section highlights potential broken links on the page.'
+          caption: 'Table of broken links on the page'
+          url: 'URL'
+        misspellings:
+          title: 'Misspellings'
+          description: 'This section highlights potential misspellings on the page.'
+          caption: 'Table of misspellings on the page'
+          word: 'Word'
+          suggestions: 'Suggestions (if any)'
     useful_yes:
       title: 'Yes responses: is page useful?'
     useful_no:
