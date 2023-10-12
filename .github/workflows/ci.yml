@@ -15,6 +15,12 @@ jobs:
     name: Security Analysis
     uses: alphagov/govuk-infrastructure/.github/workflows/brakeman.yml@main
 
+  codeql-sast:
+    name: CodeQL SAST scan
+    uses: alphagov/govuk-infrastructure/.github/workflows/codeql-analysis.yml@main
+    permissions:
+      security-events: write
+
   lint-scss:
     name: Lint SCSS
     uses: alphagov/govuk-infrastructure/.github/workflows/stylelint.yml@main
@@ -67,4 +73,3 @@ jobs:
           RAILS_ENV: test
           TEST_DATABASE_URL: ${{ steps.setup-postgres.outputs.db-url }}
         run: bundle exec rake spec
-
