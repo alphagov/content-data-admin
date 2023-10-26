@@ -232,7 +232,7 @@ GEM
       net-imap
       net-pop
       net-smtp
-    mail-notify (1.1.0)
+    mail-notify (1.2.0)
       actionmailer (>= 5.2.4.6)
       actionpack (>= 5.2.7.1)
       actionview (>= 5.2.7.1)
@@ -251,7 +251,7 @@ GEM
     msgpack (1.6.0)
     multi_json (1.15.0)
     multi_xml (0.6.0)
-    net-imap (0.4.1)
+    net-imap (0.4.2)
       date
       net-protocol
     net-pop (0.1.2)
