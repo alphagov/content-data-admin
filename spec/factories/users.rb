@@ -14,4 +14,8 @@ FactoryBot.define do
   factory :view_siteimprove_user, parent: :user do
     permissions { %i[view_siteimprove] }
   end
+
+  factory :view_email_subs_user, parent: :user do
+    permissions { %i[view_email_subs] }
+  end
 end
