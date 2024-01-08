@@ -151,6 +151,10 @@
   <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
   <%= render "siteimprove_issues" %>
 <% end %>
+<% if @show_email_subs_section %>
+   <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+   <%= render "email_subscriptions" %>
+<% end %>
 
 
 

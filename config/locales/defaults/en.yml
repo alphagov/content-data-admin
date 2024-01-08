@@ -9,6 +9,8 @@ en:
     feedback_explorer: 'Feedback Explorer'
     none: false
   metrics:
+    email_subscriptions:
+      title: 'Email subscriptions'
     upviews:
       title: 'Unique page views'
       short_title: 'Unique page views'

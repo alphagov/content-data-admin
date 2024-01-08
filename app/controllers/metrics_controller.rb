@@ -15,6 +15,7 @@ class MetricsController < ApplicationController
     )
 
     setup_siteimprove
+    setup_email_subscriptions
   end
 
   rescue_from GdsApi::HTTPNotFound do
@@ -23,9 +24,18 @@ class MetricsController < ApplicationController
 
 private
 
-
   def base_path
     params[:base_path]
+  end
+
+  def setup_email_subscriptions
+    return unless current_user.view_email_subs?
+
+    @show_email_subs_section = true
+    @email_subscriptions = {
+      subscriber_list_count: 12,
+      all_notify_count: 26,
+    }
   end
 
   def setup_siteimprove
