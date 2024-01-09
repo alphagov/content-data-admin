@@ -1,7 +1,7 @@
 module EmailApi
   class PageSubscriptionsClient
     def initialize
-      @email_alert_api = GdsApi::EmailAlertApi.new(Plek.find("email-alert-api"))
+      @email_alert_api = GdsApi.email_alert_api
     end
 
     def fetch(path:)

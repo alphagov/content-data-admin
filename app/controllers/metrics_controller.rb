@@ -32,10 +32,7 @@ private
     return unless current_user.view_email_subs?
 
     @show_email_subs_section = true
-    @email_subscriptions = {
-      subscriber_list_count: 12,
-      all_notify_count: 26,
-    }
+    @email_subscriptions = EmailApi::PageSubscriptionsClient.new.fetch(path: "/#{base_path}")
   end
 
   def setup_siteimprove
