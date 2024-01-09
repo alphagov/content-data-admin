@@ -1,3 +1,7 @@
 <h2 class="section-content__header content-metrics__header"><%= t("metrics.email_subscriptions.title") %></h2>
-<p><strong>Subscribers:</strong> <%= @email_subscriptions.subscriber_list_count %></p>
-<p><strong>All notification subscribers:</strong> <%=@email_subscriptions.all_notify_count %></p>
+<% if @email_subscriptions.present? %>
+  <p><strong>Subscribers:</strong> <%= @email_subscriptions.subscriber_list_count %></p>
+  <p><strong>All notification subscribers:</strong> <%=@email_subscriptions.all_notify_count %></p>
+<% else %>
+  <p>No subscription information found</p>
+<% end %>
