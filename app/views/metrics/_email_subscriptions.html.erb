@@ -1,7 +1,19 @@
 <h2 class="section-content__header content-metrics__header"><%= t("metrics.email_subscriptions.title") %></h2>
 <% if @email_subscriptions.present? %>
-  <p><strong>Subscribers:</strong> <%= @email_subscriptions.subscriber_list_count %></p>
-  <p><strong>All notification subscribers:</strong> <%=@email_subscriptions.all_notify_count %></p>
+  <p><strong><%= t("metrics.email_subscriptions.active_title") %>:</strong> <%= @email_subscriptions.subscriber_list_count %></p>
+  <p><strong><%= t("metrics.email_subscriptions.total_notify_title") %>:</strong> <%=@email_subscriptions.all_notify_count %></p>
 <% else %>
-  <p>No subscription information found</p>
+  <p><%= t("metrics.email_subscriptions.no_information") %></p>
+<% end %>
+
+<%= render "govuk_publishing_components/components/details", {
+  title: t("metrics.email_subscriptions.about_title")
+} do %>
+
+  <h3 class="govuk-heading-m"><%= t("metrics.email_subscriptions.active_title") %></h3>
+  <p class="govuk-body govuk-body-s"><%= t("metrics.email_subscriptions.active_description") %></p>
+
+  <h3 class="govuk-heading-m"><%= t("metrics.email_subscriptions.total_notify_title") %></h3>
+  <p class="govuk-body govuk-body-s"><%= t("metrics.email_subscriptions.total_notify_description") %></p>
+
 <% end %>

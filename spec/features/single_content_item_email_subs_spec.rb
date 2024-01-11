@@ -31,9 +31,19 @@ RSpec.describe "/metrics/base/path email subscription details", type: :feature d
       it "shows the Email subscriptions section" do
         visit "/metrics/base/path"
         expect(page).to have_content("Email subscriptions")
-        expect(page).to have_content("Subscribers: 3")
-        expect(page).to have_content("All notification subscribers: 10")
+        expect(page).to have_content("Active subscribers: 3")
+        expect(page).to have_content("Number of subscribers notified by change: 10")
         expect(page).not_to have_content("No subscription information found")
+      end
+
+      it "shows information on the email metrics" do
+        visit "/metrics/base/path"
+        [
+          "Active subscribers is the number of people",
+          "Number of subscribers notified by change is the number of people",
+        ].each do |txt|
+          expect(page).to have_content(txt)
+        end
       end
     end
 
@@ -46,8 +56,8 @@ RSpec.describe "/metrics/base/path email subscription details", type: :feature d
         visit "/metrics/base/path"
         expect(page).to have_content("Email subscriptions")
         expect(page).to have_content("No subscription information found")
-        expect(page).not_to have_content("Subscribers:")
-        expect(page).not_to have_content("All notification subscribers:")
+        expect(page).not_to have_content("Active subscribers:")
+        expect(page).not_to have_content("Number of subscribers notified by change:")
       end
     end
   end

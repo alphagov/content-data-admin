@@ -11,6 +11,12 @@ en:
   metrics:
     email_subscriptions:
       title: 'Email subscriptions'
+      about_title: 'About Email subscriptions'
+      active_title: 'Active subscribers'
+      active_description: 'Active subscribers is the number of people who have clicked the Get Emails button on this page and signed up to be subscribed to valid email alerts either to this page or to pages related to this one. Note that some pages can be subscribed to, but do not generate email alerts themselves (in these cases the subscriber list will be notified if pages related to this one are updated)'
+      total_notify_title: 'Number of subscribers notified by change'
+      total_notify_description: 'Number of subscribers notified by change is the number of people who will receive emails if this page receives a major update. Note that this may be zero even if the page has active subscribers (if the page does not generate email alerts), or may be positive even if the page has no active subscribers (as there are lists that subscribe to all emails, or all emails on a certain topic)'
+      no_information: 'No subscription information found'
     upviews:
       title: 'Unique page views'
       short_title: 'Unique page views'
