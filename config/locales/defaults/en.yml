@@ -2,9 +2,6 @@ en:
   no_matching_results: 'No matching results'
   data_sources:
     google_analytics: 'Google Analytics'
-    google_analytics_data_warning:
-      heading: 'From 20 December 2019 we only have Google Analytics data for users who consent to cookies.'
-      body: 'The amount of data is severely limited by this so data after this date might not be representative.'
     calculated_google_analytics: 'calculated from Google Analytics'
     feedback_explorer: 'Feedback Explorer'
     none: false
