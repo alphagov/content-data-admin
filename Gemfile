@@ -5,7 +5,7 @@ gem "rails", "7.1.3"
 gem "bootsnap", require: false
 gem "chartkick"
 gem "fog-aws"
-gem "gds-api-adapters", "~> 92.1.0"
+gem "gds-api-adapters", "~> 93.0.0"
 
 gem "gds-sso"
 gem "govspeak"
