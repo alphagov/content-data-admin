@@ -2,6 +2,12 @@
 <% content_for :page_class, "content-data__index" %>
 
 <div class="govuk-grid-row">
+  <div class="govuk-grid-column-full ga-data-notice-column">
+    <%= render(partial: 'components/ga4_notice') %>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
     <div class="govuk-grid-column-one-quarter">
       <div class="filters-control__wrapper filter--hidden" data-module="filter-toggle">
         <span class="filters-control filters-control--hide filter--hidden">
