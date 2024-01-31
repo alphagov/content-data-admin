@@ -1,0 +1,11 @@
+<% i18n_scope = [:data_sources, :ga4_migration_warning] %>
+
+<div class="govuk-inset-text ga-data-notice">
+  <p class="govuk-body govuk-!-font-weight-bold">
+    <%= I18n.t(:heading, scope: i18n_scope) %>
+  </p>
+
+  <p class="govuk-body">
+    <%= raw(I18n.t(:body, scope: i18n_scope)) %>
+  </p>
+</div>
