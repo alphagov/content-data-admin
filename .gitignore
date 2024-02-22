@@ -29,3 +29,7 @@
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# dartsass-rails
+/app/assets/builds/*
+!/app/assets/builds/.keep
