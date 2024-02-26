@@ -114,7 +114,8 @@ en:
           title: 'Broken links'
           description: 'This section highlights potential broken links on the page.'
           caption: 'Table of broken links on the page'
-          url: 'URL'
+          link_text: 'Link text'
+          broken_url: 'Broken URL'
         misspellings:
           title: 'Misspellings'
           description: 'This section highlights potential misspellings on the page.'
