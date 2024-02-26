@@ -730,6 +730,7 @@ DEPENDENCIES
   govuk_test
   kaminari
   mail-notify
+  nokogiri
   pg
   plek
   pry
