@@ -303,7 +303,7 @@ def siteimprove_has_no_policies
       },
     },
   }.to_json
-  stub_request(:get, "#{SI_BASE_URI}/sites/1/policy/policies?page_size=500").to_return(status: 200, headers:, body:)
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/policy/policies?page_size=1000").to_return(status: 200, headers:, body:)
 end
 
 def siteimprove_has_policies
@@ -365,7 +365,7 @@ def siteimprove_has_policies
       },
     },
   }.to_json
-  stub_request(:get, "#{SI_BASE_URI}/sites/1/policy/policies?page_size=500").to_return(status: 200, headers:, body:)
+  stub_request(:get, "#{SI_BASE_URI}/sites/1/policy/policies?page_size=1000").to_return(status: 200, headers:, body:)
 end
 
 def siteimprove_has_misspellings
