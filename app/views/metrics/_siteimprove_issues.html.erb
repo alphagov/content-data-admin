@@ -36,13 +36,15 @@
       <caption class="govuk-visually-hidden"><%= t("metrics.siteimprove.quality_assurance.broken_links.caption") %></caption>
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.quality_assurance.broken_links.url") %></th>
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.quality_assurance.broken_links.link_text") %></th>
+          <th scope="col" class="govuk-table__header"><%= t("metrics.siteimprove.quality_assurance.broken_links.broken_url") %></th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
         <% @quality_assurance_issues.issue_list[:broken_links].each do |link| %>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell content-metrics__url-cell"><a href=<%= link[:quality_assurance_direct_link] %>><%= link[:url] %></a></td>
+            <td class="govuk-table__cell content-metrics__url-cell"><a href=<%= link[:quality_assurance_direct_link] %>><%= link[:title]  %></a></td>
+            <td class="govuk-table__cell content-metrics__url-cell"><%= link[:url] %></td>
           </tr>
         <% end %>
         </tr>
