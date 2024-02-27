@@ -27,6 +27,16 @@ RSpec.describe LinkTitleResolver do
       end
     end
 
+    context "when the link title contains nested tags" do
+      before do
+        stub_content_store_has_item("/broken-link-page", { "details" => { "body" => "<a href=\"https://missing.io\">Relevant <span>clicked</span> Link</a>" } })
+      end
+
+      it "returns the link text" do
+        expect(subject.title_for_link("https://missing.io")).to eq("Relevant clicked Link")
+      end
+    end
+
     context "when the content data has parts" do
       before do
         stub_content_store_has_item("/broken-link-page", { "details" => { "parts" => [{ "body" => "<a href=\"https://present.io\">Irrelevant Link</a>" }, { "body" => "<a href=\"https://missing.io\">Relevant Link</a>" }] } })

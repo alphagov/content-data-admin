@@ -4,17 +4,16 @@ class LinkTitleResolver
   end
 
   def title_for_link(link)
-    regexp = Regexp.new("<a.*href=\"#{link}\"[^>]*>([^<]*)<\/a>")
-    matches = regexp.match(content_body)
-    return "(Unable to find link text)" unless matches && matches.captures.any?
+    elements = content_body.search("a[href=\"#{link}\"]")
+    return "(Unable to find link text)" unless elements.any?
 
-    matches.captures[0]
+    elements.first.text
   end
 
 private
 
   def content_body
-    @content_body ||= extract_content_body_from_item
+    @content_body ||= Nokogiri::HTML(extract_content_body_from_item)
   end
 
   def extract_content_body_from_item
@@ -23,6 +22,6 @@ private
     return details["body"] if details.key?("body")
     return details["parts"].map { |p| p["body"] }.join(" - ") if details.key?("parts")
 
-    "" # Return empty body if we couldn't get it from the content item
+    nil
   end
 end
