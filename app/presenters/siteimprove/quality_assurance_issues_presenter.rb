@@ -2,9 +2,10 @@ module Siteimprove
   class QualityAssuranceIssuesPresenter
     attr_reader :summary_info
 
-    def initialize(quality_assurance_issues, summary_info)
+    def initialize(quality_assurance_issues, summary_info, link_title_resolver)
       @quality_assurance_issues = quality_assurance_issues
       @summary_info = summary_info
+      @link_title_resolver = link_title_resolver
     end
 
     def any?
@@ -35,6 +36,7 @@ module Siteimprove
     def broken_links
       @quality_assurance_issues[:broken_links].map do |link|
         {
+          title: @link_title_resolver.title_for_link(link.url),
           url: link.url,
           message: link.message,
           quality_assurance_direct_link: quality_assurance_broken_links_direct_link(link.id),

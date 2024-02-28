@@ -8,7 +8,7 @@ module Siteimprove
 
     def policies
       Rails.cache.fetch("siteimprove-policies", expires_in: 1.hour) do
-        policy_api.sites_site_id_policy_policies_get(site_id, page_size: 500).items
+        policy_api.sites_site_id_policy_policies_get(site_id, page_size: 1000).items
       end
     rescue SiteimproveAPIClient::ApiError => e
       GovukError.notify(e)
