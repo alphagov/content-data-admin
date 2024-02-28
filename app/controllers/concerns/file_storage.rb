@@ -3,8 +3,9 @@ module FileStorage
     connection = Fog::Storage.new(
       provider: "AWS",
       region: ENV["AWS_REGION"],
-      aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
-      aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
+      aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"] || "",
+      aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"] || "",
+      use_iam_profile: !ENV["AWS_ACCESS_KEY_ID"],
     )
 
     directory = connection.directories.get(ENV["AWS_CSV_EXPORT_BUCKET_NAME"])
