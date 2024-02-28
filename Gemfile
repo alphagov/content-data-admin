@@ -2,11 +2,10 @@ source "https://rubygems.org"
 
 gem "rails", "7.1.3.2"
 
+gem "aws-sdk-s3"
 gem "bootsnap", require: false
 gem "chartkick"
-gem "fog-aws"
 gem "gds-api-adapters", "~> 93.0.0"
-
 gem "gds-sso"
 gem "govspeak"
 gem "govuk_app_config"
@@ -20,6 +19,7 @@ gem "plek"
 gem "sassc-rails"
 gem "sentry-sidekiq"
 gem "siteimprove_api_client"
+gem "sitemap_generator"
 gem "uglifier"
 
 group :development do
