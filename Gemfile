@@ -2,11 +2,11 @@ source "https://rubygems.org"
 
 gem "rails", "7.1.3.2"
 
+gem "aws-sdk-s3"
 gem "bootsnap", require: false
 gem "chartkick"
 gem "fog-aws"
 gem "gds-api-adapters", "~> 93.0.0"
-
 gem "gds-sso"
 gem "govspeak"
 gem "govuk_app_config"

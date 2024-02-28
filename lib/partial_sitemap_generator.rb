@@ -14,16 +14,7 @@ class PartialSitemapGenerator
 
     SitemapGenerator.verbose = false
 
-    SitemapGenerator::Sitemap.adapter = SitemapGenerator::FogAdapter.new({
-      fog_credentials: {
-        provider: "AWS",
-        region: ENV["AWS_REGION"],
-        aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"] || "",
-        aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"] || "",
-        use_iam_profile: !ENV["AWS_ACCESS_KEY_ID"],
-      },
-      fog_directory: ENV["AWS_SITEIMPROVE_SITEMAPS_BUCKET_NAME"],
-    })
+    SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(ENV["AWS_SITEIMPROVE_SITEMAPS_BUCKET_NAME"])
 
     SitemapGenerator::Sitemap.default_host = "https://www.gov.uk"
     SitemapGenerator::Sitemap.filename = "sitemap-#{organisations.join('-and-')}"
