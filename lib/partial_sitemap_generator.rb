@@ -10,7 +10,7 @@ class PartialSitemapGenerator
       filter_organisations: organisations,
     })
 
-    raise(StandardError, "Sitemap empty") if pages.none?
+    raise(StandardError, "Sitemap empty (are the organisation slugs correct?∂)") if pages.none?
 
     SitemapGenerator.verbose = false
 
