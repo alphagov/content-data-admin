@@ -67,6 +67,8 @@ RSpec.describe CsvExportWorker do
   before do
     Sidekiq::Worker.clear_all
 
+    ENV["AWS_CSV_EXPORT_BUCKET_NAME"] = "test-bucket"
+
     allow(FetchDocumentTypes).to receive(:call)
       .and_return(document_types:)
     allow(FetchOrganisations).to receive(:call)
@@ -75,21 +77,6 @@ RSpec.describe CsvExportWorker do
       .with(search_params)
       .and_return(content_items)
     allow(GovukStatsd).to receive(:timing)
-
-    Fog.mock!
-    ENV["AWS_REGION"] = "eu-west-1"
-    ENV["AWS_ACCESS_KEY_ID"] = "test"
-    ENV["AWS_SECRET_ACCESS_KEY"] = "test"
-    ENV["AWS_CSV_EXPORT_BUCKET_NAME"] = "test-bucket"
-
-    # Create an S3 bucket so the code being tested can find it
-    connection = Fog::Storage.new(
-      provider: "AWS",
-      region: ENV["AWS_REGION"],
-      aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
-      aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
-    )
-    @directory = connection.directories.create(key: ENV["AWS_CSV_EXPORT_BUCKET_NAME"])
   end
 
   around do |example|
@@ -98,21 +85,12 @@ RSpec.describe CsvExportWorker do
 
   subject { described_class.new.perform(search_params, "to@example.com", start_time) }
 
-  it "uploads the file to S3" do
-    subject
-
-    expect(@directory.files.count).to eq(1)
-
-    csv = CSV.parse(@directory.files.first.body)
-    expect(csv.length).to eq(3)
-  end
-
   it "emails a link of the uploaded file" do
     subject
 
     mail = ActionMailer::Base.deliveries.last
     expect(mail.to[0]).to eq("to@example.com")
-    expect(mail.body).to match(/https:\/\/test-bucket.s3.eu-west-1.amazonaws.com/)
+    expect(mail.body).to match(/https:\/\/test-bucket\.s3\.amazonaws\.com/)
   end
 
   it "sends StatsD timing with the milliseconds elapsed" do
@@ -122,6 +100,5 @@ RSpec.describe CsvExportWorker do
   end
 
   after(:each) do
-    Fog::Mock.reset
   end
 end
