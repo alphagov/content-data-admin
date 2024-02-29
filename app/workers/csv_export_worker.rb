@@ -1,5 +1,3 @@
-require "fog/aws"
-
 class CsvExportWorker
   include FileStorage
   include Sidekiq::Worker

@@ -16,8 +16,3 @@ inherit_mode:
 #
 # See https://github.com/alphagov/rubocop-govuk/blob/main/CONTRIBUTING.md
 # **************************************************************
-
-Rails/SaveBang:
-  AllowedReceivers:
-    - connection.directories # false positive for Fog::Storage
-    - directory.files # false positive for Fog::Storage
