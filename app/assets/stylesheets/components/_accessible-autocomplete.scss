@@ -1,4 +1,4 @@
-@import url(asset-path("accessible-autocomplete/dist/accessible-autocomplete.min.css")); /* stylelint-disable-line */
+@import "accessible-autocomplete/src/autocomplete";
 
 .app-c-accessible-autocomplete {
   .autocomplete__input {
