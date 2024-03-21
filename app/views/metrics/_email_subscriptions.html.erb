@@ -1,5 +1,7 @@
 <h2 class="section-content__header content-metrics__header"><%= t("metrics.email_subscriptions.title") %></h2>
-<% if @email_subscriptions.present? %>
+<% if @performance_data.document_type.to_s.downcase == "finder" %>
+  <p><%= t("metrics.email_subscriptions.finder") %></p>
+<% elsif @email_subscriptions.present? %>
   <p><strong><%= t("metrics.email_subscriptions.active_title") %>:</strong> <%= @email_subscriptions.subscriber_list_count %></p>
   <p><strong><%= t("metrics.email_subscriptions.total_notify_title") %>:</strong> <%=@email_subscriptions.all_notify_count %></p>
 <% else %>

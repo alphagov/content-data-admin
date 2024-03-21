@@ -17,6 +17,7 @@ en:
       total_notify_title: 'Number of subscribers notified by change'
       total_notify_description: 'Number of subscribers notified by change is the number of people who will receive emails if this page receives a major update. Note that this may be zero even if the page has active subscribers (if the page does not generate email alerts), or may be positive even if the page has no active subscribers (as there are lists that subscribe to all emails, or all emails on a certain topic)'
       no_information: 'No subscription information found'
+      finder: 'This page is a finder, which will not trigger alerts itself. There may be multiple subscriber lists to documents mentioned in the finder.'
     upviews:
       title: 'Unique page views'
       short_title: 'Unique page views'
