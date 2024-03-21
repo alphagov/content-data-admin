@@ -3,7 +3,7 @@ en:
   data_sources:
     google_analytics: 'Google Analytics'
     ga4_migration_warning:
-      heading: We're currently upgrading our Google Analytics source to Google's new product, GA4. Users may see the numbers vary as of January 2024.
+      heading: We're currently upgrading our Google Analytics source to Google's new product, GA4. Users may see the numbers vary as of January 2024, including some unusually high spikes in page views. We're looking into the cause of these.
       body: For more information please contact <a href="mailto:govuk-ga4-support@digital.cabinet-office.gov.uk">govuk-ga4-support@digital.cabinet-office.gov.uk</a>. Data is only collected for users that consent to analytics cookies.
     calculated_google_analytics: 'calculated from Google Analytics'
     feedback_explorer: 'Feedback Explorer'
