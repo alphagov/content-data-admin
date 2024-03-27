@@ -6,7 +6,7 @@ gem "aws-sdk-s3"
 gem "bootsnap", require: false
 gem "chartkick"
 gem "dartsass-rails"
-gem "gds-api-adapters", "~> 95.0.0"
+gem "gds-api-adapters", "~> 95.0.1"
 gem "gds-sso"
 gem "govspeak"
 gem "govuk_app_config"
