@@ -43,14 +43,22 @@ RSpec.describe "Exporting CSV" do
     ]
   end
 
+  let(:prometheus_registry) { Prometheus::Client.registry }
+  let(:pushgateway) { instance_spy(Prometheus::Client::Push) }
+  let(:csv_export_histogram) { instance_spy(Prometheus::Client::Histogram) }
+
   before(:each) do
     stub_content_page(time_period: "past-30-days", organisation_id: "all", items:)
     stub_content_page_csv_download(time_period: "past-30-days", organisation_id: "all", items:)
     GDS::SSO.test_user = build(:user, organisation_content_id: "users-org-id", email: "to@example.com")
 
     ENV["AWS_CSV_EXPORT_BUCKET_NAME"] = "test-bucket"
+    ENV["PROMETHEUS_PUSHGATEWAY_URL"] = "http://prometheus-pushgateway.local"
 
-    allow(GovukStatsd).to receive(:count)
+    allow(Prometheus::Client::Push).to receive(:new).and_return(pushgateway)
+    allow(prometheus_registry).to receive(:histogram)
+      .with(:content_data_admin_histogram, any_args)
+      .and_return(csv_export_histogram)
 
     visit "/content"
     click_link("Download all data in CSV format")

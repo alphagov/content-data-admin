@@ -1,3 +1,6 @@
+require "prometheus/client"
+require "prometheus/client/push"
+
 class CsvExportWorker
   include FileStorage
   include Sidekiq::Worker
@@ -17,8 +20,9 @@ class CsvExportWorker
 
     # Send email with link
     ContentCsvMailer.content_csv_email(recipient_address, file_url).deliver_now
+
     elapsed_time_seconds = (Time.zone.now - start_time).truncate
-    GovukStatsd.timing("monitor.csv.download.ms", elapsed_time_seconds * 1000)
+    push_metrics_to_pushgateway(elapsed_time_seconds)
   end
 
   def build_csv_presenter(search_params)
@@ -32,5 +36,26 @@ class CsvExportWorker
       document_types,
       organisations,
     )
+  end
+
+  def push_metrics_to_pushgateway(elapsed_time_seconds)
+    prometheus_registry = Prometheus::Client.registry
+
+    histogram = if Prometheus::Client.registry.exist?(:content_data_admin_histogram)
+                  Prometheus::Client.registry.get(:content_data_admin_histogram)
+                else
+                  Prometheus::Client.registry.histogram(
+                    :content_data_admin_histogram,
+                    docstring: "Time it takes to export a CSV file in seconds",
+                    buckets: [300, 600, 900, 1800, 2700, 3600], # 5 mins, 10mins 15mins, 30mins, 45mins, 60mins
+                  )
+                end
+
+    histogram.observe(elapsed_time_seconds)
+
+    Prometheus::Client::Push.new(
+      job: "csv_export_duration_seconds",
+      gateway: ENV.fetch("PROMETHEUS_PUSHGATEWAY_URL"),
+    ).add(prometheus_registry)
   end
 end
