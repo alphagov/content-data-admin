@@ -57,7 +57,7 @@ RSpec.describe "Exporting CSV" do
 
     allow(Prometheus::Client::Push).to receive(:new).and_return(pushgateway)
     allow(prometheus_registry).to receive(:histogram)
-      .with(:content_data_admin_histogram, any_args)
+      .with(:content_data_admin_histogram_v1, any_args)
       .and_return(csv_export_histogram)
 
     visit "/content"

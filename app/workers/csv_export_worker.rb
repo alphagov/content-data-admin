@@ -41,17 +41,19 @@ class CsvExportWorker
   def push_metrics_to_pushgateway(elapsed_time_seconds)
     prometheus_registry = Prometheus::Client.registry
 
-    histogram = if Prometheus::Client.registry.exist?(:content_data_admin_histogram)
-                  Prometheus::Client.registry.get(:content_data_admin_histogram)
+    histogram = if Prometheus::Client.registry.exist?(:content_data_admin_histogram_v1)
+                  Prometheus::Client.registry.get(:content_data_admin_histogram_v1)
                 else
                   Prometheus::Client.registry.histogram(
-                    :content_data_admin_histogram,
+                    :content_data_admin_histogram_v1,
                     docstring: "Time it takes to export a CSV file in seconds",
+                    labels: %i[time_stamp],
                     buckets: [300, 600, 900, 1800, 2700, 3600], # 5 mins, 10mins 15mins, 30mins, 45mins, 60mins
                   )
                 end
 
-    histogram.observe(elapsed_time_seconds)
+    timestamp_label = Time.zone.now.to_s
+    histogram.with_labels(time_stamp: timestamp_label).observe(elapsed_time_seconds)
 
     Prometheus::Client::Push.new(
       job: "csv_export_duration_seconds",
