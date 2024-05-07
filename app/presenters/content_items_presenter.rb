@@ -1,3 +1,5 @@
+require "kaminari/helpers/helper_methods"
+
 class ContentItemsPresenter
   include Kaminari::Helpers::HelperMethods
   attr_reader :title, :content_items, :pagination, :filter, :search_parameters, :sort
