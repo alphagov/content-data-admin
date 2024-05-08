@@ -12,10 +12,10 @@ en:
     email_subscriptions:
       title: 'Email subscriptions'
       about_title: 'About Email subscriptions'
-      active_title: 'Active subscribers'
-      active_description: 'Active subscribers is the number of people who have clicked the Get Emails button on this page and signed up to be subscribed to valid email alerts either to this page or to pages related to this one. Note that some pages can be subscribed to, but do not generate email alerts themselves (in these cases the subscriber list will be notified if pages related to this one are updated)'
-      total_notify_title: 'Number of subscribers notified by change'
-      total_notify_description: 'Number of subscribers notified by change is the number of people who will receive emails if this page receives a major update. Note that this may be zero even if the page has active subscribers (if the page does not generate email alerts), or may be positive even if the page has no active subscribers (as there are lists that subscribe to all emails, or all emails on a certain topic)'
+      active_title: 'Users signed up to get email updates about this page'
+      active_description: 'This is the number of users who have signed up to get email updates about changes to this page. Users get an email when there is a ‘major change’ to the page or, if it’s a document collection, pages that are part of the document collection.<br /><br />A major change is when the publisher has decided users need to know the content has changed. A change note will be published on the page and users will get an email.<br /><br />Topic taxonomy pages, organisation pages or finders (like guidance and regulation) don’t have major changes. On these pages the number refers to people who have signed up to receive emails about that topic, organisation or finder. '
+      total_notify_title: 'Users who will get email updates about changes to this page'
+      total_notify_description: 'The number of users that get emails about changes to this page might be different from the number signed up to get email updates on the page.<br /><br />This happens when the page is part of a document collection, topic taxonomy page, organisation or finder. Users who have signed up to get email updates on those pages will also get an email notification when there is a major change to this page.'
       no_information: 'No subscription information found'
       finder: 'This page is a finder, which will not trigger alerts itself. There may be multiple subscriber lists to documents mentioned in the finder.'
     upviews:

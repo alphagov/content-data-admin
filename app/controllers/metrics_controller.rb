@@ -29,9 +29,6 @@ private
   end
 
   def setup_email_subscriptions
-    return unless current_user.view_email_subs?
-
-    @show_email_subs_section = true
     @email_subscriptions = EmailApi::PageSubscriptionsClient.new.fetch(path: "/#{base_path}")
   end
 

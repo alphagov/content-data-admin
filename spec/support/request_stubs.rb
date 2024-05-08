@@ -1,8 +1,10 @@
+require "gds_api/test_helpers/email_alert_api"
 require "support/content_data_api"
 require "support/response_helpers"
 
 module RequestStubs
   include GdsApi::TestHelpers::ContentDataApi
+  include GdsApi::TestHelpers::EmailAlertApi
   include GdsApi::TestHelpers::ResponseHelpers
 
   def stub_metrics_page(base_path:, time_period:, publishing_app: "whitehall", content_item_missing: false, current_data_missing: false, comparison_data_missing: false, edition_metrics_missing: false, related_content: 0, parent_document_id: nil)
@@ -54,6 +56,9 @@ module RequestStubs
         payload: previous_period_data,
       )
     end
+
+    json = { subscriber_list_count: 3, all_notify_count: 10 }.to_json
+    stub_get_subscriber_list_metrics(path: "/#{base_path}", response: json)
   end
 
   def stub_document_children_page(document_id:, time_period: "past-30-days", sort: "sibling_order:asc", response: nil)
