@@ -1,3 +1,5 @@
+require "kaminari/helpers/helper_methods"
+
 module PaginationHelper
   include Kaminari::Helpers::HelperMethods
   attr_accessor :content
