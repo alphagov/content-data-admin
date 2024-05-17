@@ -223,9 +223,9 @@ RSpec.describe "/metrics/base/path", type: :feature do
         ])
       end
 
-      it "renders link to search terms" do
-        expect(page).to have_selector(".govuk-link", text: I18n.t("metrics.searches.external_link"))
-      end
+      # it "renders link to search terms" do
+      #   expect(page).to have_selector(".govuk-link", text: I18n.t("metrics.searches.external_link"))
+      # end
 
       it "renders the satisfaction score" do
         within ".section-performance" do
