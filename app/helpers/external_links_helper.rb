@@ -54,16 +54,6 @@ module ExternalLinksHelper
     end
   end
 
-  def google_analytics_url(from:, to:, base_path:)
-    from = from.to_fs(:number)
-    to = to.to_fs(:number)
-    base_path = base_path.downcase.gsub(%r{(/)(?!\z)}, "~2F")
-    "https://analytics.google.com/analytics/web/?hl=en&pli=1"\
-    "#/report/content-site-search-pages/a26179049w50705554p53872948/"\
-    "_u.date00=#{from}&_u.date01=#{to}&"\
-    "_r.drilldown=analytics.searchStartPage:#{base_path}"
-  end
-
   def external_url_for(service)
     Plek.external_url_for(service)
   end

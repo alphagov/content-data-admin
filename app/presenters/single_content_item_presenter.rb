@@ -97,10 +97,6 @@ class SingleContentItemPresenter
     feedex_url(from: date_range.from, to: date_range.to, base_path:)
   end
 
-  def search_terms_href
-    google_analytics_url(from: date_range.from, to: date_range.to, base_path:)
-  end
-
   def period
     I18n.t("metrics.show.time_periods.#{@date_range.time_period}.reference")
   end
