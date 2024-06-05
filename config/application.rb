@@ -39,7 +39,7 @@ module ContentDataAdmin
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.govuk_environment = ENV["GOVUK_ENVIRONMENT_NAME"] || "development"
+    config.govuk_environment = ENV["GOVUK_ENVIRONMENT"] || "development"
 
     # Load all the locale files and raise execptions if locale missing.
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.yml")]
