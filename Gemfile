@@ -23,7 +23,7 @@ gem "sentry-sidekiq"
 gem "siteimprove_api_client"
 gem "sitemap_generator"
 gem "sprockets-rails"
-gem "uglifier"
+gem "terser"
 
 group :development do
   gem "better_errors"
