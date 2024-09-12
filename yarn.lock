@@ -135,15 +135,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"accessible-autocomplete@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "accessible-autocomplete@npm:3.0.0"
+"accessible-autocomplete@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "accessible-autocomplete@npm:3.0.1"
   peerDependencies:
     preact: ^8.0.0
   peerDependenciesMeta:
     preact:
       optional: true
-  checksum: 4f1c27ec66ee8376335a2dc2672ef070366d4d2e1a8ba6e0c4f81695cb1c1db0f05912503c63d055534df6d7c5c3ceae564ef466bf95e4316f6e0e0ef8eba1de
+  checksum: 0b4802253cec1488c147c9bde20432e815619fdb5173b7aa5f95b2e2bb0a12dbba8810a162a205f74166b6ae2e43df18085b37a80e012ac05d00d689bc9d2a8f
   languageName: node
   linkType: hard
 
@@ -455,7 +455,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "content-data-admin@workspace:."
   dependencies:
-    accessible-autocomplete: ^3.0.0
+    accessible-autocomplete: ^3.0.1
     postcss: ^8.4.45
     standardx: ^7.0.0
     stylelint: ^16.2.1

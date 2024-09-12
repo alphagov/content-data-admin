@@ -32,7 +32,7 @@
     "stylelint-config-gds": "^2.0.0"
   },
   "dependencies": {
-    "accessible-autocomplete": "^3.0.0"
+    "accessible-autocomplete": "^3.0.1"
   },
   "packageManager": "yarn@3.5.0"
 }
