@@ -1,9 +1,9 @@
 require "prometheus/client"
 require "prometheus/client/push"
 
-class CsvExportWorker
+class CsvExportJob
   include FileStorage
-  include Sidekiq::Worker
+  include Sidekiq::Job
 
   sidekiq_options retry: 0
   sidekiq_options queue: "export_csv"
@@ -61,3 +61,5 @@ class CsvExportWorker
     ).add(prometheus_registry)
   end
 end
+
+CsvExportWorker = CsvExportJob ## TODO: Remove once queued jobs at the time of the upgrade are complete

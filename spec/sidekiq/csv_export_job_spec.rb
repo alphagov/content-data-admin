@@ -1,6 +1,6 @@
 require "govuk_sidekiq/testing"
 
-RSpec.describe CsvExportWorker do
+RSpec.describe CsvExportJob do
   let(:search_params) do
     {
       date_range: "past-30-days",
@@ -68,7 +68,7 @@ RSpec.describe CsvExportWorker do
   let(:csv_export_histogram) { instance_spy(Prometheus::Client::Histogram) }
 
   before do
-    Sidekiq::Worker.clear_all
+    Sidekiq::Job.clear_all
 
     ENV["AWS_CSV_EXPORT_BUCKET_NAME"] = "test-bucket"
     ENV["PROMETHEUS_PUSHGATEWAY_URL"] = "http://prometheus-pushgateway.local"

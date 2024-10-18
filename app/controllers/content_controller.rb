@@ -21,7 +21,7 @@ class ContentController < ApplicationController
     @recipient = current_user.email
 
     start_time_string = Time.zone.now.to_s
-    CsvExportWorker.perform_async(search_params.stringify_keys, @recipient, start_time_string)
+    CsvExportJob.perform_async(search_params.stringify_keys, @recipient, start_time_string)
   end
 
 private
