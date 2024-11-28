@@ -144,7 +144,7 @@ GEM
     faraday-net_http (3.1.0)
       net-http
     ffi (1.15.5)
-    gds-api-adapters (97.4.0)
+    gds-api-adapters (97.4.1)
       addressable
       link_header
       null_logger
@@ -735,7 +735,7 @@ DEPENDENCIES
   chartkick
   dartsass-rails
   factory_bot_rails
-  gds-api-adapters (~> 97.4.0)
+  gds-api-adapters (~> 97.4.1)
   gds-sso
   govspeak
   govuk_app_config
