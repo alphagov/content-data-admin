@@ -64,11 +64,12 @@ RSpec.describe "/metrics/base/path", type: :feature do
 
     describe "glance metrics section" do
       it "renders glance metrics unique page views" do
-        expect(page).to have_selector ".glance-metric.upviews", text: "6k"
+        expect(page).to have_selector ".glance-metric.upviews .gem-c-glance-metric__figure", text: "6"
+        expect(page).to have_selector ".glance-metric.upviews .gem-c-glance-metric__display-label", text: "k"
       end
 
       pending "renders trend percentage for unique page views" do
-        expect(page).to have_selector ".upviews .app-c-glance-metric__trend", text: "+500.00%"
+        expect(page).to have_selector ".upviews .gem-c-glance-metric__trend", text: "+500.00%"
       end
 
       it "renders glance metric for satisfaction score" do
@@ -80,7 +81,7 @@ RSpec.describe "/metrics/base/path", type: :feature do
       end
 
       pending "renders trend percentage for satisfaction score" do
-        expect(page).to have_selector ".satisfaction .app-c-glance-metric__trend", text: "+50.00%"
+        expect(page).to have_selector ".satisfaction .gem-c-glance-metric__trend", text: "+50.00%"
       end
 
       it "renders glance metric for on page searches" do
@@ -92,7 +93,7 @@ RSpec.describe "/metrics/base/path", type: :feature do
       end
 
       pending "renders trend percentage for page searches" do
-        expect(page).to have_selector ".searches .app-c-glance-metric__trend", text: "3,950.00%"
+        expect(page).to have_selector ".searches .gem-c-glance-metric__trend", text: "3,950.00%"
       end
 
       it "renders glance metric for feedex comments" do
@@ -100,11 +101,11 @@ RSpec.describe "/metrics/base/path", type: :feature do
       end
 
       pending "renders trend percentage for feedex comments" do
-        expect(page).to have_selector ".feedex .app-c-glance-metric__trend", text: "+5.00%"
+        expect(page).to have_selector ".feedex .gem-c-glance-metric__trend", text: "+5.00%"
       end
 
       it "renders context for page searches" do
-        expect(page).to have_selector ".searches .app-c-glance-metric__context", text: "4.05%"
+        expect(page).to have_selector ".searches .gem-c-glance-metric__context", text: "4.05%"
       end
     end
 
@@ -249,7 +250,7 @@ RSpec.describe "/metrics/base/path", type: :feature do
 
         visit "/metrics/base/path"
         expect(page.status_code).to eq(200)
-        expect(page).to have_selector ".upviews .app-c-glance-metric__trend", text: "no comparison data"
+        expect(page).to have_selector ".upviews .gem-c-glance-metric__trend", text: "no comparison data"
       end
     end
 
