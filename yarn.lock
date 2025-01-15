@@ -456,7 +456,7 @@ __metadata:
   resolution: "content-data-admin@workspace:."
   dependencies:
     accessible-autocomplete: ^3.0.1
-    postcss: ^8.5.0
+    postcss: ^8.5.1
     standardx: ^7.0.0
     stylelint: ^16.2.1
     stylelint-config-gds: ^2.0.0
@@ -2369,14 +2369,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.5.0":
-  version: 8.5.0
-  resolution: "postcss@npm:8.5.0"
+"postcss@npm:^8.5.1":
+  version: 8.5.1
+  resolution: "postcss@npm:8.5.1"
   dependencies:
     nanoid: ^3.3.8
     picocolors: ^1.1.1
     source-map-js: ^1.2.1
-  checksum: 00cd3ad373fcbef960273124556c1a989877bfa4244c9095ba2e7bedb450328bc4cbd3429fbc54dfdd882b414fde311ca28fa476db11e18a0110789812c58152
+  checksum: cfdcfcd019fca78160341080ba8986cf80cd6e9ca327ba61b86c03e95043e9bce56ad2e018851858039fd7264781797360bfba718dd216b17b3cd803a5134f2f
   languageName: node
   linkType: hard
 
