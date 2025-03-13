@@ -81,5 +81,15 @@ RSpec.describe Siteimprove::PolicyIssuesPresenter do
       presenter = described_class.new(policy_issues, summary_info)
       expect(presenter.policy_description(policy_issues.first)).to include("<p>")
     end
+
+    it "doesn't return the description if there's no note" do
+      policy = instance_double(SiteimproveAPIClient::ExecutedPolicy, name: "Copy of TestSI Start Now button (Before you start)", category: "content")
+      allow(policy).to receive(:note)
+      allow_any_instance_of(Siteimprove::FetchPolicies).to receive(:find).and_return([policy])
+
+      presenter = described_class.new(policy_issues, summary_info)
+
+      expect(presenter.policy_description(policy_issues.first)).to include("No description for this policy")
+    end
   end
 end

@@ -46,7 +46,7 @@ module Siteimprove
 
     def policy_description(issue)
       policy = Siteimprove::FetchPolicies.new.find(issue.id).first
-      return "No description for this policy" unless policy
+      return "No description for this policy" unless policy && policy.note
 
       note = policy.note
       note.gsub!(/https:\/\/(.+)/, "[https://\\1](https://\\1)")
