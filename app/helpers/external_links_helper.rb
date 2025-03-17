@@ -54,9 +54,7 @@ module ExternalLinksHelper
     end
   end
 
-  def external_url_for(service)
-    Plek.external_url_for(service)
-  end
+  delegate :external_url_for, to: :Plek
 
   def slug_from_basepath(base_path)
     base_path.split("/").last

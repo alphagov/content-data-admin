@@ -9,9 +9,7 @@ module Siteimprove
       @summary_info = summary_info
     end
 
-    def any?
-      @policy_issues.any?
-    end
+    delegate :any?, to: :@policy_issues
 
     def issue_list(type)
       @policy_issues.select { |issue| type == :all || policy_type(issue.policy_name) == type }.map do |issue|
