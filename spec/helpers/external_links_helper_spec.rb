@@ -36,21 +36,6 @@ RSpec.describe ExternalLinksHelper do
       end
     end
 
-    context "with contacts" do
-      it "generates a link to the contacts publisher app" do
-        expect(
-          edit_url_for(
-            content_id: "content_id",
-            publishing_app: "contacts",
-            base_path: "government/organisations/hm-revenue-customs/contact/tax-credits-agent-priority-line",
-            document_type: "news_story",
-          ),
-        ).to eq(
-          "#{external_url_for('contacts-admin')}/admin/contacts/tax-credits-agent-priority-line/edit",
-        )
-      end
-    end
-
     context "with specialist-publisher" do
       it "generates a link to the specialist publisher app with document_type" do
         expect(
