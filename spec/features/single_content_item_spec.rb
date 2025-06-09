@@ -292,13 +292,6 @@ RSpec.describe "/metrics/base/path", type: :feature do
         expect(page).to have_selector ".related-actions", text: "Whitehall"
       end
 
-      it "renders the contacts application" do
-        stub_metrics_page(base_path: "contacts/path", time_period: :past_30_days, publishing_app: "contacts")
-        visit "/metrics/contacts/path"
-        label = I18n.t("metrics.show.navigation.edit_link", publishing_app: "Contacts")
-        expect(page).to have_link(label, href: "http://contacts-admin.dev.gov.uk/admin/contacts/path/edit")
-      end
-
       it "renders the specialist publisher application" do
         stub_metrics_page(base_path: "specialist/path", time_period: :past_30_days, publishing_app: "specialist-publisher")
         visit "/metrics/specialist/path"

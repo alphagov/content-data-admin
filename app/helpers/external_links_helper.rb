@@ -16,8 +16,6 @@ module ExternalLinksHelper
       end
     when "maslow", "need-api"
       "#{external_url_for('maslow')}/needs/#{content_id}"
-    when "contacts"
-      "#{external_url_for('contacts-admin')}/admin/contacts/#{slug_from_basepath(base_path)}/edit"
     when "specialist-publisher"
       "#{external_url_for('specialist-publisher')}/#{specialist_publisher_path(document_type, content_id)}"
     when "collections-publisher"
