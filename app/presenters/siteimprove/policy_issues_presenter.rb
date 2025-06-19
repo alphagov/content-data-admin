@@ -48,7 +48,13 @@ module Siteimprove
 
       note = policy.note
       note.gsub!(/https:\/\/(.+)/, "[https://\\1](https://\\1)")
-      Govspeak::Document.new(note).to_html
+      Govspeak::Document.new(note, govspeak_attributes).to_html
+    end
+
+    def govspeak_attributes
+      {
+        locale:,
+      }
     end
   end
 end
