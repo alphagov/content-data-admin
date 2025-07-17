@@ -24,18 +24,6 @@ $govuk-global-styles: true;
 @import "content/index";
 @import "compare/show";
 
-.gem-c-environment-tag {
-  @media (max-width: 360px) {
-    @include govuk-font($size: 14);
-  }
-}
-
-.govuk-header__link--homepage {
-  @media (max-width: 360px) {
-    @include govuk-font($size: 24);
-  }
-}
-
 .banner {
   border-bottom: 1px solid $govuk-border-colour;
 }
