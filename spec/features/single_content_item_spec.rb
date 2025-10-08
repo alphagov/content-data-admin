@@ -35,11 +35,6 @@ RSpec.describe "/metrics/base/path", type: :feature do
     it "renders the page without errors" do
       expect(page.status_code).to eq(200)
     end
-
-    it "does not display reading time" do
-      label = "About reading time"
-      expect(page).to_not have_selector("metric-summary__reading-time .govuk-details__summary-text", text: label)
-    end
   end
 
   context "successful request" do
@@ -225,9 +220,7 @@ RSpec.describe "/metrics/base/path", type: :feature do
       end
 
       it "renders the satisfaction score" do
-        within ".section-performance" do
-          expect(page).to have_selector(".metric-summary__satisfaction", text: "90% (700 responses) +50.00%")
-        end
+        expect(page).to have_selector(".metric-summary__satisfaction", text: "90% (700 responses) +50.00%")
       end
 
       it "renders the metric timeseries for " do

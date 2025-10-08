@@ -11,20 +11,9 @@
     @include govuk-responsive-margin(2, "right");
   }
 
-  .section-performance {
-
-    @include media-down(mobile) {
-      border-top: 1px solid $govuk-border-colour;
-    }
-  }
-
   .section-performance__header {
     @include govuk-font($size: 36, $weight: bold);
     margin: 0;
-
-    @include media-down(mobile) {
-      @include govuk-responsive-margin(3, "top");
-    }
   }
 
   .section-content {
@@ -43,22 +32,6 @@
 
   .govuk-section-break--visible {
     border-width: 1px;
-  }
-
-  .metric-summary__words {
-
-    @include media-down(mobile) {
-      width: 95%;
-      border-bottom: 1px solid $govuk-border-colour;
-    }
-  }
-
-  .metric-summary__reading-time {
-
-    @include media-down(mobile) {
-      width: 95%;
-      border-bottom: 1px solid $govuk-border-colour;
-    }
   }
 
   .banner {
