@@ -34,5 +34,16 @@
   "dependencies": {
     "accessible-autocomplete": "^3.0.1"
   },
+  "overrides": {
+    "eslint": {
+      "js-yaml": "3.14.2"
+    },
+    "@eslint/eslintrc": {
+      "js-yaml": "3.14.2"
+    },
+    "cosmiconfig": {
+      "js-yaml": "4.1.1"
+    }
+  },
   "packageManager": "yarn@3.5.0"
 }
