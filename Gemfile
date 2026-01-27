@@ -7,7 +7,7 @@ gem "bootsnap", require: false
 gem "chartkick"
 gem "csv"
 gem "dartsass-rails"
-gem "gds-api-adapters", "~> 101.2.0"
+gem "gds-api-adapters", "~> 102.0.0"
 gem "gds-sso"
 gem "govspeak"
 gem "govuk_app_config"
