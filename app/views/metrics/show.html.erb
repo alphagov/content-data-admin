@@ -18,14 +18,14 @@
     <h1 class="govuk-heading-xl"><%= @performance_data.title %></h1>
   </div>
   <div class="govuk-grid-column-two-thirds">
-    <div class="page-metadata">
-      <%= render "components/metadata",
-          publishing_organisation: @performance_data.publishing_organisation,
-          document_type: @performance_data.document_type.humanize,
-          base_path: @performance_data.base_path,
-          status: @performance_data.status
-      %>
-    </div>
+    <%= render "govuk_publishing_components/components/metadata", {
+      other: {
+        t("components.metadata.labels.status") => @performance_data.status,
+        t("components.metadata.labels.publishing_organisation") => @performance_data.publishing_organisation,
+        t("components.metadata.labels.document_type") => @performance_data.document_type&.humanize,
+        t("components.metadata.labels.base_path") => ["gov.uk", @performance_data.base_path].join(""),
+      }.compact
+    } %>
   </div>
   <div class="govuk-grid-column-one-third related-actions">
     <%= render "components/related_actions",
