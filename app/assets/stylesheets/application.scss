@@ -8,7 +8,7 @@ $sort-link-arrow-margin: -4px;
 $govuk-global-styles: true;
 
 // gem components
-@import "govuk_publishing_components/all_components";
+@import "govuk_publishing_components/all-components";
 
 // local components
 @import "components/accessible-autocomplete";
