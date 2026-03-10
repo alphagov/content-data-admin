@@ -9,7 +9,7 @@ module PaginationHelper
     if presenter.prev_link?
       result = result.merge(
         previous_page: {
-          url: path_to_prev_page(presenter.content_items),
+          href: path_to_prev_page(presenter.content_items),
           title: "Previous",
           label: presenter.prev_label,
         },
@@ -19,7 +19,7 @@ module PaginationHelper
     if presenter.next_link?
       result = result.merge(
         next_page: {
-          url: path_to_next_page(presenter.content_items),
+          href: path_to_next_page(presenter.content_items),
           title: "Next",
           label: presenter.next_label,
         },
