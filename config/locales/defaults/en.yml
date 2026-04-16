@@ -104,11 +104,11 @@ en:
         full_desc: 'Guidance about rule'
         accessibility:
           title: 'Accessibility issues'
-          description: 'This section highlights potential accessibility issues. These are taken from the guidance about <a href="https://www.gov.uk/guidance/content-design">planning, writing and managing content</a> and <a href="https://www.gov.uk/guidance/how-to-publish-on-gov-uk">how to publish on GOV.UK</a>.'
+          description: 'This section highlights potential accessibility issues. These are taken from the <a href="https://guidance.publishing.service.gov.uk/">content publishing guidance</a>.'
           caption: 'Table of accessibility issues on the page'
         style:
           title: 'Style issues'
-          description: 'This section highlights potential style issue on the page. The related style rules are discussed in <a href="https://www.gov.uk/guidance/style-guide/a-to-z-of-gov-uk-style">GOV.UK style guide</a> and <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk">writing for GOV.UK</a>.'
+          description: 'This section highlights potential style issue on the page. The related style rules are discussed in the <a href="https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/style-guides/">GOV.UK style guides</a> and the <a href="https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/tone-of-voice/">tone of voice guidance</a>.'
           caption: 'Table of style issues on the page'
       quality_assurance:
         broken_links:
