@@ -141,9 +141,6 @@ GEM
     drb (2.2.3)
     erb (6.0.4)
     erubi (1.13.1)
-    ethon (0.18.0)
-      ffi (>= 1.15.0)
-      logger
     execjs (2.10.0)
     factory_bot (6.5.5)
       activesupport (>= 6.1.0)
@@ -691,8 +688,6 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.13.2)
     simplecov_json_formatter (0.1.4)
-    siteimprove_api_client (1.0.4)
-      typhoeus (~> 1.0, >= 1.0.1)
     sitemap_generator (7.0.1)
       builder (~> 3.0)
     snaky_hash (2.0.3)
@@ -718,8 +713,6 @@ GEM
     timecop (0.9.11)
     timeout (0.6.1)
     tsort (0.2.0)
-    typhoeus (1.6.0)
-      ethon (>= 0.18.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.2.0)
@@ -780,7 +773,6 @@ DEPENDENCIES
   sassc
   sentry-sidekiq
   simplecov
-  siteimprove_api_client
   sitemap_generator
   spring-commands-rspec
   sprockets-rails

@@ -14,7 +14,6 @@ class MetricsController < ApplicationController
       curr_period,
     )
 
-    setup_siteimprove
     setup_email_subscriptions
   end
 
@@ -30,20 +29,5 @@ private
 
   def setup_email_subscriptions
     @email_subscriptions = EmailApi::PageSubscriptionsClient.new.fetch(path: "/#{base_path}")
-  end
-
-  def setup_siteimprove
-    return unless current_user.view_siteimprove?
-
-    begin
-      @summary_info = Siteimprove::FetchSummary.call(url: "https://www.gov.uk/#{base_path}")
-      raw_policy_issues = Siteimprove::FetchPolicyIssues.call(url: "https://www.gov.uk/#{base_path}")
-      @policy_issues = Siteimprove::PolicyIssuesPresenter.new(raw_policy_issues, @summary_info)
-      raw_quality_assurance_issues = Siteimprove::FetchQualityAssuranceIssues.call(url: "https://www.gov.uk/#{base_path}")
-      @quality_assurance_issues = Siteimprove::QualityAssuranceIssuesPresenter.new(raw_quality_assurance_issues, @summary_info, LinkTitleResolver.new("/#{base_path}"))
-      @has_accessibility_info = @policy_issues.any? || @quality_assurance_issues.any?
-    rescue Siteimprove::BaseError
-      @has_accessibility_info = false
-    end
   end
 end

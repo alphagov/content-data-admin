@@ -10,8 +10,4 @@ FactoryBot.define do
     end
     organisation_content_id { SecureRandom.uuid }
   end
-
-  factory :view_siteimprove_user, parent: :user do
-    permissions { %i[view_siteimprove] }
-  end
 end
