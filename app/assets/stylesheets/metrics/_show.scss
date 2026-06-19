@@ -85,7 +85,7 @@
       table-layout: fixed;
 
       .content-metrics__url-cell {
-        word-wrap: break-word;
+        overflow-wrap: break-word;
       }
     }
 
