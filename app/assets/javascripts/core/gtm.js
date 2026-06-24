@@ -36,7 +36,7 @@
       var organisation = organisationElement.selectedOptions[0].text
       if (organisation.length > 0) {
         message = {}
-        message[eventName] = { organisation: organisation }
+        message[eventName] = { organisation }
         window.dataLayer.push(message)
       }
     }

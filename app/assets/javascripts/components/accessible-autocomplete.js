@@ -1,4 +1,3 @@
-/* eslint-env jquery */
 /* global accessibleAutocomplete */
 // = require accessible-autocomplete/dist/accessible-autocomplete.min.js
 
