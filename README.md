@@ -2,8 +2,6 @@
 
 A front end for the [Content Data API].
 
-This application is currently in development for a private beta.
-
 ## Technical Documentation
 
 This is a Ruby on Rails app, and should follow [our Rails app conventions](https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html).
