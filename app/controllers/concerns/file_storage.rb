@@ -7,7 +7,6 @@ module FileStorage
     key = "#{timestamp}/#{filename}"
 
     s3.put_object({
-      acl: "public-read",
       body:,
       bucket: ENV["AWS_CSV_EXPORT_BUCKET_NAME"],
       content_disposition: "attachment; filename=\"#{filename}\"",
