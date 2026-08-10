@@ -155,7 +155,7 @@ GEM
     faraday-net_http (3.4.4)
       net-http (~> 0.5)
     ffi (1.17.4)
-    gds-api-adapters (103.3.1)
+    gds-api-adapters (103.4.0)
       addressable
       link_header
       null_logger
@@ -287,7 +287,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.0414)
+    mime-types-data (3.2026.0701)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     minitest (6.0.6)
@@ -752,7 +752,7 @@ DEPENDENCIES
   csv
   dartsass-rails
   factory_bot_rails
-  gds-api-adapters (~> 103.3.1)
+  gds-api-adapters (~> 103.4.0)
   gds-sso
   govspeak
   govuk_app_config
