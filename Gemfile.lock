@@ -138,7 +138,7 @@ GEM
     date (3.5.1)
     debug_inspector (1.2.0)
     diff-lcs (1.6.2)
-    domain_name (0.6.20240107)
+    domain_name (0.6.20260902)
     drb (2.2.3)
     erb (6.0.7)
     erubi (1.13.1)
@@ -155,7 +155,7 @@ GEM
     faraday-net_http (3.4.4)
       net-http (~> 0.5)
     ffi (1.17.4)
-    gds-api-adapters (103.4.0)
+    gds-api-adapters (103.4.2)
       addressable
       link_header
       null_logger
@@ -752,7 +752,7 @@ DEPENDENCIES
   csv
   dartsass-rails
   factory_bot_rails
-  gds-api-adapters (~> 103.4.0)
+  gds-api-adapters (~> 103.4.2)
   gds-sso
   govspeak
   govuk_app_config
