@@ -78,7 +78,7 @@
     }
 
     .content-metrics__data {
-      border-top: 1px solid govuk-colour("mid-grey");
+      border-top: 1px solid govuk-colour("black", $variant: "tint-80");
     }
 
     .content-metrics__url-table {
