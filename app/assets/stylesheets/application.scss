@@ -238,7 +238,7 @@ $govuk-global-styles: true;
   }
 
   .govuk-table__cell {
-    @include govuk-font(14);
+    @include govuk-font(16);
     @include govuk-responsive-padding(2);
     @include govuk-responsive-padding(3, "left");
     @include govuk-responsive-padding(3, "right");
@@ -249,7 +249,7 @@ $govuk-global-styles: true;
   }
 
   .govuk-table__cell--numeric {
-    @include govuk-font($size: 14, $tabular: true);
+    @include govuk-font($size: 16, $tabular: true);
   }
 
   .content-item__link {
@@ -271,7 +271,7 @@ $govuk-global-styles: true;
     @include govuk-responsive-padding(3);
     @include govuk-responsive-padding(2, "bottom");
 
-    @include govuk-font(14);
+    @include govuk-font(16);
     outline: 1px solid $govuk-border-colour;
 
     background-color: govuk-colour("light-grey");

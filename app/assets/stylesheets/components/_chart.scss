@@ -25,18 +25,18 @@
   .govuk-table .govuk-table__header {
     border: none;
     background-color: govuk-colour("white");
-    @include govuk-font($size: 14, $weight: bold);
+    @include govuk-font($size: 16, $weight: bold);
     text-align: center;
     min-width: 4em;
   }
 
   .govuk-table .govuk-table__body .govuk-table__cell {
-    @include govuk-font(14);
+    @include govuk-font(16);
     border-top: 1px solid #000000;
   }
 
   .govuk-table .govuk-table__cell {
-    @include govuk-font(14);
+    @include govuk-font(16);
     border: 0;
     text-align: center;
   }
