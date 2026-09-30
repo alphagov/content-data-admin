@@ -35,7 +35,7 @@
     "accessible-autocomplete": "^3.0.1"
   },
   "resolutions": {
-    "js-yaml": "^5.2.2"
+    "js-yaml": "^5.4.1"
   },
   "packageManager": "yarn@3.5.0"
 }
