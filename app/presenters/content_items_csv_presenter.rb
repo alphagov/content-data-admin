@@ -51,6 +51,8 @@ class ContentItemsCSVPresenter
       end,
       I18n.t("metrics.words.short_title") => raw_field(:word_count),
       I18n.t("metrics.pdf_count.short_title") => raw_field(:pdf_count),
+      I18n.t("metrics.email_subscriptions.active_title") => raw_field(:subscriber_list_count),
+      I18n.t("metrics.email_subscriptions.total_notify_title") => raw_field(:all_notify_count),
     }
 
     CSV.generate do |csv|
