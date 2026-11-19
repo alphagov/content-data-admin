@@ -37,6 +37,8 @@ RSpec.describe ContentItemsCSVPresenter do
         word_count: 50,
         reading_time: 50,
         pdf_count: 0,
+        subscriber_list_count: 10,
+        all_notify_count: 300,
       },
       {
         title: "Title 1",
@@ -53,6 +55,8 @@ RSpec.describe ContentItemsCSVPresenter do
         word_count: 100,
         reading_time: 100,
         pdf_count: 3,
+        subscriber_list_count: 0,
+        all_notify_count: 123,
       },
     ]
   end
@@ -92,6 +96,8 @@ RSpec.describe ContentItemsCSVPresenter do
         I18n.t("metrics.reading_time.short_title"),
         I18n.t("metrics.words.short_title"),
         I18n.t("metrics.pdf_count.short_title"),
+        I18n.t("metrics.email_subscriptions.active_title"),
+        I18n.t("metrics.email_subscriptions.total_notify_title"),
       ]
 
       expected_headers.each do |header_name|
@@ -176,6 +182,14 @@ RSpec.describe ContentItemsCSVPresenter do
 
       it "has pdf count" do
         expect(subject[17]).to eq("0")
+      end
+
+      it "has email subscriber list count" do
+        expect(subject[18]).to eq("10")
+      end
+
+      it "has email all notify count" do
+        expect(subject[19]).to eq("300")
       end
     end
   end
